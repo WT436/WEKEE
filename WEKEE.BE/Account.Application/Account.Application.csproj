@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Application\AAdminAccount.cs~RF5f17019.TMP" />
+    <None Remove="Application\AAdminAccount.cs~RF61207b9.TMP" />
+    <None Remove="Application\AResourceAction.cs~RFea6ecf0.TMP" />
+    <None Remove="Application\ASubject.cs~RF133c639d.TMP" />
+    <None Remove="Application\ASubjectAssignment.cs~RF1ebd72.TMP" />
+    <None Remove="Application\Resource.cs~RF217203.TMP" />
+    <None Remove="Interface\IAccountAdminProcess.cs~RFcf0b1c.TMP" />
+    <None Remove="Interface\IAtomic.cs~RFcc18ab2.TMP" />
+    <None Remove="Interface\IAtomic.cs~RFe8671a1.TMP" />
+    <None Remove="Interface\IResourceAction.cs~RF126ed194.TMP" />
+    <None Remove="Interface\ISubjectAssignment.cs~RF13c845.TMP" />
+    <None Remove="Interface\ISubjectAssignment.cs~RF440fd01.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Account.Domain\Account.Domain.csproj" />
+    <ProjectReference Include="..\Account.Infrastructure\Account.Infrastructure.csproj" />
+    <ProjectReference Include="..\Utils\Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EventBus\" />
+  </ItemGroup>
+
+</Project>

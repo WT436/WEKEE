@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Connect\**" />
+    <Compile Remove="DBContext\**" />
+    <EmbeddedResource Remove="Connect\**" />
+    <EmbeddedResource Remove="DBContext\**" />
+    <None Remove="Connect\**" />
+    <None Remove="DBContext\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ModelQuery\AccountShowDataQuery.cs~RF5d57486.TMP" />
+    <None Remove="ModelQuery\AddDefaultAccount.cs~RFda79ee.TMP" />
+    <None Remove="ModelQuery\CheckDbAccount.cs~RFbed0e0.TMP" />
+    <None Remove="ModelQuery\PermissionAssignmentQuery.cs~RF1836e54c.TMP" />
+    <None Remove="ModelQuery\RoleQuery.cs~RFa03df9.TMP" />
+    <None Remove="ModelQuery\RoleQuery.cs~RFa2821c.TMP" />
+    <None Remove="ModelQuery\SubjectQuery.cs~RF9eac4c.TMP" />
+    <None Remove="ModelQuery\UserAccountIpQuery.cs~RF1d3e976.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="DBContext\AuthorizationContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.12.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Account.Domain\Account.Domain.csproj" />
+    <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />
+  </ItemGroup>
+
+</Project>

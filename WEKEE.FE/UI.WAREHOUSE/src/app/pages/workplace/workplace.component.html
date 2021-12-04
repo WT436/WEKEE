@@ -1,0 +1,6 @@
+<button (click)="createToDo()">Create Todo</button>
+
+<div nz-row *ngFor="let todo of toDoList">
+  <div nz-col nzSpan="12">Name: {{ todo.Title }}</div>
+  <div nz-col nzSpan="12">IsCompleted: {{ todo.IsCompleted }}</div>
+</div>

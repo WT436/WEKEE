@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Action\**" />
+    <Compile Remove="Authv2\**" />
+    <Compile Remove="Auth\**" />
+    <Compile Remove="Login\**" />
+    <Compile Remove="Role\**" />
+    <Compile Remove="Tenant\**" />
+    <Compile Remove="UserGroup\**" />
+    <Compile Remove="User\**" />
+    <EmbeddedResource Remove="Action\**" />
+    <EmbeddedResource Remove="Authv2\**" />
+    <EmbeddedResource Remove="Auth\**" />
+    <EmbeddedResource Remove="Login\**" />
+    <EmbeddedResource Remove="Role\**" />
+    <EmbeddedResource Remove="Tenant\**" />
+    <EmbeddedResource Remove="UserGroup\**" />
+    <EmbeddedResource Remove="User\**" />
+    <None Remove="Action\**" />
+    <None Remove="Authv2\**" />
+    <None Remove="Auth\**" />
+    <None Remove="Login\**" />
+    <None Remove="Role\**" />
+    <None Remove="Tenant\**" />
+    <None Remove="UserGroup\**" />
+    <None Remove="User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="BoundedContext\RoleAnonimuoDomain.cs~RFb5e186.TMP" />
+    <None Remove="CoreDomain\CompareSessionCookie.cs~RF3453a91.TMP" />
+    <None Remove="CoreDomain\ReturnStatusAccount.cs~RF16bacf3.TMP" />
+    <None Remove="CoreDomain\ReturnStatusAccount.cs~RF24cc97.TMP" />
+    <None Remove="Dto\UserAccountDtos.cs~RF934c11.TMP" />
+    <None Remove="Entitys\IdPageListInput.cs~RFf6c8bf1.TMP" />
+    <None Remove="Dto\ActionAssignmentDto.cs~RF154fca30.TMP" />
+    <None Remove="Dto\Algorithm.cs~RF14eef68.TMP" />
+    <None Remove="Dto\ResourceActionDto.cs~RFe6b4aa4.TMP" />
+    <None Remove="Dto\RoleAnonimuosDtos.cs~RF57e046.TMP" />
+    <None Remove="Dto\RoleDtos.cs~RF8682e0.TMP" />
+    <None Remove="Dto\RoleDtos.cs~RF92938f.TMP" />
+    <None Remove="Dto\RoleDtos.cs~RFb073d0.TMP" />
+    <None Remove="Dto\SubjectAssignmentDto.cs~RF1b655d.TMP" />
+    <None Remove="Dto\SubjectDtos.cs~RF133ab561.TMP" />
+    <None Remove="ServicesDomain\AccountConfig.cs~RFd1a03e.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EventDomain\" />
+    <Folder Include="Aggregate\" />
+    <Folder Include="ServicesDomain\" />
+    <Folder Include="Services\" />
+    <Folder Include="UL\" />
+    <Folder Include="Shared\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Utils\Utils.csproj" />
+  </ItemGroup>
+
+</Project>

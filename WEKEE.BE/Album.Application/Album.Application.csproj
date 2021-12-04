@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Application\AImageBasic.cs~RF3a04e7.TMP" />
+    <None Remove="Application\AImageBasic.cs~RF4e69a87.TMP" />
+    <None Remove="Interface\IImageAvatarDefault.cs~RF9e5737.TMP" />
+    <None Remove="Interface\IImageBasic.cs~RF118b072.TMP" />
+    <None Remove="Interface\IImageBasic.cs~RF3784508.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EventBus\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Album.Domain\Album.Domain.csproj" />
+    <ProjectReference Include="..\Album.Infrastructure\Album.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
