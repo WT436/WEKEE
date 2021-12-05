@@ -1,0 +1,38 @@
+version: '3'
+services:
+  envoygateway:
+    # folder chứa file docker
+    build: envoy/
+    ports: # chỉ định các cổng
+      - "2900:2900" # cổng gốc
+      - "3100:3100" # cổng truy cấp http thường và chuyển trang
+      - "3200:3200" # cổng https
+    volumes:
+      - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml # chuyên gia đọc lệnh 
+      - ./envoy/https.crt:/etc/ssl/certs/https.crt # chứng chỉ https
+      - ./envoy/key.pem:/etc/ssl/certs/key.pem # chứng chỉ https
+  apione:
+    build: API_One/
+    ports:
+      - "8080:80"
+      - "8081:443"
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8081"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
+
+  apitwo:
+    build: API_Two/
+    ports:
+      - "8082:80"
+      - "8083:443"
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8083"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
