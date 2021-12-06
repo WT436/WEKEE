@@ -1,0 +1,27 @@
+Anonimuos:
+		Home:
+			+ token : exists ? autoLogin : check ip
+			+ ip	: exists ?  hỏi xem tài khoản này có phải của bạn. đúng thì bắt đăng nhập
+										đăng nhập theo kiểu V2 thì hỏi theo tên
+										đăng nhập với mật khẩu
+							 ?  đăng nhập Anonimuos
+							 : tạo mới
+			+ diễn ra trên trang home không chuyển trang
+			+ bất kể dạng chuyển trang nào cũng chuyển về trang login
+		Login:
+			+ ip đúng Token sai => login từ đầu . và kiểm tra tài khoản Anonimuos và xét là tài khoản đăng nhập
+			+ ip đúng token đúng => đăng nhập tự động
+			+ ip sai token đúng => login từ đầu và nhắc nhở có phải là bạn
+			+ ip sai Token sai ? có tài khoản thì gửi email xác nhận : tạo mới dựa trên Anonimuos
+			+ không xác nhận thành công hoặc quá hạn thì khóa tài khoản dạng active
+			+ đang bị khóa tài khoản do sai ip và không có token:
+				+ đăng nhập trên ip đúng : chuyển đăng nhập tùy theo v1 hay v2
+				+ bắt xác nhận email và số điện thoại
+			+ đang là Anonimuos mà đăng nhập đúng tài khoản
+				+ bắt xác nhận tài khoản? xóa Anonimuos cập nhật ip .....
+				+ không xác nhận khóa tài khoản
+					+ bắt xác nhận nếu vẫn không đúng ip và token
+					+ đúng ip và token cảnh báo đăng nhập , khuyến nghị đổi mật khẩu
+		Registration:
+			+ chưa có Anonimuos ? tạo tài khoản trực tiếp : update account Anonimuos
+User:

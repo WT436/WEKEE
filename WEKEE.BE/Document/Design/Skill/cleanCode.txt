@@ -1,0 +1,327 @@
+I. Mục đích:
+Mục tiêu chính của clean code (làm sạch mã nguồn) là giúp cho các nhà lập trình khi xem xét mã nguồn của người khác thì họ có thể hiểu được bạn đang làm gì với
+package/class/function này. Toàn bộ ý nghĩa, mục đích được mô tả đầy đủ trong mã nguồn nên không cần quá nhiều tài liệu, comment code. Điều này đặc biệt hữu ích khi cần phát
+triển, bảo trì sản phẩm trong tương lai. Vì khi đó lập trình viên có thể đọc code và hiểu được, không cần phải tìm tài liệu mô tả hoặc sự giải thích của lập trình viên viết ra đoạn
+code cũ trước đó.
+II. Quan điểm, cách làm
+- Bộ hướng dẫn làm sạch code trong lập trình được ban hành nhằm mục đích:
++ Làm cơ sở để giúp nhân sự phát triển phần mềm nâng cao chất lượng mã nguồn, dễ bảo hành, bảo trì tối ưu được mã nguồn;
++ Cho phép các đơn vị quản lý chất lượng/ người quản lý đánh giá được chất lượng mã nguồn dự án từ đó có cách cải thiện chất lượng sản phẩm sản phẩm;
++ Các đơn vị phát triển phần mềm dựa vào các quy tắc làm cơ sở nâng cao khả năng lập trình và tối ưu source code.
+IV. Các quy tắc bắt buộc
+1. Đặt tên biến/hàm/lớp
+- Đặt tên mô tả được mục đích sử dụng
+- Tránh đặt tên dễ gây hiểu nhầm mục đích sử dụng
+- Các tên khác nhau phải dễ phân biệt ý nghĩa, mục đích sử dụng khác nhau
+- Không mã hóa kiểu, tiền tố, hậu tố vào tên
+- Tên lớp, đối tượng phải là danh từ hoặc cụm danh từ
+- Tên phương thức phải là động từ hoặc cụm động từ
+- Không chọn những tên mang nghĩa đùa cợt, thiếu nghiêm túc
+- Đối với mỗi một khái niệm chỉ sử dụng một tên duy nhất để đảm bảo sự thống nhất
+- Không sử dụng một thuật ngữ cho hai mục đích/ý nghĩa sử dụng khác nhau
+- Sử dụng tên là các giải pháp nổi tiếng trong việc giải quyết vấn đề ở lĩnh vực đó
+- Sử dụng tên là các vấn đề nổi tiếng thường gặp ở lĩnh vực đó
+2. Cách viết hàm
+- Một hàm phải nhỏ, số lượng dòng code không quá 50 dòng
+- Mỗi hàm chỉ làm một việc
+- Tên hàm phải mô tả được các hành động mà hàm đó thực thi, tránh hiệu ứng lề
+- Bố cục giảm dần
+- Không được sử dụng output argument
+- Không lặp code
+3. Cách viết comment
+- Không sử dụng comment để giải thích đoạn code khi có thể tách đoạn code đó ra thành một hàm với tên mô tả đúng mục đích
+- Không để tồn tại những comment dư thừa, vô nghĩa
+- Không sử dụng comment để theo dõi sự thay đổi code
+- Không bao giờ comment tạm một đoạn code với mục đích trong tương lai sẽ mở ra sử dụng (chưa biết khi nào)
+- Không được dùng những comment chỉ để đánh dấu nơi bắt đầu, kết thúc các đoạn code
+- Không viết docs cho các hàm/class không public ra ngoài
+4. Cách định dạng file mã nguồn
+- Một file code không quá 500 dòng
+- Sử dụng dòng trắng để phân tách các phần độc lập trong code
+- Các dòng code liên quan tới nhau nên đứng gần nhau
+- Biến nên được định nghĩa gần nơi nó được sử dụng
+- Biến cục bộ nên để ở đầu hàm
+- Biến đối tượng nên được đặt ở đầu class
+- Biến đếm của vòng lặp nên được định nghĩa bên trong vòng lặp
+- Các hàm phụ thuộc nhau nên được đặt gần nhau
+- Hàm gọi đứng trước hàm được gọi
+- if/else/while/for khi có một dòng lệnh bên trong, vẫn phải xuống dòng và đặt dòng lệnh của nó trong ngoặc {}
+5. Bắt và phòng tránh lỗi
+- Khi gặp lỗi, hàm không trả về mã lỗi, phải ném ra Exception
+- Khi ném ra một Exception, nên cung cấp đầy đủ thông tin về lỗi
+- Bọc các Exception của một API bên thứ ba vào làm một Exception tự định nghĩa
+- Không return giá trị null
+- Không truyền giá trị null vào tham số hàm
+6. Cấu tạo lớp/cấu trúc
+- Một class chỉ đảm đương một trách nhiệm
+V. Các nguyên tắc khuyến khích áp dụng
+1. Đặt tên biến/hàm/lớp
+- Phải đặt tên sao cho có thể đọc lên thành lời được
+- Đặt tên sao cho dễ tìm kiếm trong thư mục dự án
+- Nên sử dụng các tên thông dụng
+- Phạm vi của biến được sử dụng càng xa, thì được phép đặt tên biến càng dài
+- Đặt tên biến phải dựa vào ngữ cảnh phù hợp
+- Không thêm thông tin dư thừa vào tên biến
+2. Cách viết hàm
+- Số lượng tham số của hàm không được lớn hơn 3
+- Hạn chế tối đa việc sử dụng tham số có kiểu là Boolean
+- Luật: Command Query Separation
+3. Cấu tạo lớp/cấu trúc
+- Luật: Data/Object Anti-Symmetry
+- Không đặt các phương thức logic vào data structure
+- Nguyên tắc tri thức tối thiểu
+STT Phân loại Nội dung Diễn giải
+1
+Đặt tên biến/hàm/lớp
+Đặt tên mô tả được mục đích sử dụng
+Chọn tên biến/hàm/class mô tả được chính xác ý nghĩa/mục đích sử dụng của nó, ngắn gọn, dễ hiểu.
+- Nếu đặt tên biến mà cần comment bên cạnh để giải thích ý nghĩa của biến, thì có nghĩa tên biến đó chưa đúng
+- Tương tự đối với tên hàm/lớp
+2 Tránh đặt tên dễ gây hiểu nhầm mục đích sử dụng
+Ví dụ vì viết tắt nên người khác đọc sẽ hiểu thành ý nghĩa khác:
+Biến tên hp có thể hiểu là tên hệ điều hành HP, hoặc là từ viết tắt của
+Home Page.
+3 Các tên khác nhau phải dễ phân biệt ý nghĩa, mục đích sử dụng khác nhau
+Tránh đặt tên hai hoặc nhiều biến có ý nghĩa gần giống nhau sẽ rất khó phân biệt.
+Ví dụ không thể phân biệt được nameString và name khác nhau.
+Ví dụ productInfo, product cũng không phân biệt được.
+4 Không mã hóa kiểu, tiền tố, hậu tố vào tên
+Không thêm phần mã hóa kiểu, prefix... vào tên biến như phong cách lập trình C cũ.
+Ví dụ vi phạm:
+ phoneString
+ bReadLine
+ m_description
+5 Tên lớp, đối tượng phải là danh từ hoặc cụm danh từ
+Tên class, tên biến phải là danh từ hoặc cụm danh từ.
+Ví dụ hợp lệ: Customer, WikiPage, AddressParser
+Ví dụ vi phạm: NotifyDAO
+6 Tên phương thức phải là động từ hoặc cụm động từ
+Tên phương thức (hàm) phải là động từ/cụm động từ.
+Ví dụ hợp lệ: deletePage(), save()
+Ví dụ vi phạm: deletingPage(), saving()
+7 Không chọn những tên mang nghĩa đùa cợt, thiếu nghiêm túc
+Không được phép đặt tên biến mang nghĩa đùa cợt, nghĩa ẩn dụ, không nghiêm túc.
+Ví dụ: không đặt tên hàm là whack() với ý nghĩa là kill()
+8 Đối với mỗi một khái niệm chỉ sử dụng một tên duy nhất để đảm bảo sự thống nhất
+Đối với mỗi khái niệm chỉ sử dụng một tên duy nhất để đảm bảo sự thống nhất. Ví dụ: không được phép sử dụng hàm với các tên khác
+nhau "fetch", "retrieve", "get" với cùng một ý nghĩa là lấy dữ liệu.
+9
+Không sử dụng một thuật ngữ cho hai mục đích/ý nghĩa khác nhau
+Không sử dụng một tên cho hai mục đích/ý nghĩa khác nhau.
+Ví dụ, không được phép đặt tên một hàm là add() để thêm mới data, trong khi đặt tên một hàm khác là add() để chèn một bản ghi đã có sẵn vào danh sách.
+Hàm add() thứ hai nên được đổi tên thành insert().
+10
+Sử dụng tên là các giải pháp nổi tiếng trong việc giải quyết vấn đề ở lĩnh vực đó
+Được phép đặt tên với tiền tố/hậu tố là các solution domain.
+Ví dụ, cho phép đặt tên class là AccountVisitor vì class đó sử dụng VISITOR design pattern.
+11 Sử dụng tên là các vấn đề nổi tiếng thường gặp ở lĩnh vực đó
+Được phép đặt tên với tiền tố/hậu tố là các tên vấn đề (nổi tiếng). Như vậy khi người mới vào sẽ có thể biết cách google hoặc hỏi chuyên gia giải quyết vấn đề ở lĩnh vực đó.
+12 Cách viết hàm 
+-Một hàm phải nhỏ, số lượng dòng code không quá 50 dòng
+-Nếu một đoạn code trong hàm có thể tách ra thành một hàm con khác, chứng tỏ hàm hiện thời quá dài. Bắt buộc phải refactor code.
+Một hàm nên đủ nhỏ (không tràn quá màn hình), giúp người đọc có thể hiểu mà không cần comment hay viết tài liệu.
+13 Mỗi hàm chỉ làm một việc Một hàm chỉ làm một việc duy nhất, không được gộp quá nhiều logic xử lý vào trong cùng một hàm.
+14 Tên hàm phải mô tả được các hành động mà hàm đó thực thi, tránh hiệu ứng lề
+Khi đặt tên hàm là gì thì phải bảo đảm hàm đó làm đúng như mô tả, không được phép làm ít hơn hoặc nhiều hơn. Đặc biệt nghiêm cấm 
+việc làm thay đổi giá trị các biến toàn cục, tài nguyên hệ thống,... trong khi tên hàm không hề đề cập tới việc này.
+ 8/21
+STT Phân loại Nội dung Diễn giải
+- Ví dụ hợp lệ: hàm updateProject() thực thi một hành động duy
+nhất là cập nhật thông tin Project vào trong database
+- Ví dụ vi phạm: hàm updateProject () làm các việc:
++ Cảnh báo nếu nỗ lực dự kiến của Project nhỏ hơn nỗ lực thực tế
++ Cập nhật thông tin Project vào trong database
++ Cập nhật thông tin các mốc Milestones của Project vào trong database
++ Sau khi cập nhật thành công thì khởi tạo Session
+15 Bố cục giảm dần Hàm gọi sẽ đứng trước hàm được gọi, và đứng gần nhất có thể.
+16 Không được sử dụng output argument Không được phép sử dụng output argument. Nếu cần trả về kết quả thì sử dụng "return".
+17 Không lặp code
+-Nghiêm cấm việc lặp đi lặp lại các đoạn code. Nếu có các đoạn code lặp lại (kể cả ở các hàm khác nhau, các class khác nhau), cần refactor chúng ra thành một hàm.
+18 Cách viết comment
+Không sử dụng comment để giải thích đoạn code khi có thể tách đoạn code đó ra thành một hàm với tên mô tả đúng mục đích
+Trước khi viết một comment để giải thích một vấn đề gì đó, bạn phải cân nhắc thật kỹ xem: liệu có thể đặt tên hàm, tên biến mô tả chi tiết 
+vấn đề đó không (không ngại tên biến, tên hàm dài). Nếu có thể, hãy đặt chúng và xóa comment đi.
+19 Không để tồn tại những comment dư thừa, vô nghĩa
+Không comment những thông tin dư thừa, vô nghĩa.
+Ví dụ comment vô nghĩa (vì tên biến đã thể hiện thông tin rồi, comment như vậy là thừa):
+/** production info */ private String production;
+20Không sử dụng comment để theo dõi sự thay đổi code
+Tuyệt đối cấm dùng comment chỉ để ghi thời gian thay đổi code, người thay đổi code (đã được ứng dụng quản lý code thực hiện).
+Ví dụ vi phạm:
+/** Changes from 11-Oct-2011
+* 11-Oct-2011: create new
+* 03-Jun-2012: added a getDescription() function
+* 05-Mar-2012: removed redundant function getDescription()
+*/
+21 Không bao giờ đưa tạm một đoạn code thành đoạn comment với mục đích trong tương lai sẽ mở ra sử dụng (chưa biết khi nào)
+Không nên comment tạm các đoạn code lại rồi commit lên. Phải xóa các đoạn code đó đi. Sau này nếu muốn tìm lại có thể lên xem history
+của trình quản lý code. Bởi vì sau một thời gian, chính lập trình viên comment out đoạn code đó cũng có thể quên chính mình là người tạo
+ra. Vì vậy đoạn code trong comment đó sẽ ở đó mãi mãi, và không ai biết là có nên xóa nó đi hay không.
+22 Không được dùng những comment chỉ để đánh dấu nơi bắt đầu, kết thúc các đoạn code
+Không được dùng những comment chỉ để đánh dấu nơi bắt đầu, kết thúc các đoạn code. Trong trường hợp bạn cần comment để đánh dấu 
+như vậy, chứng tỏ hàm của bạn rất dài. Bạn hãy refactor code bằng cách cắt toàn bộ đoạn code (từ chỗ đánh dấu bắt đầu tới chỗ đánh dấu kết thúc) ra thành một hàm khác.
+Ví dụ vi phạm:
+// Start searching projects
+.... khoảng 50 dòng code ở đây ...
+// End searching projects
+Cách sửa: cắt toàn bộ đoạn code đó ra thành hàm searchProjects()
+23 Không viết docs cho các hàm/class không public ra ngoài
+Chỉ được phép viết docs cho những hàm/class public ra ngoài.
+Bởi vì hàm/class dùng nội bộ trong project: lập trình viên có thể đọc tên hàm, tên biến, logic của hàm để hiểu, không cần thiết phải đọc
+docs. Trong khi đó nỗ lực duy trì docs là rất lớn. Ví dụ khi sửa một
+tham số của hàm, lại phải tốn nỗ lực sửa docs kèm theo.
+24 Cách định dạng file mã nguồn
+Một file code không quá 500 dòng
+Trung bình một class có số dòng là 200. Cho phép tối đa là 500 dòng. Thực tế cho thấy các dự án lớn, thành công trên thế giới có
+trung bình là 200 dòng trong một file, và các dự án đó đã rất thành công. Ví dụ mã nguồn của: JUnit, Ant, Tomcat…
+Do đó, không lý do gì ta có thể biện hộ cho việc một file code dài tới 2000 dòng được. Trong trường hợp đó cần tách ra thành các file
+khác nhau với các ý nghĩa khác nhau.
+25 Sử dụng dòng trắng để phân tách các phần độc lập trong code
+Sử dụng dòng trắng để phân tách các phần độc lập trong code: package/import/class/properties/function
+26 Các dòng code liên quan tới nhau nên đứng gần nhau 
+Các dòng code trong cùng một hàm mà liên quan tới nhau nên đứng gần nhau (không được thêm dòng trắng vào giữa)
+27 Biến nên được định nghĩa gần nơi nó được sử dụng Các biến nên được định nghĩa gần nơi nó được sử dụng.
+28 Biến cục bộ nên để ở đầu hàm Trong trường hợp hàm nhỏ, biến cục bộ nên được định nghĩa ở đầu hàm.
+29 Biến đối tượng nên được đặt ở đầu class Biến đối tượng (instance variable) nên được đặt ở đầu class
+30 Biến đếm của vòng lặp nên được định nghĩa bên trong vòng lặp
+Biến đếm của vòng lặp nên được định nghĩa bên trong vòng lặp.
+31 Các hàm phụ thuộc nhau nên được đặt gần nhau 
+Các hàm phụ thuộc nhau nên được đặt gần nhau. Việc này sẽ giúp cho lập trình viên dễ dàng đọc và quản lý các hàm đó.
+32 Hàm gọi đứng trước hàm được gọi
+Hàm gọi đứng trước hàm được gọi. Nguyên tắc đọc hàm là đọc từ trên xuống dưới: đọc hàm, trong hàm gọi tới hàm nào khác thì các hàm đó sẽ ở ngay phía dưới hàm này.
+34 if/else/while/for khi có một dòng lệnh bên trong, vẫn phải xuống dòng và đặt dòng lệnh của nó trong ngoặc {} 
+Trường hợp if/else/while/for khi có một dòng lệnh bên trong, vẫn phải xuống dòng và đặt dòng lệnh của nó trong ngoặc {}.
+Không được phép để cùng một dòng.
+Ví dụ vi phạm: if(isValid) doSomeThing();
+Hoặc:
+if(isValid)
+ doSomeThing();
+Ví dụ hợp lệ (thêm { và } để bọc đoạn code trong if, kể cả trong đó có duy nhất 1 dòng code):
+if(isValid){
+ doSomeThing();
+}
+35 Bắt và phòng tránh lỗi
+Khi gặp lỗi, hàm không trả về mã lỗi, phải ném ra Exception
+Khi gặp lỗi, hàm không nên return ra mã lỗi mà nên ném ra một ngoại lệ. Bởi vì nếu trả về mã lỗi, nơi gọi hàm sẽ phải kểm tra kết quả mã lỗi là gì, rồi mới quyết định được là thực hiện được hành
+động gì. Do đó sẽ làm cho chương trình rối rắm, phức tạp. Thay vào  đó, nên sử dụng cơ chế bắt và ném lỗi sẽ làm cho chương trình sạch
+hơn.
+36 Khi ném ra một Exception, nên cung cấp đầy đủ thông tin về lỗi
+Khi ném ra một Exception, nên cung cấp đầy đủ thông tin về lỗi bao gồm: nội dung lỗi (có thể là mã lỗi, message), stack trace.
+ Điều này giúp có đầy đủ thông tin để log lỗi, dò vết lỗi.
+37 Bọc các Exception của một API bên thứ ba vào làm một Exception tự định nghĩa
+Khi sử dụng một API của bên thứ 3, nên viết một lớp bọc cho API đó, đặc biệt là bọc hàm và kiểu exception,
+ để bảo đảm giảm thiểu sự phụ thuộc vào API đó.
+Ví dụ một API bên thứ 3 là AcmePort có định nghĩa 3 loại Exception là: DeviceResponseException, AtmUnlockedException, GmxException.
+Ta nên định nghĩa một loại Exception là PortDeviceException:
+- Viết hàm gọi sang hàm của AcmePort
+- Nếu AcmePort ném ra một trong 3 loại Exception trên, thì tạo ra một PortDeviceException mới và có mã lỗi thể hiện exception mới tạo ra là Device, AtmUnLocked hay Gmx
+38 Không return null
+Việc một hàm return null sẽ khiến cho nơi gọi hàm đó phải vất vả xử lý 2 trường hợp: return null hoặc return khác null.
+Nếu bạn đang return null trong một phương thức, bạn nên refactor code theo một trong 2 cách sau:
+- Ném ra Exception báo là null
+- Return giá trị mặc định của object đó
+39 Không truyền null vào hàm
+Nếu truyền null vào hàm, thì hàm đó lúc nào cũng phải kiểm tra ít nhất hai trường hợp: tham số null hay khác null. Do đó logic của
+hàm trở nên phức tạp, hàm dài, bẩn.
+Khi xử lý một tham số đầu vào của hàm, và hàm đó là hàm nội bộ (không phải là api đưa ra bên ngoài),
+ thì ta có thể giả thiết là tham số đó khác null và xử lý, không cần bước kiểm tra null.
+Ở những nơi gọi hàm phía trên, phải bảo đảm là không được phép truyền null vào hàm đó.
+40 Cấu tạo lớp/cấu trúc
+Một class chỉ đảm đương một trách nhiệm
+Một class chỉ đảm đương một trách nhiệm. Tránh gộp quá nhiều trách nhiệm vào trong một class. Tên class phải mô tả đúng "trách nhiệm" đó. 
+PHỤ LỤC 02: CÁC NGUYÊN TẮC NÊN SỬ DỤNG TRONG LÀM SẠCH MÃ NGUỒN
+STT Phân loại Nội dung Chi tiết
+1 Đặt tên biến/hàm/lớp
+Phải đặt tên sao cho có thể đọc lên thành lời được
+Phải đặt tên sao cho có thể đọc lên được. Khi đó các developer mới có thể nói chuyện với nhau được.
+Ví dụ vi phạm:
+Đặt tên như "ddmmYYYY" cho một biến sẽ rất khó đọc. Khi hai lập trình viên giao tiếp với nhau, và cần bàn luận về biến đó, phải đọc thành “di
+di mờ mờ bốn chữ y”. Việc này sẽ làm cản trở việc giao tiếp giữa các lập trình viên.
+Ví dụ hợp lệ:
+Thay vì đặt là “ddmmYYYY” để chỉ giá trị là ngày được định dạng như vậy, có thể đặt tên biến là “formattedDate”
+2 Sử dụng các tên dễ tìm kiếm trong thư mục dự án
+Phải đặt tên sao cho khi muốn xác định vị trí của tên đó trong toàn bộ project, ta có thể dễ dàng tìm kiếm.
+Nếu đặt tên biến quá ngắn như "d", ta sẽ tìm ra chục hàng ngàn vị trí có từ "d", do đó sẽ không định vị được đâu là đúng biến "d" cần tìm.
+3 Nên sử dụng các tên thông dụng 
+Khi cần miêu tả một thuật ngữ, nên chọn tên phổ biến mà nhiều người biết. 
+Tránh việc đặt tên "lạ" dẫn tới người đọc phải suy diễn ra là tên đó giống với tên phổ biến kia.
+Ví dụ: không đặt tên biến lặp là enumerators trong khi nhiều người biết rằng biến lặp phổ biến là iterators.
+4 Phạm vi của biến được sử dụng càng xa, thì được phép đặt tên biến càng dài
+Phạm vi của biến được sử dụng càng xa, thì được phép đặt tên biến càng dài.
+Thứ tự phạm vi theo tứ tự giảm dần: fields -> parameters -> locals -> loop variables
+5 Đặt tên biến phải dựa vào ngữ cảnh phù hợp
+Để hiểu được một biến, ngoài việc đặt tên mô tả chính xác biến, thì cần đặt biến trong một ngữ cảnh phù hợp: 
+ví dụ đặt trong class, function, namespace.
+6 Không thêm thông tin dư thừa vào tên biến
+Không nên đặt tên biến dài quá, chứa nhiều thông tin không cần thiết.
+Ví dụ vi phạm:
+- Đặt tên biến là “customerInfo”
+- Trong khi ai cũng hiểu “customer” là biến nói về customer
+Ví dụ hợp lệ:
+- Chỉ cần đặt tên biến là “customer” là đủ
+7 Cách viết hàm
+Số lượng tham số của hàm không được lớn hơn 3
+- Hàm không có tham số: rất tốt
+- Hàm có một tham số: tốt
+- Hàm có 2 tham số: được. Nhưng nên cân nhắc việc chuyển đổi hàm về dạng 1 tham số nếu có thể
+- Hàm có 3 tham số: chấp nhận được. Tuy nhiên không khuyến khích.
+Vì khi hàm có 3 tham số, có nghĩa là số test case viết test cho hàm đó là rất nhiều.
+- Hàm có 4 tham số trở lên: rất tồi
+Do đó giải pháp nâng cao chất lượng hàm là:
+- Nếu hàm có 2 tới 3 tham số, luôn luôn cố gắng xem có thể biến đổi về dạng hàm có 0 hoặc 1 tham số không. 
+Trường hợp thực sự cần thiết mới cho phép 2 tới 3 tham số.
+- Nếu hàm có nhiều hơn 3 tham số, thì các tham số nên được nhóm vào trong một object/data structure.
+
+8 Hạn chế tối đa việc sử dụng tham số có kiểu là Boolean
+Hạn chế tối đa việc sử dụng tham số có kiểu là Boolean bởi vì khi gọi hàm f(true), f(false),
+người đọc sẽ rất khó hiểu ý nghĩa. Cố gắng refactor thành 2 hàm khác nhau, một hàm cho f(true) và một hàm cho f(false).
+Ví dụ vi phạm:
+public void render(boolean isSingle){
+ if(isSingle){
+ ... thực hiện render cho một unit test ...
+ } else {
+ ... thực hiện render cho một nhóm các unit
+test (suite) ...
+ }
+}
+Ví dụ hợp lệ: tách hàm render ra thành 2 hàm
+public void renderForSingle()
+public void renderForSuite()
+9 Command Query Separation
+Một hàm có thể dùng để thực thi một hành động gì đó, hoặc là trả ra một kết quả gì đó, nhưng không được phép làm cả 2 việc.
+Ví dụ vi phạm:
+public boolean set(String attribute, String value)
+Hàm này sẽ lưu giá trị value vào cột attribute trong một bảng ở database. 
+Tuy nhiên sau đó, hàm lại return true hoặc false để biểu thị rằng attribute đó có đang tồn tại giá trị hay không. 
+Hàm này làm 2 việc một lúc là không phù hợp.
+Ví dụ hợp lệ: tách hàm phía trên thành 2 hàm
+public void set(String attribute, String value)
+public boolean isExisting(String attribute, String value)
+10 Cấu tạo lớp/cấu trúc Data/Object Anti-Symmetry 
+Cân nhắc khi thiết kế hệ thống:
+- Khi cần thường xuyên thêm mới hàm thì chọn kiểu dữ liệu là Procedure
+- Khi cần thường xuyên thêm mới kiểu dữ liệu, không thay đổi hàm thì chọn kiểu Object
+11 Không đặt các phương thức logic vào data structure
+Nếu kiểu dữ liệu là data structure (ví dụ DTO, Bean, Active Record) thì không nên thêm các hàm thực hiện business logic vào.
+12 Nguyên tắc tri thức tối thiểu
+Nguyên tắc tri thức tối thiểu: không nên tham chiếu một đối tượng sâu hơn một lớp. 
+Nguyên tắc này được gọi nôm na là "không được phép nói chuyện với người lạ).
+Ví dụ ta cần viết code trong hàm f, thuộc class C, thì dòng code đó phải
+tuân theo rule sau:
+- Được phép gọi hàm của:
++ Class C
++ Object là tham số của hàm f
++ Object là biến instance của class C
++ Object là biến cục bộ được tạo trong hàm f
+- Không được phép gọi hàm của object là tham chiếu được trả về từ một
+lời gọi hàm.
+Ví dụ vi phạm: objectA.getObjectB().doSomething();
+Ví dụ hợp lệ: viết một phương thức doSomeThingInB() trong object A:
+doSomethingInB(){
+ getObjectB.doSonething()
+}
+==> Sau đó thay vì gọi hàm doSomething() như ví dụ vi phạm, ta có thể gọi hàm mới: objectA.doSomethingInB()
+13 Bắt lỗi Nên sử dụng unchecked exception
+[Đặc biệt cho Java]:
+Nên ném ra unchecked exception (không bắt buộc phải try... catch hay throws tại thời điểm biên dịch) thay vì ném ra checked exception (bắt
+buộc try... catch hoặc throws).

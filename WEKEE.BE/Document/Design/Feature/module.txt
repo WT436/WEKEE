@@ -1,0 +1,66 @@
+﻿
+1. Sản phẩm
+Thêm/Sửa/Xóa các danh mục sản phẩm (VD: Thời trang, Mỹ phẩm, Thực phẩm,.....) không giới hạn
+Thêm/Sửa/Xóa sản phẩm
+Tìm kiếm nhanh
+Bộ lọc sản phẩm theo thuộc tính nâng cao (tùy ngành nghề)
+Nhập giá cũ, giá mới (nếu sản phẩm có chương trình khuyến mại - kích thích mua hàng)
+Nội dung nhập: Tên sản phẩm, giá củ, giá mới, mô tả ngắn, chi tiết sản phẩm, khối lượng, tồn kho, hình đại diện.....
+Trình soạn thảo có các biểu tượng căn chỉnh văn bản như MS Word, có thể chèn hình, video, audio... vào chi tiết sản phẩm (không giới hạn)
+Trang danh sách sản phẩm (xếp theo mục)
+Trang chi tiết sản phẩm: Hiển thị các hình có thể phóng lớn để xem, có các hình ảnh liên quan về sản phẩm.
+Dưới mỗi sản phẩm có thể hiển thị các sản phẩm liên quan
+Hiển thị các sản phẩm khác.
+Hiển thị sản phẩm khách đã xem
+Hiểu thị các biểu tượng, số lượng % giảm giá theo nhãn
+Biểu tượng sao được đánh giá cho sản phẩm.
+Khách có thể để đánh giá sản phẩm (1-5 sao)
+Để lại bình luận bằng website hoặc bình luận thông qua facebook.
+Hiển thị các từ khóa liên quan sản phẩm
+2. Giỏ hàng/Chức năng đặt hàng
+Cũng như ở siêu thị, khi bạn vào bạn có thể lấy một cái giỏ để chọn hàng và bỏ vào đó. Trên website bán hàng cũng vậy. Mỗi khách hàng vào website sẽ được cấp một giỏ hàng (tự động). Khi họ chọn sản phẩm đưa vào giỏ.
+
+Khách chọn từng sản phẩm đưa vào giỏ (số lượng hàng trong giỏ không giới hạn)
+Thay đổi số lượng trong giỏ
+Loại bỏ các sản phẩm không muốn mua
+Giỏ sẽ tính toán số tiền dựa trên số lượng khách đã đưa vào giỏ.
+Mỗi lần khách đưa sản phẩm vào giỏ, giỏ tự động show ra để khách biết các sản phẩm hiện có ở trong giỏ.
+Khách đồng ý mua sẽ nhấn nút mua hàng (hoặc thanh toán).
+Giỏ sẽ lưu trong một thời gian trên 1 máy tính truy cập, sau một thời gian khách không thực hiện giỏ sẽ tự xóa.
+Sau khi khách hàng đã chọn xong sản phẩm họ có thể tiến hành đặt hàng.
+
+Khi đặt hàng khách nhập thông tin để liên hệ và giao hàng
+Chọn các phương thức thanh toán: Nhận hàng rồi thanh toán COD, thanh toán chuyển khoản (hiển thị số tài khoản của SHOP lên), Thanh toán tại cửa hàng (Hiển thị các địa chỉ cửa hàng).
+Chọn phương thức vận chuyển:
+Sau khi khách xác nhận xong thông tin và nhấn đặt hàng hệ thống sẽ tạo ra một mã đơn hàng (Số đơn hàng). Mã này duy nhất trên hệ thống.
+Khách sẽ nhận được email thông báo đặt hàng thành công (nếu có email) hoặc qua SMS nếu website bạn hổ trợ.
+Bạn cũng sẽ nhận được email có đơn hàng mới (hoặc SMS nếu bạn đăng ký) để vào xem và xử lý đơn hàng
+3. Quản lý đơn hàng
+Sau khi khách đặt hàng, bạn nhận được email hoặc SMS (nếu đăng ký dùng)
+Có thể xem toàn bộ các đơn hàng đã đặt bao gồm thông tin sản phẩm trong từng giỏ hàng, thông tin khách hàng.
+Cập nhật trạng thái đơn hàng (Chấp nhận được hàng, đơn hàng đang xử lý, đang đóng gói, đang chuyển phát, khách đã nhận hoặc khách trả lại....)
+Tạo đơn hàng mới: Nếu muốn tạo một đơn hàng tùy ý cho khách đến mua tại cửa hàng (mà bạn muốn lưu trữ lên web)
+Thống kê đơn hàng theo: Ngày, Tuần, Tháng, Năm hoặc 1 khoảng thời gian nhất định
+4. Quản lý kho hàng
+Quản lý số lượng kho hàng như: Số lượng đã bán, số lượng tồn kho.
+Nhập kho mới (thêm số lượng mới cho các sản phẩm đã có)
+Thống kê sản phẩm theo từng nhóm hàng.
+Thống kê các mặt hàng bán chạy
+III. Nhóm Module nâng cao
+1. Tích hợp phí vận chuyển.
+Có thể cài đặt phí vận chuyển dựa theo: Giá trị đơn hàng hoặc khối lượng đơn hàng với khoảng cách địa lý. VD Bạn có thể cài đặt miễn phí giao hàng cho toàn bộ đơn hàng có giá trị > 500.000 đ tại khu vực Thành phố Hồ Chí Minh không bao gồm các quận/huyện: Hóc Môn (sẽ thu 20k), Nhà bè (sẽ thu 25k)
+Tích hợp các đối tác vận chuyển: Giao hàng tiết kiệm (GHTK), Giao hàng nhanh (GHN).....
+Có thể đẩy đơn hàng trực tiếp từ website lên các đối tác giao hàng (đã tích hợp vào website)
+2. Tích hợp thanh toán online
+Khi tiến hành đặt hàng, khách chọn phương thức thanh toán trực tuyến để thanh toán đơn hàng luôn.
+Web sẽ tích hợp các đối tác thanh toán hiện nay như: Ngân Lượng, Bảo Kim, VTCPay, VNPay, OnePay.....
+3. Quản lý mã khuyến mại
+Quản lý các mã khuyến mại, coupon
+Cài đặt thời gian áp dụng khuyến mại
+Cài đặt giá trị khuyến mại (số tiền hoặc % giảm giá)
+Cài đặt các danh mục hoặc sản phẩm được áp dụng.
+Cài đặt thêm các điều kiện: Đơn hàng >1000.000 mới được áp dụng....
+IV. Nhóm module khác (theo yêu cầu của từng khách hàng, xử lý những đặc thù ngành nghề khác nhau)
+Ngoài ra còn những tính năng khác hoặc module theo đặc thù của ngành nghề kinh doanh vui lòng liên hệ với nhân viên tư vấn để trao đổi cụ thể.
+
+Một số hình ảnh liên quan, tôi để dưới này để bài viết gọn hơn và dễ đọc

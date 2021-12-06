@@ -1,0 +1,23 @@
+User				: Người dùng
+Inventory 			: Kho hàng
+Real estate			: Mặt bằng
+A/c & PayRoll			: Dòng Tiền 
+HR				: Tuyển dụng
+Admin				: Quản lý 
+Administration			: Quản lý Cao cấp
+Database			: Quản lý máy chủ
+Fleet management		: Quản lý phương tiện
+BI & Analysis			: Phân tích dữ liệu
+Sales				: Bán Hàng
+CRM				: Quản lý Khách Hàng
+Point sale			: Địa điểm bán
+Producttion planning		: Nguồn, Sản Xuất
+Purchase			: Giao dịch
+Supplier			: Nhà cung cấp
+    			        : Quản lý cấp khu vựa địa điểm
+    			        : Logictic
+    			        : Cấp phép, giấy tờ , mượn ....
+    			        : Sourc
+    			        : 
+    			        : 
+    			        : 

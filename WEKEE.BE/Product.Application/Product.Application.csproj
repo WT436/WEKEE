@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Application\ASpecificationsCategory.cs~RFf8d69c2.TMP" />
+    <None Remove="Interface\ICategory.cs~RF1199d43f.TMP" />
+    <None Remove="Interface\ISpecificationsCategory.cs~RF11176a43.TMP" />
+    <None Remove="Interface\ISpecificationsCategory.cs~RF12fcab0e.TMP" />
+    <None Remove="Interface\ISpecificationsCategory.cs~RF151ab15b.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EventBus\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Album.Application\Album.Application.csproj" />
+    <ProjectReference Include="..\Product.Domain\Product.Domain.csproj" />
+    <ProjectReference Include="..\Product.Infrastructure\Product.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Aggregate\ProcessSpecifications.cs~RF2e40a03.TMP" />
+    <None Remove="BoundedContext\CheckProduct.cs~RF2a2dbcb.TMP" />
+    <None Remove="Dto\CategoryBreadcrumbDtos.cs~RF11b52114.TMP" />
+    <None Remove="Dto\CategorySelectDto.cs~RFd7f9ad3.TMP" />
+    <None Remove="Dto\ProductCardDtos.cs~RF19170a76.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CoreDomain\" />
+    <Folder Include="EventDomain\" />
+    <Folder Include="ObjectValues\" />
+    <Folder Include="ServicesDomain\" />
+    <Folder Include="Services\" />
+    <Folder Include="Shared\" />
+    <Folder Include="UL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Utils\Utils.csproj" />
+  </ItemGroup>
+
+</Project>

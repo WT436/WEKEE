@@ -1,0 +1,42 @@
+Thiết kế web tương thích di động: Giao diện bắt mắt, thân thiện với người dùng. 
+Các thanh menu cũng như hình ảnh, đường link được sắp xếp hợp lí, sáng tạo, có khả năng tương thích với mọi thiết bị như PC, laptop, tablet, mobile.
+Quản lý phân quyền: Admin chính có thể set phân quyền admin quản lý nội bộ, phân cấp, thêm bớt và chỉnh sửa chức năng quản lí thông qua Trang quản trị.
+Tìm kiếm: Thanh tìm kiếm thông minh giúp khách hàng có thể tìm kiếm sản phẩm/ bài viết dựa trên từ khóa liên quan, hỗ trợ tìm kiếm nâng cao tích hợp nhiều bộ lọc.
+Chỉnh sửa giao diện: Admin có quyền thay đổi màu sắc, font chữ cơ bản của webiste.
+Quản trị nội dung: Chức năng quản lý thêm bớt bài viết, chuyên mục, soạn thảo bài viết.
+Quản lý media: Admin quản lý, thêm bớt, chỉnh sửa hỉnh ảnh, video
+Chức năng chăm sóc khách hàng trực tuyến: Cho phép khách hàng tương tác trực tiếp với người dùng thông qua website
+Tùy chọn thuộc tính sản phẩm: Thêm các thuộc tính của sản phẩm (màu sắc, kích thước, giá tiền…). 
+Cho phép khách hàng để lại comment bên dưới từng sản phẩm, đánh giá sản phẩm theo mức độ từ 1-5 sao để tạo không gian mua hàng khách quan, chuyên nghiệp. 
+Danh mục sản phẩm có thể được phân theo nhiều cấp.
+Discount, coupon: Thêm các mã giảm giá, các chương trình khuyến mãi tùy chỉnh.
+Admin có quyền tạo không giới hạn chuyên mục, sản phẩm, tạo sản phẩm digital (dạng download).
+Bộ lọc sản phẩm: Có thể lọc sản phẩm dựa trên nhiều hình thức (danh mục, brand, thuộc tính..)
+Cổng thanh toán: Hỗ trợ nhiều cổng thanh toán phổ biến để tạo điều kiện mua hàng tốt nhất cho khách hàng như COD, ATM, Thẻ tín dụng, Paypal.
+Thanh toán định kỳ: Có thể thiết lập thanh toán định kỳ cho sản phẩm.
+Vận chuyển: Cho phép khách hàng lựa chọn hình thức giao/nhận hàng như mong muốn. 
+Xử lí đơn hàng theo quy trình Nhận đơn hàng – Xác nhận – Gói hàng – Vận chuyển – Thành công. 
+Khách hàng hoàn toàn có thể theo dõi các quá trình này thông qua tài khoản cá nhân. 
+Tạo sự tiện lợi tối đa cho người dùng từ giai đoạn tiếp cận cho đến khi quyết định mua sản phẩm.
+Báo cáo bán hàng: Cung cấp Trang thông tin tổng quan về bán hàng, doanh thu ngày, tháng, năm từ bao quát đến chi tiết.
+Chức năng SEO cao cấp.
+Google sitemap: Tự động tạo feed thành XML để hỗ trợ SEO
+Mua hàng nhanh: Tính năng đặt hàng chỉ với 1 click.
+Mua hàng dạng khách: Cho phép khách hàng mua hàng nhanh chóng mà không cần đăng nhập tài khoản.
+Tin tức: Tích hợp tính năng trang tin tức, blog.
+Gallery: Tạo các album ảnh và slideshow trên website.
+Tối ưu hóa tốc độ website: Chẳng ai muốn truy cập hay thậm chí là mua hàng ở một website thương mại điện tử có tốc độ load trang chậm, không chuyên nghiệp.
+Vì vậy chúng tôi luôn cố gắng và đảm bảo cho doanh nghiệp của bạn chất lượng để quá trình mua hàng của người dùng được xuyên suốt và đảm bảo.
+Import, export: Nhập, xuất các sản phẩm, khách hàng, chuyên mục bằng file excel, dễ dàng quản lý, đăng nhanh nhiều sản phẩm.
+So sánh sản phẩm: Khách hàng có thể so sánh nhiều sản phẩm trên website.
+Sản phẩm liên quan: Khi khách hàng xem sản phẩm hệ thống sẽ thống kê các sản phẩm tương tự bên dưới cho khách hàng thêm lựa chọn. 
+Cài đặt chế độ nhắc nhở khách hàng mua các sản phẩm đã xem qua, cho phép lưu trữ sản phẩm trong giỏ hàng..
+Nội dung, thông tin sản phẩm rõ ràng, chi tiết: 
+Dù mua hàng online hay offline, khách hàng vẫn luôn mong muốn được biết các thông tin chi tiết về sản phẩm như các thông số kĩ thuật, 
+nguồn gốc, xuất xứ, cách sử dụng, hạn sử dụng… Tuy nhiên, không phải website thương mại điện tử nào cũng chú trọng vào việc cập nhật các nội dung này. 
+Đây là một sai lầm lớn vì đó có thể là lý do khiến khách hàng của bạn tìm đến website của đối thủ với thông tin sản phẩm rõ ràng, chi tiết hơn.
+Có đầy đủ các kênh giao tiếp với khách hàng: 
+Các kênh này bao gồm 3 nhóm chính (Tương tác qua các kênh mạng xã hội – Comment, bình luận của khách hàng về sản phẩm – Hói đáp). 
+Chúng tôi tự hào cung cấp các kênh giao tiếp hội đủ 3 nhóm này để tương tác và phục vụ khách hàng tốt nhất.
+In hóa đơn: tự động tạo file hóa đơn trong admin, dễ dàng in.
+Quản lý kho: dễ dàng quản lý sản phẩm, số lượng

@@ -1,0 +1,314 @@
+TÀI LIỆU HƯỚNG DẪN LẬP TRÌNH TRÁNH
+LỖI TIỀM ẨN CHỨC NĂNG
+I. Nội dung:
+1. Mục đích:
+* Đưa ra các yêu cầu lập trình tránh những lỗi tiềm ẩn chức năng trong source code.
+2. Các Yêu cầu:
+2.1Tuân thủ coding convention:
+* Tuân thủ coding convention sẽ giúp source code rõ ràng, dễ hiểu và dễ tìm lỗi.
+2.2Fix hết các cảnh báo của IDE lập trình:
+* Các cảnh bảo (warning) của Visual studio thường là những cảnh báo quan trọng liên quan tới chất lượng source code (ví dụ dùng các hàm cũ, không còn được hỗ
+trợ trong các bản .Net Framework mới). Cần phải đảm bảo source code không còn
+những warning của Visual studio.
+* Không để dư thừa code: không để những dòng code không sử dụng, không để các biến, hàm khai báo nhưng không dùng.
+2.3Fix hết các lỗi có trong file log của hệ thống
+* Khi triển khai chương trình, sẽ có những lỗi phát sinh và được log vào file log của hệ thống. Cần có cơ chế kiểm tra thông tin log và fix lỗi.
+2.4Xử lý exception
+* Cần kiểm tra những đoạn code có khả năng gây lỗi, những đoạn code đó cần đặt trong khối try ... catch.
+* Xử lý exception: không để catch rỗng, không được bắt exception nhưng không sử lý, Sử dụng finally cho mệnh đề try catch xử lý tài nguyên, Sử dụng exception cụ
+thể trong throws. Chi tiết tham khảo mục 2.2 trong phụ lục.
+2.5Lỗi dữ liệu:
+* Validate dữ liệu đầu vào (theo loại dữ liệu – string, int, date; theo chiều dài dữ liệu) là phương pháp hiệu quả nhất để tránh các lỗi cho phần mềm. Validate đảm
+bảo dữ liệu đầu vào giống như lập trình viên dự định.
+* Kiểm tra các phép tính toán: Kết quả tức thời làm tràn bộ nhớ, Biểu thức nhị phân không chính xác, Các toán tử ưu tiên ngầm hiểu đúng hay không, Các phép chia số
+nguyên đúng hay không, Lỗi chia 0, Giá trị của các biến nằm ngoài vùng có ý nghĩa.
+
+* Kiểm tra các biểu thức logic: Kiểm tra sự chính xác Các biểu thức logic, Sự phù hợp của các phép so sánh và các biểu thức logic, Thứ tự ưu tiên của các toán tử so
+sánh, Các quan hệ so sánh.
+Chi tiết tham khảo mục 2.3 trong phụ lục.
+2.4 Lỗi cấu trúc điều khiển:
+* Vòng lặp có dừng hay không: Đối với những vòng lặp for, do-while, while-do, rẽ nhánh, việc kiểm tra biểu thức điều kiện để đánh giá khả năng thoát khỏi vòng lặp
+là bắt buộc, việc không thoát khỏi vòng lặp sẽ dẫn tới treo chương trình.
+* Vòng lặp có gọi tới hàm, phương thức truy xuất vào CSDL hay không.
+* Các lỗi thường gặp khác: Không vét cạn các nhánh trong cấu trúc quyết định, Câu lệnh thực hiện/kết thúc có phù hợp
+Chi tiết tham khảo mục 2.4 trong phụ lục.
+2.5Lỗi nhập xuất:
+* Lỗi đóng mở tệp tin: Các câu lệnh mở tệp tin chính xác không, Các tệp tin đã được mở trước khi sử dụng, Các tệp tin được đóng sau khi sử dụng.
+* Tính chính xác của tệp tin: Các thuộc tính tệp tin chính xác không, Các tệp được mở có đảm bảo an toàn, Các chỉ định định dạng phù hợp với câu lệnh nhập, xuất.
+* Sự phù hợp giữa Kích thước bộ đệm phù hợp và Kích thước bản ghi. 
+Chi tiết tham khảo mục 2.5 trong phụ lục.
+2.6Lỗi giao tiếp giữa các hàm, thủ tục:
+* Việc gọi các hàm cùng tên khác tham số có nhầm lẫn, Số tham số đầu vào bằng số đối số, Có truyền nhầm giá trị các tham số đầu vào.
+* Lặp vô hạn trong việc gọi hàm đệ quy.
+Chi tiết tham khảo mục 2.6 trong phụ lục.
+2.7 Lỗi sử dụng tài nguyên:
+* Luôn đóng tài nguyên: Đối với các tài nguyên như socket, stream, file khi gặp lỗi nếu không được xử lý sẽ dẫn tới tài nguyên không thể sử dụng được. Phải đảm bảo
+rằng tài nguyên được đóng sau khi sử dụng.
+Chi tiết tham khảo mục 2.7 trong phụ lục.
+* Mở kết nối nhưng không đóng hoặc mở nhiều kết nối tại cùng thời điểm, không kiểm tra trạng thái kết nối CSDL dẫn đến lỗi full connection.
+2.8Lỗi khi sử dụng các Control
+* Lỗi đặt trùng id control: 2 control tại 2 giao diện khác nhau có chung 1 id. Khi chạy riêng lẻ từng giao diện sẽ không gây ra lỗi. Tuy nhiên khi chạy cùng 1 lúc cả
+2 giao diện thì sẽ bị lỗi. Nên đặt tên control có thêm tiền tố.
+* Không xác định số lượng bản ghi tối đa được hiển thị (trên combo, grid): gây ra lỗi giao diện khi số lượng bản ghi lớn. Nên xác định số lượng bản ghi hiển thị tối
+đa và sử dụng phân trang.
+2.9Các lỗi khác:
+* Không tương thích với các phiên bản hệ điều hành, trình duyệt web: khi sử dụng các thư viện hỗ trợ, cần xác định các phiên bản HĐH hoặc trình duyệt mà thư viện
+đó hỗ trợ -> tránh lỗi chức năng chỉ chạy được trên phiên bản HĐH này mà không chạy trên phiên bản HĐH khác, chạy được trên firefox mà không chạy đượ trên
+IE.
+
+PHỤ LỤC: VÍ DỤ VÀ CÁCH THỰC HIỆN
+* Cách thực hiện
+1.1Fix hết các cảnh báo của IDE lập trình:
+1.1.1 Không dư thừa code
+Nguy cơ: Khi lập trình, việc khai báo các biến, các hàm nhưng không sử dụng gây chiếm bộ nhớ lãng phí. Khi chỉnh sửa code, tình trạng lập trình viên comment code cũ nhưng
+không xóa dẫn tới code không gọn, khó đọc.
+Phòng chống:
+- Tìm và xóa hết những biến, hàm, phương thức khai báo nhưng không sử dụng (khai báo biến thừa là 1 dạng warning).
+- Xóa comment code cũ.
+Ví dụ:
+Trong code có đoạn khai báo: private string Message = ""; // Thông báo Khi build ứng dụng xuất hiện lỗi:
+Warning as Error: The field PMS.PublicWebUI.UserControl.Remitter.ChangePassword. Message' is assigned but its value is never used.
+* Xóa biến Message không sử dụng.
+1.1.2 Các warning của visual studio
+Nguy cơ: Các warning thường gặp phải trong lập trình .net thường bao gồm khai báo cáo biến không sử dụng, sử dụng các dòng code chỉ chạy trên các version cũ…
+Phòng chống: Trong Visual, lập trình viên thiết lập thuộc tính build của ứng dụng, thiết lập Error and Warning ở mức cao nhất, đặt Treat warnings as error = All. Khi build ứng
+dụng sẽ xuất hiện các lỗi, các lỗi này thường bao gồm việc, người dùng thực hiện fix các
+lỗi.
+Ví dụ:
+- Lỗi version cũ: public static string MembershipProviderName = System.Configuration.ConfigurationSettings.AppSettings.Get("Membership
+ProviderName");
+Khi build sẽ xuất hiện lỗi: Warning as Error: 'System.Configuration.ConfigurationSettings.AppSettings' is obsolete: 'This method is obsolete, it has been replaced by
+System.Configuration!System.Configuration.ConfigurationManager.AppSettings'.
+Chỉnh sửa:
+public static string MembershipProviderName = System.Configuration.ConfigurationManager.AppSettings.Get("MembershipProviderName");
+1.2Xử lý exception của ứng dụng
+1.2.1 Cần kiểm tra những đoạn code có khả năng gây lỗi, những đoạn code đó cần
+đặt trong khối try ... catch
+- Không nên dùng: Đoạn code sau có thể gây lỗi đối với trường hợp y=0; cần kiểm tra y khác 0 hoặc phải đưa vào try .... catch
+Int diviseSafely(int x, int y)
+ {
+ return (x / y);
+ }
+- Nên dùng:
+int diviseSafely(int x, int y){
+ try{
+ return (x / y);
+ }
+ catch (System.Exception ex){
+ System.Console.WriteLine("Division by zero
+attempted!");
+ return 0;
+ }
+ }
+1.2.2Sử dụng Exception cụ thể trong throws:
+Nguy cơ: Việc bắt exception nhằm mục đích đưa ra các lỗi của ứng dụng phục vụ việc sửa lỗi. Việc đưa ra Exception chung chung sẽ dẫn tới việc khó nhận diện lỗi.
+Phòng chống: Khi bắt Exception cần bắt Exception cụ thể nhất có thể.
+Ví dụ:
+- Không nên dùng
+int diviseSafely(int x, int y)
+ {
+ try
+ {
+ return (x / y);
+ }
+ catch (System.Exception ex)
+ {
+ System.Console.WriteLine("Division by zero attempted!");
+ return 0;
+ }
+ }
+- Nên dùng
+int diviseSafely(int x, int y)
+ {
+ try
+ {
+ return (x / y);
+ }
+ catch (System.DivideByZeroException ex)
+ {
+ System.Console.WriteLine("Division by zero
+attempted!");
+ return 0;
+ }
+ }
+1.2.3Không để đoạn code xử lý trong catch rỗng:
+Nguy cơ: Khi ứng dụng gặp exception, đoạn catch phải in các thông tin phục vụ debug, dò lỗi. Không sử dụng đoạn catch rỗng trong chương trình. Việc catch rỗng sẽ không biết
+được nguyên nhân lỗi.
+Phòng chống: Trong các khối lệnh try … catch, cần bắt exception trong catch để bắt lỗi.
+Ví dụ:
+- Không nên dùng
+int diviseSafely(int x, int y)
+ {
+ try
+ {
+ return (x / y);
+ }
+ catch
+ {
+ return 0;
+ }
+ }
+- Nên dùng
+int diviseSafely(int x, int y)
+ {
+ try
+ {
+ return (x / y);
+ }
+ catch (System.DivideByZeroException ex)
+ {
+ WriteLog(ex);
+ return 0;
+ }
+ }
+1.2.4 Sử dụng Finally cho mệnh đề try-catch xử lý tài nguyên:
+Nguyên nhân: Sử dụng finally để đảm bảo các tài nguyên (như stream, socket, file...) được xử lý đúng khi gặp exception.
+Phòng chống: Tất cả các khối lệnh xử lý tài nguyên đều có khối lệnh Finally thực hiện code giải phóng đối tượng, bộ nhớ.
+Ví dụ:
+- Không nên dùng
+static void CodeWithoutCleanup()
+{
+ System.IO.FileStream file = null;
+ System.IO.FileInfo fileInfo = new
+System.IO.FileInfo("C:\\file.txt");
+ file = fileInfo.OpenWrite();
+ file.WriteByte(0xF);
+ file.Close();
+}
+- Nên dùng
+static void CodeWithCleanup()
+{
+ System.IO.FileStream file = null;
+ System.IO.FileInfo fileInfo = null;
+ try
+ {
+ fileInfo = new System.IO.FileInfo("C:\\file.txt");
+ file = fileInfo.OpenWrite();
+ file.WriteByte(0xF);
+ }
+ catch(System.Exception e)
+ {
+ System.Console.WriteLine(e.Message);
+ }
+ finally
+ {
+ if (file != null)
+ {
+ file.Close();
+ }
+ }
+}
+1.3Lỗi dữ liệu:
+1.3.1 Validate dữ liệu đầu vào
+Nguy cơ: Nếu không validate dữ liệu đầu vào có thể dẫn tới sự cố hệ thống, thao tác sai trên CSDL hay thậm chí làm hỏng CSDL
+Phòng chống: Kiểm tra định dạng nhập vào, kiểm tra độ dài dữ liệu nhập vào….Việc kiểm tra dữ liệu cũng dựa vào yêu cầu nghiệp vụ của 
+chương trình. Kiểm tra việc ép kiểu,chuyển đổi kiểu có chính xác hay không? Khi chuyển đổi giữa các kiểu dữ liệu thường gây lỗi khi 
+các giá trị đầu vào có giá trị null, hoặc không đúng định dạng, hoặc không đúng kiểu chuyển đổi…. Cần bắt các trường hợp gây lỗi và trả về giá trị chuyển dổi mặc
+định.
+Ví dụ:
+- Không dùng:
+public static int getIDLookup(string Lookuptext)
+ {
+ string temp = Lookuptext.Split('#')[0];
+ temp = temp.Replace(";", "");
+ return Convert.ToInt32(temp);
+ }
+- Nên dùng:
+public static int getIDLookup(string Lookuptext)
+ {
+ try
+ {
+ string temp = Lookuptext.Split('#')[0];
+ temp = temp.Replace(";", "");
+ return Convert.ToInt32(temp);
+ }
+ catch
+ {
+ return 0;
+ }
+ }
+1.3.2 Kiểm tra các phép tính toán
+Nguy cơ: Các lỗi tính toán sẽ ảnh hưởng trực tiếp tới kết quả toàn chương trình, gây ra
+lỗi chương trình.
+Phòng chống: Thực hiện rà soát các lỗi tính toán hay gặp: Việc sử dụng các index không đúng, Kết quả tức thời làm tràn bộ nhớ, lỗi chia 0....
+1.3.2.1Việc sử dụng các index không đúng
+Ví dụ:
+ int k;
+ int[] arr = new int[10];
+ for (k = 1; k <= 10; k++) 
+ {
+ arr[k] = k;
+ }
+Trong đoạn code trên, index của 1 mảng bắt đầu từ 0, khi chạy chương trình sẽ sinh lỗi index ngoài vùng giá trị. Lỗi này thường chỉ mắc phải với những người mới lập trình, tuy
+nhiên cần chú ý khi rà soát code.
+Sửa lại:
+int k;
+int[] arr = new int[10];
+for (k = 0; k < 10; k++)
+{
+ arr[k] = k;
+}
+1.3.2.2 Kết quả tức thời làm tràn bộ nhớ:
+Mỗi kiểu giá trị được biểu diễn trong 1 khoảng nhất định, việc tính toán, đặc biệt là nhân 2 giá trị số lớn cùng kiểu với nhau để được 1 kết quả cùng kiều thì rất dễ tràn bộ
+nhớ.
+Ví dụ: Trong phép tính sau
+int a = 34545;
+ int b = 323436;
+int c = a * b;
+ Giá trị của c = -1711805268, bởi vì kết quả của c nằm ngoài vùng của kiểu int.
+ Nên đổi thành:
+double a = 34545;
+double b = 323436;
+double c = a * b;
+1.3.2.3 Lỗi chia 0:
+Ví dụ:
+int deviseSafely(int x, int y)
+{
+ return (x / y);
+}
+Trong phép tính trên, nếu truyền tham số với giá trị của y=0 sẽ gây ra lỗi chương trình, cần đưa hàm kiểm tra giá trị của y trước khi thực hiện phép chia. Hàm trên sửa lại thành:
+int deviseSafely (int x, int y)
+ {
+ if (y != 0) return (x / y);
+ else return 0;
+ }
+1.3.3 Kiểm tra các biểu thức logic
+- Sử dụng equals khi so sánh String, không sử dụng toán tử ==: Equal là hàm so sánh nội dung String, toán tử == so sánh 2 biến có trỏ tới cùng 1 object hay không. Sử
+dụng == không đúng với ngữ nghĩa khi so sánh 2 chuỗi.
+1.4 Lỗi cấu trúc điều khiển
+1.4.1Vòng lặp có dừng hay không:
+Nguy cơ: Đối với những vòng lặp for, do….while, while …do, rẽ nhánh, việc kiểm tra biểu thức điều kiện để đánh giá khả năng thoát khỏi vòng lặp là bắt buộc, việc không
+thoát khỏi vòng lặp sẽ dẫn tới treo chương trình.
+Phòng chống: Thực hiện rà soát tất cả các vòng điều khiển, kiểm tra điều kiện thực hiện vòng lặp xem có lặp vô hạn. Hay các lệnh chạy bên trong vòng lặp gọi tới chức năng
+chạy vô hạn. Yêu cầu chỉnh sửa code để không lặp vô hạn.
+1.4.2 Các lỗi thường gặp khác:
+Không vét cạn các nhánh trong cấu trúc quyết định, Câu lệnh thực hiện/kết thúc có phù hợp
+1.5Lỗi nhập xuất
+1.5.1 Lỗi đóng mở tệp tin:
+Các câu lệnh mở tệp tin chính xác không, Các tệp tin đã được mở trước khi sử dụng, Các tệp tin được đóng sau khi sử dụng.
+1.5.2 Tính chính xác của tệp tin:
+Các thuộc tính tệp tin chính xác không, Các tệp được mở có đảm bảo an toàn, Các chỉ định định dạng phù hợp với câu lệnh nhập, xuất.
+- Không hardcode filename và đường dẫn. Cho phép cấu hình đường dẫn ở file cấu
+hình bên ngoài. Windows và Linux có quy ước đường dẫn khác nhau (/ vs \\).
+- Kiểm tra các tệp tin mở ra có đảm bào an toàn, kiểm tra định dạng file được phép thao tác.
+Ví dụ:
+Việc thao tác tới file .exe hoặc .bat có thể kích hoạt 1 tiến trình khác, chạy không đảm bảo an toàn.
+- Các thao tác với file phải được giảm thiểu. Thay vì việc phải đọc đi đọc lại các tham số khác nhau từ một file thì ta nên load toàn bộ tham số từ file đó ra bộ nhớ một lần
+và sau đó thì đọc nội dung của nó từ bộ nhớ.
+1.6Lỗi giao tiếp giữa các hàm, thủ tục
+1.6.1 Truyền đúng tham số cho hàm, thủ tục:
+Một trong những lối dễ gặp với tính chất đa hình trong lập trình hướng đối tượng là việc gọi nhầm hàm, truyền nhầm tham số, dẫn tới việc thực thi hàm, thủ tục trả kết quả sai,
+dấn tới chương trình chạy sai.
+1.6.2 Tính đa hình:
+Việc gọi các hàm cùng tên khác tham số có nhầm lẫn, Số tham số đầu vào bằng số đối số, Có truyền nhầm giá trị các tham số đầu vào.
+1.6.3 Hàm đệ quy có kết thúc?
+Nguy cơ: Đối với các giải thuật đệ quy, việc không kết thúc dẫn tới việc chương trình chạy mãi không dừng.
+Phòng chống: Kiểm tra các điều kiện kết thúc của hàm đệ quy, đảm bảo việc hàm đệ quy dừng sau 1 số hữu hạn các bước.
+1.7 Lỗi sử dụng bộ nhớ
+1.7.1Luôn đóng tài nguyên:
+Đối với các tài nguyên như socket, stream, file khi gặp lỗi nếu không được xử lý sẽ dẫn tới tài nguyên không thể sử dụng được. Phải đảm bảo rằng tài nguyên được đóng sau khi
+sử dụng.
+Tài liệu tham khảo:
+ Ứng dụng thanh tra mã nguồn trong tiến trình phát triển phần mềm – Tạp chí khoa
+học và Công nghệ - Đại học Đà Nẵng, Số 2(31).2009.
+ http://msdn.microsoft.com/en-us/library/ms184412.aspx

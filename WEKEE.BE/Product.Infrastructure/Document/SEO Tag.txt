@@ -1,0 +1,28 @@
+<title>MacBook Pro M1 2020 8GB 256GB | Chính hãng, trả góp 0%</title>
+
+Độ dài tối ưu nhất của một meta title để hiển thị đầy đủ nhất trên kết quả tìm kiếm là từ 65 – 70 ký tự
+
+=================================================================================================================
+
+<meta name="keywords" content="Apple MacBook Pro M1 2020 8GB/256GB"/>
+tên sản phẩm hoặc 2-5 từ khóa
+=================================================================================================================
+
+<meta name="description" content="Apple MacBook Pro M1 2020 8GB/256GB giá rẻ."/>
+Mô tả meta có thể dài bất kỳ, nhưng Google thường cắt ngắn các đoạn trích còn khoảng 155–160 ký tự. 
+Tốt nhất nên giữ cho Meta Description đủ dài để chúng đủ mô tả, 
+vì vậy tôi khuyên bạn nên sử dụng các mô tả từ 50–160 ký tự. Hãy nhớ rằng độ dài “tối ưu” sẽ thay đổi tùy theo tình huống 
+và mục tiêu chính của bạn phải là cung cấp giá trị và thúc đẩy số lần nhấp.
+thông thường 120 -135
+=================================================================================================================
+<meta name="viewport" content="width=device-width, initial-scale=1">
+width: Chiều rộng của khung nhìn.
+Thông thường, chiều rộng này sẽ được đặt bằng với chiều rộng thiết bị (device-width) hoặc kích thước responsive thường thấy.
+initial-scale: Mức thu phóng của website và chiều rộng của chế độ xem.
+initial-scale thường được đặt bằng 1 (có thể tăng giá trị lên nhưng không được khuyến nghị)
+minimum-scale: Mức thu phóng tối thiểu. Nghĩa là người dùng có thể thu nhỏ bao nhiêu.
+Điều này sẽ khiến người dùng mất kiểm soát và yếu tố này cũng không được khuyến nghị.
+maximum-scale: Mức thu phóng tối đa. Cũng giống như mức thu phóng tối thiểu, thuộc tính này không được khuyến khích vì đánh mất quyền kiểm soát của người dùng.
+user-scalable: Cho phép người dùng phóng to: giá trị "no" là không cho phép, giá trị "yes" là cho phép.
+Thực sự thì bạn KHÔNG NÊN sử dụng thuộc tính này trong thẻ meta viewport của mình!
+=================================================================================================================

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Dto\GetEvaluatesProductDto.cs~RF2d32f9e.TMP" />
+    <None Remove="Dto\GetEvaluatesProductDto.cs~RF2ea1a9f.TMP" />
+    <None Remove="Dto\RepCommentEvaluatesOutputDto.cs~RF218923e.TMP" />
+    <None Remove="Dto\ReviewAccountEvaluatesOutputDto.cs~RF9d664ad.TMP" />
+    <None Remove="Dto\ReviewEvaluatesInputDto.cs~RFb5e4962.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Aggregate\" />
+    <Folder Include="BoundedContext\" />
+    <Folder Include="CoreDomain\" />
+    <Folder Include="EventDomain\" />
+    <Folder Include="UL\" />
+    <Folder Include="Shared\" />
+    <Folder Include="ServicesDomain\" />
+    <Folder Include="Services\" />
+    <Folder Include="ObjectValues\" />
+  </ItemGroup>
+
+</Project>
