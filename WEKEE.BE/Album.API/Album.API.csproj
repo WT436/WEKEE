@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="RootFiles\album\avatar\" />
     <Folder Include="RootFiles\album\evaluates\" />
     <Folder Include="RootFiles\album\file\" />
+    <Folder Include="RootFiles\album\post\" />
+    <Folder Include="RootFiles\album\product\" />
+    <Folder Include="RootFiles\album\rootevaluates\" />
+    <Folder Include="RootFiles\album\rootImage\" />
+    <Folder Include="RootFiles\album\subBanner\" />
     <Folder Include="RootFiles\album\video\" />
   </ItemGroup>
 

@@ -31,7 +31,7 @@ namespace Album.API
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(env.ContentRootPath, "RootFiles")),
-                RequestPath = "/StaticFiles"
+                RequestPath = "/resources"
             });
 
             var swaggerConfigStartup = new SwaggerConfigStartup();

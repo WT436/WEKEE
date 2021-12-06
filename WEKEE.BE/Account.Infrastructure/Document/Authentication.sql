@@ -65,6 +65,7 @@ GO
 CREATE TABLE [UserAccountStatus]
 (
 	[id] INT IDENTITY(1,1) PRIMARY KEY,
+	[account_id] int FOREIGN KEY REFERENCES [UserProfile]([id]),
 	[code] VARCHAR(20) NULL,
 	[status_id] INT NOT NULL, -- xác định code lấy lại tài khoản
 	[reminder_token] VARCHAR(100) NULL, -- dùng để lưu trữ token khôi phục mật khẩu.
@@ -86,8 +87,8 @@ GO
 -- ====================================================================
 CREATE TABLE [UserLogin]
 (
-	[user_profile_id] INT NOT NULL PRIMARY KEY 
-					      FOREIGN KEY REFERENCES [UserProfile]([id]), -- dùng lưu định dạng duy nhất tài khoản
+	[id] INT NOT NULL PRIMARY KEY 
+					  FOREIGN KEY REFERENCES [UserProfile]([id]), -- dùng lưu định dạng duy nhất tài khoản
 	[user_name] VARCHAR(100) UNIQUE NOT NULL, -- dùng lưu trữ tài khoản duy nhất
 	[login_fall_number] int NOT NULL DEFAULT(0) CHECK([login_fall_number]>=0 AND [login_fall_number]<=20), -- số lần đăng nhập thất bại liên tiếp
 	[lock_account_time] datetime NULL,-- thời gian khóa tài khoản
@@ -125,7 +126,7 @@ CREATE TABLE [UserAccountIp]
 	[longitude] VARCHAR(20) NOT NULL,
 	[state] VARCHAR(20) NOT NULL,
 	[user_agent] NVARCHAR(300) NULL,
-	[ip_user_account] INT NOT NULL FOREIGN KEY REFERENCES [UserLogin]([user_profile_id]),-- ip máy người dùng khi khởi tạo		
+	[account_id] INT NOT NULL FOREIGN KEY REFERENCES [UserProfile]([id]),-- ip máy người dùng khi khởi tạo		
 	[update_acount] INT DEFAULT(0) NOT NULL,
 	[is_active] BIT DEFAULT(0) NOT NULL, -- trạng thái hoạt động
 	[is_delete] BIT DEFAULT(0) NOT NULL, -- còn cho phép sử dụng
@@ -149,7 +150,7 @@ CREATE TABLE [Address]
 	[adress_line_3] NVARCHAR(256) NULL,-- địa chỉ phụ	
 	[description] NVARCHAR(20) NOT NULL, -- miêu tả
 	[is_active] BIT DEFAULT(1) NOT NULL, -- trạng thái -- 0: FALSE, 1 : TRUE
-	[user_account_id] int FOREIGN KEY REFERENCES [UserLogin]([user_profile_id]),
+	[account_id] int FOREIGN KEY REFERENCES [UserProfile]([id]),
 	[created_at] DATETIME NOT NULL DEFAULT(GETDATE()),
 	[create_by] INT,
 	[updated_at] DATETIME NOT NULL DEFAULT(GETDATE()),
@@ -173,7 +174,7 @@ CREATE TABLE [InfomationUser]
 	[gender] INT NOT NULL CHECK([gender] >= 0 AND [gender] <= 3),-- giới tính
 	[description] NVARCHAR(20) NOT NULL, -- miêu tả
 	[is_active] BIT DEFAULT(1) NOT NULL, -- trạng thái
-	[user_account_id] int FOREIGN KEY REFERENCES [UserLogin]([user_profile_id]),
+	[account_id] INT FOREIGN KEY REFERENCES [UserProfile]([id]),
 	[created_at] DATETIME NOT NULL DEFAULT(GETDATE()),
 	[create_by] INT,
 	[updated_at] DATETIME NOT NULL DEFAULT(GETDATE()),
@@ -193,7 +194,7 @@ CREATE TABLE [ProcessUser]
 	[ip_user] VARCHAR(20) NOT NULL, -- ip người dùng
 	[is_status] BIT DEFAULT(0) NOT NULL, -- trạng thái 
 	[device] NVARCHAR(100) NOT NULL, -- thiết bị
-	[user_account_id] int FOREIGN KEY REFERENCES [UserLogin]([user_profile_id]),
+	[account_id] INT FOREIGN KEY REFERENCES [UserProfile]([id]),
 	[created_at] DATETIME NOT NULL DEFAULT(GETDATE()),
 	[create_by] INT,
 	[updated_at] DATETIME NOT NULL DEFAULT(GETDATE()),
@@ -205,7 +206,7 @@ GO
 GO
 -- ====================================================================
 -- Name      :  Thông tin liên quan đến group phân quyền
--- Meaning   :  
+-- Meaning   :  Nhóm người dùng
 -- Create by :  WT436
 -- Create at :  Monday, May 12, 2021
 -- Update at :  Wednesday, November 24, 2021
@@ -237,7 +238,7 @@ GO
 CREATE TABLE [Subject]
 (
 	[id] INT IDENTITY(1,1) PRIMARY KEY,
-	[user_id] INT NOT NULL,-- id người dùng
+	[user_id] INT NOT NULL FOREIGN KEY REFERENCES [UserProfile]([id]),-- id người dùng
 	[gorup_id] INT FOREIGN KEY REFERENCES [Group]([id]) NULL,-- tên nhóm mà người dùng này đang tham gia
 	[is_active] BIT DEFAULT(1) NOT NULL, -- Trạng thái của người dùng trong bộ quyền này
 	[created_at] DATETIME NOT NULL DEFAULT(GETDATE()),
@@ -265,7 +266,7 @@ CREATE TABLE [SubjectGroup]
 GO
 -- ====================================================================
 -- Name      :  Vai trò
--- Meaning   :  Quản lý các vai trò chính của nhóm và người dùng cá nhân
+-- Meaning   :  Quản lý các vai trò chính của nhóm và người dùng cá nhân, ví dụ như giám đốc là một vao trò và giám đốc các các quyền khác nhau
 -- Create by :  WT436
 -- Create at :  Monday, May 12, 2021
 -- Update at :  Wednesday, November 24, 2021
@@ -325,7 +326,7 @@ CREATE TABLE [Permission]
 GO
 -- ====================================================================
 -- Name      :  Phân công từng thành phần cho các quyền được cho phép
--- Meaning   :  Các quyền sẽ truy cập trên namespace
+-- Meaning   :  Các quyền của một vai trò
 -- Create by :  WT436
 -- Create at :  Monday, May 12, 2021
 -- Update at :  Wednesday, November 24, 2021
@@ -360,7 +361,7 @@ CREATE TABLE [AuthorizationConstraint]
 GO
 -- ====================================================================
 -- Name      :  Nhiệm vụ của ràng buộc ủy quyền
--- Meaning   :  
+-- Meaning   :  Định danh và thuật toán của quyền
 -- Create by :  WT436
 -- Create at :  Monday, May 12, 2021
 -- Update at :  Wednesday, November 24, 2021
@@ -395,7 +396,7 @@ CREATE TABLE [Atomic]
 )
 GO
 -- ====================================================================
--- Name      :  Nguồn gốc
+-- Name      :  Nguồn gốc, tài nguyên
 -- Meaning   :  Namespace, url, function, ...... cụ thể
 -- Create by :  WT436
 -- Create at :  Monday, May 12, 2021
@@ -415,7 +416,7 @@ CREATE TABLE [Resource]
 GO
 -- ====================================================================
 -- Name      :  Hành động
--- Meaning   :  
+-- Meaning   :  Hành động của quyền
 -- Create by :  WT436
 -- Create at :  Monday, May 12, 2021
 -- Update at :  Wednesday, November 24, 2021
@@ -435,7 +436,7 @@ CREATE TABLE [Action]
 GO
 -- ====================================================================
 -- Name      :  Phân công cho hành động
--- Meaning   :  
+-- Meaning   :  Các hành động của quyền
 -- Create by :  WT436
 -- Create at :  Monday, May 12, 2021
 -- Update at :  Wednesday, November 24, 2021
@@ -453,7 +454,7 @@ CREATE TABLE [ActionAssignment]
 GO
 -- ====================================================================
 -- Name      :  Hành động của tài nguyên
--- Meaning   :  
+-- Meaning   :  Hành động trên tài nguyên nào
 -- Create by :  WT436
 -- Create at :  Monday, May 12, 2021
 -- Update at :  Wednesday, November 24, 2021

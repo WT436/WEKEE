@@ -75,25 +75,9 @@ static_resources:
               private_key:
                 filename: "/etc/ssl/certs/key.pem"
   clusters:
-  # - name: apione_service
-  #   connect_timeout: 0.25s
-  #   type: LOGICAL_DNS
-  #   # Comment out the following line to test on v6 networks
-  #   dns_lookup_family: V4_ONLY
-  #   lb_policy: ROUND_ROBIN
-  #   load_assignment:
-  #     cluster_name: apione_service
-  #     endpoints:
-  #     - lb_endpoints:
-  #       - endpoint:
-  #           address:
-  #             socket_address:
-  #               address: apione
-  #               port_value: 480
   - name: secure_apione_service
     connect_timeout: 0.25s
     type: LOGICAL_DNS
-    # Comment out the following line to test on v6 networks
     dns_lookup_family: V4_ONLY
     lb_policy: ROUND_ROBIN
     load_assignment:
@@ -113,7 +97,6 @@ static_resources:
   - name: apitwo_service
     connect_timeout: 0.25s
     type: LOGICAL_DNS
-    # Comment out the following line to test on v6 networks
     dns_lookup_family: V4_ONLY
     lb_policy: ROUND_ROBIN
     load_assignment:
