@@ -4,7 +4,6 @@ import { CreateProductDtos } from "./dtos/createProductDtos";
 
 class SuNewProductService {
   public async createProductStart(createProductDtos: CreateProductDtos) {
-    console.log(createProductDtos);
     let rs = await http.post("/create/create-product", createProductDtos);
     if (rs) {
       return rs.data;

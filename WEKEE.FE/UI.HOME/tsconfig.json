@@ -22,5 +22,15 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "router":{
+    "admin":{
+      "Permission":{
+        "resourceBasic":"/watch/resource-basic"
+      }
+    }
+  },
+  "cookieName":{
+    "tokenCookieName":"Authorization"
+  }
 }

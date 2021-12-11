@@ -1,8 +1,9 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Dto;
 using Account.Domain.Entitys;
 using Microsoft.AspNetCore.Mvc;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.ChangePassword;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -14,15 +15,15 @@ namespace Account.API.Src.AccountAreas
             _changePassword = changePassword;
         }
 
-        [Route(LoginRouter.ChangePassword.WATCH)]
-        [HttpGet]
+        [Route(LoginRouter.ChangePassword)]
+        [HttpPatch]
         public IActionResult WatchChangePassword()
         {
             return Ok();
         }
 
-        [Route(LoginRouter.ChangePassword.UPDATE)]
-        [HttpPost]
+        [Route(LoginRouter.ChangePassword)]
+        [HttpPut]
         public IActionResult ChangePassword(AuthenticationInput loginDtos, string passwordNew)
         {
             var ip = HttpContext.Connection.RemoteIpAddress.ToString();

@@ -11,7 +11,7 @@ namespace Account.Domain.Dto
         public string Description { get; set; }
         public int LevelRole { get; set; }
         public int RoleId { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public bool IsDelete { get; set; }
         public bool IsActive { get; set; }
     }

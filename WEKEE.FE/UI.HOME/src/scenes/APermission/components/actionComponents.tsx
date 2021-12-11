@@ -46,13 +46,13 @@ export default function ActionComponents(props: IActionComponentsProps) {
         dispatch(listFormActionStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     }, []);
 
     useEffect(() => {
-        
+
     }, [pageSize]);
 
     useEffect(() => {
@@ -130,7 +130,7 @@ export default function ActionComponents(props: IActionComponentsProps) {
         {
             title: 'Acticon cha',
             dataIndex: 'actionBase',
-            render: (text: String) => (text === null || text===undefined|| text ==="" ? <Tag color="red">Null</Tag> : text)
+            render: (text: String) => (text === null || text === undefined || text === "" ? <Tag color="red">Null</Tag> : text)
         },
         {
             title: 'dateCreate',
@@ -141,8 +141,8 @@ export default function ActionComponents(props: IActionComponentsProps) {
         dispatch(listFormActionStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     };
 
@@ -162,7 +162,7 @@ export default function ActionComponents(props: IActionComponentsProps) {
     const onGenderChange = (value: string) => {
         form.setFieldsValue({ atomicId: value });
     };
-    
+
     return (
         <Row gutter={[10, 10]} >
             <Col span={14}>
@@ -171,8 +171,8 @@ export default function ActionComponents(props: IActionComponentsProps) {
                         dispatch(listFormActionStart({
                             pageIndex: pageIndex,
                             pageSize: pageSize,
-                            property: '',
-                            orderBy: ''
+                            property: "",
+                            orderBy: "",
                         }));
                         setCheckRestart(true);
 
@@ -182,7 +182,7 @@ export default function ActionComponents(props: IActionComponentsProps) {
                         <Button loading={loading}
                             disabled={checkRemove}
                             block
-                            onClick={()=>{dispatch(ActionRemoveStart(dataRemoveAction))}}
+                            onClick={() => { dispatch(ActionRemoveStart(dataRemoveAction)) }}
                             icon={<CheckOutlined />}>Lưu</Button></Col>
                     <Col span={4}><Button loading={loading} disabled={checkRemove} onClick={() => dispatch(ActionRemoveFeCancel())} block icon={<CloseOutlined />}>Hủy</Button></Col>
                 </Row>
@@ -190,7 +190,7 @@ export default function ActionComponents(props: IActionComponentsProps) {
                     <Table
                         columns={columns}
                         dataSource={dataAction}
-                        rowKey={(record : ActionDto) => record.id.toString()}
+                        rowKey={(record: ActionDto) => record.id.toString()}
                         loading={loading}
                         scroll={{ y: 500, x: 1300 }}
                         pagination={{

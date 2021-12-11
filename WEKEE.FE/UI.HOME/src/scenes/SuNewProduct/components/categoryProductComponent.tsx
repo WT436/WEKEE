@@ -449,7 +449,6 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                             var productSave: ProductDtos = productDto;
                             productSave.unitProduct = value;
                             setProductsStart(productSave);
-                            console.log(value)
                         }
                     }
                 >

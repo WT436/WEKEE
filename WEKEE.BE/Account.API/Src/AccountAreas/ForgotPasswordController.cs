@@ -9,14 +9,14 @@ namespace Account.API.Src.AccountAreas
 {
     public class ForgotPasswordController : Controller
     {
-        [Route(LoginRouter.ForgotPassword.WATCH)]
+        [Route(LoginRouter.ForgotPassword)]
         [HttpGet]
         public IActionResult ForgotPasswordShow()
         {
             return Ok();
         }
 
-        [Route(LoginRouter.ForgotPassword.GET)]
+        [Route(LoginRouter.ForgotPassword)]
         [HttpPost]
         public IActionResult ForgotPassword()
         {

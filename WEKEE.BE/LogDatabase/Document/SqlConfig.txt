@@ -1,1 +1,0 @@
-Scaffold-DbContext "Server=DESKTOP-C2SVCGC;Database=Authorization;Trusted_Connection=True;"Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entity/NewFolder

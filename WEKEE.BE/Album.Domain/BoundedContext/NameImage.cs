@@ -17,12 +17,12 @@ namespace Album.Domain.BoundedContext
         {
             text = text?[(text.LastIndexOf("\\") + 1)..text.LastIndexOf(".")];
             string nameApp = "Account-";
-            string dateCreate = $"-{DateTime.Now.ToString("HHmmss-ddMMyyyy")}-";
+            string CreatedAt = $"-{DateTime.Now.ToString("HHmmss-ddMMyyyy")}-";
             string nameLevel = level == 0 ? "" : $"({level})";
 
             return string.IsNullOrEmpty(text)
-                   ? nameApp + NameDefault() + dateCreate + nameLevel
-                   : nameApp + ConvertNameFolder(text) + dateCreate + nameLevel;
+                   ? nameApp + NameDefault() + CreatedAt + nameLevel
+                   : nameApp + ConvertNameFolder(text) + CreatedAt + nameLevel;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Account.Domain.Entitys;
 using Account.Domain.ObjectValues;
+using Account.Domain.ObjectValues.Enum;
 using Account.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,15 @@ namespace Account.Infrastructure.ModelQuery
         private readonly IUnitOfWork<AuthorizationContext> unitOfWork =
                           new UnitOfWork<AuthorizationContext>(new AuthorizationContext());
 
-        public async Task<IList<Action>> GetAllActive()
-                     => await unitOfWork.GetRepository<Action>().GetAllAsync(m => m.IsActive == true);
 
         #region Hiển thị
+        public async Task<IList<Action>> GetAllActive()
+                     => await unitOfWork.GetRepository<Action>()
+                                        .GetAllAsync(m => m.IsActive == true);
         public async Task<IPagedList<Action>> GetAllListPageAsync(PagedListInput pagedListInput)
                      => await unitOfWork.GetRepository<Action>()
                                         .GetPagedListAsync(pageIndex: pagedListInput.PageIndex,
                                                            pageSize: pagedListInput.PageSize);
-
         public IPagedList<Action> GetAllListPage(PagedListInput pagedListInput)
                => unitOfWork.GetRepository<Action>()
                             .GetPagedList(pageIndex: pagedListInput.PageIndex,
@@ -60,29 +61,29 @@ namespace Account.Infrastructure.ModelQuery
         #endregion
 
         #region Sắp Xếp theo datetime
-        public IPagedList<Action> GetDateCreateOrderByAsc(OrderByPageListInput orderByPageListInput)
+        public IPagedList<Action> GetCreatedAtOrderByAsc(OrderByPageListInput orderByPageListInput)
                => unitOfWork.GetRepository<Action>()
                             .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
                                            pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderBy(m => m.DateCreate));
+                                            orderBy: o => o.OrderBy(m => m.CreatedAt));
 
-        public IPagedList<Action> GetDateCreateOrderByDesc(OrderByPageListInput orderByPageListInput)
+        public IPagedList<Action> GetCreatedAtOrderByDesc(OrderByPageListInput orderByPageListInput)
                => unitOfWork.GetRepository<Action>()
                             .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
                                            pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderByDescending(m => m.DateCreate));
+                                            orderBy: o => o.OrderByDescending(m => m.CreatedAt));
 
-        public async Task<IPagedList<Action>> GetDateCreateOrderByAscAsync(OrderByPageListInput orderByPageListInput)
+        public async Task<IPagedList<Action>> GetCreatedAtOrderByAscAsync(OrderByPageListInput orderByPageListInput)
                      => await unitOfWork.GetRepository<Action>()
                                         .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
                                                             pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderBy(m => m.DateCreate));
+                                                             orderBy: o => o.OrderBy(m => m.CreatedAt));
 
-        public async Task<IPagedList<Action>> GetDateCreateOrderByDescAsync(OrderByPageListInput orderByPageListInput)
+        public async Task<IPagedList<Action>> GetCreatedAtOrderByDescAsync(OrderByPageListInput orderByPageListInput)
                      => await unitOfWork.GetRepository<Action>()
                                         .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
                                                             pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderByDescending(m => m.DateCreate));
+                                                             orderBy: o => o.OrderByDescending(m => m.CreatedAt));
         #endregion
 
         #endregion
@@ -105,122 +106,12 @@ namespace Account.Infrastructure.ModelQuery
 
         public async Task<IList<Action>> GetAllNameExactAsync(string name)
                      => await unitOfWork.GetRepository<Action>().GetAllAsync(m => m.Name == name);
-
+        public async Task<IList<Action>> GetDataByListId(List<int> ids)
+                     => await unitOfWork.GetRepository<Action>()
+                                        .GetAllAsync(m => ids.Contains(m.Id));
         #endregion
 
         #region sắp sếp tìm kiếm
-        #endregion
-
-        #region Tạo mới dữ liệu
-        public void Insert(Action Action)
-        {
-            unitOfWork.GetRepository<Action>()
-                           .Insert(Action);
-            unitOfWork.SaveChanges();
-        }
-        public async Task InsertAsync(Action Action)
-        {
-            await unitOfWork.GetRepository<Action>()
-                           .InsertAsync(Action);
-            unitOfWork.SaveChanges();
-        }
-        #endregion
-
-        #region Xóa bản ghi
-        public bool RemoveUnique(int id)
-        {
-            unitOfWork.GetRepository<Action>().Delete(id);
-            unitOfWork.SaveChanges();
-            return true;
-        }
-        public int RemoveMultiple(List<int> ids)
-        {
-            int count = 0;
-            if (ids != null || ids.Count != 0)
-            {
-                foreach (var item in ids)
-                {
-                    if (unitOfWork.GetRepository<Action>().Exists(m => m.Id == item))
-                    {
-                        unitOfWork.GetRepository<Action>().Delete(item);
-                        count++;
-                    }
-                }
-            }
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
-        #endregion
-
-        #region Update
-        public bool UpdateUnique(int id)
-        {
-            var data = unitOfWork.GetRepository<Action>().GetFirstOrDefault(predicate: m => m.Id == id);
-            if (data != null)
-            {
-                data.IsActive = !data.IsActive;
-                unitOfWork.GetRepository<Action>().Update(data);
-            }
-            return true;
-        }
-        public int UpdateMultiple(List<int> ids)
-        {
-            int count = 0;
-            foreach (var item in ids)
-            {
-                var data = unitOfWork.GetRepository<Action>().GetFirstOrDefault(predicate: m => m.Id == item);
-                if (data != null)
-                {
-                    data.IsActive = !data.IsActive;
-                    unitOfWork.GetRepository<Action>().Update(data);
-                    count++;
-                }
-            }
-
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
-        #endregion
-
-        #region Edit
-        public bool EditUnique(Action action)
-        {
-            var data = unitOfWork.GetRepository<Action>().GetFirstOrDefault(predicate: m => m.Id == action.Id);
-            if (data != null)
-            {
-                data.Name = action.Name;
-                data.AtomicId = action.AtomicId;
-                data.Description = action.Description;
-                data.ActionBase = action.ActionBase;
-                data.IsActive = action.IsActive;
-                data.DateCreate = DateTime.Now;
-                unitOfWork.GetRepository<Action>().Update(data);
-                unitOfWork.SaveChanges();
-            }
-            return true;
-        }
-        public int EditMultiple(List<Action> action)
-        {
-            int count = 0;
-            foreach (var item in action)
-            {
-                var data = unitOfWork.GetRepository<Action>().GetFirstOrDefault(predicate: m => m.Id == item.Id);
-                if (data != null)
-                {
-                    data.Name = item.Name;
-                    data.AtomicId = item.AtomicId;
-                    data.Description = item.Description;
-                    data.ActionBase = item.ActionBase;
-                    data.IsActive = item.IsActive;
-                    data.DateCreate = DateTime.Now;
-                    unitOfWork.GetRepository<Action>().Update(data);
-                    count++;
-                }
-            }
-
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
         #endregion
 
         #region Đếm bản ghi
@@ -245,6 +136,111 @@ namespace Account.Infrastructure.ModelQuery
 
         public async Task<int> CountAtomicAsync(int atomic)
                      => await unitOfWork.GetRepository<Action>().CountAsync(m => m.AtomicId == atomic);
+        #endregion
+
+        #region Tạo mới - Create
+        public int Insert(Action action)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Insert(action);
+            return unitOfWork.SaveChanges();
+        }
+        public int Insert(List<Action> actions)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Insert(actions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(Action action)
+        {
+            await unitOfWork.GetRepository<Action>()
+                            .InsertAsync(action);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(List<Action> actions)
+        {
+            await unitOfWork.GetRepository<Action>()
+                            .InsertAsync(actions);
+            return unitOfWork.SaveChanges();
+        }
+        #endregion
+
+        #region Cập nhật - Update
+        public int Update(Action action)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Update(action);
+            return unitOfWork.SaveChanges();
+        }
+        public int Update(List<Action> actions)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Update(actions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> UpdateAsync(Action action)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Update(action);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> UpdateAsync(List<Action> actions)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Update(actions);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Xóa - Delete
+        public int Delete(Action action)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Delete(action);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<Action> actions)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Delete(actions);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(int action)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Delete(action);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<int> actions)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Delete(actions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> DeleteAsync(Action action)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Delete(action);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<Action> actions)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Delete(actions);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(int action)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Delete(action);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<int> actions)
+        {
+            unitOfWork.GetRepository<Action>()
+                      .Delete(actions);
+            return await unitOfWork.SaveChangesAsync();
+        }
         #endregion
 
     }

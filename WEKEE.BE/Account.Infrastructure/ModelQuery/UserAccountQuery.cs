@@ -21,7 +21,7 @@ namespace Account.Infrastructure.ModelQuery
         /// kiểm tra tài khoản , email , số điện thoại
         /// </summary>
         public async Task<bool> CheckAccount(string account, string email, string numberPhone)
-                     => await unitOfWork.GetRepository<UserAccount>()
+                     => await unitOfWork.GetRepository<UserLogin>()
                                         .ExistsAsync(m => account.Equals(m.UserName)
                                                        || email.Equals(m.Email)
                                                        || numberPhone.Equals(m.NumberPhone));
@@ -29,34 +29,34 @@ namespace Account.Infrastructure.ModelQuery
         /// kiểm tra tài khoản , email , số điện thoại
         /// </summary>
         public async Task<bool> CheckAccount(string email, string numberPhone)
-                     => await unitOfWork.GetRepository<UserAccount>()
+                     => await unitOfWork.GetRepository<UserLogin>()
                                         .ExistsAsync(m => email.Equals(m.Email)
                                                        && numberPhone.Equals(m.NumberPhone));
         /// <summary>
         /// kiểm tra tài khoản id
         /// </summary>
         public async Task<bool> CheckAccountId(int id)
-                     => await unitOfWork.GetRepository<UserAccount>()
-                                        .ExistsAsync(m => m.UserProfileId == id);
+                     => await unitOfWork.GetRepository<UserLogin>()
+                                        .ExistsAsync(m => m.Id == id);
         /// <summary>
         ///  kiểm tra tài khoản  trong db
         /// </summary>
         public async Task<bool> CheckExitsAccount(string Account)
-            => await unitOfWork.GetRepository<UserAccount>()
+            => await unitOfWork.GetRepository<UserLogin>()
                                .ExistsAsync(m => Account.Equals(m.UserName));
 
         /// <summary>
         /// kiểm tra email  trong db
         /// </summary>
         public async Task<bool> CheckExitsEmail(string Email)
-         => await unitOfWork.GetRepository<UserAccount>()
+         => await unitOfWork.GetRepository<UserLogin>()
                                .ExistsAsync(m => Email.Equals(m.Email));
 
         /// <summary>
         /// kiểm tra số lần đăng nhập fail
         /// </summary>
-        /// <param name="userAccount"></param>
-        public void CheckLoginFail(UserAccount userAccount)
+        /// <param name="UserLogin"></param>
+        public void CheckLoginFail(UserLogin userAccount)
         {
             var dateTimeNow = DateTime.Now;
 
@@ -65,7 +65,7 @@ namespace Account.Infrastructure.ModelQuery
             {
                 userAccount.LockAccountTime = userAccount.LockAccountTime;
                 userAccount.LoginFallNumber--;
-                unitOfWork.GetRepository<UserAccount>().Update(userAccount);
+                unitOfWork.GetRepository<UserLogin>().Update(userAccount);
                 unitOfWork.SaveChanges();
                 throw new ClientException(400, String.Format("You have logged into the wrong account {0} times. We will block your account until : {1}"
                                    , userAccount.LoginFallNumber - 1, userAccount.LockAccountTime - DateTime.Now));
@@ -75,7 +75,7 @@ namespace Account.Infrastructure.ModelQuery
             if (userAccount.LoginFallNumber - 1 == 5)
             {
                 userAccount.LockAccountTime = dateTimeNow.AddMinutes(5);
-                unitOfWork.GetRepository<UserAccount>().Update(userAccount);
+                unitOfWork.GetRepository<UserLogin>().Update(userAccount);
                 unitOfWork.SaveChanges();
 
                 throw new ClientException(400, String.Format("You have logged into the wrong account {0} times. We will block your account until : {1}"
@@ -86,7 +86,7 @@ namespace Account.Infrastructure.ModelQuery
             if (userAccount.LoginFallNumber - 1 == 10)
             {
                 userAccount.LockAccountTime = dateTimeNow.AddMinutes(10);
-                unitOfWork.GetRepository<UserAccount>().Update(userAccount);
+                unitOfWork.GetRepository<UserLogin>().Update(userAccount);
                 unitOfWork.SaveChanges();
 
                 throw new ClientException(400, String.Format("You have logged into the wrong account {0} times. We will block your account until : {1}"
@@ -97,7 +97,7 @@ namespace Account.Infrastructure.ModelQuery
             if (userAccount.LoginFallNumber - 1 == 15)
             {
                 userAccount.LockAccountTime = dateTimeNow.AddMinutes(15);
-                unitOfWork.GetRepository<UserAccount>().Update(userAccount);
+                unitOfWork.GetRepository<UserLogin>().Update(userAccount);
                 unitOfWork.SaveChanges();
 
                 throw new ClientException(400, String.Format("You have logged into the wrong account {0} times. We will block your account until : {1}"
@@ -108,7 +108,7 @@ namespace Account.Infrastructure.ModelQuery
             {
                 // login fail cấp 4
                 userAccount.LockAccountTime = new DateTime(9999, 12, 31, 23, 59, 59);
-                unitOfWork.GetRepository<UserAccount>().Update(userAccount);
+                unitOfWork.GetRepository<UserLogin>().Update(userAccount);
                 unitOfWork.SaveChanges();
 
                 throw new ClientException(400, "We need to authenticate you. Please reset your password by registered email email");
@@ -126,77 +126,95 @@ namespace Account.Infrastructure.ModelQuery
         /// <summary> 
         /// Lấy thông tin tài khoản hiện có trong db nếu không có thì để null theo account
         /// </summary>
-        public async Task<UserAccount> GetAllAccount(string Account)
-            => await unitOfWork.GetRepository<UserAccount>()
+        public async Task<UserLogin> GetAllAccount(string Account)
+            => await unitOfWork.GetRepository<UserLogin>()
                                .GetFirstOrDefaultAsync(predicate: m => m.UserName == Account);
 
         /// <summary>
         /// Lấy thông tin tài khoản hiện có trong db nếu không có thì để null theo id
         /// </summary>
-        public async Task<UserAccount> GetAccountInIdAsync(int id)
-            => await unitOfWork.GetRepository<UserAccount>()
-                               .GetFirstOrDefaultAsync(predicate: m => m.UserProfileId == id);
+        public async Task<UserLogin> GetAccountInIdAsync(int id)
+            => await unitOfWork.GetRepository<UserLogin>()
+                               .GetFirstOrDefaultAsync(predicate: m => m.Id == id);
 
         /// <summary>
         /// Lấy thông tin tài khoản hiện có trong db nếu không có thì để null theo id
         /// </summary>
-        public UserAccount GetAccountInId(int id)
-            => unitOfWork.GetRepository<UserAccount>()
-                         .GetFirstOrDefault(predicate: m => m.UserProfileId == id);
+        public UserLogin GetAccountInId(int id)
+            => unitOfWork.GetRepository<UserLogin>()
+                         .GetFirstOrDefault(predicate: m => m.Id == id);
 
         /// <summary>
         /// Lấy thông tin tài khoản hiện có trong db nếu không có thì để null  theo id
         /// </summary>
-        public async Task<UserAccount> GetAllInToken(JwtCustomClaims token)
-            => await unitOfWork.GetRepository<UserAccount>()
-                                    .GetFirstOrDefaultAsync(predicate: m => m.UserProfileId == token.Id
+        public async Task<UserLogin> GetAllInToken(JwtCustomClaims token)
+            => await unitOfWork.GetRepository<UserLogin>()
+                                    .GetFirstOrDefaultAsync(predicate: m => m.Id == token.Id
                                                                          && m.UserName == token.Account_User
                                                                          && m.Email == token.Email
                                     // && m.IpUser == token.Ip 
                                     );
+        public IQueryable<UserLogin> GetAllAccount()
+               => unitOfWork.GetRepository<UserLogin>().GetAll();
 
-        public IQueryable<UserAccount> GetAllAccount()
-               => unitOfWork.GetRepository<UserAccount>().GetAll();
-
+        public string GetNameAccount(int? id)
+        {
+            var data = unitOfWork.GetRepository<UserLogin>()
+                                 .GetFirstOrDefault(predicate: m => m.Id == id);
+            if (data == null)
+            {
+                return null;
+            }
+            return data.UserName;
+        }
         #endregion
 
-        #region Insert và Update và delete
-        /// <summary>
-        /// Tạo mới tài khoản
-        /// </summary>
-        public async Task<int> Create(UserAccount userAccount)
-        {
-            ShiningAccount shiningAccount = new ShiningAccount();
-            var accountReady = shiningAccount.SetupAccount(userAccount);
+        #region Support
+        public int Count()
+               => unitOfWork.GetRepository<UserLogin>().Count();
+        #endregion
 
-            await unitOfWork.GetRepository<UserAccount>().InsertAsync(accountReady);
-            unitOfWork.SaveChanges();
-            return accountReady.UserProfileId;
-        }
-
-        /// <summary>
-        /// Cập nhật tài khoản
-        /// </summary>
-        /// <param name="userAccount"></param>
-        /// <returns></returns>
-        public bool UpdateAccount(UserAccount userAccount)
+        #region Tạo mới - Create
+        public int Insert(UserLogin userLogin)
         {
-            unitOfWork.GetRepository<UserAccount>()
-                                  .Update(userAccount);
-            return true;
+            unitOfWork.GetRepository<UserLogin>()
+                      .Insert(userLogin);
+            return unitOfWork.SaveChanges();
         }
+        public int Insert(List<UserLogin> userLogins)
+        {
+            unitOfWork.GetRepository<UserLogin>()
+                      .Insert(userLogins);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(UserLogin userLogin)
+        {
+            await unitOfWork.GetRepository<UserLogin>()
+                            .InsertAsync(userLogin);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(List<UserLogin> userLogins)
+        {
+            await unitOfWork.GetRepository<UserLogin>()
+                            .InsertAsync(userLogins);
+            return unitOfWork.SaveChanges();
+        }
+        #endregion
+
+        #region Cập nhật - Update
+
 
         /// <summary>
         /// Tăng số lần đăng nhập thất bại 
         /// </summary>
         /// <param name="userAccount"></param>
-        public void UpLoginFail(UserAccount userAccount)
+        public void UpLoginFail(UserLogin userAccount)
         {
             if (userAccount.LoginFallNumber < 20)
             {
                 userAccount.LoginFallNumber++;
             }
-            unitOfWork.GetRepository<UserAccount>().Update(userAccount);
+            unitOfWork.GetRepository<UserLogin>().Update(userAccount);
             unitOfWork.SaveChanges();
         }
 
@@ -204,25 +222,63 @@ namespace Account.Infrastructure.ModelQuery
         /// resert số lần thất bại về 0
         /// </summary>
         /// <param name="userAccount"></param>
-        public void ResertLoginFail(UserAccount userAccount)
+        public void ResertLoginFail(UserLogin userAccount)
         {
             userAccount.LoginFallNumber = 0;
-            unitOfWork.GetRepository<UserAccount>().Update(userAccount);
+            unitOfWork.GetRepository<UserLogin>().Update(userAccount);
             unitOfWork.SaveChanges();
         }
-        /// <summary>
-        /// Xóa tài khoản
-        /// </summary>
-        public async Task DeleteAccount(int id)
+        public int Update(UserLogin userLogin)
         {
-            unitOfWork.GetRepository<UserAccount>().Delete(id);
-            unitOfWork.SaveChanges();
+            unitOfWork.GetRepository<UserLogin>()
+                      .Update(userLogin);
+            return unitOfWork.SaveChanges();
+        }
+        public int Update(List<UserLogin> userLogins)
+        {
+            unitOfWork.GetRepository<UserLogin>()
+                      .Update(userLogins);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> UpdateAsync(UserLogin userLogin)
+        {
+            unitOfWork.GetRepository<UserLogin>()
+                      .Update(userLogin);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> UpdateAsync(List<UserLogin> userLogins)
+        {
+            unitOfWork.GetRepository<UserLogin>()
+                      .Update(userLogins);
+            return await unitOfWork.SaveChangesAsync();
         }
         #endregion
 
-        #region Support
-        public int Count()
-               => unitOfWork.GetRepository<UserAccount>().Count();
+        #region Xóa - Delete
+        public int Delete(UserLogin userLogin)
+        {
+            unitOfWork.GetRepository<UserLogin>()
+                      .Delete(userLogin);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<UserLogin> userLogins)
+        {
+            unitOfWork.GetRepository<UserLogin>()
+                      .Delete(userLogins);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> DeleteAsync(UserLogin userLogin)
+        {
+            unitOfWork.GetRepository<UserLogin>()
+                      .Delete(userLogin);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<UserLogin> userLogins)
+        {
+            unitOfWork.GetRepository<UserLogin>()
+                      .Delete(userLogins);
+            return await unitOfWork.SaveChangesAsync();
+        }
         #endregion
     }
 }

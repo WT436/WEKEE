@@ -40,8 +40,8 @@ namespace Assessment.Application.Application
                 IdEvaluatesProduct = null,
                 Product = evaluatesProductDto.Product,
                 Account = evaluatesProductDto.Account,
-                DateCreate = DateTime.Now,
-                DateUpdate = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
             });
             // add image
             if (evaluatesProductDto.Image.Count != 0)
@@ -61,8 +61,8 @@ namespace Assessment.Application.Application
                         TypesImage = false,
                         IdEvaluatesProduct = data.Id,
                         IsEnabled = true,
-                        DateCreate = DateTime.Now,
-                        DateUpdate = DateTime.Now
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now
                     });
 
                     // sử lý image 80x80 và 340x340
@@ -79,8 +79,8 @@ namespace Assessment.Application.Application
                         TypesImage = false,
                         IdEvaluatesProduct = data.Id,
                         IsEnabled = true,
-                        DateCreate = DateTime.Now,
-                        DateUpdate = DateTime.Now
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now
                     });
                     imageEvaluatesProducts.Add(new ImageEvaluatesProduct
                     {
@@ -93,8 +93,8 @@ namespace Assessment.Application.Application
                         TypesImage = false,
                         IdEvaluatesProduct = data.Id,
                         IsEnabled = true,
-                        DateCreate = DateTime.Now,
-                        DateUpdate = DateTime.Now
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now
                     });
                 };
                 _imageEvaluatesProduct.InsertImageMultiple(imageEvaluatesProducts);
@@ -198,7 +198,7 @@ namespace Assessment.Application.Application
                 Content = item.Content,
                 StarNumber = (int)item.StarNumber,
                 PinFeeling = item.PinFeeling,
-                DateReview = item.DateUpdate,
+                DateReview = item.UpdatedAt,
                 LikeReview = await _likeEvaluatesProductQuery.CountIsLikeEvaluates(item.Id),
                 DislikeReview = await _likeEvaluatesProductQuery.CountIsDisLikeEvaluates(item.Id),
                 CommentReview = await _evaluatesProductQuery.GetNumberRepReviewProduct(id: item.Id,
@@ -270,7 +270,7 @@ namespace Assessment.Application.Application
                                                                                           product: data.Product,
                                                                                    levelEvaluates: level),
                         NumberRepost = 0,
-                        DateComment = data.DateCreate,
+                        DateComment = data.CreatedAt,
                         YouLike = await _likeEvaluatesProductQuery.CheckYouLikeEvaluatesProduct(levelEvaluates: level,
                                                                                                    idEvaluates: data.Id,
                                                                                                        account: account,
@@ -304,8 +304,8 @@ namespace Assessment.Application.Application
                 IdEvaluatesProduct = evaluatesProductDto.Id,
                 Product = evaluatesProductDto.Product,
                 Account = evaluatesProductDto.Account,
-                DateCreate = DateTime.Now,
-                DateUpdate = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
             });
             // add image
             if (evaluatesProductDto.Image.Count != 0)
@@ -325,8 +325,8 @@ namespace Assessment.Application.Application
                         TypesImage = false,
                         IdEvaluatesProduct = data.Id,
                         IsEnabled = true,
-                        DateCreate = DateTime.Now,
-                        DateUpdate = DateTime.Now
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now
                     });
 
                     // sử lý image 80x80 và 340x340
@@ -343,8 +343,8 @@ namespace Assessment.Application.Application
                         TypesImage = false,
                         IdEvaluatesProduct = data.Id,
                         IsEnabled = true,
-                        DateCreate = DateTime.Now,
-                        DateUpdate = DateTime.Now
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now
                     });
                     imageEvaluatesProducts.Add(new ImageEvaluatesProduct
                     {
@@ -357,8 +357,8 @@ namespace Assessment.Application.Application
                         TypesImage = false,
                         IdEvaluatesProduct = data.Id,
                         IsEnabled = true,
-                        DateCreate = DateTime.Now,
-                        DateUpdate = DateTime.Now
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now
                     });
                 };
                 _imageEvaluatesProduct.InsertImageMultiple(imageEvaluatesProducts);

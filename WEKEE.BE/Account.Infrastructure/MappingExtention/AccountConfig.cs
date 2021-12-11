@@ -14,8 +14,8 @@ namespace Account.Infrastructure.MappingExtention
             cfg.CreateMap<UserProfile, AccountDtos>();
             cfg.CreateMap<AccountDtos, UserProfile>();
 
-            cfg.CreateMap<UserAccountDtos, UserAccount>();
-            cfg.CreateMap<UserAccount, UserAccountDtos>();
+            cfg.CreateMap<UserAccountDtos, UserLogin>();
+            cfg.CreateMap<UserLogin, UserAccountDtos>();
         }
     }
 }

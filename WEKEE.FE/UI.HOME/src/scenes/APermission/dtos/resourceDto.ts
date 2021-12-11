@@ -4,5 +4,7 @@ export interface ResourceDto {
     typesRsc: string
     description: string
     isActive: boolean
-    dateCreate: String
+    createdAt: Date
+    createby: String
+    updatedAt: Date
 }

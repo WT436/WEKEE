@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Dto;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.Action;
+using Account.Domain.ObjectValues.Enum;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -18,62 +20,37 @@ namespace Account.API.Src.AccountAreas
             _action = action;
         }
 
-        [Route(PermissionRouter.ActionBasic.WATCH)]
-        [HttpGet]
+        [HttpPost(PermissionRouter.ActionAccount)]
+        public IActionResult BasicCreate([FromBody] ActionDto actionDto)
+        {
+            _action.InsertAction(actionDto);
+            return Ok("true");
+        }
+
+        [HttpGet(PermissionRouter.ActionAccount)]
         public IActionResult BasicWatch(OrderByPageListInput orderByPageListInput)
         {
             var data = _action.ListOrderByAscAction(orderByPageListInput);
             return Ok(data);
         }
 
-        [Route(PermissionRouter.ActionBasic.UPDATE)]
-        [HttpPost]
-        public IActionResult BasicUpdate([FromBody] List<int> ids)
+        [HttpPut(PermissionRouter.ActionAccount)]
+        public async Task<IActionResult> BasicUpdate([FromBody] List<int> ids)
         {
-            return Ok(_action.UpdateAction(ids));
+            return Ok(await _action.UpdateActionAsync(ids));
         }
 
-        [Route(PermissionRouter.ActionBasic.LIST)]
-        [HttpPost]
-        public IActionResult BasicList([FromBody] OrderByPageListInput orderByPagedListInput)
-        {
-            PagedListOutput<ActionDto> data;
-
-            if (orderByPagedListInput.OrderBy.ToUpper() == "ASCENT")
-            {
-                data = _action.ListOrderByAscAction(orderByPagedListInput);
-            }
-            else if (orderByPagedListInput.OrderBy.ToUpper() == "DECREASE")
-            {
-                data = _action.ListOrderByDescAction(orderByPagedListInput);
-            }
-            else
-            {
-                data = _action.ListActionBasic(orderByPagedListInput);
-            };
-            return Ok(data);
-        }
-
-        [Route(PermissionRouter.ActionBasic.EDIT)]
-        [HttpPost]
+        [HttpPatch(PermissionRouter.ActionAccount)]
         public IActionResult BasicEdit([FromBody] ActionDto actionDto)
         {
             return Ok(_action.EditAction(actionDto));
         }
 
-        [Route(PermissionRouter.ActionBasic.DELETE)]
-        [HttpDelete]
+        [HttpDelete(PermissionRouter.ActionAccount)]
         public IActionResult BasicDelete(List<int> ids)
         {
             return Ok(_action.RemoveAction(ids));
         }
 
-        [Route(PermissionRouter.ActionBasic.CREATE)]
-        [HttpPost]
-        public IActionResult BasicCreate([FromBody] ActionDto actionDto)
-        {
-            _action.InsertAction(actionDto);
-            return Ok("true");
-        }
     }
 }

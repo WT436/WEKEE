@@ -92,7 +92,7 @@ namespace Account.Domain.CoreDomain
             }
         }
 
-        public void CheckDataAccount(UserAccount accountDto)
+        public void CheckDataAccount(UserLogin accountDto)
         {
             if(accountDto== null)
             {

@@ -84,9 +84,9 @@ namespace Supplier.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Descrpition)
@@ -157,9 +157,9 @@ namespace Supplier.Infrastructure.DBContext
                     .HasMaxLength(300)
                     .HasColumnName("adress");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Email)
@@ -215,9 +215,9 @@ namespace Supplier.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IdCertificate).HasColumnName("idCertificate");

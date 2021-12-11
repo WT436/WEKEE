@@ -457,10 +457,6 @@ const settings = {
     variableWidth: true
 };
 
-function handleChange(value: any) {
-    console.log(`selected ${value}`);
-}
-
 class Header extends AppComponentBase<IHeaderProps, IHeaderState> {
     public render() {
         return (
@@ -497,7 +493,6 @@ class Header extends AppComponentBase<IHeaderProps, IHeaderState> {
                                         placeholder='Tìm kiếm sản phẩm, nhà cung cấp'
                                         autoFocus={true}
                                         showSearch
-                                        onChange={handleChange}
                                         optionLabelProp="label"
                                         allowClear
                                         suffixIcon={<SearchOutlined />}

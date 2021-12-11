@@ -12,8 +12,6 @@ class HDetailService {
       params: { id: id, level: level, page: page },
     });
 
-    console.log(rs.data);
-
     if (rs) {
       return rs.data;
     } else {
@@ -37,7 +35,6 @@ class HDetailService {
     levelEvaluates: number,
     idEvaluates: number
   ) {
-    console.log(levelEvaluates + " " + idEvaluates);
     let rs = await http.get("/edit/dislike-evaluates", {
       params: { levelEvaluates: levelEvaluates, idEvaluates: idEvaluates },
     });
@@ -87,7 +84,6 @@ class HDetailService {
   public async createYouAssessmentStart(
     evaluatesProductDto: EvaluatesProductDto
   ) {
-    console.log(evaluatesProductDto);
     let rs = await http.post("/create/evaluates-product", evaluatesProductDto);
     if (rs) {
       return rs.data;
@@ -97,7 +93,6 @@ class HDetailService {
   }
 
   public async removeYouAssessmentStart(url: string) {
-    console.log(url);
     let rs = await http.delete("/delete/image-evaluates", {
       params: { url: url },
     });
@@ -124,7 +119,6 @@ class HDetailService {
       params: { id: input },
     });
     if (rs) {
-      console.log(rs);
       return rs.data;
     } else {
       return rs;

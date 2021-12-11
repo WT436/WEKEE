@@ -1,5 +1,6 @@
 ﻿using Account.Domain.Entitys;
 using Account.Domain.ObjectValues;
+using Account.Domain.ObjectValues.Enum;
 using Account.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
@@ -60,29 +61,29 @@ namespace Account.Infrastructure.ModelQuery
         #endregion
 
         #region Sắp Xếp theo datetime
-        public IPagedList<Role> GetDateCreateOrderByAsc(OrderByPageListInput orderByPageListInput)
+        public IPagedList<Role> GetCreatedAtOrderByAsc(OrderByPageListInput orderByPageListInput)
                => unitOfWork.GetRepository<Role>()
                             .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
                                            pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderBy(m => m.DateCreate));
+                                            orderBy: o => o.OrderBy(m => m.CreatedAt));
 
-        public IPagedList<Role> GetDateCreateOrderByDesc(OrderByPageListInput orderByPageListInput)
+        public IPagedList<Role> GetCreatedAtOrderByDesc(OrderByPageListInput orderByPageListInput)
                => unitOfWork.GetRepository<Role>()
                             .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
                                            pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderByDescending(m => m.DateCreate));
+                                            orderBy: o => o.OrderByDescending(m => m.CreatedAt));
 
-        public async Task<IPagedList<Role>> GetDateCreateOrderByAscAsync(OrderByPageListInput orderByPageListInput)
+        public async Task<IPagedList<Role>> GetCreatedAtOrderByAscAsync(OrderByPageListInput orderByPageListInput)
                      => await unitOfWork.GetRepository<Role>()
                                         .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
                                                             pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderBy(m => m.DateCreate));
+                                                             orderBy: o => o.OrderBy(m => m.CreatedAt));
 
-        public async Task<IPagedList<Role>> GetDateCreateOrderByDescAsync(OrderByPageListInput orderByPageListInput)
+        public async Task<IPagedList<Role>> GetCreatedAtOrderByDescAsync(OrderByPageListInput orderByPageListInput)
                      => await unitOfWork.GetRepository<Role>()
                                         .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
                                                             pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderByDescending(m => m.DateCreate));
+                                                             orderBy: o => o.OrderByDescending(m => m.CreatedAt));
         #endregion
 
         #endregion
@@ -111,132 +112,12 @@ namespace Account.Infrastructure.ModelQuery
         public async Task<IList<Role>> GetAllNameExactAsync(string name)
                      => await unitOfWork.GetRepository<Role>()
                                         .GetAllAsync(m => m.Name == name);
-
+        public IList<Role> GetAllLstById(List<int> ids)
+        => unitOfWork.GetRepository<Role>()
+                     .GetAll().Where(m => ids.Contains(m.Id)).ToList();
         #endregion
 
         #region sắp sếp tìm kiếm
-        #endregion
-
-        #region Tạo mới dữ liệu
-        public void Insert(Role Role)
-        {
-            unitOfWork.GetRepository<Role>()
-                      .Insert(Role);
-            unitOfWork.SaveChanges();
-        }
-        public async Task InsertAsync(Role Role)
-        {
-            await unitOfWork.GetRepository<Role>()
-                            .InsertAsync(Role);
-            unitOfWork.SaveChanges();
-        }
-        #endregion
-
-        #region Xóa bản ghi
-        public bool RemoveUnique(int id)
-        {
-            unitOfWork.GetRepository<Role>().Delete(id);
-            unitOfWork.SaveChanges();
-            return true;
-        }
-        public int RemoveMultiple(List<int> ids)
-        {
-            int count = 0;
-            if (ids != null || ids.Count != 0)
-            {
-                foreach (var item in ids)
-                {
-                    if (unitOfWork.GetRepository<Role>().Exists(m => m.Id == item))
-                    {
-                        unitOfWork.GetRepository<Role>()
-                                  .Delete(item);
-                        count++;
-                    }
-                }
-            }
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
-        #endregion
-
-        #region Update
-        public bool UpdateUnique(int id)
-        {
-            var data = unitOfWork.GetRepository<Role>().GetFirstOrDefault(predicate: m => m.Id == id);
-            if (data != null)
-            {
-                data.IsActive = !data.IsActive;
-                unitOfWork.GetRepository<Role>()
-                          .Update(data);
-            }
-            return true;
-        }
-        public int UpdateMultiple(List<int> ids)
-        {
-            int count = 0;
-            foreach (var item in ids)
-            {
-                var data = unitOfWork.GetRepository<Role>()
-                                     .GetFirstOrDefault(predicate: m => m.Id == item);
-                if (data != null)
-                {
-                    data.IsActive = !data.IsActive;
-                    unitOfWork.GetRepository<Role>()
-                              .Update(data);
-                    count++;
-                }
-            }
-
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
-        #endregion
-
-        #region Edit
-        public bool EditUnique(Role role)
-        {
-            var data = unitOfWork.GetRepository<Role>()
-                                 .GetFirstOrDefault(predicate: m => m.Id == role.Id);
-            if (data != null)
-            {
-                data.Name = role.Name;
-                data.LevelRole = role.LevelRole;
-                data.RoleId = role.RoleId;
-                data.Description = role.Description;
-                data.IsDelete = role.IsDelete;
-                data.IsActive = role.IsActive;
-                data.DateCreate = DateTime.Now;
-                unitOfWork.GetRepository<Role>()
-                          .Update(data);
-                unitOfWork.SaveChanges();
-            }
-            return true;
-        }
-        public int EditMultiple(List<Role> role)
-        {
-            int count = 0;
-            foreach (var item in role)
-            {
-                var data = unitOfWork.GetRepository<Role>()
-                                     .GetFirstOrDefault(predicate: m => m.Id == item.Id);
-                if (data != null)
-                {
-                    data.Name = item.Name;
-                    data.LevelRole = item.LevelRole;
-                    data.RoleId = item.RoleId;
-                    data.Description = item.Description;
-                    data.IsDelete = item.IsDelete;
-                    data.IsActive = item.IsActive;
-                    data.DateCreate = DateTime.Now;
-                    unitOfWork.GetRepository<Role>()
-                              .Update(data);
-                    count++;
-                }
-            }
-
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
         #endregion
 
         #region Đếm bản ghi
@@ -264,5 +145,97 @@ namespace Account.Infrastructure.ModelQuery
 
         #endregion
 
+        #region Tạo mới - Create
+        public int Insert(Role role)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Insert(role);
+            return unitOfWork.SaveChanges();
+        }
+        public int Insert(List<Role> roles)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Insert(roles);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(Role role)
+        {
+            await unitOfWork.GetRepository<Role>()
+                            .InsertAsync(role);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(List<Role> roles)
+        {
+            await unitOfWork.GetRepository<Role>()
+                            .InsertAsync(roles);
+            return unitOfWork.SaveChanges();
+        }
+        #endregion
+
+        #region Cập nhật - Update
+        public int Update(Role role)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Update(role);
+            return unitOfWork.SaveChanges();
+        }
+        public int Update(List<Role> roles)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Update(roles);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> UpdateAsync(Role role)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Update(role);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> UpdateAsync(List<Role> roles)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Update(roles);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Xóa - Delete
+        public int Delete(int id)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Delete(id);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<int> ids)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Delete(ids);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(Role role)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Delete(role);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<Role> roles)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Delete(roles);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> DeleteAsync(Role role)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Delete(role);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<Role> roles)
+        {
+            unitOfWork.GetRepository<Role>()
+                      .Delete(roles);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
     }
 }

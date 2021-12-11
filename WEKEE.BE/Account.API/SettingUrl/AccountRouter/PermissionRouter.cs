@@ -12,199 +12,56 @@ namespace Account.API.SettingUrl.AccountRouter
     public static class PermissionRouter
     {
         /// <summary>
-        /// /Resource-Basic
+        /// /account-resource
         /// </summary>
-        public static class ResourceBasic
-        {
-            private const string URL = "/resource-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string ResourceAccount = RootUrl.ROOT+ "/account-resource";
         /// <summary>
-        /// /Atomic-Basic
+        /// /account-atomic
         /// </summary>
-        public static class AtomicBasic
-        {
-            private const string URL = "/atomic-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string AtomicAccount = RootUrl.ROOT + "/account-atomic";
         /// <summary>
-        /// /Action-Basic
+        /// /account-action
         /// </summary>
-        public static class ActionBasic
-        {
-            private const string URL = "/action-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string ActionAccount =RootUrl.ROOT+ "/account-action";
         /// <summary>
-        /// /Action-Assignment-Basic
+        /// /account-action-assignment
         /// </summary>
-        public static class ActionAssignmentBasic
-        {
-            private const string URL = "/action-assignment-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string ActionAssignmentAccount =RootUrl.ROOT+ "/account-action-assignment";
         /// <summary>
-        /// /Action-Basic
+        /// /account-algorithm-role
         /// </summary>
-        public static class AlgorithmRoleBasic
-        {
-            private const string URL = "/algorithm-role-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string AlgorithmRoleAccount =RootUrl.ROOT+ "/account-algorithm-role";
         /// <summary>
-        /// /Constraint-Assignment-Basic
+        /// /account-constraint-assignment
         /// </summary>
-        public static class ConstraintAssignmentBasic
-        {
-            private const string URL = "/constraint-assignment-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string ConstraintAssignmentAccount =RootUrl.ROOT+ "/account-constraint-assignment";
         /// <summary>
-        /// /Permission-Assignment-Basic
+        /// /account-constraint-assignment
         /// </summary>
-        public static class PermissionAssignmentBasic
-        {
-            private const string URL = "/permission-assignment-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }        
+        public const string PermissionAssignmentAccount =RootUrl.ROOT+ "/account-permission-assignment";
         /// <summary>
-        /// /Permission-Basic
+        /// /account-permission
         /// </summary>
-        public static class PermissionBasic
-        {
-            private const string URL = "/permission-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string PermissionAccount =RootUrl.ROOT+ "/account-permission";
         /// <summary>
-        /// /Resource-Action-Basic
+        /// /account-resource-action
         /// </summary>
-        public static class ResourceActionBasic
-        {
-            private const string URL = "/resource-action-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string ResourceActionAccount =RootUrl.ROOT+ "/account-resource-action";
         /// <summary>
-        /// /Role-Basic
+        /// /account-role
         /// </summary>
-        public static class RoleBasic
-        {
-            private const string URL = "/role-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string RoleAccount =RootUrl.ROOT+ "/account-role";
         /// <summary>
-        /// /Subject-Group-Basic
+        /// /subject
         /// </summary>
-        public static class SubjectBasic
-        {
-            private const string URL = "/subject-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string SubjectAccount = "/subject";
         /// <summary>
-        /// /Subject-Assignment-Basic
+        /// /subject-assignment
         /// </summary>
-        public static class SubjectAssignmentBasic
-        {
-            private const string URL = "/subject-assignment-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string SubjectAssignmentAccount =RootUrl.ROOT+ "/subject-assignment";
         /// <summary>
-        /// /Subject-Group-Basic
+        /// /subject-group
         /// </summary>
-        public static class SubjectGroupBasic
-        {
-            private const string URL = "/subject-group-basic";
-            public const string WATCH = RootUrl.ROOT + ActionRouter.WATCH + URL;
-            public const string CREATE = RootUrl.ROOT + ActionRouter.CREATE + URL;
-            public const string DELETE = RootUrl.ROOT + ActionRouter.DELETE + URL;
-            public const string EDIT = RootUrl.ROOT + ActionRouter.EDIT + URL;
-            public const string GET = RootUrl.ROOT + ActionRouter.GET + URL;
-            public const string LIST = RootUrl.ROOT + ActionRouter.LIST + URL;
-            public const string PATCH = RootUrl.ROOT + ActionRouter.PATCH + URL;
-            public const string UPDATE = RootUrl.ROOT + ActionRouter.UPDATE + URL;
-        }
+        public const string SubjectGroupAccount =RootUrl.ROOT+ "/subject-group";
     }
 }

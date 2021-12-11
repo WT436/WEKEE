@@ -14,7 +14,7 @@ CREATE TABLE [Supplier](
 	[nameShop] NVARCHAR(300) NOT NULL,
 	[linkShop] NVARCHAR(300) NOT NULL,
 	[adress] NVARCHAR(300) NOT NULL,
-	[dateCreate] DATETIME NOT NULL DEFAULT (GETDATE()),
+	[CreatedAt] DATETIME NOT NULL DEFAULT (GETDATE()),
 	[isActive] BIT NOT NULL  DEFAULT (0), -- nhà cung cấp tạm nghỉ
 	[isEnabled] BIT NOT NULL  DEFAULT (0), -- xóa bỏ  nhà cung cấp
 --=========>Connect Table<===========--
@@ -58,7 +58,7 @@ CREATE TABLE [repositoryCertificate]
 	[htmlCertificate] NVARCHAR(max) NOT NULL,
 	[imageCertificate] VARCHAR(max) NOT NULL,
 	[descrpition] NVARCHAR(50),
-	[dateCreate] DATETIME NOT NULL DEFAULT GETDATE(),
+	[CreatedAt] DATETIME NOT NULL DEFAULT GETDATE(),
 	[isEnabled] BIT NULL  DEFAULT (0)
 --=========>Connect Table<===========--
 )
@@ -68,7 +68,7 @@ CREATE TABLE [supplierCertificate]
 (
 --=========>Trường Dữ Liệu<===========--
 	[id] INT IDENTITY(1,1) NOT NULL  primary key ,
-	[dateCreate] DATETIME NOT NULL DEFAULT GETDATE(),
+	[CreatedAt] DATETIME NOT NULL DEFAULT GETDATE(),
 	[isLevel] INT DEFAULT 0 CHECK(isLevel<7) NOT NULL, -- phân chia loại giấy ra làm 6 cấp độ : không có , cực khủng , Tuyệt vời , Tốt , Vừa , Thấp , Kém
 	[isEnabled] BIT NULL  DEFAULT (0),
 --=========>Connect Table<===========--

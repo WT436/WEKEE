@@ -10,7 +10,7 @@ namespace Account.Domain.CoreDomain
 {
     public class CheckStatusAccount
     {
-        public async Task<bool> StatusAccount(UserAccount userAccount)
+        public async Task<bool> StatusAccount(UserLogin userAccount)
         {
             if (userAccount == null)
             {
@@ -50,7 +50,7 @@ namespace Account.Domain.CoreDomain
         }
         public bool CheckExistsIpAccount(IList<UserAccountIp> userAccountIps, string ip)
         {
-            return userAccountIps.Where(m => m.Ip == ip).Count() == 1;
+            return userAccountIps.Where(m => m.Ipv4 == ip).Count() == 1;
             //throw new CustomerException(401, "You need to confirm your identity!");
         }
 

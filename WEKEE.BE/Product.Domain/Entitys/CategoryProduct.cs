@@ -21,7 +21,7 @@ namespace Product.Domain.Entitys
         public int? CategoryMain { get; set; }
         public int NumberOrder { get; set; }
         public bool IsEnabled { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime DateEnd { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

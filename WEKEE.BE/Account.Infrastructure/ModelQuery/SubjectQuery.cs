@@ -17,7 +17,7 @@ namespace Account.Infrastructure.ModelQuery
         }
         public async Task<IList<Subject>> GetAllWithId(int id_Account)
         {
-            return await unitOfWork.GetRepository<Subject>().GetAllAsync(predicate: m => m.UserAccountId == id_Account
+            return await unitOfWork.GetRepository<Subject>().GetAllAsync(predicate: m => m.Id == id_Account
                                                                                     && m.GorupId == null);
         }
         public async Task<IList<Subject>> GetAllWithIdSubject(int id_Subject)
@@ -27,7 +27,7 @@ namespace Account.Infrastructure.ModelQuery
         public async Task<bool> CheckExists(int id_Account)
         {
             return await unitOfWork.GetRepository<Subject>()
-                                    .ExistsAsync(m => m.UserAccountId == id_Account);
+                                    .ExistsAsync(m => m.Id == id_Account);
         }
         public async Task<bool> CheckIdExists(int id_Subject)
         {
@@ -35,11 +35,20 @@ namespace Account.Infrastructure.ModelQuery
                                     .ExistsAsync(m => m.Id == id_Subject);
         }
 
+
+        public async Task<int> ReadId(int id_Account)
+        {
+            var singeSubject = await unitOfWork.GetRepository<Subject>()
+                                   .GetFirstOrDefaultAsync(predicate: m => m.Id == id_Account);
+            return singeSubject.Id;
+        }
+
+        #region Tạo mới - Create
         public async Task<int> Create(int id_Account)
         {
             Subject subject = new Subject
             {
-                UserAccountId = id_Account
+                Id = id_Account
             };
 
             await unitOfWork.GetRepository<Subject>()
@@ -47,19 +56,96 @@ namespace Account.Infrastructure.ModelQuery
             unitOfWork.SaveChanges();
             return subject.Id;
         }
-
-        public async Task Delete(IEnumerable<Subject> subjects)
+        public int Insert(Subject subject)
         {
-            unitOfWork.GetRepository<Subject>().Delete(entities: subjects);
-            unitOfWork.SaveChanges();
+            unitOfWork.GetRepository<Subject>()
+                      .Insert(subject);
+            return unitOfWork.SaveChanges();
         }
-
-        public async Task<int> ReadId(int id_Account)
+        public int Insert(List<Subject> subjects)
         {
-            var singeSubject = await unitOfWork.GetRepository<Subject>()
-                                   .GetFirstOrDefaultAsync(predicate: m => m.UserAccountId == id_Account);
-            return singeSubject.Id;
+            unitOfWork.GetRepository<Subject>()
+                      .Insert(subjects);
+            return unitOfWork.SaveChanges();
         }
+        public async Task<int> InsertAsync(Subject subject)
+        {
+            await unitOfWork.GetRepository<Subject>()
+                            .InsertAsync(subject);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(List<Subject> subjects)
+        {
+            await unitOfWork.GetRepository<Subject>()
+                            .InsertAsync(subjects);
+            return unitOfWork.SaveChanges();
+        }
+        #endregion
 
+        #region Cập nhật - Update
+        public int Update(Subject subject)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Update(subject);
+            return unitOfWork.SaveChanges();
+        }
+        public int Update(List<Subject> subjects)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Update(subjects);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> UpdateAsync(Subject subject)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Update(subject);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> UpdateAsync(List<Subject> subjects)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Update(subjects);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Xóa - Delete
+        public int Delete(int id)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Delete(id);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<int> ids)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Delete(ids);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(Subject subject)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Delete(subject);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<Subject> subjects)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Delete(subjects);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> DeleteAsync(Subject subject)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Delete(subject);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<Subject> subjects)
+        {
+            unitOfWork.GetRepository<Subject>()
+                      .Delete(subjects);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
     }
 }

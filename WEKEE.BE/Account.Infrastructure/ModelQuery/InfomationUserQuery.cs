@@ -1,5 +1,6 @@
 ﻿using Account.Domain.Entitys;
 using Account.Infrastructure.DBContext;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnitOfWork;
 
@@ -14,41 +15,92 @@ namespace Account.Infrastructure.ModelQuery
 
         #endregion
 
-        #region Tạo mới dữ liệu
-        public void Insert(InfomationUser infomationUser)
-        {
-            unitOfWork.GetRepository<InfomationUser>()
-                      .Insert(infomationUser);
-            unitOfWork.SaveChanges();
-        }
-        public async Task InsertAsync(InfomationUser infomationUser)
-        {
-            await unitOfWork.GetRepository<InfomationUser>()
-                            .InsertAsync(infomationUser);
-            unitOfWork.SaveChanges();
-        }
-        public void Update(InfomationUser infomationUser)
-        {
-            unitOfWork.GetRepository<InfomationUser>()
-                      .Update(infomationUser);
-            unitOfWork.SaveChanges();
-        }
-
-        public async Task Delete(int idAccount)
-        {
-            unitOfWork.GetRepository<InfomationUser>()
-                      .Delete(await unitOfWork.GetRepository<InfomationUser>()
-                                              .GetAllAsync(predicate: m => m.UserAccountId == idAccount));
-            unitOfWork.SaveChanges();
-        }
-
-        #endregion
-
         #region Lấy dữ liệu
         public async Task<InfomationUser> GetUniqueAsync(int id)
             => await unitOfWork.GetRepository<InfomationUser>()
-                               .GetFirstOrDefaultAsync(predicate: m => m.UserAccountId == id);
+                               .GetFirstOrDefaultAsync(predicate: m => m.AccountId == id);
         #endregion
 
+
+        #region Tạo mới - Create
+        public int Insert(InfomationUser infomationUser)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Insert(infomationUser);
+            return unitOfWork.SaveChanges();
+        }
+        public int Insert(List<InfomationUser> infomationUsers)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Insert(infomationUsers);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(InfomationUser infomationUser)
+        {
+            await unitOfWork.GetRepository<InfomationUser>()
+                            .InsertAsync(infomationUser);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(List<InfomationUser> infomationUsers)
+        {
+            await unitOfWork.GetRepository<InfomationUser>()
+                            .InsertAsync(infomationUsers);
+            return unitOfWork.SaveChanges();
+        }
+        #endregion
+
+        #region Cập nhật - Update
+        public int Update(InfomationUser infomationUser)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Update(infomationUser);
+            return unitOfWork.SaveChanges();
+        }
+        public int Update(List<InfomationUser> infomationUsers)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Update(infomationUsers);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> UpdateAsync(InfomationUser infomationUser)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Update(infomationUser);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> UpdateAsync(List<InfomationUser> infomationUsers)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Update(infomationUsers);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Xóa - Delete
+        public int Delete(InfomationUser infomationUser)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Delete(infomationUser);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<InfomationUser> infomationUsers)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Delete(infomationUsers);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> DeleteAsync(InfomationUser infomationUser)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Delete(infomationUser);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<InfomationUser> infomationUsers)
+        {
+            unitOfWork.GetRepository<InfomationUser>()
+                      .Delete(infomationUsers);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
     }
 }

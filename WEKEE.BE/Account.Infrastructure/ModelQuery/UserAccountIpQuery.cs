@@ -16,36 +16,93 @@ namespace Account.Infrastructure.ModelQuery
         /// <summary>
         /// lấy tất cả thông tin ip của id user dạng bất đồng bộ 
         /// </summary>
-        public async Task<IList<UserAccountIp>> GetListIpWithAccountAsync(int ipUser)
-            => await unitOfWork.GetRepository<UserAccountIp>().GetAllAsync(m => m.IpUserAccount == ipUser);
+        public async Task<IList<UserAccountIp>> GetListIpWithAccountAsync(int id)
+            => await unitOfWork.GetRepository<UserAccountIp>().GetAllAsync(m => m.AccountId == id);
         /// <summary>
         /// lấy tất cả thông tin ip của id user
         /// </summary>
-        public IList<UserAccountIp> GetListIpWithAccount(int ipUser)
-            =>  unitOfWork.GetRepository<UserAccountIp>().GetAll(m => m.IpUserAccount == ipUser).ToList();
+        public IList<UserAccountIp> GetListIpWithAccount(int id)
+            =>  unitOfWork.GetRepository<UserAccountIp>().GetAll(m => m.AccountId == id).ToList();
 
-        public async Task CreateUserAccountIp(int AccountId, string ip, string userAgent)
-        {
-            await unitOfWork.GetRepository<UserAccountIp>()
-                               .InsertAsync(new UserAccountIp
-                               {
-                                   Ip = ip,
-                                   UserAgent = userAgent,
-                                   IpUserAccount = AccountId,
-                                   DateUpdate = DateTime.Now,
-                                   DateCreate = DateTime.Now,
-                                   UpdateCount = 0
-                               });
-            unitOfWork.SaveChanges();
-        }
-
-        public async Task Delete(int idAccount)
+        #region Tạo mới - Create
+        public int Insert(UserAccountIp userAccountIp)
         {
             unitOfWork.GetRepository<UserAccountIp>()
-                      .Delete(await unitOfWork.GetRepository<UserAccountIp>()
-                                              .GetAllAsync(predicate: m => m.IpUserAccount == idAccount));
-            unitOfWork.SaveChanges();
+                      .Insert(userAccountIp);
+            return unitOfWork.SaveChanges();
         }
+        public int Insert(List<UserAccountIp> userAccountIps)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Insert(userAccountIps);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(UserAccountIp userAccountIp)
+        {
+            await unitOfWork.GetRepository<UserAccountIp>()
+                            .InsertAsync(userAccountIp);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(List<UserAccountIp> userAccountIps)
+        {
+            await unitOfWork.GetRepository<UserAccountIp>()
+                            .InsertAsync(userAccountIps);
+            return unitOfWork.SaveChanges();
+        }
+        #endregion
 
+        #region Cập nhật - Update
+        public int Update(UserAccountIp userAccountIp)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Update(userAccountIp);
+            return unitOfWork.SaveChanges();
+        }
+        public int Update(List<UserAccountIp> userAccountIps)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Update(userAccountIps);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> UpdateAsync(UserAccountIp userAccountIp)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Update(userAccountIp);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> UpdateAsync(List<UserAccountIp> userAccountIps)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Update(userAccountIps);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Xóa - Delete
+        public int Delete(UserAccountIp userAccountIp)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Delete(userAccountIp);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<UserAccountIp> userAccountIps)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Delete(userAccountIps);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> DeleteAsync(UserAccountIp userAccountIp)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Delete(userAccountIp);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<UserAccountIp> userAccountIps)
+        {
+            unitOfWork.GetRepository<UserAccountIp>()
+                      .Delete(userAccountIps);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
     }
 }

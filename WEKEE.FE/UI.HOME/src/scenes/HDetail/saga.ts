@@ -68,7 +68,6 @@ export default function* watchLoginRequestStart() {
 }
 
 function* getRepcommentAssessmentStart(input: any) {
-  console.log(input.payload.id);
   try {
     const { output } = yield race({
       output: call(

@@ -13,7 +13,7 @@ namespace Assessment.Domain.Entitys
         public int LevelEvaluates { get; set; }
         public int IdEvaluates { get; set; }
         public int Account { get; set; }
-        public DateTime? DateCreate { get; set; }
-        public DateTime? DateUpdate { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

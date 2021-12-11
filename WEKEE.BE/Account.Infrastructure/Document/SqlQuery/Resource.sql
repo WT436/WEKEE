@@ -1,0 +1,6 @@
+--CREATE PROC GET_DATA_IN_RESOURCE_ACCOUNT 
+
+DECLARE @EmployeeList nvarchar(MAX) = '[1,22,15]'
+
+
+SELECT VALUE FROM OPENJSON(@EmployeeList ) WHERE [key]=1

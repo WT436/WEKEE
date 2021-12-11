@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Dto;
 using Account.Domain.Entitys;
 using Account.Domain.ObjectValues;
@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.ActionAssignment;
+using Account.Domain.ObjectValues.Enum;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -19,22 +21,7 @@ namespace Account.API.Src.AccountAreas
             _actionAssignment = actionAssignment;
         }
 
-        [Route(PermissionRouter.ActionAssignmentBasic.WATCH)]
-        [HttpGet]
-        public IActionResult BasicWatch()
-        {
-            return Ok();
-        }
-
-        [Route(PermissionRouter.ActionAssignmentBasic.UPDATE)]
-        [HttpPost]
-        public IActionResult BasicUpdate([FromBody] ActionAssignmentDto actionAssignmentDto)
-        {
-            _actionAssignment.UpdateOrInsert(actionAssignmentDto);
-            return Ok("true");
-        }
-
-        [Route(PermissionRouter.ActionAssignmentBasic.GET)]
+        [Route(PermissionRouter.ActionAssignmentAccount)]
         [HttpGet]
         public IActionResult BasicGet(int idPermission, int pageIndex, int pageSize)
         {
@@ -45,6 +32,14 @@ namespace Account.API.Src.AccountAreas
                                                                  PageSize = pageSize
                                                              })
             );
+        }
+
+        [Route(PermissionRouter.ActionAssignmentAccount)]
+        [HttpPatch]
+        public IActionResult BasicUpdate([FromBody] ActionAssignmentDto actionAssignmentDto)
+        {
+            _actionAssignment.UpdateOrInsert(actionAssignmentDto);
+            return Ok("true");
         }
     }
 }

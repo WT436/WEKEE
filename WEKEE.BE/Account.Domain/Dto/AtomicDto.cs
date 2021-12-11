@@ -10,7 +10,7 @@ namespace Account.Domain.Dto
         public string Name { get; set; }
         public string Description { get; set; }
         public bool? IsActive { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public int Count { get; set; }
     }
 }

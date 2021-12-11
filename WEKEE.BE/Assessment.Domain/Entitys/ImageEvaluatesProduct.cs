@@ -22,8 +22,8 @@ namespace Assessment.Domain.Entitys
         public bool TypesImage { get; set; }
         public int IdEvaluatesProduct { get; set; }
         public bool IsEnabled { get; set; }
-        public DateTime? DateCreate { get; set; }
-        public DateTime? DateUpdate { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public virtual ImageEvaluatesProduct ImageRootNavigation { get; set; }
         public virtual ICollection<ImageEvaluatesProduct> InverseImageRootNavigation { get; set; }

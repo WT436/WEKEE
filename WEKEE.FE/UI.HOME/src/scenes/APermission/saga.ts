@@ -16,7 +16,7 @@ import {
     ResourceActionGetListDataCompeleted, ResourceActionGetListDataError,
     ResourceActionInsertOrUpdateCompeleted, ResourceActionInsertOrUpdateError,
     ResourceCreateCompleted, ResourceCreateError, ResourceEditCompleted,
-    ResourceEditError, ResourceRemoveCompleted, ResourceRemoveError,
+    ResourceEditError, ResourceEditStatusCompleted, ResourceEditStatusError, ResourceRemoveCompleted, ResourceRemoveError,
     RoleCreateCompleted, RoleCreateError, RoleEditCompleted, RoleEditError,
     RoleRemoveCompleted, RoleRemoveError, watchPageError
 } from './actions';
@@ -44,6 +44,11 @@ export default function* watchLoginRequestStart() {
     yield takeLatest(
         ActionTypes.RESOURCE_REMOVE_START,
         DeleteResource
+    );
+
+    yield takeLatest(
+        ActionTypes.RESOURCE_EDIT_STATUS_START,
+        EditStatusResource
     );
     //#endregion
 
@@ -216,7 +221,22 @@ function* DeleteResource(input: any) {
     }
 
 }
+function* EditStatusResource(input: any) {
+    try {
+        const { output } = yield race({
+            output: call(service.EditStatusResourceBasic, input.payload)
+        });
+        if (output) {
+            yield put(ResourceEditStatusCompleted(output));
+        }
+        else {
+            yield put(ResourceEditStatusError());
+        }
+    } catch (error) {
+        yield put(ResourceEditStatusError());
+    }
 
+}
 //#endregion
 
 //#region  Atomic

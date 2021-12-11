@@ -49,4 +49,9 @@
     <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Document\SqlQuery\" />
+    <Folder Include="EventBus\" />
+  </ItemGroup>
+
 </Project>

@@ -15,24 +15,45 @@ namespace Account.Infrastructure.SqlQuery
         public List<RoleAuthDtos> RoleAnonimuosDtos()
         {
             StringBuilder query = new StringBuilder();
-            query.AppendLine("     SELECT                                                                                  ");
-            query.AppendLine("           [Role].id as 'Id',                                                                ");
-            query.AppendLine("           [Role].description as 'Description',                                              ");
-            query.AppendLine("           [Role].level_role as 'LevelRole',                                                 ");
-            query.AppendLine("           [Role].name as 'NameRole',                                                        ");
-            query.AppendLine("           [Resource].description as 'DescriptionResource',                                  ");
-            query.AppendLine("           [Resource].name as 'NameResource',                                                ");
-            query.AppendLine("           [Resource].types_Rsc as 'TypesRsc',                                               ");
-            query.AppendLine("           [Atomic].name as 'NameAtomic'                                                     ");
-            query.AppendLine("     FROM [Role]                                                                             ");
-            query.AppendLine("     INNER JOIN [PermissionAssignment] ON [ROLE].id = [PermissionAssignment].role_id         ");
-            query.AppendLine("     INNER JOIN [Permission] ON [Permission].id = [PermissionAssignment].permission_id       ");
-            query.AppendLine("     INNER JOIN [ActionAssignment] ON [ActionAssignment].permission_id = [Permission].id     ");
-            query.AppendLine("     INNER JOIN [Action] ON [ActionAssignment].action_id = [Action].id                       ");
-            query.AppendLine("     INNER JOIN [ResourceAction] ON [ResourceAction].action_id = [Action].id                 ");
-            query.AppendLine("     INNER JOIN [Resource] ON [ResourceAction].resource_id = [Resource].id                   ");
-            query.AppendLine("     INNER JOIN [Atomic] ON [Action].atomic_id = [Atomic].id                                 ");
-            query.AppendLine("     WHERE [Role].id =9                                                                      ");
+
+            //query.AppendLine("     SELECT                                                                                  ");
+            //query.AppendLine("           [Role].id as 'Id',                                                                ");
+            //query.AppendLine("           [Role].description as 'Description',                                              ");
+            //query.AppendLine("           [Role].level_role as 'LevelRole',                                                 ");
+            //query.AppendLine("           [Role].name as 'NameRole',                                                        ");
+            //query.AppendLine("           [Resource].description as 'DescriptionResource',                                  ");
+            //query.AppendLine("           [Resource].name as 'NameResource',                                                ");
+            //query.AppendLine("           [Resource].types_Rsc as 'TypesRsc',                                               ");
+            //query.AppendLine("           [Atomic].name as 'NameAtomic'                                                     ");
+            //query.AppendLine("     FROM [Role]                                                                             ");
+            //query.AppendLine("     INNER JOIN [PermissionAssignment] ON [ROLE].id = [PermissionAssignment].role_id         ");
+            //query.AppendLine("     INNER JOIN [Permission] ON [Permission].id = [PermissionAssignment].permission_id       ");
+            //query.AppendLine("     INNER JOIN [ActionAssignment] ON [ActionAssignment].permission_id = [Permission].id     ");
+            //query.AppendLine("     INNER JOIN [Action] ON [ActionAssignment].action_id = [Action].id                       ");
+            //query.AppendLine("     INNER JOIN [ResourceAction] ON [ResourceAction].action_id = [Action].id                 ");
+            //query.AppendLine("     INNER JOIN [Resource] ON [ResourceAction].resource_id = [Resource].id                   ");
+            //query.AppendLine("     INNER JOIN [Atomic] ON [Action].atomic_id = [Atomic].id                                 ");
+            //query.AppendLine("     WHERE [Role].id =9                                                                      ");
+
+            string sql = @"
+                            SELECT                                                                                 
+                                  [Role].id as 'Id',                                                               
+                                  [Role].description as 'Description',                                             
+                                  [Role].name as 'NameRole',                                                       
+                                  [Resource].description as 'DescriptionResource',                                 
+                                  [Resource].name as 'NameResource',                                               
+                                  [Resource].types_Rsc as 'TypesRsc',                                              
+                                  [Atomic].name as 'NameAtomic'                                                    
+                            FROM [Role]                                                                            
+                            INNER JOIN [PermissionAssignment] ON [ROLE].id = [PermissionAssignment].role_id        
+                            INNER JOIN [Permission] ON [Permission].id = [PermissionAssignment].permission_id      
+                            INNER JOIN [ActionAssignment] ON [ActionAssignment].permission_id = [Permission].id    
+                            INNER JOIN [Action] ON [ActionAssignment].action_id = [Action].id                      
+                            INNER JOIN [ResourceAction] ON [ResourceAction].action_id = [Action].id                
+                            INNER JOIN [Resource] ON [ResourceAction].resource_id = [Resource].id                  
+                            INNER JOIN [Atomic] ON [Action].atomic_id = [Atomic].id                                
+                            WHERE [Role].id =9
+                         ";
             return unitOfWork.FromSql<RoleAuthDtos>(query.ToString());
         }
 

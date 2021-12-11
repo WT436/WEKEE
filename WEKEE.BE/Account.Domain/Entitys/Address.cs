@@ -13,10 +13,11 @@ namespace Account.Domain.Entitys
         public string AdressLine3 { get; set; }
         public string Description { get; set; }
         public bool? IsActive { get; set; }
-        public DateTime DateEdit { get; set; }
-        public DateTime DateCreate { get; set; }
-        public int? UserAccountId { get; set; }
+        public int? AccountId { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public int? CreateBy { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
-        public virtual UserAccount UserAccount { get; set; }
+        public virtual UserProfile Account { get; set; }
     }
 }

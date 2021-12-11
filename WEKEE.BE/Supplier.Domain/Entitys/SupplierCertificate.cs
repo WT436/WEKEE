@@ -8,7 +8,7 @@ namespace Supplier.Domain.Entitys
     public partial class SupplierCertificate
     {
         public int Id { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public int IsLevel { get; set; }
         public bool? IsEnabled { get; set; }
         public int IdSupper { get; set; }

@@ -247,8 +247,6 @@ function hDetailReducer(
         loading: true,
       };
     case ActionTypes.GET_REPCOMMENT_EVALUATES_PRODUCT_COMPLETED:
-      console.log(action.payload);
-      console.log(state.reviewEvaluatesOutputDto);
       var dataChange = state.reviewEvaluatesOutputDto;
       if (action.payload.level == 0) {
       }

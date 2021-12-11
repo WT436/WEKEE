@@ -1,6 +1,5 @@
-
 var abp = abp || {};
-(function () {
+(function() {
     // system
     abp.appServiceUrl = "https://localhost:44324/v1/api";
     abp.appServiceUrlStaticFile = {};
@@ -9,7 +8,6 @@ var abp = abp || {};
     abp.timeout = {};
     abp.authorization = {};
     abp.picture = "";
-
     /* Application paths *****************************************/
 
     //Current application root path (including virtual directory if exists).
@@ -17,7 +15,7 @@ var abp = abp || {};
     abp.pageLoadTime = new Date();
 
     //Converts given path to absolute path using abp.appPath variable.
-    abp.toAbsAppPath = function (path) {
+    abp.toAbsAppPath = function(path) {
         if (path.indexOf('/') == 0) {
             path = path.substring(1);
         }
@@ -39,7 +37,7 @@ var abp = abp || {};
 
     abp.multiTenancy.tenantIdCookieName = 'Abp.TenantId';
 
-    abp.multiTenancy.setTenantIdCookie = function (tenantId) {
+    abp.multiTenancy.setTenantIdCookie = function(tenantId) {
         if (tenantId) {
             abp.utils.setCookieValue(
                 abp.multiTenancy.tenantIdCookieName,
@@ -53,7 +51,7 @@ var abp = abp || {};
         }
     };
 
-    abp.multiTenancy.getTenantIdCookie = function () {
+    abp.multiTenancy.getTenantIdCookie = function() {
         var value = abp.utils.getCookieValue(abp.multiTenancy.tenantIdCookieName);
         if (!value) {
             return null;
@@ -81,7 +79,7 @@ var abp = abp || {};
 
     abp.localization.values = {};
 
-    abp.localization.localize = function (key, sourceName) {
+    abp.localization.localize = function(key, sourceName) {
         sourceName = sourceName || abp.localization.defaultSourceName;
 
         var source = abp.localization.values[sourceName];
@@ -100,8 +98,7 @@ var abp = abp || {};
                     if (value == undefined) {
                         return key;
                     }
-                }
-                else {
+                } else {
                     if (value[arrKey[i]] == undefined) {
                         return key;
                     }
@@ -121,15 +118,15 @@ var abp = abp || {};
         return abp.utils.formatString.apply(this, copiedArguments);
     };
 
-    abp.localization.getSource = function (sourceName) {
-        return function (key) {
+    abp.localization.getSource = function(sourceName) {
+        return function(key) {
             var copiedArguments = Array.prototype.slice.call(arguments, 0);
             copiedArguments.splice(1, 0, sourceName);
             return abp.localization.localize.apply(this, copiedArguments);
         };
     };
 
-    abp.localization.isCurrentCulture = function (name) {
+    abp.localization.isCurrentCulture = function(name) {
         return abp.localization.currentCulture &&
             abp.localization.currentCulture.name &&
             abp.localization.currentCulture.name.indexOf(name) == 0;
@@ -148,25 +145,25 @@ var abp = abp || {};
     abp.auth.grantedPermissions = abp.auth.grantedPermissions || {};
 
     //Deprecated. Use abp.auth.isGranted instead.
-    abp.auth.hasPermission = function (permissionName) {
+    abp.auth.hasPermission = function(permissionName) {
         return abp.auth.isGranted.apply(this, arguments);
     };
 
     //Deprecated. Use abp.auth.isAnyGranted instead.
-    abp.auth.hasAnyOfPermissions = function () {
+    abp.auth.hasAnyOfPermissions = function() {
         return abp.auth.isAnyGranted.apply(this, arguments);
     };
 
     //Deprecated. Use abp.auth.areAllGranted instead.
-    abp.auth.hasAllOfPermissions = function () {
+    abp.auth.hasAllOfPermissions = function() {
         return abp.auth.areAllGranted.apply(this, arguments);
     };
 
-    abp.auth.isGranted = function (permissionName) {
+    abp.auth.isGranted = function(permissionName) {
         return abp.auth.allPermissions[permissionName] != undefined && abp.auth.grantedPermissions[permissionName] != undefined;
     };
 
-    abp.auth.isAnyGranted = function () {
+    abp.auth.isAnyGranted = function() {
         if (!arguments || arguments.length <= 0) {
             return true;
         }
@@ -180,7 +177,7 @@ var abp = abp || {};
         return false;
     };
 
-    abp.auth.areAllGranted = function () {
+    abp.auth.areAllGranted = function() {
         if (!arguments || arguments.length <= 0) {
             return true;
         }
@@ -195,51 +192,51 @@ var abp = abp || {};
     };
 
     abp.auth.tokenCookieName = 'Authorization';
-    abp.auth.setToken = function (authToken, expireDate) {
+    abp.auth.setToken = function(authToken, expireDate) {
         abp.utils.setCookieValue(abp.auth.tokenCookieName, authToken, expireDate, abp.appPath, abp.domain);
     };
 
     abp.auth.rolesCookieName = '_tkrl';
-    abp.auth.setRoles = function (roles, expireDate) {
+    abp.auth.setRoles = function(roles, expireDate) {
         abp.utils.setCookieValue(abp.auth.rolesCookieName, roles, expireDate, abp.appPath, abp.domain);
     };
 
     abp.auth.iPCookieName = '_ga';
-    abp.auth.setRoles = function (ip, expireDate) {
+    abp.auth.setRoles = function(ip, expireDate) {
         abp.utils.setCookieValue(abp.auth.iPCookieName, ip, expireDate, abp.appPath, abp.domain);
     };
 
     abp.auth.pictureCookieName = '_pus';
-    abp.auth.setInfo = function (ifo, expireDate) {
+    abp.auth.setInfo = function(ifo, expireDate) {
         abp.utils.setCookieValue(abp.auth.pictureCookieName, ifo, expireDate, abp.appPath, abp.domain);
     };
 
     abp.auth.supplierCookieName = '_SUP';
-    abp.auth.setSupplier = function (ifo, expireDate) {
+    abp.auth.setSupplier = function(ifo, expireDate) {
         abp.utils.setCookieValue(abp.auth.supplierCookieName, ifo, expireDate, abp.appPath, abp.domain);
     };
 
-    abp.auth.getInfo = function () {
+    abp.auth.getInfo = function() {
         return abp.utils.getCookieValue(abp.auth.pictureCookieName);
     }
 
 
-    abp.auth.getToken = function () {
+    abp.auth.getToken = function() {
         return abp.utils.getCookieValue(abp.auth.tokenCookieName);
     }
 
-    abp.auth.getTokenSupplier = function () {
+    abp.auth.getTokenSupplier = function() {
         return abp.utils.getCookieValue(abp.auth.supplierCookieName);
     }
 
-    abp.auth.clearToken = function () {
+    abp.auth.clearToken = function() {
         abp.auth.setToken();
         abp.auth.setInfo();
     }
 
-    abp.auth.getRoles = function () {
-        if (typeof abp.utils.getCookieValue(abp.auth.rolesCookieName) === "undefined"
-            || abp.utils.getCookieValue(abp.auth.rolesCookieName) === null
+    abp.auth.getRoles = function() {
+        if (typeof abp.utils.getCookieValue(abp.auth.rolesCookieName) === "undefined" ||
+            abp.utils.getCookieValue(abp.auth.rolesCookieName) === null
         ) {
             return "";
         }
@@ -253,11 +250,11 @@ var abp = abp || {};
 
     abp.features.allFeatures = abp.features.allFeatures || {};
 
-    abp.features.get = function (name) {
+    abp.features.get = function(name) {
         return abp.features.allFeatures[name];
     }
 
-    abp.features.getValue = function (name) {
+    abp.features.getValue = function(name) {
         var feature = abp.features.get(name);
         if (feature == undefined) {
             return undefined;
@@ -266,7 +263,7 @@ var abp = abp || {};
         return feature.value;
     }
 
-    abp.features.isEnabled = function (name) {
+    abp.features.isEnabled = function(name) {
         var value = abp.features.getValue(name);
         return value == 'true' || value == 'True';
     }
@@ -278,16 +275,16 @@ var abp = abp || {};
 
     abp.setting.values = abp.setting.values || {};
 
-    abp.setting.get = function (name) {
+    abp.setting.get = function(name) {
         return abp.setting.values[name];
     };
 
-    abp.setting.getBoolean = function (name) {
+    abp.setting.getBoolean = function(name) {
         var value = abp.setting.get(name);
         return value == 'true' || value == 'True';
     };
 
-    abp.setting.getInt = function (name) {
+    abp.setting.getInt = function(name) {
         return parseInt(abp.setting.values[name]);
     };
 
@@ -308,7 +305,7 @@ var abp = abp || {};
         READ: 1
     };
 
-    abp.notifications.getUserNotificationStateAsString = function (userNotificationState) {
+    abp.notifications.getUserNotificationStateAsString = function(userNotificationState) {
         switch (userNotificationState) {
             case abp.notifications.userNotificationState.READ:
                 return 'READ';
@@ -320,7 +317,7 @@ var abp = abp || {};
         }
     };
 
-    abp.notifications.getUiNotifyFuncBySeverity = function (severity) {
+    abp.notifications.getUiNotifyFuncBySeverity = function(severity) {
         switch (severity) {
             case abp.notifications.severity.SUCCESS:
                 return abp.notify.success;
@@ -338,11 +335,11 @@ var abp = abp || {};
 
     abp.notifications.messageFormatters = {};
 
-    abp.notifications.messageFormatters['Abp.Notifications.MessageNotificationData'] = function (userNotification) {
+    abp.notifications.messageFormatters['Abp.Notifications.MessageNotificationData'] = function(userNotification) {
         return userNotification.notification.data.message || userNotification.notification.data.properties.Message;
     };
 
-    abp.notifications.messageFormatters['Abp.Notifications.LocalizableMessageNotificationData'] = function (userNotification) {
+    abp.notifications.messageFormatters['Abp.Notifications.LocalizableMessageNotificationData'] = function(userNotification) {
         var message = userNotification.notification.data.message || userNotification.notification.data.properties.Message;
         var localizedMessage = abp.localization.localize(
             message.name,
@@ -359,7 +356,7 @@ var abp = abp || {};
         return localizedMessage;
     };
 
-    abp.notifications.getFormattedMessageFromUserNotification = function (userNotification) {
+    abp.notifications.getFormattedMessageFromUserNotification = function(userNotification) {
         var formatter = abp.notifications.messageFormatters[userNotification.notification.data.type];
         if (!formatter) {
             abp.log.warn('No message formatter defined for given data type: ' + userNotification.notification.data.type)
@@ -374,7 +371,7 @@ var abp = abp || {};
         return formatter(userNotification);
     }
 
-    abp.notifications.showUiNotifyForUserNotification = function (userNotification, options) {
+    abp.notifications.showUiNotifyForUserNotification = function(userNotification, options) {
         var message = abp.notifications.getFormattedMessageFromUserNotification(userNotification);
         var uiNotifyFunc = abp.notifications.getUiNotifyFuncBySeverity(userNotification.notification.severity);
         uiNotifyFunc(message, undefined, options);
@@ -395,7 +392,7 @@ var abp = abp || {};
 
     abp.log.level = abp.log.levels.DEBUG;
 
-    abp.log.log = function (logObject, logLevel) {
+    abp.log.log = function(logObject, logLevel) {
         if (!window.console || !window.console.log) {
             return;
         }
@@ -407,27 +404,27 @@ var abp = abp || {};
         console.log(logObject);
     };
 
-    abp.log.debug = function (logObject) {
+    abp.log.debug = function(logObject) {
         abp.log.log("DEBUG: ", abp.log.levels.DEBUG);
         abp.log.log(logObject, abp.log.levels.DEBUG);
     };
 
-    abp.log.info = function (logObject) {
+    abp.log.info = function(logObject) {
         abp.log.log("INFO: ", abp.log.levels.INFO);
         abp.log.log(logObject, abp.log.levels.INFO);
     };
 
-    abp.log.warn = function (logObject) {
+    abp.log.warn = function(logObject) {
         abp.log.log("WARN: ", abp.log.levels.WARN);
         abp.log.log(logObject, abp.log.levels.WARN);
     };
 
-    abp.log.error = function (logObject) {
+    abp.log.error = function(logObject) {
         abp.log.log("ERROR: ", abp.log.levels.ERROR);
         abp.log.log(logObject, abp.log.levels.ERROR);
     };
 
-    abp.log.fatal = function (logObject) {
+    abp.log.fatal = function(logObject) {
         abp.log.log("FATAL: ", abp.log.levels.FATAL);
         abp.log.log(logObject, abp.log.levels.FATAL);
     };
@@ -437,19 +434,19 @@ var abp = abp || {};
 
     abp.notify = abp.notify || {};
 
-    abp.notify.success = function (message, title, options) {
+    abp.notify.success = function(message, title, options) {
         abp.log.warn('abp.notify.success is not implemented!');
     };
 
-    abp.notify.info = function (message, title, options) {
+    abp.notify.info = function(message, title, options) {
         abp.log.warn('abp.notify.info is not implemented!');
     };
 
-    abp.notify.warn = function (message, title, options) {
+    abp.notify.warn = function(message, title, options) {
         abp.log.warn('abp.notify.warn is not implemented!');
     };
 
-    abp.notify.error = function (message, title, options) {
+    abp.notify.error = function(message, title, options) {
         abp.log.warn('abp.notify.error is not implemented!');
     };
 
@@ -458,32 +455,32 @@ var abp = abp || {};
 
     abp.message = abp.message || {};
 
-    var showMessage = function (message, title) {
+    var showMessage = function(message, title) {
         alert((title || '') + ' ' + message);
 
     };
 
-    abp.message.info = function (message, title) {
+    abp.message.info = function(message, title) {
         abp.log.warn('abp.message.info is not implemented!');
         return showMessage(message, title);
     };
 
-    abp.message.success = function (message, title) {
+    abp.message.success = function(message, title) {
         abp.log.warn('abp.message.success is not implemented!');
         return showMessage(message, title);
     };
 
-    abp.message.warn = function (message, title) {
+    abp.message.warn = function(message, title) {
         abp.log.warn('abp.message.warn is not implemented!');
         return showMessage(message, title);
     };
 
-    abp.message.error = function (message, title) {
+    abp.message.error = function(message, title) {
         abp.log.warn('abp.message.error is not implemented!');
         return showMessage(message, title);
     };
 
-    abp.message.confirm = function (message, titleOrCallback, callback) {
+    abp.message.confirm = function(message, titleOrCallback, callback) {
         abp.log.warn('abp.message.confirm is not implemented!');
 
         if (titleOrCallback && !(typeof titleOrCallback == 'string')) {
@@ -501,32 +498,32 @@ var abp = abp || {};
     /* UI BLOCK */
     //Defines UI Block API, not implements it
 
-    abp.ui.block = function (elm) {
+    abp.ui.block = function(elm) {
         abp.log.warn('abp.ui.block is not implemented!');
     };
 
-    abp.ui.unblock = function (elm) {
+    abp.ui.unblock = function(elm) {
         abp.log.warn('abp.ui.unblock is not implemented!');
     };
 
     /* UI BUSY */
     //Defines UI Busy API, not implements it
 
-    abp.ui.setBusy = function (elm, optionsOrPromise) {
+    abp.ui.setBusy = function(elm, optionsOrPromise) {
         abp.log.warn('abp.ui.setBusy is not implemented!');
     };
 
-    abp.ui.clearBusy = function (elm) {
+    abp.ui.clearBusy = function(elm) {
         abp.log.warn('abp.ui.clearBusy is not implemented!');
     };
 
     /* SIMPLE EVENT BUS *****************************************/
 
-    abp.event = (function () {
+    abp.event = (function() {
 
         var _callbacks = {};
 
-        var on = function (eventName, callback) {
+        var on = function(eventName, callback) {
             if (!_callbacks[eventName]) {
                 _callbacks[eventName] = [];
             }
@@ -534,7 +531,7 @@ var abp = abp || {};
             _callbacks[eventName].push(callback);
         };
 
-        var off = function (eventName, callback) {
+        var off = function(eventName, callback) {
             var callbacks = _callbacks[eventName];
             if (!callbacks) {
                 return;
@@ -555,7 +552,7 @@ var abp = abp || {};
             _callbacks[eventName].splice(index, 1);
         };
 
-        var trigger = function (eventName) {
+        var trigger = function(eventName) {
             var callbacks = _callbacks[eventName];
             if (!callbacks || !callbacks.length) {
                 return;
@@ -587,7 +584,7 @@ var abp = abp || {};
      *  taskService will be equal to abp.services.task
      *  first argument (root) must be defined first
      ************************************************************/
-    abp.utils.createNamespace = function (root, ns) {
+    abp.utils.createNamespace = function(root, ns) {
         var parts = ns.split('.');
         for (var i = 0; i < parts.length; i++) {
             if (typeof root[parts[i]] == 'undefined') {
@@ -605,7 +602,7 @@ var abp = abp || {};
      *  Example:
      *  abp.utils.replaceAll('This is a test string', 'is', 'X') = 'ThX X a test string'
      ************************************************************/
-    abp.utils.replaceAll = function (str, search, replacement) {
+    abp.utils.replaceAll = function(str, search, replacement) {
         var fix = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         return str.replace(new RegExp(fix, 'g'), replacement);
     };
@@ -614,7 +611,7 @@ var abp = abp || {};
      *  Example:
      *  abp.utils.formatString('Hello {0}','Tuana') = 'Hello Tuana'
      ************************************************************/
-    abp.utils.formatString = function () {
+    abp.utils.formatString = function() {
         if (arguments.length < 1) {
             return null;
         }
@@ -629,7 +626,7 @@ var abp = abp || {};
         return str;
     };
 
-    abp.utils.toPascalCase = function (str) {
+    abp.utils.toPascalCase = function(str) {
         if (!str || !str.length) {
             return str;
         }
@@ -641,7 +638,7 @@ var abp = abp || {};
         return str.charAt(0).toUpperCase() + str.substr(1);
     }
 
-    abp.utils.toCamelCase = function (str) {
+    abp.utils.toCamelCase = function(str) {
         if (!str || !str.length) {
             return str;
         }
@@ -653,7 +650,7 @@ var abp = abp || {};
         return str.charAt(0).toLowerCase() + str.substr(1);
     }
 
-    abp.utils.truncateString = function (str, maxLength) {
+    abp.utils.truncateString = function(str, maxLength) {
         if (!str || !str.length || str.length <= maxLength) {
             return str;
         }
@@ -661,7 +658,7 @@ var abp = abp || {};
         return str.substr(0, maxLength);
     };
 
-    abp.utils.truncateStringWithPostfix = function (str, maxLength, postfix) {
+    abp.utils.truncateStringWithPostfix = function(str, maxLength, postfix) {
         postfix = postfix || '...';
 
         if (!str || !str.length || str.length <= maxLength) {
@@ -680,7 +677,7 @@ var abp = abp || {};
      * where name is query string parameter name and value is it's value.
      * includeQuestionMark is true by default.
      */
-    abp.utils.buildQueryString = function (parameterInfos, includeQuestionMark) {
+    abp.utils.buildQueryString = function(parameterInfos, includeQuestionMark) {
         if (includeQuestionMark === undefined) {
             includeQuestionMark = true;
         }
@@ -737,7 +734,7 @@ var abp = abp || {};
      * @param {Date} expireDate (optional). If not specified the cookie will expire at the end of session.
      * @param {string} path (optional)
      */
-    abp.utils.setCookieValue = function (key, value, expireDate, path, domain) {
+    abp.utils.setCookieValue = function(key, value, expireDate, path, domain) {
         var cookieValue = encodeURIComponent(key) + '=';
 
         if (value) {
@@ -766,7 +763,7 @@ var abp = abp || {};
      * @param {string} key
      * @returns {string} Cookie value or null
      */
-    abp.utils.getCookieValue = function (key) {
+    abp.utils.getCookieValue = function(key) {
         var equalities = document.cookie.split('; ');
         for (var i = 0; i < equalities.length; i++) {
             if (!equalities[i]) {
@@ -793,7 +790,7 @@ var abp = abp || {};
      * @param {string} key
      * @param {string} path (optional)
      */
-    abp.utils.deleteCookie = function (key, path) {
+    abp.utils.deleteCookie = function(key, path) {
         var cookieValue = encodeURIComponent(key) + '=';
 
         cookieValue = cookieValue + "; expires=" + (new Date(new Date().getTime() - 86400000)).toUTCString();
@@ -810,7 +807,7 @@ var abp = abp || {};
      * @param {string} url 
      * @returns {string} 
      */
-    abp.utils.getDomain = function (url) {
+    abp.utils.getDomain = function(url) {
         var domainRegex = /(https?:){0,1}\/\/((?:[\w\d-]+\.)+[\w\d]{2,})/i;
         var matches = domainRegex.exec(url);
         return (matches && matches[2]) ? matches[2] : '';
@@ -819,19 +816,19 @@ var abp = abp || {};
     /* TIMING *****************************************/
     abp.timing = abp.timing || {};
 
-    abp.timing.utcClockProvider = (function () {
+    abp.timing.utcClockProvider = (function() {
 
-        var toUtc = function (date) {
+        var toUtc = function(date) {
             return Date.UTC(
                 date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds()
             );
         }
 
-        var now = function () {
+        var now = function() {
             return new Date();
         };
 
-        var normalize = function (date) {
+        var normalize = function(date) {
             if (!date) {
                 return date;
             }
@@ -848,19 +845,19 @@ var abp = abp || {};
         };
     })();
 
-    abp.timing.localClockProvider = (function () {
+    abp.timing.localClockProvider = (function() {
 
-        var toLocal = function (date) {
+        var toLocal = function(date) {
             return new Date(
                 date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()
             );
         }
 
-        var now = function () {
+        var now = function() {
             return toLocal(new Date());
         }
 
-        var normalize = function (date) {
+        var normalize = function(date) {
             if (!date) {
                 return date;
             }
@@ -877,13 +874,13 @@ var abp = abp || {};
         };
     })();
 
-    abp.timing.unspecifiedClockProvider = (function () {
+    abp.timing.unspecifiedClockProvider = (function() {
 
-        var now = function () {
+        var now = function() {
             return new Date();
         }
 
-        var normalize = function (date) {
+        var normalize = function(date) {
             return date;
         }
 
@@ -896,7 +893,7 @@ var abp = abp || {};
         };
     })();
 
-    abp.timing.convertToUserTimezone = function (date) {
+    abp.timing.convertToUserTimezone = function(date) {
         var localTime = date.getTime();
         var utcTime = localTime + (date.getTimezoneOffset() * 60000);
         var targetTime = parseInt(utcTime) + parseInt(abp.timing.timeZoneInfo.windows.currentUtcOffsetInMilliseconds);
@@ -906,7 +903,7 @@ var abp = abp || {};
     /* CLOCK *****************************************/
     abp.clock = abp.clock || {};
 
-    abp.clock.now = function () {
+    abp.clock.now = function() {
         if (abp.clock.provider) {
             return abp.clock.provider.now();
         }
@@ -914,7 +911,7 @@ var abp = abp || {};
         return new Date();
     }
 
-    abp.clock.normalize = function (date) {
+    abp.clock.normalize = function(date) {
         if (abp.clock.provider) {
             return abp.clock.provider.normalize(date);
         }
@@ -931,11 +928,11 @@ var abp = abp || {};
     abp.security.antiForgery.tokenCookieName = 'XSRF-TOKEN';
     abp.security.antiForgery.tokenHeaderName = 'X-XSRF-TOKEN';
 
-    abp.security.antiForgery.getToken = function () {
+    abp.security.antiForgery.getToken = function() {
         return abp.utils.getCookieValue(abp.security.antiForgery.tokenCookieName);
     };
 
-    abp.security.antiForgery.shouldSendToken = function (settings) {
+    abp.security.antiForgery.shouldSendToken = function(settings) {
         if (settings.crossDomain === undefined || settings.crossDomain === null) {
             return abp.utils.getDomain(location.href) === abp.utils.getDomain(settings.url);
         }

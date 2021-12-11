@@ -1,5 +1,6 @@
 ﻿using Account.Domain.Entitys;
 using Account.Domain.ObjectValues;
+using Account.Domain.ObjectValues.Enum;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Account.Domain.CoreDomain
     // chỉnh sửa lại dữ liệu trước khi update vào db
     public class ShiningAccount
     {
-        public UserAccount SetupAccount(UserAccount userAccount)
+        public UserLogin SetupAccount(UserLogin userAccount)
         {
             // [password_salt] 
             userAccount.PasswordSalt = RanDomBase.RandomString(10);
@@ -44,7 +45,7 @@ namespace Account.Domain.CoreDomain
             return userAccount;
         }
 
-        public bool CheckPassword(UserAccount userAccount, string password)
+        public bool CheckPassword(UserLogin userAccount, string password)
         {
             if (userAccount != null)
             {
@@ -67,7 +68,5 @@ namespace Account.Domain.CoreDomain
                 throw new ClientException(400, "Account Or Password Incorrect!");
             }
         }
-
-
     }
 }

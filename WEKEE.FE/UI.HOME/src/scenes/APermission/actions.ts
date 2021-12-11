@@ -11,7 +11,8 @@ import { ResourceActionDto } from './dtos/resourceActionDto';
 import { ResourceDto } from './dtos/resourceDto';
 import { RoleDto } from './dtos/roleDto';
 import { ActionAssignmentDto } from './dtos/actionAssignmentDto';
-import { PermissionAssignmentDto} from './dtos/permissionAssignmentDto';
+import { PermissionAssignmentDto } from './dtos/permissionAssignmentDto';
+import { SearchOrderPageInput } from '../../services/dto/searchOrderPageInput';
 
 //#region Tải dữ liệu ban đầu
 export const watchPageError = () =>
@@ -19,7 +20,7 @@ export const watchPageError = () =>
 //#endregion
 
 //#region resource
-export const listFormResourceStart = (input: OrderByListInput) =>
+export const listFormResourceStart = (input: SearchOrderPageInput) =>
     action(ActionTypes.LIST_FORM_RESOURCE_START, input);
 export const listFormResourceCompleted = (output: PagedListOutput<ResourceDto>) =>
     action(ActionTypes.LIST_FORM_RESOURCE_COMPLETED, output);
@@ -40,17 +41,35 @@ export const ResourceEditCompleted = () =>
 export const ResourceEditError = () =>
     action(ActionTypes.RESOURCE_EDIT_ITEM_ERROR);
 
-export const ResourceRemoveFeStart = (id: Number) =>
-    action(ActionTypes.RESOURCE_REMOVE_FE_ITEM_START, id);
+export const ResourceRemoveFeStart = (id: Number, types: number) =>
+    action(ActionTypes.RESOURCE_REMOVE_FE_ITEM_START, { id, types });
 export const ResourceRemoveFeCancel = () =>
     action(ActionTypes.RESOURCE_REMOVE_FE_ITEM_CANCEL);
 
-export const ResourceRemoveStart = (ids: Number[]) =>
-    action(ActionTypes.RESOURCE_REMOVE_START, ids);
+export const ResourceRemoveStart = (ids: Number[], types: Number) => {
+    if(ids.length===0)
+    {
+        return action(ActionTypes.RESOURCE_REMOVE_FE_ITEM_CANCEL);
+    }
+    
+    if (types == 1) {
+        return action(ActionTypes.RESOURCE_REMOVE_START, ids);
+    }
+    if(types==2)
+    {
+        return action(ActionTypes.RESOURCE_EDIT_STATUS_START, ids);
+    }
+    return action(ActionTypes.RESOURCE_REMOVE_FE_ITEM_CANCEL);
+}
 export const ResourceRemoveCompleted = (output: Number) =>
     action(ActionTypes.RESOURCE_REMOVE_COMPLETED, output);
 export const ResourceRemoveError = () =>
     action(ActionTypes.RESOURCE_REMOVE_ERROR);
+
+export const ResourceEditStatusCompleted = (output: Number) =>
+    action(ActionTypes.RESOURCE_EDIT_STATUS_COMPLETED, output);
+export const ResourceEditStatusError = () =>
+    action(ActionTypes.RESOURCE_EDIT_STATUS_ERROR);
 
 //#endregion
 
@@ -174,14 +193,14 @@ export const RoleRemoveError = () =>
 //#region  Resource-Action
 export const ResourceActionGetListDataStart = (input: IdPagedListInput) =>
     action(ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_START, input);
-export const ResourceActionGetListDataCompeleted = (output:PagedListOutput<ResourceActionDto>) =>
+export const ResourceActionGetListDataCompeleted = (output: PagedListOutput<ResourceActionDto>) =>
     action(ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_COMPELETED, output);
 export const ResourceActionGetListDataError = () =>
     action(ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_ERROR);
 
 export const ResourceActionInsertOrUpdateStart = (input: ResourceActionDto) =>
     action(ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_START, input);
-export const ResourceActionInsertOrUpdateCompeleted = (output:ResourceActionDto) =>
+export const ResourceActionInsertOrUpdateCompeleted = (output: ResourceActionDto) =>
     action(ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_COMPELETED, output);
 export const ResourceActionInsertOrUpdateError = () =>
     action(ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_ERROR);
@@ -190,14 +209,14 @@ export const ResourceActionInsertOrUpdateError = () =>
 //#region  ActionAssignment
 export const ActionAssignmentGetListDataStart = (input: IdPagedListInput) =>
     action(ActionTypes.ACTION_ASSIGNMENT_GET_LIST_DATA_START, input);
-export const ActionAssignmentGetListDataCompeleted = (output:PagedListOutput<ActionAssignmentDto>) =>
+export const ActionAssignmentGetListDataCompeleted = (output: PagedListOutput<ActionAssignmentDto>) =>
     action(ActionTypes.ACTION_ASSIGNMENT_GET_LIST_DATA_COMPELETED, output);
 export const ActionAssignmentGetListDataError = () =>
     action(ActionTypes.ACTION_ASSIGNMENT_GET_LIST_DATA_ERROR);
 
 export const ActionAssignmentInsertOrUpdateStart = (input: ActionAssignmentDto) =>
     action(ActionTypes.ACTION_ASSIGNMENT_INSERT_OR_UPDATE_START, input);
-export const ActionAssignmentInsertOrUpdateCompeleted = (output:ActionAssignmentDto) =>
+export const ActionAssignmentInsertOrUpdateCompeleted = (output: ActionAssignmentDto) =>
     action(ActionTypes.ACTION_ASSIGNMENT_INSERT_OR_UPDATE_COMPELETED, output);
 export const ActionAssignmentInsertOrUpdateError = () =>
     action(ActionTypes.ACTION_ASSIGNMENT_INSERT_OR_UPDATE_ERROR);
@@ -206,14 +225,14 @@ export const ActionAssignmentInsertOrUpdateError = () =>
 //#region  PermissionAssignment
 export const PermissionAssignmentGetListDataStart = (input: IdPagedListInput) =>
     action(ActionTypes.PERMISSION_ASSIGNMENT_GET_LIST_DATA_START, input);
-export const PermissionAssignmentGetListDataCompeleted = (output:PagedListOutput<PermissionAssignmentDto>) =>
+export const PermissionAssignmentGetListDataCompeleted = (output: PagedListOutput<PermissionAssignmentDto>) =>
     action(ActionTypes.PERMISSION_ASSIGNMENT_GET_LIST_DATA_COMPELETED, output);
 export const PermissionAssignmentGetListDataError = () =>
     action(ActionTypes.PERMISSION_ASSIGNMENT_GET_LIST_DATA_ERROR);
 
 export const PermissionAssignmentInsertOrUpdateStart = (input: PermissionAssignmentDto) =>
     action(ActionTypes.PERMISSION_ASSIGNMENT_INSERT_OR_UPDATE_START, input);
-export const PermissionAssignmentInsertOrUpdateCompeleted = (output:PermissionAssignmentDto) =>
+export const PermissionAssignmentInsertOrUpdateCompeleted = (output: PermissionAssignmentDto) =>
     action(ActionTypes.PERMISSION_ASSIGNMENT_INSERT_OR_UPDATE_COMPELETED, output);
 export const PermissionAssignmentInsertOrUpdateError = () =>
     action(ActionTypes.PERMISSION_ASSIGNMENT_INSERT_OR_UPDATE_ERROR);

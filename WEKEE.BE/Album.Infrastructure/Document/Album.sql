@@ -12,6 +12,6 @@ CREATE TABLE [IMAGE]
 	   [capacity] INT NOT NULL,
 	   [alt] NVARCHAR(300) NULL,
 	   [description] NVARCHAR(Max),
-	   [dateCreate] DATETIME,
+	   [CreatedAt] DATETIME,
 	   [IsActive] BIT DEFAULT 1,
 )

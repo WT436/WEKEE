@@ -24,8 +24,8 @@ namespace Assessment.Application.Application
                     LevelEvaluates = levelEvaluates,
                     IdEvaluates = idEvaluates,
                     Account = account,
-                    DateCreate = DateTime.Now,
-                    DateUpdate = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
                 });
                 return true;
             }
@@ -33,7 +33,7 @@ namespace Assessment.Application.Application
             {
                 data.Isdislike = !data.Isdislike;
                 data.Islike = false;
-                data.DateUpdate = DateTime.Now;
+                data.UpdatedAt = DateTime.Now;
                 await _likeEvaluatesProductQuery.Update(data);
                 return false;
             }
@@ -53,8 +53,8 @@ namespace Assessment.Application.Application
                     LevelEvaluates = levelEvaluates,
                     IdEvaluates = idEvaluates,
                     Account = account,
-                    DateCreate = DateTime.Now,
-                    DateUpdate = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
                 });
                 return true;
             }
@@ -63,7 +63,7 @@ namespace Assessment.Application.Application
                 data.Islike = !data.Islike;
                 data.Isdislike = false;
                 data.IdEvaluates = idEvaluates;
-                data.DateUpdate = DateTime.Now;
+                data.UpdatedAt = DateTime.Now;
                 await _likeEvaluatesProductQuery.Update(data);
                 return false;
             }

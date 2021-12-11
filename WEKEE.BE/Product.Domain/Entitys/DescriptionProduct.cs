@@ -11,7 +11,7 @@ namespace Product.Domain.Entitys
         public string Blog { get; set; }
         public int ViewProduct { get; set; }
         public int LikePost { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public bool IsEnabled { get; set; }
         public int? Product { get; set; }
         public int? UseAccount { get; set; }

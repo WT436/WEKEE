@@ -54,14 +54,14 @@ namespace Assessment.Infrastructure.DBContext
                     .IsRequired()
                     .HasColumnName("content");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DateUpdate)
+                entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateUpdate")
+                    .HasColumnName("UpdatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IdEvaluatesProduct).HasColumnName("idEvaluatesProduct");
@@ -97,14 +97,14 @@ namespace Assessment.Infrastructure.DBContext
                     .HasMaxLength(300)
                     .HasColumnName("alt");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DateUpdate)
+                entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateUpdate")
+                    .HasColumnName("UpdatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Folder)
@@ -151,14 +151,14 @@ namespace Assessment.Infrastructure.DBContext
 
                 entity.Property(e => e.Account).HasColumnName("account");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DateUpdate)
+                entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateUpdate")
+                    .HasColumnName("UpdatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IdEvaluates).HasColumnName("idEvaluates");

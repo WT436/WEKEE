@@ -54,7 +54,7 @@ export default function AAccount(props: IAAccount) {
     const [visible, setVisible] = useState(false);
     const [visibleModal, setVisibleModal] = useState(false);
     const [nameModal, setNameModal] = useState("");
-    const [accountSelect,setAccountSelect] = useState<AccountShowDtos>();
+    const [accountSelect, setAccountSelect] = useState<AccountShowDtos>();
     const [listId, setListId] = useState<Number[]>([]);
 
     const columns = [
@@ -195,13 +195,13 @@ export default function AAccount(props: IAAccount) {
                             <Menu.Item key="3" icon={<FormOutlined />}>
                                 Chỉnh sửa
                             </Menu.Item>
-                            <Menu.Item key="4" onClick={(id:AccountShowDtos|any) => openEditPermission(text)} icon={<SafetyCertificateOutlined />}>
+                            <Menu.Item key="4" onClick={(id: AccountShowDtos | any) => openEditPermission(text)} icon={<SafetyCertificateOutlined />}>
                                 Sửa quyền
                             </Menu.Item>
                             <Menu.Item key="5" icon={<LockOutlined />}>
                                 Khóa tài khoản
                             </Menu.Item>
-                            <Menu.Item key="6" onClick={()=>dispatch(deleteAccountStart(text.id))} icon={<DeleteOutlined />}>
+                            <Menu.Item key="6" onClick={() => dispatch(deleteAccountStart(text.id))} icon={<DeleteOutlined />}>
                                 Xóa
                             </Menu.Item>
                         </Menu>}
@@ -217,10 +217,10 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: '',
-            propertySearch: '',
-            valuesSearch: ''
+            property: "",
+            orderBy: "",
+            propertySearch: [],
+            valuesSearch: []
         }))
     }, []);
 
@@ -228,10 +228,10 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: page,
             pageSize: pageSize,
-            property: '',
-            orderBy: '',
-            propertySearch: '',
-            valuesSearch: ''
+            property: "",
+            orderBy: "",
+            propertySearch: [],
+            valuesSearch: []
         }));
     };
 
@@ -239,10 +239,10 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: '',
-            propertySearch: '',
-            valuesSearch: ''
+            property: "",
+            orderBy: "",
+            propertySearch: [],
+            valuesSearch: []
         }));
     }
 
@@ -258,10 +258,10 @@ export default function AAccount(props: IAAccount) {
             dispatch(listAccountAdminStart({
                 pageIndex: 0,
                 pageSize: 20,
-                property: '',
-                orderBy: '',
-                propertySearch: type,
-                valuesSearch: value
+                property: "",
+                orderBy: "",
+                propertySearch: [type],
+                valuesSearch: [value]
             }));
         }
     }
@@ -278,10 +278,10 @@ export default function AAccount(props: IAAccount) {
             dispatch(listAccountAdminStart({
                 pageIndex: 0,
                 pageSize: 20,
-                property: '',
-                orderBy: '',
-                propertySearch: 'User_Profile_Is_Status',
-                valuesSearch: value.toString()
+                property: "",
+                orderBy: "",
+                propertySearch: ['User_Profile_Is_Status'],
+                valuesSearch: [value.toString()]
             }));
         }
     }
@@ -312,8 +312,8 @@ export default function AAccount(props: IAAccount) {
         });
     }
 
-    const openEditPermission = (id:AccountShowDtos) => {
-        setNameModal("Chỉnh sửa quyền tài khoản ( id : " + id.id + ' Tên Tài Khoản : ' + id.userName +" )");
+    const openEditPermission = (id: AccountShowDtos) => {
+        setNameModal("Chỉnh sửa quyền tài khoản ( id : " + id.id + ' Tên Tài Khoản : ' + id.userName + " )");
         setVisibleModal(true);
         setAccountSelect(id);
     }
@@ -453,7 +453,7 @@ export default function AAccount(props: IAAccount) {
                 width={'95%'}
                 onCancel={() => setVisibleModal(false)}
             >
-                <RoleAccountComponent accountSelect={accountSelect}/>
+                <RoleAccountComponent accountSelect={accountSelect} />
             </Modal>
         </>
     )

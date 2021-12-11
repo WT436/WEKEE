@@ -11,7 +11,7 @@ namespace Account.Domain.CoreDomain
             if (userAccountStatus.IsDelete == false)
             {
                 // vẫn còn trong khoảng thời gian hiệu lực của token cũ hoặc code cũ
-                if (userAccountStatus.IsActive && DateTime.Now < userAccountStatus.DateUpdate.Add(new TimeSpan(0, 0, 0, (int)userAccountStatus.ReminderExpire)))
+                if (userAccountStatus.IsActive && DateTime.Now < userAccountStatus.UpdatedAt.Add(new TimeSpan(0, 0, 0, (int)userAccountStatus.ReminderExpire)))
                     return true;
                 else
                     return false;

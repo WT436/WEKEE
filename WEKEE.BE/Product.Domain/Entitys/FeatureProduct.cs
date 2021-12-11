@@ -19,8 +19,8 @@ namespace Product.Domain.Entitys
         public double? Mass { get; set; }
         public double? Volume { get; set; }
         public double Guarantee { get; set; }
-        public DateTime? DateCreate { get; set; }
-        public DateTime? DateUpdate { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public bool? IsDefault { get; set; }
         public int? IsStatus { get; set; }
         public bool IsEnabled { get; set; }

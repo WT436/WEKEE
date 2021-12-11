@@ -109,8 +109,8 @@ export default function ResourceActionComponents(props: IResourceActionComponent
         dispatch(listFormActionStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     }, []);
 
@@ -118,8 +118,8 @@ export default function ResourceActionComponents(props: IResourceActionComponent
         dispatch(listFormActionStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     };
 

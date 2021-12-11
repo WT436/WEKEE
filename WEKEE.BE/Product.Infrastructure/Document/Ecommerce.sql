@@ -17,7 +17,7 @@ CREATE TABLE [CategoryProduct] (
 	[categoryMain] INT NUll,	
 	[numberOrder] INT NOT NULL,
 	[isEnabled] BIT NOT NULL DEFAULT (0),
-	[dateCreate] DATETIME NOT NULL DEFAULT (GETDATE()),
+	[CreatedAt] DATETIME NOT NULL DEFAULT (GETDATE()),
 	[dateEnd] DATETIME NOT NULL DEFAULT (GETDATE())
 --=========>Connect Table<===========--
 )
@@ -39,7 +39,7 @@ CREATE TABLE [SpecificationsCategory] (
 	-- 8:
 	[classifyValues] NVARCHAR(200)  NULL, -- giá trị của phân loại
 	[isEnabled] BIT NOT NULL DEFAULT (0),
-	[dateCreate] DATETIME NOT NULL DEFAULT (GETDATE()),
+	[CreatedAt] DATETIME NOT NULL DEFAULT (GETDATE()),
 	[categoryMain] INT NULL foreign key references [CategoryProduct]([id])
 --=========>Connect Table<===========--
 )
@@ -87,8 +87,8 @@ CREATE TABLE [Product]
 	[trademark] INT FOREIGN KEY REFERENCES [SpecificationsCategory] (id), -- Thương Hiệu
 	[introduce] NVARCHAR(MAX) NULL,-- Giới thiệu *
 	[tag] NVARCHAR(300) NOT NULL, -- 
-	[dateCreate] DATETIME DEFAULT GETDATE(), -- *
-	[dateUpdate] DATETIME DEFAULT GETDATE(),-- *
+	[CreatedAt] DATETIME DEFAULT GETDATE(), -- *
+	[UpdatedAt] DATETIME DEFAULT GETDATE(),-- *
 	[isStatus]  INT DEFAULT 0 CHECK([isStatus]<3 AND [isStatus]>-1), -- 0 là thông tin chưa đầy đủ,  1 là chưa được đăng, 3 --*
 	[isEnabled] BIT NOT NULL DEFAULT (0), --*
 --=========>Connect Table<===========--
@@ -131,8 +131,8 @@ CREATE TABLE [FeatureProduct]
 	[mass] FLOAT , --  khối lượng
 	[volume] FLOAT , -- thể tích
 	[guarantee] FLOAT NOT NULL, -- bảo hành
-	[dateCreate] DATETIME DEFAULT GETDATE(),
-	[dateUpdate] DATETIME DEFAULT GETDATE(),
+	[CreatedAt] DATETIME DEFAULT GETDATE(),
+	[UpdatedAt] DATETIME DEFAULT GETDATE(),
 	[isDefault] BIT DEFAULT 0,
 	[isStatus]  INT DEFAULT 0,
 	[isEnabled] BIT NOT NULL DEFAULT (0),
@@ -149,7 +149,7 @@ CREATE TABLE [DescriptionProduct]
 	[blog] NVARCHAR(max) DEFAULT (N'Chưa có bào viết nào về sản phẩm này ,quý khách vui lòng quay lại sau ') NOT NULL,
 	[viewProduct] INT DEFAULT 0 NOT NULL,
 	[likePost] INT DEFAULT 0 NOT NULL,
-	[dateCreate] DATETIME NOT NULL DEFAULT (GETDATE()),
+	[CreatedAt] DATETIME NOT NULL DEFAULT (GETDATE()),
 	[isEnabled] BIT NOT NULL DEFAULT (0),
 --=========>Connect Table<===========--
 	[product] INT NULL FOREIGN KEY REFERENCES Product (Id),
@@ -167,8 +167,8 @@ CREATE TABLE [HighlightProduct]
 	[key] INT NOT NULL FOREIGN KEY REFERENCES [SpecificationsCategory] (id), -- tên trường dạng chuẩn pascalCode
 	[values] NVARCHAR(300) NOT NULL, -- giá trị của trường
 	[displayOrder] INT NOT NULL, -- vị trí hiển thị của trường
-	[dateCreate] DATETIME DEFAULT GETDATE(),
-	[dateUpdate] DATETIME DEFAULT GETDATE(),
+	[CreatedAt] DATETIME DEFAULT GETDATE(),
+	[UpdatedAt] DATETIME DEFAULT GETDATE(),
 	[isStatus]  INT DEFAULT 0,
 --=========>Connect Table<===========--
 	[product] INT NULL FOREIGN KEY REFERENCES Product (id),

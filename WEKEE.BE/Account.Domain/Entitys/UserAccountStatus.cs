@@ -7,21 +7,19 @@ namespace Account.Domain.Entitys
 {
     public partial class UserAccountStatus
     {
-        public UserAccountStatus()
-        {
-            UserAccounts = new HashSet<UserAccount>();
-        }
-
         public int Id { get; set; }
+        public int? AccountId { get; set; }
         public string Code { get; set; }
+        public int StatusId { get; set; }
         public string ReminderToken { get; set; }
         public int? ReminderExpire { get; set; }
-        public DateTime DateUpdate { get; set; }
-        public DateTime DateCreate { get; set; }
         public int UpdateCount { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public int? CreateBy { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
-        public virtual ICollection<UserAccount> UserAccounts { get; set; }
+        public virtual UserProfile Account { get; set; }
     }
 }

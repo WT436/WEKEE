@@ -228,7 +228,6 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                                                 onChange={(value: any) => { dataTableitem.guarantee = value.target.value }} />
                                         </Col>
                                         <Col span={12}>
-                                            {console.log(text)}
                                             <Select
                                                 defaultValue={text.image === "" ? "_" : text.image}
                                                 style={{ width: '100%' }}

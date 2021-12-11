@@ -22,7 +22,7 @@ namespace Product.Domain.Entitys
         public int Classify { get; set; }
         public string ClassifyValues { get; set; }
         public bool IsEnabled { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public int? CategoryMain { get; set; }
 
         public virtual CategoryProduct CategoryMainNavigation { get; set; }

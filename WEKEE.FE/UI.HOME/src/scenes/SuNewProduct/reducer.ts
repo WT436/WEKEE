@@ -135,7 +135,6 @@ function suNewProductReducer(
       };
 
     case ActionTypes.SET_PRODUCT_DTOS:
-      console.log(action.payload);
       return {
         ...state,
         productDto: action.payload,

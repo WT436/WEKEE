@@ -12,6 +12,6 @@ namespace Account.Domain.Dto
         public string NumberPhone { get; set; }
         public string Picture { get; set; }
         public string FullName { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

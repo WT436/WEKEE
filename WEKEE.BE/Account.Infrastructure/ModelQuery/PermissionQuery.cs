@@ -1,5 +1,6 @@
 ﻿using Account.Domain.Entitys;
 using Account.Domain.ObjectValues;
+using Account.Domain.ObjectValues.Enum;
 using Account.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
@@ -59,185 +60,185 @@ namespace Account.Infrastructure.ModelQuery
         #endregion
 
         #region Sắp Xếp theo datetime
-        public IPagedList<Permission> GetDateCreateOrderByAsc(OrderByPageListInput orderByPageListInput)
+        public IPagedList<Permission> GetCreatedAtOrderByAsc(OrderByPageListInput orderByPageListInput)
                => unitOfWork.GetRepository<Permission>()
                             .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
                                            pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderBy(m => m.DateCreate));
+                                            orderBy: o => o.OrderBy(m => m.CreatedAt));
 
-        public IPagedList<Permission> GetDateCreateOrderByDesc(OrderByPageListInput orderByPageListInput)
+        public IPagedList<Permission> GetCreatedAtOrderByDesc(OrderByPageListInput orderByPageListInput)
                => unitOfWork.GetRepository<Permission>()
                             .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
                                            pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderByDescending(m => m.DateCreate));
+                                            orderBy: o => o.OrderByDescending(m => m.CreatedAt));
 
-        public async Task<IPagedList<Permission>> GetDateCreateOrderByAscAsync(OrderByPageListInput orderByPageListInput)
+        public async Task<IPagedList<Permission>> GetCreatedAtOrderByAscAsync(OrderByPageListInput orderByPageListInput)
                      => await unitOfWork.GetRepository<Permission>()
                                         .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
                                                             pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderBy(m => m.DateCreate));
+                                                             orderBy: o => o.OrderBy(m => m.CreatedAt));
 
-        public async Task<IPagedList<Permission>> GetDateCreateOrderByDescAsync(OrderByPageListInput orderByPageListInput)
+        public async Task<IPagedList<Permission>> GetCreatedAtOrderByDescAsync(OrderByPageListInput orderByPageListInput)
                      => await unitOfWork.GetRepository<Permission>()
                                         .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
                                                             pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderByDescending(m => m.DateCreate));
+                                                             orderBy: o => o.OrderByDescending(m => m.CreatedAt));
         #endregion
 
         #endregion
 
         #region tìm kiếm
         public Permission GetAllId(int id)
-        => unitOfWork.GetRepository<Permission>().GetFirstOrDefault(predicate: m => m.Id == id);
+        => unitOfWork.GetRepository<Permission>()
+                     .GetFirstOrDefault(predicate: m => m.Id == id);
 
         public async Task<Permission> GetAllIdAsync(int id)
-                     => await unitOfWork.GetRepository<Permission>().GetFirstOrDefaultAsync(predicate: m => m.Id == id);
+        => await unitOfWork.GetRepository<Permission>()
+                           .GetFirstOrDefaultAsync(predicate: m => m.Id == id);
 
         public IList<Permission> GetAllActive(bool active)
-        => unitOfWork.GetRepository<Permission>().GetAll(m => m.IsActive == active).ToList();
+        => unitOfWork.GetRepository<Permission>()
+                     .GetAll(m => m.IsActive == active).ToList();
 
         public async Task<IList<Permission>> GetAllActiveAsync(bool active)
-                     => await unitOfWork.GetRepository<Permission>().GetAllAsync(m => m.IsActive == active);
+        => await unitOfWork.GetRepository<Permission>()
+                           .GetAllAsync(m => m.IsActive == active);
 
         public IList<Permission> GetAllNameExact(string name)
-               => unitOfWork.GetRepository<Permission>().GetAll(m => m.Name == name).ToList();
+        => unitOfWork.GetRepository<Permission>()
+                     .GetAll(m => m.Name == name).ToList();
 
         public async Task<IList<Permission>> GetAllNameExactAsync(string name)
-                     => await unitOfWork.GetRepository<Permission>().GetAllAsync(m => m.Name == name);
+        => await unitOfWork.GetRepository<Permission>()
+                           .GetAllAsync(m => m.Name == name);
+        public IList<Permission> GetAllLstById(List<int> ids)
+         => unitOfWork.GetRepository<Permission>()
+                      .GetAll().Where(m => ids.Contains(m.Id)).ToList();
+
 
         #endregion
 
         #region sắp sếp tìm kiếm
         #endregion
 
-        #region Tạo mới dữ liệu
-        public void Insert(Permission Permission)
-        {
-            unitOfWork.GetRepository<Permission>()
-                           .Insert(Permission);
-            unitOfWork.SaveChanges();
-        }
-        public async Task InsertAsync(Permission Permission)
-        {
-            await unitOfWork.GetRepository<Permission>()
-                           .InsertAsync(Permission);
-            unitOfWork.SaveChanges();
-        }
-        #endregion
-
-        #region Xóa bản ghi
-        public bool RemoveUnique(int id)
-        {
-            unitOfWork.GetRepository<Permission>().Delete(id);
-            unitOfWork.SaveChanges();
-            return true;
-        }
-        public int RemoveMultiple(List<int> ids)
-        {
-            int count = 0;
-            if (ids != null || ids.Count != 0)
-            {
-                foreach (var item in ids)
-                {
-                    if (unitOfWork.GetRepository<Permission>().Exists(m => m.Id == item))
-                    {
-                        unitOfWork.GetRepository<Permission>().Delete(item);
-                        count++;
-                    }
-                }
-            }
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
-        #endregion
-
-        #region Update
-        public bool UpdateUnique(int id)
-        {
-            var data = unitOfWork.GetRepository<Permission>().GetFirstOrDefault(predicate: m => m.Id == id);
-            if (data != null)
-            {
-                data.IsActive = !data.IsActive;
-                unitOfWork.GetRepository<Permission>().Update(data);
-            }
-            return true;
-        }
-        public int UpdateMultiple(List<int> ids)
-        {
-            int count = 0;
-            foreach (var item in ids)
-            {
-                var data = unitOfWork.GetRepository<Permission>().GetFirstOrDefault(predicate: m => m.Id == item);
-                if (data != null)
-                {
-                    data.IsActive = !data.IsActive;
-                    unitOfWork.GetRepository<Permission>().Update(data);
-                    count++;
-                }
-            }
-
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
-        #endregion
-
-        #region Edit
-        public bool EditUnique(Permission Permission)
-        {
-            var data = unitOfWork.GetRepository<Permission>().GetFirstOrDefault(predicate: m => m.Id == Permission.Id);
-            if (data != null)
-            {
-                data.Name = Permission.Name;
-                data.Description = Permission.Description;
-                data.IsActive = Permission.IsActive;
-                data.DateCreate = DateTime.Now;
-                unitOfWork.GetRepository<Permission>().Update(data);
-                unitOfWork.SaveChanges();
-            }
-            return true;
-        }
-        public int EditMultiple(List<Permission> permission)
-        {
-            int count = 0;
-            foreach (var item in permission)
-            {
-                var data = unitOfWork.GetRepository<Permission>().GetFirstOrDefault(predicate: m => m.Id == item.Id);
-                if (data != null)
-                {
-                    data.Name = item.Name;
-                    data.Description = item.Description;
-                    data.IsActive = item.IsActive;
-                    data.DateCreate = DateTime.Now;
-                    unitOfWork.GetRepository<Permission>().Update(data);
-                    count++;
-                }
-            }
-
-            unitOfWork.SaveChanges();
-            return count++; ;
-        }
-        #endregion
-
         #region Đếm bản ghi
 
         public int CountId(int id)
-                  => unitOfWork.GetRepository<Permission>().Count(m => m.Id ==id);
+        => unitOfWork.GetRepository<Permission>()
+                     .Count(m => m.Id == id);
 
         public async Task<int> CountIdAsync(int id)
-                  => await unitOfWork.GetRepository<Permission>().CountAsync(m => m.Id == id);
+        => await unitOfWork.GetRepository<Permission>()
+                           .CountAsync(m => m.Id == id);
 
         public int CountName(string name)
-                   => unitOfWork.GetRepository<Permission>().Count(m => m.Name.ToUpper() == name.ToUpper());
+        => unitOfWork.GetRepository<Permission>()
+                     .Count(m => m.Name.ToUpper() == name.ToUpper());
 
         public async Task<int> CountNameAsync(string name)
-                     => await unitOfWork.GetRepository<Permission>().CountAsync(m => m.Name.ToUpper() == name.ToUpper());
+        => await unitOfWork.GetRepository<Permission>()
+                           .CountAsync(m => m.Name.ToUpper() == name.ToUpper());
 
         public int CountNameExact(string name)
-                  => unitOfWork.GetRepository<Permission>().Count(m => m.Name == name);
+        => unitOfWork.GetRepository<Permission>()
+                     .Count(m => m.Name == name);
 
         public async Task<int> CountNameExactAsync(string name)
-                     => await unitOfWork.GetRepository<Permission>().CountAsync(m => m.Name == name);
+        => await unitOfWork.GetRepository<Permission>()
+                           .CountAsync(m => m.Name == name);
         #endregion
 
+        #region Tạo mới - Create
+        public int Insert(Permission permission)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Insert(permission);
+            return unitOfWork.SaveChanges();
+        }
+        public int Insert(List<Permission> permissions)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Insert(permissions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(Permission permission)
+        {
+            await unitOfWork.GetRepository<Permission>()
+                            .InsertAsync(permission);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(List<Permission> permissions)
+        {
+            await unitOfWork.GetRepository<Permission>()
+                            .InsertAsync(permissions);
+            return unitOfWork.SaveChanges();
+        }
+        #endregion
+
+        #region Cập nhật - Update
+        public int Update(Permission permission)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Update(permission);
+            return unitOfWork.SaveChanges();
+        }
+        public int Update(List<Permission> permissions)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Update(permissions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> UpdateAsync(Permission permission)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Update(permission);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> UpdateAsync(List<Permission> permissions)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Update(permissions);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Xóa - Delete
+        public int Delete(int id)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Delete(id);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<int> ids)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Delete(ids);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(Permission permission)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Delete(permission);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<Permission> permissions)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Delete(permissions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> DeleteAsync(Permission permission)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Delete(permission);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<Permission> permissions)
+        {
+            unitOfWork.GetRepository<Permission>()
+                      .Delete(permissions);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
     }
 }

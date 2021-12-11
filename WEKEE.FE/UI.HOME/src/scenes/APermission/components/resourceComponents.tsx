@@ -5,15 +5,16 @@ import { createStructuredSelector } from 'reselect';
 import { listFormResourceStart, ResourceCreateStart, ResourceEditStart, ResourceRemoveFeCancel, ResourceRemoveFeStart, ResourceRemoveStart } from '../actions';
 import {
     CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined,
-    FilePdfOutlined, PlusOutlined, RedoOutlined
+    FilePdfOutlined, LockOutlined, PlusOutlined, RedoOutlined, SearchOutlined, UnlockOutlined
 } from '@ant-design/icons';
-import { Button, Col, Form, Input, Row, Select, Switch, Table, Tag } from 'antd'
+import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd'
 import {
     makeSelectCompleted, makeSelectDataResource, makeSelectDataRemoveResource, makeSelectLoading, makeSelectPageIndex,
     makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages
 } from '../selectors';
 import { ResourceDto } from '../dtos/resourceDto';
 const { Option } = Select;
+const { RangePicker } = DatePicker;
 //#endregion
 interface IResourceComponentsProps {
 
@@ -36,7 +37,9 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
     const [checkCreate, setCheckCreate] = useState(false);
     const [checkRemove, setCheckRemove] = useState(true);
     const [checkRestart, setCheckRestart] = useState(true);
-
+    const [isModalVisible, setisModalVisible] = useState(false);
+    // 0 : bật tất cả 1: đang xóa, 2 đang update khóa/mở
+    const [isDataChange, setisDataChange] = useState(0);
     const dispatch = useDispatch();
 
     const {
@@ -48,13 +51,15 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
         dispatch(listFormResourceStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "UpdatedAt",
+            orderBy: "ASC",
+            propertySearch: [],
+            valuesSearch: [],
         }));
     }, []);
 
     useEffect(() => {
-        
+
     }, [pageSize]);
 
     useEffect(() => {
@@ -67,15 +72,22 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
         }
     }, [dataRemoveResource]);
 
-
     const [form] = Form.useForm();
 
     const onFill = (value: ResourceDto) => {
         form.setFieldsValue(value);
     };
+
     const onRemove = (value: ResourceDto) => {
-        dispatch(ResourceRemoveFeStart(value.id));
+        setisDataChange(1);
+        dispatch(ResourceRemoveFeStart(value.id, 1));
     };
+
+    const onChangeIsStatus = (value: ResourceDto) => {
+        setisDataChange(2);
+        dispatch(ResourceRemoveFeStart(value.id, 2));
+    };
+
     const columns = [
         {
             title: 'id',
@@ -92,30 +104,10 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
             with: 300
         },
         {
-            title: 'isActive',
+            title: 'Trạng thái',
             dataIndex: 'isActive',
             key: 'isActive',
             render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
-        },
-        {
-            title: 'Action',
-            dataIndex: '',
-            key: 'x',
-            render: (text: ResourceDto) => (
-                <div>
-                    <Button type="link" icon={<EditOutlined />}
-                        onClick={() => {
-                            setCheckCreate(true);
-                            onFill(text);
-                        }}></Button>
-                    &nbsp;
-                    <Button type="link" icon={<DeleteOutlined />}
-                        onClick={() => {
-                            onRemove(text);
-                        }}
-                    ></Button>
-                </div>
-            )
         },
         {
             title: 'Kiểu',
@@ -126,16 +118,54 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
             dataIndex: 'description'
         },
         {
-            title: 'dateCreate',
-            dataIndex: 'dateCreate'
+            title: 'Ngày tạo',
+            dataIndex: 'createdAt'
+        },
+        {
+            title: 'Người sửa',
+            dataIndex: 'createBy'
+        },
+        {
+            title: 'Update gần nhất',
+            dataIndex: 'updatedAt'
+        },
+        {
+            title: 'Hành động',
+            dataIndex: '',
+            key: 'x',
+            render: (text: ResourceDto) => (
+                <div>
+                    <Button type="link" icon={<EditOutlined />}
+                        onClick={() => {
+                            setisModalVisible(true)
+                            setCheckCreate(true);
+                            onFill(text);
+                        }}></Button>
+                    &nbsp;
+                    <Button type="link" disabled={!(isDataChange == 0 || isDataChange == 1)} icon={<DeleteOutlined />}
+                        onClick={() => {
+                            onRemove(text);
+                        }}
+                    ></Button>
+                    {text.isActive ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
+                        onClick={() => onChangeIsStatus(text)}
+                    ></Button> :
+                        <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
+                            onClick={() => onChangeIsStatus(text)}
+                        ></Button>}
+                </div>
+            )
         },
     ];
+
     let onChange = (page: any, pageSize: any) => {
         dispatch(listFormResourceStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: OrderbyColumn,
+            orderBy: OrderbyTypes,
+            propertySearch: [],
+            valuesSearch: valuesSearch
         }));
     };
 
@@ -152,39 +182,161 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
         setCheckCreate(false);
         form.resetFields();
     };
+
     const onGenderChange = (value: string) => {
         form.setFieldsValue({ types: value });
     };
-    return (
-        <Row gutter={[10, 10]} >
-            <Col span={14}>
-                <Row gutter={[10, 10]} >
-                    <Col span={4}><Button loading={loading} onClick={() => {
-                        dispatch(listFormResourceStart({
-                            pageIndex: pageIndex,
-                            pageSize: pageSize,
-                            property: '',
-                            orderBy: ''
-                        }));
-                        setCheckRestart(true);
 
-                    }} disabled={checkRestart} block icon={<RedoOutlined />}>Làm Mới</Button></Col>
-                    <Col span={4}><Button loading={loading} block icon={<FilePdfOutlined />}>Tải File</Button></Col>
-                    <Col span={4}>
+    const [SelectColumn, setSelectColumn] = useState(["All"]);
+    const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
+    const [OrderbyColumn, setOrderbyColumn] = useState("");
+    const [OrderbyTypes, setOrderbyTypes] = useState("");
+    return (
+        <Row gutter={[10, 10]}>
+            <Col span={24}>
+                <Row gutter={[10, 10]} >
+                    <Col span={3}>
+                        <Button loading={loading}
+                            onClick={() => {
+                                dispatch(listFormResourceStart({
+                                    pageIndex: pageIndex,
+                                    pageSize: pageSize,
+                                    property: "",
+                                    orderBy: "",
+                                    propertySearch: [],
+                                    valuesSearch: []
+                                }));
+                                setCheckRestart(true);
+                                setisDataChange(0);
+                                setSelectColumn(["All"]);
+                            }}
+                            disabled={checkRestart}
+                            block icon={<RedoOutlined />}>Làm Mới</Button>
+                    </Col>
+                    <Col span={2}>
                         <Button loading={loading}
                             disabled={checkRemove}
                             block
-                            onClick={()=>{dispatch(ResourceRemoveStart(dataRemoveResource))}}
-                            icon={<CheckOutlined />}>Lưu</Button></Col>
-                    <Col span={4}><Button loading={loading} disabled={checkRemove} onClick={() => dispatch(ResourceRemoveFeCancel())} block icon={<CloseOutlined />}>Hủy</Button></Col>
+                            onClick={() => {
+                                dispatch(ResourceRemoveStart(dataRemoveResource, isDataChange));
+                                setisDataChange(0);
+                            }}
+                            icon={<CheckOutlined />}>Lưu</Button>
+                    </Col>
+                    <Col span={2}>
+                        <Button loading={loading} disabled={checkRemove}
+                            onClick={() => {
+                                dispatch(ResourceRemoveFeCancel());
+                                setisDataChange(0);
+                            }} block icon={<CloseOutlined />}>Hủy</Button>
+                    </Col>
+                    <Col span={3}>
+                        <Button loading={loading} block icon={<FilePdfOutlined />}>Xuất File</Button>
+                    </Col>
+                    <Col span={3}>
+                        <Button loading={loading} block icon={<PlusOutlined />}
+                            onClick={() => setisModalVisible(true)}
+                        >Thêm</Button>
+                    </Col>
+                    <Col span={4}>
+                        {console.log()}
+                        {
+                            SelectColumn.indexOf("CreatedAt") === 0 || SelectColumn.indexOf("UpdatedAt") === 0
+                                ? <RangePicker onChange={(date, dateString) => {
+                                    setvaluesSearch([]);
+                                    setvaluesSearch(dateString);
+                                }
+                                } />
+                                : <Input onChange={(value) => {
+                                    setvaluesSearch([]);
+                                    setvaluesSearch([value.target.value]);
+                                }} disabled={loading} placeholder="Từ khóa" />
+                        }
+                    </Col>
+                    <Col span={3}>
+                        <Select
+                            optionFilterProp="children"
+                            style={{ width: '100%' }}
+                            filterOption={(input, option: any) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                            disabled={loading}
+                            defaultValue={SelectColumn}
+                            onChange={(value: any) => {
+                                setSelectColumn([]);
+                                setSelectColumn(value);
+                            }}
+                        >
+                            <Option value="All">Tìm kiếm Tất cả</Option>
+                            <Option value="Id">Id</Option>
+                            <Option value="Name">Tên</Option>
+                            <Option value="TypesRsc">Kiểu</Option>
+                            <Option value="Description">Chi tiết</Option>
+                            <Option value="IsActive">Trạng thái</Option>
+                            <Option value="CreatedAt">Ngày Tạo</Option>
+                            <Option value="CreateBy">Người sửa</Option>
+                            <Option value="UpdatedAt">Ngày cập nhật</Option>
+                        </Select>
+                    </Col>
+                    <Col span={3}>
+                        <Select
+                            optionFilterProp="children"
+                            style={{ width: '100%' }}
+                            filterOption={(input, option: any) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                            defaultValue={"All"}
+                            disabled={loading}
+                            onChange={(value) => {
+                                setOrderbyColumn(value.substring(0,value.lastIndexOf("_")));
+                                setOrderbyTypes(value.substring(value.lastIndexOf("_")+1));
+                            }}
+                        >
+                            <Option value="All">Không Sắp Xếp</Option>
+                            <Option value="Id_ASC ">Id tăng dần</Option>
+                            <Option value="Id_DESC">Id giảm dần</Option>
+                            <Option value="Name_ASC ">Tên tăng dần</Option>
+                            <Option value="Name_DESC">Tên giảm dần</Option>
+                            <Option value="TypesRsc_ASC ">Kiểu tăng dần</Option>
+                            <Option value="TypesRsc_DESC">Kiểu giảm dần</Option>
+                            <Option value="Description_ASC ">Chi tiết tăng dần</Option>
+                            <Option value="Description_DESC">Chi tiết giảm dần</Option>
+                            <Option value="IsActive_ASC ">Trạng thái tăng dần</Option>
+                            <Option value="IsActive_DESC">Trạng thái giảm dần</Option>
+                            <Option value="CreatedAt_ASC ">Ngày Tạo tăng dần</Option>
+                            <Option value="CreatedAt_DESC">Ngày Tạo giảm dần</Option>
+                            <Option value="CreateBy_ASC ">Người sửa tăng dần</Option>
+                            <Option value="CreateBy_DESC">Người sửa giảm dần</Option>
+                            <Option value="UpdatedAt_ASC ">Ngày cập nhật tăng dần</Option>
+                            <Option value="UpdatedAt_DESC">Ngày cập nhật giảm dần</Option>
+                        </Select>
+                    </Col>
+                    <Col span={1}>
+                        <Button
+                            disabled={loading}
+                            type="primary"
+                            icon={<SearchOutlined />}
+                            onClick={() => {
+                                dispatch(listFormResourceStart({
+                                    pageIndex: 0,
+                                    pageSize: 0,
+                                    property: OrderbyColumn,
+                                    orderBy: OrderbyTypes,
+                                    propertySearch: SelectColumn,
+                                    valuesSearch: valuesSearch
+                                }));
+                            }}
+                        >
+                        </Button>
+                    </Col>
                 </Row>
                 <Row style={{ margin: '10px 0' }}>
                     <Table
                         columns={columns}
                         dataSource={dataResource}
-                        rowKey={(record : ResourceDto) => record.id.toString()}
+                        rowKey={(record: ResourceDto) => record.id.toString()}
                         loading={loading}
-                        scroll={{ y: 500, x: 1300 }}
+                        style={{ width: '100%' }}
                         pagination={{
                             pageSize: pageSize,
                             total: totalCount,
@@ -196,8 +348,13 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                     />
                 </Row>
             </Col>
-            <Col span={10} style={{ textAlign: 'center' }} >
-                <Row style={{ fontSize: '20px', fontFamily: 'initial', fontWeight: 600 }}>CHỈNH SỬA CHI TIẾT</Row>
+            <Modal title="Thêm mới hoặc sửa Resource"
+                visible={isModalVisible}
+                onCancel={() => setisModalVisible(false)}
+                maskClosable={false}
+                style={{ top: 20 }}
+                footer={null}
+            >
                 <Row style={{
                     fontSize: '16px', fontFamily: 'monospace',
                     margin: '10px 0', padding: '20px 10px',
@@ -252,19 +409,19 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                         </Form.Item>
                         <Form.Item
                             label="Ngày sửa :"
-                            name="dateCreate"
+                            name="createdAt"
                         >
                             <Input disabled />
                         </Form.Item>
                         <Row gutter={[10, 10]}>
                             <Col span={6}><Button loading={loading} onClick={onReset} block icon={<RedoOutlined />}>Làm Mới</Button></Col>
-                            <Col span={6}><Button loading={loading} disabled={!checkCreate} type="primary" htmlType="submit" block icon={<CheckOutlined />}>Lưu</Button></Col>
-                            <Col span={6}><Button loading={loading} disabled={!checkCreate} onClick={onReset} block icon={<CloseOutlined />}>Hủy</Button></Col>
-                            <Col span={6}><Button loading={loading} disabled={checkCreate} type="primary" htmlType="submit" block icon={<PlusOutlined />}>Tạo mới</Button></Col>
+                            <Col span={6}><Button loading={loading} hidden={!checkCreate} type="primary" htmlType="submit" block icon={<CheckOutlined />}>Lưu</Button></Col>
+                            <Col span={6}><Button loading={loading} hidden={!checkCreate} onClick={onReset} block icon={<CloseOutlined />}>Hủy</Button></Col>
+                            <Col span={6}><Button loading={loading} hidden={checkCreate} type="primary" htmlType="submit" block icon={<PlusOutlined />}>Tạo mới</Button></Col>
                         </Row>
                     </Form>
                 </Row>
-            </Col>
+            </Modal>
         </Row >
     )
 }

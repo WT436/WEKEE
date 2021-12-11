@@ -12,43 +12,102 @@ namespace Account.Infrastructure.ModelQuery
         private readonly IUnitOfWork<AuthorizationContext> unitOfWork =
                           new UnitOfWork<AuthorizationContext>(new AuthorizationContext());
 
-        public async Task<IList<ResourceAction>> GetAllActive()
-                     => await unitOfWork.GetRepository<ResourceAction>().GetAllAsync(m => m.IsActive == true);
-
+        
         #region Lấy dữ liệu
-
         public List<ResourceAction> ListResourceActionWithId(int id)
-          => unitOfWork.GetRepository<ResourceAction>().GetAll(predicate: m => m.ActionId == id && m.IsActive == true).ToList();
-
-        #endregion
-
-        #region Tạo mới bản ghi
-        public void InsertUnique(ResourceAction resourceAction)
-        {
-            unitOfWork.GetRepository<ResourceAction>().Insert(resourceAction);
-            unitOfWork.SaveChanges();
-        }
-
-        public async Task InsertUniqueAsync(ResourceAction resourceAction)
-        {
-            await unitOfWork.GetRepository<ResourceAction>().InsertAsync(resourceAction);
-            unitOfWork.SaveChanges();
-        }
-        #endregion
-
-        #region Update bản ghi
-        public void UpdateActiveUnique(ResourceAction resourceAction)
-        {
-            unitOfWork.GetRepository<ResourceAction>().Update(resourceAction);
-            unitOfWork.SaveChanges();
-        }
+        => unitOfWork.GetRepository<ResourceAction>()
+                     .GetAll(predicate: m => m.ActionId == id && m.IsActive == true).ToList();
+        public async Task<IList<ResourceAction>> GetAllActive()
+        => await unitOfWork.GetRepository<ResourceAction>()
+                           .GetAllAsync(m => m.IsActive == true);
         #endregion
 
         #region Check bản ghi
         public ResourceAction CheckExistsUnique(int resourceId, int actionId)
-                              => unitOfWork.GetRepository<ResourceAction>()
-                                           .GetFirstOrDefault(predicate: m => m.ActionId == actionId
-                                                                           && m.ResourceId == resourceId);
+        => unitOfWork.GetRepository<ResourceAction>()
+                     .GetFirstOrDefault(predicate: m => m.ActionId == actionId
+                                                     && m.ResourceId == resourceId);
+        #endregion
+
+        #region Tạo mới - Create
+        public int Insert(ResourceAction resourceAction)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Insert(resourceAction);
+            return unitOfWork.SaveChanges();
+        }
+        public int Insert(List<ResourceAction> resourceActions)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Insert(resourceActions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(ResourceAction resourceAction)
+        {
+            await unitOfWork.GetRepository<ResourceAction>()
+                            .InsertAsync(resourceAction);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> InsertAsync(List<ResourceAction> resourceActions)
+        {
+            await unitOfWork.GetRepository<ResourceAction>()
+                            .InsertAsync(resourceActions);
+            return unitOfWork.SaveChanges();
+        }
+        #endregion
+
+        #region Cập nhật - Update
+        public int Update(ResourceAction resourceAction)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Update(resourceAction);
+            return unitOfWork.SaveChanges();
+        }
+        public int Update(List<ResourceAction> resourceActions)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Update(resourceActions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> UpdateAsync(ResourceAction resourceAction)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Update(resourceAction);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> UpdateAsync(List<ResourceAction> resourceActions)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Update(resourceActions);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Xóa - Delete
+        public int Delete(ResourceAction resourceAction)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Delete(resourceAction);
+            return unitOfWork.SaveChanges();
+        }
+        public int Delete(List<ResourceAction> resourceActions)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Delete(resourceActions);
+            return unitOfWork.SaveChanges();
+        }
+        public async Task<int> DeleteAsync(ResourceAction resourceAction)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Delete(resourceAction);
+            return await unitOfWork.SaveChangesAsync();
+        }
+        public async Task<int> DeleteAsync(List<ResourceAction> resourceActions)
+        {
+            unitOfWork.GetRepository<ResourceAction>()
+                      .Delete(resourceActions);
+            return await unitOfWork.SaveChangesAsync();
+        }
         #endregion
     }
 }

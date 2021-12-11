@@ -1,8 +1,10 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Dto;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.PermissionAssignment;
+using Account.Domain.ObjectValues.Enum;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -14,15 +16,7 @@ namespace Account.API.Src.AccountAreas
             _permissionAssignment = permissionAssignment;
         }
 
-        [Route(PermissionRouter.PermissionAssignmentBasic.UPDATE)]
-        [HttpPost]
-        public IActionResult BasicUpdate([FromBody] PermissionAssignmentDto permissionAssignmentDto)
-        {
-            _permissionAssignment.UpdateOrInsert(permissionAssignmentDto);
-            return Ok("true");
-        }
-
-        [Route(PermissionRouter.PermissionAssignmentBasic.GET)]
+        [Route(PermissionRouter.PermissionAssignmentAccount)]
         [HttpGet]
         public IActionResult BasicGet(int idRole, int pageIndex, int pageSize)
         {
@@ -31,5 +25,12 @@ namespace Account.API.Src.AccountAreas
               );
         }
 
+        [Route(PermissionRouter.PermissionAssignmentAccount)]
+        [HttpPost]
+        public IActionResult BasicUpdate([FromBody] PermissionAssignmentDto permissionAssignmentDto)
+        {
+            _permissionAssignment.UpdateOrInsert(permissionAssignmentDto);
+            return Ok("true");
+        }
     }
 }

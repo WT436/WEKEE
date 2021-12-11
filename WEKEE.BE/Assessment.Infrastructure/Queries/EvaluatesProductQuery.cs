@@ -105,7 +105,7 @@ namespace Assessment.Infrastructure.Queries
             return await unitOfWork.GetRepository<EvaluatesProduct>()
                                    .GetFirstOrDefaultAsync(predicate: m => m.LevelEvaluates == 1
                                                                         && m.IdEvaluatesProduct == idEvaluatesProduct,
-                                                             orderBy: o => o.OrderBy(v => v.DateCreate)
+                                                             orderBy: o => o.OrderBy(v => v.CreatedAt)
                                                      );
         }
 
@@ -114,7 +114,7 @@ namespace Assessment.Infrastructure.Queries
             var data =  await unitOfWork.GetRepository<EvaluatesProduct>()
                                         .GetPagedListAsync(predicate: m => m.LevelEvaluates == level
                                                                         && m.IdEvaluatesProduct == idEvaluatesProduct,
-                                                             orderBy: o => o.OrderBy(v => v.DateCreate),
+                                                             orderBy: o => o.OrderBy(v => v.CreatedAt),
                                                             pageSize: 10,
                                                            pageIndex: page
                                                           );

@@ -1,10 +1,11 @@
-﻿using Account.Application.Interface;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.Resource;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -16,60 +17,39 @@ namespace Account.API.Src.AccountAreas
             _resource = resource;
         }
 
-        [Route(PermissionRouter.AlgorithmRoleBasic.WATCH)]
+        [Route(PermissionRouter.AlgorithmRoleAccount)]
         [HttpGet]
         public IActionResult BasicWatch()
         {
             return Ok();
         }
 
-        [Route(PermissionRouter.AlgorithmRoleBasic.UPDATE)]
+        [Route(PermissionRouter.AlgorithmRoleAccount)]
         [HttpPost]
         public IActionResult BasicUpdate()
         {
             return Ok();
         }
 
-        [Route(PermissionRouter.AlgorithmRoleBasic.PATCH)]
+        [Route(PermissionRouter.AlgorithmRoleAccount)]
         [HttpPatch]
         public IActionResult BasicPatch()
         {
             return View();
         }
 
-        [Route(PermissionRouter.AlgorithmRoleBasic.LIST)]
-        [HttpPost]
+        [Route(PermissionRouter.AlgorithmRoleAccount)]
+        [HttpPut]
         public IActionResult BasicList()
         {
             return Ok();
         }
 
-        [Route(PermissionRouter.AlgorithmRoleBasic.GET)]
-        [HttpGet]
-        public IActionResult BasicGet()
-        {
-            return View();
-        }
-
-        [Route(PermissionRouter.AlgorithmRoleBasic.EDIT)]
-        [HttpPost]
-        public IActionResult BasicEdit()
-        {
-            return Ok();
-        }
-
-        [Route(PermissionRouter.AlgorithmRoleBasic.DELETE)]
+        [Route(PermissionRouter.AlgorithmRoleAccount)]
         [HttpDelete]
         public IActionResult BasicDelete()
         {
             return Ok();
-        }
-
-        [Route(PermissionRouter.AlgorithmRoleBasic.CREATE)]
-        [HttpPost]
-        public IActionResult BasicCreate()
-        {
-            return Ok("true");
         }
     }
 }

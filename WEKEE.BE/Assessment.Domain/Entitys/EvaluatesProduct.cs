@@ -21,8 +21,8 @@ namespace Assessment.Domain.Entitys
         public int? IdEvaluatesProduct { get; set; }
         public int Product { get; set; }
         public int Account { get; set; }
-        public DateTime? DateCreate { get; set; }
-        public DateTime? DateUpdate { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public virtual EvaluatesProduct IdEvaluatesProductNavigation { get; set; }
         public virtual ICollection<EvaluatesProduct> InverseIdEvaluatesProductNavigation { get; set; }

@@ -106,8 +106,8 @@ export default function PermissionAssignmentComponents(props: IPermissionAssignm
         dispatch(listFormRoleStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     }, []);
 
@@ -115,8 +115,8 @@ export default function PermissionAssignmentComponents(props: IPermissionAssignm
         dispatch(listFormPermissionStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     };
 

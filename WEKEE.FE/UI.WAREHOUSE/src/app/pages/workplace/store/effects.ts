@@ -3,21 +3,21 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import { 
-  WorkplaceActionTypes, 
-  GetToDoBeginAction, 
-  GetToDoSuccessAction, 
-  GetToDoFailAction 
+import {
+  GetToDoBeginAction,
+  GetToDoSuccessAction,
+  GetToDoFailAction
 } from './action';
 import { WorkplaceService } from './services';
 import ToDo from '../dtos/todo';
+import { ActionTypes } from './constants';
 
 @Injectable()
 export class WorkplaceEffects {
   constructor(private workplaceService: WorkplaceService, private action$: Actions) {}
 
   @Effect() GetToDos$ = this.action$.pipe(
-    ofType<GetToDoBeginAction>(WorkplaceActionTypes.GET_TO_DO_BEGIN),
+    ofType<GetToDoBeginAction>(ActionTypes.GET_TO_DO_BEGIN),
     mergeMap(() =>
       this.workplaceService.getToDos().pipe(
         map((data: ToDo[]) => {

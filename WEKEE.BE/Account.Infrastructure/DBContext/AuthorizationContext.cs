@@ -28,6 +28,7 @@ namespace Account.Infrastructure.DBContext
         public virtual DbSet<AuthorizationConstraint> AuthorizationConstraints { get; set; }
         public virtual DbSet<ConstraintAssignment> ConstraintAssignments { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<HistoryTable> HistoryTables { get; set; }
         public virtual DbSet<InfomationUser> InfomationUsers { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<PermissionAssignment> PermissionAssignments { get; set; }
@@ -38,9 +39,9 @@ namespace Account.Infrastructure.DBContext
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<SubjectAssignment> SubjectAssignments { get; set; }
         public virtual DbSet<SubjectGroup> SubjectGroups { get; set; }
-        public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserAccountIp> UserAccountIps { get; set; }
         public virtual DbSet<UserAccountStatus> UserAccountStatuses { get; set; }
+        public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -71,9 +72,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.AtomicId).HasColumnName("atomic_id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
@@ -90,15 +93,21 @@ namespace Account.Infrastructure.DBContext
                     .HasMaxLength(300)
                     .HasColumnName("name");
 
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.ActionBaseNavigation)
                     .WithMany(p => p.InverseActionBaseNavigation)
                     .HasForeignKey(d => d.ActionBase)
-                    .HasConstraintName("FK__Action__action_b__797309D9");
+                    .HasConstraintName("FK__Action__action_b__1EA48E88");
 
                 entity.HasOne(d => d.Atomic)
                     .WithMany(p => p.Actions)
                     .HasForeignKey(d => d.AtomicId)
-                    .HasConstraintName("FK__Action__atomic_i__787EE5A0");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Action__atomic_i__1DB06A4F");
             });
 
             modelBuilder.Entity<ActionAssignment>(entity =>
@@ -109,9 +118,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.ActionId).HasColumnName("action_id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsActive)
@@ -121,15 +132,22 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.PermissionId).HasColumnName("permission_id");
 
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.Action)
                     .WithMany(p => p.ActionAssignments)
                     .HasForeignKey(d => d.ActionId)
-                    .HasConstraintName("FK__ActionAss__actio__7F2BE32F");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ActionAss__actio__25518C17");
 
                 entity.HasOne(d => d.Permission)
                     .WithMany(p => p.ActionAssignments)
                     .HasForeignKey(d => d.PermissionId)
-                    .HasConstraintName("FK__ActionAss__permi__7E37BEF6");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ActionAss__permi__245D67DE");
             });
 
             modelBuilder.Entity<Address>(entity =>
@@ -137,6 +155,8 @@ namespace Account.Infrastructure.DBContext
                 entity.ToTable("Address");
 
                 entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
 
                 entity.Property(e => e.AdressLine1)
                     .IsRequired()
@@ -151,14 +171,11 @@ namespace Account.Infrastructure.DBContext
                     .HasMaxLength(256)
                     .HasColumnName("adress_line_3");
 
-                entity.Property(e => e.DateCreate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("date_create")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
 
-                entity.Property(e => e.DateEdit)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_edit")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
@@ -171,12 +188,15 @@ namespace Account.Infrastructure.DBContext
                     .HasColumnName("is_active")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.UserAccountId).HasColumnName("user_account_id");
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.UserAccount)
+                entity.HasOne(d => d.Account)
                     .WithMany(p => p.Addresses)
-                    .HasForeignKey(d => d.UserAccountId)
-                    .HasConstraintName("FK__Address__user_ac__0C85DE4D");
+                    .HasForeignKey(d => d.AccountId)
+                    .HasConstraintName("FK__Address__account__49C3F6B7");
             });
 
             modelBuilder.Entity<Atomic>(entity =>
@@ -185,9 +205,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
@@ -204,6 +226,17 @@ namespace Account.Infrastructure.DBContext
                     .HasMaxLength(300)
                     .IsUnicode(false)
                     .HasColumnName("name");
+
+                entity.Property(e => e.TypesRsc)
+                    .IsRequired()
+                    .HasMaxLength(300)
+                    .IsUnicode(false)
+                    .HasColumnName("types_rsc");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<AuthorizationConstraint>(entity =>
@@ -212,9 +245,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsActive)
@@ -226,6 +261,11 @@ namespace Account.Infrastructure.DBContext
                     .IsRequired()
                     .HasMaxLength(300)
                     .HasColumnName("name");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<ConstraintAssignment>(entity =>
@@ -236,9 +276,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.AuthorizationConstraintId).HasColumnName("authorizationConstraint_id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsActive)
@@ -248,15 +290,22 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.PermissionId).HasColumnName("permission_id");
 
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.AuthorizationConstraint)
                     .WithMany(p => p.ConstraintAssignments)
                     .HasForeignKey(d => d.AuthorizationConstraintId)
-                    .HasConstraintName("FK__Constrain__autho__6C190EBB");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Constrain__autho__0D7A0286");
 
                 entity.HasOne(d => d.Permission)
                     .WithMany(p => p.ConstraintAssignments)
                     .HasForeignKey(d => d.PermissionId)
-                    .HasConstraintName("FK__Constrain__permi__6B24EA82");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Constrain__permi__0C85DE4D");
             });
 
             modelBuilder.Entity<Group>(entity =>
@@ -265,9 +314,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description).HasColumnName("description");
@@ -275,19 +326,19 @@ namespace Account.Infrastructure.DBContext
                 entity.Property(e => e.GroupType)
                     .HasMaxLength(300)
                     .IsUnicode(false)
-                    .HasColumnName("group_Type");
+                    .HasColumnName("group_type");
 
                 entity.Property(e => e.Introduce).HasColumnName("introduce");
 
                 entity.Property(e => e.LinkedPages)
                     .HasMaxLength(300)
                     .IsUnicode(false)
-                    .HasColumnName("linked_Pages");
+                    .HasColumnName("linked_pages");
 
                 entity.Property(e => e.MembershipApproval)
                     .HasMaxLength(300)
                     .IsUnicode(false)
-                    .HasColumnName("membership_Approval");
+                    .HasColumnName("membership_approval");
 
                 entity.Property(e => e.NameGroup)
                     .IsRequired()
@@ -297,40 +348,78 @@ namespace Account.Infrastructure.DBContext
                 entity.Property(e => e.PostApproval)
                     .HasMaxLength(300)
                     .IsUnicode(false)
-                    .HasColumnName("post_Approval");
+                    .HasColumnName("post_approval");
 
-                entity.Property(e => e.Status)
-                    .IsRequired()
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasColumnName("status")
-                    .HasDefaultValueSql("('PUBLIC')");
+                entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.Property(e => e.Tags)
                     .HasMaxLength(300)
                     .IsUnicode(false)
                     .HasColumnName("tags");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+            });
+
+            modelBuilder.Entity<HistoryTable>(entity =>
+            {
+                entity.ToTable("HistoryTable");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.ActionRecord).HasColumnName("action_record");
+
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.DataNew)
+                    .IsRequired()
+                    .IsUnicode(false)
+                    .HasColumnName("data_new");
+
+                entity.Property(e => e.DataOld)
+                    .IsRequired()
+                    .IsUnicode(false)
+                    .HasColumnName("data_old");
+
+                entity.Property(e => e.IdRecord).HasColumnName("id_record");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<InfomationUser>(entity =>
             {
-                entity.ToTable("Infomation_User");
+                entity.ToTable("InfomationUser");
 
                 entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
 
                 entity.Property(e => e.Coordinates)
                     .HasMaxLength(300)
                     .IsUnicode(false)
                     .HasColumnName("coordinates");
 
-                entity.Property(e => e.DateCreate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("date_create")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
 
-                entity.Property(e => e.DateEdit)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_edit")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
@@ -338,27 +427,39 @@ namespace Account.Infrastructure.DBContext
                     .HasMaxLength(20)
                     .HasColumnName("description");
 
-                entity.Property(e => e.Gender)
-                    .HasMaxLength(5)
-                    .IsUnicode(false)
-                    .HasColumnName("gender");
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(255)
+                    .HasColumnName("first_name");
+
+                entity.Property(e => e.FullName)
+                    .HasMaxLength(255)
+                    .HasColumnName("full_name");
+
+                entity.Property(e => e.Gender).HasColumnName("gender");
 
                 entity.Property(e => e.IsActive)
                     .IsRequired()
                     .HasColumnName("is_active")
                     .HasDefaultValueSql("((1))");
 
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(255)
+                    .HasColumnName("last_name");
+
                 entity.Property(e => e.Picture)
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("picture");
 
-                entity.Property(e => e.UserAccountId).HasColumnName("user_account_id");
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.UserAccount)
+                entity.HasOne(d => d.Account)
                     .WithMany(p => p.InfomationUsers)
-                    .HasForeignKey(d => d.UserAccountId)
-                    .HasConstraintName("FK__Infomatio__user___1332DBDC");
+                    .HasForeignKey(d => d.AccountId)
+                    .HasConstraintName("FK__Infomatio__accou__5070F446");
             });
 
             modelBuilder.Entity<Permission>(entity =>
@@ -367,9 +468,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
@@ -386,6 +489,11 @@ namespace Account.Infrastructure.DBContext
                     .HasMaxLength(300)
                     .IsUnicode(false)
                     .HasColumnName("name");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<PermissionAssignment>(entity =>
@@ -394,9 +502,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsActive)
@@ -408,26 +518,37 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.RoleId).HasColumnName("role_id");
 
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.Permission)
                     .WithMany(p => p.PermissionAssignments)
                     .HasForeignKey(d => d.PermissionId)
-                    .HasConstraintName("FK__Permissio__permi__628FA481");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Permissio__permi__02084FDA");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.PermissionAssignments)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__Permissio__role___619B8048");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Permissio__role___01142BA1");
             });
 
             modelBuilder.Entity<ProcessUser>(entity =>
             {
-                entity.ToTable("process_User");
+                entity.ToTable("ProcessUser");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
+
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
@@ -447,23 +568,31 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.IsStatus).HasColumnName("is_status");
 
-                entity.Property(e => e.UserAccountId).HasColumnName("user_account_id");
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.UserAccount)
+                entity.HasOne(d => d.Account)
                     .WithMany(p => p.ProcessUsers)
-                    .HasForeignKey(d => d.UserAccountId)
-                    .HasConstraintName("FK__process_U__user___17F790F9");
+                    .HasForeignKey(d => d.AccountId)
+                    .HasConstraintName("FK__ProcessUs__accou__5629CD9C");
             });
 
             modelBuilder.Entity<Resource>(entity =>
             {
                 entity.ToTable("Resource");
 
+                entity.HasIndex(e => e.Name, "UQ__Resource__72E12F1B27295D07")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
@@ -484,7 +613,12 @@ namespace Account.Infrastructure.DBContext
                     .IsRequired()
                     .HasMaxLength(300)
                     .IsUnicode(false)
-                    .HasColumnName("types_Rsc");
+                    .HasColumnName("types_rsc");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
             });
 
             modelBuilder.Entity<ResourceAction>(entity =>
@@ -495,9 +629,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.ActionId).HasColumnName("action_id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsActive)
@@ -507,15 +643,22 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.ResourceId).HasColumnName("resource_id");
 
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.Action)
                     .WithMany(p => p.ResourceActions)
                     .HasForeignKey(d => d.ActionId)
-                    .HasConstraintName("FK__ResourceA__actio__04E4BC85");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ResourceA__actio__2BFE89A6");
 
                 entity.HasOne(d => d.Resource)
                     .WithMany(p => p.ResourceActions)
                     .HasForeignKey(d => d.ResourceId)
-                    .HasConstraintName("FK__ResourceA__resou__03F0984C");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ResourceA__resou__2B0A656D");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -524,9 +667,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Description)
@@ -550,10 +695,16 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.RoleId).HasColumnName("role_id");
 
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.RoleNavigation)
                     .WithMany(p => p.InverseRoleNavigation)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__Role__role_id__52593CB8");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Role__role_id__6EF57B66");
             });
 
             modelBuilder.Entity<Subject>(entity =>
@@ -562,9 +713,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.GorupId).HasColumnName("gorup_id");
@@ -574,18 +727,23 @@ namespace Account.Infrastructure.DBContext
                     .HasColumnName("is_active")
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.UserAccountId).HasColumnName("user_account_id");
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.HasOne(d => d.Gorup)
                     .WithMany(p => p.Subjects)
                     .HasForeignKey(d => d.GorupId)
-                    .HasConstraintName("FK__Subject__gorup_i__46E78A0C");
+                    .HasConstraintName("FK__Subject__gorup_i__619B8048");
 
-                entity.HasOne(d => d.UserAccount)
+                entity.HasOne(d => d.User)
                     .WithMany(p => p.Subjects)
-                    .HasForeignKey(d => d.UserAccountId)
+                    .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Subject__user_ac__45F365D3");
+                    .HasConstraintName("FK__Subject__user_id__60A75C0F");
             });
 
             modelBuilder.Entity<SubjectAssignment>(entity =>
@@ -594,9 +752,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsActive)
@@ -608,15 +768,22 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.SubjectId).HasColumnName("subject_id");
 
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.SubjectAssignments)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__SubjectAs__role___5812160E");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__SubjectAs__role___75A278F5");
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.SubjectAssignments)
                     .HasForeignKey(d => d.SubjectId)
-                    .HasConstraintName("FK__SubjectAs__subje__59063A47");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__SubjectAs__subje__76969D2E");
             });
 
             modelBuilder.Entity<SubjectGroup>(entity =>
@@ -625,9 +792,11 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.GorupId).HasColumnName("gorup_id");
@@ -639,37 +808,174 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.SubjectId).HasColumnName("subject_id");
 
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.Gorup)
                     .WithMany(p => p.SubjectGroups)
                     .HasForeignKey(d => d.GorupId)
-                    .HasConstraintName("FK__SubjectGr__gorup__4BAC3F29");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__SubjectGr__gorup__6754599E");
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.SubjectGroups)
                     .HasForeignKey(d => d.SubjectId)
-                    .HasConstraintName("FK__SubjectGr__subje__4CA06362");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__SubjectGr__subje__68487DD7");
             });
 
-            modelBuilder.Entity<UserAccount>(entity =>
+            modelBuilder.Entity<UserAccountIp>(entity =>
             {
-                entity.HasKey(e => e.UserProfileId)
-                    .HasName("PK__User_Acc__151D386EA88F53F3");
+                entity.ToTable("UserAccountIp");
 
-                entity.ToTable("User_Account");
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.HasIndex(e => e.UserName, "UQ__User_Acc__7C9273C4AB66600D")
-                    .IsUnique();
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
 
-                entity.HasIndex(e => e.Email, "UQ__User_Acc__AB6E6164FB7E9221")
-                    .IsUnique();
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("city");
 
-                entity.Property(e => e.UserProfileId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("user_profile_id");
+                entity.Property(e => e.CountryCode)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("country_code");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CountryName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("country_name");
+
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Ipv4)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("ipv4");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
+
+                entity.Property(e => e.IsDelete).HasColumnName("is_delete");
+
+                entity.Property(e => e.Latitude)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("latitude");
+
+                entity.Property(e => e.Longitude)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("longitude");
+
+                entity.Property(e => e.Postal)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("postal");
+
+                entity.Property(e => e.State)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("state");
+
+                entity.Property(e => e.UpdateAcount).HasColumnName("update_acount");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.UserAgent)
+                    .HasMaxLength(300)
+                    .HasColumnName("user_agent");
+
+                entity.HasOne(d => d.Account)
+                    .WithMany(p => p.UserAccountIps)
+                    .HasForeignKey(d => d.AccountId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__UserAccou__accou__412EB0B6");
+            });
+
+            modelBuilder.Entity<UserAccountStatus>(entity =>
+            {
+                entity.ToTable("UserAccountStatus");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("code");
+
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
+
+                entity.Property(e => e.IsDelete).HasColumnName("is_delete");
+
+                entity.Property(e => e.ReminderExpire).HasColumnName("reminder_expire");
+
+                entity.Property(e => e.ReminderToken)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("reminder_token");
+
+                entity.Property(e => e.StatusId).HasColumnName("status_id");
+
+                entity.Property(e => e.UpdateCount).HasColumnName("update_count");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.Account)
+                    .WithMany(p => p.UserAccountStatuses)
+                    .HasForeignKey(d => d.AccountId)
+                    .HasConstraintName("FK__UserAccou__accou__2E1BDC42");
+            });
+
+            modelBuilder.Entity<UserLogin>(entity =>
+            {
+                entity.ToTable("UserLogin");
+
+                entity.HasIndex(e => e.UserName, "UQ__UserLogi__7C9273C499656B4F")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.Email, "UQ__UserLogi__AB6E6164BA059B79")
+                    .IsUnique();
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Email)
@@ -695,7 +1001,7 @@ namespace Account.Infrastructure.DBContext
                     .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
-                    .HasColumnName("number_Phone");
+                    .HasColumnName("number_phone");
 
                 entity.Property(e => e.Password)
                     .IsRequired()
@@ -715,7 +1021,10 @@ namespace Account.Infrastructure.DBContext
                     .IsUnicode(false)
                     .HasColumnName("password_salt");
 
-                entity.Property(e => e.StatusId).HasColumnName("status_id");
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.UserName)
                     .IsRequired()
@@ -723,106 +1032,24 @@ namespace Account.Infrastructure.DBContext
                     .IsUnicode(false)
                     .HasColumnName("user_name");
 
-                entity.HasOne(d => d.Status)
-                    .WithMany(p => p.UserAccounts)
-                    .HasForeignKey(d => d.StatusId)
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.UserLogin)
+                    .HasForeignKey<UserLogin>(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__User_Acco__statu__33D4B598");
-
-                entity.HasOne(d => d.UserProfile)
-                    .WithOne(p => p.UserAccount)
-                    .HasForeignKey<UserAccount>(d => d.UserProfileId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__User_Acco__user___30F848ED");
-            });
-
-            modelBuilder.Entity<UserAccountIp>(entity =>
-            {
-                entity.ToTable("User_Account_Ip");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.DateCreate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("date_create")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.DateUpdate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("date_update")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.Ip)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("ip");
-
-                entity.Property(e => e.IpUserAccount).HasColumnName("ip_User_Account");
-
-                entity.Property(e => e.IsActive).HasColumnName("is-active");
-
-                entity.Property(e => e.IsDelete).HasColumnName("is-delete");
-
-                entity.Property(e => e.UpdateCount).HasColumnName("update-count");
-
-                entity.Property(e => e.UserAgent)
-                    .HasMaxLength(300)
-                    .HasColumnName("user-Agent");
-
-                entity.HasOne(d => d.IpUserAccountNavigation)
-                    .WithMany(p => p.UserAccountIps)
-                    .HasForeignKey(d => d.IpUserAccount)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__User_Acco__ip_Us__3A81B327");
-            });
-
-            modelBuilder.Entity<UserAccountStatus>(entity =>
-            {
-                entity.ToTable("User_Account_Status");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Code)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("code");
-
-                entity.Property(e => e.DateCreate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("date_create")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.DateUpdate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("date_update")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.IsActive).HasColumnName("is-active");
-
-                entity.Property(e => e.IsDelete).HasColumnName("is-delete");
-
-                entity.Property(e => e.ReminderExpire).HasColumnName("reminder_expire");
-
-                entity.Property(e => e.ReminderToken)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("reminder_token");
-
-                entity.Property(e => e.UpdateCount).HasColumnName("update-count");
+                    .HasConstraintName("FK__UserLogin__id__37A5467C");
             });
 
             modelBuilder.Entity<UserProfile>(entity =>
             {
-                entity.ToTable("User_Profile");
+                entity.ToTable("UserProfile");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.AcceptTermOfService).HasColumnName("accept_term_of_service");
+                entity.Property(e => e.CreateBy).HasColumnName("create_by");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("date_create")
+                    .HasColumnName("created_at")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.FacebookId)
@@ -830,27 +1057,22 @@ namespace Account.Infrastructure.DBContext
                     .IsUnicode(false)
                     .HasColumnName("facebook_id");
 
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(255)
-                    .HasColumnName("first_name");
-
-                entity.Property(e => e.FullName)
-                    .HasMaxLength(255)
-                    .HasColumnName("full_name");
-
                 entity.Property(e => e.GoogleId)
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasColumnName("google_id");
 
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(255)
-                    .HasColumnName("last_name");
+                entity.Property(e => e.IsAcceptTerm).HasColumnName("is_accept_term");
 
                 entity.Property(e => e.TimeZone)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("time_zone");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ZaloId)
                     .HasMaxLength(30)

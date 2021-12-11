@@ -1,10 +1,11 @@
-﻿using Account.Application.Interface;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.Resource;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -16,60 +17,39 @@ namespace Account.API.Src.AccountAreas
             _resource = resource;
         }
 
-        [Route(PermissionRouter.ConstraintAssignmentBasic.WATCH)]
+        [Route(PermissionRouter.ConstraintAssignmentAccount)]
         [HttpGet]
         public IActionResult BasicWatch()
         {
             return Ok();
         }
 
-        [Route(PermissionRouter.ConstraintAssignmentBasic.UPDATE)]
+        [Route(PermissionRouter.ConstraintAssignmentAccount)]
         [HttpPost]
         public IActionResult BasicUpdate()
         {
             return Ok();
         }
 
-        [Route(PermissionRouter.ConstraintAssignmentBasic.PATCH)]
+        [Route(PermissionRouter.ConstraintAssignmentAccount)]
         [HttpPatch]
         public IActionResult BasicPatch()
         {
             return View();
         }
 
-        [Route(PermissionRouter.ConstraintAssignmentBasic.LIST)]
-        [HttpPost]
+        [Route(PermissionRouter.ConstraintAssignmentAccount)]
+        [HttpPut]
         public IActionResult BasicList()
         {
             return Ok();
         }
 
-        [Route(PermissionRouter.ConstraintAssignmentBasic.GET)]
-        [HttpGet]
+        [Route(PermissionRouter.ConstraintAssignmentAccount)]
+        [HttpDelete]
         public IActionResult BasicGet()
         {
             return View();
-        }
-
-        [Route(PermissionRouter.ConstraintAssignmentBasic.EDIT)]
-        [HttpPost]
-        public IActionResult BasicEdit()
-        {
-            return Ok();
-        }
-
-        [Route(PermissionRouter.ConstraintAssignmentBasic.DELETE)]
-        [HttpDelete]
-        public IActionResult BasicDelete()
-        {
-            return Ok();
-        }
-
-        [Route(PermissionRouter.ConstraintAssignmentBasic.CREATE)]
-        [HttpPost]
-        public IActionResult BasicCreate()
-        {
-            return Ok("true");
         }
     }
 }

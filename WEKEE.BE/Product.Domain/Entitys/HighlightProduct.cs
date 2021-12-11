@@ -11,8 +11,8 @@ namespace Product.Domain.Entitys
         public int Key { get; set; }
         public string Values { get; set; }
         public int DisplayOrder { get; set; }
-        public DateTime? DateCreate { get; set; }
-        public DateTime? DateUpdate { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public int? IsStatus { get; set; }
         public int? Product { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using Account.Domain.Dto;
 using Account.Domain.Entitys;
 using Account.Domain.ObjectValues;
+using Account.Domain.ObjectValues.Enum;
 using Account.Infrastructure.MappingExtention;
 using System.Collections.Generic;
 using System.Linq;

@@ -32,7 +32,7 @@ namespace System.Infrastructure.Queries
                 }
                 else
                 {
-                    checkDataError.DateUpdate = DateTime.Now;
+                    checkDataError.UpdatedAt = DateTime.Now;
                     checkDataError = await MapUpdateExceptionLog(checkDataError);
                     unitOfWork.SaveChanges();
                 }
@@ -53,13 +53,13 @@ namespace System.Infrastructure.Queries
                         ErrorMessage = exception.Exception.Message,
                         ErrorTrace = exception.Exception.StackTrace,
                         DateRaised = DateTime.Now,
-                        DateUpdate = DateTime.Now,
+                        UpdatedAt = DateTime.Now,
                         UpdateCount = 0,
                     };
         private static async Task<ExceptionLog> MapUpdateExceptionLog(ExceptionLog exceptionLog)
         {
             exceptionLog.Id = exceptionLog.Id;
-            exceptionLog.DateUpdate = DateTime.Now;
+            exceptionLog.UpdatedAt = DateTime.Now;
             exceptionLog.UpdateCount++;
             return exceptionLog;
         }

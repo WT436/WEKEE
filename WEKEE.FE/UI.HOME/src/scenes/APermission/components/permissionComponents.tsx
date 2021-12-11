@@ -48,8 +48,8 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
         dispatch(listFormPermissionStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     }, []);
 
@@ -130,8 +130,8 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
         dispatch(listFormPermissionStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     };
 
@@ -160,8 +160,8 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                         dispatch(listFormPermissionStart({
                             pageIndex: pageIndex,
                             pageSize: pageSize,
-                            property: '',
-                            orderBy: ''
+                            property: "",
+                            orderBy: "",
                         }));
                         setCheckRestart(true);
 

@@ -52,9 +52,9 @@ namespace System.Infrastructure.DBContext
                     .HasColumnName("dateRaised")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DateUpdate)
+                entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateUpdate")
+                    .HasColumnName("UpdatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ErrorMessage)

@@ -9,39 +9,10 @@ import { PermissionDto } from './dtos/permissionDto';
 import { ResourceActionDto } from './dtos/resourceActionDto';
 import { ResourceDto } from './dtos/resourceDto';
 import { RoleDto } from './dtos/roleDto';
-
 class APermissionService {
-
     //#region  Resource
-    public async watchResourceBasic() {
-        let rs = await http.post('/watch/resource-basic');
-        if (rs) {
-            return rs.data;
-        }
-        else {
-            return rs;
-        }
-    }
-    public async updateResourceBasic(input: ResourceDto) {
-        let rs = await http.post('/update/resource-basic', input);
-        if (rs) {
-            return rs.data;
-        }
-        else {
-            return rs;
-        }
-    }
-    public async patchResourceBasic() {
-        let rs = await http.post('/patch/resource-basic');
-        if (rs) {
-            return rs.data;
-        }
-        else {
-            return rs;
-        }
-    }
-    public async listResourceBasic(input: OrderByListInput): Promise<PagedListOutput<ResourceDto>> {
-        let rs = await http.post('/list/resource-basic', input);
+    public async listResourceBasic(input: OrderByListInput): Promise<PagedListOutput<ResourceDto>> {     
+        let rs = await http.get('/account-resource', {params: input});
         if (rs) {
             return rs.data;
         }
@@ -59,7 +30,7 @@ class APermissionService {
         }
     }
     public async editResourceBasic(input: ResourceDto) {
-        let rs = await http.post('/edit/resource-basic', input);
+        let rs = await http.patch('/account-resource', input);
         if (rs) {
             return rs.data;
         }
@@ -68,7 +39,7 @@ class APermissionService {
         }
     }
     public async deleteResourceBasic(ids: Number[]) {
-        let rs = await http.delete('/delete/resource-basic', { params: { ids: ids } });
+        let rs = await http.delete('/account-resource', { params: { ids: ids } });
         if (rs) {
             return rs.data;
         }
@@ -76,8 +47,18 @@ class APermissionService {
             return rs;
         }
     }
+    public async EditStatusResourceBasic(ids: Number[]) {
+        let rs = await http.put('/account-resource', ids );
+        if (rs) {
+            return rs.data;
+        }
+        else {
+            return rs;
+        }
+    }
+    
     public async createResourceBasic(input: ResourceDto) {
-        let rs = await http.post('/create/resource-basic', input);
+        let rs = await http.post('/account-resource', input);
         if (rs) {
             return rs.data;
         }
@@ -89,7 +70,7 @@ class APermissionService {
 
     //#region  Atomic
     public async listAtomic() {
-        let rs = await http.post('/list/atomic-basic');
+        let rs = await http.get('/account-atomic');
         if (rs) {
             return rs.data;
         }

@@ -23,8 +23,8 @@ namespace Product.Domain.Entitys
         public int? Trademark { get; set; }
         public string Introduce { get; set; }
         public string Tag { get; set; }
-        public DateTime? DateCreate { get; set; }
-        public DateTime? DateUpdate { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public int? IsStatus { get; set; }
         public bool IsEnabled { get; set; }
         public int? Supplier { get; set; }

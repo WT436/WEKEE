@@ -13,8 +13,8 @@ CREATE TABLE [EvaluatesProduct](
 	[idEvaluatesProduct] INT NULL FOREIGN KEY REFERENCES [EvaluatesProduct] (id),
 	[product] INT NOT NULL,
 	[account] INT NOT NULL,
-	[dateCreate] DATETIME NULL DEFAULT (GETDATE()),
-	[dateUpdate] DATETIME NULL DEFAULT (GETDATE())
+	[CreatedAt] DATETIME NULL DEFAULT (GETDATE()),
+	[UpdatedAt] DATETIME NULL DEFAULT (GETDATE())
 )
 GO
 /******    Like Đánh giá  X  *****/
@@ -25,8 +25,8 @@ CREATE TABLE [LikeEvaluatesProduct](
 	[levelEvaluates] INT NOT NULL, -- lưu like cho rep hay eva 
 	[idEvaluates] INT NOT NULL,
 	[account] INT NOT NULL,
-	[dateCreate] DATETIME NULL DEFAULT (GETDATE()),
-	[dateUpdate] DATETIME NULL DEFAULT (GETDATE())
+	[CreatedAt] DATETIME NULL DEFAULT (GETDATE()),
+	[UpdatedAt] DATETIME NULL DEFAULT (GETDATE())
 )
 GO
 CREATE TABLE [ImageEvaluatesProduct]
@@ -41,6 +41,6 @@ CREATE TABLE [ImageEvaluatesProduct]
 	[typesImage] BIT NOT NULL , -- lưu like cho rep hay eva
 	[idEvaluatesProduct] INT NOT NULL,
 	[isEnabled] BIT NOT NULL DEFAULT (0),
-	[dateCreate] DATETIME NULL DEFAULT (GETDATE()),
-	[dateUpdate] DATETIME NULL DEFAULT (GETDATE()),
+	[CreatedAt] DATETIME NULL DEFAULT (GETDATE()),
+	[UpdatedAt] DATETIME NULL DEFAULT (GETDATE()),
 )

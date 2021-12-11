@@ -1,9 +1,10 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Dto;
 using Account.Domain.Entitys;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.Registration;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -15,7 +16,7 @@ namespace Account.API.Src.AccountAreas
             _registration = registration;
         }
 
-        [Route(LoginRouter.Registration.CREATE)]
+        [Route(LoginRouter.Registration)]
         [HttpPost]
         public async Task<IActionResult> Registration(AccountDtos accountDtos)
         {

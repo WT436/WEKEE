@@ -48,13 +48,13 @@ export default function RoleComponents(props: IRoleComponentsProps) {
         dispatch(listFormRoleStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     }, []);
 
     useEffect(() => {
-        
+
     }, [pageSize]);
 
     useEffect(() => {
@@ -126,7 +126,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
         {
             title: 'Cấp độ',
             dataIndex: 'levelRole'
-        },       
+        },
         {
             title: 'Role cha',
             dataIndex: 'roleId'
@@ -144,8 +144,8 @@ export default function RoleComponents(props: IRoleComponentsProps) {
         dispatch(listFormRoleStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     };
 
@@ -170,8 +170,8 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                         dispatch(listFormRoleStart({
                             pageIndex: pageIndex,
                             pageSize: pageSize,
-                            property: '',
-                            orderBy: ''
+                            property: "",
+                            orderBy: "",
                         }));
                         setCheckRestart(true);
 
@@ -181,7 +181,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                         <Button loading={loading}
                             disabled={checkRemove}
                             block
-                            onClick={()=>{dispatch(RoleRemoveStart(dataRemoveRole))}}
+                            onClick={() => { dispatch(RoleRemoveStart(dataRemoveRole)) }}
                             icon={<CheckOutlined />}>Lưu</Button></Col>
                     <Col span={4}><Button loading={loading} disabled={checkRemove} onClick={() => dispatch(RoleRemoveFeCancel())} block icon={<CloseOutlined />}>Hủy</Button></Col>
                 </Row>
@@ -189,7 +189,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                     <Table
                         columns={columns}
                         dataSource={dataRole}
-                        rowKey={(record : RoleDto) => record.id.toString()}
+                        rowKey={(record: RoleDto) => record.id.toString()}
                         loading={loading}
                         scroll={{ y: 500, x: 900 }}
                         pagination={{
@@ -245,7 +245,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                             name="roleId"
                             initialValue={1}
                         >
-                            <Input type='number'/>
+                            <Input type='number' />
                         </Form.Item>
                         <Form.Item
                             label="level Role :"
@@ -253,7 +253,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                             initialValue={0}
                             rules={[{ required: true, message: 'level Role không được để trống!' }]}
                         >
-                            <Input type='number' max='100' min='0'/>
+                            <Input type='number' max='100' min='0' />
                         </Form.Item>
                         <Form.Item name="isActive" label="Active">
                             <Switch />
@@ -265,7 +265,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                             label="Ngày sửa :"
                             name="dateCreate"
                         >
-                            <Input disabled/>
+                            <Input disabled />
                         </Form.Item>
                         <Row gutter={[10, 10]}>
                             <Col span={6}><Button loading={loading} onClick={onReset} block icon={<RedoOutlined />}>Làm Mới</Button></Col>

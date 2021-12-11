@@ -35,7 +35,6 @@ export default function* watchLoginRequestStart() {
 }
 
 function* createProductsStart(input: any) {
-  console.log(input);
   try {
     const { output } = yield race({
       output: call(service.createProductStart, input.payload),

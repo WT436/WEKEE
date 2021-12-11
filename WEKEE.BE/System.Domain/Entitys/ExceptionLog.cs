@@ -15,7 +15,7 @@ namespace System.Domain.Entitys
         public string ErrorMessage { get; set; }
         public string ErrorTrace { get; set; }
         public DateTime DateRaised { get; set; }
-        public DateTime DateUpdate { get; set; }
+        public DateTime UpdatedAt { get; set; }
         public int UpdateCount { get; set; }
         public bool? IsFix { get; set; }
     }

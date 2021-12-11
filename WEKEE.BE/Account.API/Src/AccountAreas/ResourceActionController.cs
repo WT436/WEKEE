@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Dto;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.ResourceAction;
+using Account.Domain.ObjectValues.Enum;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -18,28 +20,23 @@ namespace Account.API.Src.AccountAreas
             _resourceAction = resourceAction;
         }
 
-        [Route(PermissionRouter.ResourceActionBasic.WATCH)]
+        [Route(PermissionRouter.ResourceActionAccount)]
         [HttpGet]
-        public IActionResult BasicWatch()
+        public IActionResult BasicGet(int idAction, int pageIndex, int pageSize)
         {
-            return Ok();
+            return Ok(_resourceAction.ResourceActionDtos(idAction: idAction,
+                                                         pagedListInput: new PagedListInput() { PageIndex = pageIndex,
+                                                                                                PageSize = pageSize })
+            );
         }
 
-        [Route(PermissionRouter.ResourceActionBasic.UPDATE)]
-        [HttpPost]
+        [Route(PermissionRouter.ResourceActionAccount)]
+        [HttpPatch]
         public IActionResult BasicUpdate([FromBody] ResourceActionDto resourceActionDto)
         {
             _resourceAction.UpdateOrInsertResourceAction(resourceActionDto);
             return Ok("true");
         }
 
-        [Route(PermissionRouter.ResourceActionBasic.GET)]
-        [HttpGet]
-        public IActionResult BasicGet(int idAction, int pageIndex ,int pageSize)
-        {
-            return Ok(_resourceAction.ResourceActionDtos(idAction: idAction,
-                                                         pagedListInput: new PagedListInput() { PageIndex = pageIndex, PageSize = pageSize })
-            );
-        }
     }
 }

@@ -44,8 +44,8 @@ export default function SError(props: ISErrorProps) {
         dispatch(getListErrorSystemStart({
             pageIndex: 0,
             pageSize: 20,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     }, []);
 
@@ -61,8 +61,8 @@ export default function SError(props: ISErrorProps) {
         dispatch(getListErrorSystemStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     }
     const columns = [

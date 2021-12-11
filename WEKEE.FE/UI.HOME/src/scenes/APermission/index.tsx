@@ -28,9 +28,6 @@ const stateSelector = createStructuredSelector<any, any>({
 });
 
 export default function APermission(props: IAPermissionProps) {
-
-    
-
     useInjectReducer(key, reducer);
     useInjectSaga(key, saga);
     const { } = useSelector(stateSelector);
@@ -41,7 +38,7 @@ export default function APermission(props: IAPermissionProps) {
                 <TabPane tab="Overview" key="0">
                     <CommonRoleComponents />
                 </TabPane>
-                <TabPane disabled={false} tab="Resource" key="1">
+                <TabPane disabled={false} tab="Resource" key="Resource">
                     <ResourceComponents />
                 </TabPane>
                 <TabPane disabled={false} tab="Atomic" key="2">

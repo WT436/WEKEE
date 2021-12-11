@@ -1,5 +1,23 @@
-﻿using Account.Application.Application;
-using Account.Application.Interface;
+﻿using Account.Application.AccountAdminProcess;
+using Account.Application.Action;
+using Account.Application.ActionAssignment;
+using Account.Application.AdminAccount;
+using Account.Application.Atomic;
+using Account.Application.CacheSession;
+using Account.Application.ChangePassword;
+using Account.Application.CheckRole;
+using Account.Application.InfomationUser;
+using Account.Application.LoginAccount;
+using Account.Application.Permission;
+using Account.Application.PermissionAssignment;
+using Account.Application.ProcessAccount;
+using Account.Application.ProcessIPAccount;
+using Account.Application.Registration;
+using Account.Application.Resource;
+using Account.Application.ResourceAction;
+using Account.Application.Role;
+using Account.Application.Subject;
+using Account.Application.SubjectAssignment;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Utils.Auth;
@@ -18,21 +36,21 @@ namespace Account.API.InstallStartup.InstallerServices
             services.AddTransient<ICacheBase, CacheMemoryHelper>();
 
             // DI Account User
-            services.AddTransient<IRegistration, Registration>();
-            services.AddTransient<ILoginAccount, LoginAccount>();
-            services.AddTransient<IChangePassword, ChangePassword>();
-            services.AddTransient<ICheckRole, CheckRole>();
-            services.AddTransient<IProcessAccount, ProcessAccount>();
-            services.AddTransient<IProcessIPAccount, ProcessIPAccount>();
-            services.AddTransient<ICacheSession, CacheSession>();
+            services.AddTransient<IRegistration, ARegistration>();
+            services.AddTransient<ILoginAccount, ALoginAccount>();
+            services.AddTransient<IChangePassword, AChangePassword>();
+            services.AddTransient<ICheckRole, ACheckRole>();
+            services.AddTransient<IProcessAccount, AProcessAccount>();
+            services.AddTransient<IProcessIPAccount, AProcessIPAccount>();
+            services.AddTransient<ICacheSession, ACacheSession>();
             services.AddTransient<IInfomationUser, AInfomationUser>();
 
             // DI Role
-            services.AddTransient<IResource, Resource>();
-            services.AddTransient<IAtomic, Atomic>();
-            services.AddTransient<IAction, Action>();
-            services.AddTransient<IPermission, Permission>();
-            services.AddTransient<IRole, Role>();
+            services.AddTransient<IResource, AResource>();
+            services.AddTransient<IAtomic, AAtomic>();
+            services.AddTransient<IAction, AAction>();
+            services.AddTransient<IPermission, APermission>();
+            services.AddTransient<IRole, ARole>();
             services.AddTransient<IResourceAction, AResourceAction>();
             services.AddTransient<IActionAssignment, AActionAssignment>();
             services.AddTransient<IPermissionAssignment, APermissionAssignment>();

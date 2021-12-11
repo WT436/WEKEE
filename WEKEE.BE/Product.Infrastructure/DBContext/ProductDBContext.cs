@@ -61,9 +61,9 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.CategoryMain).HasColumnName("categoryMain");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DateEnd)
@@ -106,9 +106,9 @@ namespace Product.Infrastructure.DBContext
                     .HasColumnName("blog")
                     .HasDefaultValueSql("(N'Chưa có bào viết nào về sản phẩm này ,quý khách vui lòng quay lại sau ')");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsEnabled).HasColumnName("isEnabled");
@@ -133,14 +133,14 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DateUpdate)
+                entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateUpdate")
+                    .HasColumnName("UpdatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Guarantee).HasColumnName("guarantee");
@@ -218,14 +218,14 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DateUpdate)
+                entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateUpdate")
+                    .HasColumnName("UpdatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.DisplayOrder).HasColumnName("displayOrder");
@@ -316,14 +316,14 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.CategoryProduct).HasColumnName("categoryProduct");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.DateUpdate)
+                entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateUpdate")
+                    .HasColumnName("UpdatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Fragile)
@@ -434,9 +434,9 @@ namespace Product.Infrastructure.DBContext
                     .HasMaxLength(200)
                     .HasColumnName("classifyValues");
 
-                entity.Property(e => e.DateCreate)
+                entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("dateCreate")
+                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsEnabled).HasColumnName("isEnabled");

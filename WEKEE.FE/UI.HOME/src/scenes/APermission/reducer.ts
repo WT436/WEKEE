@@ -134,13 +134,34 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.RESOURCE_REMOVE_FE_ITEM_START:
-      return {
-        ...state,
-        dataResource: state.dataResource.filter(
-          (el: ResourceDto) => el.id !== action.payload
-        ),
-        dataRemoveResource: state.dataRemoveResource.concat(action.payload),
-      };
+
+      if(action.payload.types==1)
+      {
+        return {
+          ...state,
+          dataResource: state.dataResource.filter(
+            (el: ResourceDto) => el.id !== action.payload.id
+          ),
+          dataRemoveResource: state.dataRemoveResource.concat(action.payload.id),
+        };
+      }
+
+      if(action.payload.types==2)
+      {
+        return {
+          ...state,
+          dataResource: state.dataResource.map(
+            (el: ResourceDto) => el.id === action.payload.id ? {...el, isActive : !el.isActive }: el
+          ),
+          // nếu chưa có thì add , nếu có thì xóa
+          dataRemoveResource: !state.dataRemoveResource.includes(action.payload.id)
+                              ?state.dataRemoveResource.concat(action.payload.id)
+                              :state.dataRemoveResource.filter((num)=> num!==action.payload.id),
+        };
+      }
+      
+      return;
+     
     case ActionTypes.RESOURCE_REMOVE_FE_ITEM_CANCEL:
       return {
         ...state,
@@ -164,6 +185,25 @@ function aPermissionReducer(
       return {
         ...state,
       };
+
+      case ActionTypes.RESOURCE_EDIT_STATUS_START:
+        return {
+          ...state,
+        };
+      case ActionTypes.RESOURCE_EDIT_STATUS_COMPLETED:
+        notification.success({
+          message: "Thành Công",
+          description: "Đã xóa Thành Công " + action.payload + " Bản Ghi!",
+          placement: "bottomRight",
+        });
+        return {
+          ...state,
+          dataRemoveResource: [],
+        };
+      case ActionTypes.RESOURCE_EDIT_STATUS_ERROR:
+        return {
+          ...state,
+        };
     //#endregion
 
     //#region Atomic

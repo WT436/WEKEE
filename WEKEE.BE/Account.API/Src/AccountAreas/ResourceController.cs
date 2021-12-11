@@ -1,9 +1,12 @@
-﻿using Account.Application.Interface;
-using Account.Domain.Dto;
-using Account.Domain.ObjectValues;
+﻿using Account.Domain.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.Resource;
+using System.Threading.Tasks;
+using Account.Domain.ObjectValues.Enum;
+using System.Linq;
+using System;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -15,62 +18,42 @@ namespace Account.API.Src.AccountAreas
             _resource = resource;
         }
 
-        [Route(PermissionRouter.ResourceBasic.WATCH)]
+        [Route(PermissionRouter.ResourceAccount)]
         [HttpGet]
-        public IActionResult BasicWatch(OrderByPageListInput orderByPageListInput)
+        public async Task<IActionResult> BasicWatch(SearchOrderPageInput searchOrderPageInput)
         {
-            var data = _resource.ListOrderByAscResource(orderByPageListInput);
-            return Ok(data);
+            return Ok(await _resource.ListResourceBasicAsync(searchOrderPageInput));
         }
 
-        [Route(PermissionRouter.ResourceBasic.UPDATE)]
+        [Route(PermissionRouter.ResourceAccount)]
         [HttpPost]
+        public async Task<IActionResult> BasicCreate([FromBody] ResourceDto resourceDto)
+        {
+            return Ok(await _resource.InsertResourceAsync(resourceDto));
+        }
+
+        /// <summary>
+        /// Cập nhật status
+        /// </summary>
+        [Route(PermissionRouter.ResourceAccount)]
+        [HttpPut]
         public IActionResult BasicUpdate([FromBody] List<int> ids)
         {
             return Ok(_resource.UpdateResource(ids));
         }
 
-        [Route(PermissionRouter.ResourceBasic.LIST)]
-        [HttpPost]
-        public IActionResult BasicList([FromBody] OrderByPageListInput orderByPagedListInput)
-        {
-            PagedListOutput<ResourceDto> data;
-
-            if (orderByPagedListInput.OrderBy.ToUpper() == "ASCENT")
-            {
-                data = _resource.ListOrderByAscResource(orderByPagedListInput);
-            }
-            else if (orderByPagedListInput.OrderBy.ToUpper() == "DECREASE")
-            {
-                data = _resource.ListOrderByDescResource(orderByPagedListInput);
-            }
-            else
-            {
-                data = _resource.ListResourceBasic(orderByPagedListInput);
-            };
-            return Ok(data);
-        }
-
-        [Route(PermissionRouter.ResourceBasic.EDIT)]
-        [HttpPost]
-        public IActionResult BasicEdit([FromBody] ResourceDto resourceDto)
+        [Route(PermissionRouter.ResourceAccount)]
+        [HttpPatch]
+        public IActionResult BasicEdit([FromBody]ResourceDto resourceDto)
         {
             return Ok(_resource.EditResource(resourceDto));
         }
 
-        [Route(PermissionRouter.ResourceBasic.DELETE)]
+        [Route(PermissionRouter.ResourceAccount)]
         [HttpDelete]
         public IActionResult BasicDelete(List<int> ids)
         {
             return Ok(_resource.RemoveResource(ids));
-        }
-
-        [Route(PermissionRouter.ResourceBasic.CREATE)]
-        [HttpPost]
-        public IActionResult BasicCreate([FromBody] ResourceDto resourceDto)
-        {
-            _resource.InsertResource(resourceDto);
-            return Ok("true");
-        }
+        }      
     }
 }

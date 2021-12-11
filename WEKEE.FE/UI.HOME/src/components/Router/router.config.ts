@@ -21,7 +21,7 @@ export const adminRouters: any = [
     component: LoadableComponent(() => import("../../scenes/AAccount")),
   },
   {
-    path: "/admin/setting-role-basic",
+    path: "/admin/setting-role",
     exact: true,
     component: LoadableComponent(() => import("../../scenes/APermission")),
   },

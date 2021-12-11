@@ -111,8 +111,8 @@ export default function ActionAssignmentComponents(props: IActionAssignmentCompo
         dispatch(listFormPermissionStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     }, []);
 
@@ -120,8 +120,8 @@ export default function ActionAssignmentComponents(props: IActionAssignmentCompo
         dispatch(listFormPermissionStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: '',
-            orderBy: ''
+            property: "",
+            orderBy: "",
         }));
     };
 

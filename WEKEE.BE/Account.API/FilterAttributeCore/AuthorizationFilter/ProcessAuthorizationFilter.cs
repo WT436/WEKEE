@@ -1,6 +1,4 @@
-﻿using Account.Application.Application;
-using Account.Application.Interface;
-using Account.Domain.Dto;
+﻿using Account.Domain.Dto;
 using Account.Domain.Entitys;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -8,6 +6,11 @@ using Microsoft.AspNetCore.Routing;
 using System;
 using System.Linq;
 using Account.API.SettingUrl.Base;
+using Account.Application.ProcessAccount;
+using Account.Application.CheckRole;
+using Account.Application.CacheSession;
+using Account.Application.ProcessIPAccount;
+using Account.Application.LoginAccount;
 // xác thực : https://docs.oracle.com/cd/B28196_01/idmanage.1014/b25990/v2authen.htm
 namespace Account.API.FilterAttributeCore.AuthorizationFilter
 {
@@ -16,8 +19,8 @@ namespace Account.API.FilterAttributeCore.AuthorizationFilter
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             // khởi tạo cần thiết : 
-            IProcessAccount processAccount = new ProcessAccount();
-            ICheckRole checkRole = new CheckRole();
+            IProcessAccount processAccount = new AProcessAccount();
+            ICheckRole checkRole = new ACheckRole();
             // lấy thông tin
             var token = context.HttpContext.Request.Headers["Authorization"].ToString();
             var ip = context.HttpContext.Connection.RemoteIpAddress.ToString();
@@ -64,21 +67,21 @@ namespace Account.API.FilterAttributeCore.AuthorizationFilter
                 }
                 else // token có thể xác thực được
                 {
-                    ICacheSession cacheSession = new CacheSession();
+                    ICacheSession cacheSession = new ACacheSession();
                     var cacheSessionAccount = cacheSession.GetUniqueSession(tokenValidate.Account_User);
                     if (cacheSessionAccount == null) // Trong cache Không có Session User này
                     {
                         // Kiểm tra IP và csdl rồi đăng nhập tự động
-                        IProcessIPAccount processIPAccount = new ProcessIPAccount();
+                        IProcessIPAccount processIPAccount = new AProcessIPAccount();
                         var ipLst = processIPAccount.GetListIPAccount(tokenValidate.Id);
-                        if (ipLst.Any(m => m.Ip == tokenValidate.Ip && m.Ip == ip)) // Ip chính Xác
+                        if (ipLst.Any(m => m.Ipv4 == tokenValidate.Ip && m.Ipv4 == ip)) // Ip chính Xác
                         {
-                            ILoginAccount account = new LoginAccount();
+                            ILoginAccount account = new ALoginAccount();
                             var unitAccount = account.getUserAccount(tokenValidate.Id); // lấy thông tin tài khoản
-                            var role = checkRole.RoleDtos(unitAccount.UserProfileId); // lấy quyền tài khoản
+                            var role = checkRole.RoleDtos(unitAccount.Id); // lấy quyền tài khoản
                             cacheSession.SetUniqueSession(new SessionCustom
                             {
-                                Id_User = unitAccount.UserProfileId,
+                                Id_User = unitAccount.Id,
                                 Account_User = unitAccount.UserName,
                                 Email = unitAccount.Email,
                                 Ip = ip,

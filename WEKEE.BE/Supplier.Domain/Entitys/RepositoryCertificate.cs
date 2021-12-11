@@ -17,7 +17,7 @@ namespace Supplier.Domain.Entitys
         public string HtmlCertificate { get; set; }
         public string ImageCertificate { get; set; }
         public string Descrpition { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public bool? IsEnabled { get; set; }
 
         public virtual ICollection<SupplierCertificate> SupplierCertificates { get; set; }

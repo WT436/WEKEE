@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Dto;
 using Account.Domain.Entitys;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +9,10 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
+using Account.Application.LoginAccount;
+using Account.Application.CheckRole;
+using Account.Application.ProcessAccount;
+using Account.Application.CacheSession;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -21,14 +25,13 @@ namespace Account.API.Src.AccountAreas
         private readonly IProcessAccount _processAccount;
         private readonly ICacheSession _cacheBase;
         public LoginAccountController(ILoginAccount loginAccount, ICheckRole checkRole,
-                                      IProcessAccount processAccount, ICacheSession cacheBase,
-                                      IProcessIPAccount processIPAccount)
+                                      IProcessAccount processAccount, ICacheSession cacheBase)
         {
             _loginAccount = loginAccount; _checkRole = checkRole;
             _processAccount = processAccount; _cacheBase = cacheBase;
         }
 
-        [Route(LoginRouter.LoginAccount.GET)]
+        [Route(LoginRouter.LoginAccount)]
         [HttpPost]
         public async Task<IActionResult> LoginAccount([FromBody] AuthenticationInput loginDto)
         {

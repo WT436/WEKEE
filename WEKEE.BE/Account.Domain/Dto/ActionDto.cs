@@ -12,7 +12,7 @@ namespace Account.Domain.Dto
         public string NameAtomic { get; set; }
         public string Description { get; set; }
         public int? ActionBase { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public bool? IsActive { get; set; }
     }
 }

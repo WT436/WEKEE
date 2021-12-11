@@ -22,7 +22,7 @@ namespace Supplier.Domain.Entitys
         public string NameShop { get; set; }
         public string LinkShop { get; set; }
         public string Adress { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public bool IsActive { get; set; }
         public bool IsEnabled { get; set; }
         public int? UseAccount { get; set; }
