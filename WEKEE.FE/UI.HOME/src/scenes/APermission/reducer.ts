@@ -60,6 +60,7 @@ export const initialState: APermissionState = {
   dataRemoveAction: [],
   dataRemovePermission: [],
   dataRemoveRole: [],
+  dataRemoveAtomic:[]
 };
 
 function aPermissionReducer(

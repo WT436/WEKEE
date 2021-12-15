@@ -2,7 +2,10 @@ export interface AtomicDto {
     id: number
     name: string
     description: string
+    typesRsc : string
     isActive: boolean
-    dateCreate: String
+    createdAt: Date
+    createBy: String
+    updatedAt: Date
     count: Number
 }

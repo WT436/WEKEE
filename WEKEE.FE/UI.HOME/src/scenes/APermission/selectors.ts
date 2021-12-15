@@ -22,6 +22,7 @@ const makeSelectDataAction = () => createSelector(select, substate => substate.d
 const makeSelectDataPermission = () => createSelector(select, substate => substate.dataPermission);
 const makeSelectDataRole = () => createSelector(select, substate => substate.dataRole);
 const makeSelectDataRemoveResource = () => createSelector(select, substate => substate.dataRemoveResource);
+const makeSelectDataRemoveAtomic = () => createSelector(select, substate => substate.dataRemoveAtomic);
 const makeSelectDataRemoveAction = () => createSelector(select, substate => substate.dataRemoveAction);
 const makeSelectDataRemovePermission = () => createSelector(select, substate => substate.dataRemovePermission);
 const makeSelectDataRemoveRole = () => createSelector(select, substate => substate.dataRemoveRole);
@@ -39,5 +40,5 @@ export {
     makeSelectDataRemoveAction,makeSelectDataRemovePermission,makeSelectDataRemoveRole,makeSelectDataResourceAction,
     makeSelectInsertOrUpdateResourceAction,makeSelectPageIndexSub,makeSelectPageSizeSub,makeSelectTotalCountSub,
     makeSelectTotalPagesSub,makeSelectInsertOrUpdateActionAssignment,makeSelectDataActionAssignment,
-    makeSelectDataPermissionAssignment,makeSelectInsertOrUpdatePermissionAssignment
+    makeSelectDataPermissionAssignment,makeSelectInsertOrUpdatePermissionAssignment,makeSelectDataRemoveAtomic
 };

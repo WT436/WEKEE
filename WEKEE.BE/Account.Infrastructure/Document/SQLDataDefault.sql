@@ -79,17 +79,19 @@ GO
 SET IDENTITY_INSERT [Role] OFF
 GO
 
-SET IDENTITY_INSERT [User_Profile] ON
+SET IDENTITY_INSERT [UserProfile] ON
 GO
-INSERT INTO [UserProfile] ([id],[is_accept_term])VALUES (1,1)
-SET IDENTITY_INSERT [User_Profile] OFF
+INSERT INTO [UserProfile] ([id],[is_accept_term]) VALUES (1,1)
+SET IDENTITY_INSERT [UserProfile] OFF
+
 GO
-SET IDENTITY_INSERT [User_Account_Status] ON
+SET IDENTITY_INSERT [UserAccountStatus] ON
 GO
-INSERT INTO [UserAccountStatus] ([id])VALUES (1)
-SET IDENTITY_INSERT [User_Account_Status] OFF
+INSERT INTO [UserAccountStatus] ([id],[account_id],[status_id])VALUES (1,1,0)
+SET IDENTITY_INSERT [UserAccountStatus] OFF
 GO
-INSERT INTO [UserLogin] ([user_profile_id],
+
+INSERT INTO [UserLogin] ([id],
 						 [user_name],
 						 [login_fall_number],
 						 [email],
@@ -108,6 +110,7 @@ INSERT INTO [UserLogin] ([user_profile_id],
 			  'MD5',
 			  1)
 GO
+
 SET IDENTITY_INSERT [UserAccountIp] ON
 GO
 INSERT INTO [UserAccountIp] ([id],
@@ -118,7 +121,7 @@ INSERT INTO [UserAccountIp] ([id],
 			  '1.54.195.166',
 			  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
 			  1)
-SET IDENTITY_INSERT [User_Account_Ip] OFF
+SET IDENTITY_INSERT [UserAccountIp] OFF
 GO
 SET IDENTITY_INSERT [Address] ON
 GO

@@ -404,7 +404,7 @@ GO
 -- ====================================================================
 CREATE TABLE [Resource]
 (
-	[id] INT IDENTITY(1,1) PRIMARY KEY,
+	[id] INT IDENTITY(1,1) CONSTRAINT [PK__Resource__3213E83FB3983A2E] PRIMARY KEY CLUSTERED,
 	[name] NVARCHAR(300) UNIQUE NOT NULL, -- lưu trữ các bảng
 	[types_rsc] VARCHAR(300) NOT NULL, -- kiểu định dạng cho hành động 0:URL,1:Namespace,2:FUNCTION.....
 	[description] NVARCHAR(MAX) NOT NULL,

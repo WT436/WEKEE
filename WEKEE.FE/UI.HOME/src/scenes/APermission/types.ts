@@ -38,6 +38,7 @@ export interface APermissionState {
      readonly dataPermissionAssignment: PermissionAssignmentDto[]
      readonly insertOrUpdatePermissionAssignment: PermissionAssignmentDto
      readonly dataRemoveResource: Number[]
+     readonly dataRemoveAtomic: Number[]
      readonly dataRemoveAction: Number[]
      readonly dataRemovePermission: Number[]
      readonly dataRemoveRole: Number[]
