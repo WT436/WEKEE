@@ -34,37 +34,37 @@ export default function APermission(props: IAPermissionProps) {
 
     return (
         <>
-            <Tabs defaultActiveKey="0">
-                <TabPane tab="Overview" key="0">
+            <Tabs defaultActiveKey="Overview">
+                <TabPane tab="Overview" key="Overview">
                     <CommonRoleComponents />
                 </TabPane>
                 <TabPane disabled={false} tab="Resource" key="Resource">
                     <ResourceComponents />
                 </TabPane>
-                <TabPane disabled={false} tab="Atomic" key="2">
+                <TabPane disabled={false} tab="Atomic" key="Atomic">
                     <AtomicComponents />
                 </TabPane>
-                <TabPane disabled={false} tab="Resource Action" key="3">
+                {/* <TabPane disabled={false} tab="Resource Action" key="Resource_Action">
                     <ResourceActionComponents />
-                </TabPane>
-                <TabPane disabled={false} tab="Action" key="4">
+                </TabPane> */}
+                <TabPane disabled={false} tab="Action" key="Action">
                     <ActionComponents />
                 </TabPane>
-                <TabPane disabled={false} tab="Action Assignment" key="5">
+                {/* <TabPane disabled={false} tab="Action Assignment" key="Action_Assignment">
                     <ActionAssignmentComponents />
-                </TabPane>
-                <TabPane disabled={false} tab="Permission" key="6">
+                </TabPane> */}
+                <TabPane disabled={false} tab="Permission" key="Permission">
                     <PermissionComponents />
                 </TabPane>
-                <TabPane disabled={false} tab="Permission Assignment" key="7">
+                {/* <TabPane disabled={false} tab="Permission Assignment" key="Permission_Assignment">
                     <PermissionAssignmentComponent />
-                </TabPane>
-                <TabPane disabled={false} tab="Role " key="8">
+                </TabPane> */}
+                <TabPane disabled={false} tab="Role " key="Role">
                     <RoleComponents />
                 </TabPane>
-                <TabPane disabled={false} tab="Algorithm Role" key="9">
+                {/* <TabPane disabled={false} tab="Algorithm Role" key="Algorithm_Role">
                     <RoleComponents />
-                </TabPane>
+                </TabPane> */}
             </Tabs>
 
             <Modal

@@ -22,9 +22,9 @@ namespace Account.API.Src.AccountAreas
 
         [Route(PermissionRouter.RoleAccount)]
         [HttpGet]
-        public IActionResult BasicWatch(OrderByPageListInput orderByPageListInput)
+        public async Task<IActionResult> BasicWatch(SearchOrderPageInput searchOrderPageInput)
         {
-            var data = _role.ListOrderByAscRole(orderByPageListInput);
+            var data = await _role.ListRoleBasicAsync(searchOrderPageInput);
             return Ok(data);
         }
 
@@ -32,7 +32,6 @@ namespace Account.API.Src.AccountAreas
         [HttpPost]
         public IActionResult BasicCreate([FromBody] RoleDto roleDto)
         {
-            _role.InsertRole(roleDto);
             return Ok("true");
         }
 

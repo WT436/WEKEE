@@ -23,21 +23,21 @@ namespace Account.API.Src.AccountAreas
         [HttpPost(PermissionRouter.ActionAccount)]
         public IActionResult BasicCreate([FromBody] ActionDto actionDto)
         {
-            _action.InsertAction(actionDto);
+            _action.InsertActionAsync(actionDto);
             return Ok("true");
         }
 
         [HttpGet(PermissionRouter.ActionAccount)]
-        public IActionResult BasicWatch(OrderByPageListInput orderByPageListInput)
+        public async Task<IActionResult> BasicWatch(SearchOrderPageInput searchOrderPageInput)
         {
-            var data = _action.ListOrderByAscAction(orderByPageListInput);
+            var data = await _action.ListActionBasicAsync(searchOrderPageInput);
             return Ok(data);
         }
 
         [HttpPut(PermissionRouter.ActionAccount)]
         public async Task<IActionResult> BasicUpdate([FromBody] List<int> ids)
         {
-            return Ok(await _action.UpdateActionAsync(ids));
+            return Ok(_action.UpdateAction(ids));
         }
 
         [HttpPatch(PermissionRouter.ActionAccount)]

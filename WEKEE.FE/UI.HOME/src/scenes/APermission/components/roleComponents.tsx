@@ -5,14 +5,17 @@ import { createStructuredSelector } from 'reselect';
 import { listFormRoleStart, RoleCreateStart, RoleEditStart, RoleRemoveFeCancel, RoleRemoveFeStart, RoleRemoveStart } from '../actions';
 import {
     CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined,
-    FilePdfOutlined, PlusOutlined, RedoOutlined
+    FilePdfOutlined, PlusOutlined, RedoOutlined, SearchOutlined
 } from '@ant-design/icons';
-import { Button, Col, Form, Input, Row, Switch, Table, Tag } from 'antd'
+import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd'
 import {
     makeSelectCompleted, makeSelectDataRole, makeSelectDataRemoveRole, makeSelectLoading, makeSelectPageIndex,
     makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages
 } from '../selectors';
 import { RoleDto } from '../dtos/roleDto';
+import moment from 'moment';
+const { Option } = Select;
+const { RangePicker } = DatePicker;
 //#endregion
 
 interface IRoleComponentsProps {
@@ -33,9 +36,17 @@ const stateSelector = createStructuredSelector<any, any>({
 
 
 export default function RoleComponents(props: IRoleComponentsProps) {
+
     const [checkCreate, setCheckCreate] = useState(false);
     const [checkRemove, setCheckRemove] = useState(true);
     const [checkRestart, setCheckRestart] = useState(true);
+    const [isModalVisible, setisModalVisible] = useState(false);
+    // 0 : bật tất cả 1: đang xóa, 2 đang update khóa/mở
+    const [isDataChange, setisDataChange] = useState(0);
+    const [SelectColumn, setSelectColumn] = useState(["All"]);
+    const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
+    const [OrderbyColumn, setOrderbyColumn] = useState("");
+    const [OrderbyTypes, setOrderbyTypes] = useState("");
 
     const dispatch = useDispatch();
 
@@ -44,43 +55,11 @@ export default function RoleComponents(props: IRoleComponentsProps) {
         dataRemoveRole
     } = useSelector(stateSelector);
 
-    useEffect(() => {
-        dispatch(listFormRoleStart({
-            pageIndex: pageIndex,
-            pageSize: pageSize,
-            property: "",
-            orderBy: "",
-        }));
-    }, []);
-
-    useEffect(() => {
-
-    }, [pageSize]);
-
-    useEffect(() => {
-        if (dataRemoveRole.length === 0) {
-            setCheckRemove(true);
-        }
-        else {
-            setCheckRemove(false);
-            setCheckRestart(false);
-        }
-    }, [dataRemoveRole]);
-
-
-    const [form] = Form.useForm();
-
-    const onFill = (value: RoleDto) => {
-        form.setFieldsValue(value);
-    };
-    const onRemove = (value: RoleDto) => {
-        dispatch(RoleRemoveFeStart(value.id));
-    };
     const columns = [
         {
             title: 'id',
             dataIndex: 'id',
-            with: 50
+            width: 50
         },
         {
             title: 'Tên',
@@ -88,8 +67,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
             sorter: {
                 compare: (a: { name: string; }, b: { name: string; }) => a.name.length - b.name.length,
                 multiple: 3,
-            },
-            with: 300
+            }
         },
         {
             title: 'Kích Hoạt',
@@ -102,6 +80,32 @@ export default function RoleComponents(props: IRoleComponentsProps) {
             dataIndex: 'isDelete',
             key: 'isDelete',
             render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
+        },
+        {
+            title: 'Cấp độ',
+            dataIndex: 'levelRole'
+        },
+        {
+            title: 'Role cha',
+            dataIndex: 'roleMainName'
+        },
+        {
+            title: 'Chi tiết',
+            dataIndex: 'description'
+        },
+        {
+            title: 'Người tạo',
+            dataIndex: 'createByName'
+        },
+        {
+            title: 'Ngày tạo',
+            dataIndex: 'createdAt',
+            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
+        },
+        {
+            title: 'Ngày update',
+            dataIndex: 'updatedAt',
+            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
         },
         {
             title: 'Action',
@@ -122,39 +126,63 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                     ></Button>
                 </div>
             )
-        },
-        {
-            title: 'Cấp độ',
-            dataIndex: 'levelRole'
-        },
-        {
-            title: 'Role cha',
-            dataIndex: 'roleId'
-        },
-        {
-            title: 'Chi tiết',
-            dataIndex: 'description'
-        },
-        {
-            title: 'dateCreate',
-            dataIndex: 'dateCreate'
-        },
+        }
     ];
+
+    useEffect(() => {
+        dispatch(listFormRoleStart({
+            pageIndex: pageIndex,
+            pageSize: pageSize,
+            propertyOrder: "",
+            valueOrderBy: "",
+            propertySearch: [],
+            valuesSearch: []
+        }));
+    }, []);
+ 
+    useEffect(() => {
+        if (dataRemoveRole.length === 0) {
+            setCheckRemove(true);
+        }
+        else {
+            setCheckRemove(false);
+            setCheckRestart(false);
+        }
+    }, [dataRemoveRole]);
+
+    const [form] = Form.useForm();
+
+    const onFill = (value: RoleDto) => {
+        form.setFieldsValue(value);
+    };
+
+    const onRemove = (value: RoleDto) => {
+        setisDataChange(1);
+        //dispatch(ResourceRemoveFeStart(value.id, 1));
+    };
+
+    const onChangeIsStatus = (value: RoleDto) => {
+        setisDataChange(2);
+        //dispatch(ResourceRemoveFeStart(value.id, 2));
+    };
+
     let onChange = (page: any, pageSize: any) => {
         dispatch(listFormRoleStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: OrderbyColumn,
+            valueOrderBy: OrderbyTypes,
+            propertySearch: [],
+            valuesSearch: valuesSearch
         }));
     };
 
     const onFinish = (values: RoleDto) => {
         if (values.id === undefined) {
-            dispatch(RoleCreateStart(values));
+            //dispatch(ResourceCreateStart(values));
         }
         else {
-            dispatch(RoleEditStart(values));
+            //dispatch(ResourceEditStart(values));
         }
     };
 
@@ -162,28 +190,149 @@ export default function RoleComponents(props: IRoleComponentsProps) {
         setCheckCreate(false);
         form.resetFields();
     };
-    return (
-        <Row gutter={[10, 10]} >
-            <Col span={14}>
-                <Row gutter={[10, 10]} >
-                    <Col span={4}><Button loading={loading} onClick={() => {
-                        dispatch(listFormRoleStart({
-                            pageIndex: pageIndex,
-                            pageSize: pageSize,
-                            property: "",
-                            orderBy: "",
-                        }));
-                        setCheckRestart(true);
 
-                    }} disabled={checkRestart} block icon={<RedoOutlined />}>Làm Mới</Button></Col>
-                    <Col span={4}><Button loading={loading} block icon={<FilePdfOutlined />}>Tải File</Button></Col>
-                    <Col span={4}>
+    const onGenderChange = (value: string) => {
+        form.setFieldsValue({ types: value });
+    };
+
+    return (
+        <Row gutter={[10, 10]}>
+            <Col span={24}>
+                <Row gutter={[10, 10]} >
+                    <Col span={3}>
+                        <Button loading={loading}
+                            onClick={() => {
+                                dispatch(listFormRoleStart({
+                                    pageIndex: pageIndex,
+                                    pageSize: pageSize,
+                                    propertyOrder: "",
+                                    valueOrderBy: "",
+                                    propertySearch: [],
+                                    valuesSearch: []
+                                }));
+                                setCheckRestart(true);
+                                setisDataChange(0);
+                                setSelectColumn(["All"]);
+                            }}
+                            disabled={checkRestart}
+                            block icon={<RedoOutlined />}>Làm Mới</Button>
+                    </Col>
+                    <Col span={2}>
                         <Button loading={loading}
                             disabled={checkRemove}
                             block
-                            onClick={() => { dispatch(RoleRemoveStart(dataRemoveRole)) }}
-                            icon={<CheckOutlined />}>Lưu</Button></Col>
-                    <Col span={4}><Button loading={loading} disabled={checkRemove} onClick={() => dispatch(RoleRemoveFeCancel())} block icon={<CloseOutlined />}>Hủy</Button></Col>
+                            onClick={() => {
+                                //dispatch(ResourceRemoveStart(dataRemoveAction, isDataChange));
+                                setisDataChange(0);
+                            }}
+                            icon={<CheckOutlined />}>Lưu</Button>
+                    </Col>
+                    <Col span={2}>
+                        <Button loading={loading} disabled={checkRemove}
+                            onClick={() => {
+                                //dispatch(ResourceRemoveFeCancel());
+                                setisDataChange(0);
+                            }} block icon={<CloseOutlined />}>Hủy</Button>
+                    </Col>
+                    <Col span={3}>
+                        <Button loading={loading} block icon={<FilePdfOutlined />}>Xuất File</Button>
+                    </Col>
+                    <Col span={3}>
+                        <Button loading={loading} block icon={<PlusOutlined />}
+                            onClick={() => setisModalVisible(true)}
+                        >Thêm</Button>
+                    </Col>
+                    <Col span={4}>
+                        {console.log()}
+                        {
+                            SelectColumn.indexOf("CreatedAt") === 0 || SelectColumn.indexOf("UpdatedAt") === 0
+                                ? <RangePicker onChange={(date, dateString) => {
+                                    setvaluesSearch([]);
+                                    setvaluesSearch(dateString);
+                                }
+                                } />
+                                : <Input onChange={(value) => {
+                                    setvaluesSearch([]);
+                                    setvaluesSearch([value.target.value]);
+                                }} disabled={loading} placeholder="Từ khóa" />
+                        }
+                    </Col>
+                    <Col span={3}>
+                        <Select
+                            optionFilterProp="children"
+                            style={{ width: '100%' }}
+                            filterOption={(input, option: any) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                            disabled={loading}
+                            defaultValue={SelectColumn}
+                            onChange={(value: any) => {
+                                setSelectColumn([]);
+                                setSelectColumn(value);
+                            }}
+                        >
+                            <Option value="All">Tìm kiếm Tất cả</Option>
+                            <Option value="Id">Id</Option>
+                            <Option value="Name">Tên</Option>
+                            <Option value="TypesRsc">Kiểu</Option>
+                            <Option value="Description">Chi tiết</Option>
+                            <Option value="IsActive">Trạng thái</Option>
+                            <Option value="CreatedAt">Ngày Tạo</Option>
+                            <Option value="CreateBy">Người sửa</Option>
+                            <Option value="UpdatedAt">Ngày cập nhật</Option>
+                        </Select>
+                    </Col>
+                    <Col span={3}>
+                        <Select
+                            optionFilterProp="children"
+                            style={{ width: '100%' }}
+                            filterOption={(input, option: any) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                            defaultValue={"All"}
+                            disabled={loading}
+                            onChange={(value) => {
+                                setOrderbyColumn(value.substring(0, value.lastIndexOf("_")));
+                                setOrderbyTypes(value.substring(value.lastIndexOf("_") + 1));
+                            }}
+                        >
+                            <Option value="All">Không Sắp Xếp</Option>
+                            <Option value="Id_ASC ">Id tăng dần</Option>
+                            <Option value="Id_DESC">Id giảm dần</Option>
+                            <Option value="Name_ASC ">Tên tăng dần</Option>
+                            <Option value="Name_DESC">Tên giảm dần</Option>
+                            <Option value="TypesRsc_ASC ">Kiểu tăng dần</Option>
+                            <Option value="TypesRsc_DESC">Kiểu giảm dần</Option>
+                            <Option value="Description_ASC ">Chi tiết tăng dần</Option>
+                            <Option value="Description_DESC">Chi tiết giảm dần</Option>
+                            <Option value="IsActive_ASC ">Trạng thái tăng dần</Option>
+                            <Option value="IsActive_DESC">Trạng thái giảm dần</Option>
+                            <Option value="CreatedAt_ASC ">Ngày Tạo tăng dần</Option>
+                            <Option value="CreatedAt_DESC">Ngày Tạo giảm dần</Option>
+                            <Option value="CreateBy_ASC ">Người sửa tăng dần</Option>
+                            <Option value="CreateBy_DESC">Người sửa giảm dần</Option>
+                            <Option value="UpdatedAt_ASC ">Ngày cập nhật tăng dần</Option>
+                            <Option value="UpdatedAt_DESC">Ngày cập nhật giảm dần</Option>
+                        </Select>
+                    </Col>
+                    <Col span={1}>
+                        <Button
+                            disabled={loading}
+                            type="primary"
+                            icon={<SearchOutlined />}
+                            onClick={() => {
+                                dispatch(listFormRoleStart({
+                                    pageIndex: 0,
+                                    pageSize: 0,
+                                    propertyOrder: OrderbyColumn,
+                                    valueOrderBy: OrderbyTypes,
+                                    propertySearch: SelectColumn,
+                                    valuesSearch: valuesSearch
+                                }));
+                            }}
+                        >
+                        </Button>
+                    </Col>
                 </Row>
                 <Row style={{ margin: '10px 0' }}>
                     <Table
@@ -191,7 +340,9 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                         dataSource={dataRole}
                         rowKey={(record: RoleDto) => record.id.toString()}
                         loading={loading}
-                        scroll={{ y: 500, x: 900 }}
+                        style={{ width: '100%' }}
+                        scroll={{ y: 350 }}
+                        size='small'
                         pagination={{
                             pageSize: pageSize,
                             total: totalCount,
@@ -203,8 +354,13 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                     />
                 </Row>
             </Col>
-            <Col span={10} style={{ textAlign: 'center' }} >
-                <Row style={{ fontSize: '20px', fontFamily: 'initial', fontWeight: 600 }}>CHỈNH SỬA CHI TIẾT</Row>
+            <Modal title="Thêm mới hoặc sửa Resource"
+                visible={isModalVisible}
+                onCancel={() => setisModalVisible(false)}
+                maskClosable={false}
+                style={{ top: 20 }}
+                footer={null}
+            >
                 <Row style={{
                     fontSize: '16px', fontFamily: 'monospace',
                     margin: '10px 0', padding: '20px 10px',
@@ -269,13 +425,13 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                         </Form.Item>
                         <Row gutter={[10, 10]}>
                             <Col span={6}><Button loading={loading} onClick={onReset} block icon={<RedoOutlined />}>Làm Mới</Button></Col>
-                            <Col span={6}><Button loading={loading} disabled={!checkCreate} type="primary" htmlType="submit" block icon={<CheckOutlined />}>Lưu</Button></Col>
-                            <Col span={6}><Button loading={loading} disabled={!checkCreate} onClick={onReset} block icon={<CloseOutlined />}>Hủy</Button></Col>
-                            <Col span={6}><Button loading={loading} disabled={checkCreate} type="primary" htmlType="submit" block icon={<PlusOutlined />}>Tạo mới</Button></Col>
+                            <Col span={6}><Button loading={loading} hidden={!checkCreate} type="primary" htmlType="submit" block icon={<CheckOutlined />}>Lưu</Button></Col>
+                            <Col span={6}><Button loading={loading} hidden={!checkCreate} onClick={onReset} block icon={<CloseOutlined />}>Hủy</Button></Col>
+                            <Col span={6}><Button loading={loading} hidden={checkCreate} type="primary" htmlType="submit" block icon={<PlusOutlined />}>Tạo mới</Button></Col>
                         </Row>
                     </Form>
                 </Row>
-            </Col>
+            </Modal>
         </Row >
     )
 }

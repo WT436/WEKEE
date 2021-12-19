@@ -5,8 +5,6 @@ using Account.API.SettingUrl.AccountRouter;
 using Account.Application.Resource;
 using System.Threading.Tasks;
 using Account.Domain.ObjectValues.Enum;
-using System.Linq;
-using System;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -20,7 +18,7 @@ namespace Account.API.Src.AccountAreas
 
         [Route(PermissionRouter.ResourceAccount)]
         [HttpGet]
-        public async Task<IActionResult> BasicWatch(SearchOrderPageInput searchOrderPageInput)
+        public async Task<IActionResult> GetData(SearchOrderPageInput searchOrderPageInput)
         {
             return Ok(await _resource.ListResourceBasicAsync(searchOrderPageInput));
         }

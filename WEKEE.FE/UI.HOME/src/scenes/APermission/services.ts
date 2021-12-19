@@ -1,9 +1,11 @@
 import { IdPagedListInput } from '../../services/dto/idPagedListInput';
 import { OrderByListInput } from '../../services/dto/orderByListInput';
 import { PagedListOutput } from '../../services/dto/pagedListOutput';
+import { SearchOrderPageInput } from '../../services/dto/searchOrderPageInput';
 import http from '../../services/httpService';
 import { ActionAssignmentDto } from './dtos/actionAssignmentDto';
 import { ActionDto } from './dtos/actionDto';
+import { AtomicDto } from './dtos/atomicDto';
 import { PermissionAssignmentDto } from './dtos/permissionAssignmentDto';
 import { PermissionDto } from './dtos/permissionDto';
 import { ResourceActionDto } from './dtos/resourceActionDto';
@@ -11,8 +13,8 @@ import { ResourceDto } from './dtos/resourceDto';
 import { RoleDto } from './dtos/roleDto';
 class APermissionService {
     //#region  Resource
-    public async listResourceBasic(input: OrderByListInput): Promise<PagedListOutput<ResourceDto>> {     
-        let rs = await http.get('/account-resource', {params: input});
+    public async listResourceBasic(input: OrderByListInput): Promise<PagedListOutput<ResourceDto>> {
+        let rs = await http.get('/account-resource', { params: input });
         if (rs) {
             return rs.data;
         }
@@ -48,7 +50,7 @@ class APermissionService {
         }
     }
     public async EditStatusResourceBasic(ids: Number[]) {
-        let rs = await http.put('/account-resource', ids );
+        let rs = await http.put('/account-resource', ids);
         if (rs) {
             return rs.data;
         }
@@ -56,7 +58,7 @@ class APermissionService {
             return rs;
         }
     }
-    
+
     public async createResourceBasic(input: ResourceDto) {
         let rs = await http.post('/account-resource', input);
         if (rs) {
@@ -69,8 +71,8 @@ class APermissionService {
     //#endregion
 
     //#region  Atomic
-    public async listAtomic() {
-        let rs = await http.get('/account-atomic');
+    public async listAtomic(input: SearchOrderPageInput): Promise<PagedListOutput<AtomicDto>> {
+        let rs = await http.get('/account-atomic', { params: input });
         if (rs) {
             return rs.data;
         }
@@ -108,8 +110,8 @@ class APermissionService {
             return rs;
         }
     }
-    public async listActionBasic(input: OrderByListInput): Promise<PagedListOutput<ActionDto>> {
-        let rs = await http.post('/list/action-basic', input);
+    public async listActionBasic(input: SearchOrderPageInput): Promise<PagedListOutput<ActionDto>> {
+        let rs = await http.get('/account-action', { params: input });
         if (rs) {
             return rs.data;
         }
@@ -156,15 +158,6 @@ class APermissionService {
     //#endregion
 
     //#region  Permission
-    public async watchPermissionBasic() {
-        let rs = await http.post('/watch/permission-basic');
-        if (rs) {
-            return rs.data;
-        }
-        else {
-            return rs;
-        }
-    }
     public async updatePermissionBasic(input: PermissionDto) {
         let rs = await http.post('/update/permission-basic', input);
         if (rs) {
@@ -183,8 +176,8 @@ class APermissionService {
             return rs;
         }
     }
-    public async listPermissionBasic(input: OrderByListInput): Promise<PagedListOutput<PermissionDto>> {
-        let rs = await http.post('/list/permission-basic', input);
+    public async listPermissionBasic(input: SearchOrderPageInput): Promise<PagedListOutput<PermissionDto>> {
+        let rs = await http.get('/account-permission', { params: input });
         if (rs) {
             return rs.data;
         }
@@ -231,8 +224,8 @@ class APermissionService {
     //#endregion
 
     //#region  Role
-    public async watchRoleBasic() {
-        let rs = await http.post('/watch/role-basic');
+    public async watchRoleBasic(input: SearchOrderPageInput): Promise<PagedListOutput<PermissionDto>> {
+        let rs = await http.get('/account-role', { params: input });
         if (rs) {
             return rs.data;
         }
@@ -258,8 +251,8 @@ class APermissionService {
             return rs;
         }
     }
-    public async listRoleBasic(input: OrderByListInput): Promise<PagedListOutput<RoleDto>> {
-        let rs = await http.post('/list/role-basic', input);
+    public async listRoleBasic(input: SearchOrderPageInput): Promise<PagedListOutput<RoleDto>> {
+        let rs = await http.get('/account-role', { params: input });
         if (rs) {
             return rs.data;
         }
@@ -360,7 +353,7 @@ class APermissionService {
         }
     }
     //#endregion
-    
+
     //#region  Permission Assignment
     public async getPermissionAssignmentBasic(input: IdPagedListInput): Promise<PagedListOutput<PermissionAssignmentDto>> {
         let rs = await http.get('/get/permission-assignment-basic', {

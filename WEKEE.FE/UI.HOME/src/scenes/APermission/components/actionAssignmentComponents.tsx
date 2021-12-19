@@ -111,8 +111,10 @@ export default function ActionAssignmentComponents(props: IActionAssignmentCompo
         dispatch(listFormPermissionStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
+            propertySearch: [],
+            valuesSearch: []
         }));
     }, []);
 
@@ -120,8 +122,10 @@ export default function ActionAssignmentComponents(props: IActionAssignmentCompo
         dispatch(listFormPermissionStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
+            propertySearch: [],
+            valuesSearch: []
         }));
     };
 
@@ -148,12 +152,12 @@ export default function ActionAssignmentComponents(props: IActionAssignmentCompo
             <Row gutter={[35, 5]}>
                 <Col span={12}>
                     <Row style={{ fontSize: '20px', fontFamily: 'cursive', padding: '5px 15px' }}>Permission</Row>
-                    <Table
+                    {/* <Table
                         rowSelection={{
                             type: 'radio',
                             ...rowSelection
                         }}
-                        rowKey={(record: ActionDto) => record.id.toString()}
+                        rowKey={(record: ActionDto|any) => record.id.toString()}
                         columns={columnsAction}
                         dataSource={dataPermission}
                         loading={loading}
@@ -167,7 +171,7 @@ export default function ActionAssignmentComponents(props: IActionAssignmentCompo
                             showSizeChanger: true,
                             pageSizeOptions: ['5', '10', '20', '50', '100']
                         }}
-                    />
+                    /> */}
                 </Col>
                 <Col span={12}>
                     <Row style={{ fontSize: '20px', fontFamily: 'cursive', padding: '5px 15px' }}>Action</Row>

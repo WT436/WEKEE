@@ -1,50 +1,63 @@
 ﻿
+using Account.Domain.BoundedContext;
 using Account.Domain.Dto;
+using Account.Domain.ObjectValues.Enum;
 using Account.Infrastructure.MappingExtention;
 using Account.Infrastructure.ModelQuery;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils.Exceptions;
 
 namespace Account.Application.Atomic
 {
     public class AAtomic : IAtomic
     {
         private readonly AtomicQuery atomicQuery = new AtomicQuery();
-        private readonly ActionQuery actionQuery = new ActionQuery();
-        public List<AtomicDto> GetAll()
-        {
-            List<AtomicDto> atomicDtos = new List<AtomicDto>();
-            var data = atomicQuery.GetAll();
+        private readonly UserAccountQuery accountQuery = new UserAccountQuery();
 
-            if (data != null || data.Count > 0)
+        public async Task<PagedListOutput<AtomicDto>> ListAtomicBasicAsync(SearchOrderPageInput searchOrderPageInput)
+        {
+            var listData = await atomicQuery.GetAllListPageAsync(searchOrderPageInput);
+            return MapPagedListOutput.MapingpagedListOutput(listData);
+        }
+
+        public async Task<int> InsertAtomicAsync(AtomicDto atomic)
+        {
+            if (atomic.TypesRsc == null || !Enum.IsDefined(typeof(TYPES_RESOURCE), atomic.TypesRsc.ToUpper()))
             {
-                foreach (var item in data)
-                {
-                    var itemdata = actionQuery.CountAtomic(item.Id);
-                    var atomicDto = MappingData.InitializeAutomapper().Map<AtomicDto>(item);
-                    atomicDto.Count = itemdata;
-                    atomicDtos.Add(atomicDto);
-                }
+                throw new ClientException(400, "Invalid Types!");
             }
-            return atomicDtos;
+            if (atomicQuery.CountNameAndTypesExact(atomic.Name, atomic.TypesRsc) != 0)
+            {
+                throw new ClientException(400, "Url already exists!");
+            }
+            var data = MappingData.InitializeAutomapper().Map<Domain.Entitys.Atomic>(atomic);
+            return await atomicQuery.InsertAsync(data);
         }
 
-        public Task<List<AtomicDto>> GetAllAsync()
+        public int RemoveAtomic(List<int> ids)
         {
-            throw new NotImplementedException();
+            return atomicQuery.Delete(ids);
         }
 
-        public Task<bool> Insert(AtomicDto atomicDto)
+        public int UpdateAtomic(List<int> ids)
         {
-            // check dữ liệu db
-            throw new NotImplementedException();
+            var dsada = atomicQuery.GetAllLstById(ids).Select(m => { m.IsActive = !m.IsActive; return m; }).ToList();
+            return atomicQuery.Update(dsada);
         }
 
-        public Task<int> Insert(List<AtomicDto> atomicDto)
+        public int EditAtomic(AtomicDto atomicDto)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(atomicDto.Name) || string.IsNullOrEmpty(atomicDto.TypesRsc))
+            {
+                throw new ClientException(400, "Invalid Types!");
+            }
+            var atomic = MappingData.InitializeAutomapper().Map<Domain.Entitys.Atomic>(atomicDto);
+            atomic.UpdatedAt = DateTime.Now;
+            return atomicQuery.Update(atomic);
         }
     }
 }

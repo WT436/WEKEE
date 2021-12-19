@@ -55,8 +55,8 @@ namespace Account.Application.AdminAccount
 
             var data = await _joinQuery.GetAccountAdmin(pageBegin: rowBegin,
                                                         pageSize: orderByPageListInput.PageSize,
-                                                        orderBy: orderByPageListInput.OrderBy,
-                                                        property: orderByPageListInput.Property,
+                                                        orderBy: orderByPageListInput.ValueOrderBy,
+                                                        property: orderByPageListInput.PropertyOrder,
                                                         propertySearch: orderByPageListInput.PropertySearch[0],
                                                         valuesSearch: orderByPageListInput.ValuesSearch[0]);
 

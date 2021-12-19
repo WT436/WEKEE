@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Account.API.SettingUrl.AccountRouter;
 using Account.Application.Atomic;
+using System.Threading.Tasks;
+using Account.Domain.ObjectValues.Enum;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -15,29 +17,29 @@ namespace Account.API.Src.AccountAreas
 
         [Route(PermissionRouter.AtomicAccount)]
         [HttpPost]
-        public IActionResult create()
+        public IActionResult Create()
         {
             return Ok();
         }
 
         [Route(PermissionRouter.AtomicAccount)]
         [HttpGet]
-        public IActionResult BasicList()
+        public async Task<IActionResult> GetData(SearchOrderPageInput searchOrderPageInput)
         {
-            return Ok(_atomic.GetAll());
+            return Ok(await _atomic.ListAtomicBasicAsync(searchOrderPageInput));
         }
 
 
         [Route(PermissionRouter.AtomicAccount)]
         [HttpPatch]
-        public IActionResult update()
+        public IActionResult Update()
         {
             return Ok();
         }
 
         [Route(PermissionRouter.AtomicAccount)]
         [HttpPut]
-        public IActionResult Update()
+        public IActionResult Update(int a)
         {
             return Ok();
         }

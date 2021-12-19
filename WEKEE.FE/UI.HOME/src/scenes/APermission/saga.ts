@@ -10,7 +10,6 @@ import {
     PermissionAssignmentGetListDataError,
     PermissionAssignmentInsertOrUpdateCompeleted,
     PermissionAssignmentInsertOrUpdateError,
-    PermissionAssignmentInsertOrUpdateStart,
     PermissionCreateCompleted, PermissionCreateError, PermissionEditCompleted,
     PermissionEditError, PermissionRemoveCompleted, PermissionRemoveError,
     ResourceActionGetListDataCompeleted, ResourceActionGetListDataError,
@@ -240,10 +239,10 @@ function* EditStatusResource(input: any) {
 //#endregion
 
 //#region  Atomic
-function* getListAtomic() {
+function* getListAtomic(input : any) {
     try {
         const { output } = yield race({
-            output: call(service.listAtomic)
+            output: call(service.listAtomic , input.payload)
         });
         if (output) {
             yield put(AtomicgetListCompleted(output));

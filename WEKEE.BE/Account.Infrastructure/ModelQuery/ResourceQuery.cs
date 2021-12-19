@@ -113,7 +113,7 @@ namespace Account.Infrastructure.ModelQuery
                 }
 
                 // order by và phân trang
-                if (searchOrderPageInput.Property == null || searchOrderPageInput.Property.ToUpper().Equals("ALL"))
+                if (searchOrderPageInput.PropertyOrder == null || searchOrderPageInput.PropertyOrder.ToUpper().Equals("ALL"))
                 {
                     query += $@"ORDER BY id 
                                          OFFSET {0} 
@@ -122,7 +122,7 @@ namespace Account.Infrastructure.ModelQuery
                 }
                 else
                 {
-                    query += $@"ORDER BY {searchOrderPageInput.Property} {searchOrderPageInput.OrderBy} 
+                    query += $@"ORDER BY {searchOrderPageInput.PropertyOrder} {searchOrderPageInput.ValueOrderBy} 
                                          OFFSET {searchOrderPageInput.PageIndex * searchOrderPageInput.PageSize} 
                                          ROWS FETCH NEXT {searchOrderPageInput.PageSize} 
                                          ROWS ONLY  ";
@@ -148,6 +148,7 @@ namespace Account.Infrastructure.ModelQuery
                                                   pageSize: searchOrderPageInput.PageSize);
             }
         }
+
         public IPagedList<Resource> GetAllListPage(PagedListInput pagedListInput)
         {
             return unitOfWork.GetRepository<Resource>()
@@ -156,112 +157,18 @@ namespace Account.Infrastructure.ModelQuery
         }
         #endregion
 
-        #region sắp xếp
-
-        #region Sắp Xếp theo tên
-        public IPagedList<Resource> GetNameOrderByAsc(OrderByPageListInput orderByPageListInput)
-               => unitOfWork.GetRepository<Resource>()
-                            .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
-                                           pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderBy(m => m.Name));
-
-        public IPagedList<Resource> GetNameOrderByDesc(OrderByPageListInput orderByPageListInput)
-               => unitOfWork.GetRepository<Resource>()
-                            .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
-                                           pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderByDescending(m => m.Name));
-
-        public async Task<IPagedList<Resource>> GetNameOrderByAscAsync(OrderByPageListInput orderByPageListInput)
-                     => await unitOfWork.GetRepository<Resource>()
-                                        .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
-                                                            pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderBy(m => m.Name));
-
-        public async Task<IPagedList<Resource>> GetNameOrderByDescAsync(OrderByPageListInput orderByPageListInput)
-                     => await unitOfWork.GetRepository<Resource>()
-                                        .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
-                                                            pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderByDescending(m => m.Name));
-        #endregion
-
-        #region Sắp Xếp theo datetime
-        public IPagedList<Resource> GetCreatedAtOrderByAsc(OrderByPageListInput orderByPageListInput)
-               => unitOfWork.GetRepository<Resource>()
-                            .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
-                                           pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderBy(m => m.CreatedAt));
-
-        public IPagedList<Resource> GetCreatedAtOrderByDesc(OrderByPageListInput orderByPageListInput)
-               => unitOfWork.GetRepository<Resource>()
-                            .GetPagedList(pageIndex: orderByPageListInput.PageIndex,
-                                           pageSize: orderByPageListInput.PageSize,
-                                            orderBy: o => o.OrderByDescending(m => m.CreatedAt));
-
-        public async Task<IPagedList<Resource>> GetCreatedAtOrderByAscAsync(OrderByPageListInput orderByPageListInput)
-                     => await unitOfWork.GetRepository<Resource>()
-                                        .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
-                                                            pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderBy(m => m.CreatedAt));
-
-        public async Task<IPagedList<Resource>> GetCreatedAtOrderByDescAsync(OrderByPageListInput orderByPageListInput)
-                     => await unitOfWork.GetRepository<Resource>()
-                                        .GetPagedListAsync(pageIndex: orderByPageListInput.PageIndex,
-                                                            pageSize: orderByPageListInput.PageSize,
-                                                             orderBy: o => o.OrderByDescending(m => m.CreatedAt));
-        #endregion
-
-        #endregion
-
         #region tìm kiếm
-        public Resource GetAllId(int id)
-        => unitOfWork.GetRepository<Resource>().GetFirstOrDefault(predicate: m => m.Id == id);
-
-        public async Task<Resource> GetAllIdAsync(int id)
-                     => await unitOfWork.GetRepository<Resource>().GetFirstOrDefaultAsync(predicate: m => m.Id == id);
-
-        public IList<Resource> GetAllActive(bool active)
-        => unitOfWork.GetRepository<Resource>().GetAll(m => m.IsActive == active).ToList();
-
-        public async Task<IList<Resource>> GetAllActiveAsync(bool active)
-                     => await unitOfWork.GetRepository<Resource>().GetAllAsync(m => m.IsActive == active);
-
-        public IList<Resource> GetAllNameExact(string name)
-               => unitOfWork.GetRepository<Resource>().GetAll(m => m.Name == name).ToList();
-
-        public async Task<IList<Resource>> GetAllNameExactAsync(string name)
-                     => await unitOfWork.GetRepository<Resource>().GetAllAsync(m => m.Name == name);
         public IList<Resource> GetAllLstById(List<int> ids)
         => unitOfWork.GetRepository<Resource>()
                      .GetAll().Where(m => ids.Contains(m.Id)).ToList();
-        #endregion
-
-        #region sắp sếp tìm kiếm
         #endregion
 
         #region Đếm bản ghi
         public int CountId(int id)
                    => unitOfWork.GetRepository<Resource>().Count(m => m.Id == id);
 
-        public async Task<int> CountIdAsync(int id)
-                  => await unitOfWork.GetRepository<Resource>().CountAsync(m => m.Id == id);
-
-        public int CountName(string name)
-                   => unitOfWork.GetRepository<Resource>().Count(m => m.Name.ToUpper() == name.ToUpper());
-
-        public async Task<int> CountNameAsync(string name)
-                     => await unitOfWork.GetRepository<Resource>().CountAsync(m => m.Name.ToUpper() == name.ToUpper());
-
-        public int CountNameExact(string name)
-                  => unitOfWork.GetRepository<Resource>().Count(m => m.Name == name);
-
-        public async Task<int> CountNameExactAsync(string name)
-                     => await unitOfWork.GetRepository<Resource>().CountAsync(m => m.Name == name);
-
         public int CountNameAndTypesExact(string name, string types)
                  => unitOfWork.GetRepository<Resource>().Count(m => m.Name == name && m.TypesRsc == types);
-
-        public async Task<int> CountNameAndTypesExactAsync(string name, string types)
-                     => await unitOfWork.GetRepository<Resource>().CountAsync(m => m.Name == name && m.TypesRsc == types);
         #endregion
 
         #region Tạo mới - Create

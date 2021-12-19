@@ -1,11 +1,15 @@
 import { PlusOutlined, RedoOutlined, FilePdfOutlined, CheckOutlined, CloseOutlined, SearchOutlined, EditOutlined, DeleteOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { AtomicgetListStart, listFormResourceStart, ResourceRemoveFeCancel } from '../actions';
 import { AtomicDto } from '../dtos/atomicDto';
-import { makeSelectCompleted,makeSelectDataRemoveAtomic, makeSelectDataAtomic, makeSelectLoading, makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages } from '../selectors';
+import {
+    makeSelectCompleted, makeSelectDataRemoveAtomic, makeSelectDataAtomic, makeSelectLoading,
+    makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages
+} from '../selectors';
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
@@ -21,7 +25,7 @@ const stateSelector = createStructuredSelector<any, any>({
     totalCount: makeSelectTotalCount(),
     totalPages: makeSelectTotalPages(),
     dataAtomic: makeSelectDataAtomic(),
-    dataRemoveAtomic :makeSelectDataRemoveAtomic()
+    dataRemoveAtomic: makeSelectDataRemoveAtomic()
 });
 export default function AtomicComponents(props: IAtomicComponentsProps) {
     const dispatch = useDispatch();
@@ -31,18 +35,27 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
     const [isModalVisible, setisModalVisible] = useState(false);
     // 0 : bật tất cả 1: đang xóa, 2 đang update khóa/mở
     const [isDataChange, setisDataChange] = useState(0);
-    
+    const [SelectColumn, setSelectColumn] = useState(["All"]);
+    const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
+    const [OrderbyColumn, setOrderbyColumn] = useState("");
+    const [OrderbyTypes, setOrderbyTypes] = useState("");
+
     const {
-        loading, dataResource,dataAtomic, pageSize, totalCount, pageIndex,dataRemoveAtomic
+        loading, dataAtomic, pageSize, totalCount, pageIndex, dataRemoveAtomic
     } = useSelector(stateSelector);
 
     useEffect(() => {
-        dispatch(AtomicgetListStart());
+        dispatch(AtomicgetListStart(
+            {
+                pageIndex: 0,
+                pageSize: 0,
+                propertyOrder: "UpdatedAt",
+                valueOrderBy: "ASC",
+                propertySearch: [],
+                valuesSearch: [],
+            }
+        ));
     }, []);
-
-    useEffect(() => {
-
-    }, [pageSize]);
 
     useEffect(() => {
         if (dataRemoveAtomic.length === 0) {
@@ -74,8 +87,8 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
         dispatch(listFormResourceStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: OrderbyColumn,
-            orderBy: OrderbyTypes,
+            propertyOrder: OrderbyColumn,
+            valueOrderBy: OrderbyTypes,
             propertySearch: [],
             valuesSearch: valuesSearch
         }));
@@ -99,16 +112,10 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
         form.setFieldsValue({ types: value });
     };
 
-    const [SelectColumn, setSelectColumn] = useState(["All"]);
-    const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
-    const [OrderbyColumn, setOrderbyColumn] = useState("");
-    const [OrderbyTypes, setOrderbyTypes] = useState("");
-
     const columns = [
         {
-            title: 'id',
-            dataIndex: 'id',
-            with: 50
+            title: 'Id',
+            dataIndex: 'id'
         },
         {
             title: 'Tên',
@@ -119,10 +126,14 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
             },
         },
         {
-            title: 'isActive',
+            title: 'Trạng thái',
             dataIndex: 'isActive',
             key: 'isActive',
             render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
+        },
+        {
+            title: 'Kiểu',
+            dataIndex: 'typesRsc'
         },
         {
             title: 'Số lần sử dụng',
@@ -133,8 +144,18 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
             dataIndex: 'description'
         },
         {
+            title: 'Người cập nhật',
+            dataIndex: 'createBy'
+        },
+        {
+            title: 'Thời gian cập nhật',
+            dataIndex: 'updatedAt',
+            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
+        },
+        {
             title: 'Thời gian tạo',
-            dataIndex: 'CreatedAt'
+            dataIndex: 'CreatedAt',
+            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
         },
         {
             title: 'Hành động',
@@ -164,6 +185,7 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
             )
         },
     ];
+
     return (
         <Row gutter={[10, 10]}>
             <Col span={24}>
@@ -171,11 +193,11 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
                     <Col span={3}>
                         <Button loading={loading}
                             onClick={() => {
-                                dispatch(listFormResourceStart({
+                                dispatch(AtomicgetListStart({
                                     pageIndex: pageIndex,
                                     pageSize: pageSize,
-                                    property: "",
-                                    orderBy: "",
+                                    propertyOrder: "",
+                                    valueOrderBy: "",
                                     propertySearch: [],
                                     valuesSearch: []
                                 }));
@@ -208,7 +230,10 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
                     </Col>
                     <Col span={3}>
                         <Button loading={loading} block icon={<PlusOutlined />}
-                            onClick={() => setisModalVisible(true)}
+                            onClick={() => {
+                                setisModalVisible(true);
+                                form.resetFields();
+                            }}
                         >Thêm</Button>
                     </Col>
                     <Col span={4}>
@@ -290,11 +315,11 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
                             type="primary"
                             icon={<SearchOutlined />}
                             onClick={() => {
-                                dispatch(listFormResourceStart({
+                                dispatch(AtomicgetListStart({
                                     pageIndex: 0,
                                     pageSize: 0,
-                                    property: OrderbyColumn,
-                                    orderBy: OrderbyTypes,
+                                    propertyOrder: OrderbyColumn,
+                                    valueOrderBy: OrderbyTypes,
                                     propertySearch: SelectColumn,
                                     valuesSearch: valuesSearch
                                 }));
@@ -312,6 +337,15 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
                     loading={loading}
                     style={{ width: 'calc(100% - 10px)' }}
                     scroll={{ y: 350 }}
+                    size='small'
+                    pagination={{
+                        pageSize: pageSize,
+                        total: totalCount,
+                        defaultCurrent: 1,
+                        onChange: onChange,
+                        showSizeChanger: true,
+                        pageSizeOptions: ['5', '10', '20', '50', '100']
+                    }}
                 />
             </Row>
             <Modal title="Thêm mới hoặc sửa Resource"
@@ -344,7 +378,7 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
                         </Form.Item>
 
                         <Form.Item
-                            label="Đường dẫn"
+                            label="Method or Name..."
                             name="name"
                             rules={[{ required: true, message: 'Đường dẫn không được để trống!' }]}
                         >

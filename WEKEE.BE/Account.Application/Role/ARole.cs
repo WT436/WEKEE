@@ -16,103 +16,45 @@ namespace Account.Application.Role
 {
     public class ARole : IRole
     {
-        private readonly RoleQuery roleQuery = new RoleQuery();
-        public int EditRole(RoleDto roleDto)
-        {
-            var action = MappingData.InitializeAutomapper().Map<Domain.Entitys.Role>(roleDto);
-            roleQuery.Update(action);
-            return 1;
-        }
+        private readonly RoleQuery _roleQuery = new RoleQuery();
+        private readonly UserAccountQuery _accountQuery = new UserAccountQuery();
 
-        public int EditRoleAsync(RoleDto roleDto)
+        public int EditRole(RoleDto role)
         {
             throw new NotImplementedException();
         }
 
-        public void InsertRole(RoleDto roleDto)
-        {
-            if(roleDto==null)
-            {
-                throw new ClientException(400, "You need to fill in all the information!");
-            }
-            if (String.IsNullOrEmpty(roleDto.Name) || String.IsNullOrEmpty(roleDto.Description))
-            {
-                throw new ClientException(400, "Invalid Name or Description !");
-            }
-
-            if (roleQuery.CountNameExact(roleDto.Name) != 0)
-            {
-                throw new ClientException(400, "Action name  already exists!");
-            }
-            if(roleQuery.CountId(roleDto.RoleId) == 0)
-            {
-                throw new ClientException(400, "Invalid RoleId!");
-            }
-            roleQuery.Insert(MappingData.InitializeAutomapper().Map<Domain.Entitys.Role>(roleDto));
-        }
-
-        public async Task InsertRoleAsync(RoleDto roleDto)
-        {
-            if (String.IsNullOrEmpty(roleDto.Name) || String.IsNullOrEmpty(roleDto.Description))
-            {
-                throw new ClientException(400, "Invalid Name or Description !");
-            }
-
-            if (await roleQuery.CountNameExactAsync(roleDto.Name) != 0)
-            {
-                throw new ClientException(400, "Action name  already exists!");
-            }
-            await roleQuery.InsertAsync(MappingData.InitializeAutomapper().Map<Domain.Entitys.Role>(roleDto));
-        }
-
-        public PagedListOutput<RoleDto> ListOrderByAscRole(OrderByPageListInput orderByPageListInput)
+        public Task<int> InsertRoleAsync(RoleDto role)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PagedListOutput<RoleDto>> ListOrderByAscRoleAsync(OrderByPageListInput orderByPageListInput)
+        public async Task<PagedListOutput<RoleDto>> ListRoleBasicAsync(SearchOrderPageInput searchOrderPageInput)
         {
-            throw new NotImplementedException();
-        }
-
-        public PagedListOutput<RoleDto> ListOrderByDescRole(OrderByPageListInput orderByPageListInput)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PagedListOutput<RoleDto>> ListOrderByDescRoleAsync(OrderByPageListInput orderByPageListInput)
-        {
-            throw new NotImplementedException();
-        }
-
-        public PagedListOutput<RoleDto> ListRoleBasic(PagedListInput pagedListInput)
-        {
-            var listData = roleQuery.GetAllListPage(pagedListInput);
-            return MapPagedListOutput.MapingpagedListOutput(listData);
-        }
-
-        public async Task<PagedListOutput<RoleDto>> ListRoleBasicAsync(PagedListInput pagedListInput)
-        {
-            var listData = await roleQuery.GetAllListPageAsync(pagedListInput);
-            return MapPagedListOutput.MapingpagedListOutput(listData);
+            var listData = await _roleQuery.GetAllListPageAsync(searchOrderPageInput);
+            return new PagedListOutput<RoleDto>
+            {
+                Items = listData.Items.Select(emp =>
+                {
+                    var dataReturn = MappingData.InitializeAutomapper().Map<RoleDto>(emp);
+                    dataReturn.CreateByName = _accountQuery.GetNameAccount(emp.CreateBy);
+                    var dataRoleMain = emp.RoleId == 0 ? null : _roleQuery.GetById(emp.RoleId);
+                    dataReturn.RoleMainName = dataRoleMain == null ? "" : dataRoleMain.Name;
+                    return dataReturn;
+                }).ToList(),
+                PageIndex = listData.PageIndex,
+                PageSize = listData.PageSize,
+                TotalCount = listData.TotalCount,
+                TotalPages = listData.TotalPages
+            };
         }
 
         public int RemoveRole(List<int> ids)
-        {
-            return roleQuery.Delete(ids);
-        }
-
-        public Task<int> RemoveRoleAsync(List<int> ids)
         {
             throw new NotImplementedException();
         }
 
         public int UpdateRole(List<int> ids)
-        {
-            return roleQuery.Update(roleQuery.GetAllLstById(ids).ToList());
-        }
-
-        public int UpdateRoleAsync(List<int> ids)
         {
             throw new NotImplementedException();
         }

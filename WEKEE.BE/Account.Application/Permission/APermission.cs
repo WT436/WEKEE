@@ -16,96 +16,43 @@ namespace Account.Application.Permission
 {
     public class APermission : IPermission
     {
-        private readonly PermissionQuery permissionQuery = new PermissionQuery();
-        public int EditPermission(PermissionDto permissionDto)
-        {
-            var action = MappingData.InitializeAutomapper().Map<Domain.Entitys.Permission>(permissionDto);
-            permissionQuery.Update(action);
-            return 1;
-        }
+        private readonly PermissionQuery _permissionQuery = new PermissionQuery();
+        private readonly UserAccountQuery _accountQuery = new UserAccountQuery();
 
-        public int EditPermissionAsync(PermissionDto permission)
+        public int EditPermission(PermissionDto permission)
         {
             throw new NotImplementedException();
         }
 
-        public void InsertPermission(PermissionDto permission)
+        public Task<int> InsertPermissionAsync(PermissionDto permission)
         {
-            if (String.IsNullOrEmpty(permission.Name) || String.IsNullOrEmpty(permission.Description))
+            throw new NotImplementedException();
+        }
+
+        public async Task<PagedListOutput<PermissionDto>> ListPermissionBasicAsync(SearchOrderPageInput searchOrderPageInput)
+        {
+            var listData = await _permissionQuery.GetAllListPageAsync(searchOrderPageInput);
+            return new PagedListOutput<PermissionDto>
             {
-                throw new ClientException(400, "Invalid Name or Description !");
-            }
-
-            if (permissionQuery.CountNameExact(permission.Name) != 0)
-            {
-                throw new ClientException(400, "Action name  already exists!");
-            }
-            permissionQuery.Insert(MappingData.InitializeAutomapper().Map<Domain.Entitys.Permission>(permission));
-        }
-
-        public async Task InsertPermissionAsync(PermissionDto permission)
-        {
-            if (String.IsNullOrEmpty(permission.Name) || String.IsNullOrEmpty(permission.Description))
-            {
-                throw new ClientException(400, "Invalid Name or Description !");
-            }
-
-            if (await permissionQuery.CountNameExactAsync(permission.Name) != 0)
-            {
-                throw new ClientException(400, "Action name  already exists!");
-            }
-            await permissionQuery.InsertAsync(MappingData.InitializeAutomapper().Map<Domain.Entitys.Permission>(permission));
-
-        }
-
-        public PagedListOutput<PermissionDto> ListOrderByAscPermission(OrderByPageListInput orderByPageListInput)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PagedListOutput<PermissionDto>> ListOrderByAscPermissionAsync(OrderByPageListInput orderByPageListInput)
-        {
-            throw new NotImplementedException();
-        }
-
-        public PagedListOutput<PermissionDto> ListOrderByDescPermission(OrderByPageListInput orderByPageListInput)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PagedListOutput<PermissionDto>> ListOrderByDescPermissionAsync(OrderByPageListInput orderByPageListInput)
-        {
-            throw new NotImplementedException();
-        }
-
-        public PagedListOutput<PermissionDto> ListPermissionBasic(PagedListInput pagedListInput)
-        {
-            var listData = permissionQuery.GetAllListPage(pagedListInput);
-            return MapPagedListOutput.MapingpagedListOutput(listData);
-        }
-
-        public async Task<PagedListOutput<PermissionDto>> ListPermissionBasicAsync(PagedListInput pagedListInput)
-        {
-            var listData = await permissionQuery.GetAllListPageAsync(pagedListInput);
-            return MapPagedListOutput.MapingpagedListOutput(listData);
+                Items = listData.Items.Select(emp =>
+                {
+                    var dataReturn = MappingData.InitializeAutomapper().Map<PermissionDto>(emp);
+                    dataReturn.CreateByName = _accountQuery.GetNameAccount(emp.CreateBy);
+                    return dataReturn;
+                }).ToList(),
+                PageIndex = listData.PageIndex,
+                PageSize = listData.PageSize,
+                TotalCount = listData.TotalCount,
+                TotalPages = listData.TotalPages
+            };
         }
 
         public int RemovePermission(List<int> ids)
-        {
-            return permissionQuery.Delete(ids);
-        }
-
-        public Task<int> RemovePermissionAsync(List<int> ids)
         {
             throw new NotImplementedException();
         }
 
         public int UpdatePermission(List<int> ids)
-        {
-            return permissionQuery.Update(permissionQuery.GetAllLstById(ids).ToList());
-        }
-
-        public int UpdatePermissionAsync(List<int> ids)
         {
             throw new NotImplementedException();
         }

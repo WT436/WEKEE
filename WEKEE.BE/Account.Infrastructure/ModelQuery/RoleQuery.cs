@@ -89,7 +89,7 @@ namespace Account.Infrastructure.ModelQuery
         #endregion
 
         #region tìm kiếm
-        public Role GetAllId(int id)
+        public Role GetById(int id)
         => unitOfWork.GetRepository<Role>().GetFirstOrDefault(predicate: m => m.Id == id);
 
         public async Task<Role> GetAllIdAsync(int id)

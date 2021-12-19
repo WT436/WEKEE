@@ -21,16 +21,15 @@ namespace Account.API.Src.AccountAreas
         }
 
         [HttpGet(PermissionRouter.PermissionAccount)]
-        public IActionResult Get(OrderByPageListInput orderByPageListInput)
+        public async Task<IActionResult> Get(SearchOrderPageInput searchOrderPageInput)
         {
-            var data = _permission.ListOrderByAscPermission(orderByPageListInput);
+            var data = await _permission.ListPermissionBasicAsync(searchOrderPageInput);
             return Ok(data);
         }
 
         [HttpPost(PermissionRouter.PermissionAccount)]
         public IActionResult Create([FromBody] PermissionDto permission)
         {
-            _permission.InsertPermission(permission);
             return Ok("true");
         }
 

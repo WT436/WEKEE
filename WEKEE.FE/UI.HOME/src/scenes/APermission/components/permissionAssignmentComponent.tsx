@@ -106,8 +106,10 @@ export default function PermissionAssignmentComponents(props: IPermissionAssignm
         dispatch(listFormRoleStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
+            propertySearch: [],
+            valuesSearch: []
         }));
     }, []);
 
@@ -115,8 +117,10 @@ export default function PermissionAssignmentComponents(props: IPermissionAssignm
         dispatch(listFormPermissionStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
+            propertySearch: [],
+            valuesSearch: []
         }));
     };
 
@@ -143,7 +147,7 @@ export default function PermissionAssignmentComponents(props: IPermissionAssignm
             <Row gutter={[35, 5]}>
                 <Col span={12}>
                     <Row style={{ fontSize: '20px', fontFamily: 'cursive', padding: '5px 15px' }}>Role</Row>
-                    <Table
+                    {/* <Table
                         rowSelection={{
                             type: 'radio',
                             ...rowSelection
@@ -162,7 +166,7 @@ export default function PermissionAssignmentComponents(props: IPermissionAssignm
                             showSizeChanger: true,
                             pageSizeOptions: ['5', '10', '20', '50', '100']
                         }}
-                    />
+                    /> */}
                 </Col>
                 <Col span={12}>
                     <Row style={{ fontSize: '20px', fontFamily: 'cursive', padding: '5px 15px' }}>Permission</Row>

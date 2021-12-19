@@ -44,8 +44,8 @@ export default function SError(props: ISErrorProps) {
         dispatch(getListErrorSystemStart({
             pageIndex: 0,
             pageSize: 20,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
         }));
     }, []);
 
@@ -61,8 +61,8 @@ export default function SError(props: ISErrorProps) {
         dispatch(getListErrorSystemStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
         }));
     }
     const columns = [
@@ -134,16 +134,16 @@ export default function SError(props: ISErrorProps) {
         dispatch(getListErrorSystemStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: dateString,
-            orderBy: 'DateTime'
+            propertyOrder: dateString,
+            valueOrderBy: 'DateTime'
         }));
     }
     const handleChange = (value: string) => {
         dispatch(getListErrorSystemStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: value,
-            orderBy: value
+            propertyOrder: value,
+            valueOrderBy: value
         }));
     }
     return (

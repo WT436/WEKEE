@@ -5,7 +5,7 @@ export interface AtomicDto {
     typesRsc : string
     isActive: boolean
     createdAt: Date
-    createBy: String
+    createBy: string
     updatedAt: Date
-    count: Number
+    count: number
 }

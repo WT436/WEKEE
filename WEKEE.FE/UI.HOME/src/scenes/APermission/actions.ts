@@ -74,16 +74,16 @@ export const ResourceEditStatusError = () =>
 //#endregion
 
 //#region  Atomic
-export const AtomicgetListStart = () =>
-    action(ActionTypes.ATOMIC_LIST_START);
-export const AtomicgetListCompleted = (output: AtomicDto) =>
+export const AtomicgetListStart = (input : SearchOrderPageInput) =>
+    action(ActionTypes.ATOMIC_LIST_START, input);
+export const AtomicgetListCompleted = (output: PagedListOutput<AtomicDto>) =>
     action(ActionTypes.ATOMIC_LIST_COMPLETED, output);
 export const AtomicgetListError = () =>
     action(ActionTypes.ATOMIC_LIST_ERROR);
 //#endregion
 
 //#region Action
-export const listFormActionStart = (input: OrderByListInput) =>
+export const listFormActionStart = (input: SearchOrderPageInput) =>
     action(ActionTypes.ACTION_LIST_FORM_START, input);
 export const listFormActionCompleted = (output: PagedListOutput<ActionDto>) =>
     action(ActionTypes.ACTION_LIST_FORM_COMPLETED, output);
@@ -119,7 +119,7 @@ export const ActionRemoveError = () =>
 //#endregion
 
 //#region Permission
-export const listFormPermissionStart = (input: OrderByListInput) =>
+export const listFormPermissionStart = (input: SearchOrderPageInput) =>
     action(ActionTypes.PERMISSION_LIST_FORM_START, input);
 export const listFormPermissionCompleted = (output: PagedListOutput<PermissionDto>) =>
     action(ActionTypes.PERMISSION_LIST_FORM_COMPLETED, output);
@@ -155,7 +155,7 @@ export const PermissionRemoveError = () =>
 //#endregion
 
 //#region Role
-export const listFormRoleStart = (input: OrderByListInput) =>
+export const listFormRoleStart = (input: SearchOrderPageInput) =>
     action(ActionTypes.ROLE_LIST_FORM_START, input);
 export const listFormRoleCompleted = (output: PagedListOutput<RoleDto>) =>
     action(ActionTypes.ROLE_LIST_FORM_COMPLETED, output);

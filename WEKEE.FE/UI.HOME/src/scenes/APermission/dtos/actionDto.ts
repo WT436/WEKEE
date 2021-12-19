@@ -1,10 +1,14 @@
 export interface ActionDto {
-    id: Number
-    name: string
-    atomicId: Number
-    nameAtomic: string
-    description: string
-    actionBase: Number
-    dateCreate: String
-    isActive: boolean
+    id : number
+    name : String
+    atomicId : number
+    atomicName : String
+    description : String
+    actionBase : number
+    actionBaseName : String
+    isActive : Boolean
+    createdAt : Date
+    createBy : number
+    createByName : String
+    updatedAt : Date
 }

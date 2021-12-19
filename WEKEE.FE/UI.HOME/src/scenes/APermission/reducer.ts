@@ -60,7 +60,7 @@ export const initialState: APermissionState = {
   dataRemoveAction: [],
   dataRemovePermission: [],
   dataRemoveRole: [],
-  dataRemoveAtomic:[]
+  dataRemoveAtomic: []
 };
 
 function aPermissionReducer(
@@ -68,6 +68,7 @@ function aPermissionReducer(
   action: APermissionActions
 ) {
   switch (action.type) {
+
     //#region  resource
     case ActionTypes.LIST_FORM_RESOURCE_START:
       return {
@@ -88,9 +89,14 @@ function aPermissionReducer(
         totalPages: action.payload.totalPages,
       };
     case ActionTypes.LIST_FORM_RESOURCE_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
-        loading: true,
+        loading: false,
       };
 
     case ActionTypes.RESOURCE_CREATE_ITEM_START:
@@ -109,6 +115,11 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.RESOURCE_CREATE_ITEM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -130,14 +141,18 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.RESOURCE_EDIT_ITEM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
       };
     case ActionTypes.RESOURCE_REMOVE_FE_ITEM_START:
 
-      if(action.payload.types==1)
-      {
+      if (action.payload.types == 1) {
         return {
           ...state,
           dataResource: state.dataResource.filter(
@@ -147,30 +162,31 @@ function aPermissionReducer(
         };
       }
 
-      if(action.payload.types==2)
-      {
+      if (action.payload.types == 2) {
         return {
           ...state,
           dataResource: state.dataResource.map(
-            (el: ResourceDto) => el.id === action.payload.id ? {...el, isActive : !el.isActive }: el
+            (el: ResourceDto) => el.id === action.payload.id ? { ...el, isActive: !el.isActive } : el
           ),
           // nếu chưa có thì add , nếu có thì xóa
           dataRemoveResource: !state.dataRemoveResource.includes(action.payload.id)
-                              ?state.dataRemoveResource.concat(action.payload.id)
-                              :state.dataRemoveResource.filter((num)=> num!==action.payload.id),
+            ? state.dataRemoveResource.concat(action.payload.id)
+            : state.dataRemoveResource.filter((num) => num !== action.payload.id),
         };
       }
-      
+
       return;
-     
+
     case ActionTypes.RESOURCE_REMOVE_FE_ITEM_CANCEL:
       return {
         ...state,
         dataRemoveResource: [],
+        loading: false,
       };
     case ActionTypes.RESOURCE_REMOVE_START:
       return {
         ...state,
+        loading: true,
       };
     case ActionTypes.RESOURCE_REMOVE_COMPLETED:
       notification.success({
@@ -181,30 +197,45 @@ function aPermissionReducer(
       return {
         ...state,
         dataRemoveResource: [],
+        loading: false,
       };
     case ActionTypes.RESOURCE_REMOVE_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
+        loading: false,
       };
 
-      case ActionTypes.RESOURCE_EDIT_STATUS_START:
-        return {
-          ...state,
-        };
-      case ActionTypes.RESOURCE_EDIT_STATUS_COMPLETED:
-        notification.success({
-          message: "Thành Công",
-          description: "Đã xóa Thành Công " + action.payload + " Bản Ghi!",
-          placement: "bottomRight",
-        });
-        return {
-          ...state,
-          dataRemoveResource: [],
-        };
-      case ActionTypes.RESOURCE_EDIT_STATUS_ERROR:
-        return {
-          ...state,
-        };
+    case ActionTypes.RESOURCE_EDIT_STATUS_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ActionTypes.RESOURCE_EDIT_STATUS_COMPLETED:
+      notification.success({
+        message: "Thành Công",
+        description: "Đã xóa Thành Công " + action.payload + " Bản Ghi!",
+        placement: "bottomRight",
+      });
+      return {
+        ...state,
+        dataRemoveResource: [],
+        loading: false,
+      };
+    case ActionTypes.RESOURCE_EDIT_STATUS_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
+      return {
+        ...state,
+        loading: false,
+      };
     //#endregion
 
     //#region Atomic
@@ -217,12 +248,16 @@ function aPermissionReducer(
       return {
         ...state,
         loading: false,
-        dataAtomic: action.payload,
+        dataAtomic: action.payload.items,
+        pageIndex: action.payload.pageIndex,
+        pageSize: action.payload.pageSize,
+        totalCount: action.payload.totalCount,
+        totalPages: action.payload.totalPages,
       };
     case ActionTypes.ATOMIC_LIST_ERROR:
-      notification.success({
+      notification.warning({
         message: "Thất Bại",
-        description: "Lỗi Lấy dữ liệu!",
+        description: "Đã sảy ra lỗi!",
         placement: "bottomRight",
       });
       return {
@@ -251,9 +286,14 @@ function aPermissionReducer(
         totalPages: action.payload.totalPages,
       };
     case ActionTypes.ACTION_LIST_FORM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
-        loading: true,
+        loading: false,
       };
 
     case ActionTypes.ACTION_CREATE_ITEM_START:
@@ -272,6 +312,11 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.ACTION_CREATE_ITEM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -293,10 +338,16 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.ACTION_EDIT_ITEM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
       };
+    
     case ActionTypes.ACTION_REMOVE_FE_ITEM_START:
       return {
         ...state,
@@ -309,10 +360,13 @@ function aPermissionReducer(
       return {
         ...state,
         dataRemoveACTION: [],
+        loading: false,
       };
+    
     case ActionTypes.ACTION_REMOVE_START:
       return {
         ...state,
+        loading: true,
       };
     case ActionTypes.ACTION_REMOVE_COMPLETED:
       notification.success({
@@ -323,10 +377,17 @@ function aPermissionReducer(
       return {
         ...state,
         dataRemoveAction: [],
+        loading: false,
       };
     case ActionTypes.ACTION_REMOVE_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
+        loading: false,
       };
     //#endregion
 
@@ -350,9 +411,14 @@ function aPermissionReducer(
         totalPages: action.payload.totalPages,
       };
     case ActionTypes.PERMISSION_LIST_FORM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
-        loading: true,
+        loading: false,
       };
 
     case ActionTypes.PERMISSION_CREATE_ITEM_START:
@@ -371,6 +437,11 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.PERMISSION_CREATE_ITEM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -392,10 +463,16 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.PERMISSION_EDIT_ITEM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
       };
+    
     case ActionTypes.PERMISSION_REMOVE_FE_ITEM_START:
       return {
         ...state,
@@ -408,10 +485,13 @@ function aPermissionReducer(
       return {
         ...state,
         dataRemovePermission: [],
+        loading: false,
       };
+    
     case ActionTypes.PERMISSION_REMOVE_START:
       return {
         ...state,
+        loading: true,
       };
     case ActionTypes.PERMISSION_REMOVE_COMPLETED:
       notification.success({
@@ -422,10 +502,17 @@ function aPermissionReducer(
       return {
         ...state,
         dataRemovePermission: [],
+        loading: false,
       };
     case ActionTypes.PERMISSION_REMOVE_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
+        loading: false,
       };
     //#endregion
 
@@ -449,6 +536,11 @@ function aPermissionReducer(
         totalPages: action.payload.totalPages,
       };
     case ActionTypes.ROLE_LIST_FORM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: true,
@@ -470,6 +562,11 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.ROLE_CREATE_ITEM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -491,6 +588,11 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.ROLE_EDIT_ITEM_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -523,6 +625,11 @@ function aPermissionReducer(
         dataRemoveRole: [],
       };
     case ActionTypes.ROLE_REMOVE_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
       };
@@ -547,6 +654,11 @@ function aPermissionReducer(
         totalPagesSub: action.payload.totalPages,
       };
     case ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -568,6 +680,11 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -592,6 +709,11 @@ function aPermissionReducer(
         totalPagesSub: action.payload.totalPages,
       };
     case ActionTypes.ACTION_ASSIGNMENT_GET_LIST_DATA_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -613,6 +735,11 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -637,6 +764,11 @@ function aPermissionReducer(
         totalPagesSub: action.payload.totalPages,
       };
     case ActionTypes.PERMISSION_ASSIGNMENT_GET_LIST_DATA_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,
@@ -658,6 +790,11 @@ function aPermissionReducer(
         loading: false,
       };
     case ActionTypes.PERMISSION_ASSIGNMENT_INSERT_OR_UPDATE_ERROR:
+      notification.warning({
+        message: "Thất Bại",
+        description: "Đã sảy ra lỗi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,

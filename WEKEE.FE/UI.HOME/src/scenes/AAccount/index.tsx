@@ -217,8 +217,8 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
             propertySearch: [],
             valuesSearch: []
         }))
@@ -228,8 +228,8 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: page,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
             propertySearch: [],
             valuesSearch: []
         }));
@@ -239,8 +239,8 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            property: "",
-            orderBy: "",
+            propertyOrder: "",
+            valueOrderBy: "",
             propertySearch: [],
             valuesSearch: []
         }));
@@ -258,8 +258,8 @@ export default function AAccount(props: IAAccount) {
             dispatch(listAccountAdminStart({
                 pageIndex: 0,
                 pageSize: 20,
-                property: "",
-                orderBy: "",
+                propertyOrder: "",
+                valueOrderBy: "",
                 propertySearch: [type],
                 valuesSearch: [value]
             }));
@@ -278,8 +278,8 @@ export default function AAccount(props: IAAccount) {
             dispatch(listAccountAdminStart({
                 pageIndex: 0,
                 pageSize: 20,
-                property: "",
-                orderBy: "",
+                propertyOrder: "",
+                valueOrderBy: "",
                 propertySearch: ['User_Profile_Is_Status'],
                 valuesSearch: [value.toString()]
             }));

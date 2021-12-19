@@ -11,12 +11,12 @@ namespace Account.Domain.BoundedContext
 {
     public static class MapPagedListOutput
     {
-        public static PagedListOutput<ResourceDto> MapingpagedListOutput(IPagedList<Resource> listData)
+        public static PagedListOutput<AtomicDto> MapingpagedListOutput(IPagedList<Atomic> listData)
         {
-            return new PagedListOutput<ResourceDto>
+            return new PagedListOutput<AtomicDto>
             {
                 Items = listData.Items.Select(emp => MappingData.InitializeAutomapper()
-                                                                .Map<ResourceDto>(emp)).ToList(),
+                                                                .Map<AtomicDto>(emp)).ToList(),
                 PageIndex = listData.PageIndex,
                 PageSize = listData.PageSize,
                 TotalCount = listData.TotalCount,

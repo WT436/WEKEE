@@ -89,8 +89,8 @@ namespace Account.Infrastructure.ModelQuery
         #endregion
 
         #region tìm kiếm
-        public Action GetAllId(int id)
-        => unitOfWork.GetRepository<Action>().GetFirstOrDefault(predicate: m => m.Id == id);
+        public Action GetById(int? id)
+        => unitOfWork.GetRepository<Action>().GetFirstOrDefault(predicate: m => m.Id == (int)id);
 
         public async Task<Action> GetAllIdAsync(int id)
                      => await unitOfWork.GetRepository<Action>().GetFirstOrDefaultAsync(predicate: m => m.Id == id);

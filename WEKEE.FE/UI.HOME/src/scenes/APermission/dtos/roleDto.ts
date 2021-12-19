@@ -2,9 +2,13 @@ export interface RoleDto {
     id: number
     name: string
     description: string
-    levelRole:Number
-    roleId:Number
-    isActive: boolean
+    levelRole: number
+    roleId: number
+    roleMainName: string
     isDelete: boolean
-    dateCreate: String
+    isActive: boolean
+    createdAt: Date
+    createBy: number
+    createByName: string
+    updatedAt: Date
 }

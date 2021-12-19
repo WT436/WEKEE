@@ -20,18 +20,16 @@ namespace Account.Application.ActionAssignment
        
         public async Task<bool> DeleteAccount(int id_Account)
         {
-           
             return true;
         }
 
         public PagedListOutput<ActionAssignmentDto> ListActionAssignment(int idPermission, PagedListInput pagedListInput)
         {
             //lấy dữ liệu resource,
-            var dataAction = _action.ListActionBasic(pagedListInput);
             // lấy dữ liệu action
             var dataActionAssignment = actionAssignmentQuery.ListActionAssignmentWithId(idPermission);
             // map data
-            return MapPagedListOutput.MapingpagedListOutput(action: dataAction,
+            return MapPagedListOutput.MapingpagedListOutput(action: null,
                                                             actionAssignments: dataActionAssignment,
                                                             permissionId: idPermission);
         }

@@ -167,7 +167,6 @@ class AdminLayout extends React.Component<any> {
                         </Content>
                     </Layout>
                 </Layout>
-                <Footer />
             </Col>
         );
     }

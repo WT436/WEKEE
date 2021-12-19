@@ -13,6 +13,7 @@ import {
     makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages
 } from '../selectors';
 import { ResourceDto } from '../dtos/resourceDto';
+import moment from 'moment';
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 //#endregion
@@ -40,53 +41,17 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
     const [isModalVisible, setisModalVisible] = useState(false);
     // 0 : bật tất cả 1: đang xóa, 2 đang update khóa/mở
     const [isDataChange, setisDataChange] = useState(0);
+    const [SelectColumn, setSelectColumn] = useState(["All"]);
+    const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
+    const [OrderbyColumn, setOrderbyColumn] = useState("");
+    const [OrderbyTypes, setOrderbyTypes] = useState("");
+
     const dispatch = useDispatch();
 
     const {
         loading, dataResource, pageSize, totalCount, pageIndex,
         dataRemoveResource
     } = useSelector(stateSelector);
-
-    useEffect(() => {
-        dispatch(listFormResourceStart({
-            pageIndex: pageIndex,
-            pageSize: pageSize,
-            property: "UpdatedAt",
-            orderBy: "ASC",
-            propertySearch: [],
-            valuesSearch: [],
-        }));
-    }, []);
-
-    useEffect(() => {
-
-    }, [pageSize]);
-
-    useEffect(() => {
-        if (dataRemoveResource.length === 0) {
-            setCheckRemove(true);
-        }
-        else {
-            setCheckRemove(false);
-            setCheckRestart(false);
-        }
-    }, [dataRemoveResource]);
-
-    const [form] = Form.useForm();
-
-    const onFill = (value: ResourceDto) => {
-        form.setFieldsValue(value);
-    };
-
-    const onRemove = (value: ResourceDto) => {
-        setisDataChange(1);
-        dispatch(ResourceRemoveFeStart(value.id, 1));
-    };
-
-    const onChangeIsStatus = (value: ResourceDto) => {
-        setisDataChange(2);
-        dispatch(ResourceRemoveFeStart(value.id, 2));
-    };
 
     const columns = [
         {
@@ -119,7 +84,8 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
         },
         {
             title: 'Ngày tạo',
-            dataIndex: 'createdAt'
+            dataIndex: 'createdAt',
+            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
         },
         {
             title: 'Người sửa',
@@ -127,7 +93,8 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
         },
         {
             title: 'Update gần nhất',
-            dataIndex: 'updatedAt'
+            dataIndex: 'updatedAt',
+            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
         },
         {
             title: 'Hành động',
@@ -158,12 +125,49 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
         },
     ];
 
+    useEffect(() => {
+        dispatch(listFormResourceStart({
+            pageIndex: pageIndex,
+            pageSize: pageSize,
+            propertyOrder: "UpdatedAt",
+            valueOrderBy: "ASC",
+            propertySearch: [],
+            valuesSearch: [],
+        }));
+    }, []);
+
+    useEffect(() => {
+        if (dataRemoveResource.length === 0) {
+            setCheckRemove(true);
+        }
+        else {
+            setCheckRemove(false);
+            setCheckRestart(false);
+        }
+    }, [dataRemoveResource]);
+
+    const [form] = Form.useForm();
+
+    const onFill = (value: ResourceDto) => {
+        form.setFieldsValue(value);
+    };
+
+    const onRemove = (value: ResourceDto) => {
+        setisDataChange(1);
+        dispatch(ResourceRemoveFeStart(value.id, 1));
+    };
+
+    const onChangeIsStatus = (value: ResourceDto) => {
+        setisDataChange(2);
+        dispatch(ResourceRemoveFeStart(value.id, 2));
+    };
+
     let onChange = (page: any, pageSize: any) => {
         dispatch(listFormResourceStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            property: OrderbyColumn,
-            orderBy: OrderbyTypes,
+            propertyOrder: OrderbyColumn,
+            valueOrderBy: OrderbyTypes,
             propertySearch: [],
             valuesSearch: valuesSearch
         }));
@@ -186,11 +190,6 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
     const onGenderChange = (value: string) => {
         form.setFieldsValue({ types: value });
     };
-
-    const [SelectColumn, setSelectColumn] = useState(["All"]);
-    const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
-    const [OrderbyColumn, setOrderbyColumn] = useState("");
-    const [OrderbyTypes, setOrderbyTypes] = useState("");
     return (
         <Row gutter={[10, 10]}>
             <Col span={24}>
@@ -201,8 +200,8 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                                 dispatch(listFormResourceStart({
                                     pageIndex: pageIndex,
                                     pageSize: pageSize,
-                                    property: "",
-                                    orderBy: "",
+                                    propertyOrder: "",
+                                    valueOrderBy: "",
                                     propertySearch: [],
                                     valuesSearch: []
                                 }));
@@ -288,8 +287,8 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                             defaultValue={"All"}
                             disabled={loading}
                             onChange={(value) => {
-                                setOrderbyColumn(value.substring(0,value.lastIndexOf("_")));
-                                setOrderbyTypes(value.substring(value.lastIndexOf("_")+1));
+                                setOrderbyColumn(value.substring(0, value.lastIndexOf("_")));
+                                setOrderbyTypes(value.substring(value.lastIndexOf("_") + 1));
                             }}
                         >
                             <Option value="All">Không Sắp Xếp</Option>
@@ -320,8 +319,8 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                                 dispatch(listFormResourceStart({
                                     pageIndex: 0,
                                     pageSize: 0,
-                                    property: OrderbyColumn,
-                                    orderBy: OrderbyTypes,
+                                    propertyOrder: OrderbyColumn,
+                                    valueOrderBy: OrderbyTypes,
                                     propertySearch: SelectColumn,
                                     valuesSearch: valuesSearch
                                 }));
@@ -337,6 +336,8 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                         rowKey={(record: ResourceDto) => record.id.toString()}
                         loading={loading}
                         style={{ width: '100%' }}
+                        scroll={{ y: 350 }}
+                        size='small'
                         pagination={{
                             pageSize: pageSize,
                             total: totalCount,
