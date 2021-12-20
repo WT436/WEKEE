@@ -307,7 +307,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                             <LazyLoadImage
                                                 alt={"ádsda"}
                                                 effect="blur"
-                                                src={abp.appServiceUrlStaticFile + '/' + item.image80x80} />
+                                                src={abp.serviceAlbumImage+ item.image80x80} />
                                         </div>
                                     );
                                 }
@@ -318,7 +318,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                                 alt={"ádsda"}
                                                 effect="blur"
                                                 className="cKqErgPkfl"
-                                                src={abp.appServiceUrlStaticFile + '/' + item.image80x80} />
+                                                src={abp.serviceAlbumImage + item.image80x80} />
                                             <span className='VNDntFciDM'>Hiển thị thêm {getEvaluatesProductDto.imageReview.length - 6} ảnh khác</span>
                                         </div>
                                     );
@@ -350,7 +350,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                             alt={"Lựa chọn image"}
                             effect="blur"
                             onClick={() => setIsModalVisible(true)}
-                            src={!selectImage ? '' : abp.appServiceUrlStaticFile + '/' + selectImage} />
+                            src={!selectImage ? '' : abp.serviceAlbumImage + selectImage} />
                     </div>
                     <div className="CDBhRpMxwl">
                         <Slider {...settings3}>
@@ -358,7 +358,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                 getEvaluatesProductDto.imageReview.map((element: ImageEvaluatesDtos) => {
                                     return (<img className={"LmqLbjIyYc" + " " + (selectImage === element.image80x80 ? "bFpTBTrDfH" : "")}
                                         onClick={() => setselectImage(element.image340x340)}
-                                        src={abp.appServiceUrlStaticFile + "/" + element.image80x80}
+                                        src={abp.serviceAlbumImage + element.image80x80}
                                         alt={''} />)
                                 })
                             }
@@ -373,7 +373,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                         <div className='BDVwiLlqTH'>
                             <div className='LNOnCyyxQa'>
                                 <div className='QmalboputO'>
-                                    <img className='UsOtLlsjsj' src={abp.appServiceUrlStaticFile + "/" + item.accountReview.avartar} alt="" />
+                                    <img className='UsOtLlsjsj' src={abp.serviceAlbumImage + item.accountReview.avartar} alt="" />
                                     <div className='UyXPaSOgcb'>
                                         <p className='afjfYlfVaY'>{item.accountReview.fullName}</p>
                                         <p>Đã tham gia {DateTimeProcess(item.accountReview.dateJoin)}</p>
@@ -409,7 +409,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                                         <LazyLoadImage
                                                             alt={"ádsda"}
                                                             effect="blur"
-                                                            src={abp.appServiceUrlStaticFile + '/' + itemImage.image80x80} />
+                                                            src={abp.serviceAlbumImage+ itemImage.image80x80} />
                                                     </div>
                                                 );
                                             }
@@ -420,7 +420,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                                             alt={"ádsda"}
                                                             effect="blur"
                                                             className="cKqErgPkfl"
-                                                            src={abp.appServiceUrlStaticFile + '/' + itemImage.image80x80} />
+                                                            src={abp.serviceAlbumImage + itemImage.image80x80} />
                                                         <span className='VNDntFciDM'>Hiển thị thêm {item.image.length - 6} ảnh khác</span>
                                                     </div>
                                                 );
@@ -500,7 +500,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                                                     alt={"ádsda"}
                                                                     effect="blur"
                                                                     onClick={() => setIsModalVisible(true)}
-                                                                    src={abp.appServiceUrlStaticFile + '/' + item} />
+                                                                    src={abp.serviceAlbumImage + item} />
                                                             </div>
                                                         );
                                                     }
@@ -511,7 +511,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                                                     alt={"ádsda"}
                                                                     effect="blur"
                                                                     className="cKqErgPkfl"
-                                                                    src={abp.appServiceUrlStaticFile + '/' + item} />
+                                                                    src={abp.serviceAlbumImage+ item} />
                                                                 <span className='VNDntFciDM'>Hiển thị thêm {imageevaluates.length - 6} ảnh khác</span>
                                                             </div>
                                                         );
@@ -528,7 +528,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                                 <div className="JwMWGpetPE">
                                                     <div className="GGKviWLHJH">
                                                         <div className="ZCcIcopBuX"></div>
-                                                        <img className='EuEinMInHi' src={abp.appServiceUrlStaticFile + '/' + repcomment.avatarAccount} alt="" />
+                                                        <img className='EuEinMInHi' src={abp.serviceAlbumImage + repcomment.avatarAccount} alt="" />
                                                     </div>
                                                     <div className="FwoJYIRsKF">
                                                         <div className="vytbSMnWZY">
@@ -555,7 +555,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                                         <div className="ByKVhDewtl uIDCSlWITT">
                                                             <div className="GGKviWLHJH">
                                                                 <div className="bHexDsHAAu"></div>
-                                                                <img className='EuEinMInHi' src={abp.appServiceUrlStaticFile + '/' + replycomment.avatarAccount} alt="" />
+                                                                <img className='EuEinMInHi' src={abp.serviceAlbumImage + replycomment.avatarAccount} alt="" />
                                                             </div>
                                                             <div className="FwoJYIRsKF">
                                                                 <div className="vytbSMnWZY">
@@ -575,7 +575,7 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
                                                         ? <div className="ByKVhDewtl uIDCSlWITT">
                                                             <div className="GGKviWLHJH">
                                                                 <div className="bHexDsHAAu"></div>
-                                                                <img className='EuEinMInHi' src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" />
+                                                                <img className='EuEinMInHi' src={abp.serviceAlbumImage + '/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" />
                                                             </div>
                                                             <div className="FwoJYIRsKF">
                                                                 <textarea

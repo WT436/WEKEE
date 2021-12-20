@@ -13,7 +13,7 @@ class UserLayout extends React.Component<any> {
     return (
       <Col className="container">
         <Helmet>
-          <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/lohkKcjUzB.css"} />
+          <link rel="stylesheet" href={abp.serviceAlbumCss + "/lohkKcjUzB.css"} />
         </Helmet>
         <Header />
         <ul className='GjLseculzy'>

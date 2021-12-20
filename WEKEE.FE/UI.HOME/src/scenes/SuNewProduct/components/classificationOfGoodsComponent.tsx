@@ -235,14 +235,14 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                                                 onChange={(value: any) => { dataTableitem.image = value }}
                                             >
                                                 <Option key="0" value="_">Chọn Ảnh</Option>
-                                                <Option key="1" disabled={(props.image[1].url === '')} value={props.image[1].url}>{!(props.image[1].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + props.image[1].url} alt="" /> : ""}  Ảnh 1</Option>
-                                                <Option key="2" disabled={(props.image[2].url === '')} value={props.image[2].url}>{!(props.image[2].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + props.image[2].url} alt="" /> : ""}  Ảnh 2</Option>
-                                                <Option key="3" disabled={(props.image[3].url === '')} value={props.image[3].url}>{!(props.image[3].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + props.image[3].url} alt="" /> : ""}  Ảnh 3</Option>
-                                                <Option key="4" disabled={(props.image[4].url === '')} value={props.image[4].url}>{!(props.image[4].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + props.image[4].url} alt="" /> : ""}  Ảnh 4</Option>
-                                                <Option key="5" disabled={(props.image[5].url === '')} value={props.image[5].url}>{!(props.image[5].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + props.image[5].url} alt="" /> : ""}  Ảnh 5</Option>
-                                                <Option key="6" disabled={(props.image[6].url === '')} value={props.image[6].url}>{!(props.image[6].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + props.image[6].url} alt="" /> : ""}  Ảnh 6</Option>
-                                                <Option key="7" disabled={(props.image[7].url === '')} value={props.image[7].url}>{!(props.image[7].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + props.image[7].url} alt="" /> : ""}  Ảnh 7</Option>
-                                                <Option key="8" disabled={(props.image[8].url === '')} value={props.image[8].url}>{!(props.image[8].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + props.image[8].url} alt="" /> : ""}  Ảnh 8</Option>
+                                                <Option key="1" disabled={(props.image[1].url === '')} value={props.image[1].url}>{!(props.image[1].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage +  props.image[1].url} alt="" /> : ""}  Ảnh 1</Option>
+                                                <Option key="2" disabled={(props.image[2].url === '')} value={props.image[2].url}>{!(props.image[2].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage +  props.image[2].url} alt="" /> : ""}  Ảnh 2</Option>
+                                                <Option key="3" disabled={(props.image[3].url === '')} value={props.image[3].url}>{!(props.image[3].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage +  props.image[3].url} alt="" /> : ""}  Ảnh 3</Option>
+                                                <Option key="4" disabled={(props.image[4].url === '')} value={props.image[4].url}>{!(props.image[4].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage +  props.image[4].url} alt="" /> : ""}  Ảnh 4</Option>
+                                                <Option key="5" disabled={(props.image[5].url === '')} value={props.image[5].url}>{!(props.image[5].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage +  props.image[5].url} alt="" /> : ""}  Ảnh 5</Option>
+                                                <Option key="6" disabled={(props.image[6].url === '')} value={props.image[6].url}>{!(props.image[6].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage +  props.image[6].url} alt="" /> : ""}  Ảnh 6</Option>
+                                                <Option key="7" disabled={(props.image[7].url === '')} value={props.image[7].url}>{!(props.image[7].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage +  props.image[7].url} alt="" /> : ""}  Ảnh 7</Option>
+                                                <Option key="8" disabled={(props.image[8].url === '')} value={props.image[8].url}>{!(props.image[8].url === '') ? <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage +  props.image[8].url} alt="" /> : ""}  Ảnh 8</Option>
                                             </Select >
                                         </Col>
                                     </Row>
@@ -297,7 +297,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
             dataIndex: 'image',
             key: 'image',
             render: (text: any) => (
-                <img style={{ width: 30, height: 30 }} src={abp.appServiceUrlStaticFile + '/' + text} alt="" />
+                <img style={{ width: 30, height: 30 }} src={abp.serviceAlbumImage + text} alt="" />
             ),
         }
     ];

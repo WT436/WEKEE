@@ -18,7 +18,7 @@ const { Text } = Typography;
 const { Option } = Select;
 
 declare var abp: any;
-var urluMSPcKIjBe = abp.appServiceUrlStaticFile + "/fileCss/uMSPcKIjBe.css";
+var urluMSPcKIjBe = abp.serviceAlbumCss + "/uMSPcKIjBe.css";
 
 interface IHCategoryListProduct { }
 

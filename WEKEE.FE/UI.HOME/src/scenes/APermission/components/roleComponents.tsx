@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { listFormRoleStart, RoleCreateStart, RoleEditStart, RoleRemoveFeCancel, RoleRemoveFeStart, RoleRemoveStart } from '../actions';
 import {
     CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined,
-    FilePdfOutlined, PlusOutlined, RedoOutlined, SearchOutlined
+    FilePdfOutlined, LockOutlined, PartitionOutlined, PlusOutlined, RedoOutlined, SearchOutlined, UnlockOutlined
 } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd'
 import {
@@ -124,6 +124,24 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                             onRemove(text);
                         }}
                     ></Button>
+                    {
+                        text.isActive
+                            ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
+                                onClick={() => onChangeIsStatus(text)}
+                                title='Khóa'
+                            >
+                            </Button>
+                            : <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
+                                onClick={() => onChangeIsStatus(text)}
+                                title='Mở'
+                            >
+                            </Button>
+                    }
+                    <Button type="link"
+                        icon={<PartitionOutlined />}
+                        title='Nạp quyền'
+                    >
+                    </Button>
                 </div>
             )
         }
@@ -139,7 +157,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
             valuesSearch: []
         }));
     }, []);
- 
+
     useEffect(() => {
         if (dataRemoveRole.length === 0) {
             setCheckRemove(true);

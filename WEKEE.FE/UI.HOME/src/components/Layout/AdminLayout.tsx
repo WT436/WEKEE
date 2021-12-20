@@ -18,7 +18,7 @@ import {
 } from '@ant-design/icons';
 
 declare var abp: any;
-var urlCss = abp.appServiceUrlStaticFile + "/login/login.css";
+var urlCss = abp.serviceAlbumCss + "/login.css";
 
 class AdminLayout extends React.Component<any> {
     state = {

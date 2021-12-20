@@ -13,7 +13,7 @@ declare var abp: any;
 const key = 'login';
 var status = "login";
  
-var urlCss = abp.appServiceUrlStaticFile + "/fileCss/login.css";
+var urlCss = abp.serviceAlbumCss + "/login.css";
 export interface ILoginProps extends FormInstance {
     location: any;
     nam: any;

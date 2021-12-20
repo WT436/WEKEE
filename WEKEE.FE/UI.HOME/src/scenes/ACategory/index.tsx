@@ -88,7 +88,7 @@ export default function ACategory(props: IACategoryProps) {
             title: 'Icon Category',
             key: 'iconCategory',
             dataIndex: 'iconCategory',
-            render: (text: String) => <Avatar size={32} src={abp.appServiceUrlStaticFile + '/' + text} />
+            render: (text: String) => <Avatar size={32} src={abp.serviceAlbumImage+ text} />
         },
         {
             title: 'level Category',
@@ -120,7 +120,7 @@ export default function ACategory(props: IACategoryProps) {
         }
         if (info.file.status === 'done') {
             // // Get this url from response in real world.
-            setImageUrl(abp.appServiceUrlStaticFile + '/' + info.file.response.url.toString());
+            setImageUrl(abp.serviceAlbumImage+ info.file.response.url.toString());
 
             setLoadingImage(false);
             return info.file.response.url.toString();

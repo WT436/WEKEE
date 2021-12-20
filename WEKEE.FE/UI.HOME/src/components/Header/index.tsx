@@ -58,7 +58,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage +"/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -70,7 +70,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -86,7 +86,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -98,7 +98,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -110,7 +110,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -162,7 +162,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -174,7 +174,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -190,7 +190,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -202,7 +202,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -214,7 +214,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -268,7 +268,7 @@ const bellInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -280,7 +280,7 @@ const bellInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -296,7 +296,7 @@ const bellInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -308,7 +308,7 @@ const bellInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -320,7 +320,7 @@ const bellInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -373,7 +373,7 @@ const cardInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -385,7 +385,7 @@ const cardInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -401,7 +401,7 @@ const cardInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -413,7 +413,7 @@ const cardInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -425,7 +425,7 @@ const cardInfo = () => {
                     <Menu.Item key="sadfsa" >
                         <a href="/login" className="UWRJovyiDd">
                             <div className="bRDSowVZlW">
-                                <img src={abp.appServiceUrlStaticFile + "/" + "album/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                             </div>
                             <span className="qGjeERhsix">
                                 <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -462,9 +462,9 @@ class Header extends AppComponentBase<IHeaderProps, IHeaderState> {
         return (
             <Col className='hdfut'>
                 <Helmet>
-                    <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/header.css"} />
-                    <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/discountProduct.css"} />
-                    <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/home.css"} />
+                    <link rel="stylesheet" href={abp.serviceAlbumCss + "/header.css"} />
+                    <link rel="stylesheet" href={abp.serviceAlbumCss + "/discountProduct.css"} />
+                    <link rel="stylesheet" href={abp.serviceAlbumCss + "/home.css"} />
                 </Helmet>
                 <Row className="VTvJenqWvs">
                     <Col span={10}>Để cái gì đó ở đây</Col>
@@ -473,7 +473,7 @@ class Header extends AppComponentBase<IHeaderProps, IHeaderState> {
                 </Row>
                 <Row className='hdfutm'>
                     <Col span={4} className='hdfutmlg'>
-                        <a href='#'><img src={abp.appServiceUrlStaticFile + "/" + "album/common/1-google-logo.png"} /></a>
+                        <a href='#'><img src={abp.serviceAlbumImage + "/common/1-google-logo.png"} /></a>
                     </Col>
                     <Col span={16} >
                         <Row className="kZiNLsSYJF">

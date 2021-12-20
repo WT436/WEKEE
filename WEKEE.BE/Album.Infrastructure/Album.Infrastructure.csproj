@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="DBContext\" />
     <Folder Include="MappingExtention\" />
+    <Folder Include="EventBus\" />
     <Folder Include="Queries\" />
     <Folder Include="SqlQuery\" />
   </ItemGroup>

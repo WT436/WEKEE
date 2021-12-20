@@ -130,17 +130,19 @@ export default function ActionComponents(props: IActionComponentsProps) {
                         }}
                     >
                     </Button>
-                    {text.isActive
-                        ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
-                            onClick={() => onChangeIsStatus(text)}
-                            title='Khóa'
-                        >
-                        </Button>
-                        : <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
-                            onClick={() => onChangeIsStatus(text)}
-                            title='Mở'
-                        >
-                        </Button>}
+                    {
+                        text.isActive
+                            ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
+                                onClick={() => onChangeIsStatus(text)}
+                                title='Khóa'
+                            >
+                            </Button>
+                            : <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
+                                onClick={() => onChangeIsStatus(text)}
+                                title='Mở'
+                            >
+                            </Button>
+                    }
                     <Button type="link"
                         icon={<PartitionOutlined />}
                         title='Nạp quyền'

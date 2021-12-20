@@ -114,12 +114,17 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                             onRemove(text);
                         }}
                     ></Button>
-                    {text.isActive ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
-                        onClick={() => onChangeIsStatus(text)}
-                    ></Button> :
-                        <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
-                            onClick={() => onChangeIsStatus(text)}
-                        ></Button>}
+                    {
+                        text.isActive
+                            ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
+                                onClick={() => onChangeIsStatus(text)}
+                            >
+                            </Button>
+                            : <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
+                                onClick={() => onChangeIsStatus(text)}
+                            >
+                            </Button>
+                    }
                 </div>
             )
         },

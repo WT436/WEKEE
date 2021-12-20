@@ -45,7 +45,7 @@ function uploadImageCallBack(file: string | Blob) {
             xhr.send(data);
             xhr.addEventListener('load', () => {
                 const response = JSON.parse(xhr.responseText);
-                response.data.link = abp.appServiceUrlStaticFile + "/" + response.data.link
+                response.data.link = abp.serviceAlbumCss + "/" + response.data.link
                 resolve(response);
             });
             xhr.addEventListener('error', () => {
@@ -172,7 +172,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             showUploadList={false}
                             onChange={(info: any) => handleChange(info, 0)}
                         >
-                            {fileList[0].url !== '' ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[0].url} alt="avatar" style={{ width: '100%' }} /> : <PlusCircleOutlined className="esQVBWrDEg" />}
+                            {fileList[0].url !== '' ? <img src={abp.serviceAlbumImage + fileList[0].url} alt="avatar" style={{ width: '100%' }} /> : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh Bìa
                     </Col>
@@ -187,7 +187,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             beforeUpload={beforeUpload}
                             onChange={(info: any) => handleChange(info, 1)}
                         >
-                            {fileList[1].url !== '' ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[1].url} alt="avatar" style={{ width: '100%' }} /> : <PlusCircleOutlined className="esQVBWrDEg" />}
+                            {fileList[1].url !== '' ? <img src={abp.serviceAlbumImage + fileList[1].url} alt="avatar" style={{ width: '100%' }} /> : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh 1
                     </Col>
@@ -202,7 +202,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             beforeUpload={beforeUpload}
                             onChange={(info: any) => handleChange(info, 2)}
                         >
-                            {fileList[2].url !== '' ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[2].url} alt="avatar" style={{ width: '100%' }} /> : <PlusCircleOutlined className="esQVBWrDEg" />}
+                            {fileList[2].url !== '' ? <img src={abp.serviceAlbumImage + fileList[2].url} alt="avatar" style={{ width: '100%' }} /> : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh 2
                     </Col>
@@ -218,7 +218,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             onChange={(info: any) => handleChange(info, 3)}
                         >
                             {fileList[3].url !== ''
-                                ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[3].url} alt="avatar" style={{ width: '100%' }} />
+                                ? <img src={abp.serviceAlbumImage + fileList[3].url} alt="avatar" style={{ width: '100%' }} />
                                 : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh 3
@@ -235,7 +235,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             onChange={(info: any) => handleChange(info, 4)}
                         >
                             {fileList[4].url !== ''
-                                ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[4].url} alt="avatar" style={{ width: '100%' }} />
+                                ? <img src={abp.serviceAlbumImage + fileList[4].url} alt="avatar" style={{ width: '100%' }} />
                                 : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh 4
@@ -252,7 +252,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             onChange={(info: any) => handleChange(info, 5)}
                         >
                             {fileList[5].url !== ''
-                                ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[5].url} alt="avatar" style={{ width: '100%' }} />
+                                ? <img src={abp.serviceAlbumImage + fileList[5].url} alt="avatar" style={{ width: '100%' }} />
                                 : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh 5
@@ -269,7 +269,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             onChange={(info: any) => handleChange(info, 6)}
                         >
                             {fileList[6].url !== ''
-                                ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[6].url} alt="avatar" style={{ width: '100%' }} />
+                                ? <img src={abp.serviceAlbumImage + fileList[6].url} alt="avatar" style={{ width: '100%' }} />
                                 : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh 6
@@ -286,7 +286,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             onChange={(info: any) => handleChange(info, 7)}
                         >
                             {fileList[7].url !== ''
-                                ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[7].url} alt="avatar" style={{ width: '100%' }} />
+                                ? <img src={abp.serviceAlbumImage + fileList[7].url} alt="avatar" style={{ width: '100%' }} />
                                 : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh 7
@@ -303,7 +303,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             onChange={(info: any) => handleChange(info, 8)}
                         >
                             {fileList[8].url !== ''
-                                ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[8].url} alt="avatar" style={{ width: '100%' }} />
+                                ? <img src={abp.serviceAlbumImage + fileList[8].url} alt="avatar" style={{ width: '100%' }} />
                                 : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Ảnh 8
@@ -332,7 +332,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                             showUploadList={false}
                         >
                             {fileList[8].url !== ''
-                                ? <img src={abp.appServiceUrlStaticFile + '/' + fileList[8].url} alt="avatar" style={{ width: '100%' }} />
+                                ? <img src={abp.serviceAlbumImage + fileList[8].url} alt="avatar" style={{ width: '100%' }} />
                                 : <PlusCircleOutlined className="esQVBWrDEg" />}
                         </Upload>
                         Video Bìa

@@ -25,8 +25,8 @@ export interface IHomeProps {
 }
 const key = 'home';
 declare var abp: any;
-var urlCss = abp.appServiceUrlStaticFile + "/fileCss/home.css";
-var urlDiscountProduct = abp.appServiceUrlStaticFile + "/fileCss/discountProduct.css";
+var urlCss = abp.serviceAlbumCss + "/home.css";
+var urlDiscountProduct = abp.serviceAlbumCss + "/discountProduct.css";
 const stateSelector = createStructuredSelector<any, any>({
     loading: makeSelectLoading()
 });
@@ -65,33 +65,33 @@ export default function Home(props: IHomeProps) {
                 <title>Wekee.vn</title>
                 <link rel="stylesheet" href={urlCss} />
                 <link rel="stylesheet" href={urlDiscountProduct} />
-                <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/home.css"} />
+                <link rel="stylesheet" href={abp.serviceAlbumCss + "/home.css"} />
             </Helmet>
             <Row gutter={[10, 10]} className='home-carousell-main' style={{ alignItems: 'center' }}>
                 <Col span={16} >
                     <Slider {...settings}>
                         <a className='home-carousell-a'>
-                            <img src={abp.appServiceUrlStaticFile + '/album/banner/21e4573959ecb121d8d0d4237ad56be4.png.jpg'} />
+                            <img src={abp.serviceAlbumImage + '/banner/21e4573959ecb121d8d0d4237ad56be4.png.jpg'} />
                         </a>
                         <a className='home-carousell-a'>
-                            <img src={abp.appServiceUrlStaticFile + '/album/banner/2a5dea5bf70fec21cbc4d6fd58a16c31.png.jpg'} />
+                            <img src={abp.serviceAlbumImage + '/banner/2a5dea5bf70fec21cbc4d6fd58a16c31.png.jpg'} />
                         </a>
                         <a className='home-carousell-a'>
-                            <img src={abp.appServiceUrlStaticFile + '/album/banner/5c0b195194c5314c1f4e1e630b1a0dc4.png.jpg'} />
+                            <img src={abp.serviceAlbumImage + '/banner/5c0b195194c5314c1f4e1e630b1a0dc4.png.jpg'} />
                         </a>
                         <a className='home-carousell-a'>
-                            <img src={abp.appServiceUrlStaticFile + '/album/banner/9ed820421df28e1c0c62669a04b15d8e.png.jpg'} />
+                            <img src={abp.serviceAlbumImage + '/banner/9ed820421df28e1c0c62669a04b15d8e.png.jpg'} />
                         </a>
                         <a className='home-carousell-a'>
-                            <img src={abp.appServiceUrlStaticFile + '/album/banner/aa71a52f6b73215b171bbc982b2c5eed.png.jpg'} />
+                            <img src={abp.serviceAlbumImage + '/banner/aa71a52f6b73215b171bbc982b2c5eed.png.jpg'} />
                         </a>
                         <a className='home-carousell-a'>
-                            <img src={abp.appServiceUrlStaticFile + '/album/banner/adb8db3489db2353b5f0b1da38f15d8a.png.jpg'} />
+                            <img src={abp.serviceAlbumImage + '/banner/adb8db3489db2353b5f0b1da38f15d8a.png.jpg'} />
                         </a>
                     </Slider>
                 </Col>
                 <Col span={8}>
-                    <img src={abp.appServiceUrlStaticFile + '/album/subBanner/f386cd12b8c72a56bbf43ca06b55ca06.jpg'} />
+                    <img src={abp.serviceAlbumImage + '/subBanner/f386cd12b8c72a56bbf43ca06b55ca06.jpg'} />
                 </Col>
             </Row>
             <Row style={{ margin: '20px 0' }}>
@@ -110,7 +110,7 @@ export default function Home(props: IHomeProps) {
                         <Card
                             hoverable
                             cover={
-                                <img alt="example" src={abp.appServiceUrlStaticFile + '/album/product/ed456db4a8c0137e442fc89315744a16.jpg'} loading="lazy" />
+                                <img alt="example" src={abp.serviceAlbumImage + '/product/ed456db4a8c0137e442fc89315744a16.jpg'} loading="lazy" />
                             }
                         >
                             <div className="dcp-khung">
@@ -139,7 +139,7 @@ export default function Home(props: IHomeProps) {
                         <Card
                             hoverable
                             cover={
-                                <img alt="example" src={abp.appServiceUrlStaticFile + '/album/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
+                                <img alt="example" src={abp.serviceAlbumImage + '/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
                             }
                         >
                             <div className="dcp-khung">
@@ -168,7 +168,7 @@ export default function Home(props: IHomeProps) {
                         <Card
                             hoverable
                             cover={
-                                <img alt="example" src={abp.appServiceUrlStaticFile + '/album/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
+                                <img alt="example" src={abp.serviceAlbumImage + '/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
                             }
                         >
                             <div className="dcp-khung">
@@ -197,7 +197,7 @@ export default function Home(props: IHomeProps) {
                         <Card
                             hoverable
                             cover={
-                                <img alt="example" src={abp.appServiceUrlStaticFile + '/album/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
+                                <img alt="example" src={abp.serviceAlbumImage + '/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
                             }
                         >
                             <div className="dcp-khung">
@@ -226,7 +226,7 @@ export default function Home(props: IHomeProps) {
                         <Card
                             hoverable
                             cover={
-                                <img alt="example" src={abp.appServiceUrlStaticFile + '/album/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
+                                <img alt="example" src={abp.serviceAlbumImage + '/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
                             }
                         >
                             <div className="dcp-khung">
@@ -255,7 +255,7 @@ export default function Home(props: IHomeProps) {
                         <Card
                             hoverable
                             cover={
-                                <img alt="example" src={abp.appServiceUrlStaticFile + '/album/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
+                                <img alt="example" src={abp.serviceAlbumImage + '/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
                             }
                         >
                             <div className="dcp-khung">
@@ -284,7 +284,7 @@ export default function Home(props: IHomeProps) {
                         <Card
                             hoverable
                             cover={
-                                <img alt="example" src={abp.appServiceUrlStaticFile + '/album/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
+                                <img alt="example" src={abp.serviceAlbumImage + '/product/ed456db4a8c0137e442fc89315744a16.jpg'} />
                             }
                         >
                             <div className="dcp-khung">

@@ -1,0 +1,8 @@
+﻿______________________________________________________________________
+| Máy Chủ           |  HTTP  |      HTTPS      |    Đường Dẫn		 |
+| Account           |  16800 |      44324      |    /account/...	 |
+| Album				|  16801 |      44325	   |	/album/...	     |
+| Assessment		|  16802 |      44326	   |	/Assessment/...  |
+| Product			|  16803 |      44327	   |	/Product/...     |
+| Supplier			|  16804 |      44328	   |	/Supplier/...    |
+| System			|  16805 |      44329	   |	/System/...	     |

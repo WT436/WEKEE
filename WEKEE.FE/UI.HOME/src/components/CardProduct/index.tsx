@@ -21,7 +21,7 @@ export default function index() {
                 </span>
             </div>
             <a className="MgCJXPSMyz" href="/DSQUARED2-Ao-khoac-blazer-nam-pho-co-satin-S71BN0735-900/adsid=1">
-                <img alt="example" src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-d0527ac9bb587450edd57fda1520a241-011654-23092021--012154-23092021-S220x220.jpg'} />
+                <img alt="example" src={abp.serviceAlbumImage + '/product/wekee-wekee-d0527ac9bb587450edd57fda1520a241-011654-23092021--012154-23092021-S220x220.jpg'} />
             </a>
             <div className="ZDyVztAfXt">
                 <div className="ayVIoBempd">

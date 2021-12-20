@@ -32,7 +32,7 @@ export default function UViewed(props: IUViewedProps) {
     return (
         <>
             <Helmet>
-                <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/yHWHlILSmn.css"} />
+                <link rel="stylesheet" href={abp.serviceAlbumCss + "/yHWHlILSmn.css"} />
             </Helmet>
             <Tabs defaultActiveKey="1">
                 <TabPane tab="Sản phẩm đã xem" key="1">

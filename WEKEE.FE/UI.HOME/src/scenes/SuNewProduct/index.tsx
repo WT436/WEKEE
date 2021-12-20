@@ -34,7 +34,7 @@ export interface ISuNewProductProps {
 
 const key = 'sunewproduct';
 declare var abp: any;
-var urlCss = abp.appServiceUrlStaticFile;
+var urlCss = abp.serviceAlbumCss;
 
 const stateSelector = createStructuredSelector<any, any>({
     loading: makeSelectLoading(),
@@ -94,8 +94,8 @@ export default function SuNewProduct(props: ISuNewProductProps) {
         <Row gutter={[30, 10]} ref={setContainer}>
             <Helmet>
                 <title>Wekee.vn</title>
-                <link rel="stylesheet" href={urlCss + "/fileCss/newProduct.css"} />
-                <link rel="stylesheet" href={urlCss + "/fileCss/editor.css"} />
+                <link rel="stylesheet" href={urlCss + "/newProduct.css"} />
+                <link rel="stylesheet" href={urlCss + "/editor.css"} />
             </Helmet>
             <Col span={18}>
                 <Row>

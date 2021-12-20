@@ -139,7 +139,7 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
                                                         alt={"ádsda"}
                                                         effect="blur"
                                                         onClick={() => setIsModalVisible(true)}
-                                                        src={abp.appServiceUrlStaticFile + '/' + item} />
+                                                        src={abp.serviceAlbumImage + item} />
                                                 </div>
                                             );
                                         }
@@ -150,7 +150,7 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
                                                         alt={"ádsda"}
                                                         effect="blur"
                                                         className="cKqErgPkfl"
-                                                        src={abp.appServiceUrlStaticFile + '/' + item} />
+                                                        src={abp.serviceAlbumImage + item} />
                                                     <span className='VNDntFciDM'>Hiển thị thêm {imageevaluates.length - 6} ảnh khác</span>
                                                 </div>
                                             );
@@ -175,7 +175,7 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
                                         alt={"Lựa chọn image"}
                                         effect="blur"
                                         onClick={() => setIsModalVisible(true)}
-                                        src={!selectImage ? '' : abp.appServiceUrlStaticFile + '/' + selectImage} />
+                                        src={!selectImage ? '' : abp.serviceAlbumImage + selectImage} />
                                 </div>
                                 <div className="CDBhRpMxwl">
                                     <Slider {...settings3}>
@@ -183,7 +183,7 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
                                             imageevaluates.map((element: string) => {
                                                 return (<img className={"LmqLbjIyYc" + " " + (selectImage === element ? "bFpTBTrDfH" : "")}
                                                     onClick={() => setselectImage(element)}
-                                                    src={abp.appServiceUrlStaticFile + "/" + element}
+                                                    src={abp.serviceAlbumImage + element}
                                                     alt={''} />)
                                             })
                                         }

@@ -316,7 +316,7 @@ export default function Home(props: IHomeProps) {
                                     bodyStyle={{ padding: '5px' }}
                                     bordered={false}
                                     onDoubleClick={() => { alert("Open") }}
-                                    cover={<Avatar shape="square" src={abp.appServiceUrlStaticFile + item.image} style={{ width: '100%', height: '100%' }} />}
+                                    cover={<Avatar shape="square" src={abp.serviceAlbumImage + item.image} style={{ width: '100%', height: '100%' }} />}
                                 >
                                     <Meta description={item.title} />
                                 </Card>
@@ -329,7 +329,7 @@ export default function Home(props: IHomeProps) {
                                     style={{ fontSize: '12px' }}
                                     bodyStyle={{ padding: '5px' }}
                                     bordered={false}
-                                    cover={<Image src={abp.appServiceUrlStaticFile + item.image} />}
+                                    cover={<Image src={abp.serviceAlbumImage + item.image} />}
                                 >
                                     <Meta description={item.title} />
                                 </Card>

@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 import queryString from 'query-string';
 
 declare var abp: any;
-var urlCss = abp.appServiceUrlStaticFile + "/error/errorClient500.css";
+var urlCss = abp.serviceAlbumCss + "/errorClient500.css";
 
 export interface IException {
     location:any;

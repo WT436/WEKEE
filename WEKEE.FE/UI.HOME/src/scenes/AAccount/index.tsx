@@ -74,7 +74,7 @@ export default function AAccount(props: IAAccount) {
             render: (text: String) => (
                 text == null || text === undefined || text === ''
                     ? <Avatar size={32} icon={<UserOutlined />} />
-                    : <Avatar src={abp.appServiceUrlStaticFile + '/' + text} size={32} />
+                    : <Avatar src={abp.serviceAlbumImage + text} size={32} />
             )
         },
         {

@@ -40,7 +40,7 @@ export interface IHDetailProps {
 }
 
 declare var abp: any;
-var urlCss = abp.appServiceUrlStaticFile + "/fileCss/detail.css";
+var urlCss = abp.serviceAlbumCss + "/detail.css";
 const key = 'hdetail';
 const stateSelector = createStructuredSelector<any, any>({
     loading: makeSelectLoading(),
@@ -103,10 +103,10 @@ export default function HDetail(props: IHDetailProps) {
                 smallImage: {
                     alt: imageS340x340[0].alt,
                     isFluidWidth: true,
-                    src: abp.appServiceUrlStaticFile + "/" + imageS340x340[0].src
+                    src: abp.serviceAlbumImage + imageS340x340[0].src
                 },
                 largeImage: {
-                    src: abp.appServiceUrlStaticFile + "/" + imageS1360x1360[0].src,
+                    src: abp.serviceAlbumImage + imageS1360x1360[0].src,
                     width: 900,
                     height: 900
                 }
@@ -155,10 +155,10 @@ export default function HDetail(props: IHDetailProps) {
             smallImage: {
                 alt: data340.alt,
                 isFluidWidth: true,
-                src: abp.appServiceUrlStaticFile + "/" + data340.src
+                src: abp.serviceAlbumImage + data340.src
             },
             largeImage: {
-                src: abp.appServiceUrlStaticFile + "/" + dataS1360x1360.src,
+                src: abp.serviceAlbumImage + dataS1360x1360.src,
                 width: 900,
                 height: 900
             }
@@ -252,8 +252,8 @@ export default function HDetail(props: IHDetailProps) {
             <BasicSeo />
             <Helmet>
                 <link rel="stylesheet" href={urlCss} />
-                <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/discountProduct.css"} />
-                <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/home.css"} />
+                <link rel="stylesheet" href={abp.serviceAlbumCss + "/discountProduct.css"} />
+                <link rel="stylesheet" href={abp.serviceAlbumCss + "/home.css"} />
             </Helmet>
 
             {<ul className='GjLseculzy'>
@@ -280,7 +280,7 @@ export default function HDetail(props: IHDetailProps) {
                         <Slider {...settings3}>
                             {
                                 imageS80x80.map((element: ImageProductCardDtos) => {
-                                    return (<img className={"LmqLbjIyYc" + " " + (selectImage === element.id ? "bFpTBTrDfH" : "")} onClick={() => onSelectImageZoom(element.imageRoot)} src={abp.appServiceUrlStaticFile + "/" + element.src} alt={element.alt} />)
+                                    return (<img className={"LmqLbjIyYc" + " " + (selectImage === element.id ? "bFpTBTrDfH" : "")} onClick={() => onSelectImageZoom(element.imageRoot)} src={abp.serviceAlbumImage + element.src} alt={element.alt} />)
                                 })
                             }
                         </Slider>
@@ -295,7 +295,7 @@ export default function HDetail(props: IHDetailProps) {
                     <Row className='qFCWRAtWva'>
                         <Col span={6}>
                             <div style={{ position: 'relative' }}>
-                                <img className='cUNLNWbjKS' src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" />
+                                <img className='cUNLNWbjKS' src={abp.serviceAlbumImage + '/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" />
                                 <HistoryOutlined
                                     className='QtHTvWzBal' />
                             </div>
@@ -359,7 +359,7 @@ export default function HDetail(props: IHDetailProps) {
                                     {startValues1.map((item: { value: string, img: number }) => {
                                         return (
                                             <div className='lPibOcgFQi' onClick={() => setKey1State({ name: item.value, imageRoot: item.img })}>
-                                                <img src={abp.appServiceUrlStaticFile + "/" + unitCardProduct.imageProductCardDtos.filter((x: ImageProductCardDtos) => (x.imageRoot === item.img && x.size === "S80x80"))[0].src} alt="" />
+                                                <img src={abp.serviceAlbumImage + unitCardProduct.imageProductCardDtos.filter((x: ImageProductCardDtos) => (x.imageRoot === item.img && x.size === "S80x80"))[0].src} alt="" />
                                                 <span>{item.value.replace(" ", "")}</span>
                                                 <span style={{ display: Key1State?.name === item.value ? 'block' : 'none' }} className='nuTLGkaQio'><CheckOutlined className='SWzJAVZYWg' /></span>
                                             </div>

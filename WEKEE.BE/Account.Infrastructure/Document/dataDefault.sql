@@ -126,8 +126,8 @@ BEGIN
 			CONCAT(N'Trang chủ ',@cnt),
 			0,
 			@cnt,
-			FLOOR(RAND()*(2-1)),
-			FLOOR(RAND()*(2-1)),
+			FLOOR(RAND()*(1-0+1)+1),
+			FLOOR(RAND()*(1-0+1)+1),
 			1
 		)
  SET @cnt = @cnt + 1;
@@ -153,8 +153,8 @@ BEGIN
 			CONCAT(N'Trang chủ ',@cnt),
 			FLOOR(RAND()*(6-1)+1),
 			FLOOR(RAND()*(10-1)+1),
-			FLOOR(RAND()*(2-1)),
-			FLOOR(RAND()*(2-1)),
+			FLOOR(RAND()*(1-0+1)),
+			FLOOR(RAND()*(1-0+1)),
 			1
 		)
  SET @cnt = @cnt + 1;

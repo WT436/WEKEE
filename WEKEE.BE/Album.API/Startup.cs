@@ -29,9 +29,8 @@ namespace Album.API
             app.UseCors("CorsPolicy");
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(env.ContentRootPath, "RootFiles")),
-                RequestPath = "/resources"
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "RootFiles")),
+                RequestPath = "/album-resources"
             });
 
             var swaggerConfigStartup = new SwaggerConfigStartup();

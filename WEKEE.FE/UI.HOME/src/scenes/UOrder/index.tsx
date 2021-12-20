@@ -31,7 +31,7 @@ export default function Home(props: IHomeProps) {
     return (
         <>
             <Helmet>
-                <link rel="stylesheet" href={abp.appServiceUrlStaticFile + "/fileCss/yHWHlILSmn.css"} />
+                <link rel="stylesheet" href={abp.serviceAlbumCss + "/yHWHlILSmn.css"} />
             </Helmet>
 
             <div className="FClVwabhDA">
@@ -61,7 +61,7 @@ export default function Home(props: IHomeProps) {
             <div className="IbSOhqnFgD">
                 <div className="JFZPyQvcms dYzwOQqEAP">
                     <div className="LTPAhmsjsr"></div>
-                    <div><img src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
+                    <div><img src={abp.serviceAlbumImage + '/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
                     <div>Kích thước : S, Màu sắc : Đỏ</div>
                     <div>₫15.000.000</div>
                     <div className='quirYXYDhV'>
@@ -74,40 +74,7 @@ export default function Home(props: IHomeProps) {
                 </div>
                 <div className="JFZPyQvcms dYzwOQqEAP">
                     <div className="LTPAhmsjsr"></div>
-                    <div><img src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
-                    <div>Kích thước : S, Màu sắc : Đỏ</div>
-                    <div>₫15.000.000</div>
-                    <div className='quirYXYDhV'>
-                        <PlusOutlined className='ZKcRNZsCHm' />
-                        <InputNumber className='JmuKvefzfZ' style={{ width: '50%' }} />
-                        <MinusOutlined className='ZKcRNZsCHm' />
-                    </div>
-                    <div>₫15.000.000</div>
-                    <div><DeleteOutlined /></div>
-                </div>
-
-                <div className="yAmftCcodk">Thêm mã giảm giá shop</div>
-                <div className="yAmftCcodk">Giảm ₫25.000 phí vận chuyển đơn tối thiểu ₫50.000; Giảm ₫70.000 phí vận chuyển đơn tối thiểu ₫300.000
-                    <a href="">Tìm hiểu thêm</a>
-                </div>
-            </div>
-            <div className="IbSOhqnFgD">
-                <div className="JFZPyQvcms dYzwOQqEAP">
-                    <div className="LTPAhmsjsr"></div>
-                    <div><img src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
-                    <div>Kích thước : S, Màu sắc : Đỏ</div>
-                    <div>₫15.000.000</div>
-                    <div className='quirYXYDhV'>
-                        <PlusOutlined className='ZKcRNZsCHm' />
-                        <InputNumber className='JmuKvefzfZ' style={{ width: '50%' }} />
-                        <MinusOutlined className='ZKcRNZsCHm' />
-                    </div>
-                    <div>₫15.000.000</div>
-                    <div><DeleteOutlined /></div>
-                </div>
-                <div className="JFZPyQvcms dYzwOQqEAP">
-                    <div className="LTPAhmsjsr"></div>
-                    <div><img src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
+                    <div><img src={abp.serviceAlbumImage + '/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
                     <div>Kích thước : S, Màu sắc : Đỏ</div>
                     <div>₫15.000.000</div>
                     <div className='quirYXYDhV'>
@@ -127,7 +94,7 @@ export default function Home(props: IHomeProps) {
             <div className="IbSOhqnFgD">
                 <div className="JFZPyQvcms dYzwOQqEAP">
                     <div className="LTPAhmsjsr"></div>
-                    <div><img src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
+                    <div><img src={abp.serviceAlbumImage + '/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
                     <div>Kích thước : S, Màu sắc : Đỏ</div>
                     <div>₫15.000.000</div>
                     <div className='quirYXYDhV'>
@@ -140,7 +107,40 @@ export default function Home(props: IHomeProps) {
                 </div>
                 <div className="JFZPyQvcms dYzwOQqEAP">
                     <div className="LTPAhmsjsr"></div>
-                    <div><img src={abp.appServiceUrlStaticFile + '/album/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
+                    <div><img src={abp.serviceAlbumImage + '/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
+                    <div>Kích thước : S, Màu sắc : Đỏ</div>
+                    <div>₫15.000.000</div>
+                    <div className='quirYXYDhV'>
+                        <PlusOutlined className='ZKcRNZsCHm' />
+                        <InputNumber className='JmuKvefzfZ' style={{ width: '50%' }} />
+                        <MinusOutlined className='ZKcRNZsCHm' />
+                    </div>
+                    <div>₫15.000.000</div>
+                    <div><DeleteOutlined /></div>
+                </div>
+
+                <div className="yAmftCcodk">Thêm mã giảm giá shop</div>
+                <div className="yAmftCcodk">Giảm ₫25.000 phí vận chuyển đơn tối thiểu ₫50.000; Giảm ₫70.000 phí vận chuyển đơn tối thiểu ₫300.000
+                    <a href="">Tìm hiểu thêm</a>
+                </div>
+            </div>
+            <div className="IbSOhqnFgD">
+                <div className="JFZPyQvcms dYzwOQqEAP">
+                    <div className="LTPAhmsjsr"></div>
+                    <div><img src={abp.serviceAlbumImage + '/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
+                    <div>Kích thước : S, Màu sắc : Đỏ</div>
+                    <div>₫15.000.000</div>
+                    <div className='quirYXYDhV'>
+                        <PlusOutlined className='ZKcRNZsCHm' />
+                        <InputNumber className='JmuKvefzfZ' style={{ width: '50%' }} />
+                        <MinusOutlined className='ZKcRNZsCHm' />
+                    </div>
+                    <div>₫15.000.000</div>
+                    <div><DeleteOutlined /></div>
+                </div>
+                <div className="JFZPyQvcms dYzwOQqEAP">
+                    <div className="LTPAhmsjsr"></div>
+                    <div><img src={abp.serviceAlbumImage + '/product/wekee-wekee-065117d465185d35584804fb16f5ded6-011709-23092021--012154-23092021-S340x340.jpg'} alt="" /><a href="">Bộ Sticker dán cao cấp chủ đề ICON CÔNG NGHỆ - Dùng dán Xe</a></div>
                     <div>Kích thước : S, Màu sắc : Đỏ</div>
                     <div>₫15.000.000</div>
                     <div className='quirYXYDhV'>

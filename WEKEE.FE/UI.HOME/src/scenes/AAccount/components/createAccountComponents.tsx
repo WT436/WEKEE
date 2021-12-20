@@ -198,7 +198,7 @@ export default function CreateAccountComponents() {
                                     showUploadList={false}
                                     onChange={handleChange}
                                 >
-                                    {fileList ? <img src={abp.appServiceUrlStaticFile + '/' + fileList} alt="avatar" style={{ width: '100%' }} /> : 'Upload'}
+                                    {fileList ? <img src={abp.serviceAlbumImage + fileList} alt="avatar" style={{ width: '100%' }} /> : 'Upload'}
                                 </Upload>
                             </ImgCrop>
                         </Col>
