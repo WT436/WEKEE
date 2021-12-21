@@ -14,6 +14,7 @@
     <Folder Include="RootFiles\album\rootImage\" />
     <Folder Include="RootFiles\album\subBanner\" />
     <Folder Include="RootFiles\album\video\" />
+    <Folder Include="RootFiles\scripts\" />
   </ItemGroup>
 
   <ItemGroup>

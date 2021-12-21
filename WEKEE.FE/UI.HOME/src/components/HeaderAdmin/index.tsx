@@ -8,6 +8,8 @@ import { AuditOutlined, BellOutlined, CodeSandboxOutlined, CreditCardOutlined,
       QuestionCircleOutlined, RiseOutlined, SettingOutlined, ShoppingCartOutlined, SoundOutlined, UsergroupAddOutlined } from '@ant-design/icons'
 const { Option } = Select;
 const { SubMenu } = Menu;
+declare var abp: any;
+
 export interface IHeaderAdminProps {
     collapsed?: any;
     toggle?: any;

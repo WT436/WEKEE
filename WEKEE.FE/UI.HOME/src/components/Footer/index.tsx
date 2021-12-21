@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, Col, Form, Input,  Row } from 'antd';
 import { Helmet } from 'react-helmet';
 import Title from 'antd/lib/typography/Title';
-
+declare var abp: any;
 //const urlImage = '../../images/newsletter.png'
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
       <Helmet>
         <link rel="stylesheet" href="https://localhost:44324/StaticFiles/footer/footer.css" />
       </Helmet>
-      <Row gutter={[16, 24]} className={'footer-top'}>
+      <Row gutter={[0, 24]} className={'footer-top'}>
         <Col span={4} className='ftti'><img src="https://localhost:44324/StaticFiles/footer/Image/newsletter.png" /></Col>
         <Col span={8} className='ftdscto'>
           <Title level={3}>Đăng ký tài khoản nhanh Wekee</Title>

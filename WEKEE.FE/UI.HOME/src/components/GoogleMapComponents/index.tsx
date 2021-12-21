@@ -2,6 +2,7 @@ import React from 'react';
 import L, { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+declare var abp: any;
 
 const position: LatLngExpression = [59.91174337077401, 10.750425582038146];
 

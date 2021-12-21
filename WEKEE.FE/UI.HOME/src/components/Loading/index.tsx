@@ -24,7 +24,7 @@ const Loading = () => (
     <div className="body-loading">
         <section className="SectionLoad">
             <Helmet>
-                <link rel="stylesheet" href="https://localhost:44324/StaticFiles/loadding/loadding.css" />
+                <link rel="stylesheet" href="https://localhost:44325/StaticFiles/loadding/loadding.css" />
             </Helmet>
             <div className="loadRound">
                 <span style={sty1}></span>

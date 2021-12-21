@@ -3,7 +3,7 @@ import { Avatar, BackTop, Badge, Button, Card, Col, Divider, Dropdown, Input, Me
 import AppComponentBase from '../../components/ComponentBase';
 import { Helmet } from 'react-helmet';
 import 'antd/dist/antd.css';
-import { BellFilled, BellOutlined, CaretDownOutlined, CaretUpOutlined, CheckOutlined, CloseOutlined, DesktopOutlined, EllipsisOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined, ShoppingCartOutlined, ShoppingFilled } from '@ant-design/icons';
+import { BellFilled, BellOutlined, CaretDownOutlined, CaretUpOutlined, CheckOutlined, CloseOutlined, DesktopOutlined, EllipsisOutlined, HomeOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined, ShoppingCartOutlined, ShoppingFilled } from '@ant-design/icons';
 import Meta from 'antd/lib/card/Meta';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -58,7 +58,7 @@ const loginInfo = () => {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.serviceAlbumImage +"/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
