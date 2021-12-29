@@ -48,6 +48,10 @@ namespace Account.API.SettingUrl.AccountRouter
         /// </summary>
         public const string ResourceActionAccount =RootUrl.ROOT+ "/account-resource-action";
         /// <summary>
+        /// /account-resource-action
+        /// </summary>
+        public const string ActionResourceAccount = RootUrl.ROOT + "/account-action-resource";
+        /// <summary>
         /// /account-role
         /// </summary>
         public const string RoleAccount =RootUrl.ROOT+ "/account-role";

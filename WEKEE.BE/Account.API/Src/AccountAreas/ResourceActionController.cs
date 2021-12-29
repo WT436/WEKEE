@@ -22,17 +22,30 @@ namespace Account.API.Src.AccountAreas
 
         [Route(PermissionRouter.ResourceActionAccount)]
         [HttpGet]
-        public IActionResult BasicGet(int idAction, int pageIndex, int pageSize)
+        public IActionResult GetResource(int id, int pageIndex, int pageSize)
         {
-            return Ok(_resourceAction.ResourceActionDtos(idAction: idAction,
+            return Ok(_resourceAction.ResourceActionDtos(idAction: id,
                                                          pagedListInput: new PagedListInput() { PageIndex = pageIndex,
                                                                                                 PageSize = pageSize })
             );
         }
 
+        [Route(PermissionRouter.ActionResourceAccount)]
+        [HttpGet]
+        public IActionResult GetAction(int id, int pageIndex, int pageSize)
+        {
+            return Ok(_resourceAction.ResourceActionDtos(idAction: id,
+                                                         pagedListInput: new PagedListInput()
+                                                         {
+                                                             PageIndex = pageIndex,
+                                                             PageSize = pageSize
+                                                         })
+            );
+        }
+
         [Route(PermissionRouter.ResourceActionAccount)]
         [HttpPatch]
-        public IActionResult BasicUpdate([FromBody] ResourceActionDto resourceActionDto)
+        public IActionResult BasicUpdate([FromBody] ActionResourceDto resourceActionDto)
         {
             _resourceAction.UpdateOrInsertResourceAction(resourceActionDto);
             return Ok("true");

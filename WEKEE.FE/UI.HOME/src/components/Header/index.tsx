@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Avatar, BackTop, Badge, Button, Card, Col, Divider, Dropdown, Input, Menu, Row, Select, Typography } from 'antd';
+import { Avatar, BackTop, Badge, Button, Card, Col, Divider, Dropdown, Input, Menu, Popover, Row, Select, Typography } from 'antd';
 import AppComponentBase from '../../components/ComponentBase';
 import { Helmet } from 'react-helmet';
 import 'antd/dist/antd.css';
-import { BellFilled, BellOutlined, CaretDownOutlined, CaretUpOutlined, CheckOutlined, CloseOutlined, DesktopOutlined, EllipsisOutlined, HomeOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined, ShoppingCartOutlined, ShoppingFilled } from '@ant-design/icons';
+import { BellFilled, BellOutlined, CaretDownOutlined, CaretUpOutlined, CheckOutlined, CloseOutlined, DesktopOutlined, EllipsisOutlined, HomeOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined, ShoppingCartOutlined, ShoppingFilled, UserOutlined } from '@ant-design/icons';
 import Meta from 'antd/lib/card/Meta';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -33,7 +33,7 @@ const loginInfo = () => {
                 overlay={
                     <Menu className="ccSjlOHyqP">
                         <div className="ygsRYzMMyV">
-                            <span>Thông báo</span>
+                            <span>Tài khoản</span>
                             <Dropdown
                                 trigger={['click']}
                                 overlay={<Menu className="ccSjlOHyqP">
@@ -125,7 +125,7 @@ const loginInfo = () => {
                     </Menu>
                 }>
                 <Badge size='small' className="wuurxwiIVq">
-                    <CaretDownOutlined className='hdfutmacic' />
+                    <UserOutlined className='hdfutmacic' />
                 </Badge>
             </Dropdown>
         )
@@ -137,7 +137,7 @@ const loginInfo = () => {
                 overlay={
                     <Menu className="ccSjlOHyqP">
                         <div className="ygsRYzMMyV">
-                            <span>Thông báo</span>
+                            <span>Tài khoản</span>
                             <Dropdown
                                 trigger={['click']}
                                 overlay={<Menu className="ccSjlOHyqP">
@@ -229,7 +229,7 @@ const loginInfo = () => {
                     </Menu>
                 }>
                 <Badge size='small' className="wuurxwiIVq">
-                    <CaretDownOutlined className='hdfutmacic' />
+                    <UserOutlined className='hdfutmacic' />
                 </Badge>
             </Dropdown>
         )
@@ -335,7 +335,7 @@ const bellInfo = () => {
                 </Menu>
             }>
             <Badge size='small' className="wuurxwiIVq" count={10}>
-                <BellFilled className='hdfutmacic' />
+                <BellOutlined className='hdfutmacic' />
             </Badge>
         </Dropdown>
     )
@@ -441,16 +441,123 @@ const cardInfo = () => {
             }>
 
             <Badge size='small' className="wuurxwiIVq" count={0}>
-                <ShoppingFilled className='hdfutmacic' />
+                <ShoppingCartOutlined className='hdfutmacic' />
             </Badge>
         </Dropdown>
     )
 }
+
+const settingApp = () => {
+    return (
+        <Dropdown
+            trigger={['click']}
+            overlay={
+                <Menu className="ccSjlOHyqP">
+                    <div className="ygsRYzMMyV">
+                        <span>Cài đặt ứng dụng</span>
+                        <Dropdown
+                            trigger={['click']}
+                            overlay={<Menu className="ccSjlOHyqP">
+                                <Menu.Item key="sada" >
+                                    <CheckOutlined /> Đánh dấu tất cả đã đọc
+                                </Menu.Item>
+                                <Menu.Item key="sadas" >
+                                    <SettingOutlined />  Cài đặt thông báo
+                                </Menu.Item>
+                                <Menu.Item key="dasdsasdasda" >
+                                    <DesktopOutlined />  Mở thông báo
+                                </Menu.Item>
+                            </Menu>}>
+                            <EllipsisOutlined className='YLvdaHYdIV' />
+                        </Dropdown>
+                    </div>
+                    <Menu.Divider />
+                    <div className="DXObXwsQyb">
+                        <span>Mới nhất</span>
+                        <span>Xem tất cả</span>
+                    </div>
+                    <Menu.Item key="sadfsa" >
+                        <a href="/login" className="UWRJovyiDd">
+                            <div className="bRDSowVZlW">
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                            </div>
+                            <span className="qGjeERhsix">
+                                <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
+                                <span>4 giờ</span>
+                            </span>
+                            <span className="oqNMgqILWc"><EllipsisOutlined className='YLvdaHYdIV' /></span>
+                        </a>
+                    </Menu.Item>
+                    <Menu.Item key="sadfsa" >
+                        <a href="/login" className="UWRJovyiDd">
+                            <div className="bRDSowVZlW">
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                            </div>
+                            <span className="qGjeERhsix">
+                                <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
+                                <span>4 giờ</span>
+                            </span>
+                            <span className="oqNMgqILWc"><EllipsisOutlined className='YLvdaHYdIV' /></span>
+                        </a>
+                    </Menu.Item>
+                    <div className="DXObXwsQyb">
+                        <span>Trước đó</span>
+                        <span></span>
+                    </div>
+                    <Menu.Item key="sadfsa" >
+                        <a href="/login" className="UWRJovyiDd">
+                            <div className="bRDSowVZlW">
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                            </div>
+                            <span className="qGjeERhsix">
+                                <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
+                                <span>4 giờ</span>
+                            </span>
+                            <span className="oqNMgqILWc"><EllipsisOutlined className='YLvdaHYdIV' /></span>
+                        </a>
+                    </Menu.Item>
+                    <Menu.Item key="sadfsa" >
+                        <a href="/login" className="UWRJovyiDd">
+                            <div className="bRDSowVZlW">
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                            </div>
+                            <span className="qGjeERhsix">
+                                <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
+                                <span>4 giờ</span>
+                            </span>
+                            <span className="oqNMgqILWc"><EllipsisOutlined className='YLvdaHYdIV' /></span>
+                        </a>
+                    </Menu.Item>
+                    <Menu.Item key="sadfsa" >
+                        <a href="/login" className="UWRJovyiDd">
+                            <div className="bRDSowVZlW">
+                                <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                            </div>
+                            <span className="qGjeERhsix">
+                                <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
+                                <span>4 giờ</span>
+                            </span>
+                            <span className="oqNMgqILWc"><EllipsisOutlined className='YLvdaHYdIV' /></span>
+                        </a>
+                    </Menu.Item>
+                    <Menu.Item key="sadfsa" >
+                        <a href="/login">Đăng Nhập</a>
+                    </Menu.Item>
+                </Menu>
+            }>
+
+            <Badge size='small' className="wuurxwiIVq" count={0}>
+                <SettingOutlined className='hdfutmacic' />
+            </Badge>
+        </Dropdown>
+    )
+}
+
 const settings = {
     className: "slider variable-width iEZpNgvDLE",
     dots: false,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 1000,
     slidesToShow: 5,
     slidesToScroll: 5,
@@ -533,7 +640,7 @@ class Header extends AppComponentBase<IHeaderProps, IHeaderState> {
                             <div>{cardInfo()}</div>
                             <div>{bellInfo()}</div>
                             <div>{loginInfo()}</div>
-                            <div>{loginInfo()}</div>
+                            <div>{settingApp()}</div>
                         </div>
                     </Col>
                 </Row >

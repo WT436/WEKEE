@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { listFormActionStart, ActionCreateStart, ActionEditStart, ActionRemoveFeCancel, ActionRemoveFeStart, ActionRemoveStart } from '../actions';
 import {
-    CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined,
-    FilePdfOutlined, LockOutlined, PartitionOutlined, PlusOutlined, RedoOutlined, SearchOutlined, UnlockOutlined
+    CheckOutlined, CloseOutlined, ClusterOutlined, DeleteOutlined, EditOutlined,
+    FilePdfOutlined, HistoryOutlined, LockOutlined, NodeCollapseOutlined, NodeExpandOutlined, PartitionOutlined, PlusOutlined, RedoOutlined, SearchOutlined, SlidersOutlined, StarOutlined, UnlockOutlined
 } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd'
 import {
@@ -113,6 +113,7 @@ export default function ActionComponents(props: IActionComponentsProps) {
             title: 'Hành động',
             dataIndex: '',
             key: 'x',
+            width:120,
             render: (text: ActionDto) => (
                 <div>
                     <Button type="link" icon={<EditOutlined />}
@@ -143,10 +144,15 @@ export default function ActionComponents(props: IActionComponentsProps) {
                             >
                             </Button>
                     }
-                    <Button type="link"
-                        icon={<PartitionOutlined />}
-                        title='Nạp quyền'
-                    >
+                   <Button type="link" title='Action sử dụng' icon={<PartitionOutlined />}>
+                    </Button>
+                    <Button type="link" title='Thống kê' icon={<SlidersOutlined />}>
+                    </Button>
+                    <Button type="link" title='Map kết nối' icon={<ClusterOutlined />}>
+                    </Button>
+                    <Button type="link" title='Quan trọng' icon={<StarOutlined />}>
+                    </Button>
+                    <Button type="link" title='Lịch sử' icon={<HistoryOutlined />}>
                     </Button>
                 </div>
             )

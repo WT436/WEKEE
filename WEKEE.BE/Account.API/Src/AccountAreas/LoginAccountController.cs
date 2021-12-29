@@ -32,8 +32,8 @@ namespace Account.API.Src.AccountAreas
         }
 
         [Route(LoginRouter.LoginAccount)]
-        [HttpPost]
-        public async Task<IActionResult> LoginAccount([FromBody] AuthenticationInput loginDto)
+        [HttpGet]
+        public async Task<IActionResult> LoginAccount(AuthenticationInput input)
         {
             var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
             foreach (var ips in host.AddressList)
@@ -44,7 +44,7 @@ namespace Account.API.Src.AccountAreas
                 }
             }
             var ip = HttpContext.Connection.RemoteIpAddress.ToString();
-            var infomation_account = await _loginAccount.LoginUserAccountAsync(loginDto, ip);
+            var infomation_account = await _loginAccount.LoginUserAccountAsync(input, ip);
             //var role = _checkRole.RoleDtos(infomation_account.UserProfileId);
             var id = Guid.NewGuid().ToString();
             _cacheBase.SetUniqueSession(new SessionCustom

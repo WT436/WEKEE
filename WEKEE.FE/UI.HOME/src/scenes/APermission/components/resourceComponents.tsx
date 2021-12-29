@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { listFormResourceStart, ResourceCreateStart, ResourceEditStart, ResourceRemoveFeCancel, ResourceRemoveFeStart, ResourceRemoveStart } from '../actions';
 import {
-    CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined,
-    FilePdfOutlined, LockOutlined, PlusOutlined, RedoOutlined, SearchOutlined, UnlockOutlined
+    CheckOutlined, CloseOutlined, ClusterOutlined, DeleteOutlined, EditOutlined,
+    FilePdfOutlined, HistoryOutlined, LockOutlined, NodeCollapseOutlined, NodeExpandOutlined, PartitionOutlined, PlusOutlined, PushpinOutlined, RedoOutlined, SearchOutlined, SlidersOutlined, StarOutlined, UnlockOutlined
 } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd'
 import {
@@ -14,6 +14,7 @@ import {
 } from '../selectors';
 import { ResourceDto } from '../dtos/resourceDto';
 import moment from 'moment';
+import ResourceActionComponents from './resourceActionComponents'
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 //#endregion
@@ -45,7 +46,8 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
     const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
     const [OrderbyColumn, setOrderbyColumn] = useState("");
     const [OrderbyTypes, setOrderbyTypes] = useState("");
-
+    const [isActionConnect, setisActionConnect] = useState(false);
+    const [nameDataSelect, setNameDataSelect] = useState<ResourceDto>();
     const dispatch = useDispatch();
 
     const {
@@ -53,6 +55,7 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
         dataRemoveResource
     } = useSelector(stateSelector);
 
+    //#region
     const columns = [
         {
             title: 'id',
@@ -100,33 +103,48 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
             title: 'Hành động',
             dataIndex: '',
             key: 'x',
-            render: (text: ResourceDto) => (
-                <div>
-                    <Button type="link" icon={<EditOutlined />}
-                        onClick={() => {
-                            setisModalVisible(true)
-                            setCheckCreate(true);
-                            onFill(text);
-                        }}></Button>
-                    &nbsp;
-                    <Button type="link" disabled={!(isDataChange == 0 || isDataChange == 1)} icon={<DeleteOutlined />}
-                        onClick={() => {
-                            onRemove(text);
-                        }}
-                    ></Button>
-                    {
-                        text.isActive
-                            ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
-                                onClick={() => onChangeIsStatus(text)}
-                            >
-                            </Button>
-                            : <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
-                                onClick={() => onChangeIsStatus(text)}
-                            >
-                            </Button>
-                    }
-                </div>
-            )
+            width: 120,
+            render: (text: ResourceDto) => {
+                return (
+                    <div>
+                        <Button type="link" icon={<EditOutlined />}
+                            onClick={() => {
+                                setisModalVisible(true);
+                                onFill(text);
+                                setCheckCreate(true);
+                            }}></Button>
+                        <Button type="link" disabled={!(isDataChange == 0 || isDataChange == 1)} icon={<DeleteOutlined />}
+                            onClick={() => {
+                                onRemove(text);
+                            }}
+                        ></Button>
+                        {
+                            text.isActive
+                                ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
+                                    onClick={() => onChangeIsStatus(text)}
+                                >
+                                </Button>
+                                : <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
+                                    onClick={() => onChangeIsStatus(text)}
+                                >
+                                </Button>
+                        }
+                        <Button type="link"
+                            onClick={() => {setisActionConnect(true);  onFill(text);}}
+                            title='Action sử dụng'
+                            icon={<PartitionOutlined />}>
+                        </Button>
+                        <Button type="link" title='Thống kê' icon={<SlidersOutlined />}>
+                        </Button>
+                        <Button type="link" title='Map kết nối' icon={<ClusterOutlined />}>
+                        </Button>
+                        <Button type="link" title='Quan trọng' icon={<StarOutlined />}>
+                        </Button>
+                        <Button type="link" title='Lịch sử' icon={<HistoryOutlined />}>
+                        </Button>
+                    </div>
+                )
+            }
         },
     ];
 
@@ -153,19 +171,11 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
 
     const [form] = Form.useForm();
 
-    const onFill = (value: ResourceDto) => {
-        form.setFieldsValue(value);
-    };
+    const onFill = (value: ResourceDto) => { form.setFieldsValue(value); setNameDataSelect(value); };
 
-    const onRemove = (value: ResourceDto) => {
-        setisDataChange(1);
-        dispatch(ResourceRemoveFeStart(value.id, 1));
-    };
+    const onRemove = (value: ResourceDto) => { setisDataChange(1); dispatch(ResourceRemoveFeStart(value.id, 1)); };
 
-    const onChangeIsStatus = (value: ResourceDto) => {
-        setisDataChange(2);
-        dispatch(ResourceRemoveFeStart(value.id, 2));
-    };
+    const onChangeIsStatus = (value: ResourceDto) => { setisDataChange(2); dispatch(ResourceRemoveFeStart(value.id, 2)); };
 
     let onChange = (page: any, pageSize: any) => {
         dispatch(listFormResourceStart({
@@ -187,14 +197,12 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
         }
     };
 
-    const onReset = () => {
-        setCheckCreate(false);
-        form.resetFields();
-    };
+    const onChangeModalInsert = () => { setisModalVisible(false); setNameDataSelect(undefined); }
+    const onReset = () => { setCheckCreate(false); form.resetFields(); };
+    const onGenderChange = (value: string) => { form.setFieldsValue({ types: value }); };
+    const onModalMaxShow = () => { setisActionConnect(false); setNameDataSelect(undefined); }
+    //#endregion
 
-    const onGenderChange = (value: string) => {
-        form.setFieldsValue({ types: value });
-    };
     return (
         <Row gutter={[10, 10]}>
             <Col span={24}>
@@ -354,9 +362,9 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                     />
                 </Row>
             </Col>
-            <Modal title="Thêm mới hoặc sửa Resource"
+            <Modal title={"Thêm mới hoặc sửa Resource : " + nameDataSelect}
                 visible={isModalVisible}
-                onCancel={() => setisModalVisible(false)}
+                onCancel={() => onChangeModalInsert()}
                 maskClosable={false}
                 style={{ top: 20 }}
                 footer={null}
@@ -427,6 +435,23 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                         </Row>
                     </Form>
                 </Row>
+            </Modal>
+            <Modal
+                title={"Thông số Resource: " + nameDataSelect?.name}
+                centered
+                visible={isActionConnect}
+                width={'80%'}
+                style={{ top: 10 }}
+                maskClosable={false}
+                onCancel={() => onModalMaxShow()}
+                footer={false}
+                bodyStyle={{ padding: '0 24px' }}
+            >
+                <ResourceActionComponents
+                    isResource={true}
+                    resourceData={nameDataSelect}
+                    actionData={undefined}
+                />
             </Modal>
         </Row >
     )

@@ -192,11 +192,11 @@ export const RoleRemoveError = () =>
 
 //#region  Resource-Action
 export const ResourceActionGetListDataStart = (input: IdPagedListInput) =>
-    action(ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_START, input);
+    action(ActionTypes.ACTION_RESOURCE_LIST_START, input);
 export const ResourceActionGetListDataCompeleted = (output: PagedListOutput<ResourceActionDto>) =>
-    action(ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_COMPELETED, output);
+    action(ActionTypes.ACTION_RESOURCE_LIST_COMPELETED, output);
 export const ResourceActionGetListDataError = () =>
-    action(ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_ERROR);
+    action(ActionTypes.ACTION_RESOURCE_LIST_ERROR);
 
 export const ResourceActionInsertOrUpdateStart = (input: ResourceActionDto) =>
     action(ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_START, input);

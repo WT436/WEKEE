@@ -1,16 +1,25 @@
 //#region 
 import React, { useEffect } from 'react'
-import { Button, Col, Row, Table, Tag } from 'antd'
-import { BorderOutlined, CheckSquareOutlined } from '@ant-design/icons';
+import { Button, Col, DatePicker, Input, Modal, Row, Select, Table, Tabs, Tag } from 'antd'
+import { BorderOutlined, CheckOutlined, CheckSquareOutlined, CloseOutlined, DeleteOutlined, EditOutlined, PlusOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
 import { ActionDto } from '../dtos/actionDto';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages, makeSelectDataAction, makeSelectDataResourceAction, makeSelectPageIndexSub, makeSelectPageSizeSub, makeSelectTotalCountSub, makeSelectTotalPagesSub } from '../selectors';
 import { listFormActionStart, ResourceActionGetListDataStart, ResourceActionInsertOrUpdateStart } from '../actions';
 import { ResourceActionDto } from '../dtos/resourceActionDto'
+import { ResourceDto } from '../dtos/resourceDto';
+import moment from 'moment';
+const { Option } = Select;
+const { RangePicker } = DatePicker;
+const { TabPane } = Tabs;
 //#endregion
 
-interface IResourceActionComponents { }
+interface IResourceActionComponents {
+    isResource: Boolean
+    resourceData: ResourceDto | undefined
+    actionData: ActionDto | undefined
+}
 
 const stateSelector = createStructuredSelector<any, any>({
     loading: makeSelectLoading(),
@@ -19,178 +28,176 @@ const stateSelector = createStructuredSelector<any, any>({
     pageSize: makeSelectPageSize(),
     totalCount: makeSelectTotalCount(),
     totalPages: makeSelectTotalPages(),
-    dataAction: makeSelectDataAction(),
-    dataResourceAction: makeSelectDataResourceAction(),
-    pageIndexSub: makeSelectPageIndexSub(),
-    pageSizeSub: makeSelectPageSizeSub(),
-    totalCountSub: makeSelectTotalCountSub(),
-    totalPagesSub: makeSelectTotalPagesSub(),
+    dataAction: makeSelectDataAction()
 });
-
 
 export default function ResourceActionComponents(props: IResourceActionComponents) {
     const {
-        loading, dataAction, pageSize, totalCount, pageIndex, pageSizeSub, totalCountSub, pageIndexSub, dataResourceAction
+        loading, dataAction, pageSize, totalCount, pageIndex
     } = useSelector(stateSelector);
 
     const dispatch = useDispatch();
+    // Ctor
+    useEffect(() => {
+        
+    }, [props.isResource, props.actionData, props.resourceData])
 
     const columns = [
         {
-            title: 'Action',
-            dataIndex: '',
-            key: 'x',
-            render: (text: ResourceActionDto) => (
-                <div>
-                    <Button onClick={() => dispatch(ResourceActionInsertOrUpdateStart(text))}
-                        type="link"
-                        icon={text.isCheck ? <CheckSquareOutlined style={{ color: 'blue' }} />
-                            : <BorderOutlined style={{ color: 'black' }} />}>
-                    </Button>
-                </div>
-            )
-        },
-        {
             title: 'id',
             dataIndex: 'id',
-        },
-        {
-            title: 'Id Action',
-            dataIndex: 'actionId',
-        },
-        {
-            title: 'Url Server',
-            dataIndex: 'name',
-            sorter: {
-                compare: (a: { name: string; }, b: { name: string; }) => a.name.length - b.name.length,
-                multiple: 3,
-            }
-        },
-        {
-            title: 'Active',
-            dataIndex: 'isActive',
-            render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
-        }
-    ];
-
-    const columnsAction = [
-        {
-            title: 'id',
-            dataIndex: 'id',
-            with: 50
+            width: 50
         },
         {
             title: 'Tên',
-            dataIndex: 'name',
-            sorter: {
-                compare: (a: { name: string; }, b: { name: string; }) => a.name.length - b.name.length,
-                multiple: 3,
-            },
-            with: 300
+            dataIndex: 'name'
         },
         {
-            title: 'isActive',
+            title: 'Status',
             dataIndex: 'isActive',
-            key: 'isActive',
+            width: 60,
             render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
         },
         {
             title: 'Hành động',
-            dataIndex: 'nameAtomic'
+            dataIndex: 'atomicName'
+        },
+        {
+            title: 'Chi tiết',
+            dataIndex: 'description'
         },
         {
             title: 'Acticon cha',
-            dataIndex: 'actionBase',
+            dataIndex: 'actionBaseName',
             render: (text: String) => (text === null || text === undefined || text === "" ? <Tag color="red">Null</Tag> : text)
+        },
+        {
+            title: 'Người Update',
+            dataIndex: 'createByName'
         }
     ];
 
-    useEffect(() => {
-        dispatch(listFormActionStart({
-            pageIndex: pageIndex,
-            pageSize: pageSize,
-            propertyOrder: "",
-            valueOrderBy: "",
-            propertySearch: [],
-            valuesSearch: [],
-        }));
-    }, []);
-
-    let onChangeAction = (page: any, pageSize: any) => {
-        dispatch(listFormActionStart({
-            pageIndex: page - 1,
-            pageSize: pageSize,
-            propertyOrder: "",
-            valueOrderBy: "",
-            propertySearch: [],
-            valuesSearch: [],
-        }));
-    };
-
-    let onChangeResource = (page: any, pageSize: any) => {
-        dispatch(ResourceActionGetListDataStart({
-            pageIndex: page - 1,
-            pageSize: pageSize,
-            id: dataResourceAction[0].id
-        }));
-    };
-
+     
     const rowSelection = {
         onChange: (selectedRowKeys: React.Key[], selectedRows: ActionDto[]) => {
-            dispatch(ResourceActionGetListDataStart({
-                pageIndex: pageIndexSub,
-                pageSize: pageSizeSub,
-                id: selectedRows[0].id
-            }));
+          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         }
-    };
+      };
 
     return (
         <>
-            <Row gutter={[35, 5]}>
-                <Col span={12}>
-                    <Row style={{ fontSize: '20px', fontFamily: 'cursive', padding: '5px 15px' }}>Action</Row>
-                    {/* <Table
+            <Tabs defaultActiveKey="Overview" size='small'>
+                <TabPane tab="Action" key="Action">
+                    <Row gutter={[10, 10]} >
+                        <Col span={3}>
+                            <Button loading={loading}
+                                block icon={<RedoOutlined />}>Làm Mới</Button>
+                        </Col>
+                        <Col span={3}>
+                            <Button loading={loading}
+                                block
+                                icon={<CheckOutlined />}>Lưu</Button>
+                        </Col>
+                        <Col span={3}>
+                            <Button loading={loading}
+                                block icon={<CloseOutlined />}>Hủy</Button>
+                        </Col>
+                        <Col span={6}>
+                            {/* {
+                        SelectColumn.indexOf("CreatedAt") === 0 || SelectColumn.indexOf("UpdatedAt") === 0
+                            ? <RangePicker onChange={(date, dateString) => {
+                                setvaluesSearch([]);
+                                setvaluesSearch(dateString);
+                            }
+                            } />
+                            : <Input onChange={(value) => {
+                                setvaluesSearch([]);
+                                setvaluesSearch([value.target.value]);
+                            }} disabled={loading} placeholder="Từ khóa" />
+                    } */}
+                            <Input disabled={loading} placeholder="Từ khóa" />
+                        </Col>
+                        <Col span={4}>
+                            <Select
+                                optionFilterProp="children"
+                                style={{ width: '100%' }}
+                                filterOption={(input, option: any) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                                disabled={loading}
+                            >
+                                <Option value="All">Tìm kiếm Tất cả</Option>
+                                <Option value="Id">Id</Option>
+                                <Option value="Name">Tên</Option>
+                                <Option value="TypesRsc">Kiểu</Option>
+                                <Option value="Description">Chi tiết</Option>
+                                <Option value="IsActive">Trạng thái</Option>
+                                <Option value="CreatedAt">Ngày Tạo</Option>
+                                <Option value="CreateBy">Người sửa</Option>
+                                <Option value="UpdatedAt">Ngày cập nhật</Option>
+                            </Select>
+                        </Col>
+                        <Col span={4}>
+                            <Select
+                                optionFilterProp="children"
+                                style={{ width: '100%' }}
+                                filterOption={(input, option: any) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                                defaultValue={"All"}
+                                disabled={loading}
+                            >
+                                <Option value="All">Không Sắp Xếp</Option>
+                                <Option value="Id_ASC ">Id tăng dần</Option>
+                                <Option value="Id_DESC">Id giảm dần</Option>
+                                <Option value="Name_ASC ">Tên tăng dần</Option>
+                                <Option value="Name_DESC">Tên giảm dần</Option>
+                                <Option value="TypesRsc_ASC ">Kiểu tăng dần</Option>
+                                <Option value="TypesRsc_DESC">Kiểu giảm dần</Option>
+                                <Option value="Description_ASC ">Chi tiết tăng dần</Option>
+                                <Option value="Description_DESC">Chi tiết giảm dần</Option>
+                                <Option value="IsActive_ASC ">Trạng thái tăng dần</Option>
+                                <Option value="IsActive_DESC">Trạng thái giảm dần</Option>
+                                <Option value="CreatedAt_ASC ">Ngày Tạo tăng dần</Option>
+                                <Option value="CreatedAt_DESC">Ngày Tạo giảm dần</Option>
+                                <Option value="CreateBy_ASC ">Người sửa tăng dần</Option>
+                                <Option value="CreateBy_DESC">Người sửa giảm dần</Option>
+                                <Option value="UpdatedAt_ASC ">Ngày cập nhật tăng dần</Option>
+                                <Option value="UpdatedAt_DESC">Ngày cập nhật giảm dần</Option>
+                            </Select>
+                        </Col>
+                        <Col span={1}>
+                            <Button
+                                disabled={loading}
+                                type="primary"
+                                icon={<SearchOutlined />}
+                            >
+                            </Button>
+                        </Col>
+                    </Row>
+                    <Table
                         rowSelection={{
-                            type: 'radio',
+                            type: 'checkbox',
                             ...rowSelection
                         }}
-                        rowKey={(record: ActionDto) => record.id.toString()}
-                        columns={columnsAction}
+                        rowKey={(record: ActionDto | any) => record.id.toString()}
+                        style={{ width: '100%', margin: '10px 0' }}
+                        scroll={{ y: 350 }}
+                        size='small'
+                        columns={columns}
                         dataSource={dataAction}
                         loading={loading}
-                        size='small'
-                        scroll={{ y: 350 }}
                         pagination={{
                             pageSize: pageSize,
                             total: totalCount,
                             defaultCurrent: 1,
-                            onChange: onChangeAction,
+                            //onChange: onChange,
                             showSizeChanger: true,
                             pageSizeOptions: ['5', '10', '20', '50', '100']
                         }}
-                    /> */}
-                </Col>
-                <Col span={12}>
-                    <Row style={{ fontSize: '20px', fontFamily: 'cursive', padding: '5px 15px' }}>Resource</Row>
-                    <Table
-                        rowKey={(rec: ResourceActionDto | any)=> rec.id.toString()}
-                        columns={columns}
-                        dataSource={dataResourceAction}
-                        size='small'
-                        loading={loading}
-                        pagination={{
-                            pageSize: pageSizeSub,
-                            total: totalCountSub,
-                            defaultCurrent: 1,
-                            onChange: onChangeResource,
-                            showSizeChanger: true,
-                            pageSizeOptions: ['5', '10', '20', '50', '100']
-                        }}
-                        scroll={{ y: 350 }}
                     />
-                </Col>
-            </Row>
+                </TabPane>
+            </Tabs>
         </>
     )
 }

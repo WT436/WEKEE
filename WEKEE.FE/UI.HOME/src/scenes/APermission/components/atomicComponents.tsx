@@ -1,4 +1,4 @@
-import { PlusOutlined, RedoOutlined, FilePdfOutlined, CheckOutlined, CloseOutlined, SearchOutlined, EditOutlined, DeleteOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
+import { PlusOutlined, RedoOutlined, FilePdfOutlined, CheckOutlined, CloseOutlined, SearchOutlined, EditOutlined, DeleteOutlined, LockOutlined, UnlockOutlined, NodeCollapseOutlined, NodeExpandOutlined, ClusterOutlined, HistoryOutlined, PartitionOutlined, SlidersOutlined, StarOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
@@ -161,6 +161,7 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
             title: 'Hành động',
             dataIndex: '',
             key: 'x',
+            width:120,
             render: (text: AtomicDto) => (
                 <div>
                     <Button type="link" icon={<EditOutlined />}
@@ -169,7 +170,6 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
                             setCheckCreate(true);
                             onFill(text);
                         }}></Button>
-                    &nbsp;
                     <Button type="link" disabled={!(isDataChange == 0 || isDataChange == 1)} icon={<DeleteOutlined />}
                         onClick={() => {
                             onRemove(text);
@@ -181,6 +181,16 @@ export default function AtomicComponents(props: IAtomicComponentsProps) {
                         <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
                             onClick={() => onChangeIsStatus(text)}
                         ></Button>}
+                    <Button type="link" title='Action sử dụng' icon={<PartitionOutlined />}>
+                    </Button>
+                    <Button type="link" title='Thống kê' icon={<SlidersOutlined />}>
+                    </Button>
+                    <Button type="link" title='Map kết nối' icon={<ClusterOutlined />}>
+                    </Button>
+                    <Button type="link" title='Quan trọng' icon={<StarOutlined />}>
+                    </Button>
+                    <Button type="link" title='Lịch sử' icon={<HistoryOutlined />}>
+                    </Button>
                 </div>
             )
         },

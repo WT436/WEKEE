@@ -17,25 +17,27 @@ namespace Account.Application.ResourceAction
         private readonly ResourceQuery resourceQuery = new ResourceQuery();
         private readonly ActionQuery actionQuery = new ActionQuery();
         private readonly ResourceActionQuery resourceActionQuery = new ResourceActionQuery();
-        public PagedListOutput<ResourceActionDto> ResourceActionDtos(int idAction, PagedListInput pagedListInput)
+        public PagedListOutput<ActionResourceDto> ResourceActionDtos(int idAction, PagedListInput pagedListInput)
         {
             //lấy dữ liệu resource,
             var dataResoure = resourceQuery.GetAllListPage(pagedListInput);
             // lấy dữ liệu action
             var dataResoureAction = resourceActionQuery.ListResourceActionWithId(idAction);
             // map data
-            return MapPagedListOutput.MapingpagedListOutput(resourceActions: dataResoureAction, resource: dataResoure, actionId: idAction);
+            return MapPagedListOutput.MapingpagedListOutput(resourceActions: dataResoureAction,
+                                                                   resource: dataResoure,
+                                                                   actionId: idAction);
         }
 
-        public void UpdateOrInsertResourceAction(ResourceActionDto resourceActionDto)
+        public void UpdateOrInsertResourceAction(ActionResourceDto resourceActionDto)
         {
             // kieemr tra 
-            if(resourceQuery.CountId(resourceActionDto.Id)!= 1)
+            if (resourceQuery.CountId(resourceActionDto.Id) != 1)
             {
                 throw new ClientException(400, "Resource already exists!");
             }
 
-            if(actionQuery.CountId(resourceActionDto.ActionId)!=1)
+            if (actionQuery.CountId(resourceActionDto.ActionId) != 1)
             {
                 throw new ClientException(400, "Action already exists!");
             }

@@ -51,7 +51,8 @@ namespace Account.Application.LoginAccount
             shiningAccount.CheckPassword(fullAccount, loginDto.Password);
             userAccountQuery.ResertLoginFail(fullAccount);
             var data = MappingData.InitializeAutomapper().Map<UserAccountDtos>(fullAccount);
-            data.Picture = infoUser.Picture;
+            data.Picture = infoUser == null ? null : infoUser.Picture ?? null;
+            data.FullName = infoUser == null ? null : infoUser.FullName ?? null;
             return data;
         }
     }

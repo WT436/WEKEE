@@ -636,13 +636,13 @@ function aPermissionReducer(
     //#endregion
 
     //#region  Resource action
-    case ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_START:
+    case ActionTypes.ACTION_RESOURCE_LIST_START:
       return {
         ...state,
         dataResourceAction: [],
         loading: true,
       };
-    case ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_COMPELETED:
+    case ActionTypes.ACTION_RESOURCE_LIST_COMPELETED:
       return {
         ...state,
         loading: false,
@@ -653,7 +653,7 @@ function aPermissionReducer(
         totalCountSub: action.payload.totalCount,
         totalPagesSub: action.payload.totalPages,
       };
-    case ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_ERROR:
+    case ActionTypes.ACTION_RESOURCE_LIST_ERROR:
       notification.warning({
         message: "Thất Bại",
         description: "Đã sảy ra lỗi!",

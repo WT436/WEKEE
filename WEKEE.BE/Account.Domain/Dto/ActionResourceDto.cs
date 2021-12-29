@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Account.Domain.Dto
 {
-    public class ResourceActionDto
+    public class ActionResourceDto
     {
         public int Id { get; set; }
         public int ActionId { get; set; }

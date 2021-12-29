@@ -75,16 +75,10 @@
     .NfxUTNJIOM > div {
         margin: 0 5px;
     }
-/*
 
-
-
-orEbAJpqPJ
-PBssHkixGZ
-TOiSswMOOL*/
 .hdfut {
     width: 100%;
-    padding: 5px;
+    padding: 5px 20px;
     padding-bottom: 0;
     background-color: #03104a;
     position: fixed;
@@ -111,11 +105,11 @@ TOiSswMOOL*/
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-around;
     align-items: center;
     height: 32px;
     line-height: 1;
-    margin: 5px 30px;
+    margin: 5px 0px;
+    justify-content: flex-end;
 }
 
     .hdfutmsttac > div {
@@ -127,6 +121,7 @@ TOiSswMOOL*/
         border-radius: 50%;
         background: #E4E6DB;
         cursor: pointer;
+        margin-left: 10px;
     }
 
         .hdfutmsttac > div:hover {

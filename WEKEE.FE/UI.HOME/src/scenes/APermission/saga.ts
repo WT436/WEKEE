@@ -126,7 +126,7 @@ export default function* watchLoginRequestStart() {
 
     //#region  Resource Action 
     yield takeLatest(
-        ActionTypes.RESOURCE_ACTION_GET_LIST_DATA_START,
+        ActionTypes.ACTION_RESOURCE_LIST_START,
         resourceActionGetListData
     );
     yield takeLatest(

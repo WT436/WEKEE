@@ -14,7 +14,7 @@ CREATE TABLE [Supplier](
 	[nameShop] NVARCHAR(300) NOT NULL,
 	[linkShop] NVARCHAR(300) NOT NULL,
 	[adress] NVARCHAR(300) NOT NULL,
-	[CreatedAt] DATETIME NOT NULL DEFAULT (GETDATE()),
+	[createdAt] DATETIME NOT NULL DEFAULT (GETDATE()),
 	[isActive] BIT NOT NULL  DEFAULT (0), -- nhà cung cấp tạm nghỉ
 	[isEnabled] BIT NOT NULL  DEFAULT (0), -- xóa bỏ  nhà cung cấp
 --=========>Connect Table<===========--

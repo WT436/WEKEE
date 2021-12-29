@@ -1,12 +1,10 @@
 ﻿.hsurnjftyd {
     width: 210px;
     margin: 1px 2px;
-    height: 310px;
-    padding: 2px 2px;
+    height: 320px;
     position: relative;
     border: 1px solid #bfbfbf;
     border-radius: 4px;
-    background: white;
     background: white;
     -webkit-transition: .5s all;
     -webkit-transition-delay: 5s;
@@ -27,7 +25,8 @@
         -o-transition-delay: 0s;
     }
 .MgCJXPSMyz {
-    width: 100%;
+    width: 210px;
+    height: 210px;
     display: block;
     text-align: center;
     overflow: hidden;

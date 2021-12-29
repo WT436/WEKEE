@@ -14,6 +14,11 @@
     <ProjectReference Include="..\Account.Application\Account.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Src\AdminAreas\" />
+    <Folder Include="Src\UserAreas\" />
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES2015</TypeScriptTarget>
     <TypeScriptJSXEmit>React</TypeScriptJSXEmit>

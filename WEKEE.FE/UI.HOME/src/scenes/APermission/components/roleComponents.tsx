@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { listFormRoleStart, RoleCreateStart, RoleEditStart, RoleRemoveFeCancel, RoleRemoveFeStart, RoleRemoveStart } from '../actions';
 import {
-    CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined,
-    FilePdfOutlined, LockOutlined, PartitionOutlined, PlusOutlined, RedoOutlined, SearchOutlined, UnlockOutlined
+    CheckOutlined, CloseOutlined, ClusterOutlined, DeleteOutlined, EditOutlined,
+    FilePdfOutlined, HistoryOutlined, LockOutlined, NodeCollapseOutlined, NodeExpandOutlined, PartitionOutlined, PlusOutlined, RedoOutlined, SearchOutlined, SlidersOutlined, StarOutlined, UnlockOutlined
 } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd'
 import {
@@ -83,7 +83,8 @@ export default function RoleComponents(props: IRoleComponentsProps) {
         },
         {
             title: 'Cấp độ',
-            dataIndex: 'levelRole'
+            dataIndex: 'levelRole',
+            width: 50
         },
         {
             title: 'Role cha',
@@ -111,6 +112,7 @@ export default function RoleComponents(props: IRoleComponentsProps) {
             title: 'Action',
             dataIndex: '',
             key: 'x',
+            width:120,
             render: (text: RoleDto) => (
                 <div>
                     <Button type="link" icon={<EditOutlined />}
@@ -137,10 +139,16 @@ export default function RoleComponents(props: IRoleComponentsProps) {
                             >
                             </Button>
                     }
-                    <Button type="link"
-                        icon={<PartitionOutlined />}
-                        title='Nạp quyền'
-                    >
+                    
+                    <Button type="link" title='Action sử dụng' icon={<PartitionOutlined />}>
+                    </Button>
+                    <Button type="link" title='Thống kê' icon={<SlidersOutlined />}>
+                    </Button>
+                    <Button type="link" title='Map kết nối' icon={<ClusterOutlined />}>
+                    </Button>
+                    <Button type="link" title='Quan trọng' icon={<StarOutlined />}>
+                    </Button>
+                    <Button type="link" title='Lịch sử' icon={<HistoryOutlined />}>
                     </Button>
                 </div>
             )

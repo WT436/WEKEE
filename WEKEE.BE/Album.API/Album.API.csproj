@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="RootFiles\album\avatar\" />
     <Folder Include="RootFiles\album\evaluates\" />
     <Folder Include="RootFiles\album\file\" />
     <Folder Include="RootFiles\album\post\" />

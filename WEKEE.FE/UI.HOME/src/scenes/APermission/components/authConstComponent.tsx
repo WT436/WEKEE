@@ -1,29 +1,22 @@
-//#region import
-import {
-    CheckOutlined, CloseOutlined, ClusterOutlined, DeleteOutlined, EditOutlined,
-    FilePdfOutlined, HistoryOutlined, NodeCollapseOutlined, NodeExpandOutlined, PartitionOutlined, PlusOutlined, RedoOutlined, SearchOutlined, SlidersOutlined, StarOutlined
-} from '@ant-design/icons';
+import { PlusOutlined, RedoOutlined, FilePdfOutlined, CheckOutlined, CloseOutlined, SearchOutlined, EditOutlined, DeleteOutlined, LockOutlined, UnlockOutlined, NodeCollapseOutlined, NodeExpandOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Input, Modal, Row, Select, Switch, Table, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { AtomicgetListStart, listFormResourceStart, ResourceRemoveFeCancel } from '../actions';
+import { AtomicDto } from '../dtos/atomicDto';
 import {
-    listFormPermissionStart, PermissionCreateStart, PermissionEditStart,
-    PermissionRemoveFeCancel, PermissionRemoveFeStart, PermissionRemoveStart
-} from '../actions';
-import { PermissionDto } from '../dtos/permissionDto';
-import {
-    makeSelectCompleted, makeSelectDataPermission, makeSelectDataRemovePermission, makeSelectLoading, makeSelectPageIndex,
-    makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages
+    makeSelectCompleted, makeSelectDataRemoveAtomic, makeSelectDataAtomic, makeSelectLoading,
+    makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages
 } from '../selectors';
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-//#endregion
 
-interface IPermissionComponentsProps {
+interface IAuthConstComponentsProps {
 
 }
+
 const stateSelector = createStructuredSelector<any, any>({
     loading: makeSelectLoading(),
     completed: makeSelectCompleted(),
@@ -31,11 +24,11 @@ const stateSelector = createStructuredSelector<any, any>({
     pageSize: makeSelectPageSize(),
     totalCount: makeSelectTotalCount(),
     totalPages: makeSelectTotalPages(),
-    dataPermission: makeSelectDataPermission(),
-    dataRemovePermission: makeSelectDataRemovePermission()
+    dataAtomic: makeSelectDataAtomic(),
+    dataRemoveAtomic: makeSelectDataRemoveAtomic()
 });
-
-export default function PermissionComponents(props: IPermissionComponentsProps) {
+export default function AtomicComponents(props: IAuthConstComponentsProps) {
+    const dispatch = useDispatch();
     const [checkCreate, setCheckCreate] = useState(false);
     const [checkRemove, setCheckRemove] = useState(true);
     const [checkRestart, setCheckRestart] = useState(true);
@@ -47,127 +40,51 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
     const [OrderbyColumn, setOrderbyColumn] = useState("");
     const [OrderbyTypes, setOrderbyTypes] = useState("");
 
-
-    const dispatch = useDispatch();
-
     const {
-        loading, dataPermission, pageSize, totalCount, pageIndex,
-        dataRemovePermission
+        loading, dataAtomic, pageSize, totalCount, pageIndex, dataRemoveAtomic
     } = useSelector(stateSelector);
 
     useEffect(() => {
-        dispatch(listFormPermissionStart({
-            pageIndex: pageIndex,
-            pageSize: pageSize,
-            propertyOrder: "",
-            valueOrderBy: "",
-            propertySearch: [],
-            valuesSearch: [],
-        }));
+        dispatch(AtomicgetListStart(
+            {
+                pageIndex: 0,
+                pageSize: 0,
+                propertyOrder: "UpdatedAt",
+                valueOrderBy: "ASC",
+                propertySearch: [],
+                valuesSearch: [],
+            }
+        ));
     }, []);
 
-    const columns = [
-        {
-            title: 'Id',
-            dataIndex: 'id',
-            width: 50
-        },
-        {
-            title: 'Tên',
-            dataIndex: 'name',
-            sorter: {
-                compare: (a: { name: string; }, b: { name: string; }) => a.name.length - b.name.length,
-                multiple: 3,
-            },
-            with: 300
-        },
-        {
-            title: 'Status',
-            dataIndex: 'isActive',
-            key: 'isActive',
-            width: 60,
-            render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
-        },
-        {
-            title: 'Chi tiết',
-            dataIndex: 'description'
-        },
-        {
-            title: 'Người Update',
-            dataIndex: 'createByName'
-        },
-        {
-            title: 'Ngày Tạo',
-            dataIndex: 'createdAt',
-            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
-        },
-        {
-            title: 'Ngày Update',
-            dataIndex: 'updatedAt',
-            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
-        },
-        {
-            title: 'Permission',
-            dataIndex: '',
-            key: 'x',
-            width: 120,
-            render: (text: PermissionDto) => (
-                <div>
-                    <Button type="link" icon={<EditOutlined />}
-                        onClick={() => {
-                            setCheckCreate(true);
-                            onFill(text);
-                        }}></Button>
-                    &nbsp;
-                    <Button type="link" icon={<DeleteOutlined />}
-                        onClick={() => {
-                            onRemove(text);
-                        }}
-                    ></Button>
-                    <Button type="link" title='Action sử dụng' icon={<PartitionOutlined />}>
-                    </Button>
-                    <Button type="link" title='Thống kê' icon={<SlidersOutlined />}>
-                    </Button>
-                    <Button type="link" title='Map kết nối' icon={<ClusterOutlined />}>
-                    </Button>
-                    <Button type="link" title='Quan trọng' icon={<StarOutlined />}>
-                    </Button>
-                    <Button type="link" title='Lịch sử' icon={<HistoryOutlined />}>
-                    </Button>
-                </div>
-            )
-        }
-    ];
-
-
     useEffect(() => {
-        if (dataRemovePermission.length === 0) {
+        if (dataRemoveAtomic.length === 0) {
             setCheckRemove(true);
         }
         else {
             setCheckRemove(false);
             setCheckRestart(false);
         }
-    }, [dataRemovePermission]);
+    }, [dataRemoveAtomic]);
 
     const [form] = Form.useForm();
 
-    const onFill = (value: PermissionDto) => {
+    const onFill = (value: AtomicDto) => {
         form.setFieldsValue(value);
     };
 
-    const onRemove = (value: PermissionDto) => {
+    const onRemove = (value: AtomicDto) => {
         setisDataChange(1);
         //dispatch(ResourceRemoveFeStart(value.id, 1));
     };
 
-    const onChangeIsStatus = (value: PermissionDto) => {
+    const onChangeIsStatus = (value: AtomicDto) => {
         setisDataChange(2);
         //dispatch(ResourceRemoveFeStart(value.id, 2));
     };
 
     let onChange = (page: any, pageSize: any) => {
-        dispatch(listFormPermissionStart({
+        dispatch(listFormResourceStart({
             pageIndex: page - 1,
             pageSize: pageSize,
             propertyOrder: OrderbyColumn,
@@ -177,7 +94,7 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
         }));
     };
 
-    const onFinish = (values: PermissionDto) => {
+    const onFinish = (values: AtomicDto) => {
         if (values.id === undefined) {
             //dispatch(ResourceCreateStart(values));
         }
@@ -195,6 +112,83 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
         form.setFieldsValue({ types: value });
     };
 
+    const columns = [
+        {
+            title: 'Id',
+            dataIndex: 'id'
+        },
+        {
+            title: 'Tên',
+            dataIndex: 'name',
+            sorter: {
+                compare: (a: { name: string; }, b: { name: string; }) => a.name.length - b.name.length,
+                multiple: 3,
+            },
+        },
+        {
+            title: 'Trạng thái',
+            dataIndex: 'isActive',
+            key: 'isActive',
+            render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
+        },
+        {
+            title: 'Kiểu',
+            dataIndex: 'typesRsc'
+        },
+        {
+            title: 'Số lần sử dụng',
+            dataIndex: 'count'
+        },
+        {
+            title: 'Chi tiết',
+            dataIndex: 'description'
+        },
+        {
+            title: 'Người cập nhật',
+            dataIndex: 'createBy'
+        },
+        {
+            title: 'Thời gian cập nhật',
+            dataIndex: 'updatedAt',
+            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
+        },
+        {
+            title: 'Thời gian tạo',
+            dataIndex: 'CreatedAt',
+            render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
+        },
+        {
+            title: 'Hành động',
+            dataIndex: '',
+            key: 'x',
+            render: (text: AtomicDto) => (
+                <div>
+                    <Button type="link" icon={<EditOutlined />}
+                        onClick={() => {
+                            setisModalVisible(true)
+                            setCheckCreate(true);
+                            onFill(text);
+                        }}></Button>
+                    <Button type="link" disabled={!(isDataChange == 0 || isDataChange == 1)} icon={<DeleteOutlined />}
+                        onClick={() => {
+                            onRemove(text);
+                        }}
+                    ></Button>
+                    {text.isActive ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
+                        onClick={() => onChangeIsStatus(text)}
+                    ></Button> :
+                        <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
+                            onClick={() => onChangeIsStatus(text)}
+                        ></Button>}
+                    <Button type="link" title='' icon={<NodeCollapseOutlined />}>                        
+                    </Button>
+                    <Button type="link" title='' icon={<NodeExpandOutlined />}>                        
+                    </Button>
+                </div>
+            )
+        },
+    ];
+
     return (
         <Row gutter={[10, 10]}>
             <Col span={24}>
@@ -202,7 +196,7 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                     <Col span={3}>
                         <Button loading={loading}
                             onClick={() => {
-                                dispatch(listFormPermissionStart({
+                                dispatch(AtomicgetListStart({
                                     pageIndex: pageIndex,
                                     pageSize: pageSize,
                                     propertyOrder: "",
@@ -222,7 +216,7 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                             disabled={checkRemove}
                             block
                             onClick={() => {
-                                //dispatch(ResourceRemoveStart(dataRemoveAction, isDataChange));
+                                //dispatch(ResourceRemoveStart(dataRemoveAtomic, isDataChange));
                                 setisDataChange(0);
                             }}
                             icon={<CheckOutlined />}>Lưu</Button>
@@ -230,7 +224,7 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                     <Col span={2}>
                         <Button loading={loading} disabled={checkRemove}
                             onClick={() => {
-                                //dispatch(ResourceRemoveFeCancel());
+                                dispatch(ResourceRemoveFeCancel());
                                 setisDataChange(0);
                             }} block icon={<CloseOutlined />}>Hủy</Button>
                     </Col>
@@ -239,7 +233,10 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                     </Col>
                     <Col span={3}>
                         <Button loading={loading} block icon={<PlusOutlined />}
-                            onClick={() => setisModalVisible(true)}
+                            onClick={() => {
+                                setisModalVisible(true);
+                                form.resetFields();
+                            }}
                         >Thêm</Button>
                     </Col>
                     <Col span={4}>
@@ -321,7 +318,7 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                             type="primary"
                             icon={<SearchOutlined />}
                             onClick={() => {
-                                dispatch(listFormPermissionStart({
+                                dispatch(AtomicgetListStart({
                                     pageIndex: 0,
                                     pageSize: 0,
                                     propertyOrder: OrderbyColumn,
@@ -334,26 +331,26 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                         </Button>
                     </Col>
                 </Row>
-                <Row style={{ margin: '10px 0' }}>
-                    <Table
-                        columns={columns}
-                        dataSource={dataPermission}
-                        rowKey={(record: PermissionDto | any) => record.id.toString()}
-                        loading={loading}
-                        style={{ width: '100%' }}
-                        scroll={{ y: 350 }}
-                        size='small'
-                        pagination={{
-                            pageSize: pageSize,
-                            total: totalCount,
-                            defaultCurrent: 1,
-                            onChange: onChange,
-                            showSizeChanger: true,
-                            pageSizeOptions: ['5', '10', '20', '50', '100']
-                        }}
-                    />
-                </Row>
             </Col>
+            <Row style={{ margin: '10px 0' }}>
+                <Table
+                    columns={columns}
+                    rowKey={(record: AtomicDto) => record.id.toString()}
+                    dataSource={dataAtomic}
+                    loading={loading}
+                    style={{ width: 'calc(100% - 10px)' }}
+                    scroll={{ y: 350 }}
+                    size='small'
+                    pagination={{
+                        pageSize: pageSize,
+                        total: totalCount,
+                        defaultCurrent: 1,
+                        onChange: onChange,
+                        showSizeChanger: true,
+                        pageSizeOptions: ['5', '10', '20', '50', '100']
+                    }}
+                />
+            </Row>
             <Modal title="Thêm mới hoặc sửa Resource"
                 visible={isModalVisible}
                 onCancel={() => setisModalVisible(false)}
@@ -384,16 +381,29 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                         </Form.Item>
 
                         <Form.Item
-                            label="Tên Permission"
+                            label="Method or Name..."
                             name="name"
-                            rules={[{ required: true, message: 'Tên Permission không được để trống!' }]}
+                            rules={[{ required: true, message: 'Đường dẫn không được để trống!' }]}
                         >
                             <Input />
                         </Form.Item>
                         <Form.Item
+                            label="Kiểu"
+                            name="typesRsc"
+                        >
+                            <Select
+                                onChange={onGenderChange}
+                                allowClear
+                                style={{ width: '100%' }}
+                                defaultValue="_">
+                                <Option value="_">Chọn Kiểu dữ liệu</Option>
+                                <Option value="URL">URL</Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item
                             label="Chi Tiết"
                             name="description"
-                            rules={[{ required: true, message: 'Chi Tiết Permission không được để trống!' }]}
+                            rules={[{ required: true, message: 'Please input your password!' }]}
                         >
                             <Input.TextArea />
                         </Form.Item>
@@ -402,7 +412,7 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
                         </Form.Item>
                         <Form.Item
                             label="Ngày sửa :"
-                            name="dateCreate"
+                            name="createdAt"
                         >
                             <Input disabled />
                         </Form.Item>
@@ -418,4 +428,3 @@ export default function PermissionComponents(props: IPermissionComponentsProps) 
         </Row >
     )
 }
-

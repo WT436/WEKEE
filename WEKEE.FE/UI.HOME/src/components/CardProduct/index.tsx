@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Rate, Typography } from 'antd'
 import { HeartTwoTone } from '@ant-design/icons';
 const { Meta } = Card;
 const { Text } = Typography;
-
 declare var abp: any;
 interface CardProduct {
 
 }
+
 var loadding = true;
 export default function index() {
     return (
@@ -21,7 +21,8 @@ export default function index() {
                 </span>
             </div>
             <a className="MgCJXPSMyz" href="/DSQUARED2-Ao-khoac-blazer-nam-pho-co-satin-S71BN0735-900/adsid=1">
-                <img alt="example" src={abp.serviceAlbumImage + '/product/wekee-wekee-d0527ac9bb587450edd57fda1520a241-011654-23092021--012154-23092021-S220x220.jpg'} />
+                <img src={""} />
+                {/* process.env.PUBLIC_URL + '/logo192.png' */}
             </a>
             <div className="ZDyVztAfXt">
                 <div className="ayVIoBempd">

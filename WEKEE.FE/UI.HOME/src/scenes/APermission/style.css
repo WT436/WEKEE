@@ -1,0 +1,8 @@
+.ant-btn-link.ant-btn-icon-only {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.ant-btn-link.ant-btn-icon-only :hover {
+    color: #000;
+}

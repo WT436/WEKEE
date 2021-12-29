@@ -7,7 +7,7 @@ const qs = require("qs");
 declare var abp: any;
 
 const http = axios.create({
-  baseURL: abp.appServiceUrl,
+  baseURL: abp.serviceAccountAPI,
   timeout: 1800000,
   paramsSerializer: function (params) {
     return qs.stringify(params, {

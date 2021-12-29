@@ -12,8 +12,8 @@ namespace Account.Infrastructure.MappingExtention
             cfg.CreateMap<Resource, ResourceDto>();
             cfg.CreateMap<ResourceDto, Resource>();
             // config chuyển đổi từ Resource <=> ResourceActionDto
-            cfg.CreateMap<Resource, ResourceActionDto>();
-            cfg.CreateMap<ResourceActionDto, Resource>();
+            cfg.CreateMap<Resource, ActionResourceDto>();
+            cfg.CreateMap<ActionResourceDto, Resource>();
             //config chuyển đổi từ Atomic <=> AtomicDto
             cfg.CreateMap<Atomic, AtomicDto>();
             cfg.CreateMap<AtomicDto, Atomic>();

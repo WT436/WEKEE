@@ -63,20 +63,20 @@ namespace Account.Domain.BoundedContext
             };
         }
 
-        public static PagedListOutput<ResourceActionDto> MapingpagedListOutput(IPagedList<Resource> resource,
+        public static PagedListOutput<ActionResourceDto> MapingpagedListOutput(IPagedList<Resource> resource,
                                                                                 List<ResourceAction> resourceActions,
                                                                                                  int actionId)
         {
-            List<ResourceActionDto> resourceActionDtos = new List<ResourceActionDto>();
+            List<ActionResourceDto> resourceActionDtos = new List<ActionResourceDto>();
 
             foreach (var item in resource.Items)
             {
-                var dto = MappingData.InitializeAutomapper().Map<ResourceActionDto>(item);
+                var dto = MappingData.InitializeAutomapper().Map<ActionResourceDto>(item);
                 dto.IsCheck = resourceActions.Any(m => m.ResourceId == item.Id);
                 dto.ActionId = actionId;
                 resourceActionDtos.Add(dto);
             }
-            return new PagedListOutput<ResourceActionDto>
+            return new PagedListOutput<ActionResourceDto>
             {
                 Items = resourceActionDtos,
                 PageIndex = resource.PageIndex,

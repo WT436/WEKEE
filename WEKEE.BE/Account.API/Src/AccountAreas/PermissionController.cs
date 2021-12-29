@@ -1,5 +1,4 @@
-﻿
-using Account.Domain.Dto;
+﻿using Account.Domain.Dto;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
 using System;

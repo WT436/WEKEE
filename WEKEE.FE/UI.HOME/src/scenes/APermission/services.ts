@@ -300,7 +300,7 @@ class APermissionService {
 
     //#region  Resource Action
     public async getResourceActionBasic(input: IdPagedListInput): Promise<PagedListOutput<ResourceActionDto>> {
-        let rs = await http.get('/get/resource-action-basic', {
+        let rs = await http.get('/account-action-resource', {
             params: {
                 pageIndex: input.pageIndex,
                 pageSize: input.pageSize,

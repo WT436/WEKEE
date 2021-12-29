@@ -23,7 +23,7 @@ class SupplierLayout extends React.Component<any> {
         input = value.target.value;
     }
     async componentDidMount(): Promise<void> {
-        var permission = await LCPermission.checkSupplier();
+         var permission = true; //await LCPermission.checkSupplier();
         if (!permission) {
             window.location.href = '/login'
             abp.auth.setSupplier("", undefined)
@@ -46,7 +46,7 @@ class SupplierLayout extends React.Component<any> {
                     cancelText: "Thoát",
                     onCancel() { window.location.href = '/' },
                     onOk: async () => {
-                        var tokenLogin = await LCPermission.loginSupplier(input);
+                        var tokenLogin = true; //await LCPermission.loginSupplier(input);
                         if (!tokenLogin) {
                             Modal.warning({
                                 title: 'Mật khẩu không chính xác',
@@ -57,7 +57,7 @@ class SupplierLayout extends React.Component<any> {
                             }, 1000);
                         }
                         else {
-                            abp.auth.setSupplier(tokenLogin.tokenSupplier.token, undefined);
+                            abp.auth.setSupplier(abp.auth.getToken(), undefined);
                         }
                     }
                 });

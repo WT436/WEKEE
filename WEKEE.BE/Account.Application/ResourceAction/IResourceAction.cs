@@ -6,8 +6,8 @@ namespace Account.Application.ResourceAction
 {
     public interface IResourceAction
     {
-        public PagedListOutput<ResourceActionDto> ResourceActionDtos(int idAction,PagedListInput pagedListInput);
+        public PagedListOutput<ActionResourceDto> ResourceActionDtos(int idAction,PagedListInput pagedListInput);
 
-        public void UpdateOrInsertResourceAction(ResourceActionDto resourceActionDto);
+        public void UpdateOrInsertResourceAction(ActionResourceDto resourceActionDto);
     }
 }

@@ -94,7 +94,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
         <Row gutter={[30, 10]} ref={setContainer}>
             <Helmet>
                 <title>Wekee.vn</title>
-                <link rel="stylesheet" href={urlCss + "/newProduct.css"} />
+                <link rel="stylesheet" href={urlCss + "/newProduct.css"} /> 
                 <link rel="stylesheet" href={urlCss + "/editor.css"} />
             </Helmet>
             <Col span={18}>
