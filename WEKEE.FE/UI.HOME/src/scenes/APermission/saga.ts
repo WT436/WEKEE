@@ -3,7 +3,7 @@ import {
     ActionAssignmentGetListDataCompeleted, ActionAssignmentGetListDataError,
     ActionAssignmentInsertOrUpdateCompeleted, ActionAssignmentInsertOrUpdateError,
     ActionCreateCompleted, ActionCreateError, ActionEditCompleted, ActionEditError,
-    ActionRemoveCompleted, ActionRemoveError, AtomicgetListCompleted, AtomicgetListError,
+    ActionRemoveCompleted, ActionRemoveError, ActionResourceGetListDataCompeleted, ActionResourceGetListDataError, AtomicgetListCompleted, AtomicgetListError,
     listFormActionCompleted, listFormPermissionCompleted, listFormPermissionError,
     listFormResourceCompleted, listFormRoleCompleted, listFormRoleError,
     PermissionAssignmentGetListDataCompeleted,
@@ -12,7 +12,6 @@ import {
     PermissionAssignmentInsertOrUpdateError,
     PermissionCreateCompleted, PermissionCreateError, PermissionEditCompleted,
     PermissionEditError, PermissionRemoveCompleted, PermissionRemoveError,
-    ResourceActionGetListDataCompeleted, ResourceActionGetListDataError,
     ResourceActionInsertOrUpdateCompeleted, ResourceActionInsertOrUpdateError,
     ResourceCreateCompleted, ResourceCreateError, ResourceEditCompleted,
     ResourceEditError, ResourceEditStatusCompleted, ResourceEditStatusError, ResourceRemoveCompleted, ResourceRemoveError,
@@ -455,13 +454,13 @@ function* resourceActionGetListData(input: any) {
             output: call(service.getResourceActionBasic, input.payload)
         });
         if (output) {
-            yield put(ResourceActionGetListDataCompeleted(output));
+            yield put(ActionResourceGetListDataCompeleted(output));
         }
         else {
-            yield put(ResourceActionGetListDataError());
+            yield put(ActionResourceGetListDataError());
         }
     } catch (error) {
-        yield put(ResourceActionGetListDataError());
+        yield put(ActionResourceGetListDataError());
     }
 }
 

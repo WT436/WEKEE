@@ -32,6 +32,7 @@ const makeSelectDataActionAssignment = () => createSelector(select, substate => 
 const makeSelectInsertOrUpdateActionAssignment = () => createSelector(select, substate => substate.insertOrUpdateActionAssignment);
 const makeSelectDataPermissionAssignment = () => createSelector(select, substate => substate.dataPermissionAssignment);
 const makeSelectInsertOrUpdatePermissionAssignment = () => createSelector(select, substate => substate.insertOrUpdatePermissionAssignment);
+const makeSelectdataActionResourceDto = () => createSelector(select,substate =>substate.dataActionResourceDto);
 
 export {
     makeSelectLoading,makeSelectCompleted,makeSelectPageIndex,makeSelectPageSize,
@@ -40,5 +41,6 @@ export {
     makeSelectDataRemoveAction,makeSelectDataRemovePermission,makeSelectDataRemoveRole,makeSelectDataResourceAction,
     makeSelectInsertOrUpdateResourceAction,makeSelectPageIndexSub,makeSelectPageSizeSub,makeSelectTotalCountSub,
     makeSelectTotalPagesSub,makeSelectInsertOrUpdateActionAssignment,makeSelectDataActionAssignment,
-    makeSelectDataPermissionAssignment,makeSelectInsertOrUpdatePermissionAssignment,makeSelectDataRemoveAtomic
+    makeSelectDataPermissionAssignment,makeSelectInsertOrUpdatePermissionAssignment,makeSelectDataRemoveAtomic,
+    makeSelectdataActionResourceDto
 };

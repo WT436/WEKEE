@@ -128,7 +128,11 @@ export default function PermissionAssignmentComponents(props: IPermissionAssignm
         dispatch(ActionAssignmentGetListDataStart({
             pageIndex: page - 1,
             pageSize: pageSize,
-            id: dataPermissionAssignment[0].id
+            id: dataPermissionAssignment[0].id,
+            propertySearch: [],
+            valuesSearch: [],
+            propertyOrder: "",
+            valueOrderBy: "",
         }));
     };
 
@@ -137,7 +141,11 @@ export default function PermissionAssignmentComponents(props: IPermissionAssignm
             dispatch(PermissionAssignmentGetListDataStart({
                 pageIndex: pageIndexSub,
                 pageSize: pageSizeSub,
-                id: selectedRows[0].id
+                id: selectedRows[0].id,
+                propertySearch: [],
+                valuesSearch: [],
+                propertyOrder: "",
+                valueOrderBy: "",
             }));
         }
     };

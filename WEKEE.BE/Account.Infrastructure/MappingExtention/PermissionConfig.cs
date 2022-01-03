@@ -9,35 +9,29 @@ namespace Account.Infrastructure.MappingExtention
         public static void CreateMap(IMapperConfigurationExpression cfg)
         {
             // config chuyển đổi từ Resource <=> ResourceDto
-            cfg.CreateMap<Resource, ResourceDto>();
-            cfg.CreateMap<ResourceDto, Resource>();
+            cfg.CreateMap<Resource, ResourceDto>(); cfg.CreateMap<ResourceDto, Resource>();
             // config chuyển đổi từ Resource <=> ResourceActionDto
-            cfg.CreateMap<Resource, ActionResourceDto>();
-            cfg.CreateMap<ActionResourceDto, Resource>();
+            cfg.CreateMap<Resource, ResourceActionDto>(); cfg.CreateMap<ResourceActionDto, Resource>();
+            // config chuyển đổi từ Action <=> ActionResourceDto
+            cfg.CreateMap<Action, ActionResourceDto>(); cfg.CreateMap<ActionResourceDto, Action>();
+            // config chuyển đổi từ ActionDto <=> ActionResourceDto
+            cfg.CreateMap<ActionDto, ActionResourceDto>(); cfg.CreateMap<ActionResourceDto, ActionDto>();
             //config chuyển đổi từ Atomic <=> AtomicDto
-            cfg.CreateMap<Atomic, AtomicDto>();
-            cfg.CreateMap<AtomicDto, Atomic>();
+            cfg.CreateMap<Atomic, AtomicDto>(); cfg.CreateMap<AtomicDto, Atomic>();
             //config chuyển đổi từ Action <=> ActionDto
-            cfg.CreateMap<Action, ActionDto>();
-            cfg.CreateMap<ActionDto, Action>();
+            cfg.CreateMap<Action, ActionDto>(); cfg.CreateMap<ActionDto, Action>();
             //config chuyển đổi từ Action <=> ActionDto
-            cfg.CreateMap<ActionDto, ActionAssignmentDto>();
-            cfg.CreateMap<ActionAssignmentDto, ActionDto>();
+            cfg.CreateMap<ActionDto, ActionAssignmentDto>(); cfg.CreateMap<ActionAssignmentDto, ActionDto>();
             //config chuyển đổi từ Permission <=>PermissionDto
-            cfg.CreateMap<Permission, PermissionDto>();
-            cfg.CreateMap<PermissionDto, Permission>();
+            cfg.CreateMap<Permission, PermissionDto>(); cfg.CreateMap<PermissionDto, Permission>();
             //config chuyển đổi từ Permission <=>PermissionDto
-            cfg.CreateMap<Permission, PermissionAssignmentDto>();
-            cfg.CreateMap<PermissionAssignmentDto, Permission>();
+            cfg.CreateMap<Permission, PermissionAssignmentDto>(); cfg.CreateMap<PermissionAssignmentDto, Permission>();
             //config chuyển đổi từ Role <=>RoleDto
-            cfg.CreateMap<Role, RoleDto>();
-            cfg.CreateMap<RoleDto, Role>();
+            cfg.CreateMap<Role, RoleDto>(); cfg.CreateMap<RoleDto, Role>();
             //config chuyển đổi từ Role <=>RoleDto
-            cfg.CreateMap<Role, SubjectAssignmentDto>();
-            cfg.CreateMap<SubjectAssignmentDto, Role>();
+            cfg.CreateMap<Role, SubjectAssignmentDto>(); cfg.CreateMap<SubjectAssignmentDto, Role>();
             //config chuyển đổi từ Role <=>RoleDto
-            cfg.CreateMap<Subject, SubjectDtos>();
-            cfg.CreateMap<SubjectDtos, Subject>();
+            cfg.CreateMap<Subject, SubjectDtos>(); cfg.CreateMap<SubjectDtos, Subject>();
         }
     }
 }

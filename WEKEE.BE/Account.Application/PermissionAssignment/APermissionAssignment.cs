@@ -3,6 +3,7 @@ using Account.Domain.BoundedContext;
 using Account.Domain.Dto;
 using Account.Domain.ObjectValues;
 using Account.Domain.ObjectValues.Enum;
+using Account.Infrastructure.BoundedContext;
 using Account.Infrastructure.ModelQuery;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
-import { PagedFilterAndSortedRequest } from './pagedFilterAndSortedRequest';
+import { SearchOrderPageInput } from './searchOrderPageInput';
 
-export interface EntityDtoString<T = string> extends PagedFilterAndSortedRequest {
+export interface EntityDtoString<T = string> extends SearchOrderPageInput {
     agent: T;
 }

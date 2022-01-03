@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnitOfWork.Collections;
 
-namespace Account.Domain.BoundedContext
+namespace Account.Infrastructure.BoundedContext
 {
     public static class MapPagedListOutput
     {
@@ -47,42 +47,6 @@ namespace Account.Domain.BoundedContext
                 PageSize = listData.PageSize,
                 TotalCount = listData.TotalCount,
                 TotalPages = listData.TotalPages
-            };
-        }
-
-        public static PagedListOutput<RoleDto> MapingpagedListOutput(IPagedList<Role> listData)
-        {
-            return new PagedListOutput<RoleDto>
-            {
-                Items = listData.Items.Select(emp => MappingData.InitializeAutomapper()
-                                                                .Map<RoleDto>(emp)).ToList(),
-                PageIndex = listData.PageIndex,
-                PageSize = listData.PageSize,
-                TotalCount = listData.TotalCount,
-                TotalPages = listData.TotalPages
-            };
-        }
-
-        public static PagedListOutput<ActionResourceDto> MapingpagedListOutput(IPagedList<Resource> resource,
-                                                                                List<ResourceAction> resourceActions,
-                                                                                                 int actionId)
-        {
-            List<ActionResourceDto> resourceActionDtos = new List<ActionResourceDto>();
-
-            foreach (var item in resource.Items)
-            {
-                var dto = MappingData.InitializeAutomapper().Map<ActionResourceDto>(item);
-                dto.IsCheck = resourceActions.Any(m => m.ResourceId == item.Id);
-                dto.ActionId = actionId;
-                resourceActionDtos.Add(dto);
-            }
-            return new PagedListOutput<ActionResourceDto>
-            {
-                Items = resourceActionDtos,
-                PageIndex = resource.PageIndex,
-                PageSize = resource.PageSize,
-                TotalCount = resource.TotalCount,
-                TotalPages = resource.TotalPages
             };
         }
 

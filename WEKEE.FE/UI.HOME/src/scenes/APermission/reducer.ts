@@ -60,7 +60,8 @@ export const initialState: APermissionState = {
   dataRemoveAction: [],
   dataRemovePermission: [],
   dataRemoveRole: [],
-  dataRemoveAtomic: []
+  dataRemoveAtomic: [],
+  dataActionResourceDto :[]
 };
 
 function aPermissionReducer(
@@ -647,11 +648,11 @@ function aPermissionReducer(
         ...state,
         loading: false,
         dataRemoveRole: [],
-        dataResourceAction: action.payload.items,
-        pageIndexSub: action.payload.pageIndex,
-        pageSizeSub: action.payload.pageSize,
-        totalCountSub: action.payload.totalCount,
-        totalPagesSub: action.payload.totalPages,
+        dataActionResourceDto: action.payload.items,
+        pageIndex : action.payload.pageIndex,
+        pageSize: action.payload.pageSize,
+        totalCount: action.payload.totalCount,
+        totalPages: action.payload.totalPages,
       };
     case ActionTypes.ACTION_RESOURCE_LIST_ERROR:
       notification.warning({
@@ -669,6 +670,7 @@ function aPermissionReducer(
         ...state,
         loading: true,
       };
+      
     case ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_COMPELETED:
       var objIndex = state.dataResourceAction.findIndex(
         (obj) => obj.id === action.payload.id
@@ -734,7 +736,7 @@ function aPermissionReducer(
         ...state,
         loading: false,
       };
-    case ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_ERROR:
+    case ActionTypes.ACTION_ASSIGNMENT_INSERT_OR_UPDATE_ERROR:
       notification.warning({
         message: "Thất Bại",
         description: "Đã sảy ra lỗi!",

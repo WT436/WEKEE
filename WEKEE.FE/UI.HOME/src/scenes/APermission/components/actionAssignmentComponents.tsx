@@ -133,6 +133,10 @@ export default function ActionAssignmentComponents(props: IActionAssignmentCompo
         dispatch(ActionAssignmentGetListDataStart({
             pageIndex: page - 1,
             pageSize: pageSize,
+            propertySearch: [],
+            valuesSearch: [],
+            propertyOrder: "",
+            valueOrderBy: "",
             id: dataActionAssignment[0].id
         }));
     };
@@ -142,7 +146,11 @@ export default function ActionAssignmentComponents(props: IActionAssignmentCompo
             dispatch(ActionAssignmentGetListDataStart({
                 pageIndex: pageIndexSub,
                 pageSize: pageSizeSub,
-                id: selectedRows[0].id
+                id: selectedRows[0].id,
+                propertySearch: [],
+                valuesSearch: [],
+                propertyOrder: "",
+                valueOrderBy: "",
             }));
         }
     };

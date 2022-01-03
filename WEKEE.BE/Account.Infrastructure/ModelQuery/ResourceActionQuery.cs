@@ -12,11 +12,14 @@ namespace Account.Infrastructure.ModelQuery
         private readonly IUnitOfWork<AuthorizationContext> unitOfWork =
                           new UnitOfWork<AuthorizationContext>(new AuthorizationContext());
 
-        
+
         #region Lấy dữ liệu
-        public List<ResourceAction> ListResourceActionWithId(int id)
+        public List<ResourceAction> GetDataWithIdAction(int id)
         => unitOfWork.GetRepository<ResourceAction>()
                      .GetAll(predicate: m => m.ActionId == id && m.IsActive == true).ToList();
+        public async Task<IList<ResourceAction>> GetDataWithIdResource(int id)
+        => await unitOfWork.GetRepository<ResourceAction>()
+                           .GetAllAsync(predicate: m => m.ResourceId == id);
         public async Task<IList<ResourceAction>> GetAllActive()
         => await unitOfWork.GetRepository<ResourceAction>()
                            .GetAllAsync(m => m.IsActive == true);

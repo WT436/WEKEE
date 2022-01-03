@@ -4,6 +4,7 @@ using Account.Domain.Dto;
 using Account.Domain.Entitys;
 using Account.Domain.ObjectValues;
 using Account.Domain.ObjectValues.Enum;
+using Account.Infrastructure.BoundedContext;
 using Account.Infrastructure.ModelQuery;
 using System.Threading.Tasks;
 using Utils.Exceptions;

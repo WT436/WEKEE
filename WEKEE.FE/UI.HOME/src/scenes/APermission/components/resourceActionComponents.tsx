@@ -5,11 +5,12 @@ import { BorderOutlined, CheckOutlined, CheckSquareOutlined, CloseOutlined, Dele
 import { ActionDto } from '../dtos/actionDto';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages, makeSelectDataAction, makeSelectDataResourceAction, makeSelectPageIndexSub, makeSelectPageSizeSub, makeSelectTotalCountSub, makeSelectTotalPagesSub } from '../selectors';
-import { listFormActionStart, ResourceActionGetListDataStart, ResourceActionInsertOrUpdateStart } from '../actions';
+import { makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages, makeSelectDataAction, makeSelectDataResourceAction, makeSelectPageIndexSub, makeSelectPageSizeSub, makeSelectTotalCountSub, makeSelectTotalPagesSub, makeSelectdataActionResourceDto } from '../selectors';
+import { ActionResourceGetListDataStart } from '../actions';
 import { ResourceActionDto } from '../dtos/resourceActionDto'
 import { ResourceDto } from '../dtos/resourceDto';
 import moment from 'moment';
+import { ActionResourceDto } from '../dtos/actionResourceDto';
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
@@ -28,7 +29,7 @@ const stateSelector = createStructuredSelector<any, any>({
     pageSize: makeSelectPageSize(),
     totalCount: makeSelectTotalCount(),
     totalPages: makeSelectTotalPages(),
-    dataAction: makeSelectDataAction()
+    dataAction: makeSelectdataActionResourceDto()
 });
 
 export default function ResourceActionComponents(props: IResourceActionComponents) {
@@ -39,7 +40,20 @@ export default function ResourceActionComponents(props: IResourceActionComponent
     const dispatch = useDispatch();
     // Ctor
     useEffect(() => {
-        
+        if (props.isResource) {
+            dispatch(ActionResourceGetListDataStart({
+                pageIndex: 0,
+                pageSize: 20,
+                propertySearch: [],
+                valuesSearch: [],
+                propertyOrder: "",
+                valueOrderBy: "",
+                id: props.resourceData === undefined ? 0 : props.resourceData.id,
+            }));
+        }
+        else {
+
+        }
     }, [props.isResource, props.actionData, props.resourceData])
 
     const columns = [
@@ -53,18 +67,8 @@ export default function ResourceActionComponents(props: IResourceActionComponent
             dataIndex: 'name'
         },
         {
-            title: 'Status',
-            dataIndex: 'isActive',
-            width: 60,
-            render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
-        },
-        {
             title: 'Hành động',
             dataIndex: 'atomicName'
-        },
-        {
-            title: 'Chi tiết',
-            dataIndex: 'description'
         },
         {
             title: 'Acticon cha',
@@ -72,18 +76,43 @@ export default function ResourceActionComponents(props: IResourceActionComponent
             render: (text: String) => (text === null || text === undefined || text === "" ? <Tag color="red">Null</Tag> : text)
         },
         {
-            title: 'Người Update',
-            dataIndex: 'createByName'
+            title: 'Chi tiết',
+            dataIndex: 'description'
+        },
+        {
+            title: 'Status',
+            dataIndex: 'isActive',
+            width: 60,
+            render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
         }
     ];
 
-     
     const rowSelection = {
-        onChange: (selectedRowKeys: React.Key[], selectedRows: ActionDto[]) => {
-          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        onChange: (selectedRowKeys: React.Key[], selectedRows: ActionResourceDto[]) => {
+            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        getCheckboxProps: (record: ActionResourceDto) => ({
+            disabled: record.isActive === false,
+            checked: record.isActive === false
+        }),
+    };
+    let onChange = (page: any, pageSize: any) => {
+        console.log(pageSize);
+        if (props.isResource) {
+            dispatch(ActionResourceGetListDataStart({
+                pageIndex: page,
+                pageSize: pageSize,
+                propertySearch: [],
+                valuesSearch: [],
+                propertyOrder: "",
+                valueOrderBy: "",
+                id: props.resourceData === undefined ? 0 : props.resourceData.id,
+            }));
         }
-      };
+        else {
 
+        }
+    };
     return (
         <>
             <Tabs defaultActiveKey="Overview" size='small'>
@@ -180,7 +209,7 @@ export default function ResourceActionComponents(props: IResourceActionComponent
                             type: 'checkbox',
                             ...rowSelection
                         }}
-                        rowKey={(record: ActionDto | any) => record.id.toString()}
+                        rowKey={(record: ActionResourceDto | any) => record.id.toString()}
                         style={{ width: '100%', margin: '10px 0' }}
                         scroll={{ y: 350 }}
                         size='small'
@@ -191,7 +220,7 @@ export default function ResourceActionComponents(props: IResourceActionComponent
                             pageSize: pageSize,
                             total: totalCount,
                             defaultCurrent: 1,
-                            //onChange: onChange,
+                            onChange: onChange,
                             showSizeChanger: true,
                             pageSizeOptions: ['5', '10', '20', '50', '100']
                         }}

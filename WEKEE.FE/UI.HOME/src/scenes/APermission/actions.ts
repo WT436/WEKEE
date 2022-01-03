@@ -1,7 +1,6 @@
 import { action } from 'typesafe-actions';
 import { OrderByListInput } from '../../services/dto/orderByListInput';
 import { PagedListOutput } from '../../services/dto/pagedListOutput';
-import { IdPagedListInput } from '../../services/dto/idPagedListInput';
 
 import ActionTypes from './constants';
 import { ActionDto } from './dtos/actionDto';
@@ -13,6 +12,7 @@ import { RoleDto } from './dtos/roleDto';
 import { ActionAssignmentDto } from './dtos/actionAssignmentDto';
 import { PermissionAssignmentDto } from './dtos/permissionAssignmentDto';
 import { SearchOrderPageInput } from '../../services/dto/searchOrderPageInput';
+import { EntitySearchInput } from '../../services/dto/entitySearchInput';
 
 //#region Tải dữ liệu ban đầu
 export const watchPageError = () =>
@@ -191,11 +191,11 @@ export const RoleRemoveError = () =>
 //#endregion
 
 //#region  Resource-Action
-export const ResourceActionGetListDataStart = (input: IdPagedListInput) =>
+export const ActionResourceGetListDataStart = (input: EntitySearchInput) =>
     action(ActionTypes.ACTION_RESOURCE_LIST_START, input);
-export const ResourceActionGetListDataCompeleted = (output: PagedListOutput<ResourceActionDto>) =>
+export const ActionResourceGetListDataCompeleted = (output: PagedListOutput<ResourceActionDto>) =>
     action(ActionTypes.ACTION_RESOURCE_LIST_COMPELETED, output);
-export const ResourceActionGetListDataError = () =>
+export const ActionResourceGetListDataError = () =>
     action(ActionTypes.ACTION_RESOURCE_LIST_ERROR);
 
 export const ResourceActionInsertOrUpdateStart = (input: ResourceActionDto) =>
@@ -207,7 +207,7 @@ export const ResourceActionInsertOrUpdateError = () =>
 //#endregion
 
 //#region  ActionAssignment
-export const ActionAssignmentGetListDataStart = (input: IdPagedListInput) =>
+export const ActionAssignmentGetListDataStart = (input: EntitySearchInput) =>
     action(ActionTypes.ACTION_ASSIGNMENT_GET_LIST_DATA_START, input);
 export const ActionAssignmentGetListDataCompeleted = (output: PagedListOutput<ActionAssignmentDto>) =>
     action(ActionTypes.ACTION_ASSIGNMENT_GET_LIST_DATA_COMPELETED, output);
@@ -223,7 +223,7 @@ export const ActionAssignmentInsertOrUpdateError = () =>
 //#endregion
 
 //#region  PermissionAssignment
-export const PermissionAssignmentGetListDataStart = (input: IdPagedListInput) =>
+export const PermissionAssignmentGetListDataStart = (input: EntitySearchInput) =>
     action(ActionTypes.PERMISSION_ASSIGNMENT_GET_LIST_DATA_START, input);
 export const PermissionAssignmentGetListDataCompeleted = (output: PagedListOutput<PermissionAssignmentDto>) =>
     action(ActionTypes.PERMISSION_ASSIGNMENT_GET_LIST_DATA_COMPELETED, output);

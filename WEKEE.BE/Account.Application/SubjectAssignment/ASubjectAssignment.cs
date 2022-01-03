@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Utils.Exceptions;
 using Account.Domain.Dto;
+using Account.Infrastructure.BoundedContext;
 
 namespace Account.Application.SubjectAssignment
 {

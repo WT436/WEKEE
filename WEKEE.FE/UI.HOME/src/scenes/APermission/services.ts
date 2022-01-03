@@ -1,10 +1,11 @@
-import { IdPagedListInput } from '../../services/dto/idPagedListInput';
+import { EntitySearchInput } from '../../services/dto/entitySearchInput';
 import { OrderByListInput } from '../../services/dto/orderByListInput';
 import { PagedListOutput } from '../../services/dto/pagedListOutput';
 import { SearchOrderPageInput } from '../../services/dto/searchOrderPageInput';
 import http from '../../services/httpService';
 import { ActionAssignmentDto } from './dtos/actionAssignmentDto';
 import { ActionDto } from './dtos/actionDto';
+import { ActionResourceDto } from './dtos/actionResourceDto';
 import { AtomicDto } from './dtos/atomicDto';
 import { PermissionAssignmentDto } from './dtos/permissionAssignmentDto';
 import { PermissionDto } from './dtos/permissionDto';
@@ -299,13 +300,9 @@ class APermissionService {
     //#endregion
 
     //#region  Resource Action
-    public async getResourceActionBasic(input: IdPagedListInput): Promise<PagedListOutput<ResourceActionDto>> {
+    public async getResourceActionBasic(input: EntitySearchInput): Promise<PagedListOutput<ActionResourceDto>> {
         let rs = await http.get('/account-action-resource', {
-            params: {
-                pageIndex: input.pageIndex,
-                pageSize: input.pageSize,
-                idAction: input.id
-            }
+            params: input
         });
         if (rs) {
             return rs.data;
@@ -327,13 +324,9 @@ class APermissionService {
     //#endregion
 
     //#region  Action Assignment
-    public async getActionAssignmentBasic(input: IdPagedListInput): Promise<PagedListOutput<ResourceActionDto>> {
+    public async getActionAssignmentBasic(input: EntitySearchInput): Promise<PagedListOutput<ResourceActionDto>> {
         let rs = await http.get('/get/action-assignment-basic', {
-            params: {
-                pageIndex: input.pageIndex,
-                pageSize: input.pageSize,
-                idPermission: input.id
-            }
+            params: input
         });
         if (rs) {
             return rs.data;
@@ -355,13 +348,9 @@ class APermissionService {
     //#endregion
 
     //#region  Permission Assignment
-    public async getPermissionAssignmentBasic(input: IdPagedListInput): Promise<PagedListOutput<PermissionAssignmentDto>> {
+    public async getPermissionAssignmentBasic(input: EntitySearchInput): Promise<PagedListOutput<PermissionAssignmentDto>> {
         let rs = await http.get('/get/permission-assignment-basic', {
-            params: {
-                pageIndex: input.pageIndex,
-                pageSize: input.pageSize,
-                idRole: input.id
-            }
+            params: input
         });
         if (rs) {
             return rs.data;

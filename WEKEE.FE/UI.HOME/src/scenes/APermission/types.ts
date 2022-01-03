@@ -8,6 +8,7 @@ import { RoleDto } from './dtos/roleDto';
 import { ResourceActionDto } from './dtos/resourceActionDto';
 import { ActionAssignmentDto } from './dtos/actionAssignmentDto';
 import { PermissionAssignmentDto } from './dtos/permissionAssignmentDto';
+import {ActionResourceDto} from './dtos/actionResourceDto'
 
 export interface APermissionState {
      // common - chung
@@ -32,6 +33,7 @@ export interface APermissionState {
      readonly dataPermission: PermissionDto[]
      readonly dataRole: RoleDto[]
      readonly dataResourceAction: ResourceActionDto[]
+     readonly dataActionResourceDto : ActionResourceDto[]
      readonly insertOrUpdateResourceAction : ResourceActionDto
      readonly dataActionAssignment: ActionAssignmentDto[]
      readonly insertOrUpdateActionAssignment: ActionAssignmentDto

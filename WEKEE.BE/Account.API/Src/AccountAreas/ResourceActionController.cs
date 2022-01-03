@@ -22,25 +22,17 @@ namespace Account.API.Src.AccountAreas
 
         [Route(PermissionRouter.ResourceActionAccount)]
         [HttpGet]
-        public IActionResult GetResource(int id, int pageIndex, int pageSize)
+        public IActionResult GetResource(EntitySearchInput input)
         {
-            return Ok(_resourceAction.ResourceActionDtos(idAction: id,
-                                                         pagedListInput: new PagedListInput() { PageIndex = pageIndex,
-                                                                                                PageSize = pageSize })
+            return Ok(_resourceAction.GetResourceFromResourceAction(input)
             );
         }
 
         [Route(PermissionRouter.ActionResourceAccount)]
         [HttpGet]
-        public IActionResult GetAction(int id, int pageIndex, int pageSize)
+        public async Task<IActionResult> GetAction(EntitySearchInput input)
         {
-            return Ok(_resourceAction.ResourceActionDtos(idAction: id,
-                                                         pagedListInput: new PagedListInput()
-                                                         {
-                                                             PageIndex = pageIndex,
-                                                             PageSize = pageSize
-                                                         })
-            );
+            return Ok(await _resourceAction.GetActionFromResourceAction(input));
         }
 
         [Route(PermissionRouter.ResourceActionAccount)]
