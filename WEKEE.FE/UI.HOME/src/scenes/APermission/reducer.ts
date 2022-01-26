@@ -61,7 +61,7 @@ export const initialState: APermissionState = {
   dataRemovePermission: [],
   dataRemoveRole: [],
   dataRemoveAtomic: [],
-  dataActionResourceDto :[]
+  dataActionResourceDto: []
 };
 
 function aPermissionReducer(
@@ -348,7 +348,7 @@ function aPermissionReducer(
         ...state,
         loading: false,
       };
-    
+
     case ActionTypes.ACTION_REMOVE_FE_ITEM_START:
       return {
         ...state,
@@ -363,7 +363,7 @@ function aPermissionReducer(
         dataRemoveACTION: [],
         loading: false,
       };
-    
+
     case ActionTypes.ACTION_REMOVE_START:
       return {
         ...state,
@@ -473,7 +473,7 @@ function aPermissionReducer(
         ...state,
         loading: false,
       };
-    
+
     case ActionTypes.PERMISSION_REMOVE_FE_ITEM_START:
       return {
         ...state,
@@ -488,7 +488,7 @@ function aPermissionReducer(
         dataRemovePermission: [],
         loading: false,
       };
-    
+
     case ActionTypes.PERMISSION_REMOVE_START:
       return {
         ...state,
@@ -649,7 +649,7 @@ function aPermissionReducer(
         loading: false,
         dataRemoveRole: [],
         dataActionResourceDto: action.payload.items,
-        pageIndex : action.payload.pageIndex,
+        pageIndex: action.payload.pageIndex,
         pageSize: action.payload.pageSize,
         totalCount: action.payload.totalCount,
         totalPages: action.payload.totalPages,
@@ -670,13 +670,13 @@ function aPermissionReducer(
         ...state,
         loading: true,
       };
-      
+
     case ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_COMPELETED:
-      var objIndex = state.dataResourceAction.findIndex(
-        (obj) => obj.id === action.payload.id
-      );
-      state.dataResourceAction[objIndex].isCheck =
-        !state.dataResourceAction[objIndex].isCheck;
+      notification.success({
+        message: "Thành công",
+        description: "Đã update " + action.payload + " bản ghi!",
+        placement: "bottomRight",
+      });
       return {
         ...state,
         loading: false,

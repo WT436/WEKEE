@@ -1,7 +1,6 @@
-﻿using Account.Domain.Dto;
-using Account.Domain.Entitys;
-using Account.Domain.ObjectValues;
-using Account.Domain.ObjectValues.Enum;
+﻿using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
+using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.MappingExtention;
 using System.Collections.Generic;
 using System.Linq;

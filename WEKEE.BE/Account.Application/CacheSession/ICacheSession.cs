@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
 
 namespace Account.Application.CacheSession

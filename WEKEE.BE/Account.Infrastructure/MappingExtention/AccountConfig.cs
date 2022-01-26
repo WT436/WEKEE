@@ -1,5 +1,5 @@
-﻿using Account.Domain.Dto;
-using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
 using AutoMapper;
 using System;
 using System.Collections.Generic;

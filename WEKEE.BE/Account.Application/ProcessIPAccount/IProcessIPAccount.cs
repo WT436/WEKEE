@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Account.Domain.Dto;
-using Account.Domain.Entitys;
+using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
 using Account.Domain.ObjectValues;
 
 namespace Account.Application.ProcessIPAccount

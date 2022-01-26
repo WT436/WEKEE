@@ -1,9 +1,10 @@
 ﻿
 using Account.Application.Action;
 using Account.Domain.BoundedContext;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
+using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.MappingExtention;
 using Account.Infrastructure.ModelQuery;
 using System;
@@ -54,35 +55,70 @@ namespace Account.Application.ResourceAction
             throw new NotImplementedException();
         }
 
-        public void UpdateOrInsertResourceAction(ActionResourceDto resourceActionDto)
+        public async Task<int> UpdateOrInsertResourceAction(ActionResourceUpdateDto actionResourceUpdateDto)
         {
-            // kieemr tra 
-            if (resourceQuery.CountId(resourceActionDto.Id) != 1)
+            if (actionResourceUpdateDto == null)
             {
-                throw new ClientException(400, "Resource already exists!");
+                throw new ClientException(400, "Data input already exists!");
             }
-
-            if (actionQuery.CountId(resourceActionDto.Id) != 1)
+            int isSussces = 0;
+            // check isResource
+            // if == true => id = id resource; DataUpdate = list id action
+            if (actionResourceUpdateDto.IsResource)
             {
-                throw new ClientException(400, "Action already exists!");
-            }
-
-            var dataResourceAction = resourceActionQuery.CheckExistsUnique(resourceActionDto.Id, resourceActionDto.Id);
-            if (dataResourceAction == null)
-            {
-                resourceActionQuery.Insert(new Domain.Entitys.ResourceAction
+                List<Domain.Shared.Entitys.ResourceAction> DataInsert = new List<Domain.Shared.Entitys.ResourceAction>();
+                List<Domain.Shared.Entitys.ResourceAction> DataUpdate = new List<Domain.Shared.Entitys.ResourceAction>();
+                foreach (string item in actionResourceUpdateDto.DataUpdate)
                 {
-                    ResourceId = resourceActionDto.Id,
-                    ActionId = resourceActionDto.Id,
-                    IsActive = true
-                });
+                    // convert id string to int
+                    if (int.TryParse(item, out int idAction))
+                    {
+                        // kiểm tra tồn tại resource
+                        if (resourceQuery.CountId(actionResourceUpdateDto.Id) != 1)
+                        {
+                            throw new ClientException(400, "Resource already exists!");
+                        }
+                        // kiểm tra tồn tại action
+                        if (actionQuery.CountId(idAction) != 1)
+                        {
+                            throw new ClientException(400, "Action already exists!");
+                        }
+
+                        var dataResourceAction = await resourceActionQuery.CheckExistsUniqueAsync(actionResourceUpdateDto.Id, idAction);
+                        if (dataResourceAction == null)
+                        {
+                            DataInsert.Add(new Domain.Shared.Entitys.ResourceAction
+                            {
+                                ResourceId = actionResourceUpdateDto.Id,
+                                ActionId = idAction,
+                                IsActive = true
+                            });
+                        }
+                        else
+                        {
+                            dataResourceAction.IsActive = !dataResourceAction.IsActive;
+                            DataUpdate.Add(dataResourceAction);
+                        }
+                    }
+                }
+
+                if (DataInsert.Count > 0)
+                {
+                    isSussces += resourceActionQuery.Insert(DataInsert);
+                }
+                if (DataUpdate.Count > 0)
+                {
+                    isSussces += resourceActionQuery.Update(DataUpdate);
+                }
+               
+                return isSussces;
             }
             else
             {
-                dataResourceAction.IsActive = !dataResourceAction.IsActive;
-
-                resourceActionQuery.Update(dataResourceAction);
+                return isSussces;
             }
+
+          
         }
     }
 }

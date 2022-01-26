@@ -1,8 +1,9 @@
 ﻿
 using Account.Domain.BoundedContext;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
+using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.BoundedContext;
 using Account.Infrastructure.ModelQuery;
 using System;
@@ -43,7 +44,7 @@ namespace Account.Application.PermissionAssignment
             var dataResourceAction = permissionAssignmentQuery.CheckExistsUnique(permissionId: permissionAssignmentDto.Id, roleId: permissionAssignmentDto.RoleId);
             if (dataResourceAction == null)
             {
-                permissionAssignmentQuery.Insert(new Domain.Entitys.PermissionAssignment
+                permissionAssignmentQuery.Insert(new Domain.Shared.Entitys.PermissionAssignment
                 {
                     RoleId = permissionAssignmentDto.RoleId,
                     PermissionId = permissionAssignmentDto.Id,

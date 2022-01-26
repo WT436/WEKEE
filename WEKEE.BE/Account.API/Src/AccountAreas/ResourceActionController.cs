@@ -1,5 +1,5 @@
 ﻿
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
 using Account.Application.ResourceAction;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
 
 namespace Account.API.Src.AccountAreas
 {
@@ -24,8 +24,7 @@ namespace Account.API.Src.AccountAreas
         [HttpGet]
         public IActionResult GetResource(EntitySearchInput input)
         {
-            return Ok(_resourceAction.GetResourceFromResourceAction(input)
-            );
+            return Ok(_resourceAction.GetResourceFromResourceAction(input));
         }
 
         [Route(PermissionRouter.ActionResourceAccount)]
@@ -37,10 +36,10 @@ namespace Account.API.Src.AccountAreas
 
         [Route(PermissionRouter.ResourceActionAccount)]
         [HttpPatch]
-        public IActionResult BasicUpdate([FromBody] ActionResourceDto resourceActionDto)
+        public async Task<IActionResult> BasicUpdate([FromBody] ActionResourceUpdateDto actionResourceUpdateDto)
         {
-            _resourceAction.UpdateOrInsertResourceAction(resourceActionDto);
-            return Ok("true");
+            var updateSussce = await _resourceAction.UpdateOrInsertResourceAction(actionResourceUpdateDto);
+            return Ok(updateSussce);
         }
 
     }

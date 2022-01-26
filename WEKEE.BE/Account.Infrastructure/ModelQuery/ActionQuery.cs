@@ -1,6 +1,6 @@
-﻿using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.Entitys;
 using Account.Domain.ObjectValues;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
 using Account.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnitOfWork;
 using UnitOfWork.Collections;
-using Action = Account.Domain.Entitys.Action;
+using Action = Account.Domain.Shared.Entitys.Action;
 
 namespace Account.Infrastructure.ModelQuery
 {
@@ -22,6 +22,9 @@ namespace Account.Infrastructure.ModelQuery
         public async Task<IList<Action>> GetAllActive()
                      => await unitOfWork.GetRepository<Action>()
                                         .GetAllAsync(m => m.IsActive == true);
+        public async Task<IList<Action>> GetAll()
+                    => await unitOfWork.GetRepository<Action>()
+                                       .GetAllAsync();
         public async Task<IPagedList<Action>> GetAllListPageAsync(PagedListInput pagedListInput)
                      => await unitOfWork.GetRepository<Action>()
                                         .GetPagedListAsync(pageIndex: pagedListInput.PageIndex,

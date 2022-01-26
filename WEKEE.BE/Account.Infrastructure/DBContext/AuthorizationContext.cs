@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using Account.Domain.Entitys;
+using Account.Domain.Shared.Entitys;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
-using Action = Account.Domain.Entitys.Action;
+using Action = Account.Domain.Shared.Entitys.Action;
 
 #nullable disable
 

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Account.API.SettingUrl.AccountRouter;
 using Account.Application.Atomic;
 using System.Threading.Tasks;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
 
 namespace Account.API.Src.AccountAreas
 {

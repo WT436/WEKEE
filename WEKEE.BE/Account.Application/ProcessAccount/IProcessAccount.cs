@@ -1,8 +1,8 @@
-﻿using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.Entitys;
 using Microsoft.Extensions.Primitives;
 using System.Threading.Tasks;
 using Utils.Auth.Dtos;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
 
 namespace Account.Application.ProcessAccount

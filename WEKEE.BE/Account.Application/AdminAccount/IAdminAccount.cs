@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using UnitOfWork.Collections;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
 
 namespace Account.Application.AdminAccount
 {

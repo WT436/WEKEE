@@ -1,7 +1,7 @@
 ﻿
 using Account.Domain.CoreDomain;
-using Account.Domain.Dto;
-using Account.Domain.Entitys;
+using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.ModelQuery;
 using System;
 using System.Threading.Tasks;

@@ -1,7 +1,9 @@
 ﻿
 using Account.Domain.BoundedContext;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
+using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.BoundedContext;
 using Account.Infrastructure.MappingExtention;
 using Account.Infrastructure.ModelQuery;
@@ -35,7 +37,7 @@ namespace Account.Application.Atomic
             {
                 throw new ClientException(400, "Url already exists!");
             }
-            var data = MappingData.InitializeAutomapper().Map<Domain.Entitys.Atomic>(atomic);
+            var data = MappingData.InitializeAutomapper().Map<Domain.Shared.Entitys.Atomic>(atomic);
             return await atomicQuery.InsertAsync(data);
         }
 
@@ -56,7 +58,7 @@ namespace Account.Application.Atomic
             {
                 throw new ClientException(400, "Invalid Types!");
             }
-            var atomic = MappingData.InitializeAutomapper().Map<Domain.Entitys.Atomic>(atomicDto);
+            var atomic = MappingData.InitializeAutomapper().Map<Domain.Shared.Entitys.Atomic>(atomicDto);
             atomic.UpdatedAt = DateTime.Now;
             return atomicQuery.Update(atomic);
         }

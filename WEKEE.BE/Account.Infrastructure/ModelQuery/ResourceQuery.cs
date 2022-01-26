@@ -1,6 +1,6 @@
-﻿using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.Entitys;
 using Account.Domain.ObjectValues;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
 using Account.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;

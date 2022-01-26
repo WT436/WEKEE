@@ -1,5 +1,5 @@
-﻿using Account.Domain.Entitys;
-using Account.Domain.ObjectValues.Enum;
+﻿using Account.Domain.Shared.Entitys;
+using Account.Domain.ObjectValues.Input;
 using Account.Infrastructure.DBContext;
 using System.Collections.Generic;
 using System.Linq;
@@ -161,6 +161,9 @@ namespace Account.Infrastructure.ModelQuery
         public Atomic GetById(int id)
         => unitOfWork.GetRepository<Atomic>()
                      .GetFirstOrDefault(predicate: m => m.Id == id);
+        public async Task<IList<Atomic>> GetAll()
+        => await unitOfWork.GetRepository<Atomic>()
+                           .GetAllAsync();
         #endregion
 
         #region Đếm bản ghi

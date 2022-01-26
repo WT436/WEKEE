@@ -1,5 +1,5 @@
 ﻿
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Infrastructure.MappingExtention;
 using Account.Infrastructure.ModelQuery;
 using System;

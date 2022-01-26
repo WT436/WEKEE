@@ -1,5 +1,5 @@
-﻿using Account.Domain.Dto;
-using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.IO;

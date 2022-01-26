@@ -1,10 +1,10 @@
 ﻿
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
 using Account.API.SettingUrl.AccountRouter;
 using Account.Application.PermissionAssignment;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
 
 namespace Account.API.Src.AccountAreas
 {

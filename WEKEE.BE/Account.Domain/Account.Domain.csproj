@@ -36,17 +36,17 @@
     <None Remove="CoreDomain\CompareSessionCookie.cs~RF3453a91.TMP" />
     <None Remove="CoreDomain\ReturnStatusAccount.cs~RF16bacf3.TMP" />
     <None Remove="CoreDomain\ReturnStatusAccount.cs~RF24cc97.TMP" />
-    <None Remove="Dto\UserAccountDtos.cs~RF934c11.TMP" />
-    <None Remove="Entitys\IdPageListInput.cs~RFf6c8bf1.TMP" />
-    <None Remove="Dto\ActionAssignmentDto.cs~RF154fca30.TMP" />
-    <None Remove="Dto\Algorithm.cs~RF14eef68.TMP" />
-    <None Remove="Dto\ResourceActionDto.cs~RFe6b4aa4.TMP" />
-    <None Remove="Dto\RoleAnonimuosDtos.cs~RF57e046.TMP" />
-    <None Remove="Dto\RoleDtos.cs~RF8682e0.TMP" />
-    <None Remove="Dto\RoleDtos.cs~RF92938f.TMP" />
-    <None Remove="Dto\RoleDtos.cs~RFb073d0.TMP" />
-    <None Remove="Dto\SubjectAssignmentDto.cs~RF1b655d.TMP" />
-    <None Remove="Dto\SubjectDtos.cs~RF133ab561.TMP" />
+    <None Remove="Shared\DataTransfer\UserAccountDtos.cs~RF934c11.TMP" />
+    <None Remove="Shared\Entitys\IdPageListInput.cs~RFf6c8bf1.TMP" />
+    <None Remove="Shared\DataTransfer\ActionAssignmentDto.cs~RF154fca30.TMP" />
+    <None Remove="Shared\DataTransfer\Algorithm.cs~RF14eef68.TMP" />
+    <None Remove="Shared\DataTransfer\ResourceActionDto.cs~RFe6b4aa4.TMP" />
+    <None Remove="Shared\DataTransfer\RoleAnonimuosDtos.cs~RF57e046.TMP" />
+    <None Remove="Shared\DataTransfer\RoleDtos.cs~RF8682e0.TMP" />
+    <None Remove="Shared\DataTransfer\RoleDtos.cs~RF92938f.TMP" />
+    <None Remove="Shared\DataTransfer\RoleDtos.cs~RFb073d0.TMP" />
+    <None Remove="Shared\DataTransfer\SubjectAssignmentDto.cs~RF1b655d.TMP" />
+    <None Remove="Shared\DataTransfer\SubjectDtos.cs~RF133ab561.TMP" />
     <None Remove="ServicesDomain\AccountConfig.cs~RFd1a03e.TMP" />
   </ItemGroup>
 
@@ -56,7 +56,6 @@
     <Folder Include="ObjectValues\Const\" />
     <Folder Include="ServicesDomain\" />
     <Folder Include="UL\" />
-    <Folder Include="Shared\" />
   </ItemGroup>
 
   <ItemGroup>

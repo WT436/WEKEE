@@ -1,6 +1,6 @@
 ﻿
-using Account.Domain.Dto;
-using Account.Domain.Entitys;
+using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

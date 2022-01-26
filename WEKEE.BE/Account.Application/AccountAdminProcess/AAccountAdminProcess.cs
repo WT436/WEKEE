@@ -1,6 +1,6 @@
 ﻿using Account.Domain.CoreDomain;
-using Account.Domain.Dto;
-using Account.Domain.Entitys;
+using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.ModelQuery;
 using System;
 using System.Collections.Generic;
@@ -78,7 +78,7 @@ namespace Account.Application.AccountAdminProcess
             };
             await address.InsertAsync(adress);
             // Infomation User
-            await infomationUser.InsertAsync(new Domain.Entitys.InfomationUser
+            await infomationUser.InsertAsync(new Domain.Shared.Entitys.InfomationUser
             {
                 Coordinates = accountAdminCreate.Coordinates,
                 Picture = accountAdminCreate.Picture,
@@ -161,7 +161,7 @@ namespace Account.Application.AccountAdminProcess
             });
             // Infomation User
             var infomationUserData = await infomationUser.GetUniqueAsync(id: account.Id);
-            infomationUser.Update(new Domain.Entitys.InfomationUser
+            infomationUser.Update(new Domain.Shared.Entitys.InfomationUser
             {
                 Id = infomationUserData.Id,
                 Coordinates = accountAdminCreate.Coordinates,

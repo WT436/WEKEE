@@ -1,6 +1,8 @@
 ﻿using Account.Domain.BoundedContext;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
+using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.MappingExtention;
 using Account.Infrastructure.ModelQuery;
 using System;
@@ -45,7 +47,7 @@ namespace Account.Application.Resource
             {
                 throw new ClientException(400, "Url already exists!");
             }
-            var data = MappingData.InitializeAutomapper().Map<Domain.Entitys.Resource>(resource);
+            var data = MappingData.InitializeAutomapper().Map<Domain.Shared.Entitys.Resource>(resource);
             return await resourceQuery.InsertAsync(data);
         }
 
@@ -66,7 +68,7 @@ namespace Account.Application.Resource
             {
                 throw new ClientException(400, "Invalid Types!");
             }
-            var resource = MappingData.InitializeAutomapper().Map<Domain.Entitys.Resource>(resourceDto);
+            var resource = MappingData.InitializeAutomapper().Map<Domain.Shared.Entitys.Resource>(resourceDto);
             resource.UpdatedAt = DateTime.Now;
             return resourceQuery.Update(resource);
         }

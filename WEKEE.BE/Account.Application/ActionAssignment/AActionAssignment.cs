@@ -1,9 +1,10 @@
 ﻿using Account.Application.Action;
 using Account.Domain.BoundedContext;
-using Account.Domain.Dto;
-using Account.Domain.Entitys;
+using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
 using Account.Domain.ObjectValues;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
+using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.BoundedContext;
 using Account.Infrastructure.ModelQuery;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace Account.Application.ActionAssignment
             var dataResourceAction = actionAssignmentQuery.CheckExistsUnique(actionId: actionAssignmentDto.Id, permissionId: actionAssignmentDto.PermissionId);
             if (dataResourceAction == null)
             {
-                actionAssignmentQuery.Insert(new Account.Domain.Entitys.ActionAssignment
+                actionAssignmentQuery.Insert(new Account.Domain.Shared.Entitys.ActionAssignment
                 {
                     ActionId = actionAssignmentDto.Id,
                     PermissionId = actionAssignmentDto.PermissionId,

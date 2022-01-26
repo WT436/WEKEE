@@ -1,5 +1,5 @@
 ﻿
-using Account.Domain.Entitys;
+using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.ModelQuery;
 using System.Collections.Generic;
 using System.Threading.Tasks;

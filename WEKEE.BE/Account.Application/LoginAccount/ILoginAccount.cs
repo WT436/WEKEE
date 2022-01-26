@@ -1,6 +1,6 @@
-﻿using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.Entitys;
 using System.Threading.Tasks;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
 
 namespace Account.Application.LoginAccount

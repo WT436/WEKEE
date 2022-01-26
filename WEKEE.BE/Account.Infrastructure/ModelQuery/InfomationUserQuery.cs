@@ -1,4 +1,4 @@
-﻿using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.DBContext;
 using System.Collections.Generic;
 using System.Threading.Tasks;

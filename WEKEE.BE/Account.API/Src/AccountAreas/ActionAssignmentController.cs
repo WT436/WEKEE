@@ -1,6 +1,6 @@
 ﻿
-using Account.Domain.Dto;
-using Account.Domain.Entitys;
+using Account.Domain.Shared.DataTransfer;
+using Account.Domain.Shared.Entitys;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
 using Account.Application.ActionAssignment;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
 
 namespace Account.API.Src.AccountAreas
 {

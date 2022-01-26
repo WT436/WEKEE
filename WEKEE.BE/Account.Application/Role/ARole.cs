@@ -1,8 +1,9 @@
 ﻿
 using Account.Domain.BoundedContext;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
+using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.MappingExtention;
 using Account.Infrastructure.ModelQuery;
 using System;

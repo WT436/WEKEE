@@ -1,4 +1,4 @@
-﻿using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.DBContext;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +26,10 @@ namespace Account.Infrastructure.ModelQuery
         #endregion
 
         #region Check bản ghi
-        public ResourceAction CheckExistsUnique(int resourceId, int actionId)
-        => unitOfWork.GetRepository<ResourceAction>()
-                     .GetFirstOrDefault(predicate: m => m.ActionId == actionId
-                                                     && m.ResourceId == resourceId);
+        public async Task<ResourceAction> CheckExistsUniqueAsync(int resourceId, int actionId)
+        => await unitOfWork.GetRepository<ResourceAction>()
+                     .GetFirstOrDefaultAsync(predicate: m => m.ActionId == actionId
+                                                          && m.ResourceId == resourceId);
         #endregion
 
         #region Tạo mới - Create
@@ -55,7 +55,7 @@ namespace Account.Infrastructure.ModelQuery
         {
             await unitOfWork.GetRepository<ResourceAction>()
                             .InsertAsync(resourceActions);
-            return unitOfWork.SaveChanges();
+            return await unitOfWork.SaveChangesAsync(unitOfWorks: unitOfWork);
         }
         #endregion
 
@@ -76,13 +76,13 @@ namespace Account.Infrastructure.ModelQuery
         {
             unitOfWork.GetRepository<ResourceAction>()
                       .Update(resourceAction);
-            return await unitOfWork.SaveChangesAsync();
+            return await unitOfWork.SaveChangesAsync(unitOfWorks: unitOfWork);
         }
         public async Task<int> UpdateAsync(List<ResourceAction> resourceActions)
         {
             unitOfWork.GetRepository<ResourceAction>()
                       .Update(resourceActions);
-            return await unitOfWork.SaveChangesAsync();
+            return await unitOfWork.SaveChangesAsync(unitOfWorks: unitOfWork);
         }
         #endregion
 

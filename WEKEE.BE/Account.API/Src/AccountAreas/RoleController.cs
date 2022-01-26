@@ -1,5 +1,5 @@
 ﻿
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
 using Account.Application.Role;
-using Account.Domain.ObjectValues.Enum;
+using Account.Domain.ObjectValues.Input;
 
 namespace Account.API.Src.AccountAreas
 {

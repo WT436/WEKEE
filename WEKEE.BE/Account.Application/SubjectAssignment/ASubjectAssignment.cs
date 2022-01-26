@@ -1,6 +1,6 @@
 ﻿
 using Account.Domain.BoundedContext;
-using Account.Domain.Entitys;
+using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.ModelQuery;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Utils.Exceptions;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 using Account.Infrastructure.BoundedContext;
 
 namespace Account.Application.SubjectAssignment

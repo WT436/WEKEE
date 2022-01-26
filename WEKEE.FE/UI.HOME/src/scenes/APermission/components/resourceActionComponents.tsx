@@ -1,16 +1,17 @@
 //#region 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, DatePicker, Input, Modal, Row, Select, Table, Tabs, Tag } from 'antd'
-import { BorderOutlined, CheckOutlined, CheckSquareOutlined, CloseOutlined, DeleteOutlined, EditOutlined, PlusOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
+import { BorderOutlined, CheckOutlined, CheckSquareOutlined, CloseOutlined, DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
 import { ActionDto } from '../dtos/actionDto';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages, makeSelectDataAction, makeSelectDataResourceAction, makeSelectPageIndexSub, makeSelectPageSizeSub, makeSelectTotalCountSub, makeSelectTotalPagesSub, makeSelectdataActionResourceDto } from '../selectors';
-import { ActionResourceGetListDataStart } from '../actions';
+import { ActionResourceGetListDataStart, ResourceActionInsertOrUpdateStart } from '../actions';
 import { ResourceActionDto } from '../dtos/resourceActionDto'
 import { ResourceDto } from '../dtos/resourceDto';
 import moment from 'moment';
 import { ActionResourceDto } from '../dtos/actionResourceDto';
+import Loading from '../../../components/Loading';
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
@@ -38,8 +39,29 @@ export default function ResourceActionComponents(props: IResourceActionComponent
     } = useSelector(stateSelector);
 
     const dispatch = useDispatch();
+    // state
+
+    const [selectedRowKeys, setselectedRowKeys] = useState<React.Key[]>([]);
+    const [selectdataDefault, setselectdataDefault] = useState<React.Key[]>([]);
+    let absOnchange = 0;
     // Ctor
     useEffect(() => {
+        startOrReload();
+    }, [props.isResource, props.actionData, props.resourceData]);
+
+    useEffect(() => {
+        setselectedRowKeys([]);
+        setselectdataDefault([]);
+        dataAction.map((element: ActionResourceDto) => {
+            if (element.isCheck) {
+                setselectedRowKeys((selectedRowKeys) => [...selectedRowKeys, element.id.toString()]);
+                setselectdataDefault((selectedRowKeys) => [...selectedRowKeys, element.id.toString()]);
+            }
+        });
+    }, [dataAction]);
+
+    // start
+    const startOrReload = () => {
         if (props.isResource) {
             dispatch(ActionResourceGetListDataStart({
                 pageIndex: 0,
@@ -54,7 +76,8 @@ export default function ResourceActionComponents(props: IResourceActionComponent
         else {
 
         }
-    }, [props.isResource, props.actionData, props.resourceData])
+    }
+    // skip data change
 
     const columns = [
         {
@@ -89,18 +112,17 @@ export default function ResourceActionComponents(props: IResourceActionComponent
 
     const rowSelection = {
         onChange: (selectedRowKeys: React.Key[], selectedRows: ActionResourceDto[]) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+            setselectedRowKeys(selectedRowKeys);
         },
         getCheckboxProps: (record: ActionResourceDto) => ({
-            disabled: record.isActive === false,
-            checked: record.isActive === false
+            disabled: record.isActive === false
         }),
+        selectedRowKeys: selectedRowKeys,
     };
     let onChange = (page: any, pageSize: any) => {
-        console.log(pageSize);
         if (props.isResource) {
             dispatch(ActionResourceGetListDataStart({
-                pageIndex: page,
+                pageIndex: page - 1,
                 pageSize: pageSize,
                 propertySearch: [],
                 valuesSearch: [],
@@ -113,22 +135,86 @@ export default function ResourceActionComponents(props: IResourceActionComponent
 
         }
     };
+
+    let onSave = (control: number) => {
+        switch (control) {
+            case 1:
+                saveByActionWithResouce();
+                break;
+            default: break;
+        }
+        // Modal.confirm({
+        //     title: 'Yêu cầu xác nhận!',
+        //     icon: <ExclamationCircleOutlined />,
+        //     content: 'Bạn muốn lưu ' + 2 + ' bản ghi đang thay đổi không?',
+        //     closable: false,
+        //     okText: 'Xác nhận',
+        //     cancelText: 'Hủy bỏ',
+        //     onOk: () => {
+        //         return new Promise((resolve, reject) => {
+        //             if (control === 1) { foo(2); };
+        //         }).catch(() => console.log('Oops errors!'));
+        //     },
+        //     onCancel: () => {
+        //     },
+        // }).update({
+        //     title: 'Updated title',
+        //     content: 'Updated content',
+        // });
+    }
+
+    let saveByActionWithResouce = () => {
+        // lấy sự thay đổi
+        // sử lý thay đổi
+        console.log('Thay doi');
+        var dataUpdate: React.Key[] = [];
+        // lấy dữ liệu bị hủy kết nối
+        selectedRowKeys.forEach(
+            m => selectdataDefault.includes(m)
+                ? dataUpdate.push('') // dữ liệu có không có sự thay đổi
+                : dataUpdate.push(m) // dữ liệu được check mới
+        );
+        // lấy dữ liệu thêm mới kết nối
+        selectdataDefault.forEach(
+            m => selectedRowKeys.includes(m)
+                ? dataUpdate.push('') // dữ liệu có không có sự thay đổi
+                : dataUpdate.push(m) // dữ liệu được check
+        );
+        dataUpdate = dataUpdate.filter((m) => m !== '');
+        if (dataUpdate.length > 0) {
+            // gửi dữ liệu
+            dispatch(ResourceActionInsertOrUpdateStart({
+                Id: props.resourceData == undefined ? 0 : props.resourceData.id,
+                IsResource: props.isResource,
+                DataUpdate: (dataUpdate) as string[]
+            }));
+            startOrReload();
+        }
+
+        // xác nhận
+    }
+    const onCancelData = () => {
+        startOrReload();
+    }
     return (
         <>
-            <Tabs defaultActiveKey="Overview" size='small'>
-                <TabPane tab="Action" key="Action">
+            <Tabs defaultActiveKey={props.isResource ? "Action" : "Resource"} size='small' >
+                <TabPane disabled={props.isResource ? false : true} tab="Action" key="Action">
                     <Row gutter={[10, 10]} >
                         <Col span={3}>
                             <Button loading={loading}
+                            onClick={()=>onCancelData()}
                                 block icon={<RedoOutlined />}>Làm Mới</Button>
                         </Col>
                         <Col span={3}>
                             <Button loading={loading}
                                 block
+                                onClick={() => onSave(1)}
                                 icon={<CheckOutlined />}>Lưu</Button>
                         </Col>
                         <Col span={3}>
                             <Button loading={loading}
+                                onClick={() => onCancelData()}
                                 block icon={<CloseOutlined />}>Hủy</Button>
                         </Col>
                         <Col span={6}>
@@ -222,10 +308,11 @@ export default function ResourceActionComponents(props: IResourceActionComponent
                             defaultCurrent: 1,
                             onChange: onChange,
                             showSizeChanger: true,
-                            pageSizeOptions: ['5', '10', '20', '50', '100']
+                            pageSizeOptions: ['5', '10', '20', '50', '100', '200', '500', '1000']
                         }}
                     />
                 </TabPane>
+                <TabPane disabled={props.isResource ? true : false} tab="Resource" key="Resource"></TabPane>
             </Tabs>
         </>
     )

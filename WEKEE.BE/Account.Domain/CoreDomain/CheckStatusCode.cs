@@ -1,4 +1,4 @@
-﻿using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.Entitys;
 using System;
 using Utils.Exceptions;
 

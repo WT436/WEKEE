@@ -13,6 +13,7 @@ import { ActionAssignmentDto } from './dtos/actionAssignmentDto';
 import { PermissionAssignmentDto } from './dtos/permissionAssignmentDto';
 import { SearchOrderPageInput } from '../../services/dto/searchOrderPageInput';
 import { EntitySearchInput } from '../../services/dto/entitySearchInput';
+import { ActionResourceUpdateDto } from './dtos/actionResourceUpdateDto';
 
 //#region Tải dữ liệu ban đầu
 export const watchPageError = () =>
@@ -47,16 +48,14 @@ export const ResourceRemoveFeCancel = () =>
     action(ActionTypes.RESOURCE_REMOVE_FE_ITEM_CANCEL);
 
 export const ResourceRemoveStart = (ids: Number[], types: Number) => {
-    if(ids.length===0)
-    {
+    if (ids.length === 0) {
         return action(ActionTypes.RESOURCE_REMOVE_FE_ITEM_CANCEL);
     }
-    
+
     if (types == 1) {
         return action(ActionTypes.RESOURCE_REMOVE_START, ids);
     }
-    if(types==2)
-    {
+    if (types == 2) {
         return action(ActionTypes.RESOURCE_EDIT_STATUS_START, ids);
     }
     return action(ActionTypes.RESOURCE_REMOVE_FE_ITEM_CANCEL);
@@ -74,7 +73,7 @@ export const ResourceEditStatusError = () =>
 //#endregion
 
 //#region  Atomic
-export const AtomicgetListStart = (input : SearchOrderPageInput) =>
+export const AtomicgetListStart = (input: SearchOrderPageInput) =>
     action(ActionTypes.ATOMIC_LIST_START, input);
 export const AtomicgetListCompleted = (output: PagedListOutput<AtomicDto>) =>
     action(ActionTypes.ATOMIC_LIST_COMPLETED, output);
@@ -198,9 +197,9 @@ export const ActionResourceGetListDataCompeleted = (output: PagedListOutput<Reso
 export const ActionResourceGetListDataError = () =>
     action(ActionTypes.ACTION_RESOURCE_LIST_ERROR);
 
-export const ResourceActionInsertOrUpdateStart = (input: ResourceActionDto) =>
+export const ResourceActionInsertOrUpdateStart = (input: ActionResourceUpdateDto) =>
     action(ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_START, input);
-export const ResourceActionInsertOrUpdateCompeleted = (output: ResourceActionDto) =>
+export const ResourceActionInsertOrUpdateCompeleted = (output: number) =>
     action(ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_COMPELETED, output);
 export const ResourceActionInsertOrUpdateError = () =>
     action(ActionTypes.RESOURCE_ACTION_INSERT_OR_UPDATE_ERROR);

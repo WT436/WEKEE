@@ -1,4 +1,4 @@
-﻿using Account.Domain.Entitys;
+﻿using Account.Domain.Shared.Entitys;
 using Account.Domain.ObjectValues;
 using Account.Domain.ObjectValues.Enum;
 using System;

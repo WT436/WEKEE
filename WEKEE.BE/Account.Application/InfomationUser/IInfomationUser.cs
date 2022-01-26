@@ -1,4 +1,4 @@
-﻿using Account.Domain.Dto;
+﻿using Account.Domain.Shared.DataTransfer;
 using System;
 using System.Collections.Generic;
 using System.Text;

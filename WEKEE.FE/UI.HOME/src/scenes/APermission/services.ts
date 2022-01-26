@@ -313,9 +313,9 @@ class APermissionService {
     }
 
     public async insertOrUpdateResourceActionBasic(input: ResourceActionDto): Promise<ResourceActionDto> {
-        let rs = await http.post('/update/resource-action-basic', input);
+        let rs = await http.patch('/account-resource-action', input);
         if (rs) {
-            return input;
+            return rs.data;
         }
         else {
             return rs;

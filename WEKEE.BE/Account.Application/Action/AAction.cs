@@ -1,5 +1,6 @@
-﻿using Account.Domain.Dto;
-using Account.Domain.ObjectValues.Enum;
+﻿using Account.Domain.Shared.DataTransfer;
+using Account.Domain.ObjectValues.Input;
+using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.MappingExtention;
 using Account.Infrastructure.ModelQuery;
 using System;
@@ -36,7 +37,7 @@ namespace Account.Application.Action
                     dataReturn.CreateByName = _accountQuery.GetNameAccount(emp.CreateBy);
                     var atomicData = _atomicQuery.GetById(emp.AtomicId);
                     dataReturn.AtomicName = atomicData == null ? "" : atomicData.Name;
-                    Domain.Entitys.Action actionData =
+                    Domain.Shared.Entitys.Action actionData =
                     emp.ActionBase == null ? null : _actionQuery.GetById(emp.ActionBase);
                     dataReturn.ActionBaseName = actionData==null? "": actionData.Name;
                     return dataReturn;

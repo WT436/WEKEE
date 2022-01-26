@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Account.Domain.Dto;
+using Account.Domain.Shared.DataTransfer;
 
 namespace Account.Application.CheckRole
 {
