@@ -1,31 +1,26 @@
-﻿
-using Account.Domain.Shared.DataTransfer;
-using Account.Domain.Shared.Entitys;
-using Account.Domain.ObjectValues;
+﻿using Account.Domain.Shared.DataTransfer;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Account.API.SettingUrl.AccountRouter;
 using Account.Application.ActionAssignment;
 using Account.Domain.ObjectValues.Input;
+using System.Threading.Tasks;
 
 namespace Account.API.Src.AccountAreas
 {
-    public class ActionAssignmentController : Controller
+    public class ActionAssociateController : Controller
     {
         private readonly IActionAssignment _actionAssignment;
-        public ActionAssignmentController(IActionAssignment actionAssignment)
+        public ActionAssociateController(IActionAssignment actionAssignment)
         {
             _actionAssignment = actionAssignment;
         }
 
+        #region resource
         [Route(PermissionRouter.ActionAssignmentAccount)]
         [HttpGet]
-        public IActionResult BasicGet(int idPermission, int pageIndex, int pageSize)
+        public IActionResult GetResourceByIdAction(int idAction, int pageIndex, int pageSize)
         {
-            return Ok(_actionAssignment.ListActionAssignment(idPermission: idPermission,
+            return Ok(_actionAssignment.ListActionAssignment(idPermission: idAction,
                                                              pagedListInput: new PagedListInput()
                                                              {
                                                                  PageIndex = pageIndex,
@@ -41,5 +36,16 @@ namespace Account.API.Src.AccountAreas
             _actionAssignment.UpdateOrInsert(actionAssignmentDto);
             return Ok("true");
         }
+        #endregion
+
+        #region Atomic
+        public async Task<IActionResult> GetActionByAtomicId(int idAtomic, int pageIndex, int pageSize)
+        {
+            var data = await _actionAssignment.GetActionByAtomic(idAtomic: idAtomic,
+                                                                 pageIndex: pageIndex,
+                                                                 pageSize: pageSize);
+            return Ok(data);
+        }
+        #endregion
     }
 }

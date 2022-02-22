@@ -1,5 +1,4 @@
-﻿
-using Account.Domain.Shared.DataTransfer;
+﻿using Account.Domain.Shared.DataTransfer;
 using Account.Domain.ObjectValues;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,10 +11,10 @@ using Account.Domain.ObjectValues.Input;
 
 namespace Account.API.Src.AccountAreas
 {
-    public class ResourceActionController : Controller
+    public class ResourceAssociateController : Controller
     {
         private readonly IResourceAction _resourceAction;
-        public ResourceActionController(IResourceAction resourceAction)
+        public ResourceAssociateController(IResourceAction resourceAction)
         {
             _resourceAction = resourceAction;
         }
@@ -41,6 +40,5 @@ namespace Account.API.Src.AccountAreas
             var updateSussce = await _resourceAction.UpdateOrInsertResourceAction(actionResourceUpdateDto);
             return Ok(updateSussce);
         }
-
     }
 }

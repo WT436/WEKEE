@@ -67,5 +67,9 @@ namespace Account.API.SettingUrl.AccountRouter
         /// /subject-group
         /// </summary>
         public const string SubjectGroupAccount =RootUrl.ROOT+ "/subject-group";
+        /// <summary>
+        /// Lấy thông tin action từ id atomic
+        /// </summary>
+        public const string GetActionByIdAtomicAccount = RootUrl.ROOT+ "/get-action-by-atomic";
     }
 }

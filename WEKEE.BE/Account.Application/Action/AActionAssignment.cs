@@ -1,8 +1,5 @@
 ﻿using Account.Application.Action;
-using Account.Domain.BoundedContext;
 using Account.Domain.Shared.DataTransfer;
-using Account.Domain.Shared.Entitys;
-using Account.Domain.ObjectValues;
 using Account.Domain.ObjectValues.Input;
 using Account.Domain.ObjectValues.Output;
 using Account.Infrastructure.BoundedContext;
@@ -19,13 +16,12 @@ namespace Account.Application.ActionAssignment
         private readonly PermissionQuery _permissionQuery = new PermissionQuery();
         private readonly ActionAssignmentQuery actionAssignmentQuery = new ActionAssignmentQuery();
 
-       
-        public async Task<bool> DeleteAccount(int id_Account)
+        public async Task<PagedListOutput<ActionAssignmentDto>> GetActionByAtomic(int idAtomic, int pageIndex, int pageSize)
         {
-            return true;
+            throw new System.NotImplementedException();
         }
 
-        public PagedListOutput<ActionAssignmentDto> ListActionAssignment(int idPermission, PagedListInput pagedListInput)
+        public async Task<PagedListOutput<ActionAssignmentDto>> ListActionAssignment(int idPermission, PagedListInput pagedListInput)
         {
             //lấy dữ liệu resource,
             // lấy dữ liệu action
@@ -36,7 +32,7 @@ namespace Account.Application.ActionAssignment
                                                             permissionId: idPermission);
         }
 
-        public void UpdateOrInsert(ActionAssignmentDto actionAssignmentDto)
+        public async Task<int> UpdateOrInsert(ActionAssignmentDto actionAssignmentDto)
         {
             // kieemr tra 
             if (_actionQuery.CountId(actionAssignmentDto.Id) != 1)
@@ -65,6 +61,7 @@ namespace Account.Application.ActionAssignment
 
                 actionAssignmentQuery.Update(dataResourceAction);
             }
+            return 0;
         }
     }
 }

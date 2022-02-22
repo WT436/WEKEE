@@ -14,7 +14,7 @@ import {
 } from '../selectors';
 import { ResourceDto } from '../dtos/resourceDto';
 import moment from 'moment';
-import ResourceActionComponents from './resourceActionComponents'
+import ResourceAssociateComponents from './resourceAssociateComponents'
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 //#endregion
@@ -447,10 +447,8 @@ export default function ResourceComponents(props: IResourceComponentsProps) {
                 footer={false}
                 bodyStyle={{ padding: '0 24px' }}
             >
-                <ResourceActionComponents
-                    isResource={true}
+                <ResourceAssociateComponents
                     resourceData={nameDataSelect}
-                    actionData={undefined}
                 />
             </Modal>
         </Row >

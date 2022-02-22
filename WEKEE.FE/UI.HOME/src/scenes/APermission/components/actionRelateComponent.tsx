@@ -1,23 +1,22 @@
 //#region 
-import React, { useEffect, useState } from 'react'
-import { Button, Col, DatePicker, Input, Modal, Row, Select, Table, Tabs, Tag } from 'antd'
-import { BorderOutlined, CheckOutlined, CheckSquareOutlined, CloseOutlined, DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Input, Row, Select, Table, Tabs, Tag } from 'antd';
+import { CheckOutlined, CloseOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
 import { ActionDto } from '../dtos/actionDto';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages, makeSelectDataAction, makeSelectDataResourceAction, makeSelectPageIndexSub, makeSelectPageSizeSub, makeSelectTotalCountSub, makeSelectTotalPagesSub, makeSelectdataActionResourceDto } from '../selectors';
+import {
+    makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize,
+    makeSelectTotalCount, makeSelectTotalPages, makeSelectdataActionResourceDto
+} from '../selectors';
 import { ActionResourceGetListDataStart, ResourceActionInsertOrUpdateStart } from '../actions';
-import { ResourceActionDto } from '../dtos/resourceActionDto'
 import { ResourceDto } from '../dtos/resourceDto';
-import moment from 'moment';
 import { ActionResourceDto } from '../dtos/actionResourceDto';
-import Loading from '../../../components/Loading';
 const { Option } = Select;
-const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
 //#endregion
 
-interface IResourceActionComponents {
+interface IAactionRelateComponent {
     isResource: Boolean
     resourceData: ResourceDto | undefined
     actionData: ActionDto | undefined
@@ -33,7 +32,7 @@ const stateSelector = createStructuredSelector<any, any>({
     dataAction: makeSelectdataActionResourceDto()
 });
 
-export default function ResourceActionComponents(props: IResourceActionComponents) {
+export default function AactionRelateComponent(props: IAactionRelateComponent) {
     const {
         loading, dataAction, pageSize, totalCount, pageIndex
     } = useSelector(stateSelector);
@@ -43,7 +42,6 @@ export default function ResourceActionComponents(props: IResourceActionComponent
 
     const [selectedRowKeys, setselectedRowKeys] = useState<React.Key[]>([]);
     const [selectdataDefault, setselectdataDefault] = useState<React.Key[]>([]);
-    let absOnchange = 0;
     // Ctor
     useEffect(() => {
         startOrReload();
@@ -203,7 +201,7 @@ export default function ResourceActionComponents(props: IResourceActionComponent
                     <Row gutter={[10, 10]} >
                         <Col span={3}>
                             <Button loading={loading}
-                            onClick={()=>onCancelData()}
+                                onClick={() => onCancelData()}
                                 block icon={<RedoOutlined />}>Làm Mới</Button>
                         </Col>
                         <Col span={3}>
