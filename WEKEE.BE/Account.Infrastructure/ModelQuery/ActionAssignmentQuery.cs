@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnitOfWork;
+using UnitOfWork.Collections;
 
 namespace Account.Infrastructure.ModelQuery
 {
@@ -28,6 +29,12 @@ namespace Account.Infrastructure.ModelQuery
                => unitOfWork.GetRepository<ActionAssignment>()
                             .GetAll(predicate: m => m.PermissionId == id
                                                  && m.IsActive == true).ToList();
+
+        public async Task<IPagedList<Action>> GetDataByIdAtomic(int idAtomic, int pageIndex, int pageSize)
+               => await unitOfWork.GetRepository<Action>()
+                                  .GetPagedListAsync(predicate: m => m.AtomicId == idAtomic,
+                                                     pageIndex: pageIndex,
+                                                      pageSize: pageSize);
         #endregion
 
         #region Tạo mới - Create

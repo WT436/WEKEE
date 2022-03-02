@@ -39,6 +39,8 @@ namespace Account.API.Src.AccountAreas
         #endregion
 
         #region Atomic
+        [Route(PermissionRouter.GetActionByIdAtomicAccount)]
+        [HttpGet]
         public async Task<IActionResult> GetActionByAtomicId(int idAtomic, int pageIndex, int pageSize)
         {
             var data = await _actionAssignment.GetActionByAtomic(idAtomic: idAtomic,
@@ -46,6 +48,9 @@ namespace Account.API.Src.AccountAreas
                                                                  pageSize: pageSize);
             return Ok(data);
         }
+        #endregion
+
+        #region Permission
         #endregion
     }
 }

@@ -40,7 +40,7 @@ const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
 //#endregion
 
-interface IResourceAssociateComponents {
+interface IAtomicAssociateComponents {
   resourceData: ResourceDto | undefined;
 }
 
@@ -54,8 +54,8 @@ const stateSelector = createStructuredSelector<any, any>({
   dataAction: makeSelectdataActionResourceDto(),
 });
 
-export default function ResourceAssociateComponents(
-  props: IResourceAssociateComponents
+export default function AtomicAssociateComponents(
+  props: IAtomicAssociateComponents
 ) {
   const { loading, dataAction, pageSize, totalCount, pageIndex } =
     useSelector(stateSelector);
@@ -67,7 +67,6 @@ export default function ResourceAssociateComponents(
   const [selectdataDefault, setselectdataDefault] = useState<React.Key[]>([]);
   const [SelectColumn, setSelectColumn] = useState(["All"]);
   const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
-  let absOnchange = 0;
   // Ctor
   useEffect(() => {
     startOrReload();
@@ -159,6 +158,7 @@ export default function ResourceAssociateComponents(
     }),
     selectedRowKeys: selectedRowKeys,
   };
+
   let onChange = (page: any, pageSize: any) => {
     dispatch(
       ActionResourceGetListDataStart({
@@ -185,8 +185,6 @@ export default function ResourceAssociateComponents(
 
   let saveByActionWithResouce = () => {
     // lấy sự thay đổi
-    // sử lý thay đổi
-    console.log("Thay doi");
     var dataUpdate: React.Key[] = [];
     // lấy dữ liệu bị hủy kết nối
     selectedRowKeys.forEach(
@@ -293,14 +291,14 @@ export default function ResourceAssociateComponents(
                 }}
               >
                 <Option value="All" > Tìm kiếm Tất cả </Option>
-                < Option value="Id" > Id </Option>
-                < Option value="Name" > Tên </Option>
-                < Option value="TypesRsc" > Kiểu </Option>
-                < Option value="Description" > Chi tiết </Option>
-                < Option value="IsActive" > Trạng thái </Option>
-                < Option value="CreatedAt" > Ngày Tạo </Option>
-                < Option value="CreateBy" > Người sửa </Option>
-                < Option value="UpdatedAt" > Ngày cập nhật </Option>
+                <Option value="Id" > Id </Option>
+                <Option value="Name" > Tên </Option>
+                <Option value="TypesRsc" > Kiểu </Option>
+                <Option value="Description" > Chi tiết </Option>
+                <Option value="IsActive" > Trạng thái </Option>
+                <Option value="CreatedAt" > Ngày Tạo </Option>
+                <Option value="CreateBy" > Người sửa </Option>
+                <Option value="UpdatedAt" > Ngày cập nhật </Option>
               </Select>
             </Col>
             < Col span={4} >

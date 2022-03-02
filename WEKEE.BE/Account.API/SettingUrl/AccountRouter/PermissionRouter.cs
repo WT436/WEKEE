@@ -71,5 +71,9 @@ namespace Account.API.SettingUrl.AccountRouter
         /// Lấy thông tin action từ id atomic
         /// </summary>
         public const string GetActionByIdAtomicAccount = RootUrl.ROOT+ "/get-action-by-atomic";
+        /// <summary>
+        /// lấy thông tin permission từ id action
+        /// </summary>
+        public const string GetPermissionByIdAction = RootUrl.ROOT + "/get-permision-by-action";
     }
 }

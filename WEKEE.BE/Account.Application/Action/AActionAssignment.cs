@@ -6,6 +6,8 @@ using Account.Infrastructure.BoundedContext;
 using Account.Infrastructure.ModelQuery;
 using System.Threading.Tasks;
 using Utils.Exceptions;
+using Account.Infrastructure.MappingExtention;
+using System.Linq;
 
 namespace Account.Application.ActionAssignment
 {
@@ -13,12 +15,37 @@ namespace Account.Application.ActionAssignment
     {
         private readonly AAction _action = new AAction();
         private readonly ActionQuery _actionQuery = new ActionQuery();
+        private readonly UserAccountQuery _accountQuery = new UserAccountQuery();
         private readonly PermissionQuery _permissionQuery = new PermissionQuery();
         private readonly ActionAssignmentQuery actionAssignmentQuery = new ActionAssignmentQuery();
+        private readonly AtomicQuery _atomicQuery = new AtomicQuery();
 
-        public async Task<PagedListOutput<ActionAssignmentDto>> GetActionByAtomic(int idAtomic, int pageIndex, int pageSize)
+        public async Task<PagedListOutput<ActionDto>> GetActionByAtomic(int idAtomic, int pageIndex, int pageSize)
         {
-            throw new System.NotImplementedException();
+            // lấy dữ liệu action theo id atomic
+            var dataAction = await actionAssignmentQuery.GetDataByIdAtomic(idAtomic: idAtomic,
+                                                                           pageIndex: pageIndex,
+                                                                           pageSize: pageSize);
+            var dataReturn = new PagedListOutput<ActionDto>
+            {
+                Items = dataAction.Items.Select(emp =>
+                {
+                    var dataReturn = MappingData.InitializeAutomapper().Map<ActionDto>(emp);
+                    dataReturn.CreateByName = _accountQuery.GetNameAccount(emp.CreateBy);
+                    var atomicData = _atomicQuery.GetById(emp.AtomicId);
+                    dataReturn.AtomicName = atomicData == null ? "" : atomicData.Name;
+                    Domain.Shared.Entitys.Action actionData =
+                    emp.ActionBase == null ? null : _actionQuery.GetById(emp.ActionBase);
+                    dataReturn.ActionBaseName = actionData == null ? "" : actionData.Name;
+                    return dataReturn;
+                }).ToList(),
+                PageIndex = dataAction.PageIndex,
+                PageSize = dataAction.PageSize,
+                TotalPages = dataAction.TotalPages,
+                TotalCount = dataAction.TotalCount
+            };
+
+            return dataReturn;
         }
 
         public async Task<PagedListOutput<ActionAssignmentDto>> ListActionAssignment(int idPermission, PagedListInput pagedListInput)

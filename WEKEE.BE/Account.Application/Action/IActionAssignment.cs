@@ -30,6 +30,6 @@ namespace Account.Application.ActionAssignment
         /// <param name="pageIndex"> Trang hiển thị</param>
         /// <param name="pageSize">số bản ghi 1 trang</param>
         /// <returns></returns>
-        public Task<PagedListOutput<ActionAssignmentDto>> GetActionByAtomic(int idAtomic, int pageIndex, int pageSize);
+        public Task<PagedListOutput<ActionDto>> GetActionByAtomic(int idAtomic, int pageIndex, int pageSize);
     }
 }
