@@ -13,7 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Aggregate\" />
+    <Folder Include="BoundedContext\" />
     <Folder Include="CoreDomain\" />
+    <Folder Include="Dto\" />
+    <Folder Include="Entitys\" />
     <Folder Include="EventDomain\" />
     <Folder Include="ObjectValues\" />
     <Folder Include="ServicesDomain\" />

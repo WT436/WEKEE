@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DBContext\" />
     <Folder Include="JoinQueries\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>
