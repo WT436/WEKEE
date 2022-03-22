@@ -15,9 +15,9 @@ namespace Product.API.InstallStartup.EnvInstall
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                       name: "FileAreas",
-                       template: "{controller=Upload}/{action=Index}/{id?}",
-                new string[] { "Album.API.Src.FileAreas" });
+                       name: "Product.API.Src.CategoryProductAPI",
+                       template: "{controller=CategoryProduct}/{action=Index}/{id?}",
+                new string[] { "Product.API.Src.CategoryProductAPI" });
 
                 routes.MapRoute(
                         name: "Default",

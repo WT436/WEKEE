@@ -5,4 +5,4 @@ Microsoft.EntityFrameworkCore.SqlServer
 Microsoft.AspNetCore.Identity
 Microsoft.EntityFrameworkCore
 
-Scaffold-DbContext "Server=DESKTOP-JIQNITU\SQLEXPRESS;Database=ProductDB;Trusted_Connection=True;"Microsoft.EntityFrameworkCore.SqlServer -OutputDir DBContext2
+Scaffold-DbContext "Server=.;Database=ProductDB;Trusted_Connection=True;"Microsoft.EntityFrameworkCore.SqlServer -OutputDir DBContext2

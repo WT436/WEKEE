@@ -22,6 +22,7 @@ namespace Product.API.InstallStartup.InstallerServices
                 //op.Filters.Add(new ProcessAuthorizationFilter());
                 op.Filters.Add(new ExcutionTimeFilterAttribute());
                 op.Filters.Add(new ProcessExceptionFilterAttribute());
+                op.Filters.Add(new ModelValidationFilterAttribute());
             });
         }
     }

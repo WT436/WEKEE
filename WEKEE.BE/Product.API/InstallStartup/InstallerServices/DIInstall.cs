@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Product.Application.Application;
+using Product.Application.Interface;
 using Utils.Auth;
 using Utils.Cache;
 using Utils.Email;
@@ -14,6 +16,9 @@ namespace Product.API.InstallStartup.InstallerServices
             services.AddTransient<IJwtHandler, JwtHandler>();
             services.AddTransient<IMailService, MailService>();
             services.AddTransient<ICacheBase, CacheMemoryHelper>();
+            
+            // CategoryProduct
+            services.AddTransient<ICategoryProduct, CategoryProductService>();
         }
     }
 

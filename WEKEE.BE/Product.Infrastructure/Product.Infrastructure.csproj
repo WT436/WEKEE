@@ -5,12 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="JoinQueries\**" />
+    <EmbeddedResource Remove="JoinQueries\**" />
+    <None Remove="JoinQueries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Queries\CategoryProductQueries.cs~RF3c84ad.TMP" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DBContext\" />
-    <Folder Include="JoinQueries\" />
     <Folder Include="Queries\" />
   </ItemGroup>
 
