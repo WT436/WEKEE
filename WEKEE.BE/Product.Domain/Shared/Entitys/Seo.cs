@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Product.Domain.Entitys
+namespace Product.Domain.Shared.Entitys
 {
     public partial class Seo
     {

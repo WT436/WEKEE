@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Product.Domain.Entitys;
+using Product.Domain.Shared.Entitys;
 
 #nullable disable
 
@@ -21,7 +21,7 @@ namespace Product.Infrastructure.DBContext
         public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
         public virtual DbSet<ImageProduct> ImageProducts { get; set; }
         public virtual DbSet<PredefinedProductAttributeValue> PredefinedProductAttributeValues { get; set; }
-        public virtual DbSet<Product.Domain.Entitys.Product> Products { get; set; }
+        public virtual DbSet<Product.Domain.Shared.Entitys.Product> Products { get; set; }
         public virtual DbSet<ProductAttribute> ProductAttributes { get; set; }
         public virtual DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
         public virtual DbSet<ProductCategoryMapping> ProductCategoryMappings { get; set; }
@@ -149,7 +149,7 @@ namespace Product.Infrastructure.DBContext
                     .HasConstraintName("FK__Predefine__Produ__534D60F1");
             });
 
-            modelBuilder.Entity<Product.Domain.Entitys.Product>(entity =>
+            modelBuilder.Entity<Product.Domain.Shared.Entitys.Product>(entity =>
             {
                 entity.ToTable("Product");
 

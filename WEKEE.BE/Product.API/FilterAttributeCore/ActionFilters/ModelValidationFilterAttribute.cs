@@ -19,7 +19,7 @@ namespace Product.API.FilterAttributeCore.ActionFilters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            if(context.ModelState.Count>0)
+            if(context.ModelState.ErrorCount>0)
             {
                 context.Result = new UnprocessableEntityObjectResult(context.ModelState);
                 return;

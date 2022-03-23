@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Product.Domain.Dto
+namespace Product.Domain.Shared.DataTransfer
 {
     public class CategoryProductInsertDto
     {

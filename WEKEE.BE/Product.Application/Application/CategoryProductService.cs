@@ -1,8 +1,11 @@
 ﻿using Product.Application.Interface;
-using Product.Domain.Dto;
-using Product.Domain.Entitys;
 using Product.Domain.ObjectValues.Const;
+using Product.Domain.ObjectValues.Input;
+using Product.Domain.ObjectValues.Output;
+using Product.Domain.Shared.DataTransfer;
+using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.ModelQuery;
+using Product.Infrastructure.Queries;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,7 +37,7 @@ namespace Product.Application.Application
                 // Kiểm tra tồn tại của category main
                 if (!await _categoryProductQuery.ExistsCategoryMain(cp.CategoryMain) && cp.CategoryMain != 1)
                 {
-                    throw new ClientException(422,"Category Main");
+                    throw new ClientException(422, "Category Main");
                 }
 
                 var cateInsert = new CategoryProduct
@@ -56,6 +59,22 @@ namespace Product.Application.Application
             {
                 throw new ClientException(422, "Name Or Url");
             }
+        }
+
+        public async Task<PagedListOutput<CategoryProductReadDto>> GetAllPageListCategory(SearchOrderPageInput input)
+        {
+            CategoryProductSqlQuery db = new CategoryProductSqlQuery();
+            CategoryProductQuery dbEF = new CategoryProductQuery();
+            var data = await db.GetAllPageLstExactNotFTS(input);
+            int totalCount = await dbEF.TotalPageCategory();
+            return new PagedListOutput<CategoryProductReadDto>
+            {
+                Items = data,
+                PageIndex = input.PageIndex,
+                PageSize = data.Count,
+                TotalPages = (totalCount / input.PageSize),
+                TotalCount = totalCount
+            };
         }
     }
 }

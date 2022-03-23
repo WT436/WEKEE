@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product.Application.Interface;
-using Product.Domain.Dto;
+using Product.Domain.ObjectValues.Input;
+using Product.Domain.Shared.DataTransfer;
 using System.Threading.Tasks;
 
 namespace Product.API.Src.CategoryProductAPI
@@ -17,8 +18,16 @@ namespace Product.API.Src.CategoryProductAPI
         [Route("/create-category")]
         public async Task<IActionResult> Index([FromBody] CategoryProductInsertDto categoryProductDto)
         {
-           var data =  await _categoryProduct.CreateCategory(cp: categoryProductDto);
+            var data = await _categoryProduct.CreateCategory(cp: categoryProductDto);
 
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("/get-all")]
+        public async Task<IActionResult> SelectAll(SearchOrderPageInput input)
+        {
+            var data = await _categoryProduct.GetAllPageListCategory(input: input);
             return Ok(data);
         }
     }

@@ -15,5 +15,15 @@ namespace Product.Domain.ObjectValues.Const
         /// Vui lòng nhập giá trị lớn hơn
         /// </summary>
         public const string ENTER_VALUE_BIGGER_THAN = "Please enter a value bigger than {1}";
+
+        /// <summary>
+        /// Vui lòng nhập kích thước trang lớn hơn ...
+        /// </summary>
+        public const string PAGE_SIZE_BIGGER_THAN = "Please enter a page size bigger than {1}";
+
+        /// <summary>
+        /// Vui lòng nhập kích thước trang lớn hơn ...
+        /// </summary>
+        public const string PAGE_INDEX_BIGGER_THAN = "Please enter a page index bigger than {1}";
     }
 }

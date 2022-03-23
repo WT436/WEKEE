@@ -1,4 +1,4 @@
-﻿using Product.Domain.Entitys;
+﻿using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
@@ -54,6 +54,10 @@ namespace Product.Infrastructure.ModelQuery
             unitOfWork.GetRepository<CategoryProduct>().Insert(categoryProduct);
             return unitOfWork.SaveChanges();
         }
+
+        public async Task<int> TotalPageCategory()
+        => (await unitOfWork.GetRepository<CategoryProduct>()
+                           .CountAsync());
 
         public Task<int> SaveChangeAsync()
         {

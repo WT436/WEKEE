@@ -7,9 +7,10 @@
   <ItemGroup>
     <None Remove="Aggregate\ProcessSpecifications.cs~RF2e40a03.TMP" />
     <None Remove="BoundedContext\CheckProduct.cs~RF2a2dbcb.TMP" />
-    <None Remove="Dto\CategoryBreadcrumbDtos.cs~RF11b52114.TMP" />
-    <None Remove="Dto\CategorySelectDto.cs~RFd7f9ad3.TMP" />
-    <None Remove="Dto\ProductCardDtos.cs~RF19170a76.TMP" />
+    <None Remove="Shared\DataTransfer\CategoryBreadcrumbDtos.cs~RF11b52114.TMP" />
+    <None Remove="Shared\DataTransfer\CategorySelectDto.cs~RFd7f9ad3.TMP" />
+    <None Remove="Shared\DataTransfer\ProductCardDtos.cs~RF19170a76.TMP" />
+    <None Remove="ObjectValues\Const\k3ua43wp.eb2~" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +19,6 @@
     <Folder Include="EventDomain\" />
     <Folder Include="ServicesDomain\" />
     <Folder Include="Services\" />
-    <Folder Include="Shared\" />
     <Folder Include="UL\" />
   </ItemGroup>
 
