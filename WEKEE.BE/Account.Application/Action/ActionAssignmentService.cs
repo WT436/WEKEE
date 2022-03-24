@@ -11,9 +11,9 @@ using System.Linq;
 
 namespace Account.Application.ActionAssignment
 {
-    public class AActionAssignment : IActionAssignment
+    public class ActionAssignmentService : IActionAssignment
     {
-        private readonly AAction _action = new AAction();
+        private readonly ActionService _action = new ActionService();
         private readonly ActionQuery _actionQuery = new ActionQuery();
         private readonly UserAccountQuery _accountQuery = new UserAccountQuery();
         private readonly PermissionQuery _permissionQuery = new PermissionQuery();

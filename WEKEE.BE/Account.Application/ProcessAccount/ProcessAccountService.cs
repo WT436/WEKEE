@@ -11,7 +11,7 @@ using Utils.Auth.Dtos;
 
 namespace Account.Application.ProcessAccount
 {
-    public class AProcessAccount : IProcessAccount
+    public class ProcessAccountService : IProcessAccount
     {
         private readonly UserAccountQuery userAccountQuery = new UserAccountQuery();
         private readonly TokenToJWT tokenToJWT = new TokenToJWT();

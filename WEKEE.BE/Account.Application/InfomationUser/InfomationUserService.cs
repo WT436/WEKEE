@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.InfomationUser
 {
-    public class AInfomationUser : IInfomationUser
+    public class InfomationUserService : IInfomationUser
     {
         private readonly UserAccountQuery userAccountQuery = new UserAccountQuery();
         private readonly InfomationUserQuery infomationUserQuery = new InfomationUserQuery();

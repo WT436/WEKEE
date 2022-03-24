@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.ProcessIPAccount
 {
-    public class AProcessIPAccount : IProcessIPAccount
+    public class ProcessIPAccountService : IProcessIPAccount
     {
         private readonly UserAccountIpQuery userAccountIpQuery = new UserAccountIpQuery();
         public IList<UserAccountIp> GetListIPAccount(int id_User)

@@ -11,7 +11,7 @@ using Utils.Exceptions;
 
 namespace Account.Application.Action
 {
-    public class AAction : IAction
+    public class ActionService : IAction
     {
         private readonly ActionQuery _actionQuery = new ActionQuery();
         private readonly UserAccountQuery _accountQuery = new UserAccountQuery();

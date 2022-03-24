@@ -1,4 +1,5 @@
 ﻿using Product.Application.Interface;
+using Product.Domain.CoreDomain;
 using Product.Domain.ObjectValues.Const;
 using Product.Domain.ObjectValues.Input;
 using Product.Domain.ObjectValues.Output;
@@ -16,11 +17,52 @@ namespace Product.Application.Application
 {
     public class CategoryProductService : ICategoryProduct
     {
+        // check data With server
+        CategoryProductQuery _categoryProductQuery = new CategoryProductQuery();
+
+        public async Task<int> ChangeNumberOrder(List<CategoryProductNumberOrderDto> input)
+        {
+            if (input == null || input.Count == 0)
+            {
+                return 0;
+            }
+
+            //else if (input.Count == 1)
+            //{
+            //    // bản ghi có vị trí mà bản ghi này muốn đổi chỗ
+            //    var categoryLate = await _categoryProductQuery.GetDataByIdAndNumberOrder(idMain: input[0].CategoryMain,
+            //                                                                                     level: input[0].LevelCategory,
+            //                                                                                    number: input[0].NumberOrder);
+            //    // bản ghi này
+            //    var categoryFirst = await _categoryProductQuery.GetDataById(id: input[0].Id);
+            //    var data = CategoryProductCore.CategoryProductsSwapNumberOrder(categoryFirst, categoryLate);
+            //    return _categoryProductQuery.Update(data);
+            //}
+
+            else
+            {
+                int sumUpdate = 0;
+                foreach (var item in input)
+                {
+                    // bản ghi có vị trí mà bản ghi này muốn đổi chỗ
+                    var categoryLate = await _categoryProductQuery.GetDataByIdAndNumberOrder(idMain: item.CategoryMain,
+                                                                                             level: item.LevelCategory,
+                                                                                             number: item.NumberOrder);
+                    // bản ghi này
+                    var categoryFirst = await _categoryProductQuery.GetDataById(id: item.Id);
+                    var data = CategoryProductCore.CategoryProductsSwapNumberOrder(categoryFirst, categoryLate);
+                    if(data!=null)
+                    {
+                        _categoryProductQuery.Update(data);
+                        sumUpdate++;
+                    }
+                }
+                return sumUpdate;
+            }
+        }
+
         public async Task<int?> CreateCategory(CategoryProductInsertDto cp)
         {
-            // check data With server
-            CategoryProductQuery _categoryProductQuery = new CategoryProductQuery();
-
             // kiem tra ton tai cua NameCategory và url
             if (!await _categoryProductQuery.CheckAnyNameAndUrl(name: cp.NameCategory,
                                                                 url: cp.UrlCategory))

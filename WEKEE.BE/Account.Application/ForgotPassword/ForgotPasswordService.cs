@@ -10,7 +10,7 @@ using Utils.Exceptions;
 
 namespace Account.Application.ForgotPassword
 {
-    public class AForgotPassword : IForgotPassword
+    public class ForgotPasswordService : IForgotPassword
     {
         private readonly CheckAccountDomain checkAccountDomain = new CheckAccountDomain();
         private readonly UserAccountQuery userAccountQuery = new UserAccountQuery();

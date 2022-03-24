@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.AccountAdminProcess
 {
-    public class AAccountAdminProcess : IAccountAdminProcess
+    public class AccountAdminProcessService : IAccountAdminProcess
     {
         private readonly CheckStatusAccount checkStatusAccount = new CheckStatusAccount();
         private readonly UserAccountIpQuery userAccountIpQuery = new UserAccountIpQuery();

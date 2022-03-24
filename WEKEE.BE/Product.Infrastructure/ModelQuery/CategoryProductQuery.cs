@@ -58,7 +58,20 @@ namespace Product.Infrastructure.ModelQuery
         public async Task<int> TotalPageCategory()
         => (await unitOfWork.GetRepository<CategoryProduct>()
                            .CountAsync());
+        public async Task<CategoryProduct> GetDataByIdAndNumberOrder(int? idMain, int level, int number)
+        => await unitOfWork.GetRepository<CategoryProduct>()
+                           .GetFirstOrDefaultAsync(predicate: c => c.CategoryMain == idMain
+                                                           && c.LevelCategory == level
+                                                           && c.NumberOrder == number);
+        public async Task<CategoryProduct> GetDataById(int id)
+        => await unitOfWork.GetRepository<CategoryProduct>()
+                           .GetFirstOrDefaultAsync(predicate: c => c.Id == id);
 
+        public int Update(List<CategoryProduct> input)
+        {
+            unitOfWork.GetRepository<CategoryProduct>().Update(input);
+            return unitOfWork.SaveChanges();
+        }
         public Task<int> SaveChangeAsync()
         {
             return unitOfWork.SaveChangesAsync();

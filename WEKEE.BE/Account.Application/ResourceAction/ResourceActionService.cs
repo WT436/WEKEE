@@ -16,12 +16,12 @@ using Utils.Exceptions;
 
 namespace Account.Application.ResourceAction
 {
-    public class AResourceAction : IResourceAction
+    public class ResourceActionService : IResourceAction
     {
         private readonly ResourceQuery resourceQuery = new ResourceQuery();
         private readonly ActionQuery actionQuery = new ActionQuery();
         private readonly ResourceActionQuery resourceActionQuery = new ResourceActionQuery();
-        public readonly AAction aAction = new AAction();
+        public readonly ActionService aAction = new ActionService();
         public async Task<PagedListOutput<ActionResourceDto>> GetActionFromResourceAction(EntitySearchInput input)
         {
             // lấy dữ liệu Action theo pagelist

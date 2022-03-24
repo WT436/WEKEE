@@ -14,7 +14,7 @@ using Utils.Exceptions;
 
 namespace Account.Application.Resource
 {
-    public class AResource : IResource
+    public class ResourceService : IResource
     {
         private readonly ResourceQuery resourceQuery = new ResourceQuery();
         private readonly UserAccountQuery accountQuery = new UserAccountQuery();

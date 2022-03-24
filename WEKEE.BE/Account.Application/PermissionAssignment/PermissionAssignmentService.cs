@@ -13,7 +13,7 @@ using Utils.Exceptions;
 
 namespace Account.Application.PermissionAssignment
 {
-    public class APermissionAssignment : IPermissionAssignment
+    public class PermissionAssignmentService : IPermissionAssignment
     {
         private readonly PermissionAssignmentQuery permissionAssignmentQuery = new PermissionAssignmentQuery();
         PermissionQuery permissionQuery = new PermissionQuery();

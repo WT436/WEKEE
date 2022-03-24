@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.CheckRole
 {
-    public class ACheckRole : ICheckRole
+    public class CheckRoleService : ICheckRole
     {
 
         private readonly JoinQuery joinQuery = new JoinQuery();

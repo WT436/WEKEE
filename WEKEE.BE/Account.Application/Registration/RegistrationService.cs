@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.Registration
 {
-    public class ARegistration : IRegistration
+    public class RegistrationService : IRegistration
     {
         private readonly CheckStatusAccount checkStatusAccount = new CheckStatusAccount();
         private readonly UserAccountIpQuery userAccountIpQuery = new UserAccountIpQuery();

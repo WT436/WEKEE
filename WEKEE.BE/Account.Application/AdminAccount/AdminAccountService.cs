@@ -15,7 +15,7 @@ using Utils.Exceptions;
 
 namespace Account.Application.AdminAccount
 {
-    public class AAdminAccount : IAdminAccount
+    public class AdminAccountService : IAdminAccount
     {
         private readonly JoinQuery _joinQuery = new JoinQuery();
         private readonly UserAccountQuery _accountQuery = new UserAccountQuery();

@@ -2,9 +2,10 @@
 using Product.Application.Interface;
 using Product.Domain.ObjectValues.Input;
 using Product.Domain.Shared.DataTransfer;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Product.API.Src.CategoryProductAPI
+namespace Product.API.Src.ProductAreas
 {
     public class CategoryProductController : ControllerBase
     {
@@ -30,5 +31,14 @@ namespace Product.API.Src.CategoryProductAPI
             var data = await _categoryProduct.GetAllPageListCategory(input: input);
             return Ok(data);
         }
+
+        [HttpPatch]
+        [Route("/get-all")]
+        public async Task<IActionResult> ChangeNumberOrder([FromBody]List<CategoryProductNumberOrderDto> input)
+        {
+            var numberChange =await _categoryProduct.ChangeNumberOrder(input);
+            return Ok();
+        }
+
     }
 }

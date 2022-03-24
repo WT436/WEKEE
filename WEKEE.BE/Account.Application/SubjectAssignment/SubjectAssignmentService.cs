@@ -13,7 +13,7 @@ using Account.Infrastructure.BoundedContext;
 
 namespace Account.Application.SubjectAssignment
 {
-    public class ASubjectAssignment : ISubjectAssignment
+    public class SubjectAssignmentService : ISubjectAssignment
     {
         private readonly SubjectQuery _subjectQuery = new SubjectQuery();
         private readonly SubjectAssignmentQuery _subjectAssignmentQuery = new SubjectAssignmentQuery();

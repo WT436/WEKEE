@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.ChangePassword
 {
-    public class AChangePassword : IChangePassword
+    public class ChangePasswordService : IChangePassword
     {
         private readonly CheckAccountDomain checkAccountDomain = new CheckAccountDomain();
         private readonly UserAccountQuery userAccountQuery = new UserAccountQuery();

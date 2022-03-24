@@ -16,7 +16,7 @@ using Utils.Exceptions;
 
 namespace Account.Application.Atomic
 {
-    public class AAtomic : IAtomic
+    public class AtomicService : IAtomic
     {
         private readonly AtomicQuery atomicQuery = new AtomicQuery();
         private readonly UserAccountQuery accountQuery = new UserAccountQuery();

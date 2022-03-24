@@ -13,5 +13,6 @@ namespace Product.Application.Interface
         Task<int?> CreateCategory(CategoryProductInsertDto cp);
 
         Task<PagedListOutput<CategoryProductReadDto>> GetAllPageListCategory(SearchOrderPageInput input);
+        Task<int> ChangeNumberOrder(List<CategoryProductNumberOrderDto> input);
     }
 }

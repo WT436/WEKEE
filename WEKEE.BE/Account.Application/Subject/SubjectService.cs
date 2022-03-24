@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.Subject
 {
-    public class ASubject : ISubject
+    public class SubjectService : ISubject
     {
         private readonly SubjectQuery _subjectQuery = new SubjectQuery();
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.Atomic
 {
-    public class AAtomicAssociate : IAtomicAssociate
+    public class AtomicAssociateService : IAtomicAssociate
     {
         public async Task<AtomicAssociateDto> GetAtomicByIdAction(PagedListInput pagedListInput)
         {

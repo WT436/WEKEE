@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.LoginAccount
 {
-    public class ALoginAccount : ILoginAccount
+    public class LoginAccountService : ILoginAccount
     {
         private readonly CheckAccountDomain checkAccountDomain = new CheckAccountDomain();
         private readonly UserAccountQuery userAccountQuery = new UserAccountQuery();

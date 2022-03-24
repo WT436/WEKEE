@@ -13,32 +13,34 @@ using System.Text;
 using System.Threading.Tasks;
 using Utils.Exceptions;
 
-namespace Account.Application.Permission
+namespace Account.Application.Role
 {
-    public class APermission : IPermission
+    public class RoleService : IRole
     {
-        private readonly PermissionQuery _permissionQuery = new PermissionQuery();
+        private readonly RoleQuery _roleQuery = new RoleQuery();
         private readonly UserAccountQuery _accountQuery = new UserAccountQuery();
 
-        public int EditPermission(PermissionDto permission)
+        public int EditRole(RoleDto role)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> InsertPermissionAsync(PermissionDto permission)
+        public Task<int> InsertRoleAsync(RoleDto role)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<PagedListOutput<PermissionDto>> ListPermissionBasicAsync(SearchOrderPageInput searchOrderPageInput)
+        public async Task<PagedListOutput<RoleDto>> ListRoleBasicAsync(SearchOrderPageInput searchOrderPageInput)
         {
-            var listData = await _permissionQuery.GetAllListPageAsync(searchOrderPageInput);
-            return new PagedListOutput<PermissionDto>
+            var listData = await _roleQuery.GetAllListPageAsync(searchOrderPageInput);
+            return new PagedListOutput<RoleDto>
             {
                 Items = listData.Items.Select(emp =>
                 {
-                    var dataReturn = MappingData.InitializeAutomapper().Map<PermissionDto>(emp);
+                    var dataReturn = MappingData.InitializeAutomapper().Map<RoleDto>(emp);
                     dataReturn.CreateByName = _accountQuery.GetNameAccount(emp.CreateBy);
+                    var dataRoleMain = emp.RoleId == 0 ? null : _roleQuery.GetById(emp.RoleId);
+                    dataReturn.RoleMainName = dataRoleMain == null ? "" : dataRoleMain.Name;
                     return dataReturn;
                 }).ToList(),
                 PageIndex = listData.PageIndex,
@@ -48,12 +50,12 @@ namespace Account.Application.Permission
             };
         }
 
-        public int RemovePermission(List<int> ids)
+        public int RemoveRole(List<int> ids)
         {
             throw new NotImplementedException();
         }
 
-        public int UpdatePermission(List<int> ids)
+        public int UpdateRole(List<int> ids)
         {
             throw new NotImplementedException();
         }

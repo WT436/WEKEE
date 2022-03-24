@@ -12,14 +12,14 @@ using Utils.Cache;
 
 namespace Account.Application.CacheSession
 {
-    public class ACacheSession : ICacheSession
+    public class CacheSessionService : ICacheSession
     {
         private readonly static MemoryCache myCache = new MemoryCache(new MemoryCacheOptions());
         private ICacheBase _cache => new CacheMemoryHelper(myCache);
 
         private readonly string KEY_SESION;
 
-        public ACacheSession()
+        public CacheSessionService()
         {
             KEY_SESION = new ConfigurationBuilder()
                                                .SetBasePath(Directory.GetCurrentDirectory())
