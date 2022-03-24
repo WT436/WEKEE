@@ -72,6 +72,13 @@ namespace Product.Infrastructure.ModelQuery
             unitOfWork.GetRepository<CategoryProduct>().Update(input);
             return unitOfWork.SaveChanges();
         }
+
+        public int Update(CategoryProduct input)
+        {
+            unitOfWork.GetRepository<CategoryProduct>().Update(input);
+            return unitOfWork.SaveChanges();
+        }
+
         public Task<int> SaveChangeAsync()
         {
             return unitOfWork.SaveChangesAsync();

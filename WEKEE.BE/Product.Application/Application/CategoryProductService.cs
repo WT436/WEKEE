@@ -51,7 +51,7 @@ namespace Product.Application.Application
                     // bản ghi này
                     var categoryFirst = await _categoryProductQuery.GetDataById(id: item.Id);
                     var data = CategoryProductCore.CategoryProductsSwapNumberOrder(categoryFirst, categoryLate);
-                    if(data!=null)
+                    if (data != null)
                     {
                         _categoryProductQuery.Update(data);
                         sumUpdate++;
@@ -118,5 +118,25 @@ namespace Product.Application.Application
                 TotalCount = totalCount
             };
         }
+
+        public async Task<int> UpdateInfoCategory(CategoryProductUpdateDto input)
+        {
+            // check name , url exsts
+            if (await _categoryProductQuery.CheckAnyNameAndUrl(input.NameCategory, url: input.UrlCategory))
+            {
+                throw new ClientException(422, "Name_Or_Url");
+            }
+            else
+            {
+                var data = await _categoryProductQuery.GetDataById(input.Id);
+                data.NameCategory = input.NameCategory;
+                data.UrlCategory = input.UrlCategory;
+                data.IconCategory = input.IconCategory;
+                data.IsEnabled = input.IsEnabled;
+                data.UpdatedOnUtc = DateTime.Now;
+                return _categoryProductQuery.Update(data);
+            }
+        }
+
     }
 }

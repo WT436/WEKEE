@@ -34,11 +34,25 @@ namespace Product.API.Src.ProductAreas
 
         [HttpPatch]
         [Route("/get-all")]
-        public async Task<IActionResult> ChangeNumberOrder([FromBody]List<CategoryProductNumberOrderDto> input)
+        public async Task<IActionResult> ChangeNumberOrder([FromBody] List<CategoryProductNumberOrderDto> input)
         {
-            var numberChange =await _categoryProduct.ChangeNumberOrder(input);
-            return Ok();
+            var numberChange = await _categoryProduct.ChangeNumberOrder(input);
+            return Ok(numberChange);
         }
 
+        [HttpPut]
+        [Route("/get-all")]
+        public async Task<IActionResult> ChangeCategory([FromBody] CategoryProductUpdateDto input)
+        {
+            var numberChange = await _categoryProduct.UpdateInfoCategory(input);
+            return Ok(numberChange);
+        }
+
+        [HttpPut]
+        [Route("/change-enlable")]
+        public async Task<IActionResult> ChangeIsEnlable([FromBody] List<Entitys> input)
+        {
+            return Ok();
+        }
     }
 }

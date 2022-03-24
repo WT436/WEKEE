@@ -14,5 +14,7 @@ namespace Product.Application.Interface
 
         Task<PagedListOutput<CategoryProductReadDto>> GetAllPageListCategory(SearchOrderPageInput input);
         Task<int> ChangeNumberOrder(List<CategoryProductNumberOrderDto> input);
+
+        Task<int> UpdateInfoCategory(CategoryProductUpdateDto input);
     }
 }
