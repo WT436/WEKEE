@@ -1,10 +1,10 @@
 var abp = abp || {};
 (function() {
     // system
-    abp.serviceAccountAPI = "https://localhost:44324/v1/api";
-    abp.serviceAlbumAPI = "https://localhost:44325/v1/api";
-    abp.serviceAlbumCss = "https://localhost:44325/album-resources/css";
-    abp.serviceAlbumImage = "https://localhost:44325/album-resources/album";
+    abp.serviceAccountAPI = "https://localhost:44327/v1/api";
+    abp.serviceAlbumAPI = "https://localhost:44327/v1/api";
+    abp.serviceAlbumCss = "https://localhost:44327/album-resources/css";
+    abp.serviceAlbumImage = "https://localhost:44327/album-resources/album";
     abp.typesWeb = {};
     abp.version = {};
     abp.timeout = {};

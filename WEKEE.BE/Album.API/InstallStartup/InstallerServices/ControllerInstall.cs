@@ -16,6 +16,7 @@ namespace Album.API.InstallStartup.InstallerServices
 
                 op.KnownProxies.Add(IPAddress.Parse("You"));
             });
+
             services.AddControllers(op=>
             {
                 op.Filters.Add(new ValidationFilterAttribute());

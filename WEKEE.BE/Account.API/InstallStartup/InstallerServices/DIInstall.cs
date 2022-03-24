@@ -35,31 +35,7 @@ namespace Account.API.InstallStartup.InstallerServices
             services.AddTransient<IMailService, MailService>();
             services.AddTransient<ICacheBase, CacheMemoryHelper>();
 
-            // DI Account User
-            services.AddTransient<IRegistration, ARegistration>();
-            services.AddTransient<ILoginAccount, ALoginAccount>();
-            services.AddTransient<IChangePassword, AChangePassword>();
-            services.AddTransient<ICheckRole, ACheckRole>();
-            services.AddTransient<IProcessAccount, AProcessAccount>();
-            services.AddTransient<IProcessIPAccount, AProcessIPAccount>();
-            services.AddTransient<ICacheSession, ACacheSession>();
-            services.AddTransient<IInfomationUser, AInfomationUser>();
-
-            // DI Role
-            services.AddTransient<IResource, AResource>();
-            services.AddTransient<IAtomic, AAtomic>();
-            services.AddTransient<IAction, AAction>();
-            services.AddTransient<IPermission, APermission>();
-            services.AddTransient<IRole, ARole>();
-            services.AddTransient<IResourceAction, AResourceAction>();
-            services.AddTransient<IActionAssignment, AActionAssignment>();
-            services.AddTransient<IPermissionAssignment, APermissionAssignment>();
-            services.AddTransient<IAccountAdminProcess, AAccountAdminProcess>();
-
-            // DI Account 
-            services.AddTransient<IAdminAccount, AAdminAccount>();
-            services.AddTransient<ISubjectAssignment, ASubjectAssignment>();
-            services.AddTransient<ISubject, ASubject>();
+           
 
         }
     }

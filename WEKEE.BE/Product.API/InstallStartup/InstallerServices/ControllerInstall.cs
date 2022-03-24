@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Product.API.FilterAttributeCore.AuthorizationFilter;
 using Microsoft.AspNetCore.Builder;
 using System.Net;
+using Product.API.FilterAttributeCore.ResourceFilters;
 
 namespace Product.API.InstallStartup.InstallerServices
 {
@@ -18,11 +19,16 @@ namespace Product.API.InstallStartup.InstallerServices
             });
             services.AddControllers(op=>
             {
-                op.Filters.Add(new ValidationFilterAttribute());
+                //AuthorizationFilter
                 //op.Filters.Add(new ProcessAuthorizationFilter());
+                //ResourceFilters
+                op.Filters.Add(new CacheResourceFilter());
+                //ActionFilters
+                op.Filters.Add(new ValidationFilterAttribute());
                 op.Filters.Add(new ExcutionTimeFilterAttribute());
-                op.Filters.Add(new ProcessExceptionFilterAttribute());
                 op.Filters.Add(new ModelValidationFilterAttribute());
+                //ExceptionFilter
+                op.Filters.Add(new ProcessExceptionFilterAttribute());
             });
         }
     }

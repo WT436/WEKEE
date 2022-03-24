@@ -34,7 +34,7 @@ export default function LoginComponent(props: ILoginFormProps) {
     // facebook
     return (
         <div className="WBYuKwbWag">
-            <img className="dXZSevIeue" src="https://localhost:44324/StaticFiles/login/image/facebook.png" alt="" />
+            <img className="dXZSevIeue" src="https://localhost:44327/album-resources/album/imageSystem/facebook.png" alt="" />
             <div className="fFgTYwFwNM">Đăng Nhập</div>
             <Form
                 name="basic"
@@ -85,9 +85,9 @@ export default function LoginComponent(props: ILoginFormProps) {
                 </div>
                 <div className="gofuVBTQrx">
                     <span>Hoặc</span>
-                    <img title={L("Login.LoginWithFacebook")} src='https://localhost:44324/StaticFiles/login/image/facebook.png' />
-                    <img title={L("Login.LoginWithYoutube")} src='https://localhost:44324/StaticFiles/login/image/google.png' />
-                    <img title={L("Login.LoginWithZalo")} src='https://localhost:44324/StaticFiles/login/image/zalo.png' />
+                    <img title={L("Login.LoginWithFacebook")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
+                    <img title={L("Login.LoginWithYoutube")} src='https://localhost:44327/album-resources/album/imageSystem/google.png' />
+                    <img title={L("Login.LoginWithZalo")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
                 </div>
             </Form>
         </div>

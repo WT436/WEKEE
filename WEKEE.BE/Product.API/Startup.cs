@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Product.API
 {
@@ -19,6 +21,12 @@ namespace Product.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors("CorsPolicy");
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "RootFiles")),
+                RequestPath = "/album-resources"
+            });
 
             var swaggerConfigStartup = new SwaggerConfigStartup();
             Configuration.GetSection(nameof(SwaggerConfigStartup)).Bind(swaggerConfigStartup);

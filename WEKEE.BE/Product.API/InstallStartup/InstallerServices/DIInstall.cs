@@ -15,7 +15,7 @@ namespace Product.API.InstallStartup.InstallerServices
             // DI default - common
             services.AddTransient<IJwtHandler, JwtHandler>();
             services.AddTransient<IMailService, MailService>();
-            services.AddTransient<ICacheBase, CacheMemoryHelper>();
+            services.AddSingleton<ICacheBase, CacheMemoryHelper>();
             
             // CategoryProduct
             services.AddTransient<ICategoryProduct, CategoryProductService>();

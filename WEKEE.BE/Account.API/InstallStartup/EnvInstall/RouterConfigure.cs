@@ -14,10 +14,7 @@ namespace Account.API.InstallStartup.EnvInstall
             app.UseSession();
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                        name: "AccountAreas",
-                        template: "{controller=LoginAccount}/{action=Index}/{id?}",
-                 new string[] { "Account.API.Src.AccountAreas" });
+              
 
                 routes.MapRoute(
                         name: "Default",

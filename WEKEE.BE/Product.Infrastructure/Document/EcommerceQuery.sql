@@ -21,7 +21,7 @@ BEGIN
 END
 GO;
 	SELECT 
-		CP.id,
+		CP.id AS ID,
 		CP.nameCategory,
 		CP.urlCategory,
 		CP.iconCategory ,	
@@ -34,7 +34,7 @@ GO;
 		CP.UpdatedOnUtc
 	FROM CategoryProduct AS CP
 	WHERE nameCategory LIKE '%S%'
-	  AND urlCategory LIKE '%S%'
+	AND urlCategory LIKE '%S%'
 	ORDER BY id ASC
 	OFFSET ((2 - 1) * 2) ROWS
 	FETCH NEXT 2 ROWS ONLY;
@@ -49,3 +49,42 @@ DECLARE @query nvarchar(max) = 'SELECT *
 	FETCH NEXT 5 ROWS ONLY;
 	';
 EXEC (@query);
+
+SELECT * 
+FROM CategoryProduct AS C
+WHERE FREETEXT(C.*,'SEARCH')
+
+     SELECT                                                                                           
+  		CP.id                 AS 'Id',                                                                
+  		CP.nameCategory       AS 'NameCategory',                                                      
+  		CP.urlCategory        AS 'UrlCategory',                                                       
+  		CP.iconCategory      AS 'IconCategory',                                                      
+  		CP.levelCategory     AS 'LevelCategory',                                                     
+  		CP.categoryMain      AS 'CategoryMain',                                                      
+  		(SELECT nameCategory FROM CategoryProduct where id = CP.categoryMain) AS 'CategoryMainName',  
+  		CP.numberOrder        AS 'NumberOrder',                                                       
+  		CP.isEnabled          AS 'IsEnabled',                                                         
+  		CP.CreatedOnUtc       AS 'CreatedOnUtc',                                                      
+  		CP.UpdatedOnUtc       AS 'UpdatedOnUtc '                                                      
+  	FROM CategoryProduct      AS CP                                                                
+  	WHERE nameCategory LIKE '%S%'                                                                   
+  	  AND urlCategory LIKE '%S%'                                                                    
+  	ORDER BY id ASC                                                                                 
+  	OFFSET((2 - 1) * 2) ROWS   
+
+   SELECT                                                                                           
+  		CP.id                 AS 'Id',                                                              
+  		CP.nameCategory       AS 'NameCategory',                                                    
+  		CP.urlCategory        AS 'UrlCategory',                                                     
+  		CP.iconCategory      AS 'IconCategory',                                                     
+  		CP.levelCategory     AS 'LevelCategory',                                                    
+  		CP.categoryMain      AS 'CategoryMain',                                                     
+  		(SELECT nameCategory FROM CategoryProduct where id = CP.categoryMain) AS 'CategoryMainName',
+  		CP.numberOrder        AS 'NumberOrder',                                                     
+  		CP.isEnabled          AS 'IsEnabled',                                                       
+  		CP.CreatedOnUtc       AS 'CreatedOnUtc',                                                    
+  		CP.UpdatedOnUtc       AS 'UpdatedOnUtc '                                                    
+  	FROM CategoryProduct      AS CP                                                                 
+  ORDER BY Id ASC 
+  OFFSET((1 - 1) * 1) ROWS                                                                        
+  FETCH NEXT 1 ROWS ONLY                                                                                                                                                                                                                           

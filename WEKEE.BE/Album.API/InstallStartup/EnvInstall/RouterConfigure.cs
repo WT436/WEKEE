@@ -15,6 +15,11 @@ namespace Album.API.InstallStartup.EnvInstall
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                      name: "AccountAreas",
+                      template: "{controller=LoginAccount}/{action=Index}/{id?}",
+                new string[] { "Account.API.Src.AccountAreas" });
+
+                routes.MapRoute(
                        name: "FileAreas",
                        template: "{controller=Upload}/{action=Index}/{id?}",
                 new string[] { "Album.API.Src.FileAreas" });
