@@ -10,7 +10,7 @@ namespace Product.API.Src.FileAreas
     {
         public IActionResult Index()
         {
-            return View();
+            return Ok();
         }
     }
 }

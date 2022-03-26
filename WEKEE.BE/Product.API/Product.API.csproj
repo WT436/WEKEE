@@ -31,13 +31,16 @@
   <ItemGroup>
     <ProjectReference Include="..\Account.Application\Account.Application.csproj" />
     <ProjectReference Include="..\Product.Application\Product.Application.csproj" />
+    <ProjectReference Include="..\System.Application\System.Application.csproj" />
     <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />
     <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Log\" />
     <Folder Include="RootFiles\album\evaluates\" />
     <Folder Include="RootFiles\album\file\" />
+    <Folder Include="RootFiles\album\category\" />
     <Folder Include="RootFiles\album\post\" />
     <Folder Include="RootFiles\album\product\" />
     <Folder Include="RootFiles\album\rootevaluates\" />

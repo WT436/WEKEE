@@ -1,7 +1,9 @@
-﻿using Product.Domain.Shared.Entitys;
+﻿using Product.Domain.Shared.DataTransfer;
+using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnitOfWork;
@@ -32,22 +34,31 @@ namespace Product.Infrastructure.ModelQuery
             }
         }
 
-        public async Task<int> GetNumberOrderEnd(int? level)
+        public async Task<int> GetNumberOrderEnd(int? level, int? categoryMain)
         {
             try
             {
                 return await unitOfWork.GetRepository<CategoryProduct>()
-                                       .MaxAsync(predicate: c => c.LevelCategory == level, selector: cp => cp.NumberOrder);
+                                       .MaxAsync(predicate: c => c.LevelCategory == level && c.CategoryMain == categoryMain,
+                                                 selector: cp => cp.NumberOrder);
             }
             catch (Exception ex)
             {
-                return 1;
+                return 0;
             }
         }
 
         public async Task<bool> ExistsCategoryMain(int? categoryMain)
         => await unitOfWork.GetRepository<CategoryProduct>()
                            .ExistsAsync(c => c.CategoryMain == categoryMain);
+
+        public async Task<int> GetLevelCategoryMain(int? categoryMain)
+        {
+            CategoryProduct data = await unitOfWork.GetRepository<CategoryProduct>()
+                                                   .GetFirstOrDefaultAsync(predicate: c => c.Id == categoryMain);
+
+            return data == null ? -1 : Convert.ToInt32(data.LevelCategory + 1);
+        }
 
         public int Insert(CategoryProduct categoryProduct)
         {
@@ -83,5 +94,32 @@ namespace Product.Infrastructure.ModelQuery
         {
             return unitOfWork.SaveChangesAsync();
         }
+
+        public async Task<List<CategoryProductReadMapDto>> GetMapCategoryProduct()    
+        => (unitOfWork.GetRepository<CategoryProduct>()
+                    .GetAll(predicate: m => m.LevelCategory == 1))
+                    .ToList()
+                    .Select(n1 => new CategoryProductReadMapDto()
+                    {
+                        Id = n1.Id,
+                        NameCategory = n1.NameCategory,
+                        Items = (unitOfWork.GetRepository<CategoryProduct>()
+                                           .GetAll(predicate: m2 => m2.LevelCategory == 2 && m2.CategoryMain == n1.Id))
+                                           .ToList()
+                                           .Select(n2 => new CategoryProductReadMapDto
+                                           {
+                                               Id = n2.Id,
+                                               NameCategory = n2.NameCategory,
+                                               Items = (unitOfWork.GetRepository<CategoryProduct>()
+                                                                  .GetAll(predicate: m3 => m3.LevelCategory == 3 && m3.CategoryMain == n2.Id))
+                                                                  .ToList()
+                                                                  .Select(n3 => new CategoryProductReadMapDto
+                                                                  {
+                                                                      Id = n3.Id,
+                                                                      NameCategory = n3.NameCategory,
+                                                                      Items = null
+                                                                  }).ToList()
+                                           }).ToList()
+                    }).ToList();
     }
 }

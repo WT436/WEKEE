@@ -1,5 +1,7 @@
 import { call, put, takeLatest, race } from "redux-saga/effects";
 import {
+  CategoryMapCompleted,
+  CategoryMapError,
   createCategoryAdminCompleted,
   createCategoryAdminError,
   getCategoryAdminCompleted,
@@ -10,7 +12,6 @@ import ActionTypes from "./constants";
 import service from "./services";
 
 export default function* watchLoginRequestStart() {
-  yield takeLatest(ActionTypes.WATCH_PAGE_START, requestLogin);
 
   yield takeLatest(
     ActionTypes.CREATE_CATEGORY_ADMIN_START,
@@ -18,16 +19,32 @@ export default function* watchLoginRequestStart() {
   );
 
   yield takeLatest(ActionTypes.GET_CATEGORY_ADMIN_START, getCategoryAdminStart);
+
+  yield takeLatest(ActionTypes.CATEGORY_MAP_START, getCategoryMap);
+}
+
+function* getCategoryMap(){
+  try {
+    const { output } = yield race({
+      output: call(service.getCategoryMapService),
+    });
+    console.log(output)
+    if (output) {
+      yield put(CategoryMapCompleted(output));
+    } else {
+      yield put(CategoryMapError());
+    }
+    
+  } catch (error) {
+    yield put(CategoryMapError());
+  }
 }
 
 function* getCategoryAdminStart(input: any) {
   try {
     const { output } = yield race({
       output: call(
-        service.getCategoryAdminStart,
-        input.payload.level,
-        input.payload.categorymain,
-        input.payload.orderNumber
+        service.getCategoryAdminStart, input.payload
       ),
     });
     if (output) {
@@ -52,12 +69,5 @@ function* createCategoryAdminStart(input: any) {
     }
   } catch (error) {
     yield put(createCategoryAdminError());
-  }
-}
-
-function* requestLogin(input: any) {
-  try {
-  } catch (error) {
-    yield put(watchPageError());
   }
 }

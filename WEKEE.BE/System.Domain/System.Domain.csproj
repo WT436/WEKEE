@@ -5,6 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Shared\log4net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Shared\log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Aggregate\" />
     <Folder Include="BoundedContext\" />
     <Folder Include="CoreDomain\" />
@@ -12,7 +24,6 @@
     <Folder Include="EventDomain\" />
     <Folder Include="ServicesDomain\" />
     <Folder Include="Services\" />
-    <Folder Include="Shared\" />
     <Folder Include="UL\" />
   </ItemGroup>
 

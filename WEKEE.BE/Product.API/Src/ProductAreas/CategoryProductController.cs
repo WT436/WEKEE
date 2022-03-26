@@ -16,7 +16,7 @@ namespace Product.API.Src.ProductAreas
         }
 
         [HttpPost]
-        [Route("/create-category")]
+        [Route("/v1/api/create-category")]
         public async Task<IActionResult> Index([FromBody] CategoryProductInsertDto categoryProductDto)
         {
             var data = await _categoryProduct.CreateCategory(cp: categoryProductDto);
@@ -25,7 +25,7 @@ namespace Product.API.Src.ProductAreas
         }
 
         [HttpGet]
-        [Route("/get-all")]
+        [Route("/v1/api/get-all")]
         public async Task<IActionResult> SelectAll(SearchOrderPageInput input)
         {
             var data = await _categoryProduct.GetAllPageListCategory(input: input);
@@ -33,7 +33,7 @@ namespace Product.API.Src.ProductAreas
         }
 
         [HttpPatch]
-        [Route("/get-all")]
+        [Route("/v1/api/get-all")]
         public async Task<IActionResult> ChangeNumberOrder([FromBody] List<CategoryProductNumberOrderDto> input)
         {
             var numberChange = await _categoryProduct.ChangeNumberOrder(input);
@@ -41,7 +41,7 @@ namespace Product.API.Src.ProductAreas
         }
 
         [HttpPut]
-        [Route("/get-all")]
+        [Route("/v1/api/get-all")]
         public async Task<IActionResult> ChangeCategory([FromBody] CategoryProductUpdateDto input)
         {
             var numberChange = await _categoryProduct.UpdateInfoCategory(input);
@@ -49,10 +49,19 @@ namespace Product.API.Src.ProductAreas
         }
 
         [HttpPut]
-        [Route("/change-enlable")]
+        [Route("/v1/api/change-enlable")]
         public async Task<IActionResult> ChangeIsEnlable([FromBody] List<Entitys> input)
         {
-            return Ok();
+            var numberChange = await _categoryProduct.ChangeEnableCategory(input);
+            return Ok(numberChange);
+        }
+
+        [HttpGet]
+        [Route("/v1/api/get-map-category")]
+        public async Task<IActionResult> GetMapCategory()
+        {
+            var data = await _categoryProduct.GetMapCategory();
+            return Ok(data);
         }
     }
 }

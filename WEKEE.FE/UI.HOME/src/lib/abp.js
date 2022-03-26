@@ -2,9 +2,9 @@ var abp = abp || {};
 (function() {
     // system
     abp.serviceAccountAPI = "https://localhost:44327/v1/api";
-    abp.serviceAlbumAPI = "https://localhost:44327/v1/api";
+    abp.serviceAlbumAPI = "https://localhost:44327/v1/api/";
     abp.serviceAlbumCss = "https://localhost:44327/album-resources/css";
-    abp.serviceAlbumImage = "https://localhost:44327/album-resources/album";
+    abp.serviceAlbumImage = "https://localhost:44327/album-resources/";
     abp.typesWeb = {};
     abp.version = {};
     abp.timeout = {};

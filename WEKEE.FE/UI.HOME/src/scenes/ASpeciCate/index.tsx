@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { useInjectReducer, useInjectSaga } from '../../redux/reduxInjectors';
-import { CategoryDtos } from '../ACategory/dtos/categoryDtos';
+import { CategoryProductReadDto } from '../ACategory/dtos/CategoryProductReadDto';
 import {
     createSpecificationsStart, getCategotyMainStart, getNameClassifyValuesSpecificationsStart,
     getNameKeySpecificationsStart, searchSpecificationsStart
@@ -120,7 +120,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
     ];
 
     const rowSelection = {
-        onChange: (selectedRowKeys: React.Key[], selectedRows: CategoryDtos[]) => {
+        onChange: (selectedRowKeys: React.Key[], selectedRows: CategoryProductReadDto[]) => {
 
         }
     };

@@ -17,6 +17,24 @@ namespace Product.Domain.ObjectValues.Const
         public const string CREATE_DATE_UTC_CATEGORY = "CREATE_DATE_UTC_CATEGORY";
         public const string UPDATE_DATE_UTC_CATEGORY = "UPDATE_DATE_UTC_CATEGORY";
 
+        public static string CONVERT_PROPERTY_CATEGORY(string key, string value)
+        {
+            return key switch
+            {
+                ID_CATEGORY => $"Id  = {value} ",
+                NAME_CATEGORY => $"NameCategory LIKE '%{value}%' ",
+                URL_CATEGORY => $"UrlCategory LIKE '%{value}%' ",
+                ICON_CATEGORY => $"IconCategory LIKE '%{value}%' ",
+                LEVEL_CATEGORY => $"LevelCategory = {value} ",
+                MAIN_CATEGORY => $"CategoryMain = {value} ",
+                NUMBER_CATEGORY => $"NumberOrder = {value} ",
+                ENABLED_CATEGORY => $"IsEnabled = {value} ",
+                CREATE_DATE_UTC_CATEGORY => $"CreatedOnUtc = '{value}' ",
+                UPDATE_DATE_UTC_CATEGORY => $"UpdatedOnUtc = '{value}' ",
+                _ => $"Id = {value}",
+            };
+        }
+
         public static string CONVERT_PROPERTY_CATEGORY(string key)
         {
             return key switch

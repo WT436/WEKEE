@@ -1,6 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
-import { CategoryDtos } from './dtos/categoryDtos';
+import { CategoryProductReadDto } from './dtos/CategoryProductReadDto';
+import { CategoryProductReadMapDto } from './dtos/CategoryProductReadMapDto';
 
 export interface ACategoryState {
     readonly loading: boolean;
@@ -10,7 +11,8 @@ export interface ACategoryState {
     readonly totalCount: number;
     readonly totalPages: number;
 
-    readonly categoryDtos:CategoryDtos[]
+    readonly categoryDtos: CategoryProductReadDto[]
+    readonly optionsCategory: CategoryProductReadMapDto[]
 }
 
 export type ACategoryActions = ActionType<typeof actions>;

@@ -14,25 +14,27 @@ namespace Product.API.InstallStartup.EnvInstall
             app.UseSession();
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                       name: "Product.API.Src.ProductAreas",
-                       template: "{controller=CategoryProduct}/{action=Index}/{id?}",
-                new string[] { "Product.API.Src.ProductAreas" });
+
 
                 routes.MapRoute(
                        name: "Product.API.Src.FileAreas",
-                       template: "{controller=CategoryProduct}/{action=Index}/{id?}",
+                       template: "{controller=Watch}/{action=Index}/{id?}",
                 new string[] { "Product.API.Src.FileAreas" });
 
                 routes.MapRoute(
-                      name: "Product.API.Src.AccountAreas",
+                      name: "Product.API.Src.ProductAreas",
                       template: "{controller=CategoryProduct}/{action=Index}/{id?}",
+               new string[] { "Product.API.Src.ProductAreas" });
+
+                routes.MapRoute(
+                      name: "Product.API.Src.AccountAreas",
+                      template: "{controller=Home}/{action=Index}/{id?}",
                new string[] { "Product.API.Src.AccountAreas" });
 
                 routes.MapRoute(
                         name: "Default",
                         template: "{controller=Invalid}/{action=Index}/{id?}",
-                 new string[] { "Album.API.Src.Controllers" });
+                 new string[] { "Product.API.Src.FileAreas" });
             });
         }
     }

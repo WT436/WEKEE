@@ -574,9 +574,9 @@ class Header extends AppComponentBase<IHeaderProps, IHeaderState> {
                     <link rel="stylesheet" href={abp.serviceAlbumCss + "/home.css"} />
                 </Helmet>
                 <Row className="VTvJenqWvs">
-                    <Col span={10}>Để cái gì đó ở đây</Col>
+                    <Col span={10}>website not responsive</Col>
                     <Col span={4}></Col>
-                    <Col span={10}>Để cái gì đó ở đây</Col>
+                    <Col span={10}>website not responsive</Col>
                 </Row>
                 <Row className='hdfutm'>
                     <Col span={4} className='hdfutmlg'>

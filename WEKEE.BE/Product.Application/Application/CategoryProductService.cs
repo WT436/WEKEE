@@ -20,6 +20,23 @@ namespace Product.Application.Application
         // check data With server
         CategoryProductQuery _categoryProductQuery = new CategoryProductQuery();
 
+        public async Task<int> ChangeEnableCategory(List<Entitys> id)
+        {
+            int countUpdate = 0;
+            foreach (var category in id)
+            {
+                var data = await _categoryProductQuery.GetDataById(category.Id);
+                if (data != null)
+                {
+                    data.IsEnabled = !data.IsEnabled;
+                    data.UpdatedOnUtc = DateTime.Now;
+                    _categoryProductQuery.Update(data);
+                    countUpdate++;
+                }
+            }
+            return countUpdate;
+        }
+
         public async Task<int> ChangeNumberOrder(List<CategoryProductNumberOrderDto> input)
         {
             if (input == null || input.Count == 0)
@@ -73,21 +90,28 @@ namespace Product.Application.Application
                     cp.IconCategory = DataDefault.ICON_CATEGORY_PRODUCT;
                 }
 
-                // check level and number
-                int NumberOrderEnd = await _categoryProductQuery.GetNumberOrderEnd(level: cp.LevelCategory);
+                // từ category Main => level = level Categorymain + 1
+                var levelCategogyMain = await _categoryProductQuery.GetLevelCategoryMain(cp.CategoryMain);
 
-                // Kiểm tra tồn tại của category main
-                if (!await _categoryProductQuery.ExistsCategoryMain(cp.CategoryMain) && cp.CategoryMain != 1)
+                if (levelCategogyMain == -1)
                 {
-                    throw new ClientException(422, "Category Main");
+                    throw new ClientException(422, "Category-Main");
                 }
+                // Từ category Main + level => NumberOrderMax
+
+                // Kiểm tra tồn tại của category main và level của chúng
+
+
+                // check level and number
+                int NumberOrderEnd = await _categoryProductQuery.GetNumberOrderEnd(level: levelCategogyMain,
+                                                                                   categoryMain: cp.CategoryMain);
 
                 var cateInsert = new CategoryProduct
                 {
                     NameCategory = cp.NameCategory,
                     UrlCategory = cp.UrlCategory,
                     IconCategory = cp.IconCategory,
-                    LevelCategory = cp.LevelCategory,
+                    LevelCategory = Convert.ToInt32(levelCategogyMain),
                     CategoryMain = cp.CategoryMain,
                     NumberOrder = NumberOrderEnd + 1,
                     IsEnabled = cp.IsEnabled,
@@ -99,7 +123,7 @@ namespace Product.Application.Application
             }
             else
             {
-                throw new ClientException(422, "Name Or Url");
+                throw new ClientException(422, "Name-Or-Url");
             }
         }
 
@@ -117,6 +141,28 @@ namespace Product.Application.Application
                 TotalPages = (totalCount / input.PageSize),
                 TotalCount = totalCount
             };
+        }
+
+        public async Task<List<CategoryProductReadMapDto>> GetMapCategory()
+        {
+            int a = 4;
+            int b = 0;
+            int c = a / b;
+
+            if (1 != 0) throw new ClientException(402, "Error");
+            // read all category main category main == 1
+            var data = await _categoryProductQuery.GetMapCategoryProduct();
+            return data;
+        }
+
+        public Task<int> MoveCategoryMain(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CategoryProductReadChildrenDto> SearchAllCategory(SearchOrderPageInput input)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<int> UpdateInfoCategory(CategoryProductUpdateDto input)

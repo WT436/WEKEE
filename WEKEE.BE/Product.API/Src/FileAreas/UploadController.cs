@@ -39,7 +39,7 @@ namespace Product.API.Src.FileAreas
             }); ;
         }
 
-        [Route(UploadRouter.Icon.PATCH)]
+        [Route("v1/api/upload-icon")]
         [HttpPost]
         public async Task<IActionResult> UploadIconImage(IFormFile file)
         {

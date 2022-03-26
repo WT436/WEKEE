@@ -11,8 +11,9 @@ const makeSelectPageSize = () => createSelector(select, substate => substate.pag
 const makeSelectTotalCount = () => createSelector(select, substate => substate.totalCount);
 const makeSelectTotalPages = () => createSelector(select, substate => substate.totalPages);
 const makeSelectCategoryDtos = () => createSelector(select, substate => substate.categoryDtos);
+const makeSelectCategoryMapDtos = () => createSelector(select, substate => substate.optionsCategory);
 
 export {
     makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize,
-    makeSelectTotalCount, makeSelectTotalPages,makeSelectCategoryDtos
+    makeSelectTotalCount, makeSelectTotalPages,makeSelectCategoryDtos,makeSelectCategoryMapDtos
 };

@@ -16,9 +16,9 @@ namespace Product.Domain.Shared.DataTransfer
 
         public string IconCategory { get; set; }
 
-        [Required(ErrorMessage = MessageOutput.NOT_NULL)]
-        [Range(1, int.MaxValue, ErrorMessage = MessageOutput.ENTER_VALUE_BIGGER_THAN)]
-        public int LevelCategory { get; set; }
+        //[Required(ErrorMessage = MessageOutput.NOT_NULL)]
+        //[Range(1, int.MaxValue, ErrorMessage = MessageOutput.ENTER_VALUE_BIGGER_THAN)]
+        //public int LevelCategory { get; set; }
 
         [Required(ErrorMessage = MessageOutput.NOT_NULL)]
         [Range(1, int.MaxValue, ErrorMessage = MessageOutput.ENTER_VALUE_BIGGER_THAN)]

@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import ActionTypes from './constants';
 import { ACategoryActions, ACategoryState } from './types';
 
@@ -11,7 +12,9 @@ export const initialState: ACategoryState = {
     totalCount: 0,
     totalPages: 0,
 
-    categoryDtos: []
+    categoryDtos: [],
+
+    optionsCategory: []
 };
 
 function aCategoryReducer(
@@ -38,7 +41,7 @@ function aCategoryReducer(
                 ...state,
                 loading: true
             };
-
+        //#region Create category
         case ActionTypes.CREATE_CATEGORY_ADMIN_START:
             return {
                 ...state,
@@ -54,23 +57,48 @@ function aCategoryReducer(
                 ...state,
                 loading: false
             };
-
+        //#endregion
+        
+        //#region get category
         case ActionTypes.GET_CATEGORY_ADMIN_START:
             return {
                 ...state,
-                loading: true
             };
         case ActionTypes.GET_CATEGORY_ADMIN_COMPLETED:
             return {
                 ...state,
-                categoryDtos: action.payload,
-                loading: false
+                categoryDtos: action.payload.items,
+                pageIndex: action.payload.pageIndex,
+                pageSize: action.payload.pageSize,
+                totalCount: action.payload.totalCount,
+                totalPages: action.payload.totalPages,
             };
         case ActionTypes.GET_CATEGORY_ADMIN_ERROR:
             return {
                 ...state,
+            };
+        //#endregion
+        
+        //#region Category product map
+        case ActionTypes.CATEGORY_MAP_START:
+            return {
+                ...state,
+                loading: true
+            };
+        case ActionTypes.CATEGORY_MAP_COMPLETED:
+            console.log(action.payload);
+            return {
+                ...state,
+                optionsCategory: action.payload,
                 loading: false
             };
+        case ActionTypes.CATEGORY_MAP_ERROR:
+            return {
+                ...state,
+                loading: false
+            };
+        //#endregion
+
         default:
             return state;
     }

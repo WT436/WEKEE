@@ -11,6 +11,7 @@ namespace Product.API.InstallStartup.InstallerServices
 {
     public class ControllerInstall : IInstaller
     {
+
         public void InstallService(IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<ForwardedHeadersOptions>(op=> {
@@ -20,9 +21,9 @@ namespace Product.API.InstallStartup.InstallerServices
             services.AddControllers(op=>
             {
                 //AuthorizationFilter
-                //op.Filters.Add(new ProcessAuthorizationFilter());
+                op.Filters.Add(new ProcessAuthenticationFilter());
                 //ResourceFilters
-                op.Filters.Add(new CacheResourceFilter());
+                //op.Filters.Add(new CacheResourceFilter());
                 //ActionFilters
                 op.Filters.Add(new ValidationFilterAttribute());
                 op.Filters.Add(new ExcutionTimeFilterAttribute());

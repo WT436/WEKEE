@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using UnitOfWork;
+using System.Application.Interface;
 
 namespace Product.API.FilterAttributeCore.ExceptionFilter
 {
     public class ProcessExceptionFilterAttribute : IExceptionFilter
     {
-        //private IApiLogger _logger => new ApiLogger();
-
         public void OnException(ExceptionContext context)
         {
+            ILogTextLog4Net iLog =  context.HttpContext.RequestServices.GetService(typeof(ILogTextLog4Net)) as ILogTextLog4Net;
             context.ExceptionHandled = true;
             HttpResponse response = context.HttpContext.Response;
             if (context.Exception is Utils.Exceptions.ClientException ce)
@@ -81,6 +81,8 @@ namespace Product.API.FilterAttributeCore.ExceptionFilter
             {
                 // Error không xác định 
                 response.StatusCode = 500;
+                context.Result = new ObjectResult(context.Exception.Message + "\n" + context.Exception.StackTrace);
+                iLog.LogError(context.Exception.Message, context.Exception);
                 //SaveErrorToDatabase("Server error occurred.", response.StatusCode, context);
             }
             response.ContentType = "application/json";
