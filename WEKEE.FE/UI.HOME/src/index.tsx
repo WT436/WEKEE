@@ -9,7 +9,7 @@ import Utils from './utils/utils';
 import registerServiceWorker from './registerServiceWorker';
 import abpLocalizationConfigService from './services/abpLocalizationConfigService';
 import defaultConfig from './localization/defaultConfig.json';
-import loginService from './scenes/Login/services';
+import loginService from './scenes/Permission/Login/services';
 import configureStore from './redux/configureStore';
 
 declare var abp: any;

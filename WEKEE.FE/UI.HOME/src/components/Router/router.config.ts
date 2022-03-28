@@ -10,55 +10,55 @@ export const adminRouters: any = [
     ),
     isLayout: true,
   },
-  {
-    path: "/admin",
-    exact: true,
-    component: LoadableComponent(() => import("../../scenes/Admin")),
-  },
+  // {
+  //   path: "/admin",
+  //   exact: true,
+  //   component: LoadableComponent(() => import("../../scenes/Admin")),
+  // },
   {
     path: "/admin/account",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/AAccount")),
+    component: LoadableComponent(() => import("../../scenes/Admin/Account")),
   },
   {
     path: "/admin/setting-role",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/APermission")),
+    component: LoadableComponent(() => import("../../scenes/Admin/APermission")),
   },
   {
     path: "/admin/data-management",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/AAlbum")),
+    component: LoadableComponent(() => import("../../scenes/Admin/AAlbum")),
   },
   {
     path: "/admin/data-management/album",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/AAlbum")),
+    component: LoadableComponent(() => import("../../scenes/Admin/AAlbum")),
   },
   {
     path: "/admin/data-management/album/image",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/AAlbum")),
+    component: LoadableComponent(() => import("../../scenes/Admin/AAlbum")),
   },
   {
     path: "/admin/product",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/AProduct")),
+    component: LoadableComponent(() => import("../../scenes/Admin/AProduct")),
   },
   {
     path: "/admin/category",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/ACategory")),
+    component: LoadableComponent(() => import("../../scenes/Admin/ACategory")),
   },
   {
     path: "/admin/specifications-category",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/ASpeciCate")),
+    component: LoadableComponent(() => import("../../scenes/Admin/ASpeciCate")),
   },
   {
     path: "/admin/system/error",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/SError")),
+    component: LoadableComponent(() => import("../../scenes/System/SError")),
   },
   //#endregion
 ];
@@ -75,17 +75,17 @@ export const userRouters: any = [
   {
     path: "/user/order",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/UOrder")),
+    component: LoadableComponent(() => import("../../scenes/User/UOrder")),
   },
   {
     path: "/user/viewed",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/UViewed")),
+    component: LoadableComponent(() => import("../../scenes/User/UViewed")),
   },
   {
     path: "/user",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/UHome")),
+    component: LoadableComponent(() => import("../../scenes/User/UHome")),
   },
 ];
 
@@ -108,13 +108,13 @@ export const supplierRouters: any = [
   {
     path: "/supplier/product/new-product",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/SuNewProduct")),
+    component: LoadableComponent(() => import("../../scenes/Store/SuNewProduct")),
   },
   {
     path: "/supplier/store/information",
     exact: true,
     component: LoadableComponent(
-      () => import("../../scenes/SuStoreInformation")
+      () => import("../../scenes/Store/SuStoreInformation")
     ),
   },
 ];
@@ -133,7 +133,7 @@ export const errorRouters: any = [
   {
     path: "/error",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/Exception")),
+    component: LoadableComponent(() => import("../../scenes/System/Exception")),
   },
 ];
 
@@ -150,39 +150,39 @@ export const appRouters: any = [
   {
     path: "/login",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/Login")),
+    component: LoadableComponent(() => import("../../scenes/Permission/Login")),
   },
   {
     path: "/change-the-password",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/Login")),
+    component: LoadableComponent(() => import("../../scenes/Permission/Login")),
   },
   {
     path: "/register-an-account",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/Login")),
+    component: LoadableComponent(() => import("../../scenes/Permission/Login")),
   },
   {
     path: "/forgot-password",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/Login")),
+    component: LoadableComponent(() => import("../../scenes/Permission/Login")),
   },
   {
     path: "/:n",
     exact: true,
     component: LoadableComponent(
-      () => import("../../scenes/HCategoryListProduct")
+      () => import("../../scenes/Main/HCategoryListProduct")
     ),
   },
   {
     path: "/:name/adsid:i",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/HDetail")),
+    component: LoadableComponent(() => import("../../scenes/Main/HDetail")),
   },
   {
     path: "/",
     exact: true,
-    component: LoadableComponent(() => import("../../scenes/Home")),
+    component: LoadableComponent(() => import("../../scenes/Main/Home")),
   },
   //#endregion
 ];

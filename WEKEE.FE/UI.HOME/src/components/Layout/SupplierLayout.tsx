@@ -12,7 +12,7 @@ import {
     MenuUnfoldOutlined, MenuFoldOutlined, DashboardOutlined, ShoppingCartOutlined,
     GiftOutlined, SettingOutlined,
 } from '@ant-design/icons';
-import LCPermission from '../../scenes/LCPermission/services'
+import LCPermission from '../../scenes/Permission/LCPermission/services'
 declare var abp: any;
 var input = "";
 class SupplierLayout extends React.Component<any> {

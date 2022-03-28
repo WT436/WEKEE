@@ -116,3 +116,5 @@ System.InvalidOperationException: Unable to track an instance of type 'SupplierM
 2022-03-28 21:05:15,674 [20] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
 2022-03-28 21:06:18,238 [4] INFO  App Log System Initialized 
 2022-03-28 21:06:18,276 [4] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 21:50:53,959 [7] INFO  App Log System Initialized 
+2022-03-28 21:50:53,975 [7] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 

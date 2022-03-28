@@ -2,16 +2,18 @@ import { Store } from "redux";
 import { Saga } from "redux-saga";
 
 import { GlobalState } from "../components/ComponentBase/types";
-import { LoginState } from "../scenes/Login/types";
-import { HomeState } from "../scenes/Home/types";
-import { APermissionState } from "../scenes/APermission/types";
-import { AAccountState } from "../scenes/AAccount/types";
-import { SErrorState } from "../scenes/SError/types";
-import { UHomeState } from "../scenes/UHome/types";
-import { ACategoryState } from "../scenes/ACategory/types";
-import { ASpeciCateState } from "../scenes/ASpeciCate/types";
-import { SuNewProductState } from "../scenes/SuNewProduct/types";
-import { HDetailState } from "../scenes/HDetail/types";
+import { LoginState } from "../scenes/Permission/Login/types";
+import { HomeState } from "../scenes/Main/Home/types";
+import { APermissionState } from "../scenes/Admin/APermission/types";
+import { AAccountState } from "../scenes/Admin/Account/types";
+import { SErrorState } from "../scenes/System/SError/types";
+import { UHomeState } from "../scenes/User/UHome/types";
+import { ACategoryState } from "../scenes/Admin/ACategory/types";
+import { ASpeciCateState } from "../scenes/Admin/ASpeciCate/types";
+import { SuNewProductState } from "../scenes/Store/SuNewProduct/types";
+import { HDetailState } from "../scenes/Main/HDetail/types";
+import { InfoCardHomeState } from "../cms/InfoCardHome/types";
+import { BaseState } from "../components/Base/types";
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -32,4 +34,6 @@ export interface ApplicationRootState {
   readonly aspecicate: ASpeciCateState;
   readonly sunewproduct: SuNewProductState;
   readonly hdetail: HDetailState;
+  readonly infoCardHome : InfoCardHomeState
+  readonly base: BaseState
 }

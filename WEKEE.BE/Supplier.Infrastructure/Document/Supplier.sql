@@ -32,8 +32,8 @@ CREATE TABLE [SupplierMapping](
 	[IsBoss] BIT DEFAULT(0),
 	[Active] [bit] NOT NULL,
 	[Deleted] [bit] NOT NULL,
-	[CreatedOnUtc] [datetime2](7) NOT NULL,
-	[UpdatedOnUtc] [datetime2](7) NOT NULL,
+	[CreatedOnUtc] [datetime2](7) NOT NULL DEFAULT (GETDATE()),
+	[UpdatedOnUtc] [datetime2](7) NOT NULL DEFAULT (GETDATE()),
 )
 GO
 /******   Gian Hàng Nhà cung cấp  ******/
