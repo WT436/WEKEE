@@ -91,7 +91,7 @@ export const userRouters: any = [
 
 export const supplierRouters: any = [
   {
-    path: "/supplier",
+    path: "/store",
     exact: true,
     component: LoadableComponent(
       () => import("../../components/Layout/SupplierLayout")
@@ -99,19 +99,19 @@ export const supplierRouters: any = [
     isLayout: true,
   },
   {
-    path: "/supplier/product",
+    path: "/store/product",
     exact: true,
     component: LoadableComponent(
       () => import("../../components/Layout/SupplierLayout")
     ),
   },
   {
-    path: "/supplier/product/new-product",
+    path: "/store/product/new-product",
     exact: true,
     component: LoadableComponent(() => import("../../scenes/Store/SuNewProduct")),
   },
   {
-    path: "/supplier/store/information",
+    path: "/store/store/information",
     exact: true,
     component: LoadableComponent(
       () => import("../../scenes/Store/SuStoreInformation")

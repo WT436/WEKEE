@@ -14,6 +14,7 @@ import { SuNewProductState } from "../scenes/Store/SuNewProduct/types";
 import { HDetailState } from "../scenes/Main/HDetail/types";
 import { InfoCardHomeState } from "../cms/InfoCardHome/types";
 import { BaseState } from "../components/Base/types";
+import { SelectStoreState } from "../scenes/Store/SelectStore/types";
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -35,5 +36,6 @@ export interface ApplicationRootState {
   readonly sunewproduct: SuNewProductState;
   readonly hdetail: HDetailState;
   readonly infoCardHome : InfoCardHomeState
+  readonly selectStore : SelectStoreState
   readonly base: BaseState
 }

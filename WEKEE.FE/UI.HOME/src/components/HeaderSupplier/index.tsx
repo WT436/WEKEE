@@ -9,7 +9,8 @@ import {
     PhoneOutlined, PieChartOutlined, PlusOutlined, QuestionCircleOutlined,
     RiseOutlined, SettingOutlined, ShoppingCartOutlined, SoundOutlined,
     UsergroupAddOutlined
-} from '@ant-design/icons'
+} from '@ant-design/icons';
+declare var abp: any;
 const { Option } = Select;
 const { SubMenu } = Menu;
 export interface IHeaderSupplierProps {
@@ -26,7 +27,7 @@ class HeaderSupplier extends AppComponentBase<IHeaderSupplierProps, IHeaderSuppl
         return (
             <Col className='hdfut'>
                 <Helmet>
-                    <link rel="stylesheet" href={"https://localhost:44324/StaticFiles/header/header.css"} />
+                    <link rel="stylesheet" href={abp.serviceAlbumCss + "/header.css"} />
                 </Helmet>
                 <Row className='hdfutm'>
                     <Col span={4} className='hdfutmlg'>
