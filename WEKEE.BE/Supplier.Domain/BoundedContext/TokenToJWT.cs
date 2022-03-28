@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Supplier.Domain.Dto;
 using System.IO;
 using System.Threading.Tasks;
 using Utils.Auth;
@@ -42,16 +41,16 @@ namespace Supplier.Domain.BoundedContext
         /// </summary>
         /// <param name="userAccount"></param>
         /// <returns></returns>
-        public JwtResponse CreateTokenAccountUserJWT(SupplierDtos userAccount, string ip)
-        {
-            return _jwtHandler.CreateToken(new JwtCustomClaims()
-            {
-                Id = userAccount.Id,
-                Account_User = userAccount.NameShop,
-                Email = userAccount.Email,
-                Ip = ip
-            });
-        }
+        //public JwtResponse CreateTokenAccountUserJWT(SupplierDtos userAccount, string ip)
+        //{
+        //    return _jwtHandler.CreateToken(new JwtCustomClaims()
+        //    {
+        //        Id = userAccount.Id,
+        //        Account_User = userAccount.NameShop,
+        //        Email = userAccount.Email,
+        //        Ip = ip
+        //    });
+        //}
         /// <summary>
         /// Đọc file json để lấy key cho sự giải nén JWT 
         /// </summary>

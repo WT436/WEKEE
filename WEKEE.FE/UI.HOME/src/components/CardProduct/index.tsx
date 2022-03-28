@@ -21,7 +21,7 @@ export default function index() {
                 </span>
             </div>
             <a className="MgCJXPSMyz" href="/DSQUARED2-Ao-khoac-blazer-nam-pho-co-satin-S71BN0735-900/adsid=1">
-                <img src={""} />
+                <img src={abp.serviceAlbumImage + 'album/product/product-6.jpg.webp'} />
                 {/* process.env.PUBLIC_URL + '/logo192.png' */}
             </a>
             <div className="ZDyVztAfXt">

@@ -1,0 +1,118 @@
+2022-03-28 00:52:46,053 [4] INFO  App Log System Initialized 
+2022-03-28 00:52:46,064 [4] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 00:52:46,270 [4] ERROR App Unable to resolve service for type 'Supplier.Application.Interface.IProcessSupplier' while attempting to activate 'Product.API.Src.SupplierAreas.RegistrationStoreController'. 
+System.InvalidOperationException: Unable to resolve service for type 'Supplier.Application.Interface.IProcessSupplier' while attempting to activate 'Product.API.Src.SupplierAreas.RegistrationStoreController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-28 00:56:02,832 [4] INFO  App Log System Initialized 
+2022-03-28 00:56:02,855 [4] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 14:59:34,203 [7] INFO  App Log System Initialized 
+2022-03-28 14:59:34,225 [7] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 15:00:33,349 [8] INFO  App Log System Initialized 
+2022-03-28 15:00:33,368 [8] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 15:01:56,048 [7] INFO  App Log System Initialized 
+2022-03-28 15:01:56,068 [7] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 15:02:49,984 [4] INFO  App Log System Initialized 
+2022-03-28 15:02:50,007 [4] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 15:09:36,919 [4] INFO  App Log System Initialized 
+2022-03-28 15:09:36,952 [4] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 15:12:26,924 [4] INFO  App Log System Initialized 
+2022-03-28 15:12:26,958 [4] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 15:13:38,079 [4] INFO  App Log System Initialized 
+2022-03-28 15:13:38,094 [4] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 15:51:42,654 [4] INFO  App Log System Initialized 
+2022-03-28 15:51:42,667 [4] INFO  App [localhost] [44327] [RegistrationStore] [Index] [GET] [/v1/api/registration-show] [] 
+2022-03-28 18:14:09,765 [14] INFO  App Log System Initialized 
+2022-03-28 18:14:09,837 [14] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-28 18:15:52,470 [27] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=0392516308&Email=Hainam9xtb%40gmail.com&Name=Nam&Link=nam&PassWordShop=Hainam9xtb&NameShop=Nam] 
+2022-03-28 18:17:12,414 [4] INFO  App Log System Initialized 
+2022-03-28 18:17:12,435 [4] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=0392516308&Email=Hainam9xtb%40gmail.com&Name=Nam&Link=nam&PassWordShop=Hainam9xtb&NameShop=Nam] 
+2022-03-28 18:20:35,353 [4] INFO  App Log System Initialized 
+2022-03-28 18:20:35,377 [4] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-28 19:51:41,351 [4] INFO  App Log System Initialized 
+2022-03-28 19:51:41,364 [4] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-28 19:52:22,526 [19] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-28 19:53:35,472 [4] INFO  App Log System Initialized 
+2022-03-28 19:53:35,494 [4] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=0392516308&Email=Hainam9xtb%40gmail.com&Name=Nam&Link=nam&PassWordShop=Hainam9xtb&NameShop=Nam] 
+2022-03-28 19:53:36,453 [4] ERROR App The method or operation is not implemented. 
+System.NotImplementedException: The method or operation is not implemented.
+   at Supplier.Application.Application.ProcessSupplierService.CreateCreateShopBasic(SupplierCreateBasicDtos userAccount) in H:\Program\My-project\WEKEE\WEKEE.BE\Supplier.Application\Application\ProcessSupplierService.cs:line 43
+   at Product.API.Src.SupplierAreas.RegistrationStoreController.CreateStoreForBoss(SupplierCreateBasicDtos input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\SupplierAreas\RegistrationStoreController.cs:line 38
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-28 19:54:18,903 [13] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-28 19:55:55,073 [20] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=0392516308&Email=Nam%40gmail.com&Name=Nam&Link=nam-store&PassWordShop=Hainam9xtb&NameShop=Nam%20Store] 
+2022-03-28 19:55:55,150 [20] ERROR App The method or operation is not implemented. 
+System.NotImplementedException: The method or operation is not implemented.
+   at Supplier.Application.Application.ProcessSupplierService.CreateCreateShopBasic(SupplierCreateBasicDtos userAccount) in H:\Program\My-project\WEKEE\WEKEE.BE\Supplier.Application\Application\ProcessSupplierService.cs:line 43
+   at Product.API.Src.SupplierAreas.RegistrationStoreController.CreateStoreForBoss(SupplierCreateBasicDtos input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\SupplierAreas\RegistrationStoreController.cs:line 38
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-28 19:56:07,188 [20] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=0392516308&Email=Nam%40gmail.com&Name=Nam&Link=nam-store&PassWordShop=Hainam9xtb&NameShop=Nam%20Store] 
+2022-03-28 19:59:17,947 [14] INFO  App Log System Initialized 
+2022-03-28 19:59:17,989 [14] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-28 19:59:48,211 [16] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=0392516308&Email=Hainam9xtb%40gmail.com&Name=Nam&Link=nam&PassWordShop=Hainam9xtb&NameShop=Nam] 
+2022-03-28 20:00:49,222 [23] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=0392516308&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 20:01:06,209 [23] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 20:01:10,058 [23] ERROR App Unable to track an instance of type 'SupplierMapping' because it does not have a primary key. Only entity types with primary keys may be tracked. 
+System.InvalidOperationException: Unable to track an instance of type 'SupplierMapping' because it does not have a primary key. Only entity types with primary keys may be tracked.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity, IEntityType entityType)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.EntryWithoutDetectChanges(TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Add(TEntity entity)
+   at UnitOfWork.Repository.Repository`1.Insert(TEntity entity) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\Repository\Repository.cs:line 511
+   at Supplier.Infrastructure.Queries.SupplierMappingQueries.CreateMapping(SupplierMapping input) in H:\Program\My-project\WEKEE\WEKEE.BE\Supplier.Infrastructure\Queries\SupplierMappingQueries.cs:line 27
+   at Supplier.Application.Application.SupplierService.CreateBasicStore(SupplierCreateBasicDtos input) in H:\Program\My-project\WEKEE\WEKEE.BE\Supplier.Application\Application\SupplierService.cs:line 42
+   at Product.API.Src.SupplierAreas.RegistrationStoreController.CreateStoreForBoss(SupplierCreateBasicDtos input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\SupplierAreas\RegistrationStoreController.cs:line 40
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-28 20:08:11,554 [4] INFO  App Log System Initialized 
+2022-03-28 20:08:11,583 [4] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 20:08:20,081 [4] ERROR App Unable to track an instance of type 'SupplierMapping' because it does not have a primary key. Only entity types with primary keys may be tracked. 
+System.InvalidOperationException: Unable to track an instance of type 'SupplierMapping' because it does not have a primary key. Only entity types with primary keys may be tracked.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity, IEntityType entityType)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.EntryWithoutDetectChanges(TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Add(TEntity entity)
+   at UnitOfWork.Repository.Repository`1.Insert(TEntity entity) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\Repository\Repository.cs:line 511
+   at Supplier.Infrastructure.Queries.SupplierMappingQueries.CreateMapping(SupplierMapping input) in H:\Program\My-project\WEKEE\WEKEE.BE\Supplier.Infrastructure\Queries\SupplierMappingQueries.cs:line 27
+   at Supplier.Application.Application.SupplierService.CreateBasicStore(SupplierCreateBasicDtos input) in H:\Program\My-project\WEKEE\WEKEE.BE\Supplier.Application\Application\SupplierService.cs:line 42
+   at Product.API.Src.SupplierAreas.RegistrationStoreController.CreateStoreForBoss(SupplierCreateBasicDtos input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\SupplierAreas\RegistrationStoreController.cs:line 40
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-28 20:48:18,946 [4] INFO  App Log System Initialized 
+2022-03-28 20:48:18,959 [4] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 20:52:00,369 [18] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 21:03:49,345 [14] INFO  App Log System Initialized 
+2022-03-28 21:03:49,395 [14] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-28 21:04:16,928 [4] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 21:04:53,174 [25] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 21:05:15,674 [20] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 
+2022-03-28 21:06:18,238 [4] INFO  App Log System Initialized 
+2022-03-28 21:06:18,276 [4] INFO  App [localhost] [44327] [RegistrationStore] [CreateStoreForBoss] [POST] [/v1/api/registration-show] [?NumberPhone=03925163081&Email=Hainam9xtb%40gmail.com&Name=NamAdmin&Link=nam-admin&PassWordShop=Hainam9xtb&NameShop=NamAdmin] 

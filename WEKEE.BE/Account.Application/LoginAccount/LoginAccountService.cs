@@ -53,6 +53,7 @@ namespace Account.Application.LoginAccount
             var data = MappingData.InitializeAutomapper().Map<UserAccountDtos>(fullAccount);
             data.Picture = infoUser == null ? null : infoUser.Picture ?? null;
             data.FullName = infoUser == null ? null : infoUser.FullName ?? null;
+            data.UserProfileId = fullAccount == null ? 0 : fullAccount.Id;
             return data;
         }
     }

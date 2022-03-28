@@ -1,9 +1,7 @@
 ﻿using System;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
-using Supplier.Domain.Entitys;
+using Supplier.Domain.Shared.Entitys;
 
 #nullable disable
 
@@ -23,20 +21,16 @@ namespace Supplier.Infrastructure.DBContext
         public virtual DbSet<CarouselSupplier> CarouselSuppliers { get; set; }
         public virtual DbSet<RepositoryCertificate> RepositoryCertificates { get; set; }
         public virtual DbSet<ShopSupplier> ShopSuppliers { get; set; }
-        public virtual DbSet<Domain.Entitys.Supplier> Suppliers { get; set; }
+        public virtual DbSet<Domain.Shared.Entitys.Supplier> Suppliers { get; set; }
         public virtual DbSet<SupplierCertificate> SupplierCertificates { get; set; }
+        public virtual DbSet<SupplierMapping> SupplierMappings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                                               .SetBasePath(Directory.GetCurrentDirectory())
-                                               .AddJsonFile("appsettings.json")
-                                               .Build();
-                var connectionString = configuration.GetConnectionString("SupplierDBContextStr");
-                optionsBuilder.UseSqlServer(connectionString)
-                    ;
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-94A3VHK;Database=SupplierDB;Trusted_Connection=True;");
             }
         }
 
@@ -75,18 +69,17 @@ namespace Supplier.Infrastructure.DBContext
                 entity.HasOne(d => d.ShopSupplierNavigation)
                     .WithMany(p => p.CarouselSuppliers)
                     .HasForeignKey(d => d.ShopSupplier)
-                    .HasConstraintName("FK__CarouselS__shopS__2E1BDC42");
+                    .HasConstraintName("FK__CarouselS__shopS__31EC6D26");
             });
 
             modelBuilder.Entity<RepositoryCertificate>(entity =>
             {
-                entity.ToTable("repositoryCertificate");
+                entity.ToTable("RepositoryCertificate");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Descrpition)
@@ -143,81 +136,62 @@ namespace Supplier.Infrastructure.DBContext
                 entity.HasOne(d => d.SupplierNavigation)
                     .WithMany(p => p.ShopSuppliers)
                     .HasForeignKey(d => d.Supplier)
-                    .HasConstraintName("FK__ShopSuppl__suppl__2A4B4B5E");
+                    .HasConstraintName("FK__ShopSuppl__suppl__2E1BDC42");
             });
 
-            modelBuilder.Entity<Domain.Entitys.Supplier>(entity =>
+            modelBuilder.Entity<Domain.Shared.Entitys.Supplier>(entity =>
             {
                 entity.ToTable("Supplier");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Adress).HasMaxLength(300);
 
-                entity.Property(e => e.Adress)
-                    .IsRequired()
-                    .HasMaxLength(300)
-                    .HasColumnName("adress");
+                entity.Property(e => e.CompanyVat).HasMaxLength(1000);
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Email)
-                    .IsRequired()
                     .HasMaxLength(300)
-                    .IsUnicode(false)
-                    .HasColumnName("email");
+                    .IsUnicode(false);
 
-                entity.Property(e => e.IsActive).HasColumnName("isActive");
+                entity.Property(e => e.HaskPass)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.IsEnabled).HasColumnName("isEnabled");
+                entity.Property(e => e.Hosts).HasMaxLength(1000);
+
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.IsEnabled).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.LinkShop)
                     .IsRequired()
-                    .HasMaxLength(300)
-                    .HasColumnName("linkShop");
+                    .HasMaxLength(300);
 
                 entity.Property(e => e.NameShop)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("nameShop");
+                    .HasMaxLength(300);
 
-                entity.Property(e => e.NumberPhone)
-                    .IsRequired()
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
-                    .HasColumnName("number_Phone");
+                entity.Property(e => e.NumberPhone).HasColumnType("numeric(14, 0)");
 
                 entity.Property(e => e.PassWordShop)
                     .IsRequired()
                     .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("passWordShop");
+                    .IsUnicode(false);
 
-                entity.Property(e => e.PasswordHashAlgorithm)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("password_hash_algorithm");
-
-                entity.Property(e => e.PasswordSalt)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("password_salt");
-
-                entity.Property(e => e.UseAccount).HasColumnName("use_account");
+                entity.Property(e => e.Url).HasMaxLength(400);
             });
 
             modelBuilder.Entity<SupplierCertificate>(entity =>
             {
-                entity.ToTable("supplierCertificate");
+                entity.ToTable("SupplierCertificate");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("CreatedAt")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IdCertificate).HasColumnName("idCertificate");
@@ -234,13 +208,28 @@ namespace Supplier.Infrastructure.DBContext
                     .WithMany(p => p.SupplierCertificates)
                     .HasForeignKey(d => d.IdCertificate)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__supplierC__idCer__398D8EEE");
+                    .HasConstraintName("FK__SupplierC__idCer__3D5E1FD2");
 
                 entity.HasOne(d => d.IdSupperNavigation)
                     .WithMany(p => p.SupplierCertificates)
                     .HasForeignKey(d => d.IdSupper)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__supplierC__idSup__38996AB5");
+                    .HasConstraintName("FK__SupplierC__idSup__3C69FB99");
+            });
+
+            modelBuilder.Entity<SupplierMapping>(entity =>
+            {
+                entity.ToTable("SupplierMapping");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.IsBoss).HasDefaultValueSql("((0))");
+
+                entity.HasOne(d => d.Supplier)
+                    .WithMany(p => p.SupplierMappings)
+                    .HasForeignKey(d => d.SupplierId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__SupplierM__Suppl__29572725");
             });
 
             OnModelCreatingPartial(modelBuilder);

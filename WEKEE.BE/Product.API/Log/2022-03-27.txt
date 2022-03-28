@@ -1,0 +1,21 @@
+2022-03-27 14:33:36,709 [5] INFO  App Log System Initialized 
+2022-03-27 14:33:36,740 [5] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-27 14:33:37,152 [5] ERROR App Unable to resolve service for type 'Account.Application.LoginAccount.ILoginAccount' while attempting to activate 'Product.API.Src.AccountAreas.LoginAccountController'. 
+System.InvalidOperationException: Unable to resolve service for type 'Account.Application.LoginAccount.ILoginAccount' while attempting to activate 'Product.API.Src.AccountAreas.LoginAccountController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-27 14:42:49,354 [4] INFO  App Log System Initialized 
+2022-03-27 14:42:49,390 [4] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-27 15:20:48,790 [4] INFO  App Log System Initialized 
+2022-03-27 15:20:48,814 [4] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-27 15:31:22,854 [7] INFO  App Log System Initialized 
+2022-03-27 15:31:22,874 [7] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-27 17:48:45,006 [34] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb&Remember=true] 
+2022-03-27 18:55:02,555 [48] INFO  App Log System Initialized 
+2022-03-27 18:55:02,575 [48] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 

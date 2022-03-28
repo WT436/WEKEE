@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Dto\SupplierDtos.cs~RF10a351ec.TMP" />
-    <None Remove="Entitys\CarouselSupplier.cs~RFc3c5b7b.TMP" />
+    <None Remove="Shared\Entitys\CarouselSupplier.cs~RFc3c5b7b.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,7 +15,6 @@
     <Folder Include="ObjectValues\" />
     <Folder Include="ServicesDomain\" />
     <Folder Include="Services\" />
-    <Folder Include="Shared\" />
     <Folder Include="UL\" />
   </ItemGroup>
 

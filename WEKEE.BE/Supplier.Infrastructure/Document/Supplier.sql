@@ -5,20 +5,35 @@ GO
 /******    Nhà cung Cấp     ******/
 CREATE TABLE [Supplier](
 --=========>Trường Dữ Liệu<===========--
+	[Id] INT IDENTITY(1,1) NOT NULL primary key,
+	[NumberPhone] numeric(14, 0) NULL,
+	[Email] VARCHAR(300) NULL,
+	[PassWordShop] VARCHAR(100) NOT NULL,
+	[HaskPass] VARCHAR(10) NOT NULL,
+	[NameShop] NVARCHAR(300) NOT NULL,
+	[LinkShop] NVARCHAR(300) NOT NULL,
+	[Adress] NVARCHAR(300) NULL,
+	[Url] [nvarchar](400) NULL,
+	[Hosts] [nvarchar](1000) NULL,
+	[CompanyVat] [nvarchar](1000) NULL,
+	[SslEnabled] [bit] NULL,
+	[DefaultLanguageId] [int] NULL,
+	[DisplayOrder] [int] NULL,
+	[CreatedAt] DATETIME NOT NULL DEFAULT (GETDATE()),
+	[IsActive] BIT NULL  DEFAULT (0), -- nhà cung cấp tạm nghỉ
+	[IsEnabled] BIT NULL  DEFAULT (0), -- xóa bỏ  nhà cung cấp
+)
+GO
+-- map nhân viên và store
+CREATE TABLE [SupplierMapping](
 	[id] INT IDENTITY(1,1) NOT NULL primary key,
-	[fullName] NVARCHAR(30) NOT NULL,
-	[numberPhone] numeric(14, 0) NOT NULL,
-	[email] VARCHAR(300) NOT NULL,
-	[passWordShop] VARCHAR(100) NOT NULL,
-	[haskPass] VARCHAR(10) NOT NULL,
-	[nameShop] NVARCHAR(300) NOT NULL,
-	[linkShop] NVARCHAR(300) NOT NULL,
-	[adress] NVARCHAR(300) NOT NULL,
-	[createdAt] DATETIME NOT NULL DEFAULT (GETDATE()),
-	[isActive] BIT NOT NULL  DEFAULT (0), -- nhà cung cấp tạm nghỉ
-	[isEnabled] BIT NOT NULL  DEFAULT (0), -- xóa bỏ  nhà cung cấp
---=========>Connect Table<===========--
-	[use_account] INT,
+	[SupplierId] INT NOT NULL FOREIGN KEY REFERENCES Supplier(id),
+	[UseAccount] INT NOT NULL,
+	[IsBoss] BIT DEFAULT(0),
+	[Active] [bit] NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[CreatedOnUtc] [datetime2](7) NOT NULL,
+	[UpdatedOnUtc] [datetime2](7) NOT NULL,
 )
 GO
 /******   Gian Hàng Nhà cung cấp  ******/
@@ -50,7 +65,7 @@ CREATE TABLE [CarouselSupplier]
 )
 GO
 /****** Kho các loại giấy chứng nhận cho nhà cung cấp Nhà cung Cấp  ******/
-CREATE TABLE [repositoryCertificate]
+CREATE TABLE [RepositoryCertificate]
 (
 --=========>Trường Dữ Liệu<===========--
 	[id] INT IDENTITY(1,1) NOT NULL  primary key,
@@ -64,12 +79,12 @@ CREATE TABLE [repositoryCertificate]
 )
 GO
 /******  các loại giấy chứng nhận cho nhà cung cấp Nhà cung Cấp     ******/
-CREATE TABLE [supplierCertificate]
+CREATE TABLE [SupplierCertificate]
 (
 --=========>Trường Dữ Liệu<===========--
 	[id] INT IDENTITY(1,1) NOT NULL  primary key ,
 	[CreatedAt] DATETIME NOT NULL DEFAULT GETDATE(),
-	[isLevel] INT DEFAULT 0 CHECK(isLevel<7) NOT NULL, -- phân chia loại giấy ra làm 6 cấp độ : không có , cực khủng , Tuyệt vời , Tốt , Vừa , Thấp , Kém
+	[isLevel] INT DEFAULT 0 CHECK(isLevel<7) NOT NULL,
 	[isEnabled] BIT NULL  DEFAULT (0),
 --=========>Connect Table<===========--
 	[idSupper] INT NOT NULL FOREIGN KEY REFERENCES Supplier(id),

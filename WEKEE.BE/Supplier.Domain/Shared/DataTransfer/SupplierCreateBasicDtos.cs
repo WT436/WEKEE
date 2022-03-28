@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Supplier.Domain.Dto
+namespace Supplier.Domain.Shared.DataTransfer
 {
-    public class SupplierDtos
+    public class SupplierCreateBasicDtos
     {
-        public int Id { get; set; }
         public decimal NumberPhone { get; set; }
         public string Email { get; set; }
+        public string Name { get; set; }
+        public string Link { get; set; }
         public string PassWordShop { get; set; }
         public string NameShop { get; set; }
-        public string LinkShop { get; set; }
-        public string Adress { get; set; }
-        public bool IsActive { get; set; }
-
+        public int IdAccount { get; set; }
     }
 }

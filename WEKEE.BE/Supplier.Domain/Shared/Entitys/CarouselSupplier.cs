@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Supplier.Domain.Entitys
+namespace Supplier.Domain.Shared.Entitys
 {
     public partial class CarouselSupplier
     {

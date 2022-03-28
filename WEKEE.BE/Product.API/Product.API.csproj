@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.OpenApi" Version="1.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Account.Application\Account.Application.csproj" />
     <ProjectReference Include="..\Product.Application\Product.Application.csproj" />
+    <ProjectReference Include="..\Supplier.Application\Supplier.Application.csproj" />
     <ProjectReference Include="..\System.Application\System.Application.csproj" />
     <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />
     <ProjectReference Include="..\Utils\Utils.csproj" />
@@ -38,11 +40,11 @@
 
   <ItemGroup>
     <Folder Include="Log\" />
+    <Folder Include="Areas\" />
     <Folder Include="RootFiles\album\evaluates\" />
     <Folder Include="RootFiles\album\file\" />
     <Folder Include="RootFiles\album\category\" />
     <Folder Include="RootFiles\album\post\" />
-    <Folder Include="RootFiles\album\product\" />
     <Folder Include="RootFiles\album\rootevaluates\" />
     <Folder Include="RootFiles\album\rootImage\" />
     <Folder Include="RootFiles\album\subBanner\" />

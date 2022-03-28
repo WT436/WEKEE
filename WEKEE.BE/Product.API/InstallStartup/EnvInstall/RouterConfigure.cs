@@ -24,12 +24,17 @@ namespace Product.API.InstallStartup.EnvInstall
                 routes.MapRoute(
                       name: "Product.API.Src.ProductAreas",
                       template: "{controller=CategoryProduct}/{action=Index}/{id?}",
-               new string[] { "Product.API.Src.ProductAreas" });
+                new string[] { "Product.API.Src.ProductAreas" });
 
                 routes.MapRoute(
                       name: "Product.API.Src.AccountAreas",
                       template: "{controller=Home}/{action=Index}/{id?}",
-               new string[] { "Product.API.Src.AccountAreas" });
+                new string[] { "Product.API.Src.AccountAreas" });
+
+                routes.MapRoute(
+                      name: "Product.API.Src.SupplierAreas",
+                      template: "{controller=RegistrationStore}/{action=Index}/{id?}",
+                new string[] { "Product.API.Src.SupplierAreas" });
 
                 routes.MapRoute(
                         name: "Default",
