@@ -15,6 +15,8 @@ import { HDetailState } from "../scenes/Main/HDetail/types";
 import { InfoCardHomeState } from "../cms/InfoCardHome/types";
 import { BaseState } from "../components/Base/types";
 import { SelectStoreState } from "../scenes/Store/SelectStore/types";
+import { SiderStoreState } from "../scenes/Store/SiderStore/types"
+import { MenuSliderAdminState } from "../scenes/Admin/MenuSliderAdmin/types";
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -35,7 +37,9 @@ export interface ApplicationRootState {
   readonly aspecicate: ASpeciCateState;
   readonly sunewproduct: SuNewProductState;
   readonly hdetail: HDetailState;
-  readonly infoCardHome : InfoCardHomeState
-  readonly selectStore : SelectStoreState
+  readonly infoCardHome: InfoCardHomeState
+  readonly selectStore: SelectStoreState
+  readonly siderstore: SiderStoreState
+  readonly menuslideradmin : MenuSliderAdminState
   readonly base: BaseState
 }

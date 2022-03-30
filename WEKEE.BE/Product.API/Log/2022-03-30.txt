@@ -1,0 +1,100 @@
+2022-03-30 08:54:08,712 [29] INFO  App Log System Initialized 
+2022-03-30 08:54:08,733 [29] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 08:54:08,737 [31] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 08:54:10,931 [29] ERROR App Attempted to divide by zero. 
+System.DivideByZeroException: Attempted to divide by zero.
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 63
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 08:56:05,046 [32] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 08:56:05,050 [32] ERROR App Attempted to divide by zero. 
+System.DivideByZeroException: Attempted to divide by zero.
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 63
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 08:56:05,055 [32] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 08:56:59,741 [19] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 08:57:33,011 [20] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 08:57:33,014 [20] ERROR App Attempted to divide by zero. 
+System.DivideByZeroException: Attempted to divide by zero.
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 63
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 08:57:33,038 [13] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 09:27:21,124 [50] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 09:27:21,129 [50] ERROR App Attempted to divide by zero. 
+System.DivideByZeroException: Attempted to divide by zero.
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 63
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 09:27:21,135 [50] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 09:29:18,863 [54] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 09:29:18,866 [54] ERROR App Attempted to divide by zero. 
+System.DivideByZeroException: Attempted to divide by zero.
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 63
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 09:29:18,924 [47] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 09:30:21,010 [53] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 09:30:21,064 [51] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 09:30:21,066 [51] ERROR App Attempted to divide by zero. 
+System.DivideByZeroException: Attempted to divide by zero.
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 63
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 09:31:45,351 [6] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 09:31:45,353 [6] ERROR App Attempted to divide by zero. 
+System.DivideByZeroException: Attempted to divide by zero.
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 63
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 09:31:45,381 [49] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 

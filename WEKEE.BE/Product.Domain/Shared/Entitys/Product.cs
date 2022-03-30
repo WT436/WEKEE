@@ -9,19 +9,19 @@ namespace Product.Domain.Shared.Entitys
     {
         public Product()
         {
-            ImageProducts = new HashSet<ImageProduct>();
+            FeatureProducts = new HashSet<FeatureProduct>();
             ProductCategoryMappings = new HashSet<ProductCategoryMapping>();
+            ProductProductTagMappings = new HashSet<ProductProductTagMapping>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public bool? Fragile { get; set; }
         public string Origin { get; set; }
+        public int UnitAttributeId { get; set; }
         public string Sku { get; set; }
         public string ManufacturerPartNumber { get; set; }
         public string Gtin { get; set; }
-        public string RequiredProductIds { get; set; }
-        public string AllowedQuantities { get; set; }
         public string ShortDescription { get; set; }
         public string FullDescription { get; set; }
         public bool ShowOnHomepage { get; set; }
@@ -62,6 +62,7 @@ namespace Product.Domain.Shared.Entitys
         public bool ViewReceived { get; set; }
         public bool DisableBuyButton { get; set; }
         public bool DisableWishlistButton { get; set; }
+        public int WishlistNumber { get; set; }
         public bool AvailableForPreOrder { get; set; }
         public DateTime? PreOrderAvailabilityStartDateTimeUtc { get; set; }
         public bool MarkAsNew { get; set; }
@@ -69,13 +70,9 @@ namespace Product.Domain.Shared.Entitys
         public DateTime? MarkAsNewEndDateTimeUtc { get; set; }
         public bool HasTierPrices { get; set; }
         public bool HasDiscountsApplied { get; set; }
-        public decimal Weight { get; set; }
-        public decimal Length { get; set; }
-        public decimal Width { get; set; }
-        public decimal Height { get; set; }
-        public int DisplayOrder { get; set; }
         public bool Published { get; set; }
         public bool Deleted { get; set; }
+        public int CreateBy { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }
         public int? Supplier { get; set; }
@@ -83,7 +80,9 @@ namespace Product.Domain.Shared.Entitys
         public int? Seo { get; set; }
 
         public virtual Seo SeoNavigation { get; set; }
-        public virtual ICollection<ImageProduct> ImageProducts { get; set; }
+        public virtual ProductAttribute UnitAttribute { get; set; }
+        public virtual ICollection<FeatureProduct> FeatureProducts { get; set; }
         public virtual ICollection<ProductCategoryMapping> ProductCategoryMappings { get; set; }
+        public virtual ICollection<ProductProductTagMapping> ProductProductTagMappings { get; set; }
     }
 }

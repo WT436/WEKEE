@@ -106,11 +106,13 @@ namespace Product.Application.Application
                 int NumberOrderEnd = await _categoryProductQuery.GetNumberOrderEnd(level: levelCategogyMain,
                                                                                    categoryMain: cp.CategoryMain);
 
+                var iconCategory = 0;
+
                 var cateInsert = new CategoryProduct
                 {
                     NameCategory = cp.NameCategory,
                     UrlCategory = cp.UrlCategory,
-                    IconCategory = cp.IconCategory,
+                    IconCategory = iconCategory,
                     LevelCategory = Convert.ToInt32(levelCategogyMain),
                     CategoryMain = cp.CategoryMain,
                     NumberOrder = NumberOrderEnd + 1,
@@ -145,12 +147,6 @@ namespace Product.Application.Application
 
         public async Task<List<CategoryProductReadMapDto>> GetMapCategory()
         {
-            int a = 4;
-            int b = 0;
-            int c = a / b;
-
-            if (1 != 0) throw new ClientException(402, "Error");
-            // read all category main category main == 1
             var data = await _categoryProductQuery.GetMapCategoryProduct();
             return data;
         }
@@ -177,7 +173,7 @@ namespace Product.Application.Application
                 var data = await _categoryProductQuery.GetDataById(input.Id);
                 data.NameCategory = input.NameCategory;
                 data.UrlCategory = input.UrlCategory;
-                data.IconCategory = input.IconCategory;
+                data.IconCategory = 0;
                 data.IsEnabled = input.IsEnabled;
                 data.UpdatedOnUtc = DateTime.Now;
                 return _categoryProductQuery.Update(data);

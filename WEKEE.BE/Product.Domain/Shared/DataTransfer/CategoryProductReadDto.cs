@@ -12,7 +12,7 @@ namespace Product.Domain.Shared.DataTransfer
         public string IconCategory { get; set; }
         public int LevelCategory { get; set; }
         public int? CategoryMain { get; set; }
-        public string? CategoryMainName { get; set; }
+        public string CategoryMainName { get; set; }
         public int NumberOrder { get; set; }
         public bool IsEnabled { get; set; }
         public DateTime CreatedOnUtc { get; set; }

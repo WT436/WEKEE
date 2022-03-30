@@ -20,8 +20,6 @@ namespace Product.Domain.Shared.DataTransfer
         //[Range(1, int.MaxValue, ErrorMessage = MessageOutput.ENTER_VALUE_BIGGER_THAN)]
         //public int LevelCategory { get; set; }
 
-        [Required(ErrorMessage = MessageOutput.NOT_NULL)]
-        [Range(1, int.MaxValue, ErrorMessage = MessageOutput.ENTER_VALUE_BIGGER_THAN)]
         public int? CategoryMain { get; set; }
         public bool IsEnabled { get; set; }
     }

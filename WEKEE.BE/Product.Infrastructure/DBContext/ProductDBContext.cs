@@ -19,14 +19,14 @@ namespace Product.Infrastructure.DBContext
         }
 
         public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
+        public virtual DbSet<FeatureProduct> FeatureProducts { get; set; }
         public virtual DbSet<ImageProduct> ImageProducts { get; set; }
-        public virtual DbSet<PredefinedProductAttributeValue> PredefinedProductAttributeValues { get; set; }
-        public virtual DbSet<Product.Domain.Shared.Entitys.Product> Products { get; set; }
+        public virtual DbSet<Domain.Shared.Entitys.Product> Products { get; set; }
         public virtual DbSet<ProductAttribute> ProductAttributes { get; set; }
+        public virtual DbSet<ProductAttributeMapping> ProductAttributeMappings { get; set; }
         public virtual DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
         public virtual DbSet<ProductCategoryMapping> ProductCategoryMappings { get; set; }
         public virtual DbSet<ProductPictureMapping> ProductPictureMappings { get; set; }
-        public virtual DbSet<ProductProductAttributeMapping> ProductProductAttributeMappings { get; set; }
         public virtual DbSet<ProductProductTagMapping> ProductProductTagMappings { get; set; }
         public virtual DbSet<ProductSpecificationAttributeMapping> ProductSpecificationAttributeMappings { get; set; }
         public virtual DbSet<ProductTag> ProductTags { get; set; }
@@ -55,22 +55,21 @@ namespace Product.Infrastructure.DBContext
             {
                 entity.ToTable("CategoryProduct");
 
-                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B4023F03F6407")
+                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B40235B4F3B2E")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B95FB6CAB51")
+                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B953F7F0922")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CategoryMain).HasColumnName("categoryMain");
 
-                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.CreatedOnUtc)
+                    .HasColumnName("createdOnUtc")
+                    .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.IconCategory)
-                    .HasMaxLength(200)
-                    .IsUnicode(false)
-                    .HasColumnName("iconCategory");
+                entity.Property(e => e.IconCategory).HasColumnName("iconCategory");
 
                 entity.Property(e => e.IsEnabled).HasColumnName("isEnabled");
 
@@ -85,12 +84,61 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.NumberOrder).HasColumnName("numberOrder");
 
-                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.UpdatedOnUtc)
+                    .HasColumnName("updatedOnUtc")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.UrlCategory)
                     .IsRequired()
                     .HasMaxLength(300)
                     .HasColumnName("urlCategory");
+
+                entity.HasOne(d => d.CategoryMainNavigation)
+                    .WithMany(p => p.InverseCategoryMainNavigation)
+                    .HasForeignKey(d => d.CategoryMain)
+                    .HasConstraintName("FK__CategoryP__categ__2D27B809");
+
+                entity.HasOne(d => d.IconCategoryNavigation)
+                    .WithMany(p => p.CategoryProducts)
+                    .HasForeignKey(d => d.IconCategory)
+                    .HasConstraintName("FK__CategoryP__iconC__2A4B4B5E");
+            });
+
+            modelBuilder.Entity<FeatureProduct>(entity =>
+            {
+                entity.ToTable("FeatureProduct");
+
+                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.HeightAdjustment).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.LengthAdjustment).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.Price).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.WeightAdjustment).HasColumnType("decimal(18, 4)");
+
+                entity.Property(e => e.WidthAdjustment).HasColumnType("decimal(18, 4)");
+
+                entity.HasOne(d => d.ImageSquaresPicture)
+                    .WithMany(p => p.FeatureProductImageSquaresPictures)
+                    .HasForeignKey(d => d.ImageSquaresPictureId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__FeaturePr__Image__151B244E");
+
+                entity.HasOne(d => d.Picture)
+                    .WithMany(p => p.FeatureProductPictures)
+                    .HasForeignKey(d => d.PictureId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__FeaturePr__Pictu__14270015");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.FeatureProducts)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__FeaturePr__Produ__0F624AF8");
             });
 
             modelBuilder.Entity<ImageProduct>(entity =>
@@ -116,40 +164,10 @@ namespace Product.Infrastructure.DBContext
                 entity.HasOne(d => d.ImageRootNavigation)
                     .WithMany(p => p.InverseImageRootNavigation)
                     .HasForeignKey(d => d.ImageRoot)
-                    .HasConstraintName("FK__ImageProd__Image__3E52440B");
-
-                entity.HasOne(d => d.ProductNavigation)
-                    .WithMany(p => p.ImageProducts)
-                    .HasForeignKey(d => d.Product)
-                    .HasConstraintName("FK__ImageProd__Produ__3F466844");
+                    .HasConstraintName("FK__ImageProd__Image__25869641");
             });
 
-            modelBuilder.Entity<PredefinedProductAttributeValue>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("PredefinedProductAttributeValue");
-
-                entity.Property(e => e.Cost).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(400);
-
-                entity.Property(e => e.PriceAdjustment).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.WeightAdjustment).HasColumnType("decimal(18, 4)");
-
-                entity.HasOne(d => d.ProductAttribute)
-                    .WithMany()
-                    .HasForeignKey(d => d.ProductAttributeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Predefine__Produ__534D60F1");
-            });
-
-            modelBuilder.Entity<Product.Domain.Shared.Entitys.Product>(entity =>
+            modelBuilder.Entity<Domain.Shared.Entitys.Product>(entity =>
             {
                 entity.ToTable("Product");
 
@@ -157,7 +175,7 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.AdditionalShippingCharge).HasColumnType("decimal(18, 4)");
 
-                entity.Property(e => e.AllowedQuantities).HasMaxLength(1000);
+                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Fragile)
                     .HasColumnName("fragile")
@@ -165,11 +183,11 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.Gtin).HasMaxLength(400);
 
-                entity.Property(e => e.Height).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Length).HasColumnType("decimal(18, 4)");
-
                 entity.Property(e => e.ManufacturerPartNumber).HasMaxLength(400);
+
+                entity.Property(e => e.MarkAsNewEndDateTimeUtc).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.MarkAsNewStartDateTimeUtc).HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -182,13 +200,13 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.OverriddenGiftCardAmount).HasColumnType("decimal(18, 4)");
 
+                entity.Property(e => e.PreOrderAvailabilityStartDateTimeUtc).HasDefaultValueSql("(getdate())");
+
                 entity.Property(e => e.ProductAlbum)
                     .IsRequired()
                     .HasMaxLength(200)
                     .HasColumnName("productAlbum")
                     .HasDefaultValueSql("('highlights')");
-
-                entity.Property(e => e.RequiredProductIds).HasMaxLength(1000);
 
                 entity.Property(e => e.Seo).HasColumnName("seo");
 
@@ -196,14 +214,18 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.Supplier).HasColumnName("supplier");
 
-                entity.Property(e => e.Weight).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Width).HasColumnType("decimal(18, 4)");
+                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.SeoNavigation)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.Seo)
-                    .HasConstraintName("FK__Product__seo__34C8D9D1");
+                    .HasConstraintName("FK__Product__seo__70DDC3D8");
+
+                entity.HasOne(d => d.UnitAttribute)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.UnitAttributeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Product__UnitAtt__412EB0B6");
             });
 
             modelBuilder.Entity<ProductAttribute>(entity =>
@@ -219,21 +241,42 @@ namespace Product.Infrastructure.DBContext
                 entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
             });
 
+            modelBuilder.Entity<ProductAttributeMapping>(entity =>
+            {
+                entity.ToTable("ProductAttributeMapping");
+
+                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.FeatureProduct)
+                    .WithMany(p => p.ProductAttributeMappings)
+                    .HasForeignKey(d => d.FeatureProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ProductAt__Featu__1AD3FDA4");
+
+                entity.HasOne(d => d.ProductAttributeValues)
+                    .WithMany(p => p.ProductAttributeMappings)
+                    .HasForeignKey(d => d.ProductAttributeValuesId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ProductAt__Produ__1BC821DD");
+            });
+
             modelBuilder.Entity<ProductAttributeValue>(entity =>
             {
                 entity.ToTable("ProductAttributeValue");
 
-                entity.Property(e => e.ColorSquaresRgb).HasMaxLength(100);
+                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.Cost).HasColumnType("decimal(18, 4)");
+                entity.Property(e => e.IsDelete).HasColumnName("isDelete");
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(400);
+                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.PriceAdjustment).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.WeightAdjustment).HasColumnType("decimal(18, 4)");
+                entity.HasOne(d => d.KeyNavigation)
+                    .WithMany(p => p.ProductAttributeValues)
+                    .HasForeignKey(d => d.Key)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ProductAttr__Key__09A971A2");
             });
 
             modelBuilder.Entity<ProductCategoryMapping>(entity =>
@@ -248,13 +291,13 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.ProductCategoryMappings)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_C__Categ__37A5467C");
+                    .HasConstraintName("FK__Product_C__Categ__73BA3083");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductCategoryMappings)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_C__Produ__38996AB5");
+                    .HasConstraintName("FK__Product_C__Produ__74AE54BC");
             });
 
             modelBuilder.Entity<ProductPictureMapping>(entity =>
@@ -275,63 +318,38 @@ namespace Product.Infrastructure.DBContext
                     .WithMany()
                     .HasForeignKey(d => d.PictureId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Pictu__412EB0B6");
+                    .HasConstraintName("FK__Product_P__Pictu__787EE5A0");
 
                 entity.HasOne(d => d.Product)
                     .WithMany()
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Produ__4222D4EF");
-            });
-
-            modelBuilder.Entity<ProductProductAttributeMapping>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("Product_ProductAttribute_Mapping");
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.HasOne(d => d.AttributeControlType)
-                    .WithMany()
-                    .HasForeignKey(d => d.AttributeControlTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Attri__59063A47");
-
-                entity.HasOne(d => d.ProductAttribute)
-                    .WithMany()
-                    .HasForeignKey(d => d.ProductAttributeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Produ__571DF1D5");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany()
-                    .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Produ__5812160E");
+                    .HasConstraintName("FK__Product_P__Produ__797309D9");
             });
 
             modelBuilder.Entity<ProductProductTagMapping>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("Product_ProductTag_Mapping");
+
+                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ProductId).HasColumnName("Product_Id");
 
                 entity.Property(e => e.ProductTagId).HasColumnName("ProductTag_Id");
 
+                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
+
                 entity.HasOne(d => d.Product)
-                    .WithMany()
+                    .WithMany(p => p.ProductProductTagMappings)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Produ__4BAC3F29");
+                    .HasConstraintName("FK__Product_P__Produ__03F0984C");
 
                 entity.HasOne(d => d.ProductTag)
-                    .WithMany()
+                    .WithMany(p => p.ProductProductTagMappings)
                     .HasForeignKey(d => d.ProductTagId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Produ__4CA06362");
+                    .HasConstraintName("FK__Product_P__Produ__04E4BC85");
             });
 
             modelBuilder.Entity<ProductSpecificationAttributeMapping>(entity =>
@@ -348,13 +366,13 @@ namespace Product.Infrastructure.DBContext
                     .WithMany()
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_S__Produ__68487DD7");
+                    .HasConstraintName("FK__Product_S__Produ__2CF2ADDF");
 
                 entity.HasOne(d => d.SpecificationAttributeOption)
                     .WithMany()
                     .HasForeignKey(d => d.SpecificationAttributeOptionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_S__Speci__693CA210");
+                    .HasConstraintName("FK__Product_S__Speci__2DE6D218");
             });
 
             modelBuilder.Entity<ProductTag>(entity =>
@@ -383,7 +401,9 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.CreatedOnUtc)
+                    .HasColumnName("createdOnUtc")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.IsEnabled).HasColumnName("isEnabled");
 
@@ -409,7 +429,9 @@ namespace Product.Infrastructure.DBContext
                     .HasMaxLength(70)
                     .HasColumnName("meta_title");
 
-                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.UpdatedOnUtc)
+                    .HasColumnName("updatedOnUtc")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.UseAccount).HasColumnName("use_account");
             });
@@ -423,7 +445,7 @@ namespace Product.Infrastructure.DBContext
                 entity.HasOne(d => d.SpecificationAttributeGroup)
                     .WithMany(p => p.SpecificationAttributes)
                     .HasForeignKey(d => d.SpecificationAttributeGroupId)
-                    .HasConstraintName("FK__Specifica__Speci__6383C8BA");
+                    .HasConstraintName("FK__Specifica__Speci__282DF8C2");
             });
 
             modelBuilder.Entity<SpecificationAttributeGroup>(entity =>
@@ -445,7 +467,7 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.SpecificationAttributeOptions)
                     .HasForeignKey(d => d.SpecificationAttributeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Specifica__Speci__66603565");
+                    .HasConstraintName("FK__Specifica__Speci__2B0A656D");
             });
 
             modelBuilder.Entity<StockQuantityHistory>(entity =>

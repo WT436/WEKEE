@@ -1,7 +1,27 @@
 ﻿CREATE DATABASE [ProductDB]
 GO
 USE [ProductDB]
-
+GO
+--==============================================
+-- Name        : [ImageProduct]
+-- Description : Lưu ảnh sản phẩm
+-- Date Update : 
+--==============================================
+CREATE TABLE [ImageProduct]
+(
+--=========>Trường Dữ Liệu<===========--
+	[Id] INT IDENTITY(1,1) NOT NULL primary key,
+	[IsCover] BIT NOT NULL DEFAULT (0),
+	[MimeType] [nvarchar](40) NOT NULL,
+	[SeoFilename] [nvarchar](300) NULL,
+	[AltAttribute] [nvarchar](max) NULL,
+	[TitleAttribute] [nvarchar](max) NULL,
+	[IsNew] [bit] NOT NULL,
+	[VirtualPath] [nvarchar](max) NULL,
+	[Size] VARCHAR(20) NOT NULL,
+	[Folder] VARCHAR(50) NOT NULL,
+	[ImageRoot] INT NULL FOREIGN KEY REFERENCES [ImageProduct] (id)
+)
 GO
 --==============================================
 -- Name        : [CategoryProduct]
@@ -13,13 +33,13 @@ CREATE TABLE [CategoryProduct] (
 	[id] INT IDENTITY(1,1)  NOT NULL PRIMARY KEY,
 	[nameCategory] NVARCHAR(300) UNIQUE NOT NULL,
 	[urlCategory] NVARCHAR(300) UNIQUE NOT NULL,
-	[iconCategory] VARCHAR(200) NUll,	
+	[iconCategory] INT FOREIGN KEY REFERENCES [ImageProduct] (Id),	
 	[levelCategory] INT DEFAULT 1 NOT NULL CHECK([levelCategory]>0 AND [levelCategory]<5),
-	[categoryMain] INT NUll,	
-	[numberOrder] INT NOT NULL,
+	[categoryMain] INT NUll FOREIGN KEY REFERENCES [CategoryProduct] (Id),	
+	[numberOrder] INT NOT NULL CHECK([numberOrder] > 0),
 	[isEnabled] BIT NOT NULL DEFAULT (0),
-	[CreatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
-	[UpdatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+	[createdOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[updatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 --=========>Connect Table<===========--
 )
 GO
@@ -46,10 +66,26 @@ CREATE TABLE [Seo]
 	[meta_Property] NVARCHAR(MAX) NULL,			--là thẻ khai báo cấu trúc của một trang web
 	[isEnabled] BIT DEFAULT 0  not null,			-- kiểm tra xem đã xóa hay chưa
 	[isLevel] INT DEFAULT 0 not null	,			-- cấp độ của của seo 	
-	[CreatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
-	[UpdatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+	[createdOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[updatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 --=========>Connect Table<===========--
 	[use_account] INT,
+)
+GO
+
+--==============================================
+-- Name        : [ProductAttribute]
+-- Description : Thuộc tính sản phẩm, name key, unit ....
+-- Date Update : 
+--==============================================
+CREATE TABLE [ProductAttribute](
+	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[Name] NVARCHAR(MAX) NOT NULL, -- khóa
+	[Types] INT DEFAULT(0) NOT NULL CHECK([Types]>=0 AND [Types]<=5),
+	[isDelete] BIT NOT NULL DEFAULT(0), -- đã xóa 
+	[CreateBy] BIT NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
 GO
 --==============================================
@@ -62,83 +98,80 @@ CREATE TABLE [Product]
 --=========>Trường Dữ Liệu<===========--
 	[id] INT IDENTITY(1,1) NOT NULL primary key,
 	[name] NVARCHAR(100) NOT NULL,--*
-	[fragile] BIT DEFAULT 0 , -- Hàng Dễ Vỡ 
+	[fragile] BIT DEFAULT(0) , -- Hàng Dễ Vỡ 
 	[origin] NVARCHAR(300), -- Nguồn Gốc *
-	
+	[UnitAttributeId] INT NOT NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id), -- đơn vị tính
+
 	[Sku] [nvarchar](400) NULL, -- giúp cho việc phân loại hàng hóa, quản lý kho
 	[ManufacturerPartNumber] [nvarchar](400) NULL,
-	[Gtin] [nvarchar](400) NULL,		
-	[RequiredProductIds] [nvarchar](1000) NULL,	
-	[AllowedQuantities] [nvarchar](1000) NULL, -- số lượng tối đa
+	[Gtin] [nvarchar](400) NULL,
+
 	[ShortDescription] [nvarchar](max) NULL, -- mô tả
 	[FullDescription] [nvarchar](max) NULL, -- mô tả chi tiết	
-	[ShowOnHomepage] [bit] NOT NULL, -- hiển thị trên trang chính	
-	[AllowCustomerReviews] [bit] NOT NULL, -- cho phép khách hàng đánh giá	
-	[ApprovedRatingSum] [int] NOT NULL, -- xếp hạng trên các sản phẩm cùng loại tốt, tính toán theo ngày/lần
-	[NotApprovedRatingSum] [int] NOT NULL, -- xếp hạng trên các sản phẩm cùng loại xấu, tính toán theo ngày/lần	
-	[SubjectToAcl] [bit] NOT NULL, -- kiểm soát truy cập
-	[LimitedToStores] [bit] NOT NULL, -- giới hạn cho của hàng
+	[ShowOnHomepage] [bit] NOT NULL DEFAULT(0), -- hiển thị trên trang chính	
+	[AllowCustomerReviews] [bit] NOT NULL DEFAULT(0), -- cho phép khách hàng đánh giá	
+	[ApprovedRatingSum] [int] NOT NULL DEFAULT(0), -- xếp hạng trên các sản phẩm cùng loại tốt, tính toán theo ngày/lần
+	[NotApprovedRatingSum] [int] NOT NULL DEFAULT(0), -- xếp hạng trên các sản phẩm cùng loại xấu, tính toán theo ngày/lần	
+	[SubjectToAcl] [bit] NOT NULL DEFAULT(0), -- kiểm soát truy cập
+	[LimitedToStores] [bit] NOT NULL DEFAULT(0), -- giới hạn cho của hàng
 	
-	[IsGiftCard] [bit] NOT NULL, -- có thẻ tặng quà không
-	[GiftCardTypeId] [int] NOT NULL, -- mã nhóm thẻ tặng quà
+	[IsGiftCard] [bit] NOT NULL DEFAULT(0), -- có thẻ tặng quà không
+	[GiftCardTypeId] [int] NOT NULL DEFAULT(0), -- mã nhóm thẻ tặng quà
 	[OverriddenGiftCardAmount] [decimal](18, 4) NULL, -- số lượng thẻ tặng quà bị ghi đè
 	
-	[RequireOtherProducts] [bit] NOT NULL, -- yêu cầu thêm sản phẩm khác
-	[AutomaticallyAddRequiredProducts] [bit] NOT NULL, -- tự động thêm sản phẩm bắt buộc	
+	[RequireOtherProducts] [bit] NOT NULL DEFAULT(0), -- yêu cầu thêm sản phẩm khác
+	[AutomaticallyAddRequiredProducts] [bit] NOT NULL DEFAULT(0), -- tự động thêm sản phẩm bắt buộc	
 	
-	[HasUserAgreement] [bit] NOT NULL, -- thỏa thuận người dùng (Trả góp)
+	[HasUserAgreement] [bit] NOT NULL DEFAULT(0), -- thỏa thuận người dùng (Trả góp)
 	[UserAgreementText] [nvarchar](max) NULL, -- chi tiết thỏa thuận
-	[IsRecurring] [bit] NOT NULL, -- định kỳ trả góp
-	[RecurringCycleLength] [int] NOT NULL,-- thời hạn trả góp
-	[RecurringCyclePeriodId] [int] NOT NULL, -- id chu kỳ trả góp
-	[RecurringTotalCycles] [int] NOT NULL, -- tổng thời gian trả góp	
+	[IsRecurring] [bit] NOT NULL DEFAULT(0), -- định kỳ trả góp
+	[RecurringCycleLength] [int] NOT NULL DEFAULT(0),-- thời hạn trả góp
+	[RecurringCyclePeriodId] [int] NOT NULL DEFAULT(0), -- id chu kỳ trả góp
+	[RecurringTotalCycles] [int] NOT NULL DEFAULT(0), -- tổng thời gian trả góp	
 	
-	[IsShipEnabled] [bit] NOT NULL, -- trạng thái giao hàng
-	[IsFreeShipping] [bit] NOT NULL, -- giao hàng free
-	[ShipSeparately] [bit] NOT NULL, -- giao riêng
-	[AdditionalShippingCharge] [decimal](18, 4) NOT NULL, -- phí vận chuyển bổ xung
-	[DeliveryDateId] [int] NOT NULL, -- id ngày giao hàng
+	[IsShipEnabled] [bit] NOT NULL DEFAULT(0), -- trạng thái giao hàng
+	[IsFreeShipping] [bit] NOT NULL DEFAULT(0), -- giao hàng free
+	[ShipSeparately] [bit] NOT NULL DEFAULT(0), -- giao riêng
+	[AdditionalShippingCharge] [decimal](18, 4) NOT NULL DEFAULT(0), -- phí vận chuyển bổ xung
+	[DeliveryDateId] [int] NOT NULL DEFAULT(0), -- id ngày giao hàng
 	
-	[ProductAvailabilityRangeId] [int] NOT NULL, -- phạm vi khả dụng (địa bàn)
+	[ProductAvailabilityRangeId] [int] NOT NULL DEFAULT(0), -- phạm vi khả dụng (địa bàn)
 	
-	[UseMultipleWarehouses] [bit] NOT NULL, -- sử dụng nhiều kho lưu trữ
+	[UseMultipleWarehouses] [bit] NOT NULL DEFAULT(0), -- sử dụng nhiều kho lưu trữ
 
-	[DisplayStockAvailability] [bit] NOT NULL, -- hiện thị tình trạng kho
-	[DisplayStockQuantity] [bit] NOT NULL, -- hiện thị số lượng kho hàng
-	[MinStockQuantity] [int] NOT NULL, -- hàng tồn kho tối thiểu
-	[LowStockActivityId] [int] NOT NULL, -- id hàng còn thấp ??
-	[NotifyAdminForQuantityBelow] [int] NOT NULL, -- thông báo cho admin về số lượng còn thấp
+	[DisplayStockAvailability] [bit] NOT NULL DEFAULT(0), -- hiện thị tình trạng kho
+	[DisplayStockQuantity] [bit] NOT NULL DEFAULT(0), -- hiện thị số lượng kho hàng
+	[MinStockQuantity] [int] NOT NULL DEFAULT(0), -- hàng tồn kho tối thiểu
+	[LowStockActivityId] [int] NOT NULL DEFAULT(0), -- id hàng còn thấp ??
+	[NotifyAdminForQuantityBelow] [int] NOT NULL DEFAULT(0), -- thông báo cho admin về số lượng còn thấp
 	
-	[BackorderModeId] [int] NOT NULL, -- chế độ đặt hàng trước
-	[AllowBackInStockSubscriptions] [bit] NOT NULL, -- cho phép quay về kho
+	[BackorderModeId] [int] NOT NULL DEFAULT(0), -- chế độ đặt hàng trước
+	[AllowBackInStockSubscriptions] [bit] NOT NULL DEFAULT(0), -- cho phép quay về kho
 	
-	[OrderMinimumQuantity] [int] NOT NULL, -- số lượng đặt hàng tối thiểu
-	[OrderMaximumQuantity] [int] NOT NULL, -- số lượng đặt hàng tối đa
-	[AllowAddingOnlyExistingAttributeCombinations] [bit] NOT NULL, -- có nhiều thuộc tính
-	[NotReturnable] [bit] NOT NULL, -- Không thể trả lại hàng
-	[ViewReceived] [bit] NOT NULL, -- Xem Hàng khi nhận
-	[DisableBuyButton] [bit] NOT NULL, -- tắt đặt hàng
-	[DisableWishlistButton] [bit] NOT NULL, -- tắt yêu thích
-	[AvailableForPreOrder] [bit] NOT NULL, -- đặt hàng trước
-	[PreOrderAvailabilityStartDateTimeUtc] [datetime2](7) NULL, -- thời gian có hàng cho đặt trước	
+	[OrderMinimumQuantity] [int] NOT NULL DEFAULT(0), -- số lượng đặt hàng tối thiểu
+	[OrderMaximumQuantity] [int] NOT NULL DEFAULT(0), -- số lượng đặt hàng tối đa
+	[AllowAddingOnlyExistingAttributeCombinations] [bit] NOT NULL DEFAULT(0), -- có nhiều thuộc tính
 	
-	[MarkAsNew] [bit] NOT NULL, -- đánh giấu là sản phẩm mới
-	[MarkAsNewStartDateTimeUtc] [datetime2](7) NULL, -- đánh giấu là ngày bắt đầu sản phẩm mới
-	[MarkAsNewEndDateTimeUtc] [datetime2](7) NULL, -- đánh giấu kết thúc sản phẩm mới
+	[NotReturnable] [bit] NOT NULL DEFAULT(0), -- Không thể trả lại hàng
+	[ViewReceived] [bit] NOT NULL DEFAULT(0), -- Xem Hàng khi nhận
+	[DisableBuyButton] [bit] NOT NULL DEFAULT(0), -- tắt đặt hàng
+	[DisableWishlistButton] [bit] NOT NULL DEFAULT(0), -- tắt yêu thích
+	[WishlistNumber] [int] NOT NULL DEFAULT(0), -- tắt yêu thích
+	[AvailableForPreOrder] [bit] NOT NULL DEFAULT(0), -- đặt hàng trước
+	[PreOrderAvailabilityStartDateTimeUtc] DATETIME2(7) NULL DEFAULT(GETDATE()), -- thời gian có hàng cho đặt trước	
 	
-	[HasTierPrices] [bit] NOT NULL, -- cấp độ giá
-	[HasDiscountsApplied] [bit] NOT NULL, -- áp dụng giảm giá
+	[MarkAsNew] [bit] NOT NULL DEFAULT(0), -- đánh giấu là sản phẩm mới
+	[MarkAsNewStartDateTimeUtc] DATETIME2(7) NULL DEFAULT(GETDATE()), -- đánh giấu là ngày bắt đầu sản phẩm mới
+	[MarkAsNewEndDateTimeUtc] DATETIME2(7) NULL DEFAULT(GETDATE()), -- đánh giấu kết thúc sản phẩm mới
 	
-	[Weight] [decimal](18, 4) NOT NULL, -- trọng lượng
-	[Length] [decimal](18, 4) NOT NULL, -- chiều rộng
-	[Width] [decimal](18, 4) NOT NULL, -- chiều ngang
-	[Height] [decimal](18, 4) NOT NULL, -- chiều cao
-	
-	[DisplayOrder] [int] NOT NULL, -- hiển thị sản phẩm
-	[Published] [bit] NOT NULL, -- được phát hành
-	[Deleted] [bit] NOT NULL, -- đã xóa
-	[CreatedOnUtc] [datetime2](7) NOT NULL, --ngày tạo
-	[UpdatedOnUtc] [datetime2](7) NOT NULL, -- ngày update
+	[HasTierPrices] [bit] NOT NULL DEFAULT(0), -- cấp độ giá
+	[HasDiscountsApplied] [bit] NOT NULL DEFAULT(0), -- áp dụng giảm giá	
+
+	[Published] [bit] NOT NULL DEFAULT(0), -- được phát hành
+	[Deleted] [bit] NOT NULL DEFAULT(0), -- đã xóa
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 
 --=========>Connect Table<===========--
 	[supplier] INT , -- nhà cung cấp --*
@@ -158,31 +191,8 @@ CREATE TABLE [Product_Category_Mapping]( -- kết nối nhiều category lại v
 	[IsFeaturedProduct] [bit] NOT NULL, -- sản phẩm nổi bật
 	[DisplayOrder] [int] NOT NULL, -- vị trí hiển thị
 	[CreateBy] [int] NOT NULL,
-	[CreatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
-	[UpdatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), -- ngày update
-)
-GO
---==============================================
--- Name        : [ImageProduct]
--- Description : Lưu ảnh sản phẩm
--- Date Update : 
---==============================================
-CREATE TABLE [ImageProduct]
-(
---=========>Trường Dữ Liệu<===========--
-	[Id] INT IDENTITY(1,1) NOT NULL primary key,
-	[IsCover] BIT NOT NULL DEFAULT (0),
-	[MimeType] [nvarchar](40) NOT NULL,
-	[SeoFilename] [nvarchar](300) NULL,
-	[AltAttribute] [nvarchar](max) NULL,
-	[TitleAttribute] [nvarchar](max) NULL,
-	[IsNew] [bit] NOT NULL,
-	[VirtualPath] [nvarchar](max) NULL,
-	[Size] VARCHAR(20) NOT NULL,
-	[Folder] VARCHAR(50) NOT NULL,
-	[ImageRoot] INT FOREIGN KEY REFERENCES [ImageProduct] (id),
---=========>Connect Table<===========--
-	[Product] INT NULL FOREIGN KEY REFERENCES [Product] (id)
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
 GO
 --==============================================
@@ -197,8 +207,8 @@ CREATE TABLE [Product_Picture_Mapping](
 	[DisplayOrder] [int] NOT NULL,
 	[isDelete] [bit] NOT NULL DEFAULT(0),
 	[CreateBy] [int] NOT NULL,
-	[CreatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
-	[UpdatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
 GO
 --==============================================
@@ -211,8 +221,8 @@ CREATE TABLE [ProductTag](
 	[Name] [nvarchar](400) NOT NULL,
 	[isDelete] [bit] NOT NULL DEFAULT(0),
 	[CreateBy] [int] NOT NULL,
-	[CreatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
-	[UpdatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
 
 GO
@@ -222,90 +232,71 @@ GO
 -- Date Update : 
 --==============================================
 CREATE TABLE [Product_ProductTag_Mapping](
+	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[Product_Id] [int] NOT NULL FOREIGN KEY REFERENCES [Product] (Id),
 	[ProductTag_Id] [int] NOT NULL FOREIGN KEY REFERENCES [ProductTag] (Id),
-)
-
-GO
---==============================================
--- Name        : [ProductAttribute]
--- Description : Thuộc tính sản phẩm
--- Date Update : 
---==============================================
-CREATE TABLE [ProductAttribute](
-	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[Name] [nvarchar](max) NOT NULL,
-	[Description] [nvarchar](max) NULL,
-	[isDelete] [bit] NOT NULL DEFAULT(0),
 	[CreateBy] [int] NOT NULL,
-	[CreatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
-	[UpdatedOnUtc] [datetime2](7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
 
 GO
 --==============================================
--- Name        : [PredefinedProductAttributeValue]
--- Description : Giá trị thuộc tính sản phẩm mặc định
--- Date Update : 
---==============================================
-CREATE TABLE [PredefinedProductAttributeValue](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](400) NOT NULL,
-	[ProductAttributeId] [int] NOT NULL FOREIGN KEY REFERENCES [ProductAttribute](Id),
-	[PriceAdjustment] [decimal](18, 4) NOT NULL,
-	[PriceAdjustmentUsePercentage] [bit] NOT NULL,
-	[WeightAdjustment] [decimal](18, 4) NOT NULL,
-	[Cost] [decimal](18, 4) NOT NULL,
-	[IsPreSelected] [bit] NOT NULL,
-	[DisplayOrder] [int] NOT NULL
-)
-
-GO
---==============================================
--- Name        :  
--- Description : 
+-- Name        : [ProductAttributeValue]
+-- Description : Thuộc tính sản phẩm
 -- Date Update : 
 --==============================================
 CREATE TABLE [ProductAttributeValue](
 	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[Name] [nvarchar](400) NOT NULL,
-	[ColorSquaresRgb] [nvarchar](100) NULL,
-	[ProductAttributeMappingId] [int] NOT NULL,
-	[AttributeValueTypeId] [int] NOT NULL,
-	[AssociatedProductId] [int] NOT NULL,
-	[ImageSquaresPictureId] [int] NOT NULL,
-	[PriceAdjustment] [decimal](18, 4) NOT NULL,
-	[PriceAdjustmentUsePercentage] [bit] NOT NULL,
-	[WeightAdjustment] [decimal](18, 4) NOT NULL,
-	[Cost] [decimal](18, 4) NOT NULL,
-	[CustomerEntersQty] [bit] NOT NULL,
-	[Quantity] [int] NOT NULL,
-	[IsPreSelected] [bit] NOT NULL,
-	[DisplayOrder] [int] NOT NULL,
-	[PictureId] [int] NOT NULL
+	[Key] INT NOT NULL  FOREIGN KEY REFERENCES [ProductAttribute](Id), -- khóa
+	[Values] [nvarchar](max) NULL, -- giá trị
+	[isDelete] [bit] NOT NULL DEFAULT(0), -- đã xóa 
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
 
 GO
 --==============================================
--- Name        :  [Product_ProductAttribute_Mapping]
+-- Name        :  [FeatureProduct]
 -- Description : 
 -- Date Update : 
 --==============================================
-CREATE TABLE [Product_ProductAttribute_Mapping](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ProductAttributeId] [int] NOT NULL FOREIGN KEY REFERENCES [ProductAttribute](Id),
-	[ProductId] [int] NOT NULL FOREIGN KEY REFERENCES [Product](Id),
-	[TextPrompt] [nvarchar](max) NULL,
-	[IsRequired] [bit] NOT NULL,
-	[AttributeControlTypeId] [int] NOT NULL FOREIGN KEY REFERENCES [ProductAttributeValue](Id),
-	[DisplayOrder] [int] NOT NULL,
-	[ValidationMinLength] [int] NULL,
-	[ValidationMaxLength] [int] NULL,
-	[ValidationFileAllowedExtensions] [nvarchar](max) NULL,
-	[ValidationFileMaximumSize] [int] NULL,
-	[DefaultValue] [nvarchar](max) NULL,
-	[ConditionAttributeXml] [nvarchar](max) NULL
+CREATE TABLE [FeatureProduct](
+	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[ProductId] [int] NOT NULL FOREIGN KEY REFERENCES [Product](Id), -- sản phẩm chính
+	
+	[WeightAdjustment] [decimal](18, 4) NOT NULL DEFAULT(0), -- trọng lượng
+	[LengthAdjustment] [decimal](18, 4) NOT NULL DEFAULT(0), -- chiều rộng
+	[WidthAdjustment] [decimal](18, 4) NOT NULL DEFAULT(0), -- chiều ngang
+	[HeightAdjustment] [decimal](18, 4) NOT NULL DEFAULT(0), -- chiều cao	
+	[Price] [decimal](18, 4) NOT NULL,
+
+	[Quantity] [int] NOT NULL, -- số lượng
+	[DisplayOrder] [int] NOT NULL,-- vị trí hiển thị
+	[PictureId] [int] NOT NULL  FOREIGN KEY REFERENCES [ImageProduct](Id), -- id ảnh
+	[ImageSquaresPictureId] [int] NOT NULL  FOREIGN KEY REFERENCES [ImageProduct](Id),
+	[MainProduct] [bit] DEFAULT(0) NOT NULL,
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
+
+GO
+--==============================================
+-- Name        : [ProductAttributeMapping]
+-- Description : 
+-- Date Update : 
+--==============================================
+CREATE TABLE [ProductAttributeMapping](
+	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[FeatureProductId] [int] NOT NULL FOREIGN KEY REFERENCES [FeatureProduct](Id),
+	[ProductAttributeValuesId] [int] NOT NULL FOREIGN KEY REFERENCES [ProductAttributeValue](Id),
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+)
+
 GO
 --==============================================
 -- Name        : [Warehouse]
@@ -343,7 +334,7 @@ CREATE TABLE [StockQuantityHistory](
 	[QuantityAdjustment] [int] NOT NULL,
 	[StockQuantity] [int] NOT NULL,
 	[Message] [nvarchar](max) NULL,
-	[CreatedOnUtc] [datetime2](7) NOT NULL,
+	[CreatedOnUtc] DATETIME2(7) NOT NULL,
 	[CombinationId] [int] NULL,
 	[WarehouseId] [int] NULL
 )

@@ -7,21 +7,20 @@ namespace Product.Domain.Shared.Entitys
 {
     public partial class ProductAttributeValue
     {
+        public ProductAttributeValue()
+        {
+            ProductAttributeMappings = new HashSet<ProductAttributeMapping>();
+        }
+
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string ColorSquaresRgb { get; set; }
-        public int ProductAttributeMappingId { get; set; }
-        public int AttributeValueTypeId { get; set; }
-        public int AssociatedProductId { get; set; }
-        public int ImageSquaresPictureId { get; set; }
-        public decimal PriceAdjustment { get; set; }
-        public bool PriceAdjustmentUsePercentage { get; set; }
-        public decimal WeightAdjustment { get; set; }
-        public decimal Cost { get; set; }
-        public bool CustomerEntersQty { get; set; }
-        public int Quantity { get; set; }
-        public bool IsPreSelected { get; set; }
-        public int DisplayOrder { get; set; }
-        public int PictureId { get; set; }
+        public int Key { get; set; }
+        public string Values { get; set; }
+        public bool IsDelete { get; set; }
+        public int CreateBy { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public DateTime UpdatedOnUtc { get; set; }
+
+        public virtual ProductAttribute KeyNavigation { get; set; }
+        public virtual ICollection<ProductAttributeMapping> ProductAttributeMappings { get; set; }
     }
 }

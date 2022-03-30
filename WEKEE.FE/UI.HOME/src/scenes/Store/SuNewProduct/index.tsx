@@ -97,7 +97,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                 <link rel="stylesheet" href={urlCss + "/newProduct.css"} /> 
                 <link rel="stylesheet" href={urlCss + "/editor.css"} />
             </Helmet>
-            <Col span={18}>
+            <Col span={24}>
                 <Row>
                     <Title className="RzCgNC58JZ" style={{ width: '100%' }} level={3}>Thêm 1 sản phẩm mới</Title>
                     <Text className="kdMal56HSK">Vui lòng chọn ngành hàng phù hợp cho sản phẩm của bạn.</Text>
@@ -229,16 +229,6 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                         </Form.Item>
                     </Form>
                 </Row>
-            </Col>
-            <Col span={6} >
-                <Affix target={() => container} offsetTop={10}>
-                    <Alert
-                        message="Success Text"
-                        description="Success Description Success Description Success Description"
-                        type="success"
-                        className="xTKcPpX23i"
-                    />
-                </Affix>
             </Col>
         </Row>
     )
