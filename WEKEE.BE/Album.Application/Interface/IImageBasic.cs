@@ -17,5 +17,6 @@ namespace Album.Application.Interface
         Task<string> SaveProductServer(IFormFile files);
         Task<string> SaveRootServer(IFormFile files);
         Task<string> SaveRootEvaluates(List<IFormFile> formFiles);
+        Task<string> SaveRootCategoryProduct(IFormFile files);
     }
 }

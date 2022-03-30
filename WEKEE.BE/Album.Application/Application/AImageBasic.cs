@@ -136,5 +136,21 @@ namespace Album.Application.Application
         {
             throw new System.NotImplementedException();
         }
+
+        public async Task<string> SaveRootCategoryProduct(IFormFile files)
+        {
+            var image = await OpenImage.ConvertIFormFileToBitmap(file: files);
+            return SaveFile.SaveImage(
+                         bitmap: (Bitmap)ResizeImage.ResizeNotKeepStruct(data: new ResizeImageDto
+                         {
+                             Image = image,
+                             ListSizeImages = ConfigSizeImage.ReturnSizeDefault(Domain.ObjectValues.SizeImage.S80x80),
+                             Quality = ConfigImaging.Low
+                         }),
+                         name: Path.GetFileName(files.FileName),
+                         folderSave: FolderSave.icon,
+                         formatImage: FormatImage.JPEG_JPG,
+                         sizeImages: Domain.ObjectValues.SizeImage.S80x80);
+        }
     }
 }

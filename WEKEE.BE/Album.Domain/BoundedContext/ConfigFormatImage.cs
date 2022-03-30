@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Album.Domain.ObjectValues;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -28,15 +29,15 @@ namespace Album.Domain.BoundedContext
         {
             return formatImage switch
             {
-                ObjectValues.FormatImage.JPEG_JPG => ".jpg",
-                ObjectValues.FormatImage.PNG =>".png",
-                ObjectValues.FormatImage.GIF => ".gif",
-                ObjectValues.FormatImage.Emf => ".emf",
-                ObjectValues.FormatImage.Exif =>".exif",
-                ObjectValues.FormatImage.Icon =>".icon",
-                ObjectValues.FormatImage.Tiff =>".tiff",
-                ObjectValues.FormatImage.Wmf => ".wmf",
-                _ => ".jpg"
+                ObjectValues.FormatImage.JPEG_JPG => ExtensionType.JPG,
+                ObjectValues.FormatImage.PNG => ExtensionType.PNG,
+                ObjectValues.FormatImage.GIF => ExtensionType.GIF,
+                ObjectValues.FormatImage.Emf => ExtensionType.EMF,
+                ObjectValues.FormatImage.Exif => ExtensionType.EXIF,
+                ObjectValues.FormatImage.Icon => ExtensionType.ICO,
+                ObjectValues.FormatImage.Tiff => ExtensionType.TIFF,
+                ObjectValues.FormatImage.Wmf => ExtensionType.WMF,
+                _ => ExtensionType.JPG
             };
         }
     }

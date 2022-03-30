@@ -32,25 +32,26 @@ namespace Album.Infrastructure.ImageProcess
                     ConfigGraphics.QuatityImaging(drawing, ConfigImaging.High);
                     SizeF textSize = drawing.MeasureString(text, font);
                     drawing.Clear(Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256)));
-                    using (Brush textBrush = new SolidBrush(Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256))))
-                    {
-                        drawing.DrawString(text, font, textBrush, new Rectangle(X, Y, 180, 180));
-                        drawing.Save();
-                    }
+                    using Brush textBrush = new SolidBrush(Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256)));
+                    drawing.DrawString(text, font, textBrush, new Rectangle(X, Y, 180, 180));
+                    drawing.Save();
                 }
                 string path = Path.GetFullPath(
                          Path.Combine(Directory.GetCurrentDirectory() + @$"\RootFiles\"));
-                int level=-1;
+                int level = -1;
                 string nameFile;
                 string pathtest;
+
                 do
                 {
                     level++;
                     nameFile = NameImage.NameProcessConvert(text: null, level: level);
-                    pathtest = path + @"album\avatar\" + nameFile +".jpg";
+                    pathtest = path + @"album\avatar\" + nameFile + ExtensionType.JPG;
+
                 } while (File.Exists(pathtest));
+
                 img.Save(pathtest, ConfigFormatImage.GetImageFormat(formatImage: Domain.ObjectValues.FormatImage.JPEG_JPG));
-                return nameFile + ".jpg";
+                return nameFile + ExtensionType.JPG;
             }
         }
     }

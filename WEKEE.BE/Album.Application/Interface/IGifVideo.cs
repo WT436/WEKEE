@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Album.Application.Interface
 {
-    class IGifVideo
+    public interface IGifVideo
     {
     }
 }

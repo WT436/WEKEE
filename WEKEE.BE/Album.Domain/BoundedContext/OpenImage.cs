@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Album.Domain.ObjectValues;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,7 +18,15 @@ namespace Album.Domain.BoundedContext
             return new Bitmap(Image.FromStream(memoryStream));
         }
 
-        private static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG" };
+        private static readonly List<string> ImageExtensions = new List<string>
+        { 
+            ExtensionType.JPG,
+            ExtensionType.JPE, 
+            ExtensionType.BMP, 
+            ExtensionType.GIF, 
+            ExtensionType.PNG 
+        };
+
         public static async Task<Image> OpenImageAsync(string url)
         {
             string path = Path.GetFullPath(

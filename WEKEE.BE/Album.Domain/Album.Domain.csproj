@@ -34,7 +34,8 @@
     <Folder Include="Aggregate\" />
     <Folder Include="Entitys\" />
     <Folder Include="EventDomain\" />
-    <Folder Include="Shared\" />
+    <Folder Include="Shared\Entitys\" />
+    <Folder Include="Shared\DataTransfer\" />
   </ItemGroup>
 
   <ItemGroup>

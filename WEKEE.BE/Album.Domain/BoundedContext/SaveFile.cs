@@ -51,11 +51,11 @@ namespace Album.Domain.BoundedContext
             {
                 level++;
                 nameFile = NameImage.NameProcessConvert(text: name, level: level);
-                pathtest = path + pathImage + nameFile + ".jpg";
+                pathtest = path + pathImage + nameFile + ExtensionType.JPG;
             } while (File.Exists(pathtest));
             bitmap.Save(pathtest, ImageFormat.Jpeg);
 
-            return (pathImage + nameFile +".jpg");
+            return (pathImage + nameFile + ExtensionType.JPG);
         }
 
         /// <summary>
