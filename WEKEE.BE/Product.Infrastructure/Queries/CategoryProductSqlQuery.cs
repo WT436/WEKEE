@@ -22,7 +22,7 @@ namespace Product.Infrastructure.Queries
             query.AppendLine("  		CP.id                 AS 'Id',                                                              ");
             query.AppendLine("  		CP.nameCategory       AS 'NameCategory',                                                    ");
             query.AppendLine("  		CP.urlCategory        AS 'UrlCategory',                                                     ");
-            query.AppendLine("  		CP.iconCategory       AS 'IconCategory',                                                    ");
+            query.AppendLine("  		(SELECT VirtualPath FROM ImageProduct where id = CP.iconCategory) AS 'IconCategory',        ");
             query.AppendLine("  		CP.levelCategory      AS 'LevelCategory',                                                   ");
             query.AppendLine("  		CP.categoryMain       AS 'CategoryMain',                                                    ");
             query.AppendLine("  		(SELECT nameCategory FROM CategoryProduct where id = CP.categoryMain) AS 'CategoryMainName',");

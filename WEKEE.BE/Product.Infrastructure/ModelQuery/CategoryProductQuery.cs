@@ -39,7 +39,7 @@ namespace Product.Infrastructure.ModelQuery
             try
             {
                 return await unitOfWork.GetRepository<CategoryProduct>()
-                                       .MaxAsync(predicate: c => c.LevelCategory == level && c.CategoryMain == categoryMain,
+                                       .MaxAsync(predicate: c => c.LevelCategory == level && c.CategoryMain == (categoryMain == 0 ? null : categoryMain),
                                                  selector: cp => cp.NumberOrder);
             }
             catch (Exception ex)
@@ -95,7 +95,7 @@ namespace Product.Infrastructure.ModelQuery
             return unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<List<CategoryProductReadMapDto>> GetMapCategoryProduct()    
+        public async Task<List<CategoryProductReadMapDto>> GetMapCategoryProduct()
         => (unitOfWork.GetRepository<CategoryProduct>()
                     .GetAll(predicate: m => m.LevelCategory == 1))
                     .ToList()

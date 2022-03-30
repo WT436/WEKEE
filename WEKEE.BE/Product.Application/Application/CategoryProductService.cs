@@ -18,8 +18,8 @@ namespace Product.Application.Application
     public class CategoryProductService : ICategoryProduct
     {
         // check data With server
-        CategoryProductQuery _categoryProductQuery = new CategoryProductQuery();
-
+        public readonly CategoryProductQuery _categoryProductQuery = new CategoryProductQuery();
+        private readonly IImageProduct _imageProduct = new ImageProductService();
         public async Task<int> ChangeEnableCategory(List<Entitys> id)
         {
             int countUpdate = 0;
@@ -91,7 +91,9 @@ namespace Product.Application.Application
                 }
 
                 // từ category Main => level = level Categorymain + 1
-                var levelCategogyMain = await _categoryProductQuery.GetLevelCategoryMain(cp.CategoryMain);
+                var levelCategogyMain = cp.CategoryMain == null || cp.CategoryMain == 0 
+                                        ? 1 
+                                        : await _categoryProductQuery.GetLevelCategoryMain(cp.CategoryMain);
 
                 if (levelCategogyMain == -1)
                 {
@@ -101,12 +103,10 @@ namespace Product.Application.Application
 
                 // Kiểm tra tồn tại của category main và level của chúng
 
-
                 // check level and number
                 int NumberOrderEnd = await _categoryProductQuery.GetNumberOrderEnd(level: levelCategogyMain,
                                                                                    categoryMain: cp.CategoryMain);
-
-                var iconCategory = 0;
+                var iconCategory = await _imageProduct.InsertImageCategory(cp.IconCategory, cp.NameCategory);
 
                 var cateInsert = new CategoryProduct
                 {
@@ -114,7 +114,7 @@ namespace Product.Application.Application
                     UrlCategory = cp.UrlCategory,
                     IconCategory = iconCategory,
                     LevelCategory = Convert.ToInt32(levelCategogyMain),
-                    CategoryMain = cp.CategoryMain,
+                    CategoryMain = cp.CategoryMain == 0 ? null : cp.CategoryMain,
                     NumberOrder = NumberOrderEnd + 1,
                     IsEnabled = cp.IsEnabled,
                     UpdatedOnUtc = DateTime.Now,

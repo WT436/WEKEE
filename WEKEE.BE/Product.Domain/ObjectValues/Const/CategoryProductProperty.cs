@@ -26,7 +26,7 @@ namespace Product.Domain.ObjectValues.Const
                 URL_CATEGORY => $"UrlCategory LIKE '%{value}%' ",
                 ICON_CATEGORY => $"IconCategory LIKE '%{value}%' ",
                 LEVEL_CATEGORY => $"LevelCategory = {value} ",
-                MAIN_CATEGORY => $"CategoryMain = {value} ",
+                MAIN_CATEGORY => value == "null" ? $"CategoryMain IS NULL" : $"CategoryMain = {value} ",
                 NUMBER_CATEGORY => $"NumberOrder = {value} ",
                 ENABLED_CATEGORY => $"IsEnabled = {value} ",
                 CREATE_DATE_UTC_CATEGORY => $"CreatedOnUtc = '{value}' ",

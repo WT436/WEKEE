@@ -122,7 +122,7 @@ export default function ACategory(props: IACategoryProps) {
         propertyOrder: "",
         valueOrderBy: "",
         propertySearch: [ConstTypes.MAIN_CATEGORY],
-        valuesSearch: ["1"],
+        valuesSearch: ["null"],
       })
     );
   }, []);
@@ -252,7 +252,7 @@ export default function ACategory(props: IACategoryProps) {
         propertyOrder: "",
         valueOrderBy: "",
         propertySearch: [ConstTypes.MAIN_CATEGORY],
-        valuesSearch: value.length == 0 ? ["1"] : [value[value.length - 1]],
+        valuesSearch: value.length == 0 ? ["null"] : [value[value.length - 1]],
       })
     );
   };
@@ -431,13 +431,13 @@ export default function ACategory(props: IACategoryProps) {
         </Col>
       </Row>
       <Modal
-        title="Basic Modal"
-        closable={false}
+        title="Category"
+        closable={true}
         mask={true}
         maskClosable={false}
         visible={isModalVisible}
-        onOk={() => onFinish}
-        onCancel={handleCancel}
+        footer={null}
+        onCancel={()=> setIsModalVisible(false)}
       >
         <Form
           labelCol={{ span: 10 }}

@@ -20,7 +20,6 @@ namespace Product.API.Src.ProductAreas
         public async Task<IActionResult> Index([FromBody] CategoryProductInsertDto categoryProductDto)
         {
             var data = await _categoryProduct.CreateCategory(cp: categoryProductDto);
-
             return Ok(data);
         }
 

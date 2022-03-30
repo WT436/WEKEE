@@ -154,3 +154,356 @@ System.DivideByZeroException: Attempted to divide by zero.
 2022-03-30 18:04:21,820 [4] INFO  App [localhost] [44327] [Watch] [Index] [GET] [/v1/api/infomation-file] [?path=%5Calbum%5Ccommon%5C1-google-logo.png] 
 2022-03-30 18:11:52,574 [14] INFO  App Log System Initialized 
 2022-03-30 18:11:52,593 [14] INFO  App [localhost] [44327] [Watch] [Index] [GET] [/v1/api/infomation-file] [?path=%5Calbum%5Ccommon%5C1-google-logo.png] 
+2022-03-30 20:05:36,501 [16] INFO  App Log System Initialized 
+2022-03-30 20:05:36,511 [16] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 20:06:11,303 [15] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:08:42,950 [4] INFO  App Log System Initialized 
+2022-03-30 20:08:43,097 [4] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:09:04,087 [13] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:09:36,847 [14] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:10:26,509 [14] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:12:53,323 [14] INFO  App Log System Initialized 
+2022-03-30 20:12:53,355 [14] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:18:36,207 [4] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:18:50,380 [4] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:36:16,689 [16] INFO  App Log System Initialized 
+2022-03-30 20:36:16,722 [16] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 20:36:16,723 [14] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 20:37:07,577 [22] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 20:37:42,942 [17] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:38:11,598 [19] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 20:38:11,613 [21] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 20:38:12,094 [19] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 134
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 20:38:14,486 [21] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 20:38:14,520 [21] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 134
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 20:38:15,715 [22] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=3] 
+2022-03-30 20:38:39,214 [24] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 20:38:39,249 [24] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 134
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 20:38:40,931 [14] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 20:38:41,005 [14] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 134
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 20:38:55,451 [14] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 20:40:12,064 [28] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:40:25,272 [28] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:41:01,660 [8] INFO  App Log System Initialized 
+2022-03-30 20:41:01,682 [8] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:41:30,149 [17] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:42:17,423 [15] INFO  App Log System Initialized 
+2022-03-30 20:42:17,535 [15] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:52:18,982 [12] INFO  App Log System Initialized 
+2022-03-30 20:52:19,035 [12] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:53:29,790 [13] INFO  App Log System Initialized 
+2022-03-30 20:53:29,824 [13] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:54:21,315 [4] INFO  App Log System Initialized 
+2022-03-30 20:54:21,361 [4] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 20:58:37,594 [4] INFO  App Log System Initialized 
+2022-03-30 20:58:37,637 [4] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 21:00:35,458 [4] INFO  App Log System Initialized 
+2022-03-30 21:00:35,505 [4] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 21:03:23,702 [16] INFO  App Log System Initialized 
+2022-03-30 21:03:23,753 [16] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 21:04:47,894 [8] INFO  App Log System Initialized 
+2022-03-30 21:04:47,919 [8] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 21:05:56,970 [16] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 21:06:23,957 [19] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:06:30,324 [24] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:06:30,333 [23] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:06:35,561 [23] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:07:03,895 [28] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 21:07:05,967 [29] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-30 21:09:01,291 [32] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:09:01,348 [5] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:09:01,796 [32] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 21:09:20,747 [36] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:09:20,773 [35] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:09:20,901 [35] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 21:09:55,187 [38] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:09:55,242 [33] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:09:55,267 [38] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 21:10:04,905 [38] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:10:04,942 [38] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 21:10:05,462 [38] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=7] 
+2022-03-30 21:10:08,986 [33] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:10:09,036 [33] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 21:10:11,456 [42] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:10:11,488 [42] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 21:10:15,660 [39] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:10:15,689 [39] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 21:10:32,622 [43] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=5] 
+2022-03-30 21:10:34,974 [42] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:10:35,008 [42] ERROR App Object of type 'System.Int32' cannot be converted to type 'System.String'. 
+System.ArgumentException: Object of type 'System.Int32' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 104
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-30 21:13:01,706 [5] INFO  App Log System Initialized 
+2022-03-30 21:13:01,758 [4] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:13:01,765 [5] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:17:59,347 [8] INFO  App Log System Initialized 
+2022-03-30 21:17:59,396 [8] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:17:59,401 [5] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:20:19,811 [4] INFO  App Log System Initialized 
+2022-03-30 21:20:19,857 [5] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:20:19,876 [4] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:34:25,040 [13] INFO  App Log System Initialized 
+2022-03-30 21:34:25,055 [14] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:34:25,058 [13] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:35:31,359 [17] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:35:31,392 [17] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:37:12,922 [19] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:37:12,975 [16] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:37:16,653 [23] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:37:17,988 [23] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:37:18,858 [23] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=7] 
+2022-03-30 21:37:20,567 [23] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:37:21,771 [23] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=5] 
+2022-03-30 21:37:24,941 [22] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:37:49,423 [22] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:37:49,513 [16] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:37:59,690 [22] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:37:59,787 [16] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:38:17,143 [29] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:38:17,233 [31] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:47:55,493 [8] INFO  App Log System Initialized 
+2022-03-30 21:47:55,553 [4] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:47:55,556 [8] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:48:11,069 [17] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:48:11,093 [8] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 21:48:53,699 [15] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 21:48:53,712 [8] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-30 21:49:23,701 [11] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
