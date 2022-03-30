@@ -16,7 +16,7 @@ CREATE TABLE [ImageProduct]
 	[SeoFilename] [nvarchar](300) NULL,
 	[AltAttribute] [nvarchar](max) NULL,
 	[TitleAttribute] [nvarchar](max) NULL,
-	[IsNew] [bit] NOT NULL,
+	[IsNew] [bit] NOT NULL  DEFAULT (0),
 	[VirtualPath] [nvarchar](max) NULL,
 	[Size] VARCHAR(20) NOT NULL,
 	[Folder] VARCHAR(50) NOT NULL,

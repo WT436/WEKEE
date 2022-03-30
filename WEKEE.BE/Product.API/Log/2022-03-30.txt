@@ -98,3 +98,59 @@ System.DivideByZeroException: Attempted to divide by zero.
 --- End of stack trace from previous location where exception was thrown ---
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
 2022-03-30 09:31:45,381 [49] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 14:56:20,373 [14] INFO  App Log System Initialized 
+2022-03-30 14:56:20,386 [14] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 15:00:39,992 [8] INFO  App Log System Initialized 
+2022-03-30 15:00:40,018 [8] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 16:11:50,660 [13] INFO  App Log System Initialized 
+2022-03-30 16:11:50,678 [13] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 16:16:35,386 [4] INFO  App Log System Initialized 
+2022-03-30 16:16:35,405 [4] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 16:18:10,090 [7] INFO  App Log System Initialized 
+2022-03-30 16:18:10,108 [7] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 16:19:39,862 [8] INFO  App Log System Initialized 
+2022-03-30 16:19:39,877 [8] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 16:53:31,266 [4] INFO  App Log System Initialized 
+2022-03-30 16:53:31,281 [4] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 16:53:40,291 [4] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 16:54:54,549 [8] INFO  App Log System Initialized 
+2022-03-30 16:54:54,567 [8] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 17:15:42,099 [11] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:15:42,113 [8] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:16:12,924 [13] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:16:12,941 [8] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:19:27,155 [15] INFO  App Log System Initialized 
+2022-03-30 17:19:27,174 [14] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:19:27,184 [15] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:20:30,075 [18] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:20:30,173 [18] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:21:23,775 [19] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:21:23,775 [22] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:23:01,105 [22] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:23:01,293 [24] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:23:06,914 [24] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 17:24:20,137 [27] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:24:20,207 [17] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:24:26,896 [27] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 17:27:13,498 [22] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:27:13,571 [16] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:27:27,509 [22] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 17:27:52,687 [16] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 17:28:41,691 [28] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:28:41,696 [29] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:28:52,376 [28] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 17:29:43,886 [4] INFO  App Log System Initialized 
+2022-03-30 17:29:43,908 [8] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:29:43,910 [4] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:30:07,493 [8] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 17:30:07,529 [4] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 17:30:18,327 [4] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 17:31:53,753 [4] INFO  App Log System Initialized 
+2022-03-30 17:31:53,764 [4] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 17:42:21,693 [16] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-30 18:03:52,267 [4] INFO  App Log System Initialized 
+2022-03-30 18:03:52,322 [4] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-30 18:03:52,616 [5] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-30 18:04:21,820 [4] INFO  App [localhost] [44327] [Watch] [Index] [GET] [/v1/api/infomation-file] [?path=%5Calbum%5Ccommon%5C1-google-logo.png] 
+2022-03-30 18:11:52,574 [14] INFO  App Log System Initialized 
+2022-03-30 18:11:52,593 [14] INFO  App [localhost] [44327] [Watch] [Index] [GET] [/v1/api/infomation-file] [?path=%5Calbum%5Ccommon%5C1-google-logo.png] 

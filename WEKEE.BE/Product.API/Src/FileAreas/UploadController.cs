@@ -1,5 +1,5 @@
 ﻿using Album.Application.Interface;
-using Album.Domain.Dtos;
+using Album.Domain.Shared.DataTransfer;
 using Album.Domain.ObjectValues;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

@@ -2,23 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Application\AImageBasic.cs~RF3a04e7.TMP" />
-    <None Remove="Application\AImageBasic.cs~RF4e69a87.TMP" />
-    <None Remove="Interface\IImageAvatarDefault.cs~RF9e5737.TMP" />
-    <None Remove="Interface\IImageBasic.cs~RF118b072.TMP" />
-    <None Remove="Interface\IImageBasic.cs~RF3784508.TMP" />
+    <Compile Remove="EventBus\**" />
+    <EmbeddedResource Remove="EventBus\**" />
+    <None Remove="EventBus\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EventBus\" />
+    <None Remove="Controll\Application\AImageBasic.cs~RF3a04e7.TMP" />
+    <None Remove="Controll\Application\AImageBasic.cs~RF4e69a87.TMP" />
+    <None Remove="Controll\Interface\IImageAvatarDefault.cs~RF9e5737.TMP" />
+    <None Remove="Controll\Interface\IImageBasic.cs~RF118b072.TMP" />
+    <None Remove="Controll\Interface\IImageBasic.cs~RF3784508.TMP" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Album.Domain\Album.Domain.csproj" />
-    <ProjectReference Include="..\Album.Infrastructure\Album.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.15" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
   </ItemGroup>
 
 </Project>

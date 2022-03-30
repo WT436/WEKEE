@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RootFiles\album\subBanner\**" />
+    <Content Remove="RootFiles\album\subBanner\**" />
+    <EmbeddedResource Remove="RootFiles\album\subBanner\**" />
+    <None Remove="RootFiles\album\subBanner\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Properties\launchSettings.json" />
   </ItemGroup>
 
@@ -44,10 +51,11 @@
     <Folder Include="RootFiles\album\evaluates\" />
     <Folder Include="RootFiles\album\file\" />
     <Folder Include="RootFiles\album\category\" />
+    <Folder Include="RootFiles\album\audio\" />
+    <Folder Include="RootFiles\album\icon\" />
     <Folder Include="RootFiles\album\post\" />
     <Folder Include="RootFiles\album\rootevaluates\" />
     <Folder Include="RootFiles\album\rootImage\" />
-    <Folder Include="RootFiles\album\subBanner\" />
     <Folder Include="RootFiles\album\video\" />
     <Folder Include="RootFiles\scripts\" />
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Album.Application.Controll.Interface;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,16 @@ namespace Product.API.Src.FileAreas
 {
     public class WatchController : Controller
     {
-        public IActionResult Index()
+        private readonly IReadInfoFile _readInfoFile;
+        public WatchController(IReadInfoFile readInfoFile)
         {
+            _readInfoFile = readInfoFile;
+        }
+        [HttpGet]
+        [Route("v1/api/infomation-file")]
+        public async Task<IActionResult> Index(string path)
+        {
+            _readInfoFile.ReadInfoImage(path);
             return Ok();
         }
     }

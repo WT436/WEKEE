@@ -127,13 +127,13 @@ export default function ACategory(props: IACategoryProps) {
     );
   }, []);
 
-  const normFile = (info: any) => {
+  const formFile = (info: any) => {
     if (info.file.status === "uploading") {
       setLoadingImage(true);
       return;
     }
     if (info.file.status === "done") {
-      // // Get this url from response in real world.
+      // Get this url from response in real world.
       setImageUrl(info.file.response.url.toString());
       console.log(imageUrl);
       setLoadingImage(false);
@@ -478,14 +478,14 @@ export default function ACategory(props: IACategoryProps) {
               <Form.Item
                 name="iconCategory"
                 label="Icon Danh Mục"
-                getValueFromEvent={normFile}
+                getValueFromEvent={formFile}
               >
                 <Upload
                   name="file"
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}
-                  action={abp.serviceAlbumAPI + "/upload-icon"}
+                  action={abp.serviceAlbumAPI + "upload-icon"}
                   method="POST"
                   beforeUpload={beforeUpload}
                 >

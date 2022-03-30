@@ -31,6 +31,8 @@ using Utils.Cache;
 using Utils.Email;
 using Supplier.Application.Application;
 using Supplier.Application.Interface;
+using Album.Application.Controll.Application;
+using Album.Application.Controll.Interface;
 
 namespace Product.API.InstallStartup.InstallerServices
 {
@@ -81,6 +83,7 @@ namespace Product.API.InstallStartup.InstallerServices
             #region Upload
             services.AddTransient<IImageBasic, AImageBasic>();
             services.AddTransient<IImageAvatarDefault, AImageAvatarDefault>();
+            services.AddTransient<IReadInfoFile, ReadInfoFileService>();
             #endregion
 
             #region Category Product
