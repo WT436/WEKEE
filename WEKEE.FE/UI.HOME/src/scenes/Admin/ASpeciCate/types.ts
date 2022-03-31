@@ -1,7 +1,8 @@
 import { ActionType } from "typesafe-actions";
 import * as actions from "./actions";
+import { CategoryProductReadMapDto } from "./dtos/CategoryProductReadMapDto";
 import { CategorySelectDto } from "./dtos/categorySelectDto";
-import { SpecificationsCategoryDto } from "./dtos/specificationsCategoryDto";
+import { SpecificationAttributeInsertDto } from "./dtos/SpecificationAttributeInsertDto";
 
 export interface ASpeciCateState {
   readonly loading: boolean;
@@ -13,7 +14,8 @@ export interface ASpeciCateState {
   readonly categorySelectDto: CategorySelectDto[];
   readonly nameKey: string[];
   readonly classifyValues: string[];
-  readonly specificationsCategoryDto: SpecificationsCategoryDto[];
+  readonly specificationsCategoryDto: SpecificationAttributeInsertDto[];
+  readonly optionsCategory: CategoryProductReadMapDto[];
 }
 
 export type ASpeciCateActions = ActionType<typeof actions>;

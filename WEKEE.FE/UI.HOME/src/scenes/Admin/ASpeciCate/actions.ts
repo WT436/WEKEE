@@ -1,8 +1,9 @@
 import { action } from "typesafe-actions";
 
 import ActionTypes from "./constants";
+import { CategoryProductReadMapDto } from "./dtos/CategoryProductReadMapDto";
 import { CategorySelectDto } from "./dtos/categorySelectDto";
-import { SpecificationsCategoryDto } from "./dtos/specificationsCategoryDto";
+import { SpecificationAttributeInsertDto } from "./dtos/SpecificationAttributeInsertDto";
 // open page login
 export const watchPageStart = () => action(ActionTypes.WATCH_PAGE_START);
 export const watchPageCompleted = () =>
@@ -16,7 +17,7 @@ export const getCategotyMainCompleted = (output: CategorySelectDto[]) =>
 export const getCategotyMainError = () =>
   action(ActionTypes.GET_CATEGORY_MAIN_ERROR);
 
-export const createSpecificationsStart = (input: SpecificationsCategoryDto) =>
+export const createSpecificationsStart = (input: SpecificationAttributeInsertDto) =>
   action(ActionTypes.CREATE_SPECIFICATIONS_START, input);
 export const createSpecificationsCompleted = (output: number) =>
   action(ActionTypes.CREATE_SPECIFICATIONS_COMPLETED, output);
@@ -41,7 +42,16 @@ export const getNameClassifyValuesSpecificationsError = () =>
 export const searchSpecificationsStart = (key: string, values: string) =>
   action(ActionTypes.SEARCH_SPECIFICATIONS_START, { key, values });
 export const searchSpecificationsCompleted = (
-  output: SpecificationsCategoryDto[]
+  output: SpecificationAttributeInsertDto[]
 ) => action(ActionTypes.SEARCH_SPECIFICATIONS_COMPLETED, output);
 export const searchSpecificationsError = () =>
   action(ActionTypes.SEARCH_SPECIFICATIONS_ERROR);
+
+//#region  Category map  
+export const CategoryMapStart = () =>
+action(ActionTypes.CATEGORY_MAP_START)
+export const CategoryMapCompleted  = (output:CategoryProductReadMapDto[]) =>
+action(ActionTypes.CATEGORY_MAP_COMPLETED,output)
+export const CategoryMapError = () =>
+action(ActionTypes.CATEGORY_MAP_ERROR)
+//#endregion

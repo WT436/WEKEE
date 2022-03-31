@@ -340,39 +340,18 @@ CREATE TABLE [StockQuantityHistory](
 )
 GO
 --==============================================
--- Name        : [SpecificationAttributeGroup]
--- Description : Thuộc tính đặc điểm kỹ thuật sản phẩm
--- Date Update : 
---==============================================
-CREATE TABLE [SpecificationAttributeGroup](
-	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[Name] [nvarchar](max) NOT NULL,
-	[DisplayOrder] [int] NOT NULL
-)
-GO
---==============================================
 -- Name        : [SpecificationAttribute]
--- Description : Thuộc tính đặc điểm kỹ thuật
+-- Description : Tùy chọn đặc điểm kỹ thuật - 
 -- Date Update : 
 --==============================================
 CREATE TABLE [SpecificationAttribute](
 	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[Name] [nvarchar](max) NOT NULL,
-	[SpecificationAttributeGroupId] [int] NULL FOREIGN KEY REFERENCES [SpecificationAttributeGroup](Id),
-	[DisplayOrder] [int] NOT NULL
-)
-GO
---==============================================
--- Name        : [SpecificationAttributeOption]
--- Description : Tùy chọn đặc điểm kỹ thuật
--- Date Update : 
---==============================================
-CREATE TABLE [SpecificationAttributeOption](
-	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[Name] [nvarchar](max) NOT NULL,
-	[ColorSquaresRgb] [nvarchar](100) NULL,
-	[SpecificationAttributeId] [int] NOT NULL FOREIGN KEY REFERENCES [SpecificationAttribute](Id),
-	[DisplayOrder] [int] NOT NULL
+	[key] NVARCHAR(200) NOT NULL,--key
+	[CategoryProductId] [int] NOT NULL FOREIGN KEY REFERENCES [CategoryProduct](Id), -- category
+	[GroupSpecification] NVARCHAR(200) NULL,-- nhóm
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
 GO
 --==============================================
@@ -382,13 +361,16 @@ GO
 --==============================================
 CREATE TABLE [Product_SpecificationAttribute_Mapping](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[CustomValue] [nvarchar](4000) NULL,
-	[ProductId] [int] NOT NULL FOREIGN KEY REFERENCES [Product](Id),
-	[SpecificationAttributeOptionId] [int] NOT NULL FOREIGN KEY REFERENCES [SpecificationAttributeOption](Id),
+	[CustomValue] [nvarchar](4000) NULL, -- giá trị
+	[ProductId] [int] NOT NULL FOREIGN KEY REFERENCES [Product](Id), -- tên sản phẩm
+	[SpecificationId] [int] NOT NULL FOREIGN KEY REFERENCES [SpecificationAttribute](Id),-- mã key
 	[AttributeTypeId] [int] NOT NULL,
-	[AllowFiltering] [bit] NOT NULL,
-	[ShowOnProductPage] [bit] NOT NULL,
-	[DisplayOrder] [int] NOT NULL
+	[AllowFiltering] [bit] NOT NULL, -- bộ lọc tìm kiếm
+	[ShowOnProductPage] [bit] NOT NULL, -- hiển thị trên trang card
+	[DisplayOrder] [int] NOT NULL, -- vị trí hiển thị
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )
 --==============================================
 -- Name        : 

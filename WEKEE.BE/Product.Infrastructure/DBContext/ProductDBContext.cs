@@ -21,7 +21,7 @@ namespace Product.Infrastructure.DBContext
         public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
         public virtual DbSet<FeatureProduct> FeatureProducts { get; set; }
         public virtual DbSet<ImageProduct> ImageProducts { get; set; }
-        public virtual DbSet<Domain.Shared.Entitys.Product> Products { get; set; }
+        public virtual DbSet<Product.Domain.Shared.Entitys.Product> Products { get; set; }
         public virtual DbSet<ProductAttribute> ProductAttributes { get; set; }
         public virtual DbSet<ProductAttributeMapping> ProductAttributeMappings { get; set; }
         public virtual DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
@@ -33,8 +33,6 @@ namespace Product.Infrastructure.DBContext
         public virtual DbSet<ProductWarehouseInventory> ProductWarehouseInventories { get; set; }
         public virtual DbSet<Seo> Seos { get; set; }
         public virtual DbSet<SpecificationAttribute> SpecificationAttributes { get; set; }
-        public virtual DbSet<SpecificationAttributeGroup> SpecificationAttributeGroups { get; set; }
-        public virtual DbSet<SpecificationAttributeOption> SpecificationAttributeOptions { get; set; }
         public virtual DbSet<StockQuantityHistory> StockQuantityHistories { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
 
@@ -55,10 +53,10 @@ namespace Product.Infrastructure.DBContext
             {
                 entity.ToTable("CategoryProduct");
 
-                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B40235B4F3B2E")
+                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B4023841ABE7A")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B953F7F0922")
+                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B95000926C7")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -96,12 +94,12 @@ namespace Product.Infrastructure.DBContext
                 entity.HasOne(d => d.CategoryMainNavigation)
                     .WithMany(p => p.InverseCategoryMainNavigation)
                     .HasForeignKey(d => d.CategoryMain)
-                    .HasConstraintName("FK__CategoryP__categ__2D27B809");
+                    .HasConstraintName("FK__CategoryP__categ__2E1BDC42");
 
                 entity.HasOne(d => d.IconCategoryNavigation)
                     .WithMany(p => p.CategoryProducts)
                     .HasForeignKey(d => d.IconCategory)
-                    .HasConstraintName("FK__CategoryP__iconC__2A4B4B5E");
+                    .HasConstraintName("FK__CategoryP__iconC__2B3F6F97");
             });
 
             modelBuilder.Entity<FeatureProduct>(entity =>
@@ -126,19 +124,19 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.FeatureProductImageSquaresPictures)
                     .HasForeignKey(d => d.ImageSquaresPictureId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FeaturePr__Image__151B244E");
+                    .HasConstraintName("FK__FeaturePr__Image__160F4887");
 
                 entity.HasOne(d => d.Picture)
                     .WithMany(p => p.FeatureProductPictures)
                     .HasForeignKey(d => d.PictureId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FeaturePr__Pictu__14270015");
+                    .HasConstraintName("FK__FeaturePr__Pictu__151B244E");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.FeatureProducts)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FeaturePr__Produ__0F624AF8");
+                    .HasConstraintName("FK__FeaturePr__Produ__10566F31");
             });
 
             modelBuilder.Entity<ImageProduct>(entity =>
@@ -164,10 +162,10 @@ namespace Product.Infrastructure.DBContext
                 entity.HasOne(d => d.ImageRootNavigation)
                     .WithMany(p => p.InverseImageRootNavigation)
                     .HasForeignKey(d => d.ImageRoot)
-                    .HasConstraintName("FK__ImageProd__Image__25869641");
+                    .HasConstraintName("FK__ImageProd__Image__267ABA7A");
             });
 
-            modelBuilder.Entity<Domain.Shared.Entitys.Product>(entity =>
+            modelBuilder.Entity<Product.Domain.Shared.Entitys.Product>(entity =>
             {
                 entity.ToTable("Product");
 
@@ -219,13 +217,13 @@ namespace Product.Infrastructure.DBContext
                 entity.HasOne(d => d.SeoNavigation)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.Seo)
-                    .HasConstraintName("FK__Product__seo__70DDC3D8");
+                    .HasConstraintName("FK__Product__seo__71D1E811");
 
                 entity.HasOne(d => d.UnitAttribute)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.UnitAttributeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product__UnitAtt__412EB0B6");
+                    .HasConstraintName("FK__Product__UnitAtt__4222D4EF");
             });
 
             modelBuilder.Entity<ProductAttribute>(entity =>
@@ -253,13 +251,13 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.ProductAttributeMappings)
                     .HasForeignKey(d => d.FeatureProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductAt__Featu__1AD3FDA4");
+                    .HasConstraintName("FK__ProductAt__Featu__1BC821DD");
 
                 entity.HasOne(d => d.ProductAttributeValues)
                     .WithMany(p => p.ProductAttributeMappings)
                     .HasForeignKey(d => d.ProductAttributeValuesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductAt__Produ__1BC821DD");
+                    .HasConstraintName("FK__ProductAt__Produ__1CBC4616");
             });
 
             modelBuilder.Entity<ProductAttributeValue>(entity =>
@@ -276,7 +274,7 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.ProductAttributeValues)
                     .HasForeignKey(d => d.Key)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductAttr__Key__09A971A2");
+                    .HasConstraintName("FK__ProductAttr__Key__0A9D95DB");
             });
 
             modelBuilder.Entity<ProductCategoryMapping>(entity =>
@@ -291,13 +289,13 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.ProductCategoryMappings)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_C__Categ__73BA3083");
+                    .HasConstraintName("FK__Product_C__Categ__74AE54BC");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductCategoryMappings)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_C__Produ__74AE54BC");
+                    .HasConstraintName("FK__Product_C__Produ__75A278F5");
             });
 
             modelBuilder.Entity<ProductPictureMapping>(entity =>
@@ -318,13 +316,13 @@ namespace Product.Infrastructure.DBContext
                     .WithMany()
                     .HasForeignKey(d => d.PictureId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Pictu__787EE5A0");
+                    .HasConstraintName("FK__Product_P__Pictu__797309D9");
 
                 entity.HasOne(d => d.Product)
                     .WithMany()
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Produ__797309D9");
+                    .HasConstraintName("FK__Product_P__Produ__7A672E12");
             });
 
             modelBuilder.Entity<ProductProductTagMapping>(entity =>
@@ -343,13 +341,13 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.ProductProductTagMappings)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Produ__03F0984C");
+                    .HasConstraintName("FK__Product_P__Produ__04E4BC85");
 
                 entity.HasOne(d => d.ProductTag)
                     .WithMany(p => p.ProductProductTagMappings)
                     .HasForeignKey(d => d.ProductTagId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_P__Produ__04E4BC85");
+                    .HasConstraintName("FK__Product_P__Produ__05D8E0BE");
             });
 
             modelBuilder.Entity<ProductSpecificationAttributeMapping>(entity =>
@@ -358,21 +356,25 @@ namespace Product.Infrastructure.DBContext
 
                 entity.ToTable("Product_SpecificationAttribute_Mapping");
 
+                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
+
                 entity.Property(e => e.CustomValue).HasMaxLength(4000);
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.Product)
                     .WithMany()
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_S__Produ__2CF2ADDF");
+                    .HasConstraintName("FK__Product_S__Produ__2B0A656D");
 
-                entity.HasOne(d => d.SpecificationAttributeOption)
+                entity.HasOne(d => d.Specification)
                     .WithMany()
-                    .HasForeignKey(d => d.SpecificationAttributeOptionId)
+                    .HasForeignKey(d => d.SpecificationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_S__Speci__2DE6D218");
+                    .HasConstraintName("FK__Product_S__Speci__2BFE89A6");
             });
 
             modelBuilder.Entity<ProductTag>(entity =>
@@ -440,34 +442,22 @@ namespace Product.Infrastructure.DBContext
             {
                 entity.ToTable("SpecificationAttribute");
 
-                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.SpecificationAttributeGroup)
+                entity.Property(e => e.GroupSpecification).HasMaxLength(200);
+
+                entity.Property(e => e.Key)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .HasColumnName("key");
+
+                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.CategoryProduct)
                     .WithMany(p => p.SpecificationAttributes)
-                    .HasForeignKey(d => d.SpecificationAttributeGroupId)
-                    .HasConstraintName("FK__Specifica__Speci__282DF8C2");
-            });
-
-            modelBuilder.Entity<SpecificationAttributeGroup>(entity =>
-            {
-                entity.ToTable("SpecificationAttributeGroup");
-
-                entity.Property(e => e.Name).IsRequired();
-            });
-
-            modelBuilder.Entity<SpecificationAttributeOption>(entity =>
-            {
-                entity.ToTable("SpecificationAttributeOption");
-
-                entity.Property(e => e.ColorSquaresRgb).HasMaxLength(100);
-
-                entity.Property(e => e.Name).IsRequired();
-
-                entity.HasOne(d => d.SpecificationAttribute)
-                    .WithMany(p => p.SpecificationAttributeOptions)
-                    .HasForeignKey(d => d.SpecificationAttributeId)
+                    .HasForeignKey(d => d.CategoryProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Specifica__Speci__2B0A656D");
+                    .HasConstraintName("FK__Specifica__Categ__2739D489");
             });
 
             modelBuilder.Entity<StockQuantityHistory>(entity =>

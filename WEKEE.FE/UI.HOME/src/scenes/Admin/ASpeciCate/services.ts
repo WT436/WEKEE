@@ -1,7 +1,19 @@
 import http from "../../../services/httpService";
-import { SpecificationsCategoryDto } from "./dtos/specificationsCategoryDto";
+import { SpecificationAttributeInsertDto } from "./dtos/SpecificationAttributeInsertDto";
 
 class ASpeciCateService {
+
+  public async getCategoryMapService(){
+    let rs = await http.get('/get-map-category');
+    console.log("/get-map-category");
+    console.log(rs);
+    if (rs){
+        return rs.data;
+    }
+    else {
+        return rs;
+    }
+}
   public async searchSpecificationsStart(key: string, value: string) {
     let rs = await http.get("/get/create-specifications-category", {
       params: { key: key, values: value },
@@ -34,8 +46,9 @@ class ASpeciCateService {
     }
   }
 
-  public async createSpecificationsStart(input: SpecificationsCategoryDto) {
-    let rs = await http.post("/create/create-specifications-category", input);
+  public async createSpecificationsStart(input: SpecificationAttributeInsertDto) {
+    let rs = await http.post("/create-specification-attribute", input);
+    console.log(rs);
     if (rs) {
       return rs.data;
     } else {

@@ -91,7 +91,7 @@ namespace Product.Application.Application
                 }
 
                 // từ category Main => level = level Categorymain + 1
-                var levelCategogyMain = cp.CategoryMain == null || cp.CategoryMain == 0 
+                var levelCategogyMain = (cp.CategoryMain == null || cp.CategoryMain == 0) 
                                         ? 1 
                                         : await _categoryProductQuery.GetLevelCategoryMain(cp.CategoryMain);
 
@@ -131,7 +131,7 @@ namespace Product.Application.Application
 
         public async Task<PagedListOutput<CategoryProductReadDto>> GetAllPageListCategory(SearchOrderPageInput input)
         {
-            CategoryProductSqlQuery db = new CategoryProductSqlQuery();
+            CategoryProductSqlQueries db = new CategoryProductSqlQueries();
             CategoryProductQuery dbEF = new CategoryProductQuery();
             var data = await db.GetAllPageLstExactNotFTS(input);
             int totalCount = await dbEF.TotalPageCategory();

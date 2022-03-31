@@ -86,8 +86,9 @@ namespace Product.API.InstallStartup.InstallerServices
             services.AddTransient<IReadInfoFile, ReadInfoFileService>();
             #endregion
 
-            #region Category Product
+            #region Product
             services.AddTransient<ICategoryProduct, CategoryProductService>();
+            services.AddTransient<ISpecificationAttribute, SpecificationAttributeService>();
             #endregion
         }
     }

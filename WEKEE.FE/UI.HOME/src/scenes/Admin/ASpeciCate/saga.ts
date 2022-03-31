@@ -1,5 +1,7 @@
 import { call, put, takeLatest, race } from "redux-saga/effects";
 import {
+  CategoryMapCompleted,
+  CategoryMapError,
   createSpecificationsCompleted,
   createSpecificationsError,
   getCategotyMainCompleted,
@@ -40,7 +42,26 @@ export default function* watchLoginRequestStart() {
     ActionTypes.SEARCH_SPECIFICATIONS_START,
     searchSpecificationsStart
   );
+  yield takeLatest(ActionTypes.CATEGORY_MAP_START, getCategoryMap);
 }
+
+function* getCategoryMap(){
+  try {
+    const { output } = yield race({
+      output: call(service.getCategoryMapService),
+    });
+    console.log(output)
+    if (output) {
+      yield put(CategoryMapCompleted(output));
+    } else {
+      yield put(CategoryMapError());
+    }
+    
+  } catch (error) {
+    yield put(CategoryMapError());
+  }
+}
+
 
 function* searchSpecificationsStart(input: any) {
   try {

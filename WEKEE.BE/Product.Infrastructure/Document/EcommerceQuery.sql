@@ -54,6 +54,7 @@ SELECT *
 FROM CategoryProduct AS C
 WHERE FREETEXT(C.*,'SEARCH')
 
+
      SELECT                                                                                           
   		CP.id                 AS 'Id',                                                                
   		CP.nameCategory       AS 'NameCategory',                                                      
@@ -73,18 +74,16 @@ WHERE FREETEXT(C.*,'SEARCH')
   	OFFSET((2 - 1) * 2) ROWS   
 
    SELECT                                                                                           
-  		CP.id                 AS 'Id',                                                              
-  		CP.nameCategory       AS 'NameCategory',                                                    
-  		CP.urlCategory        AS 'UrlCategory',                                                     
-  		CP.iconCategory      AS 'IconCategory',                                                     
-  		CP.levelCategory     AS 'LevelCategory',                                                    
-  		CP.categoryMain      AS 'CategoryMain',                                                     
-  		(SELECT nameCategory FROM CategoryProduct where id = CP.categoryMain) AS 'CategoryMainName',
-  		CP.numberOrder        AS 'NumberOrder',                                                     
-  		CP.isEnabled          AS 'IsEnabled',                                                       
+  		CP.id                 AS 'Id',  
+		CP.[key]			  AS 'Key',
+		CP.GroupSpecification AS 'GroupSpecification',
+        CP.CategoryProductId  AS 'CategoryProductId',
+		CP.CreateBy			  AS 'CreateBy',
   		CP.CreatedOnUtc       AS 'CreatedOnUtc',                                                    
   		CP.UpdatedOnUtc       AS 'UpdatedOnUtc '                                                    
-  	FROM CategoryProduct      AS CP                                                                 
+  	FROM SpecificationAttribute      AS CP   
+	--WHERE [key] LIKE '%S%'                                                                   
+  	 -- AND urlCategory LIKE '%S%'      
   ORDER BY Id ASC 
-  OFFSET((1 - 1) * 1) ROWS                                                                        
+  OFFSET((20 - 1) * 20) ROWS                                                                        
   FETCH NEXT 1 ROWS ONLY                                                                                                                                                                                                                           

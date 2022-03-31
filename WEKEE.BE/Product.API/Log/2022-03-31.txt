@@ -1,0 +1,480 @@
+2022-03-31 09:10:19,595 [16] INFO  App Log System Initialized 
+2022-03-31 09:10:19,616 [16] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 09:10:19,617 [15] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 09:10:42,039 [16] ERROR App Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached. 
+System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Product.Infrastructure.ModelQuery.CategoryProductQuery.GetMapCategoryProduct() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\ModelQuery\CategoryProductQuery.cs:line 99
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 62
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-31 09:10:47,633 [15] ERROR App A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) 
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (2): The system cannot find the file specified.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.<>c.<OpenConnection>b__18_0(DatabaseFacade database)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass12_0`2.<Execute>b__0(DbContext c, TState s)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation, Func`2 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.OpenConnection(DatabaseFacade databaseFacade)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 81
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2022-03-31 09:12:58,338 [17] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 09:12:58,366 [20] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 09:13:13,446 [20] ERROR App Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached. 
+System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.<>c.<OpenConnection>b__18_0(DatabaseFacade database)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass12_0`2.<Execute>b__0(DbContext c, TState s)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation, Func`2 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.OpenConnection(DatabaseFacade databaseFacade)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 81
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-31 09:13:18,771 [17] ERROR App A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) 
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (2): The system cannot find the file specified.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Product.Infrastructure.ModelQuery.CategoryProductQuery.GetMapCategoryProduct() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\ModelQuery\CategoryProductQuery.cs:line 99
+   at Product.Application.Application.CategoryProductService.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 150
+   at Product.API.Src.ProductAreas.CategoryProductController.GetMapCategory() in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 62
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2022-03-31 09:13:44,514 [20] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [] 
+2022-03-31 09:13:52,300 [20] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?PageIndex=1&PageSize=20] 
+2022-03-31 09:14:12,799 [20] ERROR App A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) 
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (2): The system cannot find the file specified.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.<>c.<OpenConnection>b__18_0(DatabaseFacade database)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass12_0`2.<Execute>b__0(DbContext c, TState s)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation, Func`2 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.OpenConnection(DatabaseFacade databaseFacade)
+   at UnitOfWork.UnitOfWork`1.FromSql[TEntity](String sql) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\UnitOfWork.cs:line 81
+   at Product.Infrastructure.Queries.CategoryProductSqlQuery.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\CategoryProductSqlQuery.cs:line 49
+   at Product.Application.Application.CategoryProductService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\CategoryProductService.cs:line 136
+   at Product.API.Src.ProductAreas.CategoryProductController.SelectAll(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\CategoryProductController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2022-03-31 09:16:51,401 [19] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?PageIndex=1&PageSize=20] 
+2022-03-31 09:17:01,467 [19] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 09:17:01,487 [18] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 09:19:46,535 [21] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-31 09:19:47,914 [20] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=7] 
+2022-03-31 09:19:49,875 [25] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=5] 
+2022-03-31 09:19:51,463 [25] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-31 09:19:53,549 [24] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 09:20:02,481 [24] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-31 14:17:25,013 [18] INFO  App Log System Initialized 
+2022-03-31 14:17:25,047 [18] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 14:17:25,049 [20] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 14:22:42,312 [8] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 14:22:42,343 [7] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 17:52:56,240 [14] INFO  App Log System Initialized 
+2022-03-31 17:52:56,265 [14] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 17:52:56,266 [13] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 17:53:34,338 [18] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-31 17:53:36,164 [18] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-31 17:55:13,735 [4] INFO  App Log System Initialized 
+2022-03-31 17:55:13,769 [4] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-31 17:56:54,610 [4] INFO  App Log System Initialized 
+2022-03-31 17:56:54,631 [4] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-31 17:57:05,975 [8] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-31 17:59:31,317 [18] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-31 17:59:34,199 [18] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-31 18:01:04,503 [21] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 18:01:04,533 [18] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 18:01:33,385 [18] INFO  App [localhost] [44327] [Upload] [UploadIconImage] [POST] [/v1/api/upload-icon] [] 
+2022-03-31 18:01:34,426 [18] INFO  App [localhost] [44327] [CategoryProduct] [Index] [POST] [/v1/api/create-category] [] 
+2022-03-31 18:02:42,799 [20] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [?Key=RAM&CategoryProductId=1] 
+2022-03-31 18:02:44,596 [20] ERROR App An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'. 
+System.InvalidOperationException: An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.GetValue(Expression expression, String& parameterName)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.GetValue(Expression expression, String& parameterName)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, Boolean generateParameter)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)
+   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExtractParameters(Expression query, IParameterValues parameterValues, IDiagnosticsLogger`1 logger, Boolean parameterize, Boolean generateContextAccessors)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AnyAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at UnitOfWork.Repository.Repository`1.ExistsAsync(Expression`1 selector) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\Repository\Repository.cs:line 506
+   at Product.Infrastructure.ModelQuery.SpecificationAttributeQuery.CheckCategoryAndGroupAndKey(Int32 idCategory, String group, String key) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\ModelQuery\SpecificationAttributeQuery.cs:line 17
+   at Product.Application.Application.SpecificationAttributeService.Insert(SpecificationAttributeInsertDto input, Int32 idAccount) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\SpecificationAttributeService.cs:line 48
+   at Product.API.Src.ProductAreas.SpecificationAttributeController.CreateSpecificationAttribute(SpecificationAttributeInsertDto input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\SpecificationAttributeController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-31 18:03:09,743 [20] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [?Key=RAM&CategoryProductId=1] 
+2022-03-31 18:03:44,062 [5] ERROR App An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'. 
+System.InvalidOperationException: An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.GetValue(Expression expression, String& parameterName)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.GetValue(Expression expression, String& parameterName)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, Boolean generateParameter)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExtractParameters(Expression query, IParameterValues parameterValues, IDiagnosticsLogger`1 logger, Boolean parameterize, Boolean generateContextAccessors)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AnyAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at UnitOfWork.Repository.Repository`1.ExistsAsync(Expression`1 selector) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\Repository\Repository.cs:line 506
+   at Product.Infrastructure.ModelQuery.SpecificationAttributeQuery.CheckCategoryAndGroupAndKey(Int32 idCategory, String group, String key) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\ModelQuery\SpecificationAttributeQuery.cs:line 17
+   at Product.Application.Application.SpecificationAttributeService.Insert(SpecificationAttributeInsertDto input, Int32 idAccount) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\SpecificationAttributeService.cs:line 48
+   at Product.API.Src.ProductAreas.SpecificationAttributeController.CreateSpecificationAttribute(SpecificationAttributeInsertDto input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\SpecificationAttributeController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-31 18:04:00,074 [5] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [?Key=RAM&CategoryProductId=1] 
+2022-03-31 18:04:51,172 [5] ERROR App An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'. 
+System.InvalidOperationException: An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.GetValue(Expression expression, String& parameterName)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.GetValue(Expression expression, String& parameterName)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, Boolean generateParameter)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExtractParameters(Expression query, IParameterValues parameterValues, IDiagnosticsLogger`1 logger, Boolean parameterize, Boolean generateContextAccessors)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AnyAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at UnitOfWork.Repository.Repository`1.ExistsAsync(Expression`1 selector) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\Repository\Repository.cs:line 506
+   at Product.Infrastructure.ModelQuery.SpecificationAttributeQuery.CheckCategoryAndGroupAndKey(Int32 idCategory, String group, String key)
+   at Product.Application.Application.SpecificationAttributeService.Insert(SpecificationAttributeInsertDto input, Int32 idAccount) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\SpecificationAttributeService.cs:line 48
+   at Product.API.Src.ProductAreas.SpecificationAttributeController.CreateSpecificationAttribute(SpecificationAttributeInsertDto input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\SpecificationAttributeController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-31 18:08:43,707 [11] INFO  App Log System Initialized 
+2022-03-31 18:08:43,724 [11] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 18:08:47,249 [16] ERROR App An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'. 
+System.InvalidOperationException: An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.GetValue(Expression expression, String& parameterName)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.GetValue(Expression expression, String& parameterName)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, Boolean generateParameter)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)
+   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)
+   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)
+   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExtractParameters(Expression query, IParameterValues parameterValues, IDiagnosticsLogger`1 logger, Boolean parameterize, Boolean generateContextAccessors)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AnyAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at UnitOfWork.Repository.Repository`1.ExistsAsync(Expression`1 selector) in H:\Program\My-project\WEKEE\WEKEE.BE\UnitOfWork\Repository\Repository.cs:line 506
+   at Product.Infrastructure.ModelQuery.SpecificationAttributeQuery.CheckCategoryAndGroupAndKey(Int32 idCategory, String group, String key) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\ModelQuery\SpecificationAttributeQuery.cs:line 17
+   at Product.Application.Application.SpecificationAttributeService.Insert(SpecificationAttributeInsertDto input, Int32 idAccount) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\SpecificationAttributeService.cs:line 48
+   at Product.API.Src.ProductAreas.SpecificationAttributeController.CreateSpecificationAttribute(SpecificationAttributeInsertDto input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\SpecificationAttributeController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-31 18:10:39,069 [4] INFO  App Log System Initialized 
+2022-03-31 18:10:39,085 [4] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 18:11:57,696 [7] INFO  App Log System Initialized 
+2022-03-31 18:11:57,714 [7] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 18:14:52,353 [15] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 18:15:00,346 [15] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 18:15:02,662 [16] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 18:20:31,252 [12] INFO  App Log System Initialized 
+2022-03-31 18:20:31,287 [14] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 18:20:31,315 [12] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 20:08:40,380 [11] INFO  App Log System Initialized 
+2022-03-31 20:08:40,400 [11] INFO  App [localhost] [44327] [SpecificationAttribute] [Index] [GET] [/v1/api/specification-attribute] [?PageIndex=1&PageSize=20] 
+2022-03-31 20:09:18,139 [18] INFO  App [localhost] [44327] [SpecificationAttribute] [Index] [GET] [/v1/api/specification-attribute] [?PropertySearch=GROUP_SPEC&ValuesSearch=&PageIndex=1&PageSize=20] 
+2022-03-31 20:09:28,794 [22] INFO  App [localhost] [44327] [SpecificationAttribute] [Index] [GET] [/v1/api/specification-attribute] [?PropertySearch=GROUP_SPEC&ValuesSearch=Hardware&PageIndex=1&PageSize=20] 
+2022-03-31 20:09:39,730 [22] INFO  App [localhost] [44327] [SpecificationAttribute] [Index] [GET] [/v1/api/specification-attribute] [?PropertySearch=GROUP_SPEC&PageIndex=1&PageSize=20] 
+2022-03-31 20:09:39,946 [22] ERROR App Object reference not set to an instance of an object. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Product.Infrastructure.Queries.SpecificationAttributeQueries.GetAllPageLstExactNotFTS(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Infrastructure\Queries\SpecificationAttributeQueries.cs:line 37
+   at Product.Application.Application.SpecificationAttributeService.GetAllPageListCategory(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.Application\Application\SpecificationAttributeService.cs:line 25
+   at Product.API.Src.ProductAreas.SpecificationAttributeController.Index(SearchOrderPageInput input) in H:\Program\My-project\WEKEE\WEKEE.BE\Product.API\Src\ProductAreas\SpecificationAttributeController.cs:line 23
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-03-31 20:09:48,251 [19] INFO  App [localhost] [44327] [SpecificationAttribute] [Index] [GET] [/v1/api/specification-attribute] [?PropertySearch=GROUP_SPEC&ValuesSearch=&PageIndex=1&PageSize=20] 
+2022-03-31 20:36:05,444 [61] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 20:36:05,557 [59] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 20:36:12,502 [61] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-31 20:36:14,393 [65] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=1] 
+2022-03-31 20:36:17,027 [61] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 20:37:10,718 [64] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 20:37:10,740 [60] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 20:37:23,692 [60] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 20:37:23,705 [64] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 20:38:10,800 [76] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 20:38:10,829 [76] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 20:40:33,370 [81] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 20:40:33,399 [82] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 20:53:55,660 [103] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 20:53:55,729 [100] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 21:05:46,212 [93] INFO  App [localhost] [44327] [CategoryProduct] [SelectAll] [GET] [/v1/api/get-all] [?pageIndex=1&pageSize=20&propertyOrder=&valueOrderBy=&propertySearch[0]=MAIN_CATEGORY&valuesSearch[0]=null] 
+2022-03-31 21:05:46,272 [97] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:17:14,588 [86] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:39:52,119 [26] INFO  App Log System Initialized 
+2022-03-31 21:39:52,136 [26] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:43:51,731 [16] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:44:21,707 [5] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:44:43,959 [5] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:46:44,684 [21] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:46:57,023 [21] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 21:47:18,228 [30] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 21:47:26,661 [32] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 21:48:32,071 [14] INFO  App Log System Initialized 
+2022-03-31 21:48:32,091 [14] INFO  App [localhost] [44327] [LoginAccount] [LoginAccount] [GET] [/v1/api/account-log-in] [?Account=NamAdmin&Password=Hainam9xtb] 
+2022-03-31 21:48:43,115 [18] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:48:52,972 [14] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 21:49:03,443 [14] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 21:58:01,858 [41] INFO  App [localhost] [44327] [CategoryProduct] [GetMapCategory] [GET] [/v1/api/get-map-category] [] 
+2022-03-31 21:58:14,542 [41] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 21:58:38,193 [40] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 21:59:18,250 [40] INFO  App [localhost] [44327] [SpecificationAttribute] [Index] [GET] [/v1/api/specification-attribute] [?PageIndex=1&PageSize=20] 
+2022-03-31 21:59:40,110 [43] INFO  App [localhost] [44327] [SpecificationAttribute] [CreateSpecificationAttribute] [POST] [/v1/api/create-specification-attribute] [] 
+2022-03-31 21:59:48,401 [43] INFO  App [localhost] [44327] [SpecificationAttribute] [Index] [GET] [/v1/api/specification-attribute] [?PageIndex=1&PageSize=20] 

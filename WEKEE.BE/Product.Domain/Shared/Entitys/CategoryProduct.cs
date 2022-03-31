@@ -11,6 +11,7 @@ namespace Product.Domain.Shared.Entitys
         {
             InverseCategoryMainNavigation = new HashSet<CategoryProduct>();
             ProductCategoryMappings = new HashSet<ProductCategoryMapping>();
+            SpecificationAttributes = new HashSet<SpecificationAttribute>();
         }
 
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace Product.Domain.Shared.Entitys
         public virtual ImageProduct IconCategoryNavigation { get; set; }
         public virtual ICollection<CategoryProduct> InverseCategoryMainNavigation { get; set; }
         public virtual ICollection<ProductCategoryMapping> ProductCategoryMappings { get; set; }
+        public virtual ICollection<SpecificationAttribute> SpecificationAttributes { get; set; }
     }
 }

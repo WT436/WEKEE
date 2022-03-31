@@ -9,6 +9,8 @@ class ACategoryService {
 
     public async getCategoryMapService(){
         let rs = await http.get('/get-map-category');
+        console.log("/get-map-category");
+        console.log(rs);
         if (rs){
             return rs.data;
         }

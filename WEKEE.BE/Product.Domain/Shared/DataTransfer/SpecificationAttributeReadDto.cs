@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-#nullable disable
-
-namespace Product.Domain.Shared.Entitys
+namespace Product.Domain.Shared.DataTransfer
 {
-    public partial class SpecificationAttribute
+    public class SpecificationAttributeReadDto
     {
         public int Id { get; set; }
         public string Key { get; set; }
@@ -14,7 +13,5 @@ namespace Product.Domain.Shared.Entitys
         public int CreateBy { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }
-
-        public virtual CategoryProduct CategoryProduct { get; set; }
     }
 }

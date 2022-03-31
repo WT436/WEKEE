@@ -25,6 +25,7 @@ const makeSelectClassifyValues = () =>
   createSelector(select, (substate) => substate.classifyValues);
 const makeSelectSpecificationsCategoryDto = () =>
   createSelector(select, (substate) => substate.specificationsCategoryDto);
+  const makeSelectCategoryMapDtos = () => createSelector(select, substate => substate.optionsCategory);
 
 export {
   makeSelectLoading,
@@ -37,4 +38,5 @@ export {
   makeSelectnameKey,
   makeSelectClassifyValues,
   makeSelectSpecificationsCategoryDto,
+  makeSelectCategoryMapDtos
 };

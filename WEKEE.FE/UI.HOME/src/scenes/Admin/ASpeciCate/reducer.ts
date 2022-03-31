@@ -15,6 +15,7 @@ export const initialState: ASpeciCateState = {
   nameKey: [],
   classifyValues: [],
   specificationsCategoryDto: [],
+  optionsCategory: []
 };
 
 function aSpeciCateReducer(
@@ -115,6 +116,25 @@ function aSpeciCateReducer(
         loading: false,
       };
     //////////////////
+    //#region Category product map
+    case ActionTypes.CATEGORY_MAP_START:
+      return {
+          ...state,
+          loading: true
+      };
+  case ActionTypes.CATEGORY_MAP_COMPLETED:
+      console.log(action.payload);
+      return {
+          ...state,
+          optionsCategory: action.payload,
+          loading: false
+      };
+  case ActionTypes.CATEGORY_MAP_ERROR:
+      return {
+          ...state,
+          loading: false
+      };
+  //#endregion
     default:
       return state;
   }

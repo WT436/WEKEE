@@ -109,7 +109,7 @@ export default function ACategory(props: IACategoryProps) {
   const [loadingImage, setLoadingImage] = React.useState(false);
   const [imageUrl, setImageUrl] = React.useState("");
   const [idCategoryRoot, setIdCategoryRoot] = React.useState(false);
-  const [mainCategoryState, setMainCategoryState] = useState(1);
+  const [mainCategoryState, setMainCategoryState] = useState(0);
 
   useEffect(() => {
     // read data for cascader
