@@ -6,10 +6,6 @@ import { CategoryProductReadMapDto } from './dtos/CategoryProductReadMapDto';
 import {SearchOrderPageInput} from '../../../services/dto/searchOrderPageInput'
 import { PagedListOutput } from '../../../services/dto/pagedListOutput';
 import { CategoryProductInsertDto } from './dtos/CategoryProductInsertDto';
-// open page login
-export const watchPageStart = () => action(ActionTypes.WATCH_PAGE_START);
-export const watchPageCompleted = () => action(ActionTypes.WATCH_PAGE_COMPLETED);
-export const watchPageError = () => action(ActionTypes.WATCH_PAGE_ERROR);
 
 export const createCategoryAdminStart = (input:CategoryProductInsertDto) =>
 action(ActionTypes.CREATE_CATEGORY_ADMIN_START,input)

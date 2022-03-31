@@ -56,6 +56,11 @@ export const adminRouters: any = [
     component: LoadableComponent(() => import("../../scenes/Admin/ASpeciCate")),
   },
   {
+    path: "/admin/attribute-product",
+    exact: true,
+    component: LoadableComponent(() => import("../../scenes/Admin/AttributeProduct")),
+  },
+  {
     path: "/admin/system/error",
     exact: true,
     component: LoadableComponent(() => import("../../scenes/System/SError")),

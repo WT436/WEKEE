@@ -15,7 +15,8 @@ export const initialState: ASpeciCateState = {
   nameKey: [],
   classifyValues: [],
   specificationsCategoryDto: [],
-  optionsCategory: []
+  optionsCategory: [],
+  specificationAttributeReadDto: []
 };
 
 function aSpeciCateReducer(
@@ -23,118 +24,72 @@ function aSpeciCateReducer(
   action: ASpeciCateActions
 ) {
   switch (action.type) {
-    ///////////////////
-    case ActionTypes.WATCH_PAGE_START:
+
+    //#region CREATE_SPECIFICATIONS_START 
+    case ActionTypes.CREATE_SPECIFICATIONS_START:
       return {
         ...state,
         loading: true,
       };
 
-    case ActionTypes.WATCH_PAGE_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-        completed: false,
-      };
-
-    case ActionTypes.WATCH_PAGE_ERROR:
+    case ActionTypes.CREATE_SPECIFICATIONS_COMPLETED:
       return {
         ...state,
         loading: false,
       };
-    /////////////////////
-    case ActionTypes.GET_CATEGORY_MAIN_START:
-      return {
-        ...state,
-        loading: true,
-      };
 
-    case ActionTypes.GET_CATEGORY_MAIN_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-        categorySelectDto: action.payload,
-      };
-
-    case ActionTypes.GET_CATEGORY_MAIN_ERROR:
+    case ActionTypes.CREATE_SPECIFICATIONS_ERROR:
       return {
         ...state,
         loading: false,
       };
-    ///////////////////
-    case ActionTypes.GET_NAME_KEY_SPECIFICATIONS_START:
-      return {
-        ...state,
-        loading: true,
-      };
+    //#endregion
 
-    case ActionTypes.GET_NAME_KEY_SPECIFICATIONS_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-        nameKey: action.payload,
-      };
-
-    case ActionTypes.GET_NAME_KEY_SPECIFICATIONS_ERROR:
-      return {
-        ...state,
-        loading: false,
-      };
-    //////////////////
-    case ActionTypes.GET_NAME_VALUES_SPECIFICATIONS_START:
-      return {
-        ...state,
-      };
-
-    case ActionTypes.GET_NAME_VALUES_SPECIFICATIONS_COMPLETED:
-      return {
-        ...state,
-        classifyValues: action.payload,
-      };
-
-    case ActionTypes.GET_NAME_VALUES_SPECIFICATIONS_ERROR:
-      return {
-        ...state,
-      };
-    //////////////////
-    case ActionTypes.SEARCH_SPECIFICATIONS_START:
-      return {
-        ...state,
-        loading: true,
-      };
-
-    case ActionTypes.SEARCH_SPECIFICATIONS_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-        specificationsCategoryDto: action.payload,
-      };
-
-    case ActionTypes.SEARCH_SPECIFICATIONS_ERROR:
-      return {
-        ...state,
-        loading: false,
-      };
-    //////////////////
     //#region Category product map
     case ActionTypes.CATEGORY_MAP_START:
       return {
-          ...state,
-          loading: true
+        ...state,
+        loading: true
       };
-  case ActionTypes.CATEGORY_MAP_COMPLETED:
+    case ActionTypes.CATEGORY_MAP_COMPLETED:
       console.log(action.payload);
       return {
-          ...state,
-          optionsCategory: action.payload,
-          loading: false
+        ...state,
+        optionsCategory: action.payload,
+        loading: false
       };
-  case ActionTypes.CATEGORY_MAP_ERROR:
+    case ActionTypes.CATEGORY_MAP_ERROR:
       return {
-          ...state,
-          loading: false
+        ...state,
+        loading: false
       };
-  //#endregion
+    //#endregion
+
+    //#region SPECIFICATIONS_GET_PAGE_LIST_START
+    case ActionTypes.SPECIFICATIONS_GET_PAGE_LIST_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.SPECIFICATIONS_GET_PAGE_LIST_COMPLETED:
+      return {
+        ...state,
+        loading: false,
+        specificationAttributeReadDto: action.payload.items,
+        pageIndex: action.payload.pageIndex,
+        pageSize: action.payload.pageSize,
+        totalCount: action.payload.totalCount,
+        totalPages: action.payload.totalPages,
+      };
+
+    case ActionTypes.SPECIFICATIONS_GET_PAGE_LIST_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
+    
     default:
       return state;
   }

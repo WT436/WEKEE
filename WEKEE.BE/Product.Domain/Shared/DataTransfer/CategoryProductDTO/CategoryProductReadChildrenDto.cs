@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Product.Domain.Shared.DataTransfer
+namespace Product.Domain.Shared.DataTransfer.CategoryProductDTO
 {
-    public class CategoryProductReadDto
+    public class CategoryProductReadChildrenDto
     {
         public int Id { get; set; }
         public string NameCategory { get; set; }
@@ -17,5 +17,6 @@ namespace Product.Domain.Shared.DataTransfer
         public bool IsEnabled { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }
+        public CategoryProductReadChildrenDto Children {get; set;}
     }
 }

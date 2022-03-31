@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitOfWork;
 using Product.Domain.ObjectValues.ConstProperty;
+using Product.Domain.Shared.DataTransfer.CategoryProductDTO;
 
 namespace Product.Infrastructure.Queries
 {

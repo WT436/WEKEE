@@ -1,47 +1,30 @@
+import { PagedListOutput } from "../../../services/dto/pagedListOutput";
+import { SearchOrderPageInput } from "../../../services/dto/searchOrderPageInput";
 import http from "../../../services/httpService";
 import { SpecificationAttributeInsertDto } from "./dtos/SpecificationAttributeInsertDto";
+import { SpecificationAttributeReadDto } from "./dtos/SpecificationAttributeReadDto";
 
 class ASpeciCateService {
 
-  public async getCategoryMapService(){
-    let rs = await http.get('/get-map-category');
-    console.log("/get-map-category");
-    console.log(rs);
-    if (rs){
-        return rs.data;
+  //#region  GetPageListSpecificationService
+  public async GetPageListSpecificationService(input: SearchOrderPageInput): Promise<PagedListOutput<SpecificationAttributeReadDto>> {
+    let rs = await http.get('/specification-attribute', { params: input });
+    if (rs) {
+      return rs.data;
     }
     else {
-        return rs;
-    }
-}
-  public async searchSpecificationsStart(key: string, value: string) {
-    let rs = await http.get("/get/create-specifications-category", {
-      params: { key: key, values: value },
-    });
-    if (rs) {
-      return rs.data;
-    } else {
       return rs;
     }
   }
+  //#endregion
 
-  public async getNameClassifyValuesSpecificationsStart(input: string) {
-    let rs = await http.get(
-      "/list/get-classify-values-specifications-category",
-      { params: { key: input } }
-    );
+  public async getCategoryMapService() {
+    let rs = await http.get('/get-map-category');
+    console.log(rs);
     if (rs) {
       return rs.data;
-    } else {
-      return rs;
     }
-  }
-
-  public async getNameKeySpecificationsStart() {
-    let rs = await http.get("/list/get-key-specifications-category");
-    if (rs) {
-      return rs.data;
-    } else {
+    else {
       return rs;
     }
   }
@@ -56,23 +39,6 @@ class ASpeciCateService {
     }
   }
 
-  public async getCategotyMainStart() {
-    let rs = await http.get("/list/get-data-category");
-    if (rs) {
-      return rs.data;
-    } else {
-      return rs;
-    }
-  }
-  
-  public async authenticate() {
-    let rs = await http.post("/get/log-in");
-    if (rs) {
-      return rs.data;
-    } else {
-      return rs;
-    }
-  }
 }
 
 export default new ASpeciCateService();

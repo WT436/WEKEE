@@ -1,6 +1,6 @@
 ﻿.hsurnjftyd {
     width: 210px;
-    margin: 1px 2px;
+    margin: 1px 2px !important;
     height: 320px;
     position: relative;
     border: 1px solid #bfbfbf;
@@ -16,36 +16,56 @@
     -o-transition-delay: 5s;
     transition: .5s all;
 }
+
     .hsurnjftyd:hover {
-        border: 1px solid #ffb226;
-        box-shadow: 0 0 10px 0 #ffb226;
-        -webkit-transition-delay: 0s;
-        -moz-transition-delay: 0s;
-        -ms-transition-delay: 0s;
-        -o-transition-delay: 0s;
+        border: 1px solid #ffb226 !important;
+        box-shadow: 0 0 10px 0 #ffb226 !important;
+        -webkit-transition-delay: 0s !important;
+        -moz-transition-delay: 0s !important;
+        -ms-transition-delay: 0s !important;
+        -o-transition-delay: 0s !important;
     }
+
+    .hsurnjftyd > .ant-card-body {
+        padding: 5px !important;
+    }
+
 .MgCJXPSMyz {
-    width: 210px;
+    width: calc(100%);
     height: 210px;
-    display: block;
+    display: flex;
     text-align: center;
     overflow: hidden;
     position: relative;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
+
+    .MgCJXPSMyz > span {
+        display: block;
+    }
+
+        .MgCJXPSMyz > span > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
 
     .MgCJXPSMyz:hover:after {
         left: 100%;
     }
-    .MgCJXPSMyz>img{
-        width:100%;
+
+    .MgCJXPSMyz > img {
+        width: 100%;
     }
-    .dcp-khung {
-        font-weight: 400;
-        position: absolute;
-        z-index: 10;
-        top: -5px;
-        right: 7px;
-    }
+
+.dcp-khung {
+    font-weight: 400;
+    position: absolute;
+    z-index: 10;
+    top: -5px;
+    right: 7px;
+}
 
 .dcp-khung-before {
     position: absolute;
@@ -153,12 +173,14 @@
     height: 100%;
     max-width: 234px;
     max-height: 250px;
-    padding: 5px;
+    /*padding: 5px;*/
 }
+
 .ZDyVztAfXt {
     margin: 0 2px;
     display: block;
 }
+
 .ayVIoBempd {
     box-sizing: border-box;
     overflow: hidden;
@@ -169,6 +191,7 @@
     text-overflow: ellipsis;
     margin-bottom: 8px;
 }
+
 .title-product {
     flex: 1 0 auto;
     display: flex;
@@ -183,7 +206,6 @@
     font-size: 0.75rem;
     line-height: 0.875rem;
     margin-top: 5px;
-   
 }
 
 .description-product {
@@ -258,7 +280,7 @@
         background-color: #150799;
         font-size: 0.625rem;
         color: #ffffff;
-        overflow:hidden;
+        overflow: hidden;
     }
 
         .description-product-promotion > span:last-child {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Product.Application.Interface;
 using Product.Domain.ObjectValues.Input;
 using Product.Domain.Shared.DataTransfer;
+using Product.Domain.Shared.DataTransfer.SpecificationAttributeDTO;
 using System.Threading.Tasks;
 
 namespace Product.API.Src.ProductAreas

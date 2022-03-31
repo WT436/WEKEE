@@ -1,4 +1,4 @@
-﻿using Product.Domain.Shared.DataTransfer;
+﻿using Product.Domain.Shared.DataTransfer.CategoryProductDTO;
 using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.DBContext;
 using System;

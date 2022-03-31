@@ -173,14 +173,15 @@ export default function MenuSliderAdmin(props: IMenuSliderAdminProps) {
               <SubMenu key="sub10_3" title="Menu">
                 <Menu.Item key="item10_3_1">Option 11</Menu.Item>
               </SubMenu>
-              <SubMenu key="sub10_4" title="Chủ Đề">
+              <SubMenu key="sub10_4" title="Sản phẩm">
                 <Menu.Item key="item10_4_1">
                   <Link to="/admin/category">Chủ đề</Link>
                 </Menu.Item>
                 <Menu.Item key="item10_4_2">
-                  <Link to="/admin/specifications-category">
-                    Thông số kỹ thuật
-                  </Link>
+                  <Link to="/admin/specifications-category">Thông số</Link>
+                </Menu.Item>
+                <Menu.Item key="item10_4_3">
+                  <Link to="/admin/attribute-product">Thuộc tính</Link>
                 </Menu.Item>
               </SubMenu>
             </SubMenu>

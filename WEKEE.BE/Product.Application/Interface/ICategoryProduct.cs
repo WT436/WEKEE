@@ -1,6 +1,7 @@
 ﻿using Product.Domain.ObjectValues.Input;
 using Product.Domain.ObjectValues.Output;
 using Product.Domain.Shared.DataTransfer;
+using Product.Domain.Shared.DataTransfer.CategoryProductDTO;
 using System;
 using System.Collections.Generic;
 using System.Text;

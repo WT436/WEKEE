@@ -6,8 +6,8 @@ namespace Product.Domain.ObjectValues.ConstProperty
 {
     public static class OrderByProperty
     {
-        public const string UP = "Id";
-        public const string DOWN = "NameCategory";
+        public const string UP = "UP";
+        public const string DOWN = "DOWN";
 
         public static string CONVERT_ORDER_BY(string key)
         {

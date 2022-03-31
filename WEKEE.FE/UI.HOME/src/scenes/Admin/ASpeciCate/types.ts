@@ -3,6 +3,7 @@ import * as actions from "./actions";
 import { CategoryProductReadMapDto } from "./dtos/CategoryProductReadMapDto";
 import { CategorySelectDto } from "./dtos/categorySelectDto";
 import { SpecificationAttributeInsertDto } from "./dtos/SpecificationAttributeInsertDto";
+import { SpecificationAttributeReadDto } from "./dtos/SpecificationAttributeReadDto";
 
 export interface ASpeciCateState {
   readonly loading: boolean;
@@ -16,6 +17,7 @@ export interface ASpeciCateState {
   readonly classifyValues: string[];
   readonly specificationsCategoryDto: SpecificationAttributeInsertDto[];
   readonly optionsCategory: CategoryProductReadMapDto[];
+  readonly specificationAttributeReadDto: SpecificationAttributeReadDto[];
 }
 
 export type ASpeciCateActions = ActionType<typeof actions>;

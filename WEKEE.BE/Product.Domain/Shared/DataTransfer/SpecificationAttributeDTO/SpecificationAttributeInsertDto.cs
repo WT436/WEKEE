@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Product.Domain.Shared.DataTransfer
+namespace Product.Domain.Shared.DataTransfer.SpecificationAttributeDTO
 {
     public class SpecificationAttributeInsertDto
     {

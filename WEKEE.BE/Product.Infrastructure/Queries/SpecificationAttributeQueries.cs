@@ -2,6 +2,7 @@
 using Product.Domain.ObjectValues.ConstProperty;
 using Product.Domain.ObjectValues.Input;
 using Product.Domain.Shared.DataTransfer;
+using Product.Domain.Shared.DataTransfer.SpecificationAttributeDTO;
 using Product.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;

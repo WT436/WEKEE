@@ -4,6 +4,7 @@ using Product.Domain.ObjectValues.Const;
 using Product.Domain.ObjectValues.Input;
 using Product.Domain.ObjectValues.Output;
 using Product.Domain.Shared.DataTransfer;
+using Product.Domain.Shared.DataTransfer.CategoryProductDTO;
 using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.ModelQuery;
 using Product.Infrastructure.Queries;

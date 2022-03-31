@@ -4,7 +4,6 @@ import {
   Card,
   Cascader,
   Col,
-  Divider,
   Form,
   Input,
   Row,
@@ -21,21 +20,22 @@ import { CategoryMapStart } from "../ACategory/actions";
 import { CategoryProductReadDto } from "../ACategory/dtos/CategoryProductReadDto";
 import {
   createSpecificationsStart,
-  getNameClassifyValuesSpecificationsStart,
-  searchSpecificationsStart,
+  GetPageListSpecificationStart,
 } from "./actions";
 
 import { SpecificationAttributeInsertDto } from "./dtos/SpecificationAttributeInsertDto";
+import ConstTypes from "./objectValues/ConstTypes";
 import reducer from "./reducer";
 import saga from "./saga";
 
 import {
-    makeSelectCategoryMapDtos,
+  makeSelectCategoryMapDtos,
   makeSelectClassifyValues,
   makeSelectLoading,
   makeSelectnameKey,
   makeSelectPageIndex,
   makeSelectPageSize,
+  makeSelectspecificationAttributeReadDto,
   makeSelectSpecificationsCategoryDto,
   makeSelectTotalCount,
   makeSelectTotalPages,
@@ -44,6 +44,7 @@ import {
 const { Option } = Select;
 
 //#endregion
+
 export interface IASpeciCateProps {
   location: any;
 }
@@ -58,6 +59,7 @@ const stateSelector = createStructuredSelector<any, any>({
   nameKey: makeSelectnameKey(),
   classifyValues: makeSelectClassifyValues(),
   specificationsCategoryDto: makeSelectSpecificationsCategoryDto(),
+  specificationAttributeReadDto: makeSelectspecificationAttributeReadDto(),
 });
 
 export default function ASpeciCate(props: IASpeciCateProps) {
@@ -71,6 +73,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
     nameKey,
     classifyValues,
     specificationsCategoryDto,
+    specificationAttributeReadDto,
   } = useSelector(stateSelector);
 
   const [category, setCategory] = useState(0);
@@ -80,7 +83,16 @@ export default function ASpeciCate(props: IASpeciCateProps) {
 
   useEffect(() => {
     dispatch(CategoryMapStart());
-    //dispatch(getNameKeySpecificationsStart());
+    dispatch(
+      GetPageListSpecificationStart({
+        pageIndex: 1,
+        pageSize: 20,
+        propertyOrder: "UP",
+        valueOrderBy: ConstTypes.CREATE_DATE_UTC_SPEC,
+        propertySearch: [],
+        valuesSearch: [],
+      })
+    );
   }, []);
 
   const onFinish = (values: SpecificationAttributeInsertDto) => {
@@ -102,35 +114,24 @@ export default function ASpeciCate(props: IASpeciCateProps) {
       key: "key",
     },
     {
-      title: "Tên hiển thị",
-      dataIndex: "nameShow",
-      key: "nameShow",
+      title: "Danh mục",
+      dataIndex: "categoryProductId",
+      key: "categoryProductId",
     },
     {
-      title: "Phân loại",
-      key: "classify",
-      dataIndex: "classify",
+      title: "Nhóm",
+      key: "groupSpecification",
+      dataIndex: "groupSpecification",
     },
     {
-      title: "Giá trị phân loại",
-      key: "classifyValues",
-      dataIndex: "classifyValues",
+      title: "updatedOnUtc",
+      key: "updatedOnUtc",
+      dataIndex: "updatedOnUtc",
     },
     {
-      title: "isEnabled",
-      key: "isEnabled",
-      dataIndex: "isEnabled",
-      render: (text: boolean) =>
-        text === true ? (
-          <Tag color="#2db7f5">True</Tag>
-        ) : (
-          <Tag color="red">False</Tag>
-        ),
-    },
-    {
-      title: "Category",
-      key: "categoryMain",
-      dataIndex: "categoryMain",
+      title: "createdOnUtc",
+      key: "createdOnUtc",
+      dataIndex: "createdOnUtc",
     },
     {
       title: "Hành Động",
@@ -139,13 +140,6 @@ export default function ASpeciCate(props: IASpeciCateProps) {
     },
   ];
 
-  const rowSelection = {
-    onChange: (
-      selectedRowKeys: React.Key[],
-      selectedRows: CategoryProductReadDto[]
-    ) => {},
-  };
-
   const displayRender = (value: any) => {
     setCategory(value[value.length - 1]);
     return value;
@@ -153,7 +147,6 @@ export default function ASpeciCate(props: IASpeciCateProps) {
 
   const keyChange = (value: any) => {
     setKeySpecifications(value);
-    dispatch(getNameClassifyValuesSpecificationsStart(value));
   };
 
   const valuesChange = (value: any) => {
@@ -226,7 +219,6 @@ export default function ASpeciCate(props: IASpeciCateProps) {
                     />
                   </Form.Item>
                 </Col>
-
               </Row>
               <Form.Item wrapperCol={{ offset: 8, span: 24 }}>
                 <Button
@@ -275,18 +267,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
                 </Select>
               </Col>
               <Col span={5}>
-                <Button
-                  onClick={() => {
-                    dispatch(
-                      searchSpecificationsStart(
-                        keySpecifications,
-                        valuesSpecifications
-                      )
-                    );
-                  }}
-                >
-                  Tìm kiếm
-                </Button>
+                <Button onClick={() => {}}>Tìm kiếm</Button>
                 <Button style={{ margin: "0 5px" }}>All</Button>
                 <Button>Clean</Button>
               </Col>
@@ -312,11 +293,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
             <Table
               columns={columns}
               loading={loading}
-              dataSource={specificationsCategoryDto}
-              rowSelection={{
-                type: "radio",
-                ...rowSelection,
-              }}
+              dataSource={specificationAttributeReadDto}
               pagination={false}
             />
           </Card>
@@ -325,3 +302,4 @@ export default function ASpeciCate(props: IASpeciCateProps) {
     </>
   );
 }
+

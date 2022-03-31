@@ -237,16 +237,16 @@ export default function HCategoryListProduct(props: IHCategoryListProduct) {
                 </Col>
                 <Col span={20} >
                     <Row gutter={[6, 6]} style={{ justifyContent: 'center' }}>
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
-                        <CardProduct />
+                        <CardProduct image={"album/product/product-1.jpg.webp"} />
+                        <CardProduct image={"album/product/product-2.jpg.webp"} />
+                        <CardProduct image={"album/product/product-3.jpg.webp"} />
+                        <CardProduct image={"album/product/product-4.jpg.webp"} />
+                        <CardProduct image={"album/product/product-5.jpg.webp"} />
+                        <CardProduct image={"album/product/product-6.jpg.webp"} />
+                        <CardProduct image={"album/product/product-7.jpg.webp"} />
+                        <CardProduct image={"album/product/product-8.jpg.webp"} />
+                        <CardProduct image={"album/product/product-9.jpg.webp"} />
+                        <CardProduct image={"album/product/product-10.jpg.webp"} />
                         <div className="IaMmsoXcLb">
                             <div className="body">
                                 <span>

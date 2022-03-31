@@ -2,13 +2,11 @@
 using Product.Domain.ObjectValues.Const;
 using Product.Domain.ObjectValues.Input;
 using Product.Domain.ObjectValues.Output;
-using Product.Domain.Shared.DataTransfer;
+using Product.Domain.Shared.DataTransfer.SpecificationAttributeDTO;
 using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.ModelQuery;
 using Product.Infrastructure.Queries;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Utils.Exceptions;
 

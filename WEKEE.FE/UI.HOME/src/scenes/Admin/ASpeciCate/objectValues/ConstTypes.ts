@@ -1,0 +1,11 @@
+enum ConstTypes{
+    ID_SPEC = "ID_SPEC",
+    KEY_SPEC = "KEY_SPEC",
+    GROUP_SPEC = "GROUP_SPEC",
+    CATE_SPEC = "CATE_SPEC",
+    CREATE_SPEC = "CREATE_SPEC",
+    CREATE_DATE_UTC_SPEC = "CREATE_DATE_UTC_SPEC",
+    UPDATE_DATE_UTC_SPEC = "UPDATE_DATE_UTC_SPEC",   
+}
+
+export default ConstTypes;

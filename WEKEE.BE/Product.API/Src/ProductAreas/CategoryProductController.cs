@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product.Application.Interface;
 using Product.Domain.ObjectValues.Input;
-using Product.Domain.Shared.DataTransfer;
+using Product.Domain.Shared.DataTransfer.CategoryProductDTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

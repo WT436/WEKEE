@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Product.Domain.Shared.DataTransfer
+namespace Product.Domain.Shared.DataTransfer.SpecificationAttributeDTO
 {
     public class SpecificationAttributeReadDto
     {

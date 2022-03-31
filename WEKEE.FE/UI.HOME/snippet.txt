@@ -1,0 +1,121 @@
+{
+    //for Action
+    "Render Action Redux saga": {
+        "scope": "typescript",
+        "prefix": "#action",
+        "body": [
+            "//#region ${2:KEY}",
+            "export const ${1:name}Start = (input: SearchOrderPageInput) =>",
+            "action(ActionTypes.${2:KEY}_START, input);",
+            "export const ${1:name}Completed = (output: ${4:ClassOutput}) =>",
+            "action(ActionTypes.${2:KEY}_COMPLETED, output);",
+            "export const ${1:name}Error = () =>",
+            "action(ActionTypes.${2:KEY}_ERROR);",
+            "//#endregion"
+        ],
+        "description": ""
+    },
+    // For constants
+    "Render constants Redux saga": {
+        "scope": "typescript",
+        "prefix": "#const",
+        "body": [
+            "//#region ${1:name}",
+            "${1:name}_START = '${1:name}_START',",
+            "${1:name}_COMPLETED = '${1:name}_COMPLETED',",
+            "${1:name}_ERROR = '${1:name}_ERROR',",
+            "//#endregion",
+        ],
+        "description": ""
+    },
+    // For redux
+    "Render redux Redux saga": {
+        "scope": "typescript",
+        "prefix": "#redux",
+        "body": [
+            "//#region ${1:KEY}_START",
+            "case ActionTypes.${1:KEY}_START:",
+            "return {",
+            "...state,",
+            "loading: true,",
+            "};",
+            "",
+            "case ActionTypes.${1:KEY}_COMPLETED:",
+            "return {",
+            "...state,",
+            "loading: false,",
+            "};",
+            "",
+            "case ActionTypes.${1:KEY}_ERROR:",
+            "return {",
+            "...state,",
+            "loading: false,",
+            "};",
+            "//#endregion",
+        ],
+        "description": ""
+    },
+    // For Saga
+    "Render Saga Redux saga": {
+        "scope": "typescript",
+        "prefix": "#saga",
+        "body": [
+            "//#region ${1:KEY}",
+            "yield takeLatest(ActionTypes.${1:KEY}_START, ${2:name});",
+            "//#endregion",
+            "",
+            "//#region ${1:KEY}",
+            "function* ${2:name}(input: any) {",
+            "try {",
+            "const { output } = yield race({",
+            "output: call(service.${2:name}Service, input.payload),",
+            "});",
+            "if (output) {",
+            "yield put(${2:name}Completed(output));",
+            "} else {",
+            "yield put(${2:name}Error());",
+            "}",
+            "} catch (error) {",
+            "yield put(${2:name}Error());",
+            "}",
+            "}",
+            "//#endregion",
+        ],
+        "description": ""
+    },
+    // For Service
+    "Render Service Redux saga": {
+        "scope": "typescript",
+        "prefix": "#service",
+        "body": [
+            "//#region  ${1:Name}",
+            "public async ${1:Name}(input: SearchOrderPageInput): Promise<PagedListOutput<AtomicDto>> {",
+            "    let rs = await http.get('/account-atomic', { params: input });",
+            "    if (rs) {",
+            "        return rs.data;",
+            "    }",
+            "    else {",
+            "        return rs;",
+            "    }",
+            "}",
+            "//#endregion",
+        ],
+        "description": ""
+    },
+    // For GetData
+    "Render GetData Redux saga": {
+        "scope": "typescriptreact",
+        "prefix": "#getdata",
+        "body": [
+            "dispatch(${1:Name}({",
+            "pageIndex: 1,",
+            "pageSize: 20,",
+            "propertyOrder: '',",
+            "valueOrderBy: '',",
+            "propertySearch: [''],",
+            "valuesSearch: ['null'],",
+            " }));",
+        ],
+        "description": ""
+    },
+}

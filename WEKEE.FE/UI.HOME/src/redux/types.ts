@@ -17,6 +17,7 @@ import { BaseState } from "../components/Base/types";
 import { SelectStoreState } from "../scenes/Store/SelectStore/types";
 import { SiderStoreState } from "../scenes/Store/SiderStore/types"
 import { MenuSliderAdminState } from "../scenes/Admin/MenuSliderAdmin/types";
+import { AttributeProductState } from "../scenes/Admin/AttributeProduct/types";
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -41,5 +42,6 @@ export interface ApplicationRootState {
   readonly selectStore: SelectStoreState
   readonly siderstore: SiderStoreState
   readonly menuslideradmin : MenuSliderAdminState
+  readonly attributeproduct: AttributeProductState
   readonly base: BaseState
 }

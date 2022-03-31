@@ -22,25 +22,7 @@ function aCategoryReducer(
     action: ACategoryActions
 ) {
     switch (action.type) {
-        // OPEN PAGE
-        case ActionTypes.WATCH_PAGE_START:
-            return {
-                ...state,
-                loading: true
-            };
-
-        case ActionTypes.WATCH_PAGE_COMPLETED:
-            return {
-                ...state,
-                loading: true,
-                completed: true
-            };
-
-        case ActionTypes.WATCH_PAGE_ERROR:
-            return {
-                ...state,
-                loading: true
-            };
+      
         //#region Create category
         case ActionTypes.CREATE_CATEGORY_ADMIN_START:
             return {

@@ -153,13 +153,16 @@ export default function Home(props: IHomeProps) {
           style={{ width: "100%" }}
         >
           <Slider {...settings3}>
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
+            <CardProduct image={"album/product/product-1.jpg.webp"} />
+            <CardProduct image={"album/product/product-2.jpg.webp"} />
+            <CardProduct image={"album/product/product-3.jpg.webp"} />
+            <CardProduct image={"album/product/product-4.jpg.webp"} />
+            <CardProduct image={"album/product/product-5.jpg.webp"} />
+            <CardProduct image={"album/product/product-6.jpg.webp"} />
+            <CardProduct image={"album/product/product-7.jpg.webp"} />
+            <CardProduct image={"album/product/product-8.jpg.webp"} />
+            <CardProduct image={"album/product/product-9.jpg.webp"} />
+            <CardProduct image={"album/product/product-10.jpg.webp"} />
           </Slider>
         </Card>
       </Row>
@@ -345,19 +348,26 @@ export default function Home(props: IHomeProps) {
       </Row>
       <Row className="sXQJOsEJXk" gutter={[6, 6]}>
         <Col span={24}>Dành Cho Bạn!</Col>
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
+        <CardProduct image={"album/product/product-1.jpg.webp"} />
+        <CardProduct image={"album/product/product-2.jpg.webp"} />
+        <CardProduct image={"album/product/product-3.jpg.webp"} />
+        <CardProduct image={"album/product/product-4.jpg.webp"} />
+        <CardProduct image={"album/product/product-5.jpg.webp"} />
+        <CardProduct image={"album/product/product-6.jpg.webp"} />
+        <CardProduct image={"album/product/product-7.jpg.webp"} />
+        <CardProduct image={"album/product/product-8.jpg.webp"} />
+        <CardProduct image={"album/product/product-9.jpg.webp"} />
+        <CardProduct image={"album/product/product-10.jpg.webp"} />
+        <CardProduct image={"album/product/product-1.jpg.webp"} />
+        <CardProduct image={"album/product/product-2.jpg.webp"} />
+        <CardProduct image={"album/product/product-3.jpg.webp"} />
+        <CardProduct image={"album/product/product-4.jpg.webp"} />
+        <CardProduct image={"album/product/product-5.jpg.webp"} />
+        <CardProduct image={"album/product/product-6.jpg.webp"} />
+        <CardProduct image={"album/product/product-7.jpg.webp"} />
+        <CardProduct image={"album/product/product-8.jpg.webp"} />
+        <CardProduct image={"album/product/product-9.jpg.webp"} />
+        <CardProduct image={"album/product/product-10.jpg.webp"} />
       </Row>
     </>
   );

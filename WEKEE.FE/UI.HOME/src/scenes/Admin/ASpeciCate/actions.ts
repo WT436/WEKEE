@@ -1,57 +1,35 @@
 import { action } from "typesafe-actions";
+import { PagedListOutput } from "../../../services/dto/pagedListOutput";
+import { SearchOrderPageInput } from "../../../services/dto/searchOrderPageInput";
 
 import ActionTypes from "./constants";
 import { CategoryProductReadMapDto } from "./dtos/CategoryProductReadMapDto";
-import { CategorySelectDto } from "./dtos/categorySelectDto";
 import { SpecificationAttributeInsertDto } from "./dtos/SpecificationAttributeInsertDto";
-// open page login
-export const watchPageStart = () => action(ActionTypes.WATCH_PAGE_START);
-export const watchPageCompleted = () =>
-  action(ActionTypes.WATCH_PAGE_COMPLETED);
-export const watchPageError = () => action(ActionTypes.WATCH_PAGE_ERROR);
+import { SpecificationAttributeReadDto } from "./dtos/SpecificationAttributeReadDto";
 
-export const getCategotyMainStart = () =>
-  action(ActionTypes.GET_CATEGORY_MAIN_START);
-export const getCategotyMainCompleted = (output: CategorySelectDto[]) =>
-  action(ActionTypes.GET_CATEGORY_MAIN_COMPLETED, output);
-export const getCategotyMainError = () =>
-  action(ActionTypes.GET_CATEGORY_MAIN_ERROR);
-
+//#region Create Spec 
 export const createSpecificationsStart = (input: SpecificationAttributeInsertDto) =>
   action(ActionTypes.CREATE_SPECIFICATIONS_START, input);
 export const createSpecificationsCompleted = (output: number) =>
   action(ActionTypes.CREATE_SPECIFICATIONS_COMPLETED, output);
 export const createSpecificationsError = () =>
   action(ActionTypes.CREATE_SPECIFICATIONS_ERROR);
-
-export const getNameKeySpecificationsStart = () =>
-  action(ActionTypes.GET_NAME_KEY_SPECIFICATIONS_START);
-export const getNameKeySpecificationsCompleted = (output: string[]) =>
-  action(ActionTypes.GET_NAME_KEY_SPECIFICATIONS_COMPLETED, output);
-export const getNameKeySpecificationsError = () =>
-  action(ActionTypes.GET_NAME_KEY_SPECIFICATIONS_ERROR);
-
-export const getNameClassifyValuesSpecificationsStart = (input: string) =>
-  action(ActionTypes.GET_NAME_VALUES_SPECIFICATIONS_START, input);
-export const getNameClassifyValuesSpecificationsCompleted = (
-  output: string[]
-) => action(ActionTypes.GET_NAME_VALUES_SPECIFICATIONS_COMPLETED, output);
-export const getNameClassifyValuesSpecificationsError = () =>
-  action(ActionTypes.GET_NAME_VALUES_SPECIFICATIONS_ERROR);
-
-export const searchSpecificationsStart = (key: string, values: string) =>
-  action(ActionTypes.SEARCH_SPECIFICATIONS_START, { key, values });
-export const searchSpecificationsCompleted = (
-  output: SpecificationAttributeInsertDto[]
-) => action(ActionTypes.SEARCH_SPECIFICATIONS_COMPLETED, output);
-export const searchSpecificationsError = () =>
-  action(ActionTypes.SEARCH_SPECIFICATIONS_ERROR);
+ //#endregion
 
 //#region  Category map  
 export const CategoryMapStart = () =>
-action(ActionTypes.CATEGORY_MAP_START)
-export const CategoryMapCompleted  = (output:CategoryProductReadMapDto[]) =>
-action(ActionTypes.CATEGORY_MAP_COMPLETED,output)
+  action(ActionTypes.CATEGORY_MAP_START)
+export const CategoryMapCompleted = (output: CategoryProductReadMapDto[]) =>
+  action(ActionTypes.CATEGORY_MAP_COMPLETED, output)
 export const CategoryMapError = () =>
-action(ActionTypes.CATEGORY_MAP_ERROR)
+  action(ActionTypes.CATEGORY_MAP_ERROR)
+//#endregion
+
+//#region SPECIFICATIONS_GET_PAGE_LIST 
+export const GetPageListSpecificationStart = (input: SearchOrderPageInput) =>
+  action(ActionTypes.SPECIFICATIONS_GET_PAGE_LIST_START, input);
+export const GetPageListSpecificationCompleted = (output: PagedListOutput<SpecificationAttributeReadDto>) =>
+  action(ActionTypes.SPECIFICATIONS_GET_PAGE_LIST_COMPLETED, output);
+export const GetPageListSpecificationError = () =>
+  action(ActionTypes.SPECIFICATIONS_GET_PAGE_LIST_ERROR);
 //#endregion
