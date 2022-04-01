@@ -83,7 +83,7 @@ CREATE TABLE [ProductAttribute](
 	[Name] NVARCHAR(MAX) NOT NULL, -- khóa
 	[Types] INT DEFAULT(0) NOT NULL CHECK([Types]>=0 AND [Types]<=5),
 	[isDelete] BIT NOT NULL DEFAULT(0), -- đã xóa 
-	[CreateBy] BIT NOT NULL, -- người tạo
+	[CreateBy] INT NOT NULL, -- người tạo
 	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
 	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )

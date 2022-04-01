@@ -53,10 +53,10 @@ namespace Product.Infrastructure.DBContext
             {
                 entity.ToTable("CategoryProduct");
 
-                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B4023841ABE7A")
+                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B40235DAE44E9")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B95000926C7")
+                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B9570C55D35")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");

@@ -17,7 +17,7 @@ namespace Product.Domain.Shared.Entitys
         public string Name { get; set; }
         public int Types { get; set; }
         public bool IsDelete { get; set; }
-        public bool CreateBy { get; set; }
+        public int CreateBy { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }
 

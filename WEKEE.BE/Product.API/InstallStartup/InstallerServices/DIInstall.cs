@@ -1,4 +1,5 @@
-﻿using Album.Application.Application;
+﻿#region
+using Album.Application.Application;
 using Album.Application.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,6 +34,7 @@ using Supplier.Application.Application;
 using Supplier.Application.Interface;
 using Album.Application.Controll.Application;
 using Album.Application.Controll.Interface;
+#endregion
 
 namespace Product.API.InstallStartup.InstallerServices
 {
@@ -89,6 +91,7 @@ namespace Product.API.InstallStartup.InstallerServices
             #region Product
             services.AddTransient<ICategoryProduct, CategoryProductService>();
             services.AddTransient<ISpecificationAttribute, SpecificationAttributeService>();
+            services.AddTransient<IProductAttribute, ProductAttributeService>();
             #endregion
         }
     }

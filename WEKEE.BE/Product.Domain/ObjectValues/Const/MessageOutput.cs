@@ -35,5 +35,15 @@ namespace Product.Domain.ObjectValues.Const
         /// Khoog thê insert spec
         /// </summary>
         public const string SPECIFICATION_ATTRIBUTE_NOT_INSERT = "SPECIFICATION_ATTRIBUTE_NOT_INSERT";
+
+        /// <summary>
+        /// Tham số không hợp lệ 
+        /// </summary>
+        public const string INVALID_PARAMETER = "INVALID_PARAMETER";
+
+        /// <summary>
+        /// Tham số truyền vào đã tồn tại
+        /// </summary>
+        public const string EXISTS_PARAMETER = "EXISTS_PARAMETER";
     }
 }
