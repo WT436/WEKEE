@@ -30,5 +30,9 @@ namespace Product.Infrastructure.ModelQuery
             unitOfWork.SaveChanges();
             return input;
         }
+
+        public async Task<int> TotalPageCategory()
+        => (await unitOfWork.GetRepository<ProductAttribute>()
+                            .CountAsync());
     }
 }

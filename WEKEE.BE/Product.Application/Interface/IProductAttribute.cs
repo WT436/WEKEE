@@ -1,4 +1,6 @@
-﻿using Product.Domain.Shared.DataTransfer.ProductAttributeDTO;
+﻿using Product.Domain.ObjectValues.Input;
+using Product.Domain.ObjectValues.Output;
+using Product.Domain.Shared.DataTransfer.ProductAttributeDTO;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,5 +11,10 @@ namespace Product.Application.Interface
     public interface IProductAttribute
     {
         public Task<int> InsertProductAttribute(ProductAttributeInsertDto input, int idAccount);
+
+        /// <summary>
+        /// Lấy thông tin Product Attribute
+        /// </summary>
+        Task<PagedListOutput<ProductAttributeReadDto>> GetAllPageListProductAttribute(SearchOrderPageInput input);
     }
 }

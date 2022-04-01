@@ -87,3 +87,12 @@ WHERE FREETEXT(C.*,'SEARCH')
   ORDER BY Id ASC 
   OFFSET((20 - 1) * 20) ROWS                                                                        
   FETCH NEXT 1 ROWS ONLY                                                                                                                                                                                                                           
+  --------------------------------------------------------------------------------------------------
+SELECT CP.[Id]			  AS ''
+      ,CP.[Name]		  AS ''
+      ,CP.[Types]		  AS ''
+      ,CP.[isDelete]	  AS ''
+      ,CP.[CreateBy]	  AS ''
+      ,CP.[CreatedOnUtc]  AS ''
+      ,CP.[UpdatedOnUtc]  AS ''
+  FROM [ProductDB].[dbo].[ProductAttribute] AS CP             

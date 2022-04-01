@@ -306,3 +306,10 @@ sec-fetch-dest: empty2022-04-01 08:30:16,758 [14] INFO  App Log System Initializ
 2022-04-01 08:46:11,655 [14] INFO  App Log System Initialized 
 2022-04-01 08:46:11,683 [14] INFO  App [localhost] [44327] [ProductAttribute] [CreateProductAtributeAdmin] [POST] [/v1/api/product-attribute] [?Name=Nam&Types=1] 
 2022-04-01 08:46:16,919 [16] INFO  App [localhost] [44327] [ProductAttribute] [CreateProductAtributeAdmin] [POST] [/v1/api/product-attribute] [?Name=Nam&Types=1] 
+2022-04-01 10:30:51,798 [8] INFO  App Log System Initialized 
+2022-04-01 10:30:51,819 [8] INFO  App [localhost] [44327] [ProductAttribute] [CreateProductAtributeAdmin] [POST] [/v1/api/product-attribute] [?Name=Nam&Types=1] 
+2022-04-01 10:34:07,524 [11] INFO  App [localhost] [44327] [ProductAttribute] [CreateProductAtributeAdmin] [POST] [/v1/api/product-attribute] [?Name=VAT&Types=1] 
+2022-04-01 13:18:06,348 [13] INFO  App Log System Initialized 
+2022-04-01 13:18:06,381 [13] INFO  App [localhost] [44327] [ProductAttribute] [CreateProductAtributeAdmin] [POST] [/v1/api/product-attribute] [?Name=Nam&Types=1] 
+2022-04-01 14:05:23,407 [4] INFO  App Log System Initialized 
+2022-04-01 14:05:23,442 [4] INFO  App [localhost] [44327] [ProductAttribute] [Index] [GET] [/v1/api/product-attribute] [?PageIndex=1&PageSize=20] 

@@ -1,8 +1,11 @@
 ﻿using Product.Application.Interface;
 using Product.Domain.ObjectValues.Const;
+using Product.Domain.ObjectValues.Input;
+using Product.Domain.ObjectValues.Output;
 using Product.Domain.Shared.DataTransfer.ProductAttributeDTO;
 using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.ModelQuery;
+using Product.Infrastructure.Queries;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +17,23 @@ namespace Product.Application.Application
     public class ProductAttributeService : IProductAttribute
     {
         ProductAttributeQuery _productAttributeQuery = new ProductAttributeQuery();
+        ProductAttributeQueries _productAttributeQueries = new ProductAttributeQueries();
+
+        public async Task<PagedListOutput<ProductAttributeReadDto>> GetAllPageListProductAttribute(SearchOrderPageInput input)
+        {
+            var data = await _productAttributeQueries.GetAllPageLstExactNotFTS(input);
+            int totalCount = await _productAttributeQuery.TotalPageCategory();
+
+            return new PagedListOutput<ProductAttributeReadDto>
+            {
+                Items = data,
+                PageIndex = input.PageIndex,
+                PageSize = data.Count,
+                TotalPages = (totalCount / input.PageSize),
+                TotalCount = totalCount
+            };
+        }
+
         public async Task<int> InsertProductAttribute(ProductAttributeInsertDto input, int idAccount)
         {
             // check name + type any

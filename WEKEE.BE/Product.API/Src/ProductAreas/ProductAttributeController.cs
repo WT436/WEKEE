@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Product.API.FilterAttributeCore.ActionFilters;
 using Product.Application.Interface;
+using Product.Domain.ObjectValues.Input;
 using Product.Domain.Shared.DataTransfer.ProductAttributeDTO;
 using System;
 using System.Threading.Tasks;
@@ -18,9 +19,10 @@ namespace Product.API.Src.ProductAreas
 
         [HttpGet]
         [Route("v1/api/product-attribute")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(SearchOrderPageInput input)
         {
-            return Ok("ProductAttribute");
+            var data = await _productAttribute.GetAllPageListProductAttribute(input: input);
+            return Ok(data);
         }
 
         [HttpPost]
