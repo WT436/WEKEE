@@ -88,11 +88,11 @@ WHERE FREETEXT(C.*,'SEARCH')
   OFFSET((20 - 1) * 20) ROWS                                                                        
   FETCH NEXT 1 ROWS ONLY                                                                                                                                                                                                                           
   --------------------------------------------------------------------------------------------------
-SELECT CP.[Id]			  AS ''
-      ,CP.[Name]		  AS ''
-      ,CP.[Types]		  AS ''
-      ,CP.[isDelete]	  AS ''
-      ,CP.[CreateBy]	  AS ''
-      ,CP.[CreatedOnUtc]  AS ''
-      ,CP.[UpdatedOnUtc]  AS ''
+SELECT CP.[Id]			  AS 'Id'
+      ,CP.[Name]		  AS 'Name'
+      ,CP.[Types]		  AS 'Types'
+      ,CP.[isDelete]	  AS 'IsDelete'
+      ,CP.[CreateBy]	  AS 'CreateBy'
+      ,CP.[CreatedOnUtc]  AS 'CreatedOnUtc'
+      ,CP.[UpdatedOnUtc]  AS 'UpdatedOnUtc'
   FROM [ProductDB].[dbo].[ProductAttribute] AS CP             

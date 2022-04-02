@@ -53,6 +53,7 @@
     <Folder Include="RootFiles\album\category\" />
     <Folder Include="RootFiles\album\audio\" />
     <Folder Include="RootFiles\album\icon\" />
+    <Folder Include="RootFiles\album\await\" />
     <Folder Include="RootFiles\album\post\" />
     <Folder Include="RootFiles\album\rootevaluates\" />
     <Folder Include="RootFiles\album\rootImage\" />
