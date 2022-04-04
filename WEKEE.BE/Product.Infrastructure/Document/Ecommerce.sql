@@ -188,7 +188,7 @@ CREATE TABLE [Product_Category_Mapping]( -- kết nối nhiều category lại v
 	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[CategoryId] [int] NOT NULL FOREIGN KEY REFERENCES [CategoryProduct] ([Id]), -- id chủng loại
 	[ProductId] [int] NOT NULL FOREIGN KEY REFERENCES [Product] ([Id]), -- id sản phẩm 
-	[IsFeaturedProduct] [bit] NOT NULL, -- sản phẩm nổi bật
+	[IsFeaturedProduct] [bit] NOT NULL DEFAULT (0), -- sản phẩm nổi bật
 	[DisplayOrder] [int] NOT NULL, -- vị trí hiển thị
 	[CreateBy] [int] NOT NULL,
 	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
@@ -201,7 +201,7 @@ GO
 -- Date Update : 
 --==============================================
 CREATE TABLE [Product_Picture_Mapping](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[PictureId] [int] NOT NULL FOREIGN KEY REFERENCES [ImageProduct] (Id),
 	[ProductId] [int] NOT NULL FOREIGN KEY REFERENCES [Product] (Id),
 	[DisplayOrder] [int] NOT NULL,
@@ -275,7 +275,6 @@ CREATE TABLE [FeatureProduct](
 	[Quantity] [int] NOT NULL, -- số lượng
 	[DisplayOrder] [int] NOT NULL,-- vị trí hiển thị
 	[PictureId] [int] NOT NULL  FOREIGN KEY REFERENCES [ImageProduct](Id), -- id ảnh
-	[ImageSquaresPictureId] [int] NOT NULL  FOREIGN KEY REFERENCES [ImageProduct](Id),
 	[MainProduct] [bit] DEFAULT(0) NOT NULL,
 	[CreateBy] [int] NOT NULL, -- người tạo
 	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
@@ -360,11 +359,11 @@ GO
 -- Date Update : 
 --==============================================
 CREATE TABLE [Product_SpecificationAttribute_Mapping](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[CustomValue] [nvarchar](4000) NULL, -- giá trị
 	[ProductId] [int] NOT NULL FOREIGN KEY REFERENCES [Product](Id), -- tên sản phẩm
 	[SpecificationId] [int] NOT NULL FOREIGN KEY REFERENCES [SpecificationAttribute](Id),-- mã key
-	[AttributeTypeId] [int] NOT NULL,
+	[AttributeTypeId] [int] NOT NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id),
 	[AllowFiltering] [bit] NOT NULL, -- bộ lọc tìm kiếm
 	[ShowOnProductPage] [bit] NOT NULL, -- hiển thị trên trang card
 	[DisplayOrder] [int] NOT NULL, -- vị trí hiển thị

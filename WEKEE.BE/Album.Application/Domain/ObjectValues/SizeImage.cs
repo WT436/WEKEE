@@ -1,9 +1,9 @@
-﻿using Album.Domain.Shared.DataTransfer;
+﻿using Album.Application.Domain.Shared.DataTransfer;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Album.Domain.ObjectValues
+namespace Album.Application.Domain.ObjectValues
 {
     public enum SizeImage
     {

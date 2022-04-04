@@ -11,7 +11,9 @@ namespace Product.Domain.Shared.Entitys
         {
             FeatureProducts = new HashSet<FeatureProduct>();
             ProductCategoryMappings = new HashSet<ProductCategoryMapping>();
+            ProductPictureMappings = new HashSet<ProductPictureMapping>();
             ProductProductTagMappings = new HashSet<ProductProductTagMapping>();
+            ProductSpecificationAttributeMappings = new HashSet<ProductSpecificationAttributeMapping>();
         }
 
         public int Id { get; set; }
@@ -83,6 +85,8 @@ namespace Product.Domain.Shared.Entitys
         public virtual ProductAttribute UnitAttribute { get; set; }
         public virtual ICollection<FeatureProduct> FeatureProducts { get; set; }
         public virtual ICollection<ProductCategoryMapping> ProductCategoryMappings { get; set; }
+        public virtual ICollection<ProductPictureMapping> ProductPictureMappings { get; set; }
         public virtual ICollection<ProductProductTagMapping> ProductProductTagMappings { get; set; }
+        public virtual ICollection<ProductSpecificationAttributeMapping> ProductSpecificationAttributeMappings { get; set; }
     }
 }

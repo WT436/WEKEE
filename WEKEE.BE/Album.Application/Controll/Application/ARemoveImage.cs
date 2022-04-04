@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Album.Application.Application
+namespace Album.Application.Controll.Application
 {
     public class ARemoveImage : IRemoveImage
     {

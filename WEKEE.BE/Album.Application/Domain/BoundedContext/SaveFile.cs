@@ -1,11 +1,11 @@
-﻿using Album.Domain.ObjectValues;
+﻿using Album.Application.Domain.ObjectValues;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace Album.Domain.BoundedContext
+namespace Album.Application.Domain.BoundedContext
 {
     public static class SaveFile
     {
@@ -64,25 +64,27 @@ namespace Album.Domain.BoundedContext
         public static string SaveImage(Bitmap bitmap,
                                         string name,
                                         FolderSaveExtensions.FolderSave folderSave,
-                                        ObjectValues.FormatImage formatImage)
+                                        FormatImage formatImage)
         {
-            // đường dẫn trả về
             string path = Path.GetFullPath(
-                          Path.Combine(Directory.GetCurrentDirectory() + @$"\RootFiles\album\{FolderSaveExtensions.FolderSaveConvert(folderSave)}\"));
+                          Path.Combine(Directory.GetCurrentDirectory() + @$"\RootFiles\"));
+
+            string pathImage = @$"album\{ FolderSaveExtensions.FolderSaveConvert(folderSave)}\";
             // tên trả về
             string pathtest;
             string nameFormat = ConfigFormatImage.SetNameFormat(formatImage: formatImage);
             int level = -1;
+            string nameFile = String.Empty;
             do
             {
                 level++;
-                string nameFile = NameImage.NameProcessConvert(text: name, level: level);
-                pathtest = path + nameFile + nameFormat;
+                nameFile = Guid.NewGuid().ToString("N");
+                pathtest = path + pathImage + nameFile + nameFormat;
             } while (File.Exists(pathtest));
 
             bitmap.Save(pathtest, ConfigFormatImage.GetImageFormat(formatImage: formatImage));
 
-            return (path);
+            return (pathImage + nameFile + nameFormat);
         }
 
         /// <summary>
@@ -113,12 +115,12 @@ namespace Album.Domain.BoundedContext
             do
             {
                 level++;
-                nameFile = NameImage.NameProcessConvert(text: name, level: level);
-                pathtest = path + pathImage + nameFile + nameSize + nameFormat;
+                nameFile = Guid.NewGuid().ToString("N"); //NameImage.NameProcessConvert(text: name, level: level);
+                pathtest = path + pathImage + nameFile + nameFormat;
             } while (File.Exists(pathtest));
             bitmap.Save(pathtest, ConfigFormatImage.GetImageFormat(formatImage: formatImage));
 
-            return (pathImage + nameFile + nameSize + nameFormat);
+            return (pathImage + nameFile + nameFormat);
         }
     }
 }

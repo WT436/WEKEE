@@ -1,7 +1,7 @@
-﻿using Album.Application.Interface;
-using Album.Domain.BoundedContext;
-using Album.Domain.Shared.DataTransfer;
-using Album.Domain.ObjectValues;
+﻿using Album.Application.Controll.Interface;
+using Album.Application.Domain.BoundedContext;
+using Album.Application.Domain.ObjectValues;
+using Album.Application.Domain.Shared.DataTransfer;
 using Album.Application.Infrastructure.ImageProcess;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Album.Application.Application
+namespace Album.Application.Controll.Application
 {
 
     public class AProductImage : IProductImage

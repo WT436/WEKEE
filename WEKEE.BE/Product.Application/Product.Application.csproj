@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EventBus\**" />
+    <EmbeddedResource Remove="EventBus\**" />
+    <None Remove="EventBus\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Application\ASpecificationsCategory.cs~RFf8d69c2.TMP" />
     <None Remove="Interface\ICategory.cs~RF1199d43f.TMP" />
     <None Remove="Interface\ISpecificationsCategory.cs~RF11176a43.TMP" />
@@ -13,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EventBus\" />
     <Folder Include="Atributes\" />
   </ItemGroup>
 

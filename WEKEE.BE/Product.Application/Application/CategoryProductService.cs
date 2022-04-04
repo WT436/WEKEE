@@ -68,7 +68,7 @@ namespace Product.Application.Application
                                                                                              number: item.NumberOrder);
                     // bản ghi này
                     var categoryFirst = await _categoryProductQuery.GetDataById(id: item.Id);
-                    var data = CategoryProductCore.CategoryProductsSwapNumberOrder(categoryFirst, categoryLate);
+                    var data = new CategoryProductCore().CategoryProductsSwapNumberOrder(categoryFirst, categoryLate);
                     if (data != null)
                     {
                         _categoryProductQuery.Update(data);

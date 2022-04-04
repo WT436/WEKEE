@@ -1,6 +1,4 @@
 ﻿#region
-using Album.Application.Application;
-using Album.Application.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Product.Application.Application;
@@ -83,7 +81,7 @@ namespace Product.API.InstallStartup.InstallerServices
             #endregion
 
             #region Upload
-            services.AddTransient<IImageBasic, AImageBasic>();
+            services.AddTransient<IImageBasic, ImageBasicService>();
             services.AddTransient<IImageAvatarDefault, AImageAvatarDefault>();
             services.AddTransient<IReadInfoFile, ReadInfoFileService>();
             #endregion
@@ -92,6 +90,8 @@ namespace Product.API.InstallStartup.InstallerServices
             services.AddTransient<ICategoryProduct, CategoryProductService>();
             services.AddTransient<ISpecificationAttribute, SpecificationAttributeService>();
             services.AddTransient<IProductAttribute, ProductAttributeService>();
+            services.AddTransient<IProductTag, ProductTagService>();
+            services.AddTransient<IProductContainer, ProductContainerService>();
             #endregion
         }
     }

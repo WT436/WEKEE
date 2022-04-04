@@ -1,4 +1,4 @@
-﻿using Album.Domain.Shared.DataTransfer;
+﻿using Album.Application.Domain.Shared.DataTransfer;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;

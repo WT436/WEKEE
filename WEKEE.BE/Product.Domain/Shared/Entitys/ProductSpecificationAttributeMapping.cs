@@ -19,6 +19,7 @@ namespace Product.Domain.Shared.Entitys
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }
 
+        public virtual ProductAttribute AttributeType { get; set; }
         public virtual Product Product { get; set; }
         public virtual SpecificationAttribute Specification { get; set; }
     }

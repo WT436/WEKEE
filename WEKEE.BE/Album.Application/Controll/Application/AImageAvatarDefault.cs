@@ -3,8 +3,9 @@ using Album.Application.Infrastructure.ImageProcess;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Album.Application.Controll.Interface;
 
-namespace Album.Application.Application
+namespace Album.Application.Controll.Application
 {
     public class AImageAvatarDefault : IImageAvatarDefault
     {

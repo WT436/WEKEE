@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Album.Application.Interface
+namespace Album.Application.Controll.Interface
 {
     public interface IGifImage
     {

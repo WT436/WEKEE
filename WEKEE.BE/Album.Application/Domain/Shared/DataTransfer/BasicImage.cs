@@ -1,10 +1,10 @@
-﻿using Album.Domain.ObjectValues;
+﻿using Album.Application.Domain.ObjectValues;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace Album.Domain.Shared.DataTransfer
+namespace Album.Application.Domain.Shared.DataTransfer
 {
     public class BasicImage
     {

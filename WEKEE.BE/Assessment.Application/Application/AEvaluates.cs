@@ -1,4 +1,5 @@
-﻿using Album.Application.Application;
+﻿using Album.Application.Controll.Application;
+using Album.Application.Controll.Interface;
 using Album.Application.Interface;
 using Assessment.Application.Interface;
 using Assessment.Domain.Dto;

@@ -1,7 +1,6 @@
 ﻿
-using Album.Domain.BoundedContext;
-using Album.Domain.ObjectValues;
-using Album.Domain.Shared.DataTransfer;
+using Album.Application.Domain.ObjectValues;
+using Album.Application.Domain.Shared.DataTransfer;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

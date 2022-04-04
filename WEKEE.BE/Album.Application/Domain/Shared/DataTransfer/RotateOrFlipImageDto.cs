@@ -1,4 +1,4 @@
-﻿namespace Album.Domain.Shared.DataTransfer
+﻿namespace Album.Application.Domain.Shared.DataTransfer
 {
     public class RotateOrFlipImageDto :BasicImage
     {

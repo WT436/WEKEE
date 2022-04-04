@@ -1,9 +1,7 @@
-﻿using Album.Domain.ServicesDomain;
+﻿using Album.Application.Domain.ServicesDomain;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Album.Domain.BoundedContext
+namespace Album.Application.Domain.BoundedContext
 {
     public static class NameImage
     {
@@ -16,12 +14,11 @@ namespace Album.Domain.BoundedContext
         public static string NameProcessConvert(string text, int level)
         {
             text = text?[(text.LastIndexOf("\\") + 1)..text.LastIndexOf(".")];
-            string CreatedAt = $"-{DateTime.Now:HHmmss-ddMMyyyy}-";
             string nameLevel = level == 0 ? "" : $"({level})";
 
             return string.IsNullOrEmpty(text)
-                   ? NameDefault() + CreatedAt + nameLevel
-                   : ConvertNameFolder(text) + CreatedAt + nameLevel;
+                   ? NameDefault() + nameLevel
+                   : ConvertNameFolder(text)  + nameLevel;
         }
     }
 }

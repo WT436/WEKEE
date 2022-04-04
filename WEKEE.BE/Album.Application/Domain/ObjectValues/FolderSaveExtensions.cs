@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Album.Domain.ObjectValues
+namespace Album.Application.Domain.ObjectValues
 {
     public static class FolderSaveExtensions
     {
@@ -17,7 +17,8 @@ namespace Album.Domain.ObjectValues
             IMAGE_SYSTEM = 8,
             ROOT_EVALUATES = 9,
             VIDEO = 10,
-            AUDIO = 11
+            AUDIO = 11,
+            AWAIT = 12
         }
 
         public static string FolderSaveConvert(FolderSave folderSave)
@@ -36,6 +37,7 @@ namespace Album.Domain.ObjectValues
                 FolderSave.ROOT_EVALUATES => "rootevaluates",
                 FolderSave.VIDEO => "video",
                 FolderSave.AUDIO => "audio",
+                FolderSave.AWAIT => "await",
                 _ => throw new NotImplementedException(),
             };
         }

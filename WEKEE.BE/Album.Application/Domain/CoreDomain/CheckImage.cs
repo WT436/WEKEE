@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace Album.Domain.CoreDomain
+namespace Album.Application.Domain.CoreDomain
 {
     public class CheckImage
     {

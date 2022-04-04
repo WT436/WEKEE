@@ -1,12 +1,7 @@
-﻿using Album.Domain.Shared.DataTransfer;
-using Album.Domain.ObjectValues;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Album.Application.Domain.Shared.DataTransfer;
 
-namespace Album.Application.Interface
+namespace Album.Application.Controll.Interface
 {
     /// <summary>
     /// Lưu ảnh product

@@ -6,9 +6,9 @@ using Utils.Exceptions;
 
 namespace Product.Domain.CoreDomain
 {
-    public static class CategoryProductCore
+    public class CategoryProductCore
     {
-        public static List<CategoryProduct> CategoryProductsSwapNumberOrder(CategoryProduct categoryFirst, CategoryProduct categoryLast)
+        public List<CategoryProduct> CategoryProductsSwapNumberOrder(CategoryProduct categoryFirst, CategoryProduct categoryLast)
         {
             // 2 vị trí này ko tồn tại
             if ((categoryLast == null || categoryFirst == null)

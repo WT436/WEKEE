@@ -45,5 +45,10 @@ namespace Product.Domain.ObjectValues.Const
         /// Tham số truyền vào đã tồn tại
         /// </summary>
         public const string EXISTS_PARAMETER = "EXISTS_PARAMETER";
+
+        /// <summary>
+        /// độ dài chuỗi quá lớn
+        /// </summary>
+        public const string MAX_LENGTH = "MAX_LENGTH";
     }
 }

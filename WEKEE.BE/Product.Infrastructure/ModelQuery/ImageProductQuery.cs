@@ -18,5 +18,11 @@ namespace Product.Infrastructure.ModelQuery
             unitOfWork.SaveChanges();
             return input.Id;
         }
+
+        public int InsertImageProductOutId(List<ImageProduct> inputs)
+        {
+            unitOfWork.GetRepository<ImageProduct>().Insert(inputs);
+            return unitOfWork.SaveChanges();
+        }
     }
 }

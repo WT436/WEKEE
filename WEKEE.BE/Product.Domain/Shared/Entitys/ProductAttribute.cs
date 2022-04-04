@@ -10,6 +10,7 @@ namespace Product.Domain.Shared.Entitys
         public ProductAttribute()
         {
             ProductAttributeValues = new HashSet<ProductAttributeValue>();
+            ProductSpecificationAttributeMappings = new HashSet<ProductSpecificationAttributeMapping>();
             Products = new HashSet<Product>();
         }
 
@@ -22,6 +23,7 @@ namespace Product.Domain.Shared.Entitys
         public DateTime UpdatedOnUtc { get; set; }
 
         public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; }
+        public virtual ICollection<ProductSpecificationAttributeMapping> ProductSpecificationAttributeMappings { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }

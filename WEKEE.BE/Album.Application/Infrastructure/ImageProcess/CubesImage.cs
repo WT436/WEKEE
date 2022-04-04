@@ -1,5 +1,4 @@
-﻿using Album.Domain.BoundedContext;
-using Album.Domain.ObjectValues;
+﻿using Album.Application.Domain.ObjectValues;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text;
 
-namespace Album.Domain.ObjectValues
+namespace Album.Application.Domain.ObjectValues
 {
     public enum ConfigImaging
     {

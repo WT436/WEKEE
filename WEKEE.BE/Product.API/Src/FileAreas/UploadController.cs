@@ -1,13 +1,13 @@
-﻿using Album.Application.Interface;
-using Album.Domain.Shared.DataTransfer;
-using Album.Domain.ObjectValues;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using Product.API.SettingUrl.AlbumRouter;
+using System.Collections.Generic;
+using Album.Application.Controll.Interface;
+using Album.Application.Domain.ObjectValues;
 
 namespace Product.API.Src.FileAreas
 {
@@ -52,9 +52,9 @@ namespace Product.API.Src.FileAreas
 
         [Route(UploadRouter.Product.PATCH)]
         [HttpPost]
-        public async Task<IActionResult> UploadProductImage(IFormFile file)
+        public async Task<IActionResult> UploadProductImage(IFormFile files)
         {
-            var url = await _imageBasic.SaveProductServer(files: file);
+            var url = await _imageBasic.SaveAwaitImageProduct(files: files);
             return Ok(new OutputDefaultFile
             {
                 Url = url.Replace("\\", "/")
