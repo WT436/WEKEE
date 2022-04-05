@@ -48,6 +48,7 @@
   <ItemGroup>
     <Folder Include="Log\" />
     <Folder Include="Areas\" />
+    <Folder Include="RootFiles\album\await\" />
     <Folder Include="RootFiles\album\evaluates\" />
     <Folder Include="RootFiles\album\file\" />
     <Folder Include="RootFiles\album\category\" />

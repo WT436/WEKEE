@@ -228,7 +228,6 @@ namespace Product.Application.Application
                                                           && n.VirtualPath == (dataImage.Where(m => m.NameUpload == itemFeature.PictureString)
                                                                                         .FirstOrDefault().ImageNameSizeS220x220))
                                                   .FirstOrDefault().ImageRoot,
-                        ImageSquaresPictureId = 1,
                         CreateBy = idAccount
                     });
 

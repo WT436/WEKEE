@@ -23,5 +23,10 @@ namespace Account.Application.InfomationUser
             data.Picture = infoUser.Picture;
             return data;
         }
+
+        public async Task<string> GetNameAccount(int id)
+        {
+            return userAccountQuery.GetNameAccount(id);
+        }
     }
 }

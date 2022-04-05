@@ -27,7 +27,7 @@ namespace Product.API.Src.ProductAreas
 
         [HttpPost]
         [Route("v1/api/product-attribute")]
-        public async Task<IActionResult> CreateProductAtributeAdmin(ProductAttributeInsertDto input)
+        public async Task<IActionResult> CreateProductAtributeAdmin([FromBody]ProductAttributeInsertDto input)
         {
             var idAccount = HttpContext.Items["idAccount"];
             var data = await _productAttribute.InsertProductAttribute(input: input, idAccount: Convert.ToInt32(idAccount));

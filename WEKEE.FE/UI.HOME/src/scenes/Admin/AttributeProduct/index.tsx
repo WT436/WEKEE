@@ -9,17 +9,19 @@ import {
     RedoOutlined, CheckOutlined, CloseOutlined, FilePdfOutlined, PlusOutlined, SearchOutlined, EditOutlined, DeleteOutlined, LockOutlined, ClusterOutlined, HistoryOutlined, PartitionOutlined, SlidersOutlined, StarOutlined, UnlockOutlined,
 } from "@ant-design/icons";
 import {
-    Row, Col, Button, Input, Select, Table, Modal, Form, DatePicker, Tabs, Tag, Tooltip, Card,
+    Row, Col, Button, Input, Select, Table, Modal, Form, DatePicker, Tag, Tooltip, Card, notification,
 } from "antd";
-import { AtomicDto } from "../APermission/dtos/atomicDto";
 import reducer from "./reducer";
 import saga from "./saga";
 import {
     makeSelectCompleted, makeSelectLoading, makeSelectPageIndex,
-    makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages,
+    makeSelectPageSize, makeSelectproductAttributeReadDto, makeSelectTotalCount, makeSelectTotalPages,
 } from "./selectors";
 import moment from "moment";
 import ConstTypes from "./objectValues/constTypes";
+import { ProductAttributeReadDto } from "./dtos/productAttributeReadDto"
+import { createAttributeProductStart, getDataAttibuteProductStart } from "./actions";
+import { ProductAttributeInsertDto } from "./dtos/productAttributeInsertDto";
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 declare var abp: any;
@@ -31,13 +33,14 @@ export interface IAttributeProductProps {
 
 const key = "attributeproduct"; // đây
 
-const stateSelector = createStructuredSelector<any, any>({
+const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
     completed: makeSelectCompleted(),
     pageIndex: makeSelectPageIndex(),
     pageSize: makeSelectPageSize(),
     totalCount: makeSelectTotalCount(),
     totalPages: makeSelectTotalPages(),
+    attibuteData: makeSelectproductAttributeReadDto()
 });
 
 const formItemLayout = {
@@ -65,116 +68,49 @@ export default function AttributeProduct(props: IAttributeProductProps) {
     // 0 : bật tất cả 1: đang xóa, 2 đang update khóa/mở
     const [isDataChange, setisDataChange] = useState(0);
     const [SelectColumn, setSelectColumn] = useState(["All"]);
-    const [valuesSearch, setvaluesSearch] = useState<string[]>([]);
+    const [valuesSearch, setvaluesSearch] = useState < string[] > ([]);
     const [OrderbyColumn, setOrderbyColumn] = useState("");
     const [OrderbyTypes, setOrderbyTypes] = useState("");
 
     const {
-        loading, pageSize, totalCount, pageIndex, dataRemoveAtomic
+        loading, pageSize, totalCount, pageIndex, attibuteData
     } = useSelector(stateSelector);
-
-    let data = [
-        {
-            "id": 1,
-            "name": "GET",
-            "description": "yêu cầu xem thông tin",
-            "typesRsc": "URL",
-            "isActive": true,
-            "createdAt": "2022-02-10T03:10:02.5",
-            "createBy": null,
-            "updatedAt": "2022-02-10T03:10:02.5",
-            "count": 0
-        },
-        {
-            "id": 2,
-            "name": "LIST",
-            "description": "hiển danh sách hoặc thông tin chi tiết",
-            "typesRsc": "URL",
-            "isActive": true,
-            "createdAt": "2022-02-10T03:10:02.5",
-            "createBy": null,
-            "updatedAt": "2022-02-10T03:10:02.5",
-            "count": 0
-        },
-        {
-            "id": 3,
-            "name": "WATCH",
-            "description": "chỉ cho phép xem và không chức năng sửa đổi",
-            "typesRsc": "URL",
-            "isActive": true,
-            "createdAt": "2022-02-10T03:10:02.503",
-            "createBy": null,
-            "updatedAt": "2022-02-10T03:10:02.503",
-            "count": 0
-        },
-        {
-            "id": 4,
-            "name": "UPDATE",
-            "description": "chỉnh sửa thông tin nâng cao, như active ....",
-            "typesRsc": "URL",
-            "isActive": true,
-            "createdAt": "2022-02-10T03:10:02.503",
-            "createBy": null,
-            "updatedAt": "2022-02-10T03:10:02.503",
-            "count": 0
-        },
-        {
-            "id": 5,
-            "name": "CREATE",
-            "description": "tạo bản ghi trên Database",
-            "typesRsc": "URL",
-            "isActive": true,
-            "createdAt": "2022-02-10T03:10:02.503",
-            "createBy": null,
-            "updatedAt": "2022-02-10T03:10:02.503",
-            "count": 0
-        },
-        {
-            "id": 6,
-            "name": "DELETE",
-            "description": "active hoặc xóa bản ghi trên Database",
-            "typesRsc": "URL",
-            "isActive": true,
-            "createdAt": "2022-02-10T03:10:02.503",
-            "createBy": null,
-            "updatedAt": "2022-02-10T03:10:02.503",
-            "count": 0
-        },
-        {
-            "id": 7,
-            "name": "EDIT",
-            "description": "chỉnh sửa thông tin căn bản",
-            "typesRsc": "URL",
-            "isActive": true,
-            "createdAt": "2022-02-10T03:10:02.503",
-            "createBy": null,
-            "updatedAt": "2022-02-10T03:10:02.503",
-            "count": 0
-        }
-    ];
 
     const [form] = Form.useForm();
 
-    const onFill = (value: AtomicDto) => {
+    const onFill = (value: ProductAttributeReadDto) => {
         form.setFieldsValue(value);
     };
 
-    const onRemove = (value: AtomicDto) => {
+    const onRemove = (value: ProductAttributeReadDto) => {
         setisDataChange(1);
     };
 
-    const onChangeIsStatus = (value: AtomicDto) => {
+    const onChangeIsStatus = (value: ProductAttributeReadDto) => {
         setisDataChange(2);
     };
 
     let onChange = (page: any, pageSize: any) => {
-
+        dispatch(getDataAttibuteProductStart({
+            pageIndex: page,
+            pageSize: pageSize,
+            propertyOrder: '',
+            valueOrderBy: '',
+            propertySearch: [],
+            valuesSearch: [],
+        }));
     };
 
-    const onFinish = (values: AtomicDto) => {
-        if (values.id === undefined) {
+    const onFinish = (values: ProductAttributeInsertDto) => {
+        if (values.types === -1 || values.types === undefined) {
+            notification.warning({
+                message: "Thất Bại",
+                description: "Kiểu dữ liệu không hợp lệ!",
+                placement: "bottomRight",
+            });
         }
         else {
+            dispatch(createAttributeProductStart(values));
         }
     };
 
@@ -183,7 +119,7 @@ export default function AttributeProduct(props: IAttributeProductProps) {
         form.resetFields();
     };
 
-    const onGenderChange = (value: string) => {
+    const onGenderChange = (value: number) => {
         form.setFieldsValue({ types: value });
     };
 
@@ -202,34 +138,26 @@ export default function AttributeProduct(props: IAttributeProductProps) {
         },
         {
             title: 'Trạng thái',
-            dataIndex: 'isActive',
-            key: 'isActive',
+            dataIndex: 'isDelete',
+            key: 'isDelete',
             render: (text: boolean) => (text === true ? <Tag color="#2db7f5">True</Tag> : <Tag color="red">False</Tag>)
         },
         {
             title: 'Kiểu',
-            dataIndex: 'typesRsc'
-        },
-        {
-            title: 'Số lần sử dụng',
-            dataIndex: 'count'
-        },
-        {
-            title: 'Chi tiết',
-            dataIndex: 'description'
+            dataIndex: 'typesName'
         },
         {
             title: 'Người cập nhật',
-            dataIndex: 'createBy'
+            dataIndex: 'createByName'
         },
         {
             title: 'Thời gian cập nhật',
-            dataIndex: 'updatedAt',
+            dataIndex: 'updatedOnUtc',
             render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
         },
         {
             title: 'Thời gian tạo',
-            dataIndex: 'createdAt',
+            dataIndex: 'createdOnUtc',
             render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss.ms")
         },
         {
@@ -237,7 +165,7 @@ export default function AttributeProduct(props: IAttributeProductProps) {
             dataIndex: '',
             key: 'x',
             width: 120,
-            render: (text: AtomicDto) => (
+            render: (text: ProductAttributeReadDto) => (
                 <div>
                     <Button type="link" icon={<EditOutlined />}
                         onClick={() => {
@@ -250,7 +178,7 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                             onRemove(text);
                         }}
                     ></Button>
-                    {text.isActive ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
+                    {text.isDelete ? <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />}
                         onClick={() => onChangeIsStatus(text)}
                     ></Button> :
                         <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />}
@@ -261,9 +189,22 @@ export default function AttributeProduct(props: IAttributeProductProps) {
         },
     ];
 
+    //#region Get data attribute product
+    useEffect(() => {
+        dispatch(getDataAttibuteProductStart({
+            pageIndex: 1,
+            pageSize: 20,
+            propertyOrder: '',
+            valueOrderBy: '',
+            propertySearch: [],
+            valuesSearch: [],
+        }));
+    }, [])
+    //#endregion
+
     return (
         <Card
-            title="Lọc thông số"
+            title="PRODUCT ATTRIBUTE"
             size="small"
             type="inner"
             loading={loading}
@@ -348,7 +289,6 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                             </Select>
                         </Col>
                         <Col span={5}>
-                            {console.log()}
                             {
                                 SelectColumn.indexOf("CreatedAt") === 0 || SelectColumn.indexOf("UpdatedAt") === 0
                                     ? <RangePicker onChange={(date, dateString) => {
@@ -423,7 +363,7 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                     <Table
                         columns={columns}
                         rowKey={(record: any) => record.id}
-                        dataSource={data}
+                        dataSource={attibuteData}
                         loading={loading}
                         style={{ width: 'calc(100% - 10px)' }}
                         scroll={{ y: 350 }}
@@ -438,7 +378,7 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                         }}
                     />
                 </Row>
-                <Modal title="Thêm mới hoặc sửa Resource"
+                <Modal title={!checkCreate == true ? "THÊM MỚI" : "CHỈNH SỬA"}
                     visible={isModalVisible}
                     onCancel={() => setisModalVisible(false)}
                     maskClosable={false}
@@ -463,45 +403,35 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                             <Form.Item
                                 label="ID"
                                 name="id"
+                                hidden={!checkCreate}
                             >
                                 <Input disabled />
                             </Form.Item>
 
                             <Form.Item
-                                label="Method or Name..."
+                                label="Tên thuộc tính"
                                 name="name"
-                                rules={[{ required: true, message: 'Đường dẫn không được để trống!' }]}
+                                rules={[{ required: true, message: 'Tên thuộc tính không được để trống!' }]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
                                 label="Kiểu"
-                                name="typesRsc"
+                                name="types"
                             >
                                 <Select
                                     onChange={onGenderChange}
                                     allowClear
                                     style={{ width: '100%' }}
-                                    defaultValue="_">
-                                    <Option value="_">Chọn Kiểu dữ liệu</Option>
-                                    <Option value="URL">URL</Option>
+                                    defaultValue={-1}>
+                                    <Option value={-1}>Chọn Kiểu dữ liệu</Option>
+                                    <Option value={0}>Thuộc tính sản phẩm</Option>
+                                    <Option value={1}>Đơn vị sản phẩm</Option>
+                                    <Option value={2}>Thông số kỹ thuật</Option>
+                                    <Option value={3}>URL</Option>
+                                    <Option value={4}>URL</Option>
+                                    <Option value={5}>URL</Option>
                                 </Select>
-                            </Form.Item>
-                            <Form.Item
-                                label="Chi Tiết"
-                                name="description"
-                                rules={[{ required: true, message: 'Please input your password!' }]}
-                            >
-                                <Input.TextArea />
-                            </Form.Item>
-                            <Form.Item name="isActive" label="Trạng Thái" valuePropName="checked">
-                                <Switch />
-                            </Form.Item>
-                            <Form.Item
-                                label="Ngày sửa :"
-                                name="createdAt"
-                            >
-                                <Input disabled />
                             </Form.Item>
                             <Row gutter={[10, 10]}>
                                 <Col span={6}><Button loading={loading} onClick={onReset} block icon={<RedoOutlined />}>Làm Mới</Button></Col>

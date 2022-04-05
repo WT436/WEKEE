@@ -22,13 +22,11 @@ namespace Product.Domain.Shared.Entitys
         public int Quantity { get; set; }
         public int DisplayOrder { get; set; }
         public int PictureId { get; set; }
-        public int ImageSquaresPictureId { get; set; }
         public bool MainProduct { get; set; }
         public int CreateBy { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }
 
-        public virtual ImageProduct ImageSquaresPicture { get; set; }
         public virtual ImageProduct Picture { get; set; }
         public virtual Product Product { get; set; }
         public virtual ICollection<ProductAttributeMapping> ProductAttributeMappings { get; set; }

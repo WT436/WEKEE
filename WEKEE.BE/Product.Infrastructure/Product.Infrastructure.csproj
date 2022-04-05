@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DBContext2\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.9" />
@@ -32,9 +28,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Account.Application\Account.Application.csproj" />
     <ProjectReference Include="..\Album.Application\Album.Application.csproj" />
     <ProjectReference Include="..\Product.Domain\Product.Domain.csproj" />
     <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DBContext2\" />
   </ItemGroup>
 
 </Project>

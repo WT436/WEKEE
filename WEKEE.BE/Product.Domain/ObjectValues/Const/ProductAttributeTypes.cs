@@ -16,5 +16,16 @@ namespace Product.Domain.ObjectValues.Const
 
     public static class ProductAttributeTypesConvert
     {
+        public static string ConvertAttributeTypes(int types)
+        {
+            return types switch
+            {
+                0 => "ATTRIBUTE",
+                1 => "UNIT",
+                2 => "SPECIFICATIONS",
+                _ => "UNIT",
+            };
+        }
+
     }
 }

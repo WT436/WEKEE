@@ -10,8 +10,9 @@ const makeSelectPageIndex = () => createSelector(select, substate => substate.pa
 const makeSelectPageSize = () => createSelector(select, substate => substate.pageSize);
 const makeSelectTotalCount = () => createSelector(select, substate => substate.totalCount);
 const makeSelectTotalPages = () => createSelector(select, substate => substate.totalPages);
+const makeSelectproductAttributeReadDto = () => createSelector(select, substate => substate.productAttributeReadDto);
 
 export {
     makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize,
-    makeSelectTotalCount, makeSelectTotalPages
+    makeSelectTotalCount, makeSelectTotalPages,makeSelectproductAttributeReadDto
 };

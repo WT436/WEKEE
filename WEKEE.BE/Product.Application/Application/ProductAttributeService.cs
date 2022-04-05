@@ -4,10 +4,12 @@ using Product.Domain.ObjectValues.Input;
 using Product.Domain.ObjectValues.Output;
 using Product.Domain.Shared.DataTransfer.ProductAttributeDTO;
 using Product.Domain.Shared.Entitys;
+using Product.Infrastructure.EventBus;
 using Product.Infrastructure.ModelQuery;
 using Product.Infrastructure.Queries;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utils.Exceptions;
@@ -18,12 +20,17 @@ namespace Product.Application.Application
     {
         ProductAttributeQuery _productAttributeQuery = new ProductAttributeQuery();
         ProductAttributeQueries _productAttributeQueries = new ProductAttributeQueries();
+        AccountBus _accountBus = new AccountBus();
 
         public async Task<PagedListOutput<ProductAttributeReadDto>> GetAllPageListProductAttribute(SearchOrderPageInput input)
         {
             var data = await _productAttributeQueries.GetAllPageLstExactNotFTS(input);
             int totalCount = await _productAttributeQuery.TotalPageCategory();
-
+            foreach(var item in data)
+            {
+                item.TypesName = ProductAttributeTypesConvert.ConvertAttributeTypes(item.Types);
+                item.CreateByName = await _accountBus.GetNameAccount(item.CreateBy);
+            }
             return new PagedListOutput<ProductAttributeReadDto>
             {
                 Items = data,
@@ -50,7 +57,7 @@ namespace Product.Application.Application
                     IsDelete = false,
                     CreateBy = idAccount,
                     CreatedOnUtc = DateTime.Now,
-                    UpdatedOnUtc= DateTime.Now
+                    UpdatedOnUtc = DateTime.Now
                 });
                 return 1;
             }

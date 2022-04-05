@@ -9,5 +9,6 @@ namespace Account.Application.InfomationUser
     public interface IInfomationUser
     {
         Task<UserAccountDtos> GetBasicAccount(int id);
+        Task<string> GetNameAccount(int id);
     }
 }

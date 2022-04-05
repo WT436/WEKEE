@@ -53,10 +53,10 @@ namespace Product.Infrastructure.DBContext
             {
                 entity.ToTable("CategoryProduct");
 
-                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B4023808DC890")
+                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B40231BB3D5BC")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B958C7D64FD")
+                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B95827C0D20")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -120,14 +120,8 @@ namespace Product.Infrastructure.DBContext
 
                 entity.Property(e => e.WidthAdjustment).HasColumnType("decimal(18, 4)");
 
-                entity.HasOne(d => d.ImageSquaresPicture)
-                    .WithMany(p => p.FeatureProductImageSquaresPictures)
-                    .HasForeignKey(d => d.ImageSquaresPictureId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FeaturePr__Image__17F790F9");
-
                 entity.HasOne(d => d.Picture)
-                    .WithMany(p => p.FeatureProductPictures)
+                    .WithMany(p => p.FeatureProducts)
                     .HasForeignKey(d => d.PictureId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__FeaturePr__Pictu__17036CC0");
@@ -251,13 +245,13 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.ProductAttributeMappings)
                     .HasForeignKey(d => d.FeatureProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductAt__Featu__1DB06A4F");
+                    .HasConstraintName("FK__ProductAt__Featu__1CBC4616");
 
                 entity.HasOne(d => d.ProductAttributeValues)
                     .WithMany(p => p.ProductAttributeMappings)
                     .HasForeignKey(d => d.ProductAttributeValuesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductAt__Produ__1EA48E88");
+                    .HasConstraintName("FK__ProductAt__Produ__1DB06A4F");
             });
 
             modelBuilder.Entity<ProductAttributeValue>(entity =>
@@ -360,19 +354,19 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.ProductSpecificationAttributeMappings)
                     .HasForeignKey(d => d.AttributeTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_S__Attri__2FCF1A8A");
+                    .HasConstraintName("FK__Product_S__Attri__2EDAF651");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductSpecificationAttributeMappings)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_S__Produ__2DE6D218");
+                    .HasConstraintName("FK__Product_S__Produ__2CF2ADDF");
 
                 entity.HasOne(d => d.Specification)
                     .WithMany(p => p.ProductSpecificationAttributeMappings)
                     .HasForeignKey(d => d.SpecificationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product_S__Speci__2EDAF651");
+                    .HasConstraintName("FK__Product_S__Speci__2DE6D218");
             });
 
             modelBuilder.Entity<ProductTag>(entity =>
@@ -455,7 +449,7 @@ namespace Product.Infrastructure.DBContext
                     .WithMany(p => p.SpecificationAttributes)
                     .HasForeignKey(d => d.CategoryProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Specifica__Categ__29221CFB");
+                    .HasConstraintName("FK__Specifica__Categ__282DF8C2");
             });
 
             modelBuilder.Entity<StockQuantityHistory>(entity =>
