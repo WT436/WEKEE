@@ -56,7 +56,7 @@ function uploadImageCallBack(file: string | Blob) {
     );
 }
 
-const stateSelector = createStructuredSelector<any, any>({
+const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
     productDto: makeSelectproductDto()
 });
@@ -67,7 +67,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
     } = useSelector(stateSelector);
 
     //useState
-    const [fileList, setFileList] = useState<ImageProductDtos[]>([
+    const [fileList, setFileList] = useState < ImageProductDtos[] > ([
         {
             uid: '',
             name: '',
@@ -163,8 +163,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                 <Row>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -178,8 +178,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     </Col>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -193,8 +193,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     </Col>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -208,8 +208,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     </Col>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -225,8 +225,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     </Col>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -242,8 +242,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     </Col>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -259,8 +259,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     </Col>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -276,8 +276,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     </Col>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -293,8 +293,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     </Col>
                     <Col span={4}>
                         <Upload
-                            action="https://localhost:44324/v1/api/patch/upload-root"
-                            name="file"
+                            action={abp.serviceAlbumAPI + "patch/upload-product"}
+                            name="files"
                             method="POST"
                             listType="picture-card"
                             className="avatar-uploader"
@@ -349,6 +349,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
             <Form.Item
                 name="Mô tả sản phẩm"
                 label="Mô tả sản phẩm"
+                className='MJnbqTsvvM'
                 rules={[
                     {
                         required: true,
@@ -358,8 +359,8 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
             >
                 <Editor
                     editorState={editorState}
-                    wrapperClassName="demo-wrapper"
-                    editorClassName="demo-editor"
+                    wrapperClassName="kVcFNEFdzL"
+                    editorClassName="WEabvZfAHr"
                     onEditorStateChange={onEditorStateChange}
                     toolbar={{
                         image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
@@ -368,6 +369,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                 <textarea
                     style={{ width: '100%' }}
                     disabled
+                    hidden
                     value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
                 />
             </Form.Item>

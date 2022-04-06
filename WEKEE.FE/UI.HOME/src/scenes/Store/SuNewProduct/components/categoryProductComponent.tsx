@@ -282,8 +282,8 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
     //#endregion
 
     //#region Tag 
-    const [tagState, settagState] = useState < string[] > ([]);
-    const [items, setitems] = useState < string[] > ([]);
+    const [tagState, settagState] = useState <string[]> ([]);
+    const [items, setitems] = useState <string[]> ([]);
     const [tags, settags] = useState(['Unremovable']);
     const [nameTag, setnameTag] = useState('');
 
@@ -293,7 +293,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
         }
     };
 
-    const onNameChange = (event: { target: { value: any; }; }) => {
+    const onNameChange = (event: any) => {
         setnameTag(event.target.value);
     };
     //#endregion
@@ -526,6 +526,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     }
                 </Select>
             </Form.Item>
+            
             <Form.Item
                 name="tag"
                 label="Khóa tìm kiếm Nhanh"

@@ -61,7 +61,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
 
     const { featureProductDtos, productDto } = useSelector(stateSelector);
 
-    const [openingCondition2, setOpeningCondition2] = useState(false);
+    const [openingCondition2, setOpeningCondition2] = useState(true);
     const [openingCondition3, setOpeningConditio3] = useState(false);
     const [openingCondition4, setOpeningCondition4] = useState(false);
     const [openingCondition5, setOpeningCondition5] = useState(false);
