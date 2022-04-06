@@ -1,4 +1,3 @@
-import { FeatureProductDtos } from "../../Store/SuNewProduct/dtos/featureProductDtos";
 import ActionTypes from "./constants";
 import { FeatureProductCardDtos } from "./dtos/featureProductCardDtos";
 import { ImageProductCardDtos } from "./dtos/imageProductCardDtos";

@@ -19,7 +19,6 @@ import CategoryProductComponent from './components/categoryProductComponent';
 import InfomationBasicComponent from './components/infomationBasicComponent';
 import InfomationSalesComponent from './components/infomationSalesComponent';
 import ClassificationOfGoodsComponent from './components/classificationOfGoodsComponent';
-import { FeatureProductDtos } from './dtos/featureProductDtos';
 import { ImageProductDtos } from './dtos/imageProductDtos';
 import { CreateProductDtos } from './dtos/createProductDtos';
 import { createProductsStart } from './actions';
@@ -62,7 +61,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
     const { featureProductDtos, productDto } = useSelector(stateSelector);
 
     const [openingCondition2, setOpeningCondition2] = useState(true);
-    const [openingCondition3, setOpeningConditio3] = useState(false);
+    const [openingCondition3, setOpeningConditio3] = useState(true);
     const [openingCondition4, setOpeningCondition4] = useState(false);
     const [openingCondition5, setOpeningCondition5] = useState(false);
     const [openingCondition6, setOpeningCondition6] = useState(false);
@@ -77,11 +76,11 @@ export default function SuNewProduct(props: ISuNewProductProps) {
         setMessageImage(childData);
     }
 
-    const [messagefeatureProduct, setMessagefeatureProduct] = useState < FeatureProductDtos[] > ([]);
+    // const [messagefeatureProduct, setMessagefeatureProduct] = useState < FeatureProductDtos[] > ([]);
 
-    const callbackFunctionFeature = (childData: FeatureProductDtos[]) => {
-        setMessagefeatureProduct(childData);
-    }
+    // const callbackFunctionFeature = (childData: FeatureProductDtos[]) => {
+    //     setMessagefeatureProduct(childData);
+    // }
 
     const [messageSpecifi, setMessageSpecifi] = useState < any > ([]);
 
@@ -91,8 +90,8 @@ export default function SuNewProduct(props: ISuNewProductProps) {
 
     const createProduct = () => {
         var createProduct: CreateProductDtos = {
-            featureProductDtos: messagefeatureProduct,
-            highlightProductDtos: messageSpecifi,
+            //featureProductDtos: messagefeatureProduct,
+            //highlightProductDtos: messageSpecifi,
             imageProductDtos: messageimage,
             productDto: productDto
         };
@@ -132,7 +131,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                                 <InfomationBasicComponent parentCallback={callbackFunctionImage} />
                             </Panel>
                             <Panel header="Phân loại hàng hóa" key="3" disabled={!openingCondition3}>
-                                <ClassificationOfGoodsComponent image={messageimage} parentCallback={callbackFunctionFeature} />
+                                <ClassificationOfGoodsComponent image={messageimage} parentCallback={undefined} />
                             </Panel>
                             <Panel header="Thông tin bán hàng" key="4" disabled={!openingCondition4}>
                                 <InfomationSalesComponent parentCallback={callbackFunctionSpecifi} />

@@ -15,6 +15,8 @@ export const proAttrTypesUnitCompleted = (output: ProductAttributeReadTypesDto[]
   action(ActionTypes.PRO_ATTR_TYPE_UNIT_COMPLETED, output);
 export const proAttrTypesTradeMarkCompleted = (output: ProductAttributeReadTypesDto[]) =>
   action(ActionTypes.PRO_ATTR_TYPE_TRADEMARK_COMPLETED, output);
+export const proAttrTypesAttributeCompleted = (output: ProductAttributeReadTypesDto[]) =>
+  action(ActionTypes.PRO_ATTR_TYPE_ATTRIBUTE_COMPLETED, output);
 export const proAttrTypesUnitError = () =>
   action(ActionTypes.PRO_ATTR_TYPE_UNIT_ERROR);
 //#endregion

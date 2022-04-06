@@ -1,5 +1,5 @@
 export interface ProductAttributeReadTypesDto {
-  id: Number;
+  id: number;
   name: String;
   types: Number;
 }

@@ -17,6 +17,7 @@ const makeSelectspecificationsCategoryDto = () =>createSelector(select, (substat
 const makeSelectproductAttributeReadTypesDto = () =>createSelector(select, (substate) => substate.productAttributeReadTypesDto);
 const makeSelectproductDto = () =>createSelector(select, (substate) => substate.productDto);
 const makeSelectTrademarkDto = () =>createSelector(select, (substate) => substate.productAttributeReadTrademarkDto);
+const makeSelectAttributeDto = () =>createSelector(select, (substate) => substate.productAttributeReadAttributeDto);
 
 export {
   makeSelectLoading,
@@ -29,5 +30,5 @@ export {
   makeSelectalbumProduct,
   makeSelectspecificationsCategoryDto,
   makeSelectproductAttributeReadTypesDto,
-  makeSelectproductDto, makeSelectTrademarkDto
+  makeSelectproductDto, makeSelectTrademarkDto,makeSelectAttributeDto
 };

@@ -17,6 +17,7 @@ export interface SuNewProductState {
   readonly specificationsCategoryDto: SpecificationsCategoryDto[];
   readonly productAttributeReadTypesDto: ProductAttributeReadTypesDto[];
   readonly productAttributeReadTrademarkDto: ProductAttributeReadTypesDto[];
+  readonly productAttributeReadAttributeDto: ProductAttributeReadTypesDto[];
   readonly productDto: ProductDtos;
 }
 

@@ -30,7 +30,8 @@ export const initialState: SuNewProductState = {
     productAlbum: "",
   },
   productAttributeReadTypesDto: [],
-  productAttributeReadTrademarkDto: []
+  productAttributeReadTrademarkDto: [],
+  productAttributeReadAttributeDto: []
 };
 //#endregion
 
@@ -61,6 +62,14 @@ function suNewProductReducer(
         loading: false,
         productAttributeReadTrademarkDto: action.payload,
 
+      };
+
+    case ActionTypes.PRO_ATTR_TYPE_ATTRIBUTE_COMPLETED:
+      console.log(action.payload)
+      return {
+        ...state,
+        loading: false,
+        productAttributeReadAttributeDto: action.payload,
       };
 
     case ActionTypes.PRO_ATTR_TYPE_UNIT_ERROR:

@@ -6,6 +6,7 @@ import {
   getCategotyMainError,
   getSpecifiCategoryCompleted,
   getSpecifiCategoryError,
+  proAttrTypesAttributeCompleted,
   proAttrTypesTradeMarkCompleted,
   proAttrTypesUnitCompleted,
   proAttrTypesUnitError,
@@ -40,6 +41,9 @@ function* proAttrTypesUnit(input: any) {
       output: call(service.proAttrTypesUnitService, input.payload),
     });
     if (output) {
+      if (input.payload === 0) {
+        yield put(proAttrTypesAttributeCompleted(output));
+      }
       if (input.payload === 1) {
         yield put(proAttrTypesUnitCompleted(output));
       }

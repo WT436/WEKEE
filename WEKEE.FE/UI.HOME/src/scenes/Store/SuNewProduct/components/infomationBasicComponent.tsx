@@ -67,7 +67,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
     } = useSelector(stateSelector);
 
     //useState
-    const [fileList, setFileList] = useState < ImageProductDtos[] > ([
+    const [fileList, setFileList] = useState <ImageProductDtos[]> ([
         {
             uid: '',
             name: '',
@@ -373,17 +373,6 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
                 />
             </Form.Item>
-
-            <Form.Item
-                name="username"
-                label="Name"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your name',
-                    },
-                ]}
-            ></Form.Item>
         </>
     )
 }

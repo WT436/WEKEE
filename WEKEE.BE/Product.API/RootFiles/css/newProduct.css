@@ -33,7 +33,7 @@
     align-content: center;
     justify-content: center;
     align-items: center;
-    margin:10px 0;
+    margin: 10px 0;
 }
 
     .lLwemSWham > span {
@@ -48,4 +48,12 @@
 
 .xTKcPpX23i {
     margin-top: 50px;
+}
+
+.lLwemSWham > div:first-child {
+    width: 20%!important;
+}
+
+.lLwemSWham > div:last-child {
+    width: 80%!important;
 }
