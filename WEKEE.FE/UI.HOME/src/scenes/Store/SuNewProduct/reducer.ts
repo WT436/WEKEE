@@ -3,6 +3,7 @@ import { SuNewProductActions, SuNewProductState } from "./types";
 
 declare var abp: any;
 
+//#region initialState 
 export const initialState: SuNewProductState = {
   loading: false,
   completed: true,
@@ -14,7 +15,7 @@ export const initialState: SuNewProductState = {
   categorySelectDto: [],
   albumProduct: [],
   specificationsCategoryDto: [],
-  specificationsCategoryUnitDto: [],
+
   productDto: {
     id: 0,
     name: "",
@@ -28,13 +29,47 @@ export const initialState: SuNewProductState = {
     categoryProduct: 0,
     productAlbum: "",
   },
+  productAttributeReadTypesDto: [],
+  productAttributeReadTrademarkDto: []
 };
+//#endregion
 
 function suNewProductReducer(
   state: SuNewProductState = initialState,
   action: SuNewProductActions
 ) {
   switch (action.type) {
+
+    //#region PRO_ATTR_TYPE_UNIT_START
+    case ActionTypes.PRO_ATTR_TYPE_UNIT_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.PRO_ATTR_TYPE_UNIT_COMPLETED:
+      return {
+        ...state,
+        loading: false,
+        productAttributeReadTypesDto: action.payload,
+
+      };
+
+    case ActionTypes.PRO_ATTR_TYPE_TRADEMARK_COMPLETED:
+      return {
+        ...state,
+        loading: false,
+        productAttributeReadTrademarkDto: action.payload,
+
+      };
+
+    case ActionTypes.PRO_ATTR_TYPE_UNIT_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
+
     // OPEN PAGE
     case ActionTypes.CREATE_PRODUCT_START:
       return {
@@ -114,25 +149,6 @@ function suNewProductReducer(
         loading: false,
       };
 
-    /////////////////////
-    case ActionTypes.GET_SPECIFI_CATEGORY_UNIT_START:
-      return {
-        ...state,
-        loading: true,
-      };
-
-    case ActionTypes.GET_SPECIFI_CATEGORY_UNIT_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-        specificationsCategoryUnitDto: action.payload,
-      };
-
-    case ActionTypes.GET_SPECIFI_CATEGORY_UNIT_ERROR:
-      return {
-        ...state,
-        loading: false,
-      };
 
     case ActionTypes.SET_PRODUCT_DTOS:
       return {

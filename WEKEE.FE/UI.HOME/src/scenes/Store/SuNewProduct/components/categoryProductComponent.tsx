@@ -5,40 +5,31 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {
-    getCategotyMainStart, getSpecifiCategoryStart, getSpecifiCategoryUnitStart,
+    getCategotyMainStart, getSpecifiCategoryStart,
+    proAttrTypesUnitStart,
     readFullAlbumProductStart,
     setProductsStart
 } from '../actions';
 import {
     makeSelectalbumProduct,
-    makeSelectcategorySelectDto, makeSelectLoading, makeSelectproductDto, makeSelectspecificationsCategoryDto,
-    makeSelectspecificationsCategoryUnitDto
+    makeSelectcategorySelectDto, makeSelectLoading, makeSelectproductAttributeReadTypesDto, makeSelectproductDto, makeSelectspecificationsCategoryDto, makeSelectTrademarkDto,
 } from '../selectors';
-import { SpecificationsCategoryUnitDto } from '../dtos/specificationsCategoryUnitDto';
 import { SpecificationsCategoryDto } from '../dtos/specificationsCategoryDto';
 import { ProductDtos } from '../dtos/productDtos';
+import { ProductAttributeReadTypesDto } from '../dtos/productAttributeReadTypesDto';
+import { delay } from 'redux-saga/effects';
 const { Option } = Select;
 interface ICategoryProductComponent { }
 
-const stateSelector = createStructuredSelector<any, any>({
+const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
-    categorySelectDto: makeSelectcategorySelectDto(),
+    optionsCategory: makeSelectcategorySelectDto(),
     albumProduct: makeSelectalbumProduct(),
     specificationsCategoryDto: makeSelectspecificationsCategoryDto(),
-    specificationsCategoryUnitDto: makeSelectspecificationsCategoryUnitDto(),
-    productDto: makeSelectproductDto()
+    productDto: makeSelectproductDto(),
+    productAttributeReadTypesDto: makeSelectproductAttributeReadTypesDto(),
+    trademarkDto: makeSelectTrademarkDto()
 });
-
-function dropdownRender(menus: any) {
-    return (
-        <div>
-            {menus}
-            <Divider style={{ margin: 0 }} />
-            <div style={{ padding: 8 }}>Lựa chọn danh mục sản phẩm của bạn!</div>
-        </div>
-    );
-}
-
 
 const origin = [
     {
@@ -239,27 +230,38 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
     const dispatch = useDispatch();
 
     const {
-        loading, categorySelectDto, albumProduct,
-        specificationsCategoryDto, specificationsCategoryUnitDto, productDto
+        loading, optionsCategory, albumProduct,
+        productDto, productAttributeReadTypesDto,
+        trademarkDto
     } = useSelector(stateSelector);
+
     //state
     const [category, setCategory] = useState(0);
-    const [provinceDataAlbumProduct, setprovinceDataAlbumProduct] = useState(['default']);
-    const [nameAlbumProduct, setNameAlbumProduct] = useState('');
-    const [tags, settags] = useState(['Unremovable']);
-    const [items, setitems] = useState<string[]>([]);
-    const [name, setname] = useState('');
 
     //useEffect
     useEffect(() => {
         dispatch(getCategotyMainStart());
         dispatch(readFullAlbumProductStart());
-        dispatch(getSpecifiCategoryUnitStart());
+        dispatch(proAttrTypesUnitStart(1));
     }, []);
 
     useEffect(() => {
         dispatch(getSpecifiCategoryStart(category))
     }, [category]);
+
+    //#region  Cascader
+    const [mainCategoryState, setMainCategoryState] = useState(0);
+
+    let onChangeCascader = (value: any) => {
+        console.log(value);
+        setMainCategoryState(value.length == 0 ? 0 : value[value.length - 1]);
+    };
+    //#endregion
+
+    //#region Album Product 
+    const [provinceDataAlbumProduct, setprovinceDataAlbumProduct] = useState(['']);
+    const [nameAlbumProduct, setNameAlbumProduct] = useState('');
+
 
     useEffect(() => {
         setprovinceDataAlbumProduct(provinceDataAlbumProduct.concat(albumProduct));
@@ -277,14 +279,24 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
         }
     };
 
-    // tag
+    //#endregion
+
+    //#region Tag 
+    const [tagState, settagState] = useState < string[] > ([]);
+    const [items, setitems] = useState < string[] > ([]);
+    const [tags, settags] = useState(['Unremovable']);
+    const [nameTag, setnameTag] = useState('');
+
     const addItem = () => {
-        setitems([...items, name]);
+        if (items.findIndex((element) => element === nameTag) === -1) {
+            setitems([...items, nameTag]);
+        }
     };
 
     const onNameChange = (event: { target: { value: any; }; }) => {
-        setname(event.target.value);
+        setnameTag(event.target.value);
     };
+    //#endregion
 
     return (
         <>
@@ -303,7 +315,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     className="qTPFz3NQ2b"
                     placeholder="Tên Sản Phẩm"
                     showCount
-                    maxLength={100}
+                    maxLength={200}
                     onChange={(value: any) => {
                         var productSave = productDto;
                         productSave.name = value.target.value;
@@ -324,21 +336,15 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
             >
                 <Cascader
                     fieldNames={{
-                        label: 'nameCategory',
-                        value: 'id',
-                        children: 'items'
+                        label: "nameCategory",
+                        value: "id",
+                        children: "items",
                     }}
-                    expandTrigger='hover'
-                    options={categorySelectDto}
-                    dropdownRender={dropdownRender}
-                    onChange={(value: any) => {
-                        setCategory(value[value.length - 1]);
-                        var productSave: ProductDtos = productDto;
-                        productSave.categoryProduct = value[value.length - 1];
-                        setProductsStart(productSave);
-                    }}
+                    options={optionsCategory}
+                    style={{ width: "100%" }}
+                    onChange={onChangeCascader}
                     changeOnSelect
-                    placeholder="Please select category" />
+                />
             </Form.Item>
 
             <Form.Item
@@ -371,7 +377,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                                     style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
                                     onClick={addItemAlbumProduct}
                                 >
-                                    <PlusOutlined /> Add item
+                                    <PlusOutlined /> Thêm Album
                                 </a>
                             </div>
                         </div>
@@ -448,17 +454,19 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                         (value: any) => {
                             var productSave: ProductDtos = productDto;
                             productSave.unitProduct = value;
+                            console.log(value)
                             setProductsStart(productSave);
                         }
                     }
                 >
                     {
-                        specificationsCategoryUnitDto.map((province: SpecificationsCategoryUnitDto) => (
-                            <Option value={province.id}>{province.nameShow}</Option>
+                        productAttributeReadTypesDto.map((province: ProductAttributeReadTypesDto) => (
+                            <Option value={province.id.toString()}>{province.name}</Option>
                         ))
                     }
                 </Select>
             </Form.Item>
+
             <Form.Item
                 name="fragile"
                 label="Hàng Dễ vỡ"
@@ -480,6 +488,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     }}
                     defaultChecked />
             </Form.Item>
+
             <Form.Item
                 name="trademark"
                 label="Thương Hiệu"
@@ -508,13 +517,12 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                             setProductsStart(productSave);
                         }
                     }
+                    onClick={() => { dispatch(proAttrTypesUnitStart(3)); }}
                 >
                     {
-                        specificationsCategoryDto.map((province: SpecificationsCategoryDto) => {
-                            if (province.classify === 4) {
-                                return <Option value={province.id}>{province.nameShow}</Option>
-                            }
-                        })
+                        trademarkDto.map((province: ProductAttributeReadTypesDto) => (
+                            <Option value={province.id.toString()}>{province.name}</Option>
+                        ))
                     }
                 </Select>
             </Form.Item>
@@ -545,7 +553,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                             {menu}
                             <Divider style={{ margin: '4px 0' }} />
                             <div style={{ display: 'flex', flexWrap: 'nowrap', padding: 4 }}>
-                                <Input size='small' style={{ flex: 'auto' }} value={name} onChange={onNameChange} />
+                                <Input size='small' style={{ flex: 'auto' }} value={nameTag} onChange={onNameChange} />
                                 <a
                                     style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
                                     onClick={addItem}

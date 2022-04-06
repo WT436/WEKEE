@@ -1,7 +1,10 @@
-﻿using Product.Infrastructure.DBContext;
+﻿using Microsoft.EntityFrameworkCore;
+using Product.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using UnitOfWork;
 
 namespace Product.Infrastructure.ModelQuery
@@ -22,6 +25,13 @@ namespace Product.Infrastructure.ModelQuery
             unitOfWork.GetRepository<Domain.Shared.Entitys.Product>().Insert(input);
             unitOfWork.SaveChanges();
             return input;
+        }
+
+        public async Task<List<string>> GetAllProductAlbumByIdStore(int id)
+        {
+            var data = await unitOfWork.GetRepository<Domain.Shared.Entitys.Product>().GetAll(m => m.Supplier == id)
+                                 .Select(m => m.ProductAlbum).Distinct().ToListAsync();
+            return data;
         }
     }
 }

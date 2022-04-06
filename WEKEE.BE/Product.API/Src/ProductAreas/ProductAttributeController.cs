@@ -27,11 +27,20 @@ namespace Product.API.Src.ProductAreas
 
         [HttpPost]
         [Route("v1/api/product-attribute")]
-        public async Task<IActionResult> CreateProductAtributeAdmin([FromBody]ProductAttributeInsertDto input)
+        public async Task<IActionResult> CreateProductAtributeAdmin([FromBody] ProductAttributeInsertDto input)
         {
             var idAccount = HttpContext.Items["idAccount"];
             var data = await _productAttribute.InsertProductAttribute(input: input, idAccount: Convert.ToInt32(idAccount));
             return Ok(data);
         }
+
+        [HttpGet]
+        [Route("v1/api/product-attribute-type-one")]
+        public async Task<IActionResult> ProductAtributeGetTypeOne(int input)
+        {
+            var data = await _productAttribute.GetAllAttribute(input);
+            return Ok(data);
+        }
+
     }
 }

@@ -1,11 +1,9 @@
 import { ActionType } from "typesafe-actions";
 import * as actions from "./actions";
-import { CategorySelectDto } from "./dtos/categorySelectDto";
-import { FeatureProductDtos } from "./dtos/featureProductDtos";
-import { ImageProductDtos } from "./dtos/imageProductDtos";
+import { CategoryProductReadMapDto } from "./dtos/categoryProductReadMapDto";
+import { ProductAttributeReadTypesDto } from "./dtos/productAttributeReadTypesDto";
 import { ProductDtos } from "./dtos/productDtos";
 import { SpecificationsCategoryDto } from "./dtos/specificationsCategoryDto";
-import { SpecificationsCategoryUnitDto } from "./dtos/specificationsCategoryUnitDto";
 export interface SuNewProductState {
   readonly loading: boolean;
   readonly completed: boolean;
@@ -14,10 +12,11 @@ export interface SuNewProductState {
   readonly totalCount: number;
   readonly totalPages: number;
 
-  readonly categorySelectDto: CategorySelectDto[];
+  readonly categorySelectDto: CategoryProductReadMapDto[];
   readonly albumProduct: string[];
   readonly specificationsCategoryDto: SpecificationsCategoryDto[];
-  readonly specificationsCategoryUnitDto: SpecificationsCategoryUnitDto[];
+  readonly productAttributeReadTypesDto: ProductAttributeReadTypesDto[];
+  readonly productAttributeReadTrademarkDto: ProductAttributeReadTypesDto[];
   readonly productDto: ProductDtos;
 }
 

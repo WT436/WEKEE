@@ -16,5 +16,12 @@ namespace Product.Application.Interface
         /// Lấy thông tin Product Attribute
         /// </summary>
         Task<PagedListOutput<ProductAttributeReadDto>> GetAllPageListProductAttribute(SearchOrderPageInput input);
+
+        /// <summary>
+        /// Get product with type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        Task<List<ProductAttributeReadTypesDto>> GetAllAttribute(int type);
     }
 }

@@ -30,10 +30,10 @@ class ACategoryService {
     }
 
     public async getCategoryAdminStart(input : SearchOrderPageInput) : Promise<PagedListOutput<CategoryProductReadDto>> {
-        let rs = await http.get('/get-all', {
+        let rs = await http.get('/category-product-get-all', {
             params:  input
         });
-        console.log(rs);
+        console.log(rs.data)
         if (rs) {
             return rs.data;
         }

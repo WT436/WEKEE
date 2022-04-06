@@ -62,5 +62,11 @@ namespace Product.Application.Application
                 return 1;
             }
         }
+
+        public async Task<List<ProductAttributeReadTypesDto>> GetAllAttribute(int type)
+        {
+            var data = await _productAttributeQueries.GetAllTypesProductAttribute(type);
+            return data;
+        }
     }
 }

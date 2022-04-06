@@ -44,5 +44,20 @@ namespace Product.Infrastructure.Queries
 
             return unitOfWork.FromSql<ProductAttributeReadDto>(query.ToString());
         }
+
+        public async Task<List<ProductAttributeReadTypesDto>> GetAllTypesProductAttribute(int type)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("  SELECT distinct                      ");
+            query.AppendLine("         CP.[Id]                       ");
+            query.AppendLine("  	  ,CP.[Name]                     ");
+            query.AppendLine("  	  ,CP.[Types]                    ");
+            query.AppendLine("  FROM[dbo].[ProductAttribute] AS CP   ");
+            query.AppendLine($"  WHERE CP.Types = {type}             ");
+            query.AppendLine("    AND CP.CreateBy = 0                ");
+            query.AppendLine("    AND CP.isDelete = 0                ");
+
+            return unitOfWork.FromSql<ProductAttributeReadTypesDto>(query.ToString());
+        }
     }
 }

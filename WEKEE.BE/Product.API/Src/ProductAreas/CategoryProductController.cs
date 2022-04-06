@@ -24,7 +24,7 @@ namespace Product.API.Src.ProductAreas
         }
 
         [HttpGet]
-        [Route("/v1/api/get-all")]
+        [Route("/v1/api/category-product-get-all")]
         public async Task<IActionResult> SelectAll(SearchOrderPageInput input)
         {
             var data = await _categoryProduct.GetAllPageListCategory(input: input);

@@ -2,7 +2,8 @@
 import {
     Affix, Alert, Button,
     Col, Collapse, Divider, Form, Input, InputNumber,
-    Radio, Row, Select, Typography,
+    Progress,
+    Radio, Row, Select, Steps, Typography,
 } from 'antd';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
@@ -25,7 +26,7 @@ import { createProductsStart } from './actions';
 const { Title, Text } = Typography;
 const { Option } = Select;
 const { Panel } = Collapse;
-
+const { Step } = Steps;
 //#endregion
 
 export interface ISuNewProductProps {
@@ -36,7 +37,7 @@ const key = 'sunewproduct';
 declare var abp: any;
 var urlCss = abp.serviceAlbumCss;
 
-const stateSelector = createStructuredSelector<any, any>({
+const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
     categorySelectDto: makeSelectcategorySelectDto(),
     productDto: makeSelectproductDto()
@@ -60,21 +61,29 @@ export default function SuNewProduct(props: ISuNewProductProps) {
 
     const { featureProductDtos, productDto } = useSelector(stateSelector);
 
-    const [container, setContainer] = useState<HTMLDivElement | null>(null);
+    const [openingCondition2, setOpeningCondition2] = useState(false);
+    const [openingCondition3, setOpeningConditio3] = useState(false);
+    const [openingCondition4, setOpeningCondition4] = useState(false);
+    const [openingCondition5, setOpeningCondition5] = useState(false);
+    const [openingCondition6, setOpeningCondition6] = useState(false);
+    const [openingCondition7, setOpeningCondition7] = useState(false);
+
+    const [container, setContainer] = useState < HTMLDivElement | null > (null);
 
 
-    const [messageimage, setMessageImage] = useState<ImageProductDtos[]>([]);
+    const [messageimage, setMessageImage] = useState < ImageProductDtos[] > ([]);
 
     const callbackFunctionImage = (childData: ImageProductDtos[]) => {
         setMessageImage(childData);
     }
 
-    const [messagefeatureProduct, setMessagefeatureProduct] = useState<FeatureProductDtos[]>([]);
+    const [messagefeatureProduct, setMessagefeatureProduct] = useState < FeatureProductDtos[] > ([]);
 
     const callbackFunctionFeature = (childData: FeatureProductDtos[]) => {
         setMessagefeatureProduct(childData);
     }
-    const [messageSpecifi, setMessageSpecifi] = useState<any>([]);
+
+    const [messageSpecifi, setMessageSpecifi] = useState < any > ([]);
 
     const callbackFunctionSpecifi = (childData: any) => {
         setMessageSpecifi(childData);
@@ -94,7 +103,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
         <Row gutter={[30, 10]} ref={setContainer}>
             <Helmet>
                 <title>Wekee.vn</title>
-                <link rel="stylesheet" href={urlCss + "/newProduct.css"} /> 
+                <link rel="stylesheet" href={urlCss + "/newProduct.css"} />
                 <link rel="stylesheet" href={urlCss + "/editor.css"} />
             </Helmet>
             <Col span={24}>
@@ -102,9 +111,15 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                     <Title className="RzCgNC58JZ" style={{ width: '100%' }} level={3}>Thêm 1 sản phẩm mới</Title>
                     <Text className="kdMal56HSK">Vui lòng chọn ngành hàng phù hợp cho sản phẩm của bạn.</Text>
                 </Row>
+                <Divider orientation="left"></Divider>
+                <Steps size="small" progressDot={true} current={2}>
+                    <Step title={<Progress type="circle" percent={80} width={30} />} />
+                    <Step title="In Progress" />
+                    <Step title="Waiting" />
+                </Steps>
+                <Divider orientation="left"></Divider>
                 <Row>
                     <Form {...formItemLayout} style={{ width: '100%' }}>
-                        <Divider orientation="left"></Divider>
                         <Collapse
                             accordion
                             defaultActiveKey={'1'}
@@ -113,16 +128,16 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                             <Panel header="Danh Mục Sản Phẩm" key="1">
                                 <CategoryProductComponent />
                             </Panel>
-                            <Panel header="Thông tin Căn Bản" key="2">
+                            <Panel header="Thông tin Căn Bản" key="2" disabled={!openingCondition2}>
                                 <InfomationBasicComponent parentCallback={callbackFunctionImage} />
                             </Panel>
-                            <Panel header="Phân loại hàng hóa" key="3">
+                            <Panel header="Phân loại hàng hóa" key="3" disabled={!openingCondition3}>
                                 <ClassificationOfGoodsComponent image={messageimage} parentCallback={callbackFunctionFeature} />
                             </Panel>
-                            <Panel header="Thông tin bán hàng" key="4">
+                            <Panel header="Thông tin bán hàng" key="4" disabled={!openingCondition4}>
                                 <InfomationSalesComponent parentCallback={callbackFunctionSpecifi} />
                             </Panel>
-                            <Panel header="Vận chuyển" key="5">
+                            <Panel header="Vận chuyển" key="5" disabled={!openingCondition5}>
 
                                 <Form.Item
                                     name="Cân nặng (Sau khi đóng gói)"
@@ -173,7 +188,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                                 </Form.Item>
 
                             </Panel>
-                            <Panel header="Thông tin khác" key="6">
+                            <Panel header="Thông tin khác" key="6" disabled={!openingCondition6}>
                                 <Form.Item
                                     name="username"
                                     label="Name"

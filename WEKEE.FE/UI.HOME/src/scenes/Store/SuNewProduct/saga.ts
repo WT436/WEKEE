@@ -6,18 +6,16 @@ import {
   getCategotyMainError,
   getSpecifiCategoryCompleted,
   getSpecifiCategoryError,
-  getSpecifiCategoryUnitCompleted,
-  getSpecifiCategoryUnitError,
+  proAttrTypesTradeMarkCompleted,
+  proAttrTypesUnitCompleted,
+  proAttrTypesUnitError,
   readFullAlbumProductCompleted,
-  readFullAlbumProductError,
-  watchPageCompleted,
-  watchPageError,
+  readFullAlbumProductError
 } from "./actions";
 import ActionTypes from "./constants";
 import service from "./services";
 
 export default function* watchLoginRequestStart() {
-  yield takeLatest(ActionTypes.WATCH_PAGE_START, requestLogin);
   yield takeLatest(ActionTypes.GET_CATEGORY_MAIN_START, getCategotyMainStart);
   yield takeLatest(
     ActionTypes.READ_FULL_ALBUM_PRODUCT_START,
@@ -27,12 +25,35 @@ export default function* watchLoginRequestStart() {
     ActionTypes.GET_SPECIFI_CATEGORY_START,
     getSpecifiCategoryStart
   );
-  yield takeLatest(
-    ActionTypes.GET_SPECIFI_CATEGORY_UNIT_START,
-    getSpecifiCategoryUnitStart
-  );
   yield takeLatest(ActionTypes.CREATE_PRODUCT_START, createProductsStart);
+
+  //#region PRO_ATTR_TYPE_UNIT 
+  yield takeLatest(ActionTypes.PRO_ATTR_TYPE_UNIT_START, proAttrTypesUnit);
+  //#endregion
+
 }
+
+//#region PRO_ATTR_TYPE_UNIT 
+function* proAttrTypesUnit(input: any) {
+  try {
+    const { output } = yield race({
+      output: call(service.proAttrTypesUnitService, input.payload),
+    });
+    if (output) {
+      if (input.payload === 1) {
+        yield put(proAttrTypesUnitCompleted(output));
+      }
+      if (input.payload === 3) {
+        yield put(proAttrTypesTradeMarkCompleted(output));
+      }
+    } else {
+      yield put(proAttrTypesUnitError());
+    }
+  } catch (error) {
+    yield put(proAttrTypesUnitError());
+  }
+}
+//#endregion
 
 function* createProductsStart(input: any) {
   try {
@@ -46,21 +67,6 @@ function* createProductsStart(input: any) {
     }
   } catch (error) {
     yield put(createProductsError());
-  }
-}
-
-function* getSpecifiCategoryUnitStart() {
-  try {
-    const { output } = yield race({
-      output: call(service.getSpecifiCategoryUnitStart),
-    });
-    if (output) {
-      yield put(getSpecifiCategoryUnitCompleted(output));
-    } else {
-      yield put(getSpecifiCategoryUnitError());
-    }
-  } catch (error) {
-    yield put(getSpecifiCategoryUnitError());
   }
 }
 
@@ -94,7 +100,7 @@ function* readFullAlbumProductStart() {
   }
 }
 
-function* getCategotyMainStart() {
+function* getCategotyMainStart(input: any) {
   try {
     const { output } = yield race({
       output: call(service.getCategotyMainStart),
@@ -106,20 +112,5 @@ function* getCategotyMainStart() {
     }
   } catch (error) {
     yield put(getCategotyMainError());
-  }
-}
-
-function* requestLogin(input: any) {
-  try {
-    const { output } = yield race({
-      output: call(service.authenticate),
-    });
-    if (output) {
-      yield put(watchPageCompleted());
-    } else {
-      yield put(watchPageError());
-    }
-  } catch (error) {
-    yield put(watchPageError());
   }
 }

@@ -1,32 +1,43 @@
+//#region Import 
 import { action } from "typesafe-actions";
 import { SpecificationsCategoryDto } from "./dtos/specificationsCategoryDto";
-
 import ActionTypes from "./constants";
-import { CategorySelectDto } from "./dtos/categorySelectDto";
+import { CategoryProductReadMapDto } from "./dtos/categoryProductReadMapDto";
 import { ProductDtos } from "./dtos/productDtos";
 import { CreateProductDtos } from "./dtos/createProductDtos";
-/////////////////////////////////////////////////////////////////////////////////
-export const watchPageStart = () => action(ActionTypes.WATCH_PAGE_START);
-export const watchPageCompleted = () =>
-  action(ActionTypes.WATCH_PAGE_COMPLETED);
-export const watchPageError = () => action(ActionTypes.WATCH_PAGE_ERROR);
-//////////////////////////////////////////////////////////////////////////////////
+import { ProductAttributeReadTypesDto } from "./dtos/productAttributeReadTypesDto";
+//#endregion
+
+//#region PRO_ATTR_TYPE_UNIT
+export const proAttrTypesUnitStart = (input: Number) =>
+  action(ActionTypes.PRO_ATTR_TYPE_UNIT_START, input);
+export const proAttrTypesUnitCompleted = (output: ProductAttributeReadTypesDto[]) =>
+  action(ActionTypes.PRO_ATTR_TYPE_UNIT_COMPLETED, output);
+export const proAttrTypesTradeMarkCompleted = (output: ProductAttributeReadTypesDto[]) =>
+  action(ActionTypes.PRO_ATTR_TYPE_TRADEMARK_COMPLETED, output);
+export const proAttrTypesUnitError = () =>
+  action(ActionTypes.PRO_ATTR_TYPE_UNIT_ERROR);
+//#endregion
+
+//#region GET_CATEGORY_MAIN 
 export const getCategotyMainStart = () =>
   action(ActionTypes.GET_CATEGORY_MAIN_START);
-export const getCategotyMainCompleted = (output: CategorySelectDto[]) =>
+export const getCategotyMainCompleted = (output: CategoryProductReadMapDto[]) =>
   action(ActionTypes.GET_CATEGORY_MAIN_COMPLETED, output);
 export const getCategotyMainError = () =>
   action(ActionTypes.GET_CATEGORY_MAIN_ERROR);
+//#endregion
 
-//////////////////////////////////////////////////////////////////////////////////
+//#region READ_FULL_ALBUM_PRODUCT 
 export const readFullAlbumProductStart = () =>
   action(ActionTypes.READ_FULL_ALBUM_PRODUCT_START);
 export const readFullAlbumProductCompleted = (output: string[]) =>
   action(ActionTypes.READ_FULL_ALBUM_PRODUCT_COMPLETED, output);
 export const readFullAlbumProductError = () =>
   action(ActionTypes.READ_FULL_ALBUM_PRODUCT_ERROR);
+//#endregion
 
-//////////////////////////////////////////////////////////////////////////////////
+//#region GET_SPECIFI_CATEGORY 
 export const getSpecifiCategoryStart = (input: number) =>
   action(ActionTypes.GET_SPECIFI_CATEGORY_START, input);
 export const getSpecifiCategoryCompleted = (
@@ -34,24 +45,19 @@ export const getSpecifiCategoryCompleted = (
 ) => action(ActionTypes.GET_SPECIFI_CATEGORY_COMPLETED, output);
 export const getSpecifiCategoryError = () =>
   action(ActionTypes.GET_SPECIFI_CATEGORY_ERROR);
+//#endregion
 
-//////////////////////////////////////////////////////////////////////////////////
-export const getSpecifiCategoryUnitStart = () =>
-  action(ActionTypes.GET_SPECIFI_CATEGORY_UNIT_START);
-export const getSpecifiCategoryUnitCompleted = (
-  output: SpecificationsCategoryDto[]
-) => action(ActionTypes.GET_SPECIFI_CATEGORY_UNIT_COMPLETED, output);
-export const getSpecifiCategoryUnitError = () =>
-  action(ActionTypes.GET_SPECIFI_CATEGORY_UNIT_ERROR);
-
-/////////////////////////////////////////////////////////////////////////////////
+//#region SET_PRODUCT_DTOS 
 export const setProductsStart = (input: ProductDtos) =>
   action(ActionTypes.SET_PRODUCT_DTOS, input);
+//#endregion
 
-/////////////////////////////////////////////////////////////////////////////////
+//#region CREATE_PRODUCT 
 export const createProductsStart = (input: CreateProductDtos) =>
   action(ActionTypes.CREATE_PRODUCT_START, input);
 export const createProductsCompleted = () =>
   action(ActionTypes.CREATE_PRODUCT_COMPLETED);
 export const createProductsError = () =>
   action(ActionTypes.CREATE_PRODUCT_ERROR);
+ //#endregion
+

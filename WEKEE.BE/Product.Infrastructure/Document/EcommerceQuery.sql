@@ -95,4 +95,14 @@ SELECT CP.[Id]			  AS 'Id'
       ,CP.[CreateBy]	  AS 'CreateBy'
       ,CP.[CreatedOnUtc]  AS 'CreatedOnUtc'
       ,CP.[UpdatedOnUtc]  AS 'UpdatedOnUtc'
-  FROM [ProductDB].[dbo].[ProductAttribute] AS CP             
+  FROM [ProductDB].[dbo].[ProductAttribute] AS CP      
+  
+
+  SELECT distinct
+		 CP.[Id]
+		,CP.[Name]
+		,CP.[Types]
+  FROM  [dbo].[ProductAttribute] AS CP
+  WHERE CP.Types = 1 
+	AND CP.CreateBy = 0 
+	AND CP.isDelete = 0

@@ -1,8 +1,22 @@
-import { Input } from "antd";
 import http from "../../../services/httpService";
 import { CreateProductDtos } from "./dtos/createProductDtos";
+import { ProductAttributeReadTypesDto } from "./dtos/productAttributeReadTypesDto";
 
 class SuNewProductService {
+
+  //#region  proAttrTypesUnitService
+  public async proAttrTypesUnitService(input : number): Promise<ProductAttributeReadTypesDto[]> {
+      let rs = await http.get('/product-attribute-type-one',{ params: { input: input } });
+      console.log(rs)
+      if (rs) {
+          return rs.data;
+      }
+      else {
+          return rs;
+      }
+  }
+  //#endregion
+
   public async createProductStart(createProductDtos: CreateProductDtos) {
     let rs = await http.post("/create/create-product", createProductDtos);
     if (rs) {
@@ -34,7 +48,8 @@ class SuNewProductService {
   }
 
   public async readFullAlbumProductStart() {
-    let rs = await http.post("/list/get-album-product");
+    let rs = await http.get("/get-all-product-album");
+    console.log(rs.data);
     if (rs) {
       return rs.data;
     } else {
@@ -43,19 +58,12 @@ class SuNewProductService {
   }
 
   public async getCategotyMainStart() {
-    let rs = await http.get("/list/get-data-category");
+    let rs = await http.get('/get-map-category');
+    console.log(rs)
     if (rs) {
       return rs.data;
-    } else {
-      return rs;
     }
-  }
-
-  public async authenticate() {
-    let rs = await http.post("/get/log-in");
-    if (rs) {
-      return rs.data;
-    } else {
+    else {
       return rs;
     }
   }

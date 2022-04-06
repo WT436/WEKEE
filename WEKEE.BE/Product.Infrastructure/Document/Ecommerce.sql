@@ -97,9 +97,10 @@ CREATE TABLE [Product]
 (
 --=========>Trường Dữ Liệu<===========--
 	[id] INT IDENTITY(1,1) NOT NULL primary key,
-	[name] NVARCHAR(100) NOT NULL,--*
+	[name] NVARCHAR(200) NOT NULL,--*
 	[fragile] BIT DEFAULT(0) , -- Hàng Dễ Vỡ 
 	[origin] NVARCHAR(300), -- Nguồn Gốc *
+	[Trademark] INT NOT NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id), -- thương hiệu
 	[UnitAttributeId] INT NOT NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id), -- đơn vị tính
 
 	[Sku] [nvarchar](400) NULL, -- giúp cho việc phân loại hàng hóa, quản lý kho
