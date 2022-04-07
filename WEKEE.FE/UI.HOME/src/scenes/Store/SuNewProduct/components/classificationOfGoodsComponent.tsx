@@ -1,5 +1,5 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Col, Divider, Form, Input, InputNumber, Modal, Row, Select, Space, Table, Tag, Typography } from 'antd'
+import { PlusOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Button, Cascader, Col, Divider, Form, Input, InputNumber, Modal, Row, Select, Space, Table, Tag, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -7,6 +7,7 @@ import { makeSelectAttributeDto, makeSelectLoading, makeSelectspecificationsCate
 import { ImageProductDtos } from '../dtos/imageProductDtos';
 import { proAttrTypesUnitStart } from '../actions';
 import { ProductAttributeReadTypesDto } from '../dtos/productAttributeReadTypesDto';
+import { FeatureProductInsertDtos } from '../dtos/featureProductInsertDtos';
 const { Option } = Select;
 
 interface IClassificationOfGoodsComponent {
@@ -55,18 +56,244 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     //#endregion
 
     //#region Attribute 1
-    const [items, setItems] = useState(['jack', 'lucy']);
-    const [name, setName] = useState('');
+    const [items, setItems] = useState(
+        [
+            { key: 1, values: 'Lựa chọn 1' },
+            { key: 2, values: 'Lựa chọn 2' },
+            { key: 3, values: 'Lựa chọn 3' },
+            { key: 4, values: 'Lựa chọn 4' },
+            { key: 5, values: 'Lựa chọn 5' },
+            { key: 6, values: 'Lựa chọn 6' },
+            { key: 7, values: 'Lựa chọn 7' },
+            { key: 8, values: 'Lựa chọn 8' },
+            { key: 9, values: 'Lựa chọn 9' },
+            { key: 10, values: 'Lựa chọn 10' },
+        ]);
+    //#endregion
 
-    const onNameChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setName(event.target.value);
+    //#region Render Table Attribute 
+    const columns = [
+        {
+            title: 'id',
+            dataIndex: 'id',
+            key: 'id',
+            
+        },
+        {
+            title: 'weightAdjustment',
+            dataIndex: 'weightAdjustment',
+            key: 'weightAdjustment',
+            render: (text: any) => <a>{text}</a>,
+        },
+        {
+            title: 'lengthAdjustment',
+            dataIndex: 'lengthAdjustment',
+            key: 'lengthAdjustment',
+            render: (text: any) => <a>{text}</a>,
+        },
+        {
+            title: 'widthAdjustment',
+            dataIndex: 'widthAdjustment',
+            key: 'widthAdjustment',
+            render: (text: any) => <a>{text}</a>,
+        },
+        {
+            title: 'heightAdjustment',
+            dataIndex: 'heightAdjustment',
+            key: 'heightAdjustment',
+            render: (text: any) => <a>{text}</a>,
+        },
+        {
+            title: 'Thuộc tính 1',
+            dataIndex: 'productAttributeValueInsertDtos',
+            key: 'productAttributeValueInsertDtos',
+            render: (text: any) => <a>{text[0] === undefined ? "X" : text[0].values}</a>,
+        },
+        {
+            title: 'Thuộc tính 2',
+            dataIndex: 'productAttributeValueInsertDtos',
+            key: 'productAttributeValueInsertDtos',
+            render: (text: any) => <a>{text[1] === undefined ? "X" : text[1].values}</a>,
+        },
+        {
+            title: 'price',
+            dataIndex: 'price',
+            key: 'price',
+            render: (text: any) => <a>{text}</a>,
+        },
+        {
+            title: 'quantity',
+            dataIndex: 'quantity',
+            key: 'quantity',
+            render: (text: any) => <a>{text}</a>,
+        },
+        {
+            title: 'pictureString',
+            dataIndex: 'pictureString',
+            key: 'pictureString',
+            render: (text: any) => <Avatar shape="square" size={64} icon={<UserOutlined />} />,
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (text: any) => (
+                <Space size="middle">
+                    <a onClick={() => showEditFeatureModal(text)}>Chỉnh sửa</a>
+                </Space>
+            ),
+        },
+    ];
+    //#endregion
+
+    //#region Onchange Input  
+    const [PriceInput, setPriceInput] = useState < Number > ();
+    const [weightInput, setweightInput] = useState < Number > ();
+    const [lengthInput, setlengthInput] = useState < Number > ();
+    const [widthInput, setwidthInput] = useState < Number > ();
+    const [heightInput, setheightInput] = useState < Number > ();
+    const [quantityInput, setquantityInput] = useState < Number > ();
+    //#endregion
+
+    //#region Select Attribute
+    const [DataSelectAttributeOne, setDataSelectAttributeOne] = useState < { key: number, value: string }[] > ([]);
+    const OnSelectListAttributeOne = (key: any, values: any) => {
+        setDataSelectAttributeOne(values);
+    }
+
+    const [DataSelectAttributeTwo, setDataSelectAttributeTwo] = useState < { key: number, value: string }[] > ([]);
+    const OnSelectListAttributeTwo = (key: any, values: any) => {
+        setDataSelectAttributeTwo(values);
+    }
+    //#endregion
+
+    //#region Show Classifi
+
+    var featureEnd: FeatureProductInsertDtos[] = [];
+    const [FeatureEndTable, setFeatureEndTable] = useState < FeatureProductInsertDtos[] > ([]);
+    const ShowClassify = () => {
+        featureEnd = [];
+        var disPlayOrder = 0;
+        if (DataSelectAttributeOne.length === 0 && DataSelectAttributeTwo.length === 0) {
+            featureEnd.push({
+                id: disPlayOrder,
+                productId: 0,
+                weightAdjustment: weightInput ?? 0,
+                lengthAdjustment: lengthInput ?? 0,
+                widthAdjustment: widthInput ?? 0,
+                heightAdjustment: heightInput ?? 0,
+                price: PriceInput ?? 0,
+                quantity: quantityInput ?? 0,
+                displayOrder: 0,
+                pictureString: '',
+                mainProduct: false,
+                productAttributeValueInsertDtos: []
+            });
+        }
+
+        var DataSelectAttributeMax: { key: number, value: string }[] = [];
+        var DataSelectAttributeMin: { key: number, value: string }[] = [];
+
+        if (DataSelectAttributeOne > DataSelectAttributeTwo) {
+            DataSelectAttributeMax = DataSelectAttributeOne;
+            DataSelectAttributeMin = DataSelectAttributeTwo;
+        }
+        else {
+            DataSelectAttributeMax = DataSelectAttributeTwo;
+            DataSelectAttributeMin = DataSelectAttributeOne;
+        }
+
+        DataSelectAttributeMax.forEach(one => {
+            if (DataSelectAttributeMin.length === 0) {
+                disPlayOrder++;
+                featureEnd.push({
+                    id: disPlayOrder,
+                    productId: 0,
+                    weightAdjustment: weightInput ?? 0,
+                    lengthAdjustment: lengthInput ?? 0,
+                    widthAdjustment: widthInput ?? 0,
+                    heightAdjustment: heightInput ?? 0,
+                    price: PriceInput ?? 0,
+                    quantity: quantityInput ?? 0,
+                    displayOrder: disPlayOrder,
+                    pictureString: '',
+                    mainProduct: false,
+                    productAttributeValueInsertDtos: [{ key: one.key, values: one.value }]
+                });
+            }
+            else {
+                DataSelectAttributeMin.forEach(two => {
+                    disPlayOrder++;
+                    featureEnd.push({
+                        id: disPlayOrder,
+                        productId: 0,
+                        weightAdjustment: weightInput ?? 0,
+                        lengthAdjustment: lengthInput ?? 0,
+                        widthAdjustment: widthInput ?? 0,
+                        heightAdjustment: heightInput ?? 0,
+                        price: PriceInput ?? 0,
+                        quantity: quantityInput ?? 0,
+                        displayOrder: disPlayOrder,
+                        pictureString: '',
+                        mainProduct: false,
+                        productAttributeValueInsertDtos:
+                            [
+                                { key: one.key, values: one.value }
+                                , { key: two.key, values: two.value }
+                            ]
+                    });
+                });
+            }
+        });
+        setFeatureEndTable(featureEnd);
+    }
+
+    //#endregion
+
+    //#region Modal form Change Classifi Item
+    const [formChangeClassif] = Form.useForm < FeatureProductInsertDtos > ();
+
+    const [IsEditFeatureModal, setEditFeatureModal] = useState(false);
+
+
+    const showEditFeatureModal = (value: any) => {
+        formChangeClassif.setFieldsValue(value);
+        setEditFeatureModal(true);
     };
 
-    const addItem = (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-        setItems([...items, name]);
-        setName('');
+    const handleEditFeatureCancel = () => {
+        setEditFeatureModal(false);
     };
+
+    const onFinish = (values: any) => {
+        console.log('Success:', values);
+        if (FeatureEndTable.length > 1) {
+            var FeatureEndTable2 = FeatureEndTable.filter(m => m.id !== values.id);
+            setFeatureEndTable([...FeatureEndTable2, values]);
+        }
+        else {
+            setFeatureEndTable([]);
+            setFeatureEndTable(FeatureEndTable => [...FeatureEndTable, values]);
+        }
+
+    };
+
+    const onFinishFailed = (errorInfo: any) => {
+        console.log('Failed:', errorInfo);
+    };
+
+    const options = [
+        {
+            value: 'zhejiang',
+            label: 'Zhejiang'
+        },
+        {
+            value: 'jiangsu',
+            label: 'Jiangsu'
+        },
+    ];
+    const onChangepictureString = (value: any) => {
+        console.log(value);
+    }
 
     //#endregion
 
@@ -89,14 +316,15 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         <InputNumber
                             style={{ width: "100%" }}
                             min={0}
+                            onChange={(value) => setPriceInput(value)}
                             formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="priceMarket"
-                        label="Giá thị trường (₫)"
+                        name="weight"
+                        label="weight (₫)"
                         wrapperCol={{ span: 14 }}
                         labelCol={{ span: 9 }}
                         rules={[
@@ -109,14 +337,15 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         <InputNumber
                             style={{ width: "100%" }}
                             min={0}
+                            onChange={(value) => setweightInput(value)}
                             formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="mass"
-                        label="Khối lượng (gram)"
+                        name="length"
+                        label="length (gram)"
                         wrapperCol={{ span: 14 }}
                         labelCol={{ span: 9 }}
                         rules={[
@@ -129,14 +358,15 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         <InputNumber
                             style={{ width: "100%" }}
                             min={0}
+                            onChange={(value) => setlengthInput(value)}
                             formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="volume"
-                        label="Thể tích (cm3)"
+                        name="width"
+                        label="width (cm3)"
                         wrapperCol={{ span: 14 }}
                         labelCol={{ span: 9 }}
                         rules={[
@@ -149,14 +379,15 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         <InputNumber
                             style={{ width: "100%" }}
                             min={0}
+                            onChange={(value) => setwidthInput(value)}
                             formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="guarantee"
-                        label="Bảo hành (tháng)"
+                        name="height"
+                        label="height (tháng)"
                         wrapperCol={{ span: 14 }}
                         labelCol={{ span: 9 }}
                         rules={[
@@ -169,31 +400,32 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         <InputNumber
                             style={{ width: "100%" }}
                             min={0}
+                            onChange={(value) => setheightInput(value)}
                         />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="totalNumber"
-                        label="Số lượng"
-                        key="totalNumber"
+                        name="quantity"
+                        label="quantity"
+                        key="quantity"
                         wrapperCol={{ span: 14 }}
                         labelCol={{ span: 9 }}
                         rules={[
                             {
                                 required: true,
-                                message: 'Vui lòng nhập số lượng',
+                                message: 'Vui lòng nhập quantity',
                             },
                         ]}
                     >
                         <InputNumber
                             style={{ width: "100%" }}
                             min={0}
+                            onChange={(value) => setquantityInput(value)}
                             formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         />
                     </Form.Item>
                 </Col>
-
             </Row>
 
             <Form.Item
@@ -228,21 +460,10 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         style={{ width: 300 }}
                         placeholder="custom dropdown render"
                         mode="multiple"
-                        dropdownRender={menu => (
-                            <>
-                                {menu}
-                                <Divider style={{ margin: '8px 0' }} />
-                                <Space align="center" style={{ padding: '0 8px 4px' }}>
-                                    <Input placeholder="Please enter item" value={name} onChange={onNameChange} />
-                                    <Typography.Link onClick={addItem} style={{ whiteSpace: 'nowrap' }}>
-                                        <PlusOutlined /> Add item
-                                    </Typography.Link>
-                                </Space>
-                            </>
-                        )}
+                        onChange={OnSelectListAttributeOne}
                     >
-                        {items.map((item: string) => (
-                            <Option key={item} value={item}>{item}</Option>
+                        {items.map((item) => (
+                            <Option key={item.key} value={item.values}>{item.values}</Option>
                         ))}
                     </Select>
                 </Input.Group>
@@ -266,21 +487,10 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         style={{ width: 300 }}
                         placeholder="custom dropdown render"
                         mode="multiple"
-                        dropdownRender={menu => (
-                            <>
-                                {menu}
-                                <Divider style={{ margin: '8px 0' }} />
-                                <Space align="center" style={{ padding: '0 8px 4px' }}>
-                                    <Input placeholder="Please enter item" value={name} onChange={onNameChange} />
-                                    <Typography.Link onClick={addItem} style={{ whiteSpace: 'nowrap' }}>
-                                        <PlusOutlined /> Add item
-                                    </Typography.Link>
-                                </Space>
-                            </>
-                        )}
+                        onChange={OnSelectListAttributeTwo}
                     >
-                        {items.map((item: string) => (
-                            <Option key={item} value={item}>{item}</Option>
+                        {items.map((item) => (
+                            <Option key={item.key} value={item.values}>{item.values}</Option>
                         ))}
                     </Select>
                 </Input.Group>
@@ -288,7 +498,13 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
             <div style={{ margin: '10px 0', textAlign: "center" }}>
                 <Button
                     type='primary'
-                    >Áp dụng tính năng phân loại hàng hóa</Button>
+                    style={{ margin: '0 10px ', textAlign: "center" }}
+                    onClick={() => ShowClassify()}
+                >Áp dụng tính năng phân loại hàng hóa</Button>
+                <Button
+                    type='default'
+                    style={{ margin: '0 10px ', textAlign: "center" }}
+                >Cập nhật tính năng phân loại hàng hóa</Button>
             </div>
             <Form.Item
                 name="username"
@@ -304,12 +520,98 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                 ]}
             >
                 <Table
-                    rowKey={record => record.id}
+                    rowKey={record => record.displayOrder.toString()}
                     size='small'
-                    //columns={columns}
-                    //dataSource={dataTable}
+                    columns={columns}
+                    dataSource={FeatureEndTable}
                     pagination={false} />
             </Form.Item>
+
+            <Modal title="Chỉnh sửa phân loại hàng hóa"
+                visible={IsEditFeatureModal}
+                onCancel={handleEditFeatureCancel}
+                footer={null}>
+                <Form
+                    name="basic"
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
+                    form={formChangeClassif}
+                >
+                    <Form.Item
+                        label="weightAdjustment"
+                        name="weightAdjustment"
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="lengthAdjustment"
+                        name="lengthAdjustment"
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="widthAdjustment"
+                        name="widthAdjustment"
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="heightAdjustment"
+                        name="heightAdjustment"
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="price"
+                        name="price"
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="quantity"
+                        name="quantity"
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="displayOrder"
+                        name="displayOrder"
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="pictureString"
+                        name="pictureString"
+                    >
+                        <Cascader
+                            options={options}
+                            expandTrigger='click'
+                            onChange={onChangepictureString}
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        label="productAttributeValueInsertDtos"
+                        name="productAttributeValueInsertDtos"
+                        hidden
+                    >
+                    </Form.Item>
+                    <Form.Item
+                        label="id"
+                        name="id"
+                        hidden
+                    >
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Modal>
         </>
     )
 }

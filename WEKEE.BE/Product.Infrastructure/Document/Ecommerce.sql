@@ -82,6 +82,7 @@ CREATE TABLE [ProductAttribute](
 	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[Name] NVARCHAR(MAX) NOT NULL, -- khóa
 	[Types] INT DEFAULT(0) NOT NULL CHECK([Types]>=0 AND [Types]<=5),
+	[CategoryProductId] [int] NULL FOREIGN KEY REFERENCES [CategoryProduct](Id), -- category
 	[isDelete] BIT NOT NULL DEFAULT(0), -- đã xóa 
 	[CreateBy] INT NOT NULL, -- người tạo
 	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
