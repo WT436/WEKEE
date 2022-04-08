@@ -1,0 +1,33 @@
+export interface ProductInsertDto {
+    name: string;
+    fragile: boolean | null;
+    origin: string;
+    unitAttributeId: number;
+    shortDescription: string;
+    fullDescription: string;
+    isShipEnabled: boolean;
+    isFreeShipping: boolean;
+    shipSeparately: boolean;
+    additionalShippingCharge: number;
+    deliveryDateId: number;
+    productAvailabilityRangeId: number;
+    useMultipleWarehouses: boolean;
+    displayStockAvailability: boolean;
+    displayStockQuantity: boolean;
+    minStockQuantity: number;
+    lowStockActivityId: number;
+    notifyAdminForQuantityBelow: number;
+    backorderModeId: number;
+    allowBackInStockSubscriptions: boolean;
+    orderMinimumQuantity: number;
+    orderMaximumQuantity: number;
+    allowAddingOnlyExistingAttributeCombinations: boolean;
+    notReturnable: boolean;
+    viewReceived: boolean;
+    disableBuyButton: boolean;
+    disableWishlistButton: boolean;
+    hasTierPrices: boolean;
+    hasDiscountsApplied: boolean;
+    createBy: number;
+    productAlbum: string;
+}

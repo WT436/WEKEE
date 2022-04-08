@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {
+    ContainerCreateProductStart,
     getCategotyMainStart, getSpecifiCategoryStart,
     proAttrTypesUnitStart,
     readFullAlbumProductStart,
@@ -12,23 +13,21 @@ import {
 } from '../actions';
 import {
     makeSelectalbumProduct,
-    makeSelectcategorySelectDto, makeSelectLoading, makeSelectproductAttributeReadTypesDto, makeSelectproductDto, makeSelectspecificationsCategoryDto, makeSelectTrademarkDto,
+    makeSelectcategorySelectDto, makeSelectLoading, makeSelectproductAttributeReadTypesDto, makeSelectproductContainer, makeSelectproductDto, makeSelectspecificationsCategoryDto, makeSelectTrademarkDto,
 } from '../selectors';
-import { SpecificationsCategoryDto } from '../dtos/specificationsCategoryDto';
 import { ProductDtos } from '../dtos/productDtos';
 import { ProductAttributeReadTypesDto } from '../dtos/productAttributeReadTypesDto';
-import { delay } from 'redux-saga/effects';
 const { Option } = Select;
 interface ICategoryProductComponent { }
 
 const stateSelector = createStructuredSelector < any, any> ({
-    loading: makeSelectLoading(),
     optionsCategory: makeSelectcategorySelectDto(),
     albumProduct: makeSelectalbumProduct(),
     specificationsCategoryDto: makeSelectspecificationsCategoryDto(),
     productDto: makeSelectproductDto(),
     productAttributeReadTypesDto: makeSelectproductAttributeReadTypesDto(),
-    trademarkDto: makeSelectTrademarkDto()
+    trademarkDto: makeSelectTrademarkDto(),
+    productContainer: makeSelectproductContainer()
 });
 
 const origin = [
@@ -230,15 +229,12 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
     const dispatch = useDispatch();
 
     const {
-        loading, optionsCategory, albumProduct,
+        optionsCategory, albumProduct,
         productDto, productAttributeReadTypesDto,
-        trademarkDto
+        trademarkDto, productContainer
     } = useSelector(stateSelector);
 
-    //state
-    const [category, setCategory] = useState(0);
-
-    //useEffect
+    //#region useEffect
     useEffect(() => {
         dispatch(getCategotyMainStart());
         dispatch(readFullAlbumProductStart());
@@ -246,15 +242,16 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
     }, []);
 
     useEffect(() => {
-        dispatch(getSpecifiCategoryStart(category))
-    }, [category]);
+
+    }, [productContainer]);
+
+    //#endregion
 
     //#region  Cascader
-    const [mainCategoryState, setMainCategoryState] = useState(0);
-
     let onChangeCascader = (value: any) => {
-        console.log(value);
-        setMainCategoryState(value.length == 0 ? 0 : value[value.length - 1]);
+        productContainer.categoryProduct.idCategory = value;
+        productContainer.categoryProduct.categoryMain = value.length == 0 ? 0 : value[0];
+        dispatch(ContainerCreateProductStart(productContainer));
     };
     //#endregion
 
@@ -277,13 +274,47 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
         if (provinceDataAlbumProduct.findIndex((element) => element === nameAlbumProduct) === -1) {
             setprovinceDataAlbumProduct([...provinceDataAlbumProduct, nameAlbumProduct]);
         }
-    };
 
+    };
+    const selectAlbum = (value: string) => {
+        productContainer.productInsertDto.productAlbum = value;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
+
+    const selectOrigin = (value: string) => {
+        productContainer.productInsertDto.origin = JSON.stringify(value);
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
+
+    const selectNameProduct = (value: string) => {
+        productContainer.productInsertDto.name = value;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
+
+    const selectunitProduct = (value: number) => {
+        productContainer.productInsertDto.unitProduct = value;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
+
+    const selectfragileProduct = (value: boolean) => {
+        productContainer.productInsertDto.fragile = value;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
+
+    const selecttrademarkProduct = (value: number) => {
+        productContainer.productInsertDto.trademark = value;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
+
+    const selectTagProduct = (value: any) => {
+        productContainer.productTagDtos = value;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
     //#endregion
 
     //#region Tag 
-    const [tagState, settagState] = useState <string[]> ([]);
-    const [items, setitems] = useState <string[]> ([]);
+    const [tagState, settagState] = useState < string[] > ([]);
+    const [items, setitems] = useState < string[] > ([]);
     const [tags, settags] = useState(['Unremovable']);
     const [nameTag, setnameTag] = useState('');
 
@@ -316,11 +347,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     placeholder="Tên Sản Phẩm"
                     showCount
                     maxLength={200}
-                    onChange={(value: any) => {
-                        var productSave = productDto;
-                        productSave.name = value.target.value;
-                        setProductsStart(productSave);
-                    }} />
+                    onChange={(value: any) => selectNameProduct(value.target.value)} />
             </Form.Item>
 
             <Form.Item
@@ -360,13 +387,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
             >
                 <Select
                     style={{ width: '100%' }}
-                    onChange={
-                        (value: any) => {
-                            var productSave: ProductDtos = productDto;
-                            productSave.productAlbum = value;
-                            setProductsStart(productSave);
-                        }
-                    }
+                    onChange={selectAlbum}
                     dropdownRender={menu => (
                         <div>
                             {menu}
@@ -412,13 +433,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     filterSort={(optionA: any, optionB: any) =>
                         optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                     }
-                    onChange={
-                        (value: any) => {
-                            var productSave: ProductDtos = productDto;
-                            productSave.origin = JSON.stringify(value);
-                            setProductsStart(productSave);
-                        }
-                    }
+                    onChange={selectOrigin}
                 >
                     {
                         origin.map(province => (
@@ -449,19 +464,11 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     filterSort={(optionA: any, optionB: any) =>
                         optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                     }
-
-                    onChange={
-                        (value: any) => {
-                            var productSave: ProductDtos = productDto;
-                            productSave.unitProduct = value;
-                            console.log(value)
-                            setProductsStart(productSave);
-                        }
-                    }
+                    onChange={selectunitProduct}
                 >
                     {
                         productAttributeReadTypesDto.map((province: ProductAttributeReadTypesDto) => (
-                            <Option value={province.id.toString()}>{province.name}</Option>
+                            <Option value={province.id}>{province.name}</Option>
                         ))
                     }
                 </Select>
@@ -481,11 +488,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                 <Switch
                     checkedChildren="Hàng Cứng"
                     unCheckedChildren="Hàng Dễ vỡ"
-                    onChange={(value: any) => {
-                        var productSave: ProductDtos = productDto;
-                        productSave.fragile = value;
-                        setProductsStart(productSave);
-                    }}
+                    onChange={(value: boolean) =>selectfragileProduct(value) }
                     defaultChecked />
             </Form.Item>
 
@@ -511,22 +514,18 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                         optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                     }
                     onChange={
-                        (value: any) => {
-                            var productSave: ProductDtos = productDto;
-                            productSave.trademark = value;
-                            setProductsStart(productSave);
-                        }
+                        (value: number) => selecttrademarkProduct(value)
                     }
                     onClick={() => { dispatch(proAttrTypesUnitStart(3)); }}
                 >
                     {
                         trademarkDto.map((province: ProductAttributeReadTypesDto) => (
-                            <Option value={province.id.toString()}>{province.name}</Option>
+                            <Option value={province.id}>{province.name}</Option>
                         ))
                     }
                 </Select>
             </Form.Item>
-            
+
             <Form.Item
                 name="tag"
                 label="Khóa tìm kiếm Nhanh"
@@ -543,11 +542,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     mode="multiple"
                     showArrow
                     onChange={
-                        (value: any) => {
-                            var productSave: ProductDtos = productDto;
-                            productSave.tag = JSON.stringify(value);
-                            setProductsStart(productSave);
-                        }
+                        (value: any) => selectTagProduct(value)
                     }
                     dropdownRender={menu => (
                         <div>

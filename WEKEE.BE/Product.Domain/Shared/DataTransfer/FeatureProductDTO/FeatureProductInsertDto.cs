@@ -7,6 +7,7 @@ namespace Product.Domain.Shared.DataTransfer.FeatureProductDTO
 {
     public class FeatureProductInsertDto
     {
+        public int Id { get; set; }
         public int ProductId { get; set; }
         public decimal WeightAdjustment { get; set; }
         public decimal LengthAdjustment { get; set; }

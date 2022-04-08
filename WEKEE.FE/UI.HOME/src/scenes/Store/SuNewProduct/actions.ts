@@ -6,6 +6,7 @@ import { CategoryProductReadMapDto } from "./dtos/categoryProductReadMapDto";
 import { ProductDtos } from "./dtos/productDtos";
 import { CreateProductDtos } from "./dtos/createProductDtos";
 import { ProductAttributeReadTypesDto } from "./dtos/productAttributeReadTypesDto";
+import { ProductContainerInsertDto } from "./dtos/productContainerInsertDto";
 //#endregion
 
 //#region PRO_ATTR_TYPE_UNIT
@@ -61,5 +62,13 @@ export const createProductsCompleted = () =>
   action(ActionTypes.CREATE_PRODUCT_COMPLETED);
 export const createProductsError = () =>
   action(ActionTypes.CREATE_PRODUCT_ERROR);
- //#endregion
+//#endregion
 
+//#region CONTAINER_CREATE_PRODUCT
+export const ContainerCreateProductStart = (input: ProductContainerInsertDto) =>
+  action(ActionTypes.CONTAINER_CREATE_PRODUCT_START, input);
+export const ContainerCreateProductCompleted = (output: boolean) =>
+  action(ActionTypes.CONTAINER_CREATE_PRODUCT_COMPLETED, output);
+export const ContainerCreateProductError = () =>
+  action(ActionTypes.CONTAINER_CREATE_PRODUCT_ERROR);
+//#endregion

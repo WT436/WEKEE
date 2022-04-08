@@ -36,7 +36,7 @@ namespace Product.Application.Application
             _productQuery.Insert(product);
             string nameSeo = LanguageConvert.ConvertVietNamese(product.Name);
             // add product tag
-            var dataProductTag = input.productTagDtos.ToList().Select(m => new ProductProductTagMapping
+            var dataProductTag = input.ProductTagDtos.ToList().Select(m => new ProductProductTagMapping
             {
                 ProductId = product.Id,
                 ProductTagId = m,

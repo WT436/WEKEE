@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { useInjectReducer, useInjectSaga } from '../../../redux/reduxInjectors';
 import reducer from './reducer';
 import saga from './saga';
-import { makeSelectcategorySelectDto, makeSelectLoading, makeSelectproductDto } from './selectors';
+import { makeSelectcategorySelectDto, makeSelectLoading, makeSelectproductContainer, makeSelectproductDto } from './selectors';
 import { CaretRightOutlined } from '@ant-design/icons';
 import CategoryProductComponent from './components/categoryProductComponent';
 import InfomationBasicComponent from './components/infomationBasicComponent';
@@ -39,7 +39,8 @@ var urlCss = abp.serviceAlbumCss;
 const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
     categorySelectDto: makeSelectcategorySelectDto(),
-    productDto: makeSelectproductDto()
+    productDto: makeSelectproductDto(),
+    productContainer: makeSelectproductContainer()
 });
 
 const formItemLayout = {
@@ -58,7 +59,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
 
     const dispatch = useDispatch();
 
-    const { featureProductDtos, productDto } = useSelector(stateSelector);
+    const { featureProductDtos, productDto, productContainer } = useSelector(stateSelector);
 
     const [openingCondition2, setOpeningCondition2] = useState(true);
     const [openingCondition3, setOpeningConditio3] = useState(true);
@@ -87,6 +88,11 @@ export default function SuNewProduct(props: ISuNewProductProps) {
     const callbackFunctionSpecifi = (childData: any) => {
         setMessageSpecifi(childData);
     }
+
+    useEffect(() => {
+        console.log(productContainer);
+    }, [productContainer]);
+
 
     const createProduct = () => {
         var createProduct: CreateProductDtos = {

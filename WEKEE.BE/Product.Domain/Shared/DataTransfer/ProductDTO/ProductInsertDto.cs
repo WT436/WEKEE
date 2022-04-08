@@ -54,5 +54,6 @@ namespace Product.Domain.Shared.DataTransfer.ProductDTO
         public bool HasDiscountsApplied { get; set; }
 
         public int CreateBy { get; set; }
+        public string ProductAlbum { get; set; }
     }
 }

@@ -65,7 +65,7 @@ namespace Product.API.Src.FileAreas
         [HttpPost]
         public async Task<IActionResult> UploadPostImage(IFormFile file)
         {
-            var url = await _imageBasic.SavePostServer(files: file);
+            var url = await _imageBasic.SaveAwaitImageProduct(files: file);
             string link = url.Replace("\\", "/");
             return Ok( new { data = new { link = link } });
         }

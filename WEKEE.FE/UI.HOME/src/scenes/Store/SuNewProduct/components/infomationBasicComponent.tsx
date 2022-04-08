@@ -1,16 +1,13 @@
 import { PlusCircleOutlined } from '@ant-design/icons';
-import { Col, Form, message, Row, Typography, Upload } from 'antd'
-import { Console } from 'console';
-import { convertToRaw, EditorState } from 'draft-js';
+import { Button, Col, Form, message, Modal, notification, Row, Typography, Upload } from 'antd'
 import draftToHtml from 'draftjs-to-html';
 import React, { useEffect, useState } from 'react'
-import { Editor } from 'react-draft-wysiwyg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { setProductsStart } from '../actions';
+import EditorComponent from '../../../../components/EditorComponent';
+import { ContainerCreateProductStart, setProductsStart } from '../actions';
 import { ImageProductDtos } from '../dtos/imageProductDtos';
-import { ProductDtos } from '../dtos/productDtos';
-import { makeSelectLoading, makeSelectproductDto } from '../selectors';
+import { makeSelectLoading, makeSelectproductContainer, makeSelectproductDto } from '../selectors';
 const { Text } = Typography;
 
 declare var abp: any;
@@ -34,40 +31,21 @@ function beforeUpload(file: any) {
     return isJpgOrPng && isLt2M;
 }
 
-function uploadImageCallBack(file: string | Blob) {
-    return new Promise(
-        (resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', abp.appServiceUrl + '/v1/api/patch/upload-post');
-            xhr.setRequestHeader('Authorization', abp.auth.getToken());
-            const data = new FormData();
-            data.append('file', file);
-            xhr.send(data);
-            xhr.addEventListener('load', () => {
-                const response = JSON.parse(xhr.responseText);
-                response.data.link = abp.serviceAlbumCss + "/" + response.data.link
-                resolve(response);
-            });
-            xhr.addEventListener('error', () => {
-                const error = JSON.parse(xhr.responseText);
-                reject(error);
-            });
-        }
-    );
-}
-
 const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
-    productDto: makeSelectproductDto()
+    productDto: makeSelectproductDto(),
+    productContainer: makeSelectproductContainer()
 });
 export default function InfomationBasicComponent(props: IInfomationBasicComponent) {
 
     const {
-        loading, productDto
+        loading, productContainer
     } = useSelector(stateSelector);
 
+    const dispatch = useDispatch();
+
     //useState
-    const [fileList, setFileList] = useState <ImageProductDtos[]> ([
+    const [fileList, setFileList] = useState < ImageProductDtos[] > ([
         {
             uid: '',
             name: '',
@@ -124,15 +102,10 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
         },
     ]);
 
-    const [editorState, seteditorState] = useState(EditorState.createEmpty());
 
     //useEffect
 
     const handleChange = (info: any, id: number) => {
-        // if (fileList !== '') {
-        //     dispatch(removeAvatarUploadStart(fileList));
-        // }
-        //info.file.response.url.toString()
         if (info.file.response !== undefined) {
             fileList[id].url = info.file.response.url.toString()
             setFileList([...fileList]);
@@ -140,13 +113,50 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
         props.parentCallback(fileList);
     };
 
+    //#region Map Image
+    useEffect(() => {
+        var dataImage: string[] = [];
+        fileList.forEach(m => dataImage.push(m.url));
+        productContainer.imageRoot = dataImage;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }, [fileList]);
+    //#endregion
 
-    const onEditorStateChange = (editorState: any) => {
-        var productSave: ProductDtos = productDto;
-        productSave.introduce = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-        setProductsStart(productSave);
-        seteditorState(editorState);
+    //#region Modal Review  And Process 
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [ShortDescription, setShortDescription] = useState < string > ("");
+    const [FullDescription, setFullDescription] = useState < string > ("");
+    const [IsShortDescription, setIsShortDescription] = useState(false)
+
+    const showModal = (isShortDescription: boolean) => {
+        setIsShortDescription(isShortDescription)
+        setIsModalVisible(true);
     };
+
+    const ConfirmOkShort = (isShortDescription: boolean) => {
+        
+        if(isShortDescription)
+        {
+            productContainer.shortDescription = ShortDescription;
+        }
+        else{
+            productContainer.fullDescription = FullDescription;
+        }
+        dispatch(ContainerCreateProductStart(productContainer));
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
+    const callbackEditorHTMLShortDescription = (childData: string) => {
+        setShortDescription(childData);
+    }
+    const callbackEditorHTMLFullDescription = (childData: string) => {
+        setFullDescription(childData);
+    }
+    
+    //#endregion
 
     return (
         <>
@@ -347,8 +357,17 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
             </Form.Item>
 
             <Form.Item
-                name="Mô tả sản phẩm"
-                label="Mô tả sản phẩm"
+                name="Mô tả sản phẩm ngắn gọn"
+                label={
+                    <div> Mô tả sản phẩm ngắn gọn &emsp;
+                        <Button type="primary" onClick={() => showModal(true)}>
+                            Xem thử
+                        </Button>&emsp;
+                        <Button type="primary" onClick={() => ConfirmOkShort(true)}>
+                            Xác nhận
+                        </Button>
+                    </div>
+                }
                 className='MJnbqTsvvM'
                 rules={[
                     {
@@ -357,22 +376,44 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     },
                 ]}
             >
-                <Editor
-                    editorState={editorState}
-                    wrapperClassName="kVcFNEFdzL"
-                    editorClassName="WEabvZfAHr"
-                    onEditorStateChange={onEditorStateChange}
-                    toolbar={{
-                        image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
-                    }}
-                />
-                <textarea
-                    style={{ width: '100%' }}
-                    disabled
-                    hidden
-                    value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-                />
+                <EditorComponent editorHTMLCallback={callbackEditorHTMLShortDescription} />
             </Form.Item>
+
+            <Form.Item
+                name="Mô tả sản phẩm Đầy đủ"
+                label={
+                    <div> Mô tả sản phẩm đầy đủ &emsp;
+                        <Button type="primary" onClick={() => showModal(false)}>
+                            Xem thử
+                        </Button>&emsp;
+                        <Button type="primary" onClick={() => ConfirmOkShort(false)}>
+                            Xác nhận
+                        </Button>
+                    </div>
+                }
+                className='MJnbqTsvvM'
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your name',
+                    },
+                ]}
+            >
+                <EditorComponent editorHTMLCallback={callbackEditorHTMLFullDescription} />
+            </Form.Item>
+            <Modal
+                title="Kiểm tra hiển thị"
+                visible={isModalVisible}
+                footer={null}
+                className='UYtFCeVF'
+                style={{width:'60vw !important'}}
+                onCancel={handleCancel}>
+                <div
+                    dangerouslySetInnerHTML={{
+                        __html: IsShortDescription ? ShortDescription : FullDescription,
+                    }}
+                ></div>
+            </Modal>
         </>
     )
 }

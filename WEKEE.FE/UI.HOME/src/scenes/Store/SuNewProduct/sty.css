@@ -21,6 +21,7 @@
 .WEabvZfAHr {
     min-height: 300px;
     padding: 10px;
+    line-height: 1.5;
 }
 
 .kVcFNEFdzL {
@@ -48,21 +49,43 @@
 }
 
 .rdw-image-modal {
-    right: 5px!important;
-    left: 0 !important;
+    left: -170px !important;
 }
 
 .rdw-emoji-modal {
-    right: 5px!important;
-    left: 0 !important;
+    left: -170px !important;
 }
 
 .rdw-embedded-modal {
-    right: 5px!important;
-    left: 0 !important;
+    left: -170px !important;
 }
 
 .rdw-link-modal {
-    right: 5px!important;
-    left: 0 !important;
+    left: -170px !important;
+}
+
+.MJnbqTsvvM>div:first-child {
+    max-width: 100%;
+    width: 100% !important;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.MJnbqTsvvM .ant-form-item-label>label::after {
+    content: '';
+}
+
+.UYtFCeVF {
+    width: 60vw !important;
+}
+
+.UYtFCeVF .ant-modal-content .ant-modal-body {
+    overflow-y: scroll;
+    max-height: 50vh;
 }

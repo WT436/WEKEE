@@ -2,6 +2,7 @@ import { ActionType } from "typesafe-actions";
 import * as actions from "./actions";
 import { CategoryProductReadMapDto } from "./dtos/categoryProductReadMapDto";
 import { ProductAttributeReadTypesDto } from "./dtos/productAttributeReadTypesDto";
+import { ProductContainerInsertDto } from "./dtos/productContainerInsertDto";
 import { ProductDtos } from "./dtos/productDtos";
 import { SpecificationsCategoryDto } from "./dtos/specificationsCategoryDto";
 export interface SuNewProductState {
@@ -19,6 +20,7 @@ export interface SuNewProductState {
   readonly productAttributeReadTrademarkDto: ProductAttributeReadTypesDto[];
   readonly productAttributeReadAttributeDto: ProductAttributeReadTypesDto[];
   readonly productDto: ProductDtos;
+  readonly productContainer : ProductContainerInsertDto;
 }
 
 export type SuNewProductActions = ActionType<typeof actions>;
