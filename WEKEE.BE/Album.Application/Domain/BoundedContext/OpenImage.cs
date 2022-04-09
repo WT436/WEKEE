@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +19,11 @@ namespace Album.Application.Domain.BoundedContext
         {
             using var memoryStream = new MemoryStream();
             await file.CopyToAsync(memoryStream);
-            var image = await new Bitmap(Image.FromStream(memoryStream)).TransparentAsync(Color.Transparent, 10);
-            return image;
+            var image = Image.FromStream(memoryStream);
+            Bitmap bitmap = new Bitmap(image);
+            image.Save(memoryStream, ImageFormat.Bmp);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            return bitmap;
         }
 
         public static Bitmap ConvertIFormFileToBitmap(string nameFile, FolderSave folderSave)
@@ -73,7 +77,7 @@ namespace Album.Application.Domain.BoundedContext
                 }
             }
         }
-        
+
         private static readonly List<string> ImageExtensions = new List<string>
         {
             ExtensionType.JPG,

@@ -9,6 +9,15 @@ import { ProductAttributeReadTypesDto } from "./dtos/productAttributeReadTypesDt
 import { ProductContainerInsertDto } from "./dtos/productContainerInsertDto";
 //#endregion
 
+//#region INSERT_PRODUCT_FULL
+export const InsertProductFullStart = (input: ProductContainerInsertDto) =>
+  action(ActionTypes.INSERT_PRODUCT_FULL_START, input);
+export const InsertProductFullCompleted = (output: boolean) =>
+  action(ActionTypes.INSERT_PRODUCT_FULL_COMPLETED, output);
+export const InsertProductFullError = () =>
+  action(ActionTypes.INSERT_PRODUCT_FULL_ERROR);
+//#endregion
+
 //#region PRO_ATTR_TYPE_UNIT
 export const proAttrTypesUnitStart = (input: Number) =>
   action(ActionTypes.PRO_ATTR_TYPE_UNIT_START, input);
@@ -67,8 +76,4 @@ export const createProductsError = () =>
 //#region CONTAINER_CREATE_PRODUCT
 export const ContainerCreateProductStart = (input: ProductContainerInsertDto) =>
   action(ActionTypes.CONTAINER_CREATE_PRODUCT_START, input);
-export const ContainerCreateProductCompleted = (output: boolean) =>
-  action(ActionTypes.CONTAINER_CREATE_PRODUCT_COMPLETED, output);
-export const ContainerCreateProductError = () =>
-  action(ActionTypes.CONTAINER_CREATE_PRODUCT_ERROR);
 //#endregion

@@ -1,11 +1,11 @@
-import { PlusOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Button, Cascader, Col, Divider, Form, Input, InputNumber, Modal, Row, Select, Space, Table, Tag, Typography } from 'antd'
+import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Button, Image, Col, Dropdown, Form, Input, InputNumber, Menu, Modal, Row, Select, Space, Table } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectAttributeDto, makeSelectLoading, makeSelectspecificationsCategoryDto } from '../selectors';
+import { makeSelectAttributeDto, makeSelectLoading, makeSelectproductContainer } from '../selectors';
 import { ImageProductDtos } from '../dtos/imageProductDtos';
-import { proAttrTypesUnitStart } from '../actions';
+import { ContainerCreateProductStart, proAttrTypesUnitStart } from '../actions';
 import { ProductAttributeReadTypesDto } from '../dtos/productAttributeReadTypesDto';
 import { FeatureProductInsertDtos } from '../dtos/featureProductInsertDtos';
 const { Option } = Select;
@@ -18,7 +18,8 @@ interface IClassificationOfGoodsComponent {
 declare var abp: any;
 const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
-    attributeDto: makeSelectAttributeDto()
+    attributeDto: makeSelectAttributeDto(),
+    productContainer: makeSelectproductContainer()
 });
 
 export default function ClassificationOfGoodsComponent(props: IClassificationOfGoodsComponent) {
@@ -26,7 +27,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     const dispatch = useDispatch();
 
     const {
-        loading, attributeDto
+        loading, attributeDto, productContainer
     } = useSelector(stateSelector);
 
     //#region Loading  attribute
@@ -77,31 +78,31 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
             title: 'id',
             dataIndex: 'id',
             key: 'id',
-            
+
         },
         {
             title: 'weightAdjustment',
             dataIndex: 'weightAdjustment',
             key: 'weightAdjustment',
-            render: (text: any) => <a>{text}</a>,
+            render: (text: any) => <a>{text.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</a>,
         },
         {
             title: 'lengthAdjustment',
             dataIndex: 'lengthAdjustment',
             key: 'lengthAdjustment',
-            render: (text: any) => <a>{text}</a>,
+            render: (text: any) => <a>{text.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</a>,
         },
         {
             title: 'widthAdjustment',
             dataIndex: 'widthAdjustment',
             key: 'widthAdjustment',
-            render: (text: any) => <a>{text}</a>,
+            render: (text: any) => <a>{text.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</a>,
         },
         {
             title: 'heightAdjustment',
             dataIndex: 'heightAdjustment',
             key: 'heightAdjustment',
-            render: (text: any) => <a>{text}</a>,
+            render: (text: any) => <a>{text.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</a>,
         },
         {
             title: 'Thuộc tính 1',
@@ -119,26 +120,29 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
             title: 'price',
             dataIndex: 'price',
             key: 'price',
-            render: (text: any) => <a>{text}</a>,
+            render: (text: any) => <a>{text.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</a>,
         },
         {
             title: 'quantity',
             dataIndex: 'quantity',
             key: 'quantity',
-            render: (text: any) => <a>{text}</a>,
+            render: (text: any) => <a>{text.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</a>,
         },
         {
             title: 'pictureString',
             dataIndex: 'pictureString',
             key: 'pictureString',
-            render: (text: any) => <Avatar shape="square" size={64} icon={<UserOutlined />} />,
+            render: (text: any) => <Avatar shape="square"
+                src={abp.serviceAlbumImage + text}
+                size={128} />,
         },
         {
             title: 'Action',
             key: 'action',
             render: (text: any) => (
                 <Space size="middle">
-                    <a onClick={() => showEditFeatureModal(text)}>Chỉnh sửa</a>
+                    <a onClick={() => showEditFeatureModal(text)}><EditOutlined /></a>
+                    <a onClick={() => deleteItemFeature(text)}><DeleteOutlined /></a>
                 </Space>
             ),
         },
@@ -157,11 +161,13 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     //#region Select Attribute
     const [DataSelectAttributeOne, setDataSelectAttributeOne] = useState < { key: number, value: string }[] > ([]);
     const OnSelectListAttributeOne = (key: any, values: any) => {
+        values[0].key = parseInt(values[0].key);
         setDataSelectAttributeOne(values);
     }
 
     const [DataSelectAttributeTwo, setDataSelectAttributeTwo] = useState < { key: number, value: string }[] > ([]);
     const OnSelectListAttributeTwo = (key: any, values: any) => {
+        values[0].key = parseInt(values[0].key);
         setDataSelectAttributeTwo(values);
     }
     //#endregion
@@ -247,6 +253,10 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
         setFeatureEndTable(featureEnd);
     }
 
+    const UpdateClassify = () => {
+        productContainer.featureProductInsertDtos = FeatureEndTable;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
     //#endregion
 
     //#region Modal form Change Classifi Item
@@ -254,8 +264,18 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
 
     const [IsEditFeatureModal, setEditFeatureModal] = useState(false);
 
+    const deleteItemFeature = (values: any) => {
+        if (FeatureEndTable.length > 1) {
+            var FeatureEndTable2 = FeatureEndTable.filter(m => m.id !== values.id);
+            setFeatureEndTable(FeatureEndTable2);
+        }
+        else {
+            setFeatureEndTable([]);
+        }
+    }
 
     const showEditFeatureModal = (value: any) => {
+        setNoteChangeImageFeatureItem(undefined);
         formChangeClassif.setFieldsValue(value);
         setEditFeatureModal(true);
     };
@@ -265,7 +285,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     };
 
     const onFinish = (values: any) => {
-        console.log('Success:', values);
+        values.pictureString = NoteChangeImageFeatureItem;
         if (FeatureEndTable.length > 1) {
             var FeatureEndTable2 = FeatureEndTable.filter(m => m.id !== values.id);
             setFeatureEndTable([...FeatureEndTable2, values]);
@@ -281,20 +301,22 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
         console.log('Failed:', errorInfo);
     };
 
-    const options = [
-        {
-            value: 'zhejiang',
-            label: 'Zhejiang'
-        },
-        {
-            value: 'jiangsu',
-            label: 'Jiangsu'
-        },
-    ];
     const onChangepictureString = (value: any) => {
         console.log(value);
     }
 
+    const [options, setoptions] = useState < { value: string, lable: string }[] > ([])
+    useEffect(() => {
+        setoptions([]);
+        productContainer.imageRoot.forEach((m: string) => {
+            setoptions(options => [...options, { value: m, lable: m }]);
+        });
+    }, [productContainer])
+
+    const [NoteChangeImageFeatureItem, setNoteChangeImageFeatureItem] = useState < string > ();
+    const ChangeImageFeatureItem = (value: string) => {
+        setNoteChangeImageFeatureItem(value);
+    }
     //#endregion
 
     return (
@@ -401,6 +423,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                             style={{ width: "100%" }}
                             min={0}
                             onChange={(value) => setheightInput(value)}
+                            formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         />
                     </Form.Item>
                 </Col>
@@ -504,6 +527,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                 <Button
                     type='default'
                     style={{ margin: '0 10px ', textAlign: "center" }}
+                    onClick={() => UpdateClassify()}
                 >Cập nhật tính năng phân loại hàng hóa</Button>
             </div>
             <Form.Item
@@ -540,46 +564,48 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                     form={formChangeClassif}
+                    className="aHCCGsdD"
                 >
                     <Form.Item
                         label="weightAdjustment"
                         name="weightAdjustment"
                     >
-                        <Input />
+                        <InputNumber formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} />
                     </Form.Item>
                     <Form.Item
                         label="lengthAdjustment"
                         name="lengthAdjustment"
                     >
-                        <Input />
+                        <InputNumber formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} />
                     </Form.Item>
                     <Form.Item
                         label="widthAdjustment"
                         name="widthAdjustment"
                     >
-                        <Input />
+                        <InputNumber formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} />
                     </Form.Item>
                     <Form.Item
                         label="heightAdjustment"
                         name="heightAdjustment"
                     >
-                        <Input />
+                        <InputNumber formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} />
                     </Form.Item>
                     <Form.Item
                         label="price"
                         name="price"
                     >
-                        <Input />
+                        <InputNumber formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} />
                     </Form.Item>
                     <Form.Item
                         label="quantity"
                         name="quantity"
                     >
-                        <Input />
+                        <InputNumber formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} />
                     </Form.Item>
                     <Form.Item
                         label="displayOrder"
                         name="displayOrder"
+                        hidden
                     >
                         <Input />
                     </Form.Item>
@@ -587,11 +613,42 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         label="pictureString"
                         name="pictureString"
                     >
-                        <Cascader
-                            options={options}
-                            expandTrigger='click'
-                            onChange={onChangepictureString}
-                        />
+                        <Dropdown
+                            //onChange={onChangepictureString}
+                            overlay={
+                                <Menu className='GHUigtDF'>
+                                    {
+                                        productContainer.imageRoot
+                                            .map((m: any) =>
+                                                <Menu.Item key={m}
+                                                    onClick={() => ChangeImageFeatureItem(m)}
+                                                >
+                                                    <Avatar shape="square"
+                                                        src={abp.serviceAlbumImage + m}
+                                                        size={128} />
+                                                </Menu.Item>)
+                                    }
+                                </Menu>
+                            }
+                            trigger={['click']}>
+                            <div
+                                className="site-dropdown-context-menu"
+                                style={{
+                                    textAlign: 'center',
+                                    width: '120px',
+                                    height: '120px',
+                                    lineHeight: '120px',
+                                    border: '1px solid #bababa',
+                                    borderRadius: '5px'
+                                }}
+                            >
+                                {NoteChangeImageFeatureItem === undefined
+                                    ? "Right Click on here"
+                                    : <Avatar shape="square"
+                                        src={abp.serviceAlbumImage + NoteChangeImageFeatureItem}
+                                        size={128} />}
+                            </div>
+                        </Dropdown>
                     </Form.Item>
                     <Form.Item
                         label="productAttributeValueInsertDtos"

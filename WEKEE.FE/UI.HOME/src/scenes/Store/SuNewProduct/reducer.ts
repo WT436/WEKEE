@@ -67,15 +67,15 @@ export const initialState: SuNewProductState = {
       createBy: 0
     },
     productTagDtos: [],
-    imageRoot: ["album/await/d2b6d2c34f664a59b1d8fcb9bbd199ea.jpg"
-      , "album/await/b4a6a25518ed4815b28fba9442829cdb.jpg"
-      , "album/await/14597c26dafa45baa785d8a516e77a02.jpg"
-      , "album/await/b8b1ea23d247400598aa36119f120267.jpg"
-      , "album/await/793cf4e35b634db899ef97fefb003edc.jpg"
-      , "album/await/709c6b1705c14c2085aedbc28446f421.jpg"
-      , "album/await/8df060b713b04b52accc7e38e3f5bf6f.jpg"
-      , "album/await/6bd4202c3fb54a28aa881f01bc6dca1b.jpg"
-      , "album/await/a06a8dc6b41c4fc5b663b7f4f4ff63c1.jpg"],
+    imageRoot: ["album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
+      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
+      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
+      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
+      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
+      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
+      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
+      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
+      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"],
     specificationProductDtos: [
       {
         customValue: "",
@@ -116,6 +116,26 @@ function suNewProductReducer(
   action: SuNewProductActions
 ) {
   switch (action.type) {
+    //#region INSERT_PRODUCT_FULL_START
+    case ActionTypes.INSERT_PRODUCT_FULL_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.INSERT_PRODUCT_FULL_COMPLETED:
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case ActionTypes.INSERT_PRODUCT_FULL_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
+    
     //#region CONTAINER_CREATE_PRODUCT_START
     case ActionTypes.CONTAINER_CREATE_PRODUCT_START:
       console.log(action.payload);
@@ -123,38 +143,6 @@ function suNewProductReducer(
         ...state,
         productContainer: action.payload,
         loading: true,
-      };
-
-    case ActionTypes.CONTAINER_CREATE_PRODUCT_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-      };
-
-    case ActionTypes.CONTAINER_CREATE_PRODUCT_ERROR:
-      return {
-        ...state,
-        loading: false,
-      };
-    //#endregion
-
-    //#region CONTAINER_CREATE_PRODUCT_START
-    case ActionTypes.CONTAINER_CREATE_PRODUCT_START:
-      return {
-        ...state,
-        loading: true,
-      };
-
-    case ActionTypes.CONTAINER_CREATE_PRODUCT_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-      };
-
-    case ActionTypes.CONTAINER_CREATE_PRODUCT_ERROR:
-      return {
-        ...state,
-        loading: false,
       };
     //#endregion
 

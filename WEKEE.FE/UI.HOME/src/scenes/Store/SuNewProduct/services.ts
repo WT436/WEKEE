@@ -1,19 +1,32 @@
 import http from "../../../services/httpService";
 import { CreateProductDtos } from "./dtos/createProductDtos";
 import { ProductAttributeReadTypesDto } from "./dtos/productAttributeReadTypesDto";
+import { ProductContainerInsertDto } from "./dtos/productContainerInsertDto";
 
 class SuNewProductService {
 
+  //#region  InsertProductFullService
+  public async InsertProductFullService(input: ProductContainerInsertDto): Promise<boolean> {
+    let rs = await http.post('/create-product', input);
+    if (rs) {
+      return rs.data;
+    }
+    else {
+      return rs;
+    }
+  }
+  //#endregion
+
   //#region  proAttrTypesUnitService
-  public async proAttrTypesUnitService(input : number): Promise<ProductAttributeReadTypesDto[]> {
-      let rs = await http.get('/product-attribute-type-one',{ params: { input: input } });
-      console.log(rs)
-      if (rs) {
-          return rs.data;
-      }
-      else {
-          return rs;
-      }
+  public async proAttrTypesUnitService(input: number): Promise<ProductAttributeReadTypesDto[]> {
+    let rs = await http.get('/product-attribute-type-one', { params: { input: input } });
+    console.log(rs)
+    if (rs) {
+      return rs.data;
+    }
+    else {
+      return rs;
+    }
   }
   //#endregion
 

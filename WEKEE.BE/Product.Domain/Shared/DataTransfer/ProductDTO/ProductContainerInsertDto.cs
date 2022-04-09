@@ -11,7 +11,7 @@ namespace Product.Domain.Shared.DataTransfer.ProductDTO
     public class ProductContainerInsertDto
     {
         public ProductInsertDto ProductInsertDto { get; set; }
-        public List<int> ProductTagDtos { get; set; }
+        public List<string> ProductTagDtos { get; set; }
         public List<string> ImageRoot { get; set; }
         public List<SpecificationProductInsertDto> SpecificationProductDtos { get; set; }
         public CategoryProductAddProductDto CategoryProduct { get; set; }

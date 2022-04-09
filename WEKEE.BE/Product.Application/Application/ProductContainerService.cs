@@ -36,15 +36,15 @@ namespace Product.Application.Application
             _productQuery.Insert(product);
             string nameSeo = LanguageConvert.ConvertVietNamese(product.Name);
             // add product tag
-            var dataProductTag = input.ProductTagDtos.ToList().Select(m => new ProductProductTagMapping
-            {
-                ProductId = product.Id,
-                ProductTagId = m,
-                CreateBy = idAccount
-            }).ToList();
+            //var dataProductTag = input.ProductTagDtos.ToList().Select(m => new ProductProductTagMapping
+            //{
+            //    ProductId = product.Id,
+            //    ProductTagId = m,
+            //    CreateBy = idAccount
+            //}).ToList();
 
-            _productProductTagMappingQuery.Insert(dataProductTag);
-            // add seo
+            //_productProductTagMappingQuery.Insert(dataProductTag);
+            //// add seo
             _seoProductQuery.Insert(new Seo { });
             // add category
             int iProductCategory = 0;
@@ -184,7 +184,7 @@ namespace Product.Application.Application
                     _image.InsertImageProductOutId(imageProductsItem);
 
                     List<ProductPictureMapping> productPictureMappings = new List<ProductPictureMapping>();
-                    
+
                     if (imageProductsItem.Count > 0)
                     {
                         foreach (var itemProdutImageMapping in imageProductsItem)
@@ -199,7 +199,7 @@ namespace Product.Application.Application
                             });
                         }
                     }
-                    
+
                     _productPictureQuery.Insert(productPictureMappings);
 
                     imageProducts.AddRange(imageProductsItem);

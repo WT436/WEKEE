@@ -25,12 +25,12 @@
 }
 
 .kVcFNEFdzL {
-    line-height: .75;
+    line-height: 0.75;
 }
 
 .kVcFNEFdzL>.rdw-editor-toolbar {
     visibility: visible;
-    background: #F1F1F1;
+    background: #f1f1f1;
     border: 1px solid #c4c4c4;
     margin-bottom: 0px;
 }
@@ -78,7 +78,7 @@
 }
 
 .MJnbqTsvvM .ant-form-item-label>label::after {
-    content: '';
+    content: "";
 }
 
 .UYtFCeVF {
@@ -88,4 +88,25 @@
 .UYtFCeVF .ant-modal-content .ant-modal-body {
     overflow-y: scroll;
     max-height: 50vh;
+}
+
+.GHUigtDF {
+    display: flex;
+    width: 500px;
+    max-width: 500px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border: 3px solid #95e3f7;
+    /* -ms-overflow-style: none;
+    scrollbar-width: none; */
+}
+
+
+/* 
+.GHUigtDF::-webkit-scrollbar {
+    display: none;
+} */
+
+.aHCCGsdD>.ant-row.ant-form-item>.ant-form-item-control>.ant-form-item-control-input>.ant-form-item-control-input-content>.ant-input-number {
+    width: 100% !important;
 }

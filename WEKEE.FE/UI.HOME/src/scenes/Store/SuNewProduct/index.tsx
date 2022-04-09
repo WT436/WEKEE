@@ -1,6 +1,6 @@
 //#region  import
 import {
-    Affix, Alert, Button,
+    Button,
     Col, Collapse, Divider, Form, Input, InputNumber,
     Progress,
     Radio, Row, Select, Steps, Typography,
@@ -20,8 +20,7 @@ import InfomationBasicComponent from './components/infomationBasicComponent';
 import InfomationSalesComponent from './components/infomationSalesComponent';
 import ClassificationOfGoodsComponent from './components/classificationOfGoodsComponent';
 import { ImageProductDtos } from './dtos/imageProductDtos';
-import { CreateProductDtos } from './dtos/createProductDtos';
-import { createProductsStart } from './actions';
+import { InsertProductFullStart } from './actions';
 const { Title, Text } = Typography;
 const { Option } = Select;
 const { Panel } = Collapse;
@@ -42,7 +41,6 @@ const stateSelector = createStructuredSelector < any, any> ({
     productDto: makeSelectproductDto(),
     productContainer: makeSelectproductContainer()
 });
-
 const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
@@ -68,20 +66,12 @@ export default function SuNewProduct(props: ISuNewProductProps) {
     const [openingCondition6, setOpeningCondition6] = useState(false);
     const [openingCondition7, setOpeningCondition7] = useState(false);
 
-    const [container, setContainer] = useState < HTMLDivElement | null > (null);
-
 
     const [messageimage, setMessageImage] = useState < ImageProductDtos[] > ([]);
 
     const callbackFunctionImage = (childData: ImageProductDtos[]) => {
         setMessageImage(childData);
     }
-
-    // const [messagefeatureProduct, setMessagefeatureProduct] = useState < FeatureProductDtos[] > ([]);
-
-    // const callbackFunctionFeature = (childData: FeatureProductDtos[]) => {
-    //     setMessagefeatureProduct(childData);
-    // }
 
     const [messageSpecifi, setMessageSpecifi] = useState < any > ([]);
 
@@ -93,16 +83,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
         console.log(productContainer);
     }, [productContainer]);
 
-
-    const createProduct = () => {
-        var createProduct: CreateProductDtos = {
-            //featureProductDtos: messagefeatureProduct,
-            //highlightProductDtos: messageSpecifi,
-            imageProductDtos: messageimage,
-            productDto: productDto
-        };
-        dispatch(createProductsStart(createProduct));
-    }
+    const [container, setContainer] = useState < HTMLDivElement | null > (null);
 
     return (
         <Row gutter={[30, 10]} ref={setContainer}>
@@ -244,7 +225,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                             <Button
                                 type='primary'
                                 className="vuejWOzNLH"
-                                onClick={() => createProduct()}>Lưu</Button>
+                                onClick={() => {console.log(productContainer); dispatch(InsertProductFullStart(productContainer))}}>Lưu</Button>
                             <Button className="vuejWOzNLH">Hoàn thiện sau</Button>
                         </Form.Item>
                     </Form>
