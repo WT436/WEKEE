@@ -41,5 +41,7 @@ namespace Product.Application.Interface
         Task<CategoryProductReadChildrenDto> SearchAllCategory(SearchOrderPageInput input);
 
         Task<List<CategoryProductReadMapDto>> GetMapCategory();
+
+        Task<List<CateProReadIdAndNameDto>> ReadNameAndId();
     }
 }

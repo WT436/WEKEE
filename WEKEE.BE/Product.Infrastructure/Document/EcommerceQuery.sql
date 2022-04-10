@@ -91,6 +91,7 @@ WHERE FREETEXT(C.*,'SEARCH')
 SELECT CP.[Id]			  AS 'Id'
       ,CP.[Name]		  AS 'Name'
       ,CP.[Types]		  AS 'Types'
+      ,( SELECT [nameCategory] FROM [CategoryProduct] WHERE id = CP.[CategoryProductId]	)	 AS 'CategoryProductIdName'
       ,CP.[isDelete]	  AS 'IsDelete'
       ,CP.[CreateBy]	  AS 'CreateBy'
       ,CP.[CreatedOnUtc]  AS 'CreatedOnUtc'
@@ -106,3 +107,20 @@ SELECT CP.[Id]			  AS 'Id'
   WHERE CP.Types = 1 
 	AND CP.CreateBy = 0 
 	AND CP.isDelete = 0
+
+
+  SELECT CP.[Id]              AS 'Id'                                                                                        
+	    ,CP.[Name]              AS 'Name'                                                                                      
+	    ,CP.[Types]             AS 'Types'                                                                                     
+	    ,CP.[CategoryProductId] AS 'CategoryProductId'                                                                         
+	    ,(SELECT [nameCategory] FROM [CategoryProduct] WHERE id = CP.[CategoryProductId])	 AS 'CategoryProductIdName'        
+	    ,CP.[isDelete]          AS 'IsDelete'                                                                                  
+	    ,CP.[CreateBy]          AS 'CreateBy'                                                                                  
+	    ,CP.[CreatedOnUtc]      AS 'CreatedOnUtc'                                                                              
+	    ,CP.[UpdatedOnUtc]      AS 'UpdatedOnUtc'                                                                              
+	FROM[ProductDB].[dbo].[ProductAttribute] AS CP                                                                             
+ WHERE CP.CreatedOnUtc >= CONVERT(datetime, '2022/05/19') AND CONVERT(datetime, '') 
+  ORDER BY Id ASC 
+  OFFSET((1 - 1) * 20) ROWS                                                                        
+  FETCH NEXT 20 ROWS ONLY                                                                            
+                                                                    

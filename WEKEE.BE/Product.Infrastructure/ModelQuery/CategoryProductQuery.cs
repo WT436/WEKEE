@@ -1,4 +1,5 @@
-﻿using Product.Domain.Shared.DataTransfer.CategoryProductDTO;
+﻿using Microsoft.EntityFrameworkCore;
+using Product.Domain.Shared.DataTransfer.CategoryProductDTO;
 using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.DBContext;
 using System;
@@ -14,6 +15,10 @@ namespace Product.Infrastructure.ModelQuery
     {
         private readonly IUnitOfWork<ProductDBContext> unitOfWork =
                          new UnitOfWork<ProductDBContext>(new ProductDBContext());
+
+        public async Task<string> GetNAmeCategory(int id)
+        => (await unitOfWork.GetRepository<CategoryProduct>()
+                           .GetFirstOrDefaultAsync(predicate: c => c.Id == id)).NameCategory;
 
         public async Task<bool> CheckAnyNameAndUrl(string name, string url)
         => await unitOfWork.GetRepository<CategoryProduct>()
@@ -127,5 +132,13 @@ namespace Product.Infrastructure.ModelQuery
                                                                   }).ToList()
                                            }).ToList()
                     }).ToList();
+
+        public async Task<List<CateProReadIdAndNameDto>> ReadNameAndId()
+        {
+           return await unitOfWork.GetRepository<CategoryProduct>().GetAll()
+                                  .Select(m => new CateProReadIdAndNameDto { Id = m.Id, Name = m.NameCategory })
+                                  .ToListAsync();
+        }
+
     }
 }

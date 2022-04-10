@@ -14,5 +14,7 @@ namespace Product.Domain.Shared.DataTransfer.ProductAttributeDTO
         [Required(ErrorMessage = MessageOutput.NOT_NULL)]
         [Range(typeof(int), "0", "5", ErrorMessage = MessageOutput.INVALID_PARAMETER)]      
         public int Types { get; set; }
+
+        public int? CategoryProductId { get; set; }
     }
 }

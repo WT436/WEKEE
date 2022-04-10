@@ -2,36 +2,39 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Switch } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { useInjectReducer, useInjectSaga } from "../../../redux/reduxInjectors";
 import {
-    RedoOutlined, CheckOutlined, CloseOutlined, FilePdfOutlined, PlusOutlined, SearchOutlined, EditOutlined, DeleteOutlined, LockOutlined, ClusterOutlined, HistoryOutlined, PartitionOutlined, SlidersOutlined, StarOutlined, UnlockOutlined,
+    RedoOutlined, CheckOutlined, CloseOutlined, FilePdfOutlined, PlusOutlined, SearchOutlined, EditOutlined,
+    DeleteOutlined, LockOutlined, UnlockOutlined,
 } from "@ant-design/icons";
 import {
-    Row, Col, Button, Input, Select, Table, Modal, Form, DatePicker, Tag, Tooltip, Card, notification,
+    Row, Col, Button, Input, Select, Table, Modal, Form, DatePicker, Tag, Tooltip, Card, notification, InputNumber,
 } from "antd";
 import reducer from "./reducer";
 import saga from "./saga";
 import {
-    makeSelectCompleted, makeSelectLoading, makeSelectPageIndex,
+    makeSelectcateProReadIdAndNameDto,
+    makeSelectCompleted, makeSelectLoading, makeSelectoptionCreateByCate, makeSelectPageIndex,
     makeSelectPageSize, makeSelectproductAttributeReadDto, makeSelectTotalCount, makeSelectTotalPages,
 } from "./selectors";
 import moment from "moment";
-import ConstTypes from "./objectValues/constTypes";
+import ConstTypes, { confirmTypes_PROATTR } from "./objectValues/constTypes";
 import { ProductAttributeReadDto } from "./dtos/productAttributeReadDto"
-import { createAttributeProductStart, getDataAttibuteProductStart } from "./actions";
+import { createAttributeProductStart, getDataAttibuteProductStart, loadCateProStart, loadCreateByCateStart } from "./actions";
 import { ProductAttributeInsertDto } from "./dtos/productAttributeInsertDto";
+import OrderByProperty from "../../../services/dto/orderByProperty";
+import { CateProReadIdAndNameDto } from "./dtos/cateProReadIdAndNameDto";
+import AttributeProductTypes from "./objectValues/attributeProductTypes";
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 declare var abp: any;
 //#endregion
 export interface IAttributeProductProps {
-    // đây
     location: any;
 }
 
-const key = "attributeproduct"; // đây
+const key = "attributeproduct";
 
 const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
@@ -40,9 +43,12 @@ const stateSelector = createStructuredSelector < any, any> ({
     pageSize: makeSelectPageSize(),
     totalCount: makeSelectTotalCount(),
     totalPages: makeSelectTotalPages(),
-    attibuteData: makeSelectproductAttributeReadDto()
+    attibuteData: makeSelectproductAttributeReadDto(),
+    optionCategoryProduct: makeSelectcateProReadIdAndNameDto(),
+    optionCreateByCate: makeSelectoptionCreateByCate()
 });
 
+//#region CSS Layout Item 
 const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
@@ -53,13 +59,182 @@ const formItemLayout = {
         sm: { span: 14 },
     },
 };
+//#endregion
 
 export default function AttributeProduct(props: IAttributeProductProps) {
-    // Đây
+
+    //#region START
     useInjectReducer(key, reducer);
     useInjectSaga(key, saga);
-
     const dispatch = useDispatch();
+
+    const {
+        loading, pageSize, totalCount, pageIndex, attibuteData, optionCategoryProduct
+        , optionCreateByCate
+    } = useSelector(stateSelector);
+
+    useEffect(() => {
+        _selectColumnSearch(ConstTypes.NULL);
+        _selectColumnOrder(ConstTypes.NULL);
+        dispatch(getDataAttibuteProductStart({
+            pageIndex: 1,
+            pageSize: 20,
+            propertyOrder: ConstTypes.NULL,
+            valueOrderBy: ConstTypes.NULL,
+            propertySearch: [],
+            valuesSearch: [],
+        }));
+        dispatch(loadCateProStart());
+        dispatch(loadCreateByCateStart());
+    }, []);
+    //#endregion
+
+    //#region STATE FOR SEARCH OR ORDER 
+    const [propertySearch, setpropertySearch] = useState < any[] > ([]);
+    const [valuesSearch, setvaluesSearch] = useState < any[] > ([]);
+    const [orderbyColumn, setOrderbyColumn] = useState < string > ('');
+    const [orderbyTypes, setOrderbyTypes] = useState < string > ('');
+    //#endregion
+
+    //#region SEARCH DADA ONCLICK BUTTON OR CHANGE PAGE
+    // có key mà không có giá trị => xóa cả 2
+    const _searchDataOnClick = (page: any, pageSize: any) => {
+        console.log(valuesSearch);
+        if (propertySearch.length !== valuesSearch.length) {
+            notification.warning({
+                message: "Thất Bại",
+                description: "Bạn cần nhập dữ liệu tìm kiếm!",
+                placement: "bottomRight",
+            });
+        }
+        else {
+            dispatch(getDataAttibuteProductStart({
+                pageIndex: page === 0 ? pageIndex : page,
+                pageSize: pageSize,
+                propertyOrder: orderbyColumn,
+                valueOrderBy: orderbyTypes,
+                propertySearch: propertySearch,
+                valuesSearch: valuesSearch,
+            }));
+        }
+    }
+
+    //#endregion
+
+    //#region SELECT COLUMN SEARCH
+    const [SelectColumnSearch, setSelectColumnSearch] = useState < JSX.Element > (<Input placeholder="Từ khóa" />);
+
+    function _selectColumnSearch(value: ConstTypes) {
+
+        value === ConstTypes.NULL ? setpropertySearch([]) : setpropertySearch([value]);
+        setvaluesSearch([]);
+
+        if (confirmTypes_PROATTR(value) === "DATE") {
+            setSelectColumnSearch(<RangePicker
+                format="YYYY/MM/DD"
+                disabled={value === ConstTypes.NULL}
+                onChange={(date, dateString) => _onChangeDataColumnSearch(dateString[0] + "|" + dateString[1])}
+            />)
+        }
+        else if (confirmTypes_PROATTR(value) === "SELECT") {
+            setSelectColumnSearch(<Select
+                showSearch
+                placeholder="Giá trị"
+                optionFilterProp="children"
+                style={{ width: '100%' }}
+                disabled={value === ConstTypes.NULL}
+                onChange={(values: number) => _onChangeDataColumnSearch(values)}
+            >
+                {(() => {
+                    if (value === ConstTypes.CATE_PRO_PROATTR)
+                        return (optionCategoryProduct.map((province: CateProReadIdAndNameDto) => (
+                            <Option value={province.id}>{province.name}</Option>
+                        )))
+                    if (value === ConstTypes.CREATEBY_PROATTR)
+                        return (optionCreateByCate.map((province: CateProReadIdAndNameDto) => (
+                            <Option value={province.id}>{province.name}</Option>
+                        )))
+                    else {
+                        return (
+                            <>
+                                <Option value={AttributeProductTypes.ATTRIBUTE}>{AttributeProductTypes.ATTRIBUTE}</Option>
+                                <Option value={AttributeProductTypes.SPECIFICATIONS}>{AttributeProductTypes.SPECIFICATIONS}</Option>
+                                <Option value={AttributeProductTypes.TRADEMARK}>{AttributeProductTypes.TRADEMARK}</Option>
+                                <Option value={AttributeProductTypes.UNIT}>{AttributeProductTypes.UNIT}</Option>
+                                <Option value={AttributeProductTypes.VIDU4}>{AttributeProductTypes.VIDU4}</Option>
+                                <Option value={AttributeProductTypes.VIDU5}>{AttributeProductTypes.VIDU5}</Option>
+                            </>)
+                    }
+                })()
+                }
+            </Select>)
+        }
+        else if (confirmTypes_PROATTR(value) === "BOOLEAN") {
+            setSelectColumnSearch(<Select
+                showSearch
+                placeholder="Giá trị"
+                optionFilterProp="children"
+                style={{ width: '100%' }}
+                disabled={value === ConstTypes.NULL}
+                onChange={(values: number) => _onChangeDataColumnSearch(values)}
+            >
+                <Option value={1}>TRUE</Option>
+                <Option value={0}>FALSE</Option>
+            </Select>)
+        }
+        else if (confirmTypes_PROATTR(value) === "NUMBER") {
+            setSelectColumnSearch(
+                <InputNumber
+                    disabled={value === ConstTypes.NULL}
+                    placeholder="Từ khóa"
+                    style={{ width: '100%' }}
+                    formatter={value => `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    onChange={_onChangeDataColumnSearch}
+                />)
+        }
+        else if (confirmTypes_PROATTR(value) === "STRING") {
+            setSelectColumnSearch(
+                <Input
+                    disabled={value === ConstTypes.NULL}
+                    placeholder="Từ khóa"
+                    onChange={(values: any) => _onChangeDataColumnSearch(values.target.value)}
+                />)
+        }
+        else {
+            setSelectColumnSearch(
+                <Input
+                    placeholder="Từ khóa"
+                    value={""}
+                    disabled={value === ConstTypes.NULL} />
+            );
+        }
+    }
+
+    // khi cột value search thay đổi mà  key null  => xóa vaule
+    const _onChangeDataColumnSearch = (value: any) => {
+        if (propertySearch[0] === ConstTypes.NULL) {
+            setvaluesSearch([]);
+        }
+        setvaluesSearch([value]);
+    }
+    //#endregion
+
+    //#region SELECT COLUMN ORDER
+
+    const [disableColumnOrder, setdisableColumnOrder] = useState < string > (ConstTypes.NULL);
+
+    function _selectColumnOrder(value: string) {
+        if (value === ConstTypes.NULL) {
+            setOrderbyColumn('');
+            setOrderbyTypes('');
+        }
+        setOrderbyColumn(value);
+        setdisableColumnOrder(value);
+    }
+    function _selectColumnOrderValue(value: any) {
+        setOrderbyTypes(value);
+    }
+    //#endregion
 
     const [checkCreate, setCheckCreate] = useState(false);
     const [checkRemove, setCheckRemove] = useState(true);
@@ -67,18 +242,12 @@ export default function AttributeProduct(props: IAttributeProductProps) {
     const [isModalVisible, setisModalVisible] = useState(false);
     // 0 : bật tất cả 1: đang xóa, 2 đang update khóa/mở
     const [isDataChange, setisDataChange] = useState(0);
-    const [SelectColumn, setSelectColumn] = useState(["All"]);
-    const [valuesSearch, setvaluesSearch] = useState < string[] > ([]);
-    const [OrderbyColumn, setOrderbyColumn] = useState("");
-    const [OrderbyTypes, setOrderbyTypes] = useState("");
 
-    const {
-        loading, pageSize, totalCount, pageIndex, attibuteData
-    } = useSelector(stateSelector);
-
+    //#region INSERT OR UPDATE FORM DATA 
     const [form] = Form.useForm();
 
     const onFill = (value: ProductAttributeReadDto) => {
+        console.log(value)
         form.setFieldsValue(value);
     };
 
@@ -88,17 +257,6 @@ export default function AttributeProduct(props: IAttributeProductProps) {
 
     const onChangeIsStatus = (value: ProductAttributeReadDto) => {
         setisDataChange(2);
-    };
-
-    let onChange = (page: any, pageSize: any) => {
-        dispatch(getDataAttibuteProductStart({
-            pageIndex: page,
-            pageSize: pageSize,
-            propertyOrder: '',
-            valueOrderBy: '',
-            propertySearch: [],
-            valuesSearch: [],
-        }));
     };
 
     const onFinish = (values: ProductAttributeInsertDto) => {
@@ -123,11 +281,13 @@ export default function AttributeProduct(props: IAttributeProductProps) {
         form.setFieldsValue({ types: value });
     };
 
+    const onGenderChangeCategory = (value: number) => {
+        form.setFieldsValue({ categoryProductId: value });
+    };
+
+    //#endregion
+
     const columns = [
-        {
-            title: 'Id',
-            dataIndex: 'id'
-        },
         {
             title: 'Tên',
             dataIndex: 'name',
@@ -145,6 +305,10 @@ export default function AttributeProduct(props: IAttributeProductProps) {
         {
             title: 'Kiểu',
             dataIndex: 'typesName'
+        },
+        {
+            title: 'Category',
+            dataIndex: 'categoryProductIdName'
         },
         {
             title: 'Người cập nhật',
@@ -189,43 +353,28 @@ export default function AttributeProduct(props: IAttributeProductProps) {
         },
     ];
 
-    //#region Get data attribute product
-    useEffect(() => {
-        dispatch(getDataAttibuteProductStart({
-            pageIndex: 1,
-            pageSize: 20,
-            propertyOrder: '',
-            valueOrderBy: '',
-            propertySearch: [],
-            valuesSearch: [],
-        }));
-    }, [])
-    //#endregion
-
     return (
         <Card
             title="PRODUCT ATTRIBUTE"
             size="small"
             type="inner"
-            loading={loading}
         >
             <Row gutter={[10, 10]}>
                 <Col span={24}>
                     <Row gutter={[10, 10]} >
-                        <Col span={2}>
+                        <Col span={1}>
                             <Tooltip placement="bottom" title={"Làm Mới"}>
                                 <Button loading={loading}
                                     onClick={() => {
                                         setCheckRestart(true);
                                         setisDataChange(0);
-                                        setSelectColumn(["All"]);
                                     }}
                                     disabled={checkRestart}
                                     block icon={<RedoOutlined />}>
                                 </Button>
                             </Tooltip>
                         </Col>
-                        <Col span={2}>
+                        <Col span={1}>
                             <Tooltip placement="bottom" title={"Lưu"}>
                                 <Button loading={loading}
                                     disabled={checkRemove}
@@ -237,7 +386,7 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                                 </Button>
                             </Tooltip>
                         </Col>
-                        <Col span={2}>
+                        <Col span={1}>
                             <Tooltip placement="bottom" title={"Hủy"}>
                                 <Button loading={loading} disabled={checkRemove}
                                     onClick={() => {
@@ -246,13 +395,13 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                                 </Button>
                             </Tooltip>
                         </Col>
-                        <Col span={2}>
+                        <Col span={1}>
                             <Tooltip placement="bottom" title={"Xuất File"}>
                                 <Button loading={loading} block icon={<FilePdfOutlined />}>
                                 </Button>
                             </Tooltip>
                         </Col>
-                        <Col span={2}>
+                        <Col span={1}>
                             <Tooltip placement="bottom" title={"Thêm"}>
                                 <Button loading={loading} block icon={<PlusOutlined />}
                                     onClick={() => {
@@ -263,6 +412,55 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                                 </Button>
                             </Tooltip>
                         </Col>
+                        <Col span={4}>
+                            <Select
+                                optionFilterProp="children"
+                                style={{ width: '100%' }}
+                                filterOption={(input, option: any) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                                disabled={loading}
+                                onChange={(value: any) => {
+                                    _selectColumnSearch(value)
+                                }}
+                                value={propertySearch[0] === '' ? undefined : propertySearch[0]}
+                                placeholder="Tìm Kiếm"
+                            >
+                                <Option value={ConstTypes.NULL}>Mặc định</Option>
+                                <Option value={ConstTypes.ID_PROATTR}>{ConstTypes.ID_PROATTR}</Option>
+                                <Option value={ConstTypes.NAME_PROATTR}>{ConstTypes.NAME_PROATTR}</Option>
+                                <Option value={ConstTypes.TYPES_PROATTR}>{ConstTypes.TYPES_PROATTR}</Option>
+                                <Option value={ConstTypes.CATE_PRO_PROATTR}>{ConstTypes.CATE_PRO_PROATTR}</Option>
+                                <Option value={ConstTypes.ISDELETE_PROATTR}>{ConstTypes.ISDELETE_PROATTR}</Option>
+                                <Option value={ConstTypes.CREATEBY_PROATTR}>{ConstTypes.CREATEBY_PROATTR}</Option>
+                                <Option value={ConstTypes.CREATE_DATE_UTC_PROATTR}>{ConstTypes.CREATE_DATE_UTC_PROATTR}</Option>
+                                <Option value={ConstTypes.UPDATE_DATE_UTC_PROATTR}>{ConstTypes.UPDATE_DATE_UTC_PROATTR}</Option>
+                            </Select>
+                        </Col>
+                        <Col span={5}>{SelectColumnSearch}</Col>
+                        <Col span={4}>
+                            <Select
+                                optionFilterProp="children"
+                                style={{ width: '100%' }}
+                                filterOption={(input, option: any) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                                defaultValue={orderbyColumn === '' ? undefined : orderbyColumn}
+                                disabled={loading}
+                                placeholder="Từ khóa"
+                                value={orderbyColumn === '' ? undefined : orderbyColumn}
+                                onChange={_selectColumnOrder}
+                            >
+                                <Option value={ConstTypes.NULL}>Mặc định</Option>
+                                <Option value={ConstTypes.ID_PROATTR}>{ConstTypes.ID_PROATTR}</Option>
+                                <Option value={ConstTypes.NAME_PROATTR}>{ConstTypes.NAME_PROATTR}</Option>
+                                <Option value={ConstTypes.TYPES_PROATTR}>{ConstTypes.TYPES_PROATTR}</Option>
+                                <Option value={ConstTypes.ISDELETE_PROATTR}>{ConstTypes.ISDELETE_PROATTR}</Option>
+                                <Option value={ConstTypes.CREATEBY_PROATTR}>{ConstTypes.CREATEBY_PROATTR}</Option>
+                                <Option value={ConstTypes.CREATE_DATE_UTC_PROATTR}>{ConstTypes.CREATE_DATE_UTC_PROATTR}</Option>
+                                <Option value={ConstTypes.UPDATE_DATE_UTC_PROATTR}>{ConstTypes.UPDATE_DATE_UTC_PROATTR}</Option>
+                            </Select>
+                        </Col>
                         <Col span={3}>
                             <Select
                                 optionFilterProp="children"
@@ -270,80 +468,14 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                                 filterOption={(input, option: any) =>
                                     option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                 }
-                                disabled={loading}
-                                defaultValue={SelectColumn}
-                                onChange={(value: any) => {
-                                    setSelectColumn([]);
-                                    setSelectColumn(value);
-                                }}
+                                disabled={disableColumnOrder === ConstTypes.NULL}
+                                onChange={(value: any) => _selectColumnOrderValue(value)}
+                                placeholder="Theo"
+                                value={orderbyTypes === '' ? undefined : orderbyTypes}
+                                defaultValue={orderbyTypes === '' ? undefined : orderbyTypes}
                             >
-                                <Option value="All">Tìm kiếm</Option>
-                                <Option value={ConstTypes.ID_SPEC}>{ConstTypes.ID_SPEC}</Option>
-                                <Option value="Name">Tên</Option>
-                                <Option value="TypesRsc">Kiểu</Option>
-                                <Option value="Description">Chi tiết</Option>
-                                <Option value="IsActive">Trạng thái</Option>
-                                <Option value="CreatedAt">Ngày Tạo</Option>
-                                <Option value="CreateBy">Người sửa</Option>
-                                <Option value="UpdatedAt">Ngày cập nhật</Option>
-                            </Select>
-                        </Col>
-                        <Col span={5}>
-                            {
-                                SelectColumn.indexOf("CreatedAt") === 0 || SelectColumn.indexOf("UpdatedAt") === 0
-                                    ? <RangePicker onChange={(date, dateString) => {
-                                        setvaluesSearch([]);
-                                        setvaluesSearch(dateString);
-                                    }
-                                    } />
-                                    : <Input onChange={(value) => {
-                                        setvaluesSearch([]);
-                                        setvaluesSearch([value.target.value]);
-                                    }} disabled={loading} placeholder="Từ khóa" />
-                            }
-                        </Col>
-                        <Col span={3}>
-                            <Select
-                                optionFilterProp="children"
-                                style={{ width: '100%' }}
-                                filterOption={(input, option: any) =>
-                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                }
-                                defaultValue={"All"}
-                                disabled={loading}
-                                onChange={(value) => {
-                                    setOrderbyColumn(value.substring(0, value.lastIndexOf("_")));
-                                    setOrderbyTypes(value.substring(value.lastIndexOf("_") + 1));
-                                }}
-                            >
-                                <Option value="All">Sắp Xếp</Option>
-                                <Option value="Id">Id</Option>
-                                <Option value="Name">Tên</Option>
-                                <Option value="TypesRsc">Kiểu</Option>
-                                <Option value="Description">Chi tiết</Option>
-                                <Option value="IsActive">Trạng thái</Option>
-                                <Option value="CreatedAt">Ngày Tạo</Option>
-                                <Option value="CreateBy">Người sửa</Option>
-                                <Option value="UpdatedAt">Ngày cập nhật</Option>
-                            </Select>
-                        </Col>
-                        <Col span={2}>
-                            <Select
-                                optionFilterProp="children"
-                                style={{ width: '100%' }}
-                                filterOption={(input, option: any) =>
-                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                }
-                                disabled={loading}
-                                defaultValue={SelectColumn}
-                                onChange={(value: any) => {
-                                    setSelectColumn([]);
-                                    setSelectColumn(value);
-                                }}
-                            >
-                                <Option value="All">Sắp Xếp</Option>
-                                <Option value="Id">Tăng</Option>
-                                <Option value="Name">Giảm</Option>
+                                <Option value={OrderByProperty.UP}>{OrderByProperty.UP}</Option>
+                                <Option value={OrderByProperty.DOWN}>{OrderByProperty.DOWN}</Option>
                             </Select>
                         </Col>
                         <Col span={1}>
@@ -351,9 +483,7 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                                 disabled={loading}
                                 type="primary"
                                 icon={<SearchOutlined />}
-                                onClick={() => {
-
-                                }}
+                                onClick={() => _searchDataOnClick(0, 0)}
                             >
                             </Button>
                         </Col>
@@ -372,7 +502,7 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                             pageSize: pageSize,
                             total: totalCount,
                             defaultCurrent: 1,
-                            onChange: onChange,
+                            onChange: _searchDataOnClick,
                             showSizeChanger: true,
                             pageSizeOptions: ['5', '10', '20', '50', '100']
                         }}
@@ -418,19 +548,38 @@ export default function AttributeProduct(props: IAttributeProductProps) {
                             <Form.Item
                                 label="Kiểu"
                                 name="types"
+                                rules={[{ required: true, message: 'Kiểu thuộc tính không được để trống!' }]}
                             >
                                 <Select
                                     onChange={onGenderChange}
                                     allowClear
                                     style={{ width: '100%' }}
-                                    defaultValue={-1}>
-                                    <Option value={-1}>Chọn Kiểu dữ liệu</Option>
-                                    <Option value={0}>Thuộc tính sản phẩm</Option>
-                                    <Option value={1}>Đơn vị sản phẩm</Option>
-                                    <Option value={2}>Thông số kỹ thuật</Option>
-                                    <Option value={3}>URL</Option>
-                                    <Option value={4}>URL</Option>
-                                    <Option value={5}>URL</Option>
+                                    placeholder="Chọn Kiểu dữ liệu"
+                                >
+                                    <Option value={0}>Kiểu Thuộc tính</Option>
+                                    <Option value={1}>Kiểu Đơn vị</Option>
+                                    <Option value={2}>Kiểu Thông số kỹ thuật</Option>
+                                    <Option value={3}>Kiểu URL</Option>
+                                    <Option value={4}>Kiểu URL</Option>
+                                    <Option value={5}>Kiểu URL</Option>
+                                </Select>
+                            </Form.Item>
+                            <Form.Item
+                                label="Category"
+                                name="categoryProductId"
+                                rules={[{ required: true, message: 'Category thuộc tính không được để trống!' }]}
+                            >
+                                <Select
+                                    onChange={onGenderChangeCategory}
+                                    allowClear
+                                    style={{ width: '100%' }}
+                                    placeholder="Chọn Kiểu dữ liệu"
+                                >
+                                    <Option value={-1}>Bỏ qua</Option>
+                                    {
+                                        optionCategoryProduct.map((province: CateProReadIdAndNameDto) => (
+                                            <Option value={province.id}>{province.name}</Option>))
+                                    }
                                 </Select>
                             </Form.Item>
                             <Row gutter={[10, 10]}>

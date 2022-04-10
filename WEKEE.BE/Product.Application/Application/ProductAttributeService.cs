@@ -20,22 +20,24 @@ namespace Product.Application.Application
     {
         ProductAttributeQuery _productAttributeQuery = new ProductAttributeQuery();
         ProductAttributeQueries _productAttributeQueries = new ProductAttributeQueries();
+        CategoryProductQuery _categoryProduct = new CategoryProductQuery();
         AccountBus _accountBus = new AccountBus();
 
         public async Task<PagedListOutput<ProductAttributeReadDto>> GetAllPageListProductAttribute(SearchOrderPageInput input)
         {
             var data = await _productAttributeQueries.GetAllPageLstExactNotFTS(input);
             int totalCount = await _productAttributeQuery.TotalPageCategory();
-            foreach(var item in data)
+            foreach (var item in data)
             {
                 item.TypesName = ProductAttributeTypesConvert.ConvertAttributeTypes(item.Types);
-                item.CreateByName = await _accountBus.GetNameAccount(item.CreateBy);
+                var cateName = await _accountBus.GetNameAccount(item.CreateBy);
+                item.CreateByName = cateName.ToUpper() == "NULL" ? "System" : cateName;
             }
             return new PagedListOutput<ProductAttributeReadDto>
             {
                 Items = data,
                 PageIndex = input.PageIndex,
-                PageSize = data.Count,
+                PageSize = input.PageSize,
                 TotalPages = (totalCount / input.PageSize),
                 TotalCount = totalCount
             };
@@ -54,6 +56,7 @@ namespace Product.Application.Application
                 {
                     Name = input.Name,
                     Types = input.Types,
+                    CategoryProductId = input.CategoryProductId == -1 ? null : input.CategoryProductId,
                     IsDelete = false,
                     CreateBy = idAccount,
                     CreatedOnUtc = DateTime.Now,
@@ -67,6 +70,24 @@ namespace Product.Application.Application
         {
             var data = await _productAttributeQueries.GetAllTypesProductAttribute(type);
             return data;
+        }
+
+        public async Task<List<CateProReadIdAndNameDto>> CateProReadIdAndNameAccount()
+        {
+            var data = await _productAttributeQuery.CateProReadIdAccount();
+            List<CateProReadIdAndNameDto> cateProReadIdAndNameDtos = new List<CateProReadIdAndNameDto>();
+            foreach (var item in data)
+            {
+                var cateName = await _accountBus.GetNameAccount(item);
+
+                cateProReadIdAndNameDtos.Add(
+                new CateProReadIdAndNameDto
+                {
+                    Id = item,
+                    Name = cateName.ToUpper() == "NULL" ? "System" : cateName
+                });
+            }
+            return cateProReadIdAndNameDtos;
         }
     }
 }

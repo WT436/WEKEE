@@ -7,6 +7,7 @@ import { ProductAttributeReadDto } from './dtos/productAttributeReadDto';
 
 import ActionTypes from './constants';
 import { ProductAttributeInsertDto } from './dtos/productAttributeInsertDto';
+import { CateProReadIdAndNameDto } from './dtos/cateProReadIdAndNameDto';
 // open page login
 export const watchPageStart = () => action(ActionTypes.WATCH_PAGE_START);
 export const watchPageCompleted = () => action(ActionTypes.WATCH_PAGE_COMPLETED);
@@ -28,4 +29,22 @@ export const createAttributeProductCompleted = (output: Number) =>
 action(ActionTypes.CREATE_ATTRIBUTE_PRODUCT_COMPLETED, output);
 export const createAttributeProductError = () =>
 action(ActionTypes.CREATE_ATTRIBUTE_PRODUCT_ERROR);
+//#endregion
+
+//#region LOAD_CATE_PRO
+export const loadCateProStart = () =>
+action(ActionTypes.LOAD_CATE_PRO_START);
+export const loadCateProCompleted = (output: CateProReadIdAndNameDto[]) =>
+action(ActionTypes.LOAD_CATE_PRO_COMPLETED, output);
+export const loadCateProError = () =>
+action(ActionTypes.LOAD_CATE_PRO_ERROR);
+//#endregion
+
+//#region LOAD_CREATE_BY_CATE
+export const loadCreateByCateStart = () =>
+action(ActionTypes.LOAD_CREATE_BY_CATE_START);
+export const loadCreateByCateCompleted = (output: CateProReadIdAndNameDto[]) =>
+action(ActionTypes.LOAD_CREATE_BY_CATE_COMPLETED, output);
+export const loadCreateByCateError = () =>
+action(ActionTypes.LOAD_CREATE_BY_CATE_ERROR);
 //#endregion

@@ -157,6 +157,11 @@ namespace Product.Application.Application
             throw new NotImplementedException();
         }
 
+        public async Task<List<CateProReadIdAndNameDto>> ReadNameAndId()
+        {
+            return await _categoryProductQuery.ReadNameAndId();
+        }
+
         public Task<CategoryProductReadChildrenDto> SearchAllCategory(SearchOrderPageInput input)
         {
             throw new NotImplementedException();

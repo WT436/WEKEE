@@ -11,8 +11,11 @@ const makeSelectPageSize = () => createSelector(select, substate => substate.pag
 const makeSelectTotalCount = () => createSelector(select, substate => substate.totalCount);
 const makeSelectTotalPages = () => createSelector(select, substate => substate.totalPages);
 const makeSelectproductAttributeReadDto = () => createSelector(select, substate => substate.productAttributeReadDto);
+const makeSelectcateProReadIdAndNameDto = () => createSelector(select, substate => substate.cateProReadIdAndNameDto);
+const makeSelectoptionCreateByCate = () => createSelector(select, substate => substate.optionCreateByCate);
 
 export {
     makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize,
-    makeSelectTotalCount, makeSelectTotalPages,makeSelectproductAttributeReadDto
+    makeSelectTotalCount, makeSelectTotalPages, makeSelectproductAttributeReadDto
+    , makeSelectcateProReadIdAndNameDto,makeSelectoptionCreateByCate
 };

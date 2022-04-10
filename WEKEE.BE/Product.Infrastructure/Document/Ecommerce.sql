@@ -75,7 +75,9 @@ GO
 
 --==============================================
 -- Name        : [ProductAttribute]
--- Description : Thuộc tính sản phẩm, name key, unit ....
+-- Description : Lưu các Thuộc tính sản phẩm, name key, unit .... Chính cho từng loại category
+--				 Vd : một category có rất nhiều đơn vị tính như lô, cái... Về thuộc tính thì cũng có những sản phẩm được nhận diện qua màu sắc,
+--					  kích thước hay điện thoại cũng có loại theo bộ nhớ, theo màn hinhfhay đơn giản chỉ là màu sắc.
 -- Date Update : 
 --==============================================
 CREATE TABLE [ProductAttribute](

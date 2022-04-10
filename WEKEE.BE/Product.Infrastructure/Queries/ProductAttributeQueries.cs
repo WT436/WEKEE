@@ -19,14 +19,16 @@ namespace Product.Infrastructure.Queries
         {
             StringBuilder query = new StringBuilder();
 
-            query.AppendLine("  SELECT CP.[Id]            AS 'Id'               ");
-            query.AppendLine("	    ,CP.[Name]          AS 'Name'               ");
-            query.AppendLine("	    ,CP.[Types]         AS 'Types'              ");
-            query.AppendLine("	    ,CP.[isDelete]      AS 'IsDelete'           ");
-            query.AppendLine("	    ,CP.[CreateBy]      AS 'CreateBy'           ");
-            query.AppendLine("	    ,CP.[CreatedOnUtc]  AS 'CreatedOnUtc'       ");
-            query.AppendLine("	    ,CP.[UpdatedOnUtc]  AS 'UpdatedOnUtc'       ");
-            query.AppendLine("	FROM[ProductDB].[dbo].[ProductAttribute] AS CP  ");
+            query.AppendLine("  SELECT CP.[Id]              AS 'Id'                                                                                        ");
+            query.AppendLine("	    ,CP.[Name]              AS 'Name'                                                                                      ");
+            query.AppendLine("	    ,CP.[Types]             AS 'Types'                                                                                     ");
+            query.AppendLine("	    ,CP.[CategoryProductId] AS 'CategoryProductId'                                                                         ");
+            query.AppendLine("	    ,(SELECT [nameCategory] FROM [CategoryProduct] WHERE id = CP.[CategoryProductId])	 AS 'CategoryProductIdName'        ");
+            query.AppendLine("	    ,CP.[isDelete]          AS 'IsDelete'                                                                                  ");
+            query.AppendLine("	    ,CP.[CreateBy]          AS 'CreateBy'                                                                                  ");
+            query.AppendLine("	    ,CP.[CreatedOnUtc]      AS 'CreatedOnUtc'                                                                              ");
+            query.AppendLine("	    ,CP.[UpdatedOnUtc]      AS 'UpdatedOnUtc'                                                                              ");
+            query.AppendLine("	FROM[ProductDB].[dbo].[ProductAttribute] AS CP                                                                             ");
 
             if (input.PropertySearch != null)
             {

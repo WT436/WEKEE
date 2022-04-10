@@ -20,6 +20,7 @@ namespace Product.Domain.Shared.Entitys
         public string Name { get; set; }
         public bool? Fragile { get; set; }
         public string Origin { get; set; }
+        public int Trademark { get; set; }
         public int UnitAttributeId { get; set; }
         public string Sku { get; set; }
         public string ManufacturerPartNumber { get; set; }
@@ -82,6 +83,7 @@ namespace Product.Domain.Shared.Entitys
         public int? Seo { get; set; }
 
         public virtual Seo SeoNavigation { get; set; }
+        public virtual ProductAttribute TrademarkNavigation { get; set; }
         public virtual ProductAttribute UnitAttribute { get; set; }
         public virtual ICollection<FeatureProduct> FeatureProducts { get; set; }
         public virtual ICollection<ProductCategoryMapping> ProductCategoryMappings { get; set; }

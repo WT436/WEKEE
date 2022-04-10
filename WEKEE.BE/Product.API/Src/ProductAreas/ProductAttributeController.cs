@@ -40,6 +40,14 @@ namespace Product.API.Src.ProductAreas
         {
             var data = await _productAttribute.GetAllAttribute(input);
             return Ok(data);
+        } 
+        
+        [HttpGet]
+        [Route("v1/api/get-name-account")]
+        public async Task<IActionResult> GetNameAccount()
+        {
+            var data = await _productAttribute.CateProReadIdAndNameAccount();
+            return Ok(data);
         }
 
     }

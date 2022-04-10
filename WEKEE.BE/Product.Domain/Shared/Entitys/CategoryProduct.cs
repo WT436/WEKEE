@@ -10,6 +10,7 @@ namespace Product.Domain.Shared.Entitys
         public CategoryProduct()
         {
             InverseCategoryMainNavigation = new HashSet<CategoryProduct>();
+            ProductAttributes = new HashSet<ProductAttribute>();
             ProductCategoryMappings = new HashSet<ProductCategoryMapping>();
             SpecificationAttributes = new HashSet<SpecificationAttribute>();
         }
@@ -28,6 +29,7 @@ namespace Product.Domain.Shared.Entitys
         public virtual CategoryProduct CategoryMainNavigation { get; set; }
         public virtual ImageProduct IconCategoryNavigation { get; set; }
         public virtual ICollection<CategoryProduct> InverseCategoryMainNavigation { get; set; }
+        public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         public virtual ICollection<ProductCategoryMapping> ProductCategoryMappings { get; set; }
         public virtual ICollection<SpecificationAttribute> SpecificationAttributes { get; set; }
     }

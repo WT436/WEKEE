@@ -62,5 +62,13 @@ namespace Product.API.Src.ProductAreas
             var data = await _categoryProduct.GetMapCategory();
             return Ok(data);
         }
+
+        [HttpGet]
+        [Route("/v1/api/get-map-category-name-id")]
+        public async Task<IActionResult> GetNameAndId()
+        {
+            var data = await _categoryProduct.ReadNameAndId();
+            return Ok(data);
+        }
     }
 }

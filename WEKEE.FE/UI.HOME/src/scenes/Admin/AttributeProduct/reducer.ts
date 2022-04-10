@@ -1,5 +1,7 @@
 import notification from 'antd/lib/notification';
+import { getDataAttibuteProductStart } from './actions';
 import ActionTypes from './constants';
+import ConstTypes from './objectValues/constTypes';
 import { AttributeProductActions, AttributeProductState } from './types';
 
 declare var abp: any;
@@ -8,10 +10,12 @@ export const initialState: AttributeProductState = {
     loading: false,
     completed: true,
     pageIndex: 0,
-    pageSize: 0,
+    pageSize: 20,
     totalCount: 0,
     totalPages: 0,
-    productAttributeReadDto: []
+    productAttributeReadDto: [],
+    cateProReadIdAndNameDto: [],
+    optionCreateByCate: []
 };
 
 function attributeProductReducer(
@@ -19,6 +23,26 @@ function attributeProductReducer(
     action: AttributeProductActions // day
 ) {
     switch (action.type) {
+        //#region LOAD_CREATE_BY_CATE_START
+        case ActionTypes.LOAD_CREATE_BY_CATE_START:
+            return {
+                ...state,
+                loading: true,
+            };
+
+        case ActionTypes.LOAD_CREATE_BY_CATE_COMPLETED:
+            return {
+                ...state,
+                loading: false,
+                optionCreateByCate: action.payload
+            };
+
+        case ActionTypes.LOAD_CREATE_BY_CATE_ERROR:
+            return {
+                ...state,
+                loading: false,
+            };
+        //#endregion
         // OPEN PAGE
         case ActionTypes.WATCH_PAGE_START:
             return {
@@ -38,6 +62,27 @@ function attributeProductReducer(
                 ...state,
                 loading: false
             };
+        //#region LOAD_CATE_PRO_START
+        case ActionTypes.LOAD_CATE_PRO_START:
+            return {
+                ...state,
+                loading: true,
+
+            };
+
+        case ActionTypes.LOAD_CATE_PRO_COMPLETED:
+            return {
+                ...state,
+                loading: false,
+                cateProReadIdAndNameDto: action.payload
+            };
+
+        case ActionTypes.LOAD_CATE_PRO_ERROR:
+            return {
+                ...state,
+                loading: false,
+            };
+        //#endregion
 
         //#region GET_DATA_ATTRIBUTE_PRODUCT_START
         case ActionTypes.GET_DATA_ATTRIBUTE_PRODUCT_START:
@@ -86,6 +131,14 @@ function attributeProductReducer(
                     placement: "bottomRight",
                 });
             }
+            getDataAttibuteProductStart({
+                pageIndex: state.pageIndex,
+                pageSize: state.pageSize,
+                propertyOrder: ConstTypes.NULL,
+                valueOrderBy: ConstTypes.NULL,
+                propertySearch: [],
+                valuesSearch: [],
+            })
             return {
                 ...state,
                 loading: false,

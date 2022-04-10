@@ -1,5 +1,5 @@
 import { call, put, takeLatest, race } from 'redux-saga/effects';
-import { createAttributeProductCompleted, createAttributeProductError, getDataAttibuteProductError, watchPageCompleted, watchPageError } from './actions';
+import { createAttributeProductCompleted, createAttributeProductError, getDataAttibuteProductError, loadCateProCompleted, loadCateProError, loadCreateByCateCompleted, loadCreateByCateError, watchPageCompleted, watchPageError } from './actions';
 import ActionTypes from './constants';
 import service from './services';
 import { getDataAttibuteProductCompleted } from './actions'
@@ -18,9 +18,47 @@ export default function* watchLoginRequestStart() {
     yield takeLatest(ActionTypes.CREATE_ATTRIBUTE_PRODUCT_START, createAttributeProduct);
     //#endregion
 
+
+    //#region LOAD_CATE_PRO
+    yield takeLatest(ActionTypes.LOAD_CATE_PRO_START, loadCatePro);
+    //#endregion
+    //#region LOAD_CREATE_BY_CATE
+    yield takeLatest(ActionTypes.LOAD_CREATE_BY_CATE_START, loadCreateByCate);
+    //#endregion
 }
+//#region LOAD_CREATE_BY_CATE
+function* loadCreateByCate() {
+    try {
+        const { output } = yield race({
+            output: call(service.loadCreateByCateService),
+        });
+        if (output) {
+            yield put(loadCreateByCateCompleted(output));
+        } else {
+            yield put(loadCreateByCateError());
+        }
+    } catch (error) {
+        yield put(loadCreateByCateError());
+    }
+}
+//#endregion
 
-
+//#region LOAD_CATE_PRO
+function* loadCatePro() {
+    try {
+        const { output } = yield race({
+            output: call(service.loadCateProService),
+        });
+        if (output) {
+            yield put(loadCateProCompleted(output));
+        } else {
+            yield put(loadCateProError());
+        }
+    } catch (error) {
+        yield put(loadCateProError());
+    }
+}
+//#endregion
 //#region CREATE_ATTRIBUTE_PRODUCT
 function* createAttributeProduct(input: any) {
     try {
@@ -70,3 +108,4 @@ function* requestLogin(input: any) {
         yield put(watchPageError());
     }
 }
+
