@@ -1,15 +1,7 @@
 //#region  import
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import {
-  Button,
-  Card,
-  Cascader,
-  Col,
-  Form,
-  Input,
-  Row,
-  Select,
-  Table,
-  Tag,
+  Button, Card, Cascader, Col, Form, Input, Row, Select, Table, Tag,
 } from "antd";
 import * as React from "react";
 import { useEffect, useState } from "react";
@@ -17,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { useInjectReducer, useInjectSaga } from "../../../redux/reduxInjectors";
 import { CategoryMapStart } from "../ACategory/actions";
-import { CategoryProductReadDto } from "../ACategory/dtos/CategoryProductReadDto";
 import {
   createSpecificationsStart,
   GetPageListSpecificationStart,
@@ -49,7 +40,7 @@ export interface IASpeciCateProps {
   location: any;
 }
 const key = "aspecicate";
-const stateSelector = createStructuredSelector<any, any>({
+const stateSelector = createStructuredSelector < any, any> ({
   loading: makeSelectLoading(),
   pageIndex: makeSelectPageIndex(),
   pageSize: makeSelectPageSize(),
@@ -67,13 +58,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
   useInjectSaga(key, saga);
   const dispatch = useDispatch();
 
-  const {
-    loading,
-    optionsCategory,
-    nameKey,
-    classifyValues,
-    specificationsCategoryDto,
-    specificationAttributeReadDto,
+  const { loading, optionsCategory, nameKey, classifyValues, specificationAttributeReadDto,
   } = useSelector(stateSelector);
 
   const [category, setCategory] = useState(0);
@@ -97,17 +82,10 @@ export default function ASpeciCate(props: IASpeciCateProps) {
 
   const onFinish = (values: SpecificationAttributeInsertDto) => {
     values.CategoryProductId = category;
-    console.log(values);
     dispatch(createSpecificationsStart(values));
   };
 
   const columns = [
-    {
-      title: "id",
-      dataIndex: "id",
-      key: "id",
-      render: (text: any) => <a>{text}</a>,
-    },
     {
       title: "key",
       dataIndex: "key",
@@ -137,7 +115,19 @@ export default function ASpeciCate(props: IASpeciCateProps) {
       title: "Hành Động",
       key: "x",
       dataIndex: "x",
-    },
+      render: (text: SpecificationAttributeInsertDto) => (
+        <div>
+          <Button type="link" icon={<EditOutlined />}
+
+          ></Button>
+          <Button type="link" icon={<DeleteOutlined />}
+            onClick={() => {
+
+            }}
+          ></Button>
+        </div>
+      )
+    }
   ];
 
   const displayRender = (value: any) => {
@@ -161,7 +151,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
             title="Chỉnh sửa Dữ liệu"
             size="small"
             type="inner"
-            loading={false}
+            loading={loading}
           >
             <Form
               labelCol={{ span: 6 }}
@@ -170,7 +160,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
               onFinish={onFinish}
             >
               <Row>
-                <Col span={12}>
+                <Col span={8}>
                   <Form.Item
                     label="Từ khóa"
                     name="key"
@@ -183,7 +173,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
                   </Form.Item>
                 </Col>
 
-                <Col span={12}>
+                <Col span={8}>
                   <Form.Item
                     label="Nhóm Key"
                     name="GroupSpecification"
@@ -193,7 +183,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
                   </Form.Item>
                 </Col>
 
-                <Col span={18}>
+                <Col span={8}>
                   <Form.Item
                     label="Category"
                     name="categoryMain"
@@ -220,10 +210,10 @@ export default function ASpeciCate(props: IASpeciCateProps) {
                   </Form.Item>
                 </Col>
               </Row>
-              <Form.Item wrapperCol={{ offset: 8, span: 24 }}>
+              <Form.Item wrapperCol={{ offset: 6, span: 24 }}>
                 <Button
-                  type="dashed"
-                  style={{ margin: "0 20px" }}
+                  type="default"
+                  style={{ margin: "0 20px", width: '50%' }}
                   htmlType="submit"
                 >
                   Lưu
@@ -267,7 +257,7 @@ export default function ASpeciCate(props: IASpeciCateProps) {
                 </Select>
               </Col>
               <Col span={5}>
-                <Button onClick={() => {}}>Tìm kiếm</Button>
+                <Button onClick={() => { }}>Tìm kiếm</Button>
                 <Button style={{ margin: "0 5px" }}>All</Button>
                 <Button>Clean</Button>
               </Col>

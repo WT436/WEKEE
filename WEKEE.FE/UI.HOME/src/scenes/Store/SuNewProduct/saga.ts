@@ -8,6 +8,8 @@ import {
   getSpecifiCategoryError,
   InsertProductFullCompleted,
   InsertProductFullError,
+  loadCategoryValueCompleted,
+  loadCategoryValueError,
   proAttrTypesAttributeCompleted,
   proAttrTypesTradeMarkCompleted,
   proAttrTypesUnitCompleted,
@@ -37,8 +39,28 @@ export default function* watchLoginRequestStart() {
   //#region INSERT_PRODUCT_FULL
   yield takeLatest(ActionTypes.INSERT_PRODUCT_FULL_START, InsertProductFull);
   //#endregion
+
+  //#region LOAD_CATEGORY_VALUE
+  yield takeLatest(ActionTypes.LOAD_CATEGORY_VALUE_START, loadCategoryValue);
+  //#endregion
 }
 
+//#region LOAD_CATEGORY_VALUE
+function* loadCategoryValue(input: any) {
+  try {
+    const { output } = yield race({
+      output: call(service.loadCategoryValueService, input.payload),
+    });
+    if (output) {
+      yield put(loadCategoryValueCompleted(output, input.meta));
+    } else {
+      yield put(loadCategoryValueError());
+    }
+  } catch (error) {
+    yield put(loadCategoryValueError());
+  }
+}
+//#endregion
 
 //#region INSERT_PRODUCT_FULL
 function* InsertProductFull(input: any) {
@@ -61,7 +83,7 @@ function* InsertProductFull(input: any) {
 function* proAttrTypesUnit(input: any) {
   try {
     const { output } = yield race({
-      output: call(service.proAttrTypesUnitService, input.payload),
+      output: call(service.proAttrTypesUnitService, input.payload, input.meta),
     });
     if (output) {
       if (input.payload === 0) {

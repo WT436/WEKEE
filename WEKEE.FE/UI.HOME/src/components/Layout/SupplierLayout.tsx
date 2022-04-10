@@ -11,52 +11,52 @@ declare var abp: any;
 class SupplierLayout extends React.Component<any> {
 
   async componentDidMount(): Promise<void> {
-    var permission = true; //await LCPermission.checkSupplier();
-    if (!permission) {
-      window.location.href = "/login";
-      abp.auth.setSupplier("", undefined);
-    } else {
-      if (!abp.auth.getTokenSupplier()) {
-        Modal.confirm({
-          title: "Shop " + permission + " yêu cầu mật khẩu.",
-          width: "40%",
-          content: (
-            <div>
-              <Tooltip
-                title={
-                  "Nếu bạn đăng nhập lần đầu thì mật khẩu là mật khẩu của tài khoản tạo shop"
-                }
-              >
-                <Input.Password
-                  placeholder="Mật khẩu shop"
-                />
-              </Tooltip>
-            </div>
-          ),
-          autoFocusButton: null,
-          okButtonProps: {},
-          okText: "Đăng Nhập",
-          cancelText: "Thoát",
-          onCancel() {
-            window.location.href = "/";
-          },
-          onOk: async () => {
-            var tokenLogin = true; //await LCPermission.loginSupplier(input);
-            if (!tokenLogin) {
-              Modal.warning({
-                title: "Mật khẩu không chính xác",
-                content: "Nhập lại mật khẩu sau 1s",
-              });
-              setTimeout(() => {
-                window.location.href = "/supplier";
-              }, 1000);
-            } else {
-              abp.auth.setSupplier(abp.auth.getToken(), undefined);
-            }
-          },
-        });
-      }
-    }
+    // var permission = true; //await LCPermission.checkSupplier();
+    // if (!permission) {
+    //   window.location.href = "/login";
+    //   abp.auth.setSupplier("", undefined);
+    // } else {
+    //   if (!abp.auth.getTokenSupplier()) {
+    //     Modal.confirm({
+    //       title: "Shop " + permission + " yêu cầu mật khẩu.",
+    //       width: "40%",
+    //       content: (
+    //         <div>
+    //           <Tooltip
+    //             title={
+    //               "Nếu bạn đăng nhập lần đầu thì mật khẩu là mật khẩu của tài khoản tạo shop"
+    //             }
+    //           >
+    //             <Input.Password
+    //               placeholder="Mật khẩu shop"
+    //             />
+    //           </Tooltip>
+    //         </div>
+    //       ),
+    //       autoFocusButton: null,
+    //       okButtonProps: {},
+    //       okText: "Đăng Nhập",
+    //       cancelText: "Thoát",
+    //       onCancel() {
+    //         window.location.href = "/";
+    //       },
+    //       onOk: async () => {
+    //         var tokenLogin = true; //await LCPermission.loginSupplier(input);
+    //         if (!tokenLogin) {
+    //           Modal.warning({
+    //             title: "Mật khẩu không chính xác",
+    //             content: "Nhập lại mật khẩu sau 1s",
+    //           });
+    //           setTimeout(() => {
+    //             window.location.href = "/supplier";
+    //           }, 1000);
+    //         } else {
+    //           abp.auth.setSupplier(abp.auth.getToken(), undefined);
+    //         }
+    //       },
+    //     });
+    //   }
+    // }
   }
 
   render() {
@@ -95,14 +95,14 @@ class SupplierLayout extends React.Component<any> {
             </Content>
           </Layout>
         </Layout>
-        <Modal
+        {/* <Modal
           className="YTBJIVHEoW"
           footer={null}
           closable={false}
           visible={false}
         >
           <SelectStore location={undefined} />
-        </Modal>
+        </Modal> */}
       </Col>
     );
   }

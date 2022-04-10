@@ -66,9 +66,17 @@ namespace Product.Application.Application
             }
         }
 
-        public async Task<List<ProductAttributeReadTypesDto>> GetAllAttribute(int type)
+        public async Task<List<ProductAttributeReadTypesDto>> GetAllAttribute(int type, List<int> categorys)
         {
-            var data = await _productAttributeQueries.GetAllTypesProductAttribute(type);
+            List<ProductAttributeReadTypesDto> data = new List<ProductAttributeReadTypesDto>();
+            if (categorys.Count==0)
+            {
+                data = await _productAttributeQueries.GetAllTypesProductAttribute(type);
+            }
+            else
+            {
+                data = await _productAttributeQueries.GetAllTypesProductAttribute(type, categorys);
+            }
             return data;
         }
 

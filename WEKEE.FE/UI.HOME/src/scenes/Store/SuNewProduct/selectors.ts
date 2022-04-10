@@ -19,19 +19,18 @@ const makeSelectproductDto = () => createSelector(select, (substate) => substate
 const makeSelectTrademarkDto = () => createSelector(select, (substate) => substate.productAttributeReadTrademarkDto);
 const makeSelectAttributeDto = () => createSelector(select, (substate) => substate.productAttributeReadAttributeDto);
 const makeSelectproductContainer = () => createSelector(select, (substate) => substate.productContainer);
+const makeSelectattributeValueOne = () => createSelector(select, (substate) => substate.attributeValueOne);
+const makeSelectattributeValueTwo = () => createSelector(select, (substate) => substate.attributeValueTwo);
 
 
 export {
-  makeSelectLoading,
-  makeSelectCompleted,
-  makeSelectPageIndex,
-  makeSelectPageSize,
-  makeSelectTotalCount,
-  makeSelectTotalPages,
-  makeSelectcategorySelectDto,
-  makeSelectalbumProduct,
+  makeSelectLoading,makeSelectCompleted,
+  makeSelectPageIndex,makeSelectPageSize,
+  makeSelectTotalCount,makeSelectTotalPages,
+  makeSelectcategorySelectDto,makeSelectalbumProduct,
   makeSelectspecificationsCategoryDto,
   makeSelectproductAttributeReadTypesDto,
   makeSelectproductDto, makeSelectTrademarkDto, makeSelectAttributeDto,
-  makeSelectproductContainer
+  makeSelectproductContainer,makeSelectattributeValueOne,
+  makeSelectattributeValueTwo
 };

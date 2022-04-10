@@ -2,7 +2,6 @@
 import {
     Button,
     Col, Collapse, Divider, Form, Input, InputNumber,
-    Progress,
     Radio, Row, Select, Steps, Typography,
 } from 'antd';
 import * as React from 'react';
@@ -24,7 +23,7 @@ import { InsertProductFullStart } from './actions';
 const { Title, Text } = Typography;
 const { Option } = Select;
 const { Panel } = Collapse;
-const { Step } = Steps;
+//const { Step } = Steps;
 //#endregion
 
 export interface ISuNewProductProps {
@@ -79,10 +78,6 @@ export default function SuNewProduct(props: ISuNewProductProps) {
         setMessageSpecifi(childData);
     }
 
-    useEffect(() => {
-        console.log(productContainer);
-    }, [productContainer]);
-
     const [container, setContainer] = useState < HTMLDivElement | null > (null);
 
     return (
@@ -98,12 +93,12 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                     <Text className="kdMal56HSK">Vui lòng chọn ngành hàng phù hợp cho sản phẩm của bạn.</Text>
                 </Row>
                 <Divider orientation="left"></Divider>
-                <Steps size="small" progressDot={true} current={2}>
+                {/* <Steps size="small" progressDot={true} current={2}>
                     <Step title={<Progress type="circle" percent={80} width={30} />} />
                     <Step title="In Progress" />
                     <Step title="Waiting" />
-                </Steps>
-                <Divider orientation="left"></Divider>
+                </Steps> 
+                <Divider orientation="left"></Divider>*/}
                 <Row>
                     <Form {...formItemLayout} style={{ width: '100%' }}>
                         <Collapse
@@ -225,8 +220,8 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                             <Button
                                 type='primary'
                                 className="vuejWOzNLH"
-                                onClick={() => {console.log(productContainer); dispatch(InsertProductFullStart(productContainer))}}>Lưu</Button>
-                            <Button className="vuejWOzNLH">Hoàn thiện sau</Button>
+                                onClick={() => { dispatch(InsertProductFullStart(productContainer)) }}
+                            >Lưu</Button>
                         </Form.Item>
                     </Form>
                 </Row>

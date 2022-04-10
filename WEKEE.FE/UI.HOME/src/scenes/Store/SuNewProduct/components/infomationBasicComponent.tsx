@@ -107,7 +107,6 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
 
     const handleChange = (info: any, id: number) => {
         if (info.file.response !== undefined) {
-            console.log(info.file.response)
             fileList[id].url = info.file.response.url.toString()
             setFileList([...fileList]);
         }

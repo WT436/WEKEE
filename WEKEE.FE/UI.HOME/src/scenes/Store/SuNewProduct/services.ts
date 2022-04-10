@@ -1,10 +1,22 @@
 import http from "../../../services/httpService";
 import { CreateProductDtos } from "./dtos/createProductDtos";
 import { ProductAttributeReadTypesDto } from "./dtos/productAttributeReadTypesDto";
+import { ProductAttributeValueReadDto } from "./dtos/productAttributeValueReadDto";
 import { ProductContainerInsertDto } from "./dtos/productContainerInsertDto";
 
 class SuNewProductService {
 
+  //#region  loadCategoryValueService
+  public async loadCategoryValueService(input: number): Promise<ProductAttributeValueReadDto[]> {
+    let rs = await http.get('/load-values-attribute', { params: {input:input} });
+    if (rs) {
+      return rs.data;
+    }
+    else {
+      return rs;
+    }
+  }
+  //#endregion
   //#region  InsertProductFullService
   public async InsertProductFullService(input: ProductContainerInsertDto): Promise<boolean> {
     let rs = await http.post('/create-product', input);
@@ -18,9 +30,8 @@ class SuNewProductService {
   //#endregion
 
   //#region  proAttrTypesUnitService
-  public async proAttrTypesUnitService(input: number): Promise<ProductAttributeReadTypesDto[]> {
-    let rs = await http.get('/product-attribute-type-one', { params: { input: input } });
-    console.log(rs)
+  public async proAttrTypesUnitService(input: number, categorys: number[]): Promise<ProductAttributeReadTypesDto[]> {
+    let rs = await http.get('/product-attribute-type-one', { params: { input: input, categorys: categorys } });
     if (rs) {
       return rs.data;
     }
@@ -62,7 +73,6 @@ class SuNewProductService {
 
   public async readFullAlbumProductStart() {
     let rs = await http.get("/get-all-product-album");
-    console.log(rs.data);
     if (rs) {
       return rs.data;
     } else {
@@ -72,7 +82,6 @@ class SuNewProductService {
 
   public async getCategotyMainStart() {
     let rs = await http.get('/get-map-category');
-    console.log(rs)
     if (rs) {
       return rs.data;
     }

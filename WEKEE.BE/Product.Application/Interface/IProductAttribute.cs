@@ -22,7 +22,7 @@ namespace Product.Application.Interface
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        Task<List<ProductAttributeReadTypesDto>> GetAllAttribute(int type);
+        Task<List<ProductAttributeReadTypesDto>> GetAllAttribute(int type, List<int> categorys);
         /// <summary>
         /// Read name and id from Category Product
         /// </summary>

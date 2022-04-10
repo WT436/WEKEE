@@ -1,13 +1,14 @@
-import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Button, Image, Col, Dropdown, Form, Input, InputNumber, Menu, Modal, Row, Select, Space, Table } from 'antd'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { Avatar, Button, Col, Dropdown, Form, Input, InputNumber, Menu, Modal, Row, Select, Space, Table } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectAttributeDto, makeSelectLoading, makeSelectproductContainer } from '../selectors';
+import { makeSelectAttributeDto, makeSelectattributeValueOne, makeSelectattributeValueTwo, makeSelectLoading, makeSelectproductContainer } from '../selectors';
 import { ImageProductDtos } from '../dtos/imageProductDtos';
-import { ContainerCreateProductStart, proAttrTypesUnitStart } from '../actions';
+import { ContainerCreateProductStart, loadCategoryValueStart, proAttrTypesUnitStart } from '../actions';
 import { ProductAttributeReadTypesDto } from '../dtos/productAttributeReadTypesDto';
 import { FeatureProductInsertDtos } from '../dtos/featureProductInsertDtos';
+import { ProductAttributeValueReadDto } from '../dtos/productAttributeValueReadDto';
 const { Option } = Select;
 
 interface IClassificationOfGoodsComponent {
@@ -19,7 +20,9 @@ declare var abp: any;
 const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
     attributeDto: makeSelectAttributeDto(),
-    productContainer: makeSelectproductContainer()
+    productContainer: makeSelectproductContainer(),
+    attributeValueOne: makeSelectattributeValueOne(),
+    attributeValueTwo: makeSelectattributeValueTwo(),
 });
 
 export default function ClassificationOfGoodsComponent(props: IClassificationOfGoodsComponent) {
@@ -27,51 +30,14 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     const dispatch = useDispatch();
 
     const {
-        loading, attributeDto, productContainer
+        loading, attributeDto, productContainer, attributeValueOne, attributeValueTwo
     } = useSelector(stateSelector);
 
     //#region Loading  attribute
-    useEffect(() => {
-        dispatch(proAttrTypesUnitStart(0));
-    }, []);
-    //#endregion
-
-    //#region Attribute Select
-    useEffect(() => {
-        setitemsDataAttribute(attributeDto);
-    }, [attributeDto]);
-
-    const [itemsDataAttribute, setitemsDataAttribute] = useState < ProductAttributeReadTypesDto[] > ([])
-    const [itemsDataAttributeOne, setitemsDataAttributeOne] = useState < Number > ();
-    const [itemsDataAttributeTwo, setitemsDataAttributeTwo] = useState < Number > ();
-    const OnchangeDataAttribute = (value: any, num: number) => {
-        // lưu trữ dữ liệu
-        if (num === 1) {
-            setitemsDataAttributeOne(value);
-            // lấy dữ liệu 
-        } else {
-            setitemsDataAttributeTwo(value);
-            // lấy dữ liệu 
-        }
+    const _loadCategoryProductKey = () => {
+        dispatch(proAttrTypesUnitStart(0, productContainer.categoryProduct.idCategory));
     }
     //#endregion
-
-    //#region Attribute 1
-    const [items, setItems] = useState(
-        [
-            { key: 1, values: 'Lựa chọn 1' },
-            { key: 2, values: 'Lựa chọn 2' },
-            { key: 3, values: 'Lựa chọn 3' },
-            { key: 4, values: 'Lựa chọn 4' },
-            { key: 5, values: 'Lựa chọn 5' },
-            { key: 6, values: 'Lựa chọn 6' },
-            { key: 7, values: 'Lựa chọn 7' },
-            { key: 8, values: 'Lựa chọn 8' },
-            { key: 9, values: 'Lựa chọn 9' },
-            { key: 10, values: 'Lựa chọn 10' },
-        ]);
-    //#endregion
-
     //#region Render Table Attribute 
     const columns = [
         {
@@ -148,7 +114,6 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
         },
     ];
     //#endregion
-
     //#region Onchange Input  
     const [PriceInput, setPriceInput] = useState < Number > ();
     const [weightInput, setweightInput] = useState < Number > ();
@@ -157,7 +122,27 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     const [heightInput, setheightInput] = useState < Number > ();
     const [quantityInput, setquantityInput] = useState < Number > ();
     //#endregion
+    //#region Attribute Select
+    useEffect(() => {
+        setitemsDataAttribute(attributeDto);
+    }, [attributeDto]);
 
+    const [itemsDataAttribute, setitemsDataAttribute] = useState < ProductAttributeReadTypesDto[] > ([])
+    const [itemsDataAttributeOne, setitemsDataAttributeOne] = useState < Number > ();
+    const [itemsDataAttributeTwo, setitemsDataAttributeTwo] = useState < Number > ();
+    const OnchangeDataAttribute = (value: any, num: number) => {
+        // lưu trữ dữ liệu
+        if (num === 1) {
+            setitemsDataAttributeOne(value);
+            dispatch(loadCategoryValueStart(value, 1));
+            // lấy dữ liệu 
+        } else {
+            setitemsDataAttributeTwo(value);
+            dispatch(loadCategoryValueStart(value, 2));
+            // lấy dữ liệu 
+        }
+    }
+    //#endregion
     //#region Select Attribute
     const [DataSelectAttributeOne, setDataSelectAttributeOne] = useState < { key: number, value: string }[] > ([]);
     const OnSelectListAttributeOne = (key: any, values: any) => {
@@ -171,9 +156,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
         setDataSelectAttributeTwo(values);
     }
     //#endregion
-
     //#region Show Classifi
-
     var featureEnd: FeatureProductInsertDtos[] = [];
     const [FeatureEndTable, setFeatureEndTable] = useState < FeatureProductInsertDtos[] > ([]);
     const ShowClassify = () => {
@@ -258,7 +241,6 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
         dispatch(ContainerCreateProductStart(productContainer));
     }
     //#endregion
-
     //#region Modal form Change Classifi Item
     const [formChangeClassif] = Form.useForm < FeatureProductInsertDtos > ();
 
@@ -294,15 +276,12 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
             setFeatureEndTable([]);
             setFeatureEndTable(FeatureEndTable => [...FeatureEndTable, values]);
         }
-
     };
 
     const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
     };
 
     const onChangepictureString = (value: any) => {
-        console.log(value);
     }
 
     const [options, setoptions] = useState < { value: string, lable: string }[] > ([])
@@ -471,6 +450,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         placeholder="Search to Select"
                         optionFilterProp="children"
                         onChange={(value: any) => OnchangeDataAttribute(value, 1)}
+                        onClick={() => _loadCategoryProductKey()}
                     >
                         {itemsDataAttribute.map((item: ProductAttributeReadTypesDto) => (
                             <Option key={item.id}
@@ -484,9 +464,10 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         placeholder="custom dropdown render"
                         mode="multiple"
                         onChange={OnSelectListAttributeOne}
+                        onClick={() => _loadCategoryProductKey()}
                     >
-                        {items.map((item) => (
-                            <Option key={item.key} value={item.values}>{item.values}</Option>
+                        {attributeValueOne.map((item: ProductAttributeValueReadDto) => (
+                            <Option key={item.id} value={item.values}>{item.values}</Option>
                         ))}
                     </Select>
                 </Input.Group>
@@ -512,8 +493,8 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         mode="multiple"
                         onChange={OnSelectListAttributeTwo}
                     >
-                        {items.map((item) => (
-                            <Option key={item.key} value={item.values}>{item.values}</Option>
+                        {attributeValueTwo.map((item: ProductAttributeValueReadDto) => (
+                            <Option key={item.id} value={item.values}>{item.values}</Option>
                         ))}
                     </Select>
                 </Input.Group>

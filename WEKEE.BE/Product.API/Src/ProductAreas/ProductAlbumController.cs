@@ -18,7 +18,8 @@ namespace Product.API.Src.ProductAreas
         public async Task<IActionResult> Index()
         {
             //read token => id store
-            var data = await _productAlbum.GetallNameProductAlbum(1);
+            int idStore = 1;
+            var data = await _productAlbum.GetallNameProductAlbum(id: idStore);
             return Ok(data);
         }
     }

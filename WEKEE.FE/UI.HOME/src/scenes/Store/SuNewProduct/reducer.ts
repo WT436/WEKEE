@@ -67,15 +67,7 @@ export const initialState: SuNewProductState = {
       createBy: 0
     },
     productTagDtos: [],
-    imageRoot: ["album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
-      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
-      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
-      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
-      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
-      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
-      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
-      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"
-      , "album/await/20527dfb5fcc45bd82754e5084729db7.jpg"],
+    imageRoot: [],
     specificationProductDtos: [
       {
         customValue: "",
@@ -107,7 +99,9 @@ export const initialState: SuNewProductState = {
         }
       ]
     }]
-  }
+  },
+  attributeValueOne: [],
+  attributeValueTwo: []
 };
 //#endregion
 
@@ -116,6 +110,37 @@ function suNewProductReducer(
   action: SuNewProductActions
 ) {
   switch (action.type) {
+
+    //#region LOAD_CATEGORY_VALUE_START
+    case ActionTypes.LOAD_CATEGORY_VALUE_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.LOAD_CATEGORY_VALUE_COMPLETED:
+      if (action.meta == 1) {
+        return {
+          ...state,
+          loading: false,
+          attributeValueOne: action.payload
+        };
+      }
+      else {
+        return {
+          ...state,
+          loading: false,
+          attributeValueTwo: action.payload
+        };
+      }
+
+    case ActionTypes.LOAD_CATEGORY_VALUE_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
+
     //#region INSERT_PRODUCT_FULL_START
     case ActionTypes.INSERT_PRODUCT_FULL_START:
       return {
@@ -135,14 +160,12 @@ function suNewProductReducer(
         loading: false,
       };
     //#endregion
-    
+
     //#region CONTAINER_CREATE_PRODUCT_START
     case ActionTypes.CONTAINER_CREATE_PRODUCT_START:
-      console.log(action.payload);
       return {
         ...state,
-        productContainer: action.payload,
-        loading: true,
+        productContainer: action.payload
       };
     //#endregion
 
@@ -170,7 +193,6 @@ function suNewProductReducer(
       };
 
     case ActionTypes.PRO_ATTR_TYPE_ATTRIBUTE_COMPLETED:
-      console.log(action.payload)
       return {
         ...state,
         loading: false,

@@ -119,7 +119,7 @@ SELECT CP.[Id]			  AS 'Id'
 	    ,CP.[CreatedOnUtc]      AS 'CreatedOnUtc'                                                                              
 	    ,CP.[UpdatedOnUtc]      AS 'UpdatedOnUtc'                                                                              
 	FROM[ProductDB].[dbo].[ProductAttribute] AS CP                                                                             
- WHERE CP.CreatedOnUtc >= CONVERT(datetime, '2022/05/19') AND CONVERT(datetime, '') 
+ WHERE CAST(CP.CreatedOnUtc AS Date) = '2022-04-05'
   ORDER BY Id ASC 
   OFFSET((1 - 1) * 20) ROWS                                                                        
   FETCH NEXT 20 ROWS ONLY                                                                            

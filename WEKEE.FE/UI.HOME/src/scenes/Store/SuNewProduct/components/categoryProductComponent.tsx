@@ -1,23 +1,22 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Cascader, Divider, Form, Input, Select, Switch } from 'antd';
+import { PlusOutlined, WarningOutlined } from '@ant-design/icons';
+import { Cascader, Divider, Form, Input, Modal, Select, Switch } from 'antd';
 import TextArea from 'antd/lib/input/TextArea'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {
     ContainerCreateProductStart,
-    getCategotyMainStart, getSpecifiCategoryStart,
+    getCategotyMainStart,
     proAttrTypesUnitStart,
     readFullAlbumProductStart,
-    setProductsStart
 } from '../actions';
 import {
     makeSelectalbumProduct,
-    makeSelectcategorySelectDto, makeSelectLoading, makeSelectproductAttributeReadTypesDto, makeSelectproductContainer, makeSelectproductDto, makeSelectspecificationsCategoryDto, makeSelectTrademarkDto,
+    makeSelectcategorySelectDto, makeSelectproductAttributeReadTypesDto, makeSelectproductContainer, makeSelectproductDto, makeSelectspecificationsCategoryDto, makeSelectTrademarkDto,
 } from '../selectors';
-import { ProductDtos } from '../dtos/productDtos';
 import { ProductAttributeReadTypesDto } from '../dtos/productAttributeReadTypesDto';
 const { Option } = Select;
+const { confirm } = Modal;
 interface ICategoryProductComponent { }
 
 const stateSelector = createStructuredSelector < any, any> ({
@@ -229,32 +228,63 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
     const dispatch = useDispatch();
 
     const {
-        optionsCategory, albumProduct,
-        productDto, productAttributeReadTypesDto,
+        optionsCategory, albumProduct, productAttributeReadTypesDto,
         trademarkDto, productContainer
     } = useSelector(stateSelector);
-
-    //#region useEffect
+    useEffect(() => {
+        console.log(productContainer);
+    }, [productContainer]);
+    //#region START
     useEffect(() => {
         dispatch(getCategotyMainStart());
         dispatch(readFullAlbumProductStart());
-        dispatch(proAttrTypesUnitStart(1));
     }, []);
-
-    useEffect(() => {
-
-    }, [productContainer]);
-
     //#endregion
+    //#region CATEGORY
+    const [IsCategorySelect, setIsCategorySelect] = useState(true);
+    const [CategoryDefault, setCategoryDefault] = useState < number[] > ([1]);
 
-    //#region  Cascader
     let onChangeCascader = (value: any) => {
-        productContainer.categoryProduct.idCategory = value;
-        productContainer.categoryProduct.categoryMain = value.length == 0 ? 0 : value[0];
-        dispatch(ContainerCreateProductStart(productContainer));
-    };
-    //#endregion
+        
+        dispatch(proAttrTypesUnitStart(1,value));
 
+        if (productContainer.categoryProduct.categoryMain !== 0) {
+            productContainer.categoryProduct.idCategory = value;
+            setCategoryDefault(value);
+            productContainer.categoryProduct.categoryMain = value.length == 0 ? 0 : value[0];
+            setIsCategorySelect(productContainer.categoryProduct.categoryMain === 0);
+            _removeAllData();
+            dispatch(ContainerCreateProductStart(productContainer));
+            // confirm({
+            //     title: 'Cảnh Báo!',
+            //     icon: <WarningOutlined />,
+            //     content: 'Khi thay đổi Category sẽ tự động xóa dữ liệu đã nhập',
+            //     onOk() {
+            //         productContainer.categoryProduct.idCategory = value;
+            //         setCategoryDefault(value);
+            //         productContainer.categoryProduct.categoryMain = value.length == 0 ? 0 : value[0];
+            //         setIsCategorySelect(productContainer.categoryProduct.categoryMain === 0);
+            //         _removeAllData();
+            //         dispatch(ContainerCreateProductStart(productContainer));
+            //     },
+            //     onCancel() {
+            //         setCategoryDefault(productContainer.categoryProduct.idCategory);
+            //     },
+            // });
+        }
+        else {
+            productContainer.categoryProduct.idCategory = value;
+            productContainer.categoryProduct.categoryMain = value.length == 0 ? 0 : value[0];
+            setIsCategorySelect(productContainer.categoryProduct.categoryMain === 0);
+            dispatch(ContainerCreateProductStart(productContainer));
+        }
+    };
+
+    const _removeAllData = () => {
+
+    }
+
+    //#endregion
     //#region Album Product 
     const [provinceDataAlbumProduct, setprovinceDataAlbumProduct] = useState(['']);
     const [nameAlbumProduct, setNameAlbumProduct] = useState('');
@@ -280,7 +310,37 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
         productContainer.productInsertDto.productAlbum = value;
         dispatch(ContainerCreateProductStart(productContainer));
     }
+    //#endregion
+    //#region Tag 
+    const [items, setitems] = useState < string[] > ([]);
+    const [nameTag, setnameTag] = useState('');
 
+    const addItem = () => {
+        if (items.findIndex((element) => element === nameTag) === -1) {
+            setitems([...items, nameTag]);
+        }
+    };
+
+    const onNameChange = (event: any) => {
+        setnameTag(event.target.value);
+    };
+    //#endregion
+    //#region Unit Product
+    const _loadUnitProduct = () => {
+        dispatch(proAttrTypesUnitStart(1,CategoryDefault));
+    }
+
+    useEffect(() => {
+        _loadUnitProduct();
+    }, [CategoryDefault])
+
+    const selectunitProduct = (value: number) => {
+        productContainer.productInsertDto.unitProduct = value;
+        dispatch(ContainerCreateProductStart(productContainer));
+    }
+
+    //#endregion
+    //#region Other 
     const selectOrigin = (value: string) => {
         productContainer.productInsertDto.origin = JSON.stringify(value);
         dispatch(ContainerCreateProductStart(productContainer));
@@ -288,11 +348,6 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
 
     const selectNameProduct = (value: string) => {
         productContainer.productInsertDto.name = value;
-        dispatch(ContainerCreateProductStart(productContainer));
-    }
-
-    const selectunitProduct = (value: number) => {
-        productContainer.productInsertDto.unitProduct = value;
         dispatch(ContainerCreateProductStart(productContainer));
     }
 
@@ -310,23 +365,6 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
         productContainer.productTagDtos = value;
         dispatch(ContainerCreateProductStart(productContainer));
     }
-    //#endregion
-
-    //#region Tag 
-    const [tagState, settagState] = useState < string[] > ([]);
-    const [items, setitems] = useState < string[] > ([]);
-    const [tags, settags] = useState(['Unremovable']);
-    const [nameTag, setnameTag] = useState('');
-
-    const addItem = () => {
-        if (items.findIndex((element) => element === nameTag) === -1) {
-            setitems([...items, nameTag]);
-        }
-    };
-
-    const onNameChange = (event: any) => {
-        setnameTag(event.target.value);
-    };
     //#endregion
 
     return (
@@ -388,6 +426,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                 <Select
                     style={{ width: '100%' }}
                     onChange={selectAlbum}
+                    disabled={IsCategorySelect}
                     dropdownRender={menu => (
                         <div>
                             {menu}
@@ -464,6 +503,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     filterSort={(optionA: any, optionB: any) =>
                         optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                     }
+                    disabled={IsCategorySelect}
                     onChange={selectunitProduct}
                 >
                     {
@@ -488,7 +528,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                 <Switch
                     checkedChildren="Hàng Cứng"
                     unCheckedChildren="Hàng Dễ vỡ"
-                    onChange={(value: boolean) =>selectfragileProduct(value) }
+                    onChange={(value: boolean) => selectfragileProduct(value)}
                     defaultChecked />
             </Form.Item>
 
@@ -513,10 +553,11 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     filterSort={(optionA: any, optionB: any) =>
                         optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                     }
+                    disabled={IsCategorySelect}
                     onChange={
                         (value: number) => selecttrademarkProduct(value)
                     }
-                    onClick={() => { dispatch(proAttrTypesUnitStart(3)); }}
+                    onClick={() => { dispatch(proAttrTypesUnitStart(3,[])); }}
                 >
                     {
                         trademarkDto.map((province: ProductAttributeReadTypesDto) => (

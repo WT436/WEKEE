@@ -4,6 +4,7 @@ using Product.Domain.Shared.DataTransfer.ProductAttributeDTO;
 using Product.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnitOfWork;
@@ -59,6 +60,27 @@ namespace Product.Infrastructure.Queries
             query.AppendLine("    AND CP.CreateBy = 0                ");
             query.AppendLine("    AND CP.isDelete = 0                ");
 
+            return unitOfWork.FromSql<ProductAttributeReadTypesDto>(query.ToString());
+        }
+
+        public async Task<List<ProductAttributeReadTypesDto>> GetAllTypesProductAttribute(int type, List<int> categorys)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("  SELECT distinct                      ");
+            query.AppendLine("         CP.[Id]                       ");
+            query.AppendLine("  	  ,CP.[Name]                     ");
+            query.AppendLine("  	  ,CP.[Types]                    ");
+            query.AppendLine("  FROM[dbo].[ProductAttribute] AS CP   ");
+            query.AppendLine($" WHERE CP.Types = {type}              ");
+            query.AppendLine("    AND CP.CreateBy = 0                ");
+            query.AppendLine("    AND CP.isDelete = 0 AND            ");
+            foreach (var item in categorys)
+            {
+                if (categorys.FirstOrDefault() == item)
+                    query.AppendLine($" CP.CategoryProductId = {item}   ");
+                else
+                    query.AppendLine($" OR   CP.CategoryProductId = {item}   ");
+            };
             return unitOfWork.FromSql<ProductAttributeReadTypesDto>(query.ToString());
         }
     }
