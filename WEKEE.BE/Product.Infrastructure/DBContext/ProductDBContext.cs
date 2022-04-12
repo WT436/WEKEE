@@ -53,10 +53,10 @@ namespace Product.Infrastructure.DBContext
             {
                 entity.ToTable("CategoryProduct");
 
-                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B402325974064")
+                entity.HasIndex(e => e.NameCategory, "UQ__Category__431B4023FA48F01F")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B954886904C")
+                entity.HasIndex(e => e.UrlCategory, "UQ__Category__B1978B9563655391")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -219,11 +219,11 @@ namespace Product.Infrastructure.DBContext
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Product__Tradema__4316F928");
 
-                entity.HasOne(d => d.UnitAttribute)
-                    .WithMany(p => p.ProductUnitAttributes)
-                    .HasForeignKey(d => d.UnitAttributeId)
+                entity.HasOne(d => d.UnitProductNavigation)
+                    .WithMany(p => p.ProductUnitProductNavigations)
+                    .HasForeignKey(d => d.UnitProduct)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product__UnitAtt__440B1D61");
+                    .HasConstraintName("FK__Product__UnitPro__440B1D61");
             });
 
             modelBuilder.Entity<ProductAttribute>(entity =>
@@ -364,7 +364,6 @@ namespace Product.Infrastructure.DBContext
                 entity.HasOne(d => d.AttributeType)
                     .WithMany(p => p.ProductSpecificationAttributeMappings)
                     .HasForeignKey(d => d.AttributeTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Product_S__Attri__30C33EC3");
 
                 entity.HasOne(d => d.Product)

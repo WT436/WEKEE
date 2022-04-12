@@ -11,7 +11,7 @@ namespace Product.Domain.Shared.Entitys
         public string CustomValue { get; set; }
         public int ProductId { get; set; }
         public int SpecificationId { get; set; }
-        public int AttributeTypeId { get; set; }
+        public int? AttributeTypeId { get; set; }
         public bool AllowFiltering { get; set; }
         public bool ShowOnProductPage { get; set; }
         public int DisplayOrder { get; set; }

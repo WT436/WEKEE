@@ -2,6 +2,7 @@ export interface ProductInsertDto {
     name: string;
     fragile: boolean | null;
     origin: string;
+    trademark:number;
     unitAttributeId: number;
     shortDescription: string;
     fullDescription: string;

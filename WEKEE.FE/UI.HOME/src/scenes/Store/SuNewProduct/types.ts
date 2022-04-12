@@ -21,9 +21,11 @@ export interface SuNewProductState {
   readonly productAttributeReadTrademarkDto: ProductAttributeReadTypesDto[];
   readonly productAttributeReadAttributeDto: ProductAttributeReadTypesDto[];
   readonly productDto: ProductDtos;
-  readonly productContainer : ProductContainerInsertDto;
-  readonly attributeValueOne : ProductAttributeValueReadDto[];
-  readonly attributeValueTwo : ProductAttributeValueReadDto[];
+  readonly productContainer: ProductContainerInsertDto;
+  readonly attributeValueOne: ProductAttributeValueReadDto[];
+  readonly attributeValueTwo: ProductAttributeValueReadDto[];
+  readonly nameGroupSpec: string[]
+  readonly keyOfGroupSpec: string[]
 }
 
 export type SuNewProductActions = ActionType<typeof actions>;

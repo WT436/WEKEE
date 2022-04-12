@@ -5,10 +5,38 @@ import { ProductAttributeValueReadDto } from "./dtos/productAttributeValueReadDt
 import { ProductContainerInsertDto } from "./dtos/productContainerInsertDto";
 
 class SuNewProductService {
+  //#region  loadKeyGroupService
+  public async loadKeyGroupService(input: number[], nameGroup: string | undefined): Promise<string[]> {
+    let rs = await http.get('/load-specification-data',
+      {
+        params: {
+          category: input,
+          nameGroup: nameGroup
+        }
+      });
+    if (rs) {
+      return rs.data;
+    }
+    else {
+      return rs;
+    }
+  }
+  //#endregion
+  //#region  nameGroupSpecService
+  public async nameGroupSpecService(input: number[]): Promise<string[]> {
+    let rs = await http.get('/load-name-group-spec', { params: { input: input } });
+    if (rs) {
+      return rs.data;
+    }
+    else {
+      return rs;
+    }
+  }
+  //#endregion
 
   //#region  loadCategoryValueService
   public async loadCategoryValueService(input: number): Promise<ProductAttributeValueReadDto[]> {
-    let rs = await http.get('/load-values-attribute', { params: {input:input} });
+    let rs = await http.get('/load-values-attribute', { params: { input: input } });
     if (rs) {
       return rs.data;
     }

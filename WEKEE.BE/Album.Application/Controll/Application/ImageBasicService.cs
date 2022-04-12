@@ -157,6 +157,7 @@ namespace Album.Application.Controll.Application
             {
                 foreach (var file in files)
                 {
+                    if (string.IsNullOrEmpty(file)) continue;
                     var image = OpenImage.ConvertIFormFileToBitmap(file, FolderSaveExtensions.FolderSave.AWAIT);
                     if (image != null)
                     {

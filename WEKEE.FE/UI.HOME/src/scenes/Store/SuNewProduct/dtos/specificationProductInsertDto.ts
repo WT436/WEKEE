@@ -1,6 +1,9 @@
 export interface SpecificationProductInsertDto {
     customValue: string;
-    specificationId: number;
-    attributeTypeId: number;
+    specificationKey: string;
+    SpecificationGroup: string | undefined;
     allowFiltering: boolean;
+    showOnProductPage: boolean;
+    displayOrder: number;
+    index: number;
 }

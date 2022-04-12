@@ -29,7 +29,7 @@ namespace Album.Application.Domain.BoundedContext
         public static Bitmap ConvertIFormFileToBitmap(string nameFile, FolderSave folderSave)
         {
             string path = Path.GetFullPath(
-                          Path.Combine(Directory.GetCurrentDirectory() + @$"\RootFiles\album\{FolderSaveConvert(folderSave)}\"));
+                          Path.Combine(Directory.GetCurrentDirectory() + @$"\RootFiles\"));
             string fillPath = path + nameFile;
             if (File.Exists(fillPath) && ImageExtensions.Contains(Path.GetExtension(fillPath).ToLower()))
             {

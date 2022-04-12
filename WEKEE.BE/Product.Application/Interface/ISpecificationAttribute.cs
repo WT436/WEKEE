@@ -16,5 +16,13 @@ namespace Product.Application.Interface
         /// Lấy thông tin Specification Attribute
         /// </summary>
         Task<PagedListOutput<SpecificationAttributeReadDto>> GetAllPageListCategory(SearchOrderPageInput input);
+        /// <summary>
+        /// Lấy tất cả tên nhóm
+        /// </summary>
+        Task<List<string>> GetAllNameGroupSpec(List<int> category);
+        /// <summary>
+        /// Lấy tất cả tên nhóm
+        /// </summary>
+        Task<List<string>> GetAllKeyByGroupSpec(List<int> category, string nameGroup);
     }
 }

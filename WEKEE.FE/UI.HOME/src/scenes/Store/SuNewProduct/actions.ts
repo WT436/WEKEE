@@ -10,13 +10,31 @@ import { ProductContainerInsertDto } from "./dtos/productContainerInsertDto";
 import { ProductAttributeValueReadDto } from "./dtos/productAttributeValueReadDto";
 //#endregion
 
+//#region LOAD_KEY_GROUP
+export const loadKeyGroupStart = (input: number[], nameGroup: string|undefined) =>
+  action(ActionTypes.LOAD_KEY_GROUP_START, input, nameGroup);
+export const loadKeyGroupCompleted = (output: string[]) =>
+  action(ActionTypes.LOAD_KEY_GROUP_COMPLETED, output);
+export const loadKeyGroupError = () =>
+  action(ActionTypes.LOAD_KEY_GROUP_ERROR);
+//#endregion
+
+//#region NAME_GROUP_SPEC
+export const nameGroupSpecStart = (input: number[]) =>
+  action(ActionTypes.NAME_GROUP_SPEC_START, input);
+export const nameGroupSpecCompleted = (output: string[]) =>
+  action(ActionTypes.NAME_GROUP_SPEC_COMPLETED, output);
+export const nameGroupSpecError = () =>
+  action(ActionTypes.NAME_GROUP_SPEC_ERROR);
+//#endregion
+
 //#region LOAD_CATEGORY_VALUE
-export const loadCategoryValueStart = (input: number,location:number) =>
-action(ActionTypes.LOAD_CATEGORY_VALUE_START, input, location);
-export const loadCategoryValueCompleted = (output: ProductAttributeValueReadDto[],location: number) =>
-action(ActionTypes.LOAD_CATEGORY_VALUE_COMPLETED, output, location);
+export const loadCategoryValueStart = (input: number, location: number) =>
+  action(ActionTypes.LOAD_CATEGORY_VALUE_START, input, location);
+export const loadCategoryValueCompleted = (output: ProductAttributeValueReadDto[], location: number) =>
+  action(ActionTypes.LOAD_CATEGORY_VALUE_COMPLETED, output, location);
 export const loadCategoryValueError = () =>
-action(ActionTypes.LOAD_CATEGORY_VALUE_ERROR);
+  action(ActionTypes.LOAD_CATEGORY_VALUE_ERROR);
 //#endregion
 
 //#region INSERT_PRODUCT_FULL
@@ -29,7 +47,7 @@ export const InsertProductFullError = () =>
 //#endregion
 
 //#region PRO_ATTR_TYPE_UNIT
-export const proAttrTypesUnitStart = (input: Number, categorys : number[]) =>
+export const proAttrTypesUnitStart = (input: Number, categorys: number[]) =>
   action(ActionTypes.PRO_ATTR_TYPE_UNIT_START, input, categorys);
 export const proAttrTypesUnitCompleted = (output: ProductAttributeReadTypesDto[]) =>
   action(ActionTypes.PRO_ATTR_TYPE_UNIT_COMPLETED, output);

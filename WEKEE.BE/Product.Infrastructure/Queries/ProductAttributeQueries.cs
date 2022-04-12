@@ -74,6 +74,7 @@ namespace Product.Infrastructure.Queries
             query.AppendLine($" WHERE CP.Types = {type}              ");
             query.AppendLine("    AND CP.CreateBy = 0                ");
             query.AppendLine("    AND CP.isDelete = 0 AND            ");
+            // thay thế IN
             foreach (var item in categorys)
             {
                 if (categorys.FirstOrDefault() == item)

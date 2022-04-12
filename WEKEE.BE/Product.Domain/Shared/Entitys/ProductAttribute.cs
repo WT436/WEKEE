@@ -12,7 +12,7 @@ namespace Product.Domain.Shared.Entitys
             ProductAttributeValues = new HashSet<ProductAttributeValue>();
             ProductSpecificationAttributeMappings = new HashSet<ProductSpecificationAttributeMapping>();
             ProductTrademarkNavigations = new HashSet<Product>();
-            ProductUnitAttributes = new HashSet<Product>();
+            ProductUnitProductNavigations = new HashSet<Product>();
         }
 
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace Product.Domain.Shared.Entitys
         public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; }
         public virtual ICollection<ProductSpecificationAttributeMapping> ProductSpecificationAttributeMappings { get; set; }
         public virtual ICollection<Product> ProductTrademarkNavigations { get; set; }
-        public virtual ICollection<Product> ProductUnitAttributes { get; set; }
+        public virtual ICollection<Product> ProductUnitProductNavigations { get; set; }
     }
 }

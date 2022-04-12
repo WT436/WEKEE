@@ -1,11 +1,10 @@
 import { PlusCircleOutlined } from '@ant-design/icons';
-import { Button, Col, Form, message, Modal, notification, Row, Typography, Upload } from 'antd'
-import draftToHtml from 'draftjs-to-html';
+import { Button, Col, Form, message, Modal, Row, Typography, Upload } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import EditorComponent from '../../../../components/EditorComponent';
-import { ContainerCreateProductStart, setProductsStart } from '../actions';
+import { ContainerCreateProductStart } from '../actions';
 import { ImageProductDtos } from '../dtos/imageProductDtos';
 import { makeSelectLoading, makeSelectproductContainer, makeSelectproductDto } from '../selectors';
 const { Text } = Typography;
@@ -39,7 +38,7 @@ const stateSelector = createStructuredSelector < any, any> ({
 export default function InfomationBasicComponent(props: IInfomationBasicComponent) {
 
     const {
-        loading, productContainer
+        productContainer
     } = useSelector(stateSelector);
 
     const dispatch = useDispatch();
@@ -101,8 +100,6 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
             url: '',
         },
     ]);
-
-
     //useEffect
 
     const handleChange = (info: any, id: number) => {
@@ -134,13 +131,12 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
     };
 
     const ConfirmOkShort = (isShortDescription: boolean) => {
-        
-        if(isShortDescription)
-        {
-            productContainer.shortDescription = ShortDescription;
+
+        if (isShortDescription) {
+            productContainer.productInsertDto.shortDescription = ShortDescription;
         }
-        else{
-            productContainer.fullDescription = FullDescription;
+        else {
+            productContainer.productInsertDto.fullDescription = FullDescription;
         }
         dispatch(ContainerCreateProductStart(productContainer));
     };
@@ -155,7 +151,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
     const callbackEditorHTMLFullDescription = (childData: string) => {
         setFullDescription(childData);
     }
-    
+
     //#endregion
 
     return (
@@ -406,7 +402,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                 visible={isModalVisible}
                 footer={null}
                 className='UYtFCeVF'
-                style={{width:'60vw !important'}}
+                style={{ width: '60vw !important' }}
                 onCancel={handleCancel}>
                 <div
                     dangerouslySetInnerHTML={{

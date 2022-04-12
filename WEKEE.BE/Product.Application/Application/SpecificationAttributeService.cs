@@ -7,6 +7,7 @@ using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.ModelQuery;
 using Product.Infrastructure.Queries;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Utils.Exceptions;
 
@@ -17,6 +18,16 @@ namespace Product.Application.Application
         private readonly CategoryProductQuery _categoryProductQuery = new CategoryProductQuery();
         private readonly SpecificationAttributeQuery _specificationAttributeQuery = new SpecificationAttributeQuery();
         private readonly SpecificationAttributeQueries _specificationAttributeQueries = new SpecificationAttributeQueries();
+
+        public async Task<List<string>> GetAllKeyByGroupSpec(List<int> category, string nameGroup)
+        {
+            return await _specificationAttributeQuery.GetAllKeyByGroupSpec(category, nameGroup);
+        }
+
+        public async Task<List<string>> GetAllNameGroupSpec(List<int> category)
+        {
+            return await _specificationAttributeQuery.GetAllNameGroupSpec(category);
+        }
 
         public async Task<PagedListOutput<SpecificationAttributeReadDto>> GetAllPageListCategory(SearchOrderPageInput input)
         {
@@ -83,9 +94,7 @@ namespace Product.Application.Application
                     return 1;
                 }
             }
-            // kiem tra key và category và nhóm nếu có
-            // Insert
         }
-   
+
     }
 }

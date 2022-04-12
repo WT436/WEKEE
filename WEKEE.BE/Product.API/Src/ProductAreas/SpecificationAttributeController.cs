@@ -4,6 +4,7 @@ using Product.Application.Interface;
 using Product.Domain.ObjectValues.Input;
 using Product.Domain.Shared.DataTransfer;
 using Product.Domain.Shared.DataTransfer.SpecificationAttributeDTO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Product.API.Src.ProductAreas
@@ -27,7 +28,7 @@ namespace Product.API.Src.ProductAreas
 
         [HttpPost]
         [Route("v1/api/create-specification-attribute")]
-        public async Task<IActionResult> CreateSpecificationAttribute([FromBody]SpecificationAttributeInsertDto input)
+        public async Task<IActionResult> CreateSpecificationAttribute([FromBody] SpecificationAttributeInsertDto input)
         {
             TokenToJWT tokenToJWT = new TokenToJWT();
             var token = HttpContext.Request.Headers["Authorization"].ToString();
@@ -35,6 +36,22 @@ namespace Product.API.Src.ProductAreas
 
             var data = await _specificationAttribute.Insert(input: input,
                                                         idAccount: idAccount);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("v1/api/load-name-group-spec")]
+        public async Task<IActionResult> LoadSpecNameGroupProduct(List<int> input)
+        {
+            var data = await _specificationAttribute.GetAllNameGroupSpec(input);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("v1/api/load-specification-data")]
+        public async Task<IActionResult> LoadSpecCreateProduct(string nameGroup, List<int> category)
+        {
+            var data = await _specificationAttribute.GetAllKeyByGroupSpec(category, nameGroup);
             return Ok(data);
         }
     }

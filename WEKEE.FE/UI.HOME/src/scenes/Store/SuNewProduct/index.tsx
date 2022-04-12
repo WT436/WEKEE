@@ -1,9 +1,4 @@
 //#region  import
-import {
-    Button,
-    Col, Collapse, Divider, Form, Input, InputNumber,
-    Radio, Row, Select, Steps, Typography,
-} from 'antd';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -12,6 +7,10 @@ import { createStructuredSelector } from 'reselect';
 import { useInjectReducer, useInjectSaga } from '../../../redux/reduxInjectors';
 import reducer from './reducer';
 import saga from './saga';
+import {
+    Button, Col, Collapse, Divider, Form, Input, InputNumber, Radio, Row,
+    Select, Steps, Typography,
+} from 'antd';
 import { makeSelectcategorySelectDto, makeSelectLoading, makeSelectproductContainer, makeSelectproductDto } from './selectors';
 import { CaretRightOutlined } from '@ant-design/icons';
 import CategoryProductComponent from './components/categoryProductComponent';
@@ -20,6 +19,7 @@ import InfomationSalesComponent from './components/infomationSalesComponent';
 import ClassificationOfGoodsComponent from './components/classificationOfGoodsComponent';
 import { ImageProductDtos } from './dtos/imageProductDtos';
 import { InsertProductFullStart } from './actions';
+import InfomationDetailComponent from './components/infomationDetailComponent';
 const { Title, Text } = Typography;
 const { Option } = Select;
 const { Panel } = Collapse;
@@ -32,7 +32,6 @@ export interface ISuNewProductProps {
 
 const key = 'sunewproduct';
 declare var abp: any;
-var urlCss = abp.serviceAlbumCss;
 
 const stateSelector = createStructuredSelector < any, any> ({
     loading: makeSelectLoading(),
@@ -60,7 +59,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
 
     const [openingCondition2, setOpeningCondition2] = useState(true);
     const [openingCondition3, setOpeningConditio3] = useState(true);
-    const [openingCondition4, setOpeningCondition4] = useState(false);
+    const [openingCondition4, setOpeningCondition4] = useState(true);
     const [openingCondition5, setOpeningCondition5] = useState(false);
     const [openingCondition6, setOpeningCondition6] = useState(false);
     const [openingCondition7, setOpeningCondition7] = useState(false);
@@ -84,8 +83,8 @@ export default function SuNewProduct(props: ISuNewProductProps) {
         <Row gutter={[30, 10]} ref={setContainer}>
             <Helmet>
                 <title>Wekee.vn</title>
-                <link rel="stylesheet" href={urlCss + "/newProduct.css"} />
-                <link rel="stylesheet" href={urlCss + "/editor.css"} />
+                <link rel="stylesheet" href={abp.serviceAlbumCss + "/newProduct.css"} />
+                <link rel="stylesheet" href={abp.serviceAlbumCss + "/editor.css"} />
             </Helmet>
             <Col span={24}>
                 <Row>
@@ -115,10 +114,13 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                             <Panel header="Phân loại hàng hóa" key="3" disabled={!openingCondition3}>
                                 <ClassificationOfGoodsComponent image={messageimage} parentCallback={undefined} />
                             </Panel>
-                            <Panel header="Thông tin bán hàng" key="4" disabled={!openingCondition4}>
+                            <Panel header="Thông số sản phẩm" key="4" disabled={!openingCondition4}>
+                                <InfomationDetailComponent />
+                            </Panel>
+                            <Panel header="Thông tin bán hàng" key="5" disabled={!openingCondition5}>
                                 <InfomationSalesComponent parentCallback={callbackFunctionSpecifi} />
                             </Panel>
-                            <Panel header="Vận chuyển" key="5" disabled={!openingCondition5}>
+                            <Panel header="Vận chuyển" key="6" disabled={!openingCondition6}>
 
                                 <Form.Item
                                     name="Cân nặng (Sau khi đóng gói)"
@@ -169,7 +171,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                                 </Form.Item>
 
                             </Panel>
-                            <Panel header="Thông tin khác" key="6" disabled={!openingCondition6}>
+                            <Panel header="Thông tin khác" key="7" disabled={!openingCondition7}>
                                 <Form.Item
                                     name="username"
                                     label="Name"
@@ -220,7 +222,7 @@ export default function SuNewProduct(props: ISuNewProductProps) {
                             <Button
                                 type='primary'
                                 className="vuejWOzNLH"
-                                onClick={() => { dispatch(InsertProductFullStart(productContainer)) }}
+                                onClick={() => { console.log(productContainer); dispatch(InsertProductFullStart(productContainer)) }}
                             >Lưu</Button>
                         </Form.Item>
                     </Form>

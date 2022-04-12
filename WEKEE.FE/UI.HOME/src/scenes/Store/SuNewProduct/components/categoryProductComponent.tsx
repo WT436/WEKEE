@@ -1,5 +1,5 @@
-import { PlusOutlined, WarningOutlined } from '@ant-design/icons';
-import { Cascader, Divider, Form, Input, Modal, Select, Switch } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Cascader, Divider, Form, Input, Select, Switch } from 'antd';
 import TextArea from 'antd/lib/input/TextArea'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,11 +12,12 @@ import {
 } from '../actions';
 import {
     makeSelectalbumProduct,
-    makeSelectcategorySelectDto, makeSelectproductAttributeReadTypesDto, makeSelectproductContainer, makeSelectproductDto, makeSelectspecificationsCategoryDto, makeSelectTrademarkDto,
+    makeSelectcategorySelectDto, makeSelectproductAttributeReadTypesDto,
+     makeSelectproductContainer, makeSelectproductDto, makeSelectspecificationsCategoryDto,
+      makeSelectTrademarkDto,
 } from '../selectors';
 import { ProductAttributeReadTypesDto } from '../dtos/productAttributeReadTypesDto';
 const { Option } = Select;
-const { confirm } = Modal;
 interface ICategoryProductComponent { }
 
 const stateSelector = createStructuredSelector < any, any> ({
@@ -232,7 +233,6 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
         trademarkDto, productContainer
     } = useSelector(stateSelector);
     useEffect(() => {
-        console.log(productContainer);
     }, [productContainer]);
     //#region START
     useEffect(() => {
@@ -242,7 +242,6 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
     //#endregion
     //#region CATEGORY
     const [IsCategorySelect, setIsCategorySelect] = useState(true);
-    const [CategoryDefault, setCategoryDefault] = useState < number[] > ([1]);
 
     let onChangeCascader = (value: any) => {
         
@@ -250,10 +249,8 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
 
         if (productContainer.categoryProduct.categoryMain !== 0) {
             productContainer.categoryProduct.idCategory = value;
-            setCategoryDefault(value);
             productContainer.categoryProduct.categoryMain = value.length == 0 ? 0 : value[0];
             setIsCategorySelect(productContainer.categoryProduct.categoryMain === 0);
-            _removeAllData();
             dispatch(ContainerCreateProductStart(productContainer));
             // confirm({
             //     title: 'Cảnh Báo!',
@@ -279,11 +276,6 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
             dispatch(ContainerCreateProductStart(productContainer));
         }
     };
-
-    const _removeAllData = () => {
-
-    }
-
     //#endregion
     //#region Album Product 
     const [provinceDataAlbumProduct, setprovinceDataAlbumProduct] = useState(['']);
@@ -325,20 +317,11 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
         setnameTag(event.target.value);
     };
     //#endregion
-    //#region Unit Product
-    const _loadUnitProduct = () => {
-        dispatch(proAttrTypesUnitStart(1,CategoryDefault));
-    }
-
-    useEffect(() => {
-        _loadUnitProduct();
-    }, [CategoryDefault])
-
+    //#region Attribute Product
     const selectunitProduct = (value: number) => {
         productContainer.productInsertDto.unitProduct = value;
         dispatch(ContainerCreateProductStart(productContainer));
     }
-
     //#endregion
     //#region Other 
     const selectOrigin = (value: string) => {
@@ -505,6 +488,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     }
                     disabled={IsCategorySelect}
                     onChange={selectunitProduct}
+                    onClick={()=>dispatch(proAttrTypesUnitStart(1,productContainer.categoryProduct.idCategory))}
                 >
                     {
                         productAttributeReadTypesDto.map((province: ProductAttributeReadTypesDto) => (
@@ -557,7 +541,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                     onChange={
                         (value: number) => selecttrademarkProduct(value)
                     }
-                    onClick={() => { dispatch(proAttrTypesUnitStart(3,[])); }}
+                    onClick ={()=>dispatch(proAttrTypesUnitStart(3,productContainer.categoryProduct.idCategory))}
                 >
                     {
                         trademarkDto.map((province: ProductAttributeReadTypesDto) => (

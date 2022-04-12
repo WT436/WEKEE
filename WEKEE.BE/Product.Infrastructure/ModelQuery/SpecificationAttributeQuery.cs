@@ -1,7 +1,9 @@
-﻿using Product.Domain.Shared.Entitys;
+﻿using Microsoft.EntityFrameworkCore;
+using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnitOfWork;
@@ -30,5 +32,32 @@ namespace Product.Infrastructure.ModelQuery
         public async Task<int> TotalPageCategory()
         => (await unitOfWork.GetRepository<SpecificationAttribute>()
                             .CountAsync());
+
+        public async Task<List<string>> GetAllNameGroupSpec(List<int> category)
+        => await unitOfWork.GetRepository<SpecificationAttribute>()
+                           .GetAll(m => category.Contains(m.CategoryProductId) && m.GroupSpecification != null)
+                           .Select(n => n.GroupSpecification)
+                           .Distinct()
+                           .ToListAsync();
+
+        public async Task<List<string>> GetAllKeyByGroupSpec(List<int> category, string nameGroup)
+        {
+            if (nameGroup == null)
+            {
+                return await unitOfWork.GetRepository<SpecificationAttribute>()
+                       .GetAll(m => category.Contains(m.CategoryProductId) && m.GroupSpecification == null)
+                       .Select(n => n.Key)
+                       .Distinct()
+                       .ToListAsync();
+            }
+            else
+            {
+                return await unitOfWork.GetRepository<SpecificationAttribute>()
+                       .GetAll(m => category.Contains(m.CategoryProductId) && m.GroupSpecification.ToUpper() == nameGroup.ToUpper())
+                       .Select(n => n.Key)
+                       .Distinct()
+                       .ToListAsync();
+            }
+        }
     }
 }

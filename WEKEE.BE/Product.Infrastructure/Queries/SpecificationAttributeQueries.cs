@@ -6,6 +6,7 @@ using Product.Domain.Shared.DataTransfer.SpecificationAttributeDTO;
 using Product.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnitOfWork;
@@ -29,7 +30,6 @@ namespace Product.Infrastructure.Queries
             query.AppendLine("		  		CP.CreatedOnUtc       AS 'CreatedOnUtc',              ");
             query.AppendLine("		  		CP.UpdatedOnUtc       AS 'UpdatedOnUtc '              ");
             query.AppendLine("	FROM SpecificationAttribute      AS CP                            ");
-
             if (input.PropertySearch != null)
             {
                 for (int i = 0; i < input.PropertySearch.Length; i++)

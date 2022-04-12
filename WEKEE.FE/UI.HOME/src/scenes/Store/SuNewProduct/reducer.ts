@@ -38,6 +38,7 @@ export const initialState: SuNewProductState = {
       fragile: true,
       origin: "",
       unitAttributeId: 0,
+      trademark: 0,
       shortDescription: "",
       fullDescription: "",
       isShipEnabled: true,
@@ -70,10 +71,13 @@ export const initialState: SuNewProductState = {
     imageRoot: [],
     specificationProductDtos: [
       {
-        customValue: "",
-        specificationId: 0,
-        attributeTypeId: 0,
-        allowFiltering: true
+        customValue: '',
+        specificationKey: '',
+        SpecificationGroup: '',
+        allowFiltering: true,
+        showOnProductPage: true,
+        displayOrder: 0,
+        index: 0
       }
     ],
     categoryProduct: {
@@ -101,7 +105,9 @@ export const initialState: SuNewProductState = {
     }]
   },
   attributeValueOne: [],
-  attributeValueTwo: []
+  attributeValueTwo: [],
+  nameGroupSpec: [],
+  keyOfGroupSpec: []
 };
 //#endregion
 
@@ -110,6 +116,47 @@ function suNewProductReducer(
   action: SuNewProductActions
 ) {
   switch (action.type) {
+    //#region LOAD_KEY_GROUP_START
+    case ActionTypes.LOAD_KEY_GROUP_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.LOAD_KEY_GROUP_COMPLETED:
+      console.log(action.payload)
+      return {
+        ...state,
+        loading: false,
+        keyOfGroupSpec: action.payload
+      };
+
+    case ActionTypes.LOAD_KEY_GROUP_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
+    //#region NAME_GROUP_SPEC_START
+    case ActionTypes.NAME_GROUP_SPEC_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.NAME_GROUP_SPEC_COMPLETED:
+      return {
+        ...state,
+        loading: false,
+        nameGroupSpec: action.payload
+      };
+
+    case ActionTypes.NAME_GROUP_SPEC_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
 
     //#region LOAD_CATEGORY_VALUE_START
     case ActionTypes.LOAD_CATEGORY_VALUE_START:

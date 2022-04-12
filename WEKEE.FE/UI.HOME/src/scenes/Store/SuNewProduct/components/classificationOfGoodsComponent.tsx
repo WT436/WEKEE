@@ -1,11 +1,20 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Avatar, Button, Col, Dropdown, Form, Input, InputNumber, Menu, Modal, Row, Select, Space, Table } from 'antd'
+import {
+    Avatar, Button, Col, Dropdown, Form, Input, InputNumber, Menu, Modal,
+    Row, Select, Space, Table
+} from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectAttributeDto, makeSelectattributeValueOne, makeSelectattributeValueTwo, makeSelectLoading, makeSelectproductContainer } from '../selectors';
+import {
+    makeSelectAttributeDto, makeSelectattributeValueOne, makeSelectattributeValueTwo,
+    makeSelectLoading, makeSelectproductContainer
+} from '../selectors';
 import { ImageProductDtos } from '../dtos/imageProductDtos';
-import { ContainerCreateProductStart, loadCategoryValueStart, proAttrTypesUnitStart } from '../actions';
+import {
+    ContainerCreateProductStart, loadCategoryValueStart,
+    proAttrTypesUnitStart
+} from '../actions';
 import { ProductAttributeReadTypesDto } from '../dtos/productAttributeReadTypesDto';
 import { FeatureProductInsertDtos } from '../dtos/featureProductInsertDtos';
 import { ProductAttributeValueReadDto } from '../dtos/productAttributeValueReadDto';
@@ -30,7 +39,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     const dispatch = useDispatch();
 
     const {
-        loading, attributeDto, productContainer, attributeValueOne, attributeValueTwo
+        attributeDto, productContainer, attributeValueOne, attributeValueTwo
     } = useSelector(stateSelector);
 
     //#region Loading  attribute
@@ -146,13 +155,18 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     //#region Select Attribute
     const [DataSelectAttributeOne, setDataSelectAttributeOne] = useState < { key: number, value: string }[] > ([]);
     const OnSelectListAttributeOne = (key: any, values: any) => {
-        values[0].key = parseInt(values[0].key);
+        values.forEach((element: any, index: number) => {
+            values[index].key = parseInt(values[index].key);
+        });
+
         setDataSelectAttributeOne(values);
     }
 
     const [DataSelectAttributeTwo, setDataSelectAttributeTwo] = useState < { key: number, value: string }[] > ([]);
     const OnSelectListAttributeTwo = (key: any, values: any) => {
-        values[0].key = parseInt(values[0].key);
+        values.forEach((element: any, index: number) => {
+            values[index].key = parseInt(values[index].key);
+        });
         setDataSelectAttributeTwo(values);
     }
     //#endregion
@@ -277,12 +291,6 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
             setFeatureEndTable(FeatureEndTable => [...FeatureEndTable, values]);
         }
     };
-
-    const onFinishFailed = (errorInfo: any) => {
-    };
-
-    const onChangepictureString = (value: any) => {
-    }
 
     const [options, setoptions] = useState < { value: string, lable: string }[] > ([])
     useEffect(() => {
@@ -499,6 +507,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                     </Select>
                 </Input.Group>
             </Form.Item>
+
             <div style={{ margin: '10px 0', textAlign: "center" }}>
                 <Button
                     type='primary'
@@ -511,6 +520,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                     onClick={() => UpdateClassify()}
                 >Cập nhật tính năng phân loại hàng hóa</Button>
             </div>
+            
             <Form.Item
                 name="username"
                 label="Bảng Thông số"
@@ -542,7 +552,6 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                     wrapperCol={{ span: 16 }}
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
                     autoComplete="off"
                     form={formChangeClassif}
                     className="aHCCGsdD"

@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregate\" />
     <Folder Include="EventDomain\" />
     <Folder Include="ServicesDomain\" />
     <Folder Include="Services\" />

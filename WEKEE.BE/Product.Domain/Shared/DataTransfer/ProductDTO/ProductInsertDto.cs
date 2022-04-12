@@ -14,8 +14,8 @@ namespace Product.Domain.Shared.DataTransfer.ProductDTO
         public bool? Fragile { get; set; }
         [MaxLength(300, ErrorMessage = MessageOutput.MAX_LENGTH)]
         public string Origin { get; set; }
-        public int UnitAttributeId { get; set; }
-
+        public int UnitProduct { get; set; }
+        public int Trademark { get; set; }
         public string ShortDescription { get; set; }
         public string FullDescription { get; set; }
        

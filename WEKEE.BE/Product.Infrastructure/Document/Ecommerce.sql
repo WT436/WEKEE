@@ -104,7 +104,7 @@ CREATE TABLE [Product]
 	[fragile] BIT DEFAULT(0) , -- Hàng Dễ Vỡ 
 	[origin] NVARCHAR(300), -- Nguồn Gốc *
 	[Trademark] INT NOT NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id), -- thương hiệu
-	[UnitAttributeId] INT NOT NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id), -- đơn vị tính
+	[UnitProduct] INT NOT NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id), -- đơn vị tính
 
 	[Sku] [nvarchar](400) NULL, -- giúp cho việc phân loại hàng hóa, quản lý kho
 	[ManufacturerPartNumber] [nvarchar](400) NULL,
@@ -327,7 +327,7 @@ CREATE TABLE [ProductWarehouseInventory](
 )
 GO
 --==============================================
--- Name        :  [StockQuantityHistory]
+-- Name        : [StockQuantityHistory]
 -- Description : Lịch sử giao dịch kho
 -- Date Update : 
 --==============================================
@@ -367,7 +367,7 @@ CREATE TABLE [Product_SpecificationAttribute_Mapping](
 	[CustomValue] [nvarchar](4000) NULL, -- giá trị
 	[ProductId] [int] NOT NULL FOREIGN KEY REFERENCES [Product](Id), -- tên sản phẩm
 	[SpecificationId] [int] NOT NULL FOREIGN KEY REFERENCES [SpecificationAttribute](Id),-- mã key
-	[AttributeTypeId] [int] NOT NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id),
+	[AttributeTypeId] [int] NULL FOREIGN KEY REFERENCES [ProductAttribute] (Id),
 	[AllowFiltering] [bit] NOT NULL, -- bộ lọc tìm kiếm
 	[ShowOnProductPage] [bit] NOT NULL, -- hiển thị trên trang card
 	[DisplayOrder] [int] NOT NULL, -- vị trí hiển thị

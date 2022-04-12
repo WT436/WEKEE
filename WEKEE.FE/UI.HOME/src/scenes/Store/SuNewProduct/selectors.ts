@@ -21,7 +21,8 @@ const makeSelectAttributeDto = () => createSelector(select, (substate) => substa
 const makeSelectproductContainer = () => createSelector(select, (substate) => substate.productContainer);
 const makeSelectattributeValueOne = () => createSelector(select, (substate) => substate.attributeValueOne);
 const makeSelectattributeValueTwo = () => createSelector(select, (substate) => substate.attributeValueTwo);
-
+const makeSelectnameGroupSpec = () => createSelector(select, (substate) => substate.nameGroupSpec);
+const makeSelectKeyOfGroupSpec = () => createSelector(select, (substate) => substate.keyOfGroupSpec);
 
 export {
   makeSelectLoading,makeSelectCompleted,
@@ -32,5 +33,5 @@ export {
   makeSelectproductAttributeReadTypesDto,
   makeSelectproductDto, makeSelectTrademarkDto, makeSelectAttributeDto,
   makeSelectproductContainer,makeSelectattributeValueOne,
-  makeSelectattributeValueTwo
+  makeSelectattributeValueTwo,makeSelectnameGroupSpec,makeSelectKeyOfGroupSpec
 };

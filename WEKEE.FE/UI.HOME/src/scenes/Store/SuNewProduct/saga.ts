@@ -10,6 +10,10 @@ import {
   InsertProductFullError,
   loadCategoryValueCompleted,
   loadCategoryValueError,
+  loadKeyGroupCompleted,
+  loadKeyGroupError,
+  nameGroupSpecCompleted,
+  nameGroupSpecError,
   proAttrTypesAttributeCompleted,
   proAttrTypesTradeMarkCompleted,
   proAttrTypesUnitCompleted,
@@ -22,29 +26,59 @@ import service from "./services";
 
 export default function* watchLoginRequestStart() {
   yield takeLatest(ActionTypes.GET_CATEGORY_MAIN_START, getCategotyMainStart);
-  yield takeLatest(
-    ActionTypes.READ_FULL_ALBUM_PRODUCT_START,
-    readFullAlbumProductStart
-  );
-  yield takeLatest(
-    ActionTypes.GET_SPECIFI_CATEGORY_START,
-    getSpecifiCategoryStart
-  );
+  yield takeLatest(ActionTypes.READ_FULL_ALBUM_PRODUCT_START, readFullAlbumProductStart);
+  yield takeLatest(ActionTypes.GET_SPECIFI_CATEGORY_START, getSpecifiCategoryStart);
   yield takeLatest(ActionTypes.CREATE_PRODUCT_START, createProductsStart);
-
   //#region PRO_ATTR_TYPE_UNIT 
   yield takeLatest(ActionTypes.PRO_ATTR_TYPE_UNIT_START, proAttrTypesUnit);
   //#endregion
-
   //#region INSERT_PRODUCT_FULL
   yield takeLatest(ActionTypes.INSERT_PRODUCT_FULL_START, InsertProductFull);
   //#endregion
-
   //#region LOAD_CATEGORY_VALUE
   yield takeLatest(ActionTypes.LOAD_CATEGORY_VALUE_START, loadCategoryValue);
   //#endregion
+  //#region NAME_GROUP_SPEC
+  yield takeLatest(ActionTypes.NAME_GROUP_SPEC_START, nameGroupSpec);
+  //#endregion
+  //#region LOAD_KEY_GROUP
+  yield takeLatest(ActionTypes.LOAD_KEY_GROUP_START, loadKeyGroup);
+  //#endregion
 }
+//#region LOAD_KEY_GROUP
+function* loadKeyGroup(input: any) {
+  console.log(input);
+  try {
+    const { output } = yield race({
+      output: call(service.loadKeyGroupService, input.payload, input.meta),
+    });
+    if (output) {
+      yield put(loadKeyGroupCompleted(output));
+    } else {
+      yield put(loadKeyGroupError());
+    }
+  } catch (error) {
+    yield put(loadKeyGroupError());
+  }
+}
+//#endregion
 
+//#region NAME_GROUP_SPEC
+function* nameGroupSpec(input: any) {
+  try {
+    const { output } = yield race({
+      output: call(service.nameGroupSpecService, input.payload),
+    });
+    if (output) {
+      yield put(nameGroupSpecCompleted(output));
+    } else {
+      yield put(nameGroupSpecError());
+    }
+  } catch (error) {
+    yield put(nameGroupSpecError());
+  }
+}
+//#endregion
 //#region LOAD_CATEGORY_VALUE
 function* loadCategoryValue(input: any) {
   try {
@@ -61,7 +95,6 @@ function* loadCategoryValue(input: any) {
   }
 }
 //#endregion
-
 //#region INSERT_PRODUCT_FULL
 function* InsertProductFull(input: any) {
   try {
@@ -78,7 +111,6 @@ function* InsertProductFull(input: any) {
   }
 }
 //#endregion
-
 //#region PRO_ATTR_TYPE_UNIT 
 function* proAttrTypesUnit(input: any) {
   try {

@@ -124,3 +124,7 @@ SELECT CP.[Id]			  AS 'Id'
   OFFSET((1 - 1) * 20) ROWS                                                                        
   FETCH NEXT 20 ROWS ONLY                                                                            
                                                                     
+SELECT distinct CP.GroupSpecification 
+FROM DBO.SpecificationAttribute AS CP
+WHERE CP.CategoryProductId IN (2,3,4) 
+AND CP.GroupSpecification!= 'NULL'

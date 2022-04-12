@@ -7,8 +7,10 @@ namespace Product.Domain.Shared.DataTransfer.SpecificationAttributeDTO
     public class SpecificationProductInsertDto
     {
         public string CustomValue { get; set; }
-        public int SpecificationId { get; set; }
-        public int AttributeTypeId { get; set; }
+        public string SpecificationKey { get; set; }
+        public string SpecificationGroup { get; set; }
         public bool AllowFiltering { get; set; }
+        public bool ShowOnProductPage { get; set; }
+        public int DisplayOrder { get; set; }
     }
 }

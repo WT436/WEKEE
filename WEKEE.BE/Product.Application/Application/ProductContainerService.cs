@@ -61,19 +61,20 @@ namespace Product.Application.Application
             _productCategoryMappingQuery.Insert(dataProductCategory);
             // add Specification
             int iSpecification = 0;
-            var dataProductSpecification = input.SpecificationProductDtos
-                                                .ToList().Select(m => new ProductSpecificationAttributeMapping
-                                                {
-                                                    ProductId = product.Id,
-                                                    SpecificationId = m.SpecificationId,
-                                                    CustomValue = m.CustomValue,
-                                                    AttributeTypeId = m.AttributeTypeId,
-                                                    CreateBy = idAccount,
-                                                    AllowFiltering = m.AllowFiltering,
-                                                    ShowOnProductPage = true,
-                                                    DisplayOrder = (++iSpecification)
-                                                }).ToList();
-            _specificationAttributeMappingQuery.Insert(dataProductSpecification);
+
+            //var dataProductSpecification = input.SpecificationProductDtos
+            //                                    .ToList().Select(m => new ProductSpecificationAttributeMapping
+            //                                    {
+            //                                        ProductId = product.Id,
+            //                                        SpecificationId = m.SpecificationId,
+            //                                        CustomValue = m.CustomValue,
+            //                                        AttributeTypeId = m.AttributeTypeId,
+            //                                        CreateBy = idAccount,
+            //                                        AllowFiltering = m.AllowFiltering,
+            //                                        ShowOnProductPage = true,
+            //                                        DisplayOrder = (++iSpecification)
+            //                                    }).ToList();
+            //_specificationAttributeMappingQuery.Insert(dataProductSpecification);
 
             // add image product
             var dataImage = await _imageProcess.ImageProcessRabbitMQ(input.ImageRoot);
