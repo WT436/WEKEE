@@ -130,14 +130,9 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
         setIsModalVisible(true);
     };
 
-    const ConfirmOkShort = (isShortDescription: boolean) => {
-
-        if (isShortDescription) {
-            productContainer.productInsertDto.shortDescription = ShortDescription;
-        }
-        else {
-            productContainer.productInsertDto.fullDescription = FullDescription;
-        }
+    const ConfirmOkShort = () => {
+        productContainer.productInsertDto.shortDescription = ShortDescription;
+        productContainer.productInsertDto.fullDescription = FullDescription;
         dispatch(ContainerCreateProductStart(productContainer));
     };
 
@@ -358,9 +353,6 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     <div> Mô tả sản phẩm ngắn gọn &emsp;
                         <Button type="primary" onClick={() => showModal(true)}>
                             Xem thử
-                        </Button>&emsp;
-                        <Button type="primary" onClick={() => ConfirmOkShort(true)}>
-                            Xác nhận
                         </Button>
                     </div>
                 }
@@ -381,9 +373,6 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
                     <div> Mô tả sản phẩm đầy đủ &emsp;
                         <Button type="primary" onClick={() => showModal(false)}>
                             Xem thử
-                        </Button>&emsp;
-                        <Button type="primary" onClick={() => ConfirmOkShort(false)}>
-                            Xác nhận
                         </Button>
                     </div>
                 }
@@ -397,6 +386,13 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
             >
                 <EditorComponent editorHTMLCallback={callbackEditorHTMLFullDescription} />
             </Form.Item>
+            <div style={{ margin: '10px 0', textAlign: "center" }}>
+                <Button
+                    type='primary'
+                    style={{ margin: '0 10px ', textAlign: "center" }}
+                    onClick={() => { ConfirmOkShort() }}
+                >Áp dụng description</Button>
+            </div>
             <Modal
                 title="Kiểm tra hiển thị"
                 visible={isModalVisible}

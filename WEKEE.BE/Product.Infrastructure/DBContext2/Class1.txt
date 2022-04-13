@@ -1,0 +1,314 @@
+﻿{
+    "productInsertDto": {
+        "name": "Điện Thoại Samsung Galaxy M22 (6GB/128GB) - Hàng chính hãng",
+        "fragile": true,
+        "origin": "[\"Toàn Quốc\",\" Hà Nội\",\" Hà Giang\",\" Cao Bằng\"]",
+        "unitAttributeId": 0,
+        "trademark": 47,
+        "shortDescription": "<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 ra mắt xứng đáng là 1 chiến thần trong phân khúc điện thoại tầm trung với cấu hình mạnh mẽ ấn tượng, cải tiến nổi bật ở camera, cùng dung lượng pin khỏe đến 2 ngày sử dụng, hứa hẹn là lựa chọn giá mềm đáng nhắm tới cho người tiêu dùng.</span></h3>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Màn hình Super AMOLED 90 Hz sống động, mượt mà</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy M22 được thiết kế với tấm nền Super AMOLED cao cấp với 16 triệu màu cùng mật độ điểm ảnh cao, mang đến khả năng hiển thị sắc nét, màu sắc tươi, rực rỡ, độ tương phản cao cho màn hình tràn viền 6.4 inch phân giải HD+ (720 x 1600 Pixels), tạo sự sống động trên mọi nội dung xem.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/3b/bd/41/1c586112343bad4bbd7faac6e98b182b.jpg\" alt=\"Trang bị màn hình Super AMOLED - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Tốc độ làm mới màn hình đạt 90 Hz giúp các thao tác vuốt chạm, chuyển cảnh cực mượt, thỏa mãn khi thử với các ứng dụng chỉnh sửa ảnh, hoặc các tựa game online đồ họa cao mà bạn yêu thích. Độ sáng màn hình tối đa 600 nits cho phép sử dụng điện thoại thoải mái ngoài trời ổn, bảo toàn chất lượng khung hình đang xem.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/dc/0c/38/37ebab3f943f1650f6a4fcacabc24a3a.jpg\" alt=\"Tần số quét 90 Hz - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bạn sẽ được trải nghiệm hình ảnh mãn nhãn trên phiên bản Galaxy M này cho cả nhu cầu học tập, làm việc hay giải trí.</span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Hiệu năng mạnh mẽ</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Hẳn Galaxy M22 sẽ là 1 ứng cử viên nổi bật khi so sánh với các điện thoại trong cùng phân khúc, với cấu hình mà Samsung trang bị cho nó.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bộ vi xử lý 8 nhân Helio G80 với tốc độ xử lý 2 nhân 2.0 GHz và 6 nhân 1.8 GHz kết hợp cùng RAM 6 GB giải quyết mượt mà đa tác vụ trên điện thoại, cho phép livestream hoặc chiến game online độ trễ thấp, tiết kiệm pin và ổn định hiệu năng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://tiki.vn/dien-thoai-samsung-galaxy-m22-6gb-128gb-hang-chinh-hang-p138914723.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202204110600_MD_batched_PID.138924120&itm_medium=CPC&itm_source=tiki-reco&spid=138924120\" alt=\"Vi xử lý Helio G80 - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Lưu trữ thoải mái cùng bộ nhớ trong dung lượng 128 GB và dễ dàng mở rộng qua khe đọc thẻ MicroSD hỗ trợ tối đa đến 1 TB, thỏa sức giữ lại mọi video, ảnh chụp của bạn, cùng các dữ liệu cần thiết khác mà không cần lăn tăn về bộ nhớ.</span></p>\n<p style=\"text-align:justify;\">&nbsp;</p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 hỗ trợ mạng không dây 4G cho phép truyền tải dữ liệu nhanh chóng, dễ dàng để bạn thực hiện các kết nối, chia sẻ, sao lưu dữ liệu trên điện thoại cho các mục đích sử dụng của cá nhân.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/d8/0f/5c/7f4c76b4bd21f5876441b10bdc6d8bc6.jpg\" alt=\"Kết nối nhanh chóng - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Thêm ấn tượng từ cụm 4 camera đa năng</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Một thiết kế tiên phong trong phân khúc, Galaxy M22 sở hữu đến 4 camera mặt sau, với camera chính độ phân giải lớn 48 MP, khẩu độ f/2.0 chụp cảnh vô cùng sắc nét, bắt trọn mọi chi tiết, kể cả trong không gian ánh sáng yếu.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/b0/a2/9d/36f5cd3bc2598529c3cd44316f060f92.jpg\" alt=\"Cụm camera sau - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bên cạnh đó là camera góc siêu rộng (Ultra wide) 8 MP khẩu độ f/2.2 bao quát không gian, camera xoá phông 2 MP khẩu độ f/2.4 đo chiều sâu chuyên biệt cho ảnh chân dung nổi bật, và camera macro chụp cận cực gần khoảng 3 – 5 cm cho bạn những góc ảnh nghệ thuật độc đáo.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://tiki.vn/dien-thoai-samsung-galaxy-m22-6gb-128gb-hang-chinh-hang-p138914723.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202204110600_MD_batched_PID.138924120&itm_medium=CPC&itm_source=tiki-reco&spid=138924120\" alt=\"Camera góc siêu rộng - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Thỏa sức sáng tạo và mang về những bức ảnh chụp đẹp ấn tượng từ phiên bản giá mềm này của Samsung, cho bạn luôn tự tin thử mình với ống kính.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/f0/92/97/04f3cdf56e436a9c7c654cac5c5c74a3.jpg\" alt=\"Thỏa sức sáng tạo trước ống kính - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cùng với đó là camera selfie 13 MP sẵn sàng đáp ứng nhu cầu video call và chụp hình selfie chuẩn nét của bạn, để dù ở góc độ nào, bạn cũng sẵn sàng tạo cho mình 1 bức ảnh đẹp, đầy nổi bật, tự tin.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/be/5b/29/74007842a7241ca1c525692398db9f73.jpg\" alt=\"Camera selfie 13 MP - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Thiết kế trẻ trung, nhiều màu sắc lựa chọn</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 gồm 3 phiên bản màu bao gồm: Đen chiến thần, Xanh bản lĩnh và Trắng kỳ tích. Mỗi phiên bản là 1 lựa chọn thú vị theo phong cách, sở thích của người dùng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/2b/8a/0a/0ab1b747755eb48440bd81b95719171f.jpg\" alt=\"Có 3 phiên bản màu sắc - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Máy được thiết kế mặt lưng nhựa chống trượt tốt, mặt trước phủ kính cường lực Gorilla Glass 3 bền bỉ, sáng bóng, cảm ứng độ nhạy cao trên mọi thao tác.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/bd/21/2d/3085ca50b20c084ddc4f8884420b6d0f.jpg\" alt=\"Thiết kế hoàn thiện - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Tích hợp bảo mật vân tay ở cạnh viền cho phép bạn truy cập vào máy nhanh chóng, dễ dàng, độ an toàn cao cho 1 thiết bị di động với hàng loạt thông tin cá nhân quan trọng. </span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Pin khỏe, thỏa sức sử dụng theo ý thích của bạn</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Trang bị viên pin dung lượng 5000 mAh, Galaxy M22 cho thời lượng sử dụng lên đến 2 ngày với tần suất trung bình, để bạn tự do giải trí, làm việc theo nhu cầu thực tế mà không ái ngại về nguồn năng lượng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/0e/66/05/a2067697de81c16e3d0df8eb92e2dc8a.jpg\" alt=\"Dung lượng pin - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cùng với đó là công nghệ sạc pin nhanh siêu tốc 25 W đi kèm nhanh chóng phục hồi pin cho thiết bị cạn nguồn của bạn, để bạn trở lại nhịp độ giải trí, công việc đang bỏ dở trước đó, không phải lo lắng chờ đợi quá lâu.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Có thể nói, ít nhiều Samsung tạo được sự thích thú cho người tiêu dùng với những cải tiến mang tính ưu điểm cao trên phiên bản Galaxy M22, ngay từ khi chưa chào sân thị trường Việt, ắt hẳn rất nhiều người sẽ chờ đón để được sở hữu nó.</span></p>\n<p></p>\n<p style=\"margin-left:0px;\">&nbsp;</p>\n<p></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</span>&nbsp;</p>\n",
+        "fullDescription": "<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 ra mắt xứng đáng là 1 chiến thần trong phân khúc điện thoại tầm trung với cấu hình mạnh mẽ ấn tượng, cải tiến nổi bật ở camera, cùng dung lượng pin khỏe đến 2 ngày sử dụng, hứa hẹn là lựa chọn giá mềm đáng nhắm tới cho người tiêu dùng.</span></h3>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Màn hình Super AMOLED 90 Hz sống động, mượt mà</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy M22 được thiết kế với tấm nền Super AMOLED cao cấp với 16 triệu màu cùng mật độ điểm ảnh cao, mang đến khả năng hiển thị sắc nét, màu sắc tươi, rực rỡ, độ tương phản cao cho màn hình tràn viền 6.4 inch phân giải HD+ (720 x 1600 Pixels), tạo sự sống động trên mọi nội dung xem.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/3b/bd/41/1c586112343bad4bbd7faac6e98b182b.jpg\" alt=\"Trang bị màn hình Super AMOLED - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Tốc độ làm mới màn hình đạt 90 Hz giúp các thao tác vuốt chạm, chuyển cảnh cực mượt, thỏa mãn khi thử với các ứng dụng chỉnh sửa ảnh, hoặc các tựa game online đồ họa cao mà bạn yêu thích. Độ sáng màn hình tối đa 600 nits cho phép sử dụng điện thoại thoải mái ngoài trời ổn, bảo toàn chất lượng khung hình đang xem.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/dc/0c/38/37ebab3f943f1650f6a4fcacabc24a3a.jpg\" alt=\"Tần số quét 90 Hz - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bạn sẽ được trải nghiệm hình ảnh mãn nhãn trên phiên bản Galaxy M này cho cả nhu cầu học tập, làm việc hay giải trí.</span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Hiệu năng mạnh mẽ</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Hẳn Galaxy M22 sẽ là 1 ứng cử viên nổi bật khi so sánh với các điện thoại trong cùng phân khúc, với cấu hình mà Samsung trang bị cho nó.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bộ vi xử lý 8 nhân Helio G80 với tốc độ xử lý 2 nhân 2.0 GHz và 6 nhân 1.8 GHz kết hợp cùng RAM 6 GB giải quyết mượt mà đa tác vụ trên điện thoại, cho phép livestream hoặc chiến game online độ trễ thấp, tiết kiệm pin và ổn định hiệu năng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://tiki.vn/dien-thoai-samsung-galaxy-m22-6gb-128gb-hang-chinh-hang-p138914723.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202204110600_MD_batched_PID.138924120&itm_medium=CPC&itm_source=tiki-reco&spid=138924120\" alt=\"Vi xử lý Helio G80 - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Lưu trữ thoải mái cùng bộ nhớ trong dung lượng 128 GB và dễ dàng mở rộng qua khe đọc thẻ MicroSD hỗ trợ tối đa đến 1 TB, thỏa sức giữ lại mọi video, ảnh chụp của bạn, cùng các dữ liệu cần thiết khác mà không cần lăn tăn về bộ nhớ.</span></p>\n<p style=\"text-align:justify;\">&nbsp;</p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 hỗ trợ mạng không dây 4G cho phép truyền tải dữ liệu nhanh chóng, dễ dàng để bạn thực hiện các kết nối, chia sẻ, sao lưu dữ liệu trên điện thoại cho các mục đích sử dụng của cá nhân.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/d8/0f/5c/7f4c76b4bd21f5876441b10bdc6d8bc6.jpg\" alt=\"Kết nối nhanh chóng - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Thêm ấn tượng từ cụm 4 camera đa năng</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Một thiết kế tiên phong trong phân khúc, Galaxy M22 sở hữu đến 4 camera mặt sau, với camera chính độ phân giải lớn 48 MP, khẩu độ f/2.0 chụp cảnh vô cùng sắc nét, bắt trọn mọi chi tiết, kể cả trong không gian ánh sáng yếu.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/b0/a2/9d/36f5cd3bc2598529c3cd44316f060f92.jpg\" alt=\"Cụm camera sau - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bên cạnh đó là camera góc siêu rộng (Ultra wide) 8 MP khẩu độ f/2.2 bao quát không gian, camera xoá phông 2 MP khẩu độ f/2.4 đo chiều sâu chuyên biệt cho ảnh chân dung nổi bật, và camera macro chụp cận cực gần khoảng 3 – 5 cm cho bạn những góc ảnh nghệ thuật độc đáo.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://tiki.vn/dien-thoai-samsung-galaxy-m22-6gb-128gb-hang-chinh-hang-p138914723.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202204110600_MD_batched_PID.138924120&itm_medium=CPC&itm_source=tiki-reco&spid=138924120\" alt=\"Camera góc siêu rộng - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Thỏa sức sáng tạo và mang về những bức ảnh chụp đẹp ấn tượng từ phiên bản giá mềm này của Samsung, cho bạn luôn tự tin thử mình với ống kính.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/f0/92/97/04f3cdf56e436a9c7c654cac5c5c74a3.jpg\" alt=\"Thỏa sức sáng tạo trước ống kính - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cùng với đó là camera selfie 13 MP sẵn sàng đáp ứng nhu cầu video call và chụp hình selfie chuẩn nét của bạn, để dù ở góc độ nào, bạn cũng sẵn sàng tạo cho mình 1 bức ảnh đẹp, đầy nổi bật, tự tin.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/be/5b/29/74007842a7241ca1c525692398db9f73.jpg\" alt=\"Camera selfie 13 MP - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Thiết kế trẻ trung, nhiều màu sắc lựa chọn</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 gồm 3 phiên bản màu bao gồm: Đen chiến thần, Xanh bản lĩnh và Trắng kỳ tích. Mỗi phiên bản là 1 lựa chọn thú vị theo phong cách, sở thích của người dùng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/2b/8a/0a/0ab1b747755eb48440bd81b95719171f.jpg\" alt=\"Có 3 phiên bản màu sắc - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Máy được thiết kế mặt lưng nhựa chống trượt tốt, mặt trước phủ kính cường lực Gorilla Glass 3 bền bỉ, sáng bóng, cảm ứng độ nhạy cao trên mọi thao tác.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/bd/21/2d/3085ca50b20c084ddc4f8884420b6d0f.jpg\" alt=\"Thiết kế hoàn thiện - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Tích hợp bảo mật vân tay ở cạnh viền cho phép bạn truy cập vào máy nhanh chóng, dễ dàng, độ an toàn cao cho 1 thiết bị di động với hàng loạt thông tin cá nhân quan trọng. </span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Pin khỏe, thỏa sức sử dụng theo ý thích của bạn</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Trang bị viên pin dung lượng 5000 mAh, Galaxy M22 cho thời lượng sử dụng lên đến 2 ngày với tần suất trung bình, để bạn tự do giải trí, làm việc theo nhu cầu thực tế mà không ái ngại về nguồn năng lượng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/0e/66/05/a2067697de81c16e3d0df8eb92e2dc8a.jpg\" alt=\"Dung lượng pin - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cùng với đó là công nghệ sạc pin nhanh siêu tốc 25 W đi kèm nhanh chóng phục hồi pin cho thiết bị cạn nguồn của bạn, để bạn trở lại nhịp độ giải trí, công việc đang bỏ dở trước đó, không phải lo lắng chờ đợi quá lâu.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Có thể nói, ít nhiều Samsung tạo được sự thích thú cho người tiêu dùng với những cải tiến mang tính ưu điểm cao trên phiên bản Galaxy M22, ngay từ khi chưa chào sân thị trường Việt, ắt hẳn rất nhiều người sẽ chờ đón để được sở hữu nó.</span></p>\n<p></p>\n<p style=\"margin-left:0px;\">&nbsp;</p>\n<p></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</span>&nbsp;</p>\n",
+        "isShipEnabled": true,
+        "isFreeShipping": true,
+        "shipSeparately": true,
+        "additionalShippingCharge": 0,
+        "deliveryDateId": 0,
+        "productAvailabilityRangeId": 0,
+        "useMultipleWarehouses": true,
+        "displayStockAvailability": true,
+        "displayStockQuantity": true,
+        "minStockQuantity": 0,
+        "lowStockActivityId": 0,
+        "notifyAdminForQuantityBelow": 0,
+        "backorderModeId": 0,
+        "allowBackInStockSubscriptions": true,
+        "orderMinimumQuantity": 0,
+        "orderMaximumQuantity": 0,
+        "allowAddingOnlyExistingAttributeCombinations": true,
+        "notReturnable": true,
+        "viewReceived": true,
+        "disableBuyButton": true,
+        "disableWishlistButton": true,
+        "hasTierPrices": true,
+        "hasDiscountsApplied": true,
+        "productAlbum": "Điện Thoại",
+        "createBy": 0,
+        "unitProduct": 4
+    },
+    "productTagDtos": [
+        "Điện Thoại"
+    ],
+    "imageRoot": [
+        "album/await/09385983d0974f8ab08cbd3b9ea5ad82.jpg",
+        "album/await/0473e7f34bbf451880f713798c23db6e.jpg",
+        "album/await/0c963953362f45dc92dcba7cb9fd83be.jpg",
+        "album/await/da6cbfcf043e467e9f35bd61a1862641.jpg",
+        "album/await/a80b67c810c044009891f10da75bfdc2.jpg",
+        "album/await/c5c035645334448d813fe7bd8f9bbc13.jpg",
+        "album/await/f7c0f9ba1c904f588c38e7599eaac078.jpg",
+        "album/await/98f78c079fd04703a9f4af2a26b2ddc8.jpg",
+        "album/await/c3b00d7a40df40b48ff6623865723653.jpg"
+    ],
+    "specificationProductDtos": [
+        {
+            "customValue": "1",
+            "specificationKey": "ACCESSORIES_INCLUDED",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 0
+        },
+        {
+            "customValue": "2",
+            "specificationKey": "AVAILABLE_MEMORY",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 1
+        },
+        {
+            "customValue": "3",
+            "specificationKey": "BATTERY_CAPACITY",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 2
+        },
+        {
+            "customValue": "4",
+            "specificationKey": "BLUETOOTH",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 3
+        },
+        {
+            "customValue": "5",
+            "specificationKey": "CHARGING_PORT",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 4
+        },
+        {
+            "customValue": "6",
+            "specificationKey": "CHIPSET ",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 5
+        },
+        {
+            "customValue": "7",
+            "specificationKey": "HEADPHONE_JACK",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 6
+        },
+        {
+            "customValue": "8",
+            "specificationKey": "LISTEN_MUSIC",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 7
+        }
+    ],
+    "categoryProduct": {
+        "idCategory": [
+            4
+        ],
+        "categoryMain": 4
+    },
+    "featureProductInsertDtos": [
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 1,
+            "pictureString": "album/await/09385983d0974f8ab08cbd3b9ea5ad82.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 9,
+                    "values": "256GB/8GB"
+                },
+                {
+                    "key": 1,
+                    "values": "RED"
+                }
+            ],
+            "id": 1
+        },
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 2,
+            "pictureString": "album/await/0473e7f34bbf451880f713798c23db6e.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 9,
+                    "values": "256GB/8GB"
+                },
+                {
+                    "key": 2,
+                    "values": "BLUE"
+                }
+            ],
+            "id": 2
+        },
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 3,
+            "pictureString": "album/await/0c963953362f45dc92dcba7cb9fd83be.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 9,
+                    "values": "256GB/8GB"
+                },
+                {
+                    "key": 3,
+                    "values": "BLACK"
+                }
+            ],
+            "id": 3
+        },
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 4,
+            "pictureString": "album/await/da6cbfcf043e467e9f35bd61a1862641.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 12,
+                    "values": "128GB/8GB"
+                },
+                {
+                    "key": 1,
+                    "values": "RED"
+                }
+            ],
+            "id": 4
+        },
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 5,
+            "pictureString": "album/await/0473e7f34bbf451880f713798c23db6e.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 12,
+                    "values": "128GB/8GB"
+                },
+                {
+                    "key": 2,
+                    "values": "BLUE"
+                }
+            ],
+            "id": 5
+        },
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 6,
+            "pictureString": "album/await/da6cbfcf043e467e9f35bd61a1862641.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 12,
+                    "values": "128GB/8GB"
+                },
+                {
+                    "key": 3,
+                    "values": "BLACK"
+                }
+            ],
+            "id": 6
+        },
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 7,
+            "pictureString": "album/await/a80b67c810c044009891f10da75bfdc2.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 13,
+                    "values": "64GB/8GB"
+                },
+                {
+                    "key": 1,
+                    "values": "RED"
+                }
+            ],
+            "id": 7
+        },
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 8,
+            "pictureString": "album/await/0c963953362f45dc92dcba7cb9fd83be.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 13,
+                    "values": "64GB/8GB"
+                },
+                {
+                    "key": 2,
+                    "values": "BLUE"
+                }
+            ],
+            "id": 8
+        },
+        {
+            "weightAdjustment": 32,
+            "lengthAdjustment": 21,
+            "widthAdjustment": 31,
+            "heightAdjustment": 121,
+            "price": 12000000,
+            "quantity": 211,
+            "displayOrder": 9,
+            "pictureString": "album/await/da6cbfcf043e467e9f35bd61a1862641.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 13,
+                    "values": "64GB/8GB"
+                },
+                {
+                    "key": 3,
+                    "values": "BLACK"
+                }
+            ],
+            "id": 9
+        }
+    ]
+}

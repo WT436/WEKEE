@@ -514,13 +514,8 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                     style={{ margin: '0 10px ', textAlign: "center" }}
                     onClick={() => ShowClassify()}
                 >Áp dụng tính năng phân loại hàng hóa</Button>
-                <Button
-                    type='default'
-                    style={{ margin: '0 10px ', textAlign: "center" }}
-                    onClick={() => UpdateClassify()}
-                >Cập nhật tính năng phân loại hàng hóa</Button>
             </div>
-            
+
             <Form.Item
                 name="username"
                 label="Bảng Thông số"
@@ -540,6 +535,14 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                     columns={columns}
                     dataSource={FeatureEndTable}
                     pagination={false} />
+
+                <div style={{ margin: '10px 0', textAlign: "center" }}>
+                    <Button
+                        type='default'
+                        style={{ margin: '0 10px ', textAlign: "center" }}
+                        onClick={() => UpdateClassify()}
+                    >Cập nhật tính năng phân loại hàng hóa</Button>
+                </div>
             </Form.Item>
 
             <Modal title="Chỉnh sửa phân loại hàng hóa"

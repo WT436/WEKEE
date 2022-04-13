@@ -13,16 +13,28 @@ namespace Product.Infrastructure.ModelQuery
         private readonly IUnitOfWork<ProductDBContext> unitOfWork =
                         new UnitOfWork<ProductDBContext>(new ProductDBContext());
 
-        public int Insert(ProductTag input)
+        public async Task<int> Insert(ProductTag input)
         {
-            unitOfWork.GetRepository<ProductTag>().Insert(input);
-            unitOfWork.SaveChanges();
-            return input.Id;
+            var res = await GetIdTagExists(input.Name);
+            if (res != null)
+            {
+                return res.Id;
+            }
+            else
+            {
+                unitOfWork.GetRepository<ProductTag>().Insert(input);
+                unitOfWork.SaveChanges();
+                return input.Id;
+            }
         }
 
         public async Task<bool> CheckName(string productTagName)
         => await unitOfWork.GetRepository<ProductTag>()
                            .ExistsAsync(m => m.Name.ToUpper() == productTagName.ToUpper());
+
+        public async Task<ProductTag> GetIdTagExists(string productTagName)
+        => await unitOfWork.GetRepository<ProductTag>()
+                           .GetFirstOrDefaultAsync(predicate: m => m.Name.ToUpper() == productTagName.ToUpper());
 
         public async Task<int> TotalPageCategory()
         => (await unitOfWork.GetRepository<ProductTag>()

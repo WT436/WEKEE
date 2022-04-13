@@ -33,7 +33,7 @@ const columns = [
         title: 'Nội dung',
         dataIndex: '',
         render: (text: SpecificationProductInsertDto) =>
-            <Input placeholder="Nhập từ khóa"
+            <Input placeholder="Nhập từ nội dung"
                 onChange={(content: any) => { text.customValue = content.target.value }}
                 defaultValue={text.customValue} />
     },

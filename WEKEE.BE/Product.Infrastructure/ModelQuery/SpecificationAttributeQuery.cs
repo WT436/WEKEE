@@ -15,6 +15,10 @@ namespace Product.Infrastructure.ModelQuery
         private readonly IUnitOfWork<ProductDBContext> unitOfWork =
                         new UnitOfWork<ProductDBContext>(new ProductDBContext());
 
+        public async Task<SpecificationAttribute> GetIdByGroupAndKey(string group, string key)
+        => await unitOfWork.GetRepository<SpecificationAttribute>()
+                           .GetFirstOrDefaultAsync(predicate: m => m.Key == key && m.GroupSpecification == group);
+
         public async Task<bool> CheckCategoryAndGroupAndKey(int idCategory, string group, string key)
         => await unitOfWork.GetRepository<SpecificationAttribute>()
                            .ExistsAsync(m => m.CategoryProductId == idCategory

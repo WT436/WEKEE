@@ -43,7 +43,7 @@ namespace Product.Application.Application
                 throw new ClientException(400, MessageOutput.EXISTS_PARAMETER);
             }
 
-           return _productTagQuery.Insert(new ProductTag
+           return await _productTagQuery.Insert(new ProductTag
             {
                 Name = productTagName,
                 IsDelete = false,

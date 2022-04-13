@@ -1,4 +1,5 @@
 ﻿using Product.Application.Interface;
+using Product.Domain.CoreDomain;
 using Product.Domain.Shared.DataTransfer.ProductDTO;
 using Product.Domain.Shared.Entitys;
 using Product.Infrastructure.EventBus;
@@ -20,12 +21,15 @@ namespace Product.Application.Application
         private readonly SeoProductQuery _seoProductQuery = new SeoProductQuery();
         private readonly ProductCategoryMappingQuery _productCategoryMappingQuery = new ProductCategoryMappingQuery();
         private readonly SpecificationAttributeMappingQuery _specificationAttributeMappingQuery = new SpecificationAttributeMappingQuery();
+        private readonly SpecificationAttributeQuery _specificationAttributeQuery = new SpecificationAttributeQuery();
         private readonly ImageProcessBus _imageProcess = new ImageProcessBus();
         private readonly ImageProductQuery _image = new ImageProductQuery();
         private readonly ProductPictureQuery _productPictureQuery = new ProductPictureQuery();
         private readonly FeatureProductQuery _featureProductQuery = new FeatureProductQuery();
         private readonly ProductAttributeValueQuery _productAttributeValueQuery = new ProductAttributeValueQuery();
         private readonly ProductAttributeMappingQuery _productAttributeMappingQuery = new ProductAttributeMappingQuery();
+        private readonly ProductTagQuery _productTagQuery = new ProductTagQuery();
+        private readonly TagProductCoreDomain _tagProductCoreDomain = new TagProductCoreDomain();
 
         // currently only add data with standard input data. have not checked the data, adding failed....
         public async Task<bool> ProcessProductContainer(ProductContainerInsertDto input, int idAccount)
@@ -35,15 +39,26 @@ namespace Product.Application.Application
             product.CreateBy = idAccount;
             _productQuery.Insert(product);
             string nameSeo = LanguageConvert.ConvertVietNamese(product.Name);
-            // add product tag
-            //var dataProductTag = input.ProductTagDtos.ToList().Select(m => new ProductProductTagMapping
-            //{
-            //    ProductId = product.Id,
-            //    ProductTagId = m,
-            //    CreateBy = idAccount
-            //}).ToList();
 
-            //_productProductTagMappingQuery.Insert(dataProductTag);
+            // add product tag
+            List<ProductProductTagMapping> dataProductTag = new List<ProductProductTagMapping>();
+            foreach (var item in input.ProductTagDtos)
+            {
+                dataProductTag.Add(new ProductProductTagMapping
+                {
+                    ProductId = product.Id,
+                    ProductTagId = await _productTagQuery.Insert(new ProductTag
+                    {
+                        Name = _tagProductCoreDomain.ProcessTag(item),
+                        CreateBy = idAccount,
+                        IsDelete = false
+                    }),
+                    CreateBy = idAccount
+                });
+            }
+
+            _productProductTagMappingQuery.Insert(dataProductTag);
+
             //// add seo
             _seoProductQuery.Insert(new Seo { });
             // add category
@@ -62,23 +77,30 @@ namespace Product.Application.Application
             // add Specification
             int iSpecification = 0;
 
-            //var dataProductSpecification = input.SpecificationProductDtos
-            //                                    .ToList().Select(m => new ProductSpecificationAttributeMapping
-            //                                    {
-            //                                        ProductId = product.Id,
-            //                                        SpecificationId = m.SpecificationId,
-            //                                        CustomValue = m.CustomValue,
-            //                                        AttributeTypeId = m.AttributeTypeId,
-            //                                        CreateBy = idAccount,
-            //                                        AllowFiltering = m.AllowFiltering,
-            //                                        ShowOnProductPage = true,
-            //                                        DisplayOrder = (++iSpecification)
-            //                                    }).ToList();
-            //_specificationAttributeMappingQuery.Insert(dataProductSpecification);
+            List<ProductSpecificationAttributeMapping> dataProductSpecification = new List<ProductSpecificationAttributeMapping>();
+            foreach (var m in input.SpecificationProductDtos)
+            {
+                var dataSpec = await _specificationAttributeQuery.GetIdByGroupAndKey(key: m.SpecificationKey, group: m.SpecificationGroup);
+                // get id with key and group
+                dataProductSpecification.Add(new ProductSpecificationAttributeMapping
+                {
+                    ProductId = product.Id,
+                    SpecificationId = dataSpec.Id,
+                    CustomValue = m.CustomValue,
+                    AttributeTypeId = null,
+                    CreateBy = idAccount,
+                    AllowFiltering = m.AllowFiltering,
+                    ShowOnProductPage = true,
+                    DisplayOrder = m.DisplayOrder
+                });
+            };
+
+            _specificationAttributeMappingQuery.Insert(dataProductSpecification);
 
             // add image product
+            
             var dataImage = await _imageProcess.ImageProcessRabbitMQ(input.ImageRoot);
-
+            // xóa image gốc
             // add image to image product
             List<ImageProduct> imageProducts = new List<ImageProduct>();
 
@@ -233,6 +255,7 @@ namespace Product.Application.Application
                     });
 
                     // insert product atri value
+                    // nên làm kieur nếu có rồi thì lấy nó ra.
                     List<ProductAttributeValue> productAttributeValues = new List<ProductAttributeValue>();
                     if (itemFeature.ProductAttributeValueInsertDtos.Count > 0)
                     {
