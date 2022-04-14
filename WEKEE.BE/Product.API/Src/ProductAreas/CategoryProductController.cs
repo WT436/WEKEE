@@ -70,5 +70,14 @@ namespace Product.API.Src.ProductAreas
             var data = await _categoryProduct.ReadNameAndId();
             return Ok(data);
         }
+
+        [HttpGet]
+        [Route("/v1/api/get-data-category-becrum")]
+        public async Task<IActionResult> GetCategoryBreadcrumb(int input)
+        {
+            var data = await _categoryProduct.GetCategoryBreadcrumbDtos(input);
+            return Ok(data);
+        }
+
     }
 }

@@ -115,7 +115,8 @@ export default function SiderStore(props: ISiderStoreProps) {
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="sub3_2" title="Sản phẩm">
-                <Menu.Item key="item3_2_1"><Link to="/store/product/new-product">Tạo Mới Sản Phẩm</Link></Menu.Item>
+                <Menu.Item key="item3_2_1"><Link to="/store/product/my-product">Sản Phẩm Của Tôi</Link></Menu.Item>
+                <Menu.Item key="item3_2_2"><Link to="/store/product/new-product">Tạo Mới Sản Phẩm</Link></Menu.Item>
               </SubMenu>
             </SubMenu>
             <SubMenu

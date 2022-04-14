@@ -1,19 +1,21 @@
-import React, { createRef, SyntheticEvent, useEffect, useRef, useState } from 'react'
+import React, { SyntheticEvent, useRef, useState } from 'react'
 import { Button, Divider, message, Modal, Rate, Select, Tag, Upload } from 'antd';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { CloseCircleOutlined, FileImageOutlined, PlusOutlined, SmileOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, FileImageOutlined, SmileOutlined } from '@ant-design/icons';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { createYouAssessmentStart, removeYouAssessmentStart } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import { createStructuredSelector } from 'reselect';
 import { makeSelectLoading } from '../selectors';
 const { Dragger } = Upload;
+
 declare var abp: any;
+
+
 const stateSelector = createStructuredSelector<any, any>({
     loading: makeSelectLoading()
 });
@@ -134,7 +136,7 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
                                         if (index < 7) {
                                             return (
                                                 <div className='cKqErgPkfl'>
-                                                    <CloseCircleOutlined onClick={() => { setimageevaluates(imageevaluates.filter(item2 => item2 !== item)); dispatch(removeYouAssessmentStart(item)) }} />
+                                                    <CloseCircleOutlined onClick={() => { setimageevaluates(imageevaluates.filter(item2 => item2 !== item)); }} />
                                                     <LazyLoadImage
                                                         alt={"ádsda"}
                                                         effect="blur"
@@ -170,7 +172,7 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
                                 bodyStyle={{ textAlign: 'center' }}
                             >
                                 <div className='cKqErgPkfl' style={{ width: '100%', height: '100%' }}>
-                                    <span onClick={() => { setimageevaluates(imageevaluates.filter(item2 => item2 !== selectImage)); dispatch(removeYouAssessmentStart(selectImage)); setselectImage('') }}>Xóa</span>
+                                    <span onClick={() => { setimageevaluates(imageevaluates.filter(item2 => item2 !== selectImage)); setselectImage('') }}>Xóa</span>
                                     <LazyLoadImage
                                         alt={"Lựa chọn image"}
                                         effect="blur"
@@ -227,15 +229,7 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
                             onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
                             className='eNzvzXxgia' name="" id="" />
                         <Divider className="VTsdGRPspc" orientation="center">
-                            <Button className='sLiVwLFPQg' loading={loading} onClick={() => dispatch(createYouAssessmentStart({
-                                id: 0,
-                                content: assessmentInput,
-                                starNumber: Star,
-                                pinFeeling: pinFeeling,
-                                image: imageevaluates,
-                                product: props.id,
-                                levelEvaluates: 0
-                            }))}>Đánh Giá</Button>
+                            <Button className='sLiVwLFPQg' loading={loading}>Đánh Giá</Button>
                         </Divider>
                     </div>
                     : <Divider className="VTsdGRPspc" orientation='center'><Button className='sLiVwLFPQg' href='/login'>Đăng Nhập Đánh Giá</Button></Divider>

@@ -3,35 +3,33 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { useInjectReducer, useInjectSaga } from '../../redux/reduxInjectors';
-import { watchPageStart } from './actions';
+import { useInjectReducer, useInjectSaga } from '../../../redux/reduxInjectors';
 import reducer from './reducer';
 import saga from './saga';
-import { makeSelectCompleted, makeSelectLoading, makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages } from './selectors';
-import { Badge, Button, Card, Checkbox, Col, Collapse, DatePicker, Dropdown, Form, Input, InputNumber, Menu, Modal, notification, Row, Select, Table, Tag, Tooltip } from 'antd';
-import { CaretRightOutlined, CheckOutlined, CloseOutlined, DeleteOutlined, DesktopOutlined, EditOutlined, EllipsisOutlined, FilePdfOutlined, LockOutlined, PlusOutlined, RedoOutlined, SearchOutlined, SettingOutlined, UnlockOutlined, UserOutlined } from '@ant-design/icons';
-import ConstTypes, { confirmTypes } from './objectValues/ConstTypes';
-import form from 'antd/lib/form';
-import { CateProReadIdAndNameDto } from '../../scenes/Admin/AttributeProduct/dtos/cateProReadIdAndNameDto';
-import OrderByProperty from '../../services/dto/orderByProperty';
+import { makeSelectLoading } from './selectors';
+import {
+    Button, Card, Col, Collapse, DatePicker, Form, Input, InputNumber, Modal, notification, Row, Select, Switch,
+    Table, Tag, Tooltip
+} from 'antd';
+import {
+    CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, FilePdfOutlined, LockOutlined,
+    PlusOutlined, RedoOutlined, SearchOutlined, UnlockOutlined
+} from '@ant-design/icons';
 import moment from 'moment';
+import ConstTypes, { confirmTypes } from './objectValues/ConstTypes';
+import OrderByProperty from '../../../services/dto/orderByProperty';
+import CardProduct from '../../../components/CardProduct';
 declare var abp: any;
 const { Panel } = Collapse;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 //#endregion
-export interface IBaseProps { // đây
+export interface IMyProductStoreProps { // đây
     location: any;
 }
-const key = 'base';// đây
-
+const key = 'myproductstore';// đây
 const stateSelector = createStructuredSelector < any, any> ({
-    loading: makeSelectLoading(),
-    completed: makeSelectCompleted(),
-    pageIndex: makeSelectPageIndex(),
-    pageSize: makeSelectPageSize(),
-    totalCount: makeSelectTotalCount(),
-    totalPages: makeSelectTotalPages()
+    loading: makeSelectLoading()
 });
 
 const formItemLayout = {
@@ -44,8 +42,7 @@ const formItemLayout = {
         sm: { span: 14 },
     },
 };
-
-export default function Base(props: IBaseProps) { // Đây
+export default function MyProductStore(props: IMyProductStoreProps) { // Đây
 
     //#region START
     useInjectReducer(key, reducer);
@@ -120,12 +117,12 @@ export default function Base(props: IBaseProps) { // Đây
                         // return (optionCategoryProduct.map((province: CateProReadIdAndNameDto) => (
                         //     <Option value={province.id}>{province.name}</Option>
                         // )))
-                        <Option value={'province.id'}>{'province.name'}</Option>
+                        return (<Option value={'province.id'}>{'province.name'}</Option>);
                     if (value === ConstTypes.CREATEBY_PROATTR)
                         // return (optionCreateByCate.map((province: CateProReadIdAndNameDto) => (
                         //     <Option value={province.id}>{province.name}</Option>
                         // )))
-                        <Option value={'province.id'}>{'province.name'}</Option>
+                        return (<Option value={'province.id'}>{'province.name'}</Option>);
                     else {
                         return (
                             <>
@@ -234,7 +231,7 @@ export default function Base(props: IBaseProps) { // Đây
             });
         }
         else {
-           
+
         }
     };
 
@@ -318,6 +315,18 @@ export default function Base(props: IBaseProps) { // Đây
             )
         },
     ];
+       let data = [
+          {
+              "id": 1,
+              "name": "GET",
+              "description": "yêu cầu xem thông tin",
+              "typesRsc": "URL",
+              "isActive": true,
+              "createdAt": "2022-02-10T03:10:02.5",
+              "createBy": null,
+              "updatedAt": "2022-02-10T03:10:02.5",
+              "count": 0
+          }];
     return (
         <>
             <Card
@@ -455,7 +464,28 @@ export default function Base(props: IBaseProps) { // Đây
                             </Col>
                         </Row>
                     </Col>
+                    <Col>
+                    </Col>
                 </Row >
+                <Row style={{ margin: '10px 0' }}>
+                    <Table
+                        columns={columns}
+                        rowKey={(record: any) => record.id}
+                        dataSource={data}
+                        loading={loading}
+                        style={{ width: 'calc(100% - 10px)' }}
+                        scroll={{ y: 350 }}
+                        size='small'
+                        pagination={{
+                            pageSize: pageSize,
+                            total: totalCount,
+                            defaultCurrent: 1,
+                            onChange: _searchDataOnClick,
+                            showSizeChanger: true,
+                            pageSizeOptions: ['5', '10', '20', '50', '100']
+                        }}
+                    />
+                </Row>
             </Card>
         </>
     )

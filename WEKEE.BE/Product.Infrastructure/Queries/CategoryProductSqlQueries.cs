@@ -51,5 +51,18 @@ namespace Product.Infrastructure.Queries
             return unitOfWork.FromSql<CategoryProductReadDto>(query.ToString());
         }
 
+        public async Task<List<CategoryBreadcrumbDtos>> GetNameForBreadcrum(int idProduct)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine(" SELECT                                                         ");
+            query.AppendLine(" 	  CP.[nameCategory] AS 'NameCategory'                         ");
+            query.AppendLine(" 	  ,CP.[urlCategory] AS 'UrlCategory'                          ");
+            query.AppendLine(" 	  ,CP.[levelCategory] AS 'LevelCategory'                      ");
+            query.AppendLine(" FROM CategoryProduct AS CP                                     ");
+            query.AppendLine($"JOIN Product_Category_Mapping AS PCM ON CP.id = PCM.CategoryId ");
+            query.AppendLine(" JOIN Product AS P ON P.id = PCM.ProductId                      ");
+            query.AppendLine($" WHERE P.id = {idProduct}                                      ");
+            return unitOfWork.FromSql<CategoryBreadcrumbDtos>(query.ToString());
+        }
     }
 }

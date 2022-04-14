@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json;
+using NUnit.Framework;
 using Product.Domain.CoreDomain;
+using Product.Infrastructure.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +13,21 @@ namespace Product.Test
     [TestFixture]
     public class ProductTests
     {
-        private readonly TagProductCoreDomain _tagProductCoreDomain = new TagProductCoreDomain();
+        private readonly CategoryProductSqlQueries _tagProductCoreDomain = new CategoryProductSqlQueries();
 
         [SetUp]
         public void SetUp()
         {
         }
 
-        [TestCase("dienthoai2", "Điện thoại")]
-        [TestCase("maytinhbang", "Máy tính bảng")]
-        public void TestProductTag(string value, string value2)
+        [TestCase(1)]
+        public async Task TestProductTag(int value)
         {
-            var rest = _tagProductCoreDomain.ProcessTag(value2);
-            Assert.IsTrue(rest == value, $"Data : {value2};\n" +
-                                         $"result: {rest};\n" +
-                                         $"expectation: {value};\n" +
-                                         $"Status : {rest == value}");
+            var rest = await _tagProductCoreDomain.GetNameForBreadcrum(value);
+            Assert.IsTrue(rest  == null, $"Data : {JsonConvert.SerializeObject(rest)};\n");
+            //$"result: {rest};\n" +
+            //$"expectation: {value};\n" +
+            //$"Status : {rest == value}");
         }
     }
 }

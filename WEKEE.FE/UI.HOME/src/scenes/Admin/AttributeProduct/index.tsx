@@ -118,7 +118,6 @@ export default function AttributeProduct(props: IAttributeProductProps) {
             }));
         }
     }
-
     //#endregion
 
     //#region SELECT COLUMN SEARCH

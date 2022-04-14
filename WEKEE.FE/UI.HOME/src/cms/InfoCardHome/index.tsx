@@ -79,7 +79,7 @@ export default function InfoCardHome(props: IInfoCardHomeProps) {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "album/product/f55b79fe653f43eeb3c2ec43a73a1dd2.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -91,7 +91,7 @@ export default function InfoCardHome(props: IInfoCardHomeProps) {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "album/product/f55b79fe653f43eeb3c2ec43a73a1dd2.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -107,7 +107,7 @@ export default function InfoCardHome(props: IInfoCardHomeProps) {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "album/product/f55b79fe653f43eeb3c2ec43a73a1dd2.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -119,7 +119,7 @@ export default function InfoCardHome(props: IInfoCardHomeProps) {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "album/product/f55b79fe653f43eeb3c2ec43a73a1dd2.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>
@@ -131,7 +131,7 @@ export default function InfoCardHome(props: IInfoCardHomeProps) {
                         <Menu.Item key="sadfsa" >
                             <a href="/login" className="UWRJovyiDd">
                                 <div className="bRDSowVZlW">
-                                    <img src={abp.serviceAlbumImage + "/product/wekee-wekee-146121821_430393218381317_505496019680432805_n-210306-07102021--210518-07102021-S80x80.jpg"} alt="" />
+                                    <img src={abp.serviceAlbumImage + "album/product/f55b79fe653f43eeb3c2ec43a73a1dd2.jpg"} alt="" />
                                 </div>
                                 <span className="qGjeERhsix">
                                     <span>hello anh và mọi người , chúc anh và mọi người xem live vui vẻ. anh mở hàng cho mọi người trong top 4 nha a</span>

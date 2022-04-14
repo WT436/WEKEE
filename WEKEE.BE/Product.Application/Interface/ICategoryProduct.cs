@@ -43,5 +43,7 @@ namespace Product.Application.Interface
         Task<List<CategoryProductReadMapDto>> GetMapCategory();
 
         Task<List<CateProReadIdAndNameDto>> ReadNameAndId();
+
+        Task<List<CategoryBreadcrumbDtos>> GetCategoryBreadcrumbDtos(int idProduct);
     }
 }

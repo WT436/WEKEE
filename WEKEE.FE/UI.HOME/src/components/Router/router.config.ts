@@ -116,6 +116,11 @@ export const supplierRouters: any = [
     component: LoadableComponent(() => import("../../scenes/Store/SuNewProduct")),
   },
   {
+    path: "/store/product/my-product",
+    exact: true,
+    component: LoadableComponent(() => import("../../scenes/Store/MyProductStore")),
+  },
+  {
     path: "/store/store/information",
     exact: true,
     component: LoadableComponent(

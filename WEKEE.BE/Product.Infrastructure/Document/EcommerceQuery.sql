@@ -128,3 +128,12 @@ SELECT distinct CP.GroupSpecification
 FROM DBO.SpecificationAttribute AS CP
 WHERE CP.CategoryProductId IN (2,3,4) 
 AND CP.GroupSpecification!= 'NULL'
+
+SELECT
+	  CP.[nameCategory] AS 'NameCategory'
+	  ,CP.[urlCategory] AS 'UrlCategory'
+	  ,CP.[levelCategory] AS 'LevelCategory'
+FROM CategoryProduct AS CP
+JOIN Product_Category_Mapping AS PCM ON CP.id = PCM.CategoryId 
+JOIN Product AS P ON P.id = PCM.ProductId
+WHERE P.id = 1

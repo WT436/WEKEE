@@ -20,6 +20,7 @@ namespace Product.Application.Application
     {
         // check data With server
         public readonly CategoryProductQuery _categoryProductQuery = new CategoryProductQuery();
+        public readonly CategoryProductSqlQueries _categoryProductSqlQueries = new CategoryProductSqlQueries();
         private readonly IImageProduct _imageProduct = new ImageProductService();
         public async Task<int> ChangeEnableCategory(List<Entitys> id)
         {
@@ -144,6 +145,11 @@ namespace Product.Application.Application
                 TotalPages = (totalCount / input.PageSize),
                 TotalCount = totalCount
             };
+        }
+
+        public async Task<List<CategoryBreadcrumbDtos>> GetCategoryBreadcrumbDtos(int idProduct)
+        {
+           return await _categoryProductSqlQueries.GetNameForBreadcrum(idProduct);
         }
 
         public async Task<List<CategoryProductReadMapDto>> GetMapCategory()
