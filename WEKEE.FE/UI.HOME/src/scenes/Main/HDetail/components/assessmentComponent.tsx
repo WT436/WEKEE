@@ -15,7 +15,9 @@ import Dragger from 'antd/lib/upload/Dragger';
 const { Text } = Typography;
 const { Option } = Select;
 declare var abp: any;
-interface IAssessmentComponent { id: number }
+interface IAssessmentComponent { 
+    id: number;
+}
 
 const settings3 = {
     dots: false,
@@ -91,7 +93,6 @@ export default function AssessmentComponent(props: IAssessmentComponent) {
 
     // review 
     const [provisoOnselect, setprovisoOnselect] = useState < number[] > ([]);
-    const [pageOnselect, setPageOnselect] = useState < number > (0);
 
     const onSelectProviso = (input: number) => {
         if (provisoOnselect.some((element) => element === input)) {

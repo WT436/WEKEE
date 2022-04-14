@@ -137,3 +137,33 @@ FROM CategoryProduct AS CP
 JOIN Product_Category_Mapping AS PCM ON CP.id = PCM.CategoryId 
 JOIN Product AS P ON P.id = PCM.ProductId
 WHERE P.id = 1
+
+--------------------------------------------------------------------------------------------------
+  SELECT                                                                                  
+  	  P.[name]                      AS 'Name'  
+  	 ,(SELECT [name] FROM dbo.[ProductAttribute] WHERE id = P.[Trademark] AND Types = 3)  AS 'Trademark'                  
+  	 ,P.[FullDescription]           AS 'FullDescription'            
+  	 ,P.[ShortDescription]          AS 'ShortDescription'           
+  	 ,P.[HasUserAgreement]          AS 'HasUserAgreement'           
+  	 ,P.[OrderMinimumQuantity]      AS 'OrderMinimumQuantity'       
+  	 ,P.[OrderMaximumQuantity]      AS 'OrderMaximumQuantity'       
+  	 ,P.[ShipSeparately]            AS 'ShipSeparately'             
+  	 ,P.[IsFreeShipping]            AS 'IsFreeShipping'             
+  	 ,P.[BackorderModeId]           AS 'BackorderModeId'            
+  	 ,P.[DisableWishlistButton]     AS 'DisableWishlistButton'      
+  	 ,P.[WishlistNumber]            AS 'WishlistNumber'             
+  	 ,P.[MarkAsNew]                 AS 'MarkAsNew'                  
+  	 ,P.[MarkAsNewStartDateTimeUtc] AS 'MarkAsNewStartDateTimeUtc'  
+  	 ,P.[MarkAsNewEndDateTimeUtc]   AS 'MarkAsNewEndDateTimeUtc'    
+  FROM dbo.[Product]                  AS P                            
+  WHERE P.[id] = 1                
+  
+--------------------------------------------------------------------------------------------------
+  SELECT 
+		 PSAM.[CustomValue]
+		,SPA.[Key]
+		,PSAM.[DisplayOrder]
+  FROM [Product_SpecificationAttribute_Mapping] AS PSAM
+  JOIN [SpecificationAttribute] AS SPA ON PSAM.[SpecificationId] = SPA.[Id]
+  WHERE PSAM.[ProductId] = 1 AND PSAM.[ShowOnProductPage] = 1 AND PSAM.[AllowFiltering] = 1
+  ORDER BY PSAM.[DisplayOrder] ASC

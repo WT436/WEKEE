@@ -9,6 +9,24 @@ export const initialState: HDetailState = {
   categoryBreadcrumbDtos: [
     { nameCategory: "", urlCategory: "", levelCategory: 0 },
   ],
+  basicProduct: {
+    name: '',
+    trademark: '',
+    fullDescription: '',
+    shortDescription: '',
+    hasUserAgreement: false,
+    orderMinimumQuantity: 0,
+    orderMaximumQuantity: 0,
+    shipSeparately: false,
+    isFreeShipping: false,
+    backorderModeId: 0,
+    disableWishlistButton: false,
+    wishlistNumber: 0,
+    markAsNew: false,
+    markAsNewStartDateTimeUtc: '',
+    markAsNewEndDateTimeUtc: '',
+    specificationAttributeDtos: []
+  }
 };
 
 function hDetailReducer(
@@ -16,6 +34,7 @@ function hDetailReducer(
   action: HDetailActions
 ) {
   switch (action.type) {
+    //#region GET_CATEGORY_BREADCRUMB 
     case ActionTypes.GET_CATEGORY_BREADCRUMB_START:
       return {
         ...state,
@@ -34,6 +53,27 @@ function hDetailReducer(
         ...state,
         loading: false,
       };
+    //#endregion
+    //#region GET_BASIC_PRODUCT_CART_START
+    case ActionTypes.GET_BASIC_PRODUCT_CART_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.GET_BASIC_PRODUCT_CART_COMPLETED:
+      return {
+        ...state,
+        loading: false,
+        basicProduct: action.payload
+      };
+
+    case ActionTypes.GET_BASIC_PRODUCT_CART_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
     default:
       return state;
   }

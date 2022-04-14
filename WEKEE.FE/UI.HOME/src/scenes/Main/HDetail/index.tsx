@@ -4,19 +4,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { useInjectReducer, useInjectSaga } from "../../../redux/reduxInjectors";
-import { getCategoryBreadcrumbStart } from "./actions";
+import { getBasicCartProductStart, getCategoryBreadcrumbStart } from "./actions";
 import reducer from "./reducer";
 import saga from "./saga";
-import {
-  Button, Col, Row, Select,
-} from "antd";
-import {
-  makeSelectcategoryBreadcrumbDtos, makeSelectLoading,
-} from "./selectors";
+import { Button, Col, Row, Select } from "antd";
+import { makeSelectbasicProduct, makeSelectcategoryBreadcrumbDtos, makeSelectLoading } from "./selectors";
 import { Helmet } from "react-helmet";
-import {
-  HomeOutlined
-} from "@ant-design/icons";
+import { HomeOutlined } from "@ant-design/icons";
 import BasicSeo from "../../../components/Seo/basicSeo";
 import { CategoryBreadcrumbDtos } from "./dtos/categoryBreadcrumbDtos";
 import CardProduct from "../../../components/CardProduct";
@@ -30,6 +24,8 @@ import BasicInfoProductComponent from "./components/basicInfoProductComponent";
 import FeatureProductComponent from "./components/featureProductComponent";
 import AddressShipProduct from "./components/addressShipProduct";
 import AddToCartComponent from "./components/addToCartComponent";
+import { SpecificationAttributeDto } from "./dtos/specificationAttributeDto";
+
 const { Option } = Select;
 
 //#endregion
@@ -43,23 +39,25 @@ var urlCss = abp.serviceAlbumCss + "/detail.css";
 const key = "hdetail";
 const stateSelector = createStructuredSelector < any, any> ({
   loading: makeSelectLoading(),
-  categoryBreadcrumbDtos: makeSelectcategoryBreadcrumbDtos()
+  categoryBreadcrumbDtos: makeSelectcategoryBreadcrumbDtos(),
+  basicProduct: makeSelectbasicProduct()
 });
 
 export default function HDetail(props: IHDetailProps) {
   useInjectReducer(key, reducer);
   useInjectSaga(key, saga);
   const dispatch = useDispatch();
-  const { categoryBreadcrumbDtos, unitCardProduct
+  const { categoryBreadcrumbDtos, basicProduct
   } = useSelector(stateSelector);
 
   const [routes, setroutes] = useState < { path: string; breadcrumbName: any }[] > ([]);
-
+  var id = 0;
   useEffect(() => {
-    var id = props.location.pathname.substring(
+    id = props.location.pathname.substring(
       props.location.pathname.lastIndexOf("/adsid=") + 7
     );
     dispatch(getCategoryBreadcrumbStart(id));
+    dispatch(getBasicCartProductStart(id));
   }, []);
 
   useEffect(() => {
@@ -154,7 +152,7 @@ export default function HDetail(props: IHDetailProps) {
           <ShopProductComponent />
         </Col>
         <Col style={{ width: "calc(100% - 340px)", paddingLeft: "10px" }}>
-          <ChartsTopProductComponent />
+          <ChartsTopProductComponent id={id} />
           <Row>
             <Col className="otSUEGfNRF">
               <BasicInfoProductComponent />
@@ -164,10 +162,14 @@ export default function HDetail(props: IHDetailProps) {
             </Col>
             <Col className="otSUEGfNRF">
               <ul className="UPkAKNmJzp">
-                <li className="QMUySBCWUx">
-                  <span>{'elment.nameShow'}</span>
-                  {'elment.values'}
-                </li>
+                {basicProduct.specificationAttributeDtos
+                  .map((item: SpecificationAttributeDto) => {
+                    return (
+                      <li className="QMUySBCWUx">
+                        <span>{item.key}</span>
+                        {item.customValue}
+                      </li>)
+                  })}
               </ul>
             </Col>
           </Row>
@@ -177,11 +179,10 @@ export default function HDetail(props: IHDetailProps) {
         <Col span={19}>
           <div className="OJkXBiXyst">
             <p className="SwswGUqGyh">Mô Tả Sản Phẩm</p>
-            {/* {pzScZkIiuj} */}
             <div
               className={openintroduce ? "feTSsBMLGN" : "feTSsBMLGN pzScZkIiuj"}
               dangerouslySetInnerHTML={{
-                __html: "unitCardProduct.productCardDtos.introduce",
+                __html: basicProduct.fullDescription,
               }}
             ></div>
             <div
@@ -189,7 +190,6 @@ export default function HDetail(props: IHDetailProps) {
                 !openintroduce ? "kBynIEHFTL" : "kBynIEHFTL fudZxInsuq"
               }
             >
-              {/*fudZxInsuq*/}
             </div>
             <div className="XlRRNzXjls">
               <Button

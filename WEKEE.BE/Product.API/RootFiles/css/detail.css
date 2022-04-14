@@ -455,12 +455,19 @@
 
     .lPibOcgFQi > span {
         width: calc(100% - 50px);
+        max-width: 150px;
         height: 50px;
         text-align: center;
         line-height: 50px;
         font-size: 16px;
         font-weight: 500;
     }
+
+        .lPibOcgFQi > span :first-child {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
 
 .nuTLGkaQio {
     width: 0px !important;
@@ -616,7 +623,10 @@
         padding: 5px 10px;
         margin-right: 10px;
         border-radius: 5px;
-        text-align: end;
+        text-align: start;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
 .OJkXBiXyst {
