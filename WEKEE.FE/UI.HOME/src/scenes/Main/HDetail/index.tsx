@@ -51,11 +51,11 @@ export default function HDetail(props: IHDetailProps) {
   } = useSelector(stateSelector);
 
   const [routes, setroutes] = useState < { path: string; breadcrumbName: any }[] > ([]);
-  var id = 0;
+  const [id, setid] = useState < number > (props.location.pathname.substring(
+    props.location.pathname.lastIndexOf("/adsid=") + 7
+  ));
+
   useEffect(() => {
-    id = props.location.pathname.substring(
-      props.location.pathname.lastIndexOf("/adsid=") + 7
-    );
     dispatch(getCategoryBreadcrumbStart(id));
     dispatch(getBasicCartProductStart(id));
   }, []);
@@ -140,14 +140,14 @@ export default function HDetail(props: IHDetailProps) {
               }
             })}
           <li key="End">
-            <a className="GjLseculzyac">{'nameProduct'}</a>
+            <a className="GjLseculzyac">{basicProduct.name}</a>
           </li>
         </ul>
       }
 
       <Row>
         <Col span={7} className="lIiNahOSjz">
-          <ImageZoomComponent />
+          <ImageZoomComponent id={id} />
           <ProductInteractionComponent />
           <ShopProductComponent />
         </Col>
@@ -156,7 +156,7 @@ export default function HDetail(props: IHDetailProps) {
           <Row>
             <Col className="otSUEGfNRF">
               <BasicInfoProductComponent />
-              <FeatureProductComponent />
+              <FeatureProductComponent id={id} />
               <AddressShipProduct />
               <AddToCartComponent />
             </Col>

@@ -8,24 +8,59 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
+import { getImageProductStart } from '../actions';
+import { makeSelectimageForProduct } from '../selectors';
+import { ImageForProductDto } from '../dtos/imageForProductDto';
 
 declare var abp: any;
 //#endregion
 
 interface IImageZoomComponentProps {
+    id: number
+};
 
-}
 const stateSelector = createStructuredSelector < any, any> ({
+    imageForProduct: makeSelectimageForProduct()
 });
+
 export default function ImageZoomComponent(props: IImageZoomComponentProps) {
 
     const dispatch = useDispatch();
 
     const {
-        imageS80x80, imageS340x340, imageS1360x1360,
+        imageForProduct
     } = useSelector(stateSelector);
 
+    //#region START
 
+    useEffect(() => {
+        dispatch(getImageProductStart(props.id));
+    }, []);
+
+    const [ImageS80x80, setImageS80x80] = useState < ImageForProductDto[] > ([]);
+    const [ImageS1360x540, setImageS1360x540] = useState < ImageForProductDto[] > ([]);
+    const [ImageS340x340, setImageS340x340] = useState < ImageForProductDto[] > ([]);
+
+    useEffect(() => {
+        setImageS80x80([]);
+        setImageS1360x540([]);
+        setImageS340x340([]);
+        imageForProduct.forEach((element: ImageForProductDto) => {
+            if (element.size == 'S80x80') {
+                setImageS80x80(ImageS80x80 => [...ImageS80x80, element]);
+            }
+            else if (element.size == 'S1360x540') {
+                setImageS1360x540(ImageS1360x540 => [...ImageS1360x540, element]);
+            }
+            else {
+                setImageS340x340(ImageS340x340 => [...ImageS340x340, element]);
+            }
+        });
+    }, [imageForProduct]);
+
+    //#endregion
+
+    //#region MAP IMAGE TO ZOOM 
     const [selectImage, setselectImage] = useState(0);
     const [zoomImage, setzoomImage] = useState({
         smallImage: {
@@ -37,8 +72,26 @@ export default function ImageZoomComponent(props: IImageZoomComponentProps) {
             src: "",
             width: 900,
             height: 900,
-        },
+        }
     });
+    const _selectImageShow = (imageRoot: number) => {
+        setselectImage(imageRoot);
+        var image1360Show = ImageS1360x540.find((item: ImageForProductDto) => item.imageRoot === imageRoot);
+        var image340Show = ImageS340x340.find((item: ImageForProductDto) => item.imageRoot === imageRoot);
+        setzoomImage({
+            smallImage: {
+                alt: image340Show === undefined ? "" : image340Show.altAttribute,
+                isFluidWidth: true,
+                src: image340Show === undefined ? "" : abp.serviceAlbumImage + image340Show.virtualPath,
+            },
+            largeImage: {
+                src: image1360Show === undefined ? "" : abp.serviceAlbumImage + image1360Show.virtualPath,
+                width: 900,
+                height: 900,
+            }
+        });
+    }
+    //#endregion
 
     const settings3 = {
         dots: false,
@@ -51,61 +104,6 @@ export default function ImageZoomComponent(props: IImageZoomComponentProps) {
         pauseOnHover: true,
     };
 
-    const onSelectImageZoom = (value: number) => {
-        // imageS80x80.map((element: ImageProductCardDtos) => {
-        //     if (element.imageRoot === value) {
-        //         setselectImage(element.id);
-        //     }
-        // });
-
-        // var data340: ImageProductCardDtos = {
-        //     id: 0,
-        //     src: "",
-        //     alt: "",
-        //     title: "",
-        //     size: "",
-        //     folder: "",
-        //     product: 0,
-        //     imageRoot: 0,
-        // };
-
-        // imageS340x340.forEach((element: ImageProductCardDtos) => {
-        //     if (element.imageRoot === value) {
-        //         data340 = element;
-        //     }
-        // });
-
-        // var dataS1360x1360: ImageProductCardDtos = {
-        //     id: 0,
-        //     src: "",
-        //     alt: "",
-        //     title: "",
-        //     size: "",
-        //     folder: "",
-        //     product: 0,
-        //     imageRoot: 0,
-        // };
-
-        // imageS1360x1360.forEach((element: ImageProductCardDtos) => {
-        //     if (element.imageRoot === value) {
-        //         dataS1360x1360 = element;
-        //     }
-        // });
-
-        // setzoomImage({
-        //     smallImage: {
-        //         alt: data340.alt,
-        //         isFluidWidth: true,
-        //         src: abp.serviceAlbumImage + data340.src,
-        //     },
-        //     largeImage: {
-        //         src: abp.serviceAlbumImage + dataS1360x1360.src,
-        //         width: 900,
-        //         height: 900,
-        //     },
-        // });
-    };
-
     return (
         <>
             <div className="diTRzvSLbS">
@@ -113,15 +111,19 @@ export default function ImageZoomComponent(props: IImageZoomComponentProps) {
             </div>
             <div className="CDBhRpMxwl">
                 <Slider {...settings3}>
-                    <img
-                        className={
-                            "LmqLbjIyYc" +
-                            " " +
-                            (true ? "bFpTBTrDfH" : "")
-                        }
-                        src={abp.serviceAlbumImage + "element.src"}
-                        alt={"element.alt"}
-                    />
+                    {ImageS80x80.map(item => {
+                        return (
+                            <img
+                                className={
+                                    "LmqLbjIyYc " +
+                                    (item.imageRoot == selectImage ? "bFpTBTrDfH" : "")
+                                }
+                                onClick={() => _selectImageShow(item.imageRoot)}
+                                src={abp.serviceAlbumImage + item.virtualPath}
+                                alt={item.altAttribute}
+                            />
+                        )
+                    })}
                 </Slider>
             </div>
         </>

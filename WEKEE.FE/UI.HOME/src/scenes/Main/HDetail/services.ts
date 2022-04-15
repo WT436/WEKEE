@@ -1,8 +1,32 @@
 import http from "../../../services/httpService";
 import { CartBasicProductDto } from "./dtos/cartBasicProductDto";
+import { FeatureProductContainerDto } from "./dtos/featureProductContainerDto";
+import { ImageForProductDto } from "./dtos/imageForProductDto";
 
 class HDetailService {
-
+  //#region  getFeatureCartProductService
+  public async getFeatureCartProductService(input: number): Promise<FeatureProductContainerDto[]> {
+    let rs = await http.get('/cart-feature-product', { params: { input: input } });
+    console.log("rs",rs.data)
+    if (rs) {
+      return rs.data;
+    }
+    else {
+      return rs;
+    }
+  }
+  //#endregion
+  //#region  getImageProductService
+  public async getImageProductService(input: number): Promise<ImageForProductDto[]> {
+    let rs = await http.get('/cart-image-product', { params: { input: input } });
+    if (rs) {
+      return rs.data;
+    }
+    else {
+      return rs;
+    }
+  }
+  //#endregion
   //#region  getBasicProductCart
   public async getBasicProductCartService(input: number): Promise<CartBasicProductDto> {
     let rs = await http.get('/cart-basic-product', { params: { input: input } });

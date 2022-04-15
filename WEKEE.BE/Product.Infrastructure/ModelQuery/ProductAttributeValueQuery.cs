@@ -3,6 +3,7 @@ using Product.Infrastructure.DBContext;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using UnitOfWork;
 
 namespace Product.Infrastructure.ModelQuery
@@ -11,6 +12,12 @@ namespace Product.Infrastructure.ModelQuery
     {
         private readonly IUnitOfWork<ProductDBContext> unitOfWork =
                         new UnitOfWork<ProductDBContext>(new ProductDBContext());
+
+        public async Task<ProductAttributeValue> GetAttributeValue(int key, string value)
+        {
+            return await unitOfWork.GetRepository<ProductAttributeValue>()
+                                   .GetFirstOrDefaultAsync(predicate: m => m.Key == key && m.Values == value);
+        }
 
         public int Insert(ProductAttributeValue input)
         {

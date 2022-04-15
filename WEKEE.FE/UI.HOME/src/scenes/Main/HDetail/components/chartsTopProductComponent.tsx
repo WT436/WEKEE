@@ -29,7 +29,7 @@ export default function ChartsTopProductComponent(props: IChartsTopProductCompon
                 <div className="RnmeRAZZRs">
                     Thương hiệu : {basicProduct.trademark}
                     <a>{""}</a> | Đứng thứ 3 trong
-                    <a href="">Top 1000 Áo thun nữ bán chạy tháng này</a>
+                    <a href=""> Top 1000 Áo thun nữ bán chạy tháng này</a>
                 </div>
                 <div className="EQjksUFMJC">
                     {basicProduct.name}

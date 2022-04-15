@@ -98,7 +98,7 @@ namespace Product.Application.Application
             _specificationAttributeMappingQuery.Insert(dataProductSpecification);
 
             // add image product
-            
+
             var dataImage = await _imageProcess.ImageProcessRabbitMQ(input.ImageRoot);
             // xóa image gốc
             // add image to image product
@@ -261,17 +261,11 @@ namespace Product.Application.Application
                     {
                         foreach (var itemProAttVa in itemFeature.ProductAttributeValueInsertDtos)
                         {
-                            productAttributeValues.Add(new ProductAttributeValue
-                            {
-                                Key = itemProAttVa.Key,
-                                Values = itemProAttVa.Values,
-                                IsDelete = false,
-                                CreateBy = idAccount
-                            });
+                            productAttributeValues.Add(await _productAttributeValueQuery.GetAttributeValue(key: itemProAttVa.Key,
+                                                                                                           value: itemProAttVa.Values));
                         }
                     }
 
-                    _productAttributeValueQuery.Insert(productAttributeValues);
                     // insert atri mapp
                     if (productAttributeValues.Count > 0)
                     {

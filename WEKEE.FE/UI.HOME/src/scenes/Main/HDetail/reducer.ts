@@ -26,6 +26,13 @@ export const initialState: HDetailState = {
     markAsNewStartDateTimeUtc: '',
     markAsNewEndDateTimeUtc: '',
     specificationAttributeDtos: []
+  },
+  imageForProduct: [],
+  featureCartProduct: [],
+  featureProductContainer: {
+    productReadForCartDto: [],
+    keyValuesName: [],
+    renderImage:[]
   }
 };
 
@@ -34,6 +41,47 @@ function hDetailReducer(
   action: HDetailActions
 ) {
   switch (action.type) {
+
+    //#region GET_FEATURE_CART_PRODUCT_START
+    case ActionTypes.GET_FEATURE_CART_PRODUCT_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.GET_FEATURE_CART_PRODUCT_COMPLETED:
+      return {
+        ...state,
+        loading: false,
+        featureProductContainer: action.payload
+      };
+
+    case ActionTypes.GET_FEATURE_CART_PRODUCT_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
+    //#region GET_IMAGE_PRODUCT_START
+    case ActionTypes.GET_IMAGE_PRODUCT_START:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ActionTypes.GET_IMAGE_PRODUCT_COMPLETED:
+      return {
+        ...state,
+        loading: false,
+        imageForProduct: action.payload
+      };
+
+    case ActionTypes.GET_IMAGE_PRODUCT_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    //#endregion
     //#region GET_CATEGORY_BREADCRUMB 
     case ActionTypes.GET_CATEGORY_BREADCRUMB_START:
       return {
@@ -74,6 +122,7 @@ function hDetailReducer(
         loading: false,
       };
     //#endregion
+
     default:
       return state;
   }

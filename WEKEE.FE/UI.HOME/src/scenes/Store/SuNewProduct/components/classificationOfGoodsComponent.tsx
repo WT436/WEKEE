@@ -47,6 +47,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
         dispatch(proAttrTypesUnitStart(0, productContainer.categoryProduct.idCategory));
     }
     //#endregion
+
     //#region Render Table Attribute 
     const columns = [
         {
@@ -137,8 +138,8 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
     }, [attributeDto]);
 
     const [itemsDataAttribute, setitemsDataAttribute] = useState < ProductAttributeReadTypesDto[] > ([])
-    const [itemsDataAttributeOne, setitemsDataAttributeOne] = useState < Number > ();
-    const [itemsDataAttributeTwo, setitemsDataAttributeTwo] = useState < Number > ();
+    const [itemsDataAttributeOne, setitemsDataAttributeOne] = useState < number > ();
+    const [itemsDataAttributeTwo, setitemsDataAttributeTwo] = useState < number > ();
     const OnchangeDataAttribute = (value: any, num: number) => {
         // lưu trữ dữ liệu
         if (num === 1) {
@@ -193,20 +194,20 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
             });
         }
 
-        var DataSelectAttributeMax: { key: number, value: string }[] = [];
-        var DataSelectAttributeMin: { key: number, value: string }[] = [];
+        // var DataSelectAttributeMax: { key: number, value: string }[] = [];
+        // var DataSelectAttributeMin: { key: number, value: string }[] = [];
 
-        if (DataSelectAttributeOne > DataSelectAttributeTwo) {
-            DataSelectAttributeMax = DataSelectAttributeOne;
-            DataSelectAttributeMin = DataSelectAttributeTwo;
-        }
-        else {
-            DataSelectAttributeMax = DataSelectAttributeTwo;
-            DataSelectAttributeMin = DataSelectAttributeOne;
-        }
+        // if (DataSelectAttributeOne > DataSelectAttributeTwo) {
+        //     DataSelectAttributeMax = DataSelectAttributeOne;
+        //     DataSelectAttributeMin = DataSelectAttributeTwo;
+        // }
+        // else {
+        //     DataSelectAttributeMax = DataSelectAttributeTwo;
+        //     DataSelectAttributeMin = DataSelectAttributeOne;
+        // }
 
-        DataSelectAttributeMax.forEach(one => {
-            if (DataSelectAttributeMin.length === 0) {
+        DataSelectAttributeOne.forEach(one => {
+            if (DataSelectAttributeTwo.length === 0) {
                 disPlayOrder++;
                 featureEnd.push({
                     id: disPlayOrder,
@@ -220,11 +221,11 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                     displayOrder: disPlayOrder,
                     pictureString: '',
                     mainProduct: false,
-                    productAttributeValueInsertDtos: [{ key: one.key, values: one.value }]
+                    productAttributeValueInsertDtos: [{ key: itemsDataAttributeOne, values: one.value }]
                 });
             }
             else {
-                DataSelectAttributeMin.forEach(two => {
+                DataSelectAttributeTwo.forEach(two => {
                     disPlayOrder++;
                     featureEnd.push({
                         id: disPlayOrder,
@@ -240,8 +241,8 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         mainProduct: false,
                         productAttributeValueInsertDtos:
                             [
-                                { key: one.key, values: one.value }
-                                , { key: two.key, values: two.value }
+                                { key: itemsDataAttributeOne, values: one.value }
+                                , { key: itemsDataAttributeTwo, values: two.value }
                             ]
                     });
                 });
@@ -471,6 +472,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         style={{ width: 300 }}
                         placeholder="custom dropdown render"
                         mode="multiple"
+                        disabled={itemsDataAttributeOne === undefined}
                         onChange={OnSelectListAttributeOne}
                         onClick={() => _loadCategoryProductKey()}
                     >
@@ -486,6 +488,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         style={{ width: 200 }}
                         placeholder="Search to Select"
                         optionFilterProp="children"
+                        disabled={DataSelectAttributeOne.length === 0}
                         onChange={(value: any) => OnchangeDataAttribute(value, 2)}
                     >
                         {itemsDataAttribute.map((item: ProductAttributeReadTypesDto) => (
@@ -499,6 +502,7 @@ export default function ClassificationOfGoodsComponent(props: IClassificationOfG
                         style={{ width: 300 }}
                         placeholder="custom dropdown render"
                         mode="multiple"
+                        disabled={itemsDataAttributeTwo === undefined}
                         onChange={OnSelectListAttributeTwo}
                     >
                         {attributeValueTwo.map((item: ProductAttributeValueReadDto) => (

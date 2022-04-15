@@ -167,3 +167,70 @@ WHERE P.id = 1
   JOIN [SpecificationAttribute] AS SPA ON PSAM.[SpecificationId] = SPA.[Id]
   WHERE PSAM.[ProductId] = 1 AND PSAM.[ShowOnProductPage] = 1 AND PSAM.[AllowFiltering] = 1
   ORDER BY PSAM.[DisplayOrder] ASC
+    
+--------------------------------------------------------------------------------------------------
+
+SELECT 
+	    I.[ImageRoot]		 AS 'ImageRoot'
+	   ,I.[VirtualPath]		 AS 'VirtualPath'
+	   ,I.[Size] 			 AS 'Size'
+	   ,I.[IsCover]			 AS 'IsCover'
+	   ,I.[AltAttribute]	 AS 'AltAttribute'
+	   ,I.[SeoFilename]		 AS 'SeoFilename'
+	   ,I.[TitleAttribute]	 AS 'TitleAttribute'
+	   ,PIM.[DisplayOrder]	 AS 'DisplayOrder'
+FROM ImageProduct AS I
+INNER JOIN Product_Picture_Mapping AS PIM ON I.Id = PIM.PictureId
+WHERE PIM.ProductId = 1 AND PIM.isDelete = 0
+	  AND (I.[Size] = 'S80x80' OR I.[Size] = 'S1360x540' OR I.[Size] = 'S340x340')
+
+--------------------------------------------------------------------------------------------------
+--SELECT 
+--		FP.[Id]
+--	   ,FP.[Price]
+--	   ,FP.[Quantity]
+--	   ,FP.[DisplayOrder]
+--	   ,FP.[MainProduct]
+--	   ,IMG.[Id]
+--	   ,GROUP_CONCAT(CONCAT(PAV.[Values], ' ', PA.[Name]))
+--FROM dbo.[FeatureProduct] AS FP
+--INNER JOIN dbo.[ImageProduct] AS IMG ON FP.[PictureId] =  IMG.[Id]
+--INNER JOIN dbo.[ProductAttributeMapping] AS PAM ON FP.[Id] = PAM.[FeatureProductId]
+--INNER JOIN dbo.[ProductAttributeValue] AS PAV ON PAV.[Id] = PAM.[ProductAttributeValuesId]
+--INNER JOIN dbo.[ProductAttribute] AS PA ON PAV.[Key] = PA.[Id]
+--GROUP BY FP.[Id]
+
+SELECT 
+		FP.[Id]
+	   ,FP.[Price]
+	   ,FP.[Quantity]
+	   ,FP.[DisplayOrder]
+	   ,FP.[MainProduct]
+	   ,IMG.[Id]
+	   ,PAV.[Values]		AS 'Values'
+	   ,PA.[Name]			AS 'Name'
+FROM dbo.[FeatureProduct] AS FP
+INNER JOIN dbo.[ImageProduct] AS IMG ON FP.[PictureId] =  IMG.[Id]
+INNER JOIN dbo.[ProductAttributeMapping] AS PAM ON FP.[Id] = PAM.[FeatureProductId]
+INNER JOIN dbo.[ProductAttributeValue] AS PAV ON PAV.[Id] = PAM.[ProductAttributeValuesId]
+INNER JOIN dbo.[ProductAttribute] AS PA ON PAV.[Key] = PA.[Id]
+WHERE FP.[ProductId] = 1 ORDER BY FP.[DisplayOrder]
+
+--------------------------------------------------------------------------------------------------------
+
+SELECT 
+		FP.[Id]				AS 'Id'
+	   ,FP.[Price]			AS 'Price'
+	   ,FP.[Quantity]		AS 'Quantity'
+	   ,FP.[DisplayOrder]	AS 'DisplayOrder'
+	   ,FP.[MainProduct]	AS 'MainProduct'
+	   ,IMG.[Id]            AS 'IdImg'
+	   ,(SELECT VirtualPath FROM dbo.[ImageProduct] AS IIP WHERE IIP.ImageRoot = IMG.[Id] AND IIP.Size = 'S80x80') AS 'IMGS80x80'
+	   ,PAV.[Values]		AS 'Values'
+	   ,PA.[Name]			AS 'Name'
+FROM dbo.[FeatureProduct] AS FP
+INNER JOIN dbo.[ImageProduct] AS IMG ON FP.[PictureId] =  IMG.[Id]
+INNER JOIN dbo.[ProductAttributeMapping] AS PAM ON FP.[Id] = PAM.[FeatureProductId]
+INNER JOIN dbo.[ProductAttributeValue] AS PAV ON PAV.[Id] = PAM.[ProductAttributeValuesId]
+INNER JOIN dbo.[ProductAttribute] AS PA ON PAV.[Key] = PA.[Id]
+WHERE FP.[ProductId] = 1 ORDER BY FP.[DisplayOrder]

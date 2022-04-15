@@ -1,12 +1,12 @@
 ﻿{
     "productInsertDto": {
-        "name": "Điện Thoại Samsung Galaxy M22 (6GB/128GB) - Hàng chính hãng",
+        "name": "Điện Thoại Samsung Galaxy S21 FE 5G 8GB/128GB - Hàng Chính Hãng",
         "fragile": true,
-        "origin": "[\"Toàn Quốc\",\" Hà Nội\",\" Hà Giang\",\" Cao Bằng\"]",
+        "origin": "[\"Toàn Quốc\",\" Hà Nội\",\" Hà Giang\"]",
         "unitAttributeId": 0,
-        "trademark": 47,
-        "shortDescription": "<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 ra mắt xứng đáng là 1 chiến thần trong phân khúc điện thoại tầm trung với cấu hình mạnh mẽ ấn tượng, cải tiến nổi bật ở camera, cùng dung lượng pin khỏe đến 2 ngày sử dụng, hứa hẹn là lựa chọn giá mềm đáng nhắm tới cho người tiêu dùng.</span></h3>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Màn hình Super AMOLED 90 Hz sống động, mượt mà</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy M22 được thiết kế với tấm nền Super AMOLED cao cấp với 16 triệu màu cùng mật độ điểm ảnh cao, mang đến khả năng hiển thị sắc nét, màu sắc tươi, rực rỡ, độ tương phản cao cho màn hình tràn viền 6.4 inch phân giải HD+ (720 x 1600 Pixels), tạo sự sống động trên mọi nội dung xem.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/3b/bd/41/1c586112343bad4bbd7faac6e98b182b.jpg\" alt=\"Trang bị màn hình Super AMOLED - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Tốc độ làm mới màn hình đạt 90 Hz giúp các thao tác vuốt chạm, chuyển cảnh cực mượt, thỏa mãn khi thử với các ứng dụng chỉnh sửa ảnh, hoặc các tựa game online đồ họa cao mà bạn yêu thích. Độ sáng màn hình tối đa 600 nits cho phép sử dụng điện thoại thoải mái ngoài trời ổn, bảo toàn chất lượng khung hình đang xem.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/dc/0c/38/37ebab3f943f1650f6a4fcacabc24a3a.jpg\" alt=\"Tần số quét 90 Hz - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bạn sẽ được trải nghiệm hình ảnh mãn nhãn trên phiên bản Galaxy M này cho cả nhu cầu học tập, làm việc hay giải trí.</span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Hiệu năng mạnh mẽ</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Hẳn Galaxy M22 sẽ là 1 ứng cử viên nổi bật khi so sánh với các điện thoại trong cùng phân khúc, với cấu hình mà Samsung trang bị cho nó.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bộ vi xử lý 8 nhân Helio G80 với tốc độ xử lý 2 nhân 2.0 GHz và 6 nhân 1.8 GHz kết hợp cùng RAM 6 GB giải quyết mượt mà đa tác vụ trên điện thoại, cho phép livestream hoặc chiến game online độ trễ thấp, tiết kiệm pin và ổn định hiệu năng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://tiki.vn/dien-thoai-samsung-galaxy-m22-6gb-128gb-hang-chinh-hang-p138914723.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202204110600_MD_batched_PID.138924120&itm_medium=CPC&itm_source=tiki-reco&spid=138924120\" alt=\"Vi xử lý Helio G80 - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Lưu trữ thoải mái cùng bộ nhớ trong dung lượng 128 GB và dễ dàng mở rộng qua khe đọc thẻ MicroSD hỗ trợ tối đa đến 1 TB, thỏa sức giữ lại mọi video, ảnh chụp của bạn, cùng các dữ liệu cần thiết khác mà không cần lăn tăn về bộ nhớ.</span></p>\n<p style=\"text-align:justify;\">&nbsp;</p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 hỗ trợ mạng không dây 4G cho phép truyền tải dữ liệu nhanh chóng, dễ dàng để bạn thực hiện các kết nối, chia sẻ, sao lưu dữ liệu trên điện thoại cho các mục đích sử dụng của cá nhân.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/d8/0f/5c/7f4c76b4bd21f5876441b10bdc6d8bc6.jpg\" alt=\"Kết nối nhanh chóng - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Thêm ấn tượng từ cụm 4 camera đa năng</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Một thiết kế tiên phong trong phân khúc, Galaxy M22 sở hữu đến 4 camera mặt sau, với camera chính độ phân giải lớn 48 MP, khẩu độ f/2.0 chụp cảnh vô cùng sắc nét, bắt trọn mọi chi tiết, kể cả trong không gian ánh sáng yếu.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/b0/a2/9d/36f5cd3bc2598529c3cd44316f060f92.jpg\" alt=\"Cụm camera sau - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bên cạnh đó là camera góc siêu rộng (Ultra wide) 8 MP khẩu độ f/2.2 bao quát không gian, camera xoá phông 2 MP khẩu độ f/2.4 đo chiều sâu chuyên biệt cho ảnh chân dung nổi bật, và camera macro chụp cận cực gần khoảng 3 – 5 cm cho bạn những góc ảnh nghệ thuật độc đáo.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://tiki.vn/dien-thoai-samsung-galaxy-m22-6gb-128gb-hang-chinh-hang-p138914723.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202204110600_MD_batched_PID.138924120&itm_medium=CPC&itm_source=tiki-reco&spid=138924120\" alt=\"Camera góc siêu rộng - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Thỏa sức sáng tạo và mang về những bức ảnh chụp đẹp ấn tượng từ phiên bản giá mềm này của Samsung, cho bạn luôn tự tin thử mình với ống kính.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/f0/92/97/04f3cdf56e436a9c7c654cac5c5c74a3.jpg\" alt=\"Thỏa sức sáng tạo trước ống kính - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cùng với đó là camera selfie 13 MP sẵn sàng đáp ứng nhu cầu video call và chụp hình selfie chuẩn nét của bạn, để dù ở góc độ nào, bạn cũng sẵn sàng tạo cho mình 1 bức ảnh đẹp, đầy nổi bật, tự tin.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/be/5b/29/74007842a7241ca1c525692398db9f73.jpg\" alt=\"Camera selfie 13 MP - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Thiết kế trẻ trung, nhiều màu sắc lựa chọn</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 gồm 3 phiên bản màu bao gồm: Đen chiến thần, Xanh bản lĩnh và Trắng kỳ tích. Mỗi phiên bản là 1 lựa chọn thú vị theo phong cách, sở thích của người dùng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/2b/8a/0a/0ab1b747755eb48440bd81b95719171f.jpg\" alt=\"Có 3 phiên bản màu sắc - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Máy được thiết kế mặt lưng nhựa chống trượt tốt, mặt trước phủ kính cường lực Gorilla Glass 3 bền bỉ, sáng bóng, cảm ứng độ nhạy cao trên mọi thao tác.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/bd/21/2d/3085ca50b20c084ddc4f8884420b6d0f.jpg\" alt=\"Thiết kế hoàn thiện - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Tích hợp bảo mật vân tay ở cạnh viền cho phép bạn truy cập vào máy nhanh chóng, dễ dàng, độ an toàn cao cho 1 thiết bị di động với hàng loạt thông tin cá nhân quan trọng. </span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Pin khỏe, thỏa sức sử dụng theo ý thích của bạn</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Trang bị viên pin dung lượng 5000 mAh, Galaxy M22 cho thời lượng sử dụng lên đến 2 ngày với tần suất trung bình, để bạn tự do giải trí, làm việc theo nhu cầu thực tế mà không ái ngại về nguồn năng lượng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/0e/66/05/a2067697de81c16e3d0df8eb92e2dc8a.jpg\" alt=\"Dung lượng pin - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cùng với đó là công nghệ sạc pin nhanh siêu tốc 25 W đi kèm nhanh chóng phục hồi pin cho thiết bị cạn nguồn của bạn, để bạn trở lại nhịp độ giải trí, công việc đang bỏ dở trước đó, không phải lo lắng chờ đợi quá lâu.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Có thể nói, ít nhiều Samsung tạo được sự thích thú cho người tiêu dùng với những cải tiến mang tính ưu điểm cao trên phiên bản Galaxy M22, ngay từ khi chưa chào sân thị trường Việt, ắt hẳn rất nhiều người sẽ chờ đón để được sở hữu nó.</span></p>\n<p></p>\n<p style=\"margin-left:0px;\">&nbsp;</p>\n<p></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</span>&nbsp;</p>\n",
-        "fullDescription": "<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 ra mắt xứng đáng là 1 chiến thần trong phân khúc điện thoại tầm trung với cấu hình mạnh mẽ ấn tượng, cải tiến nổi bật ở camera, cùng dung lượng pin khỏe đến 2 ngày sử dụng, hứa hẹn là lựa chọn giá mềm đáng nhắm tới cho người tiêu dùng.</span></h3>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Màn hình Super AMOLED 90 Hz sống động, mượt mà</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy M22 được thiết kế với tấm nền Super AMOLED cao cấp với 16 triệu màu cùng mật độ điểm ảnh cao, mang đến khả năng hiển thị sắc nét, màu sắc tươi, rực rỡ, độ tương phản cao cho màn hình tràn viền 6.4 inch phân giải HD+ (720 x 1600 Pixels), tạo sự sống động trên mọi nội dung xem.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/3b/bd/41/1c586112343bad4bbd7faac6e98b182b.jpg\" alt=\"Trang bị màn hình Super AMOLED - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Tốc độ làm mới màn hình đạt 90 Hz giúp các thao tác vuốt chạm, chuyển cảnh cực mượt, thỏa mãn khi thử với các ứng dụng chỉnh sửa ảnh, hoặc các tựa game online đồ họa cao mà bạn yêu thích. Độ sáng màn hình tối đa 600 nits cho phép sử dụng điện thoại thoải mái ngoài trời ổn, bảo toàn chất lượng khung hình đang xem.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/dc/0c/38/37ebab3f943f1650f6a4fcacabc24a3a.jpg\" alt=\"Tần số quét 90 Hz - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bạn sẽ được trải nghiệm hình ảnh mãn nhãn trên phiên bản Galaxy M này cho cả nhu cầu học tập, làm việc hay giải trí.</span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Hiệu năng mạnh mẽ</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Hẳn Galaxy M22 sẽ là 1 ứng cử viên nổi bật khi so sánh với các điện thoại trong cùng phân khúc, với cấu hình mà Samsung trang bị cho nó.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bộ vi xử lý 8 nhân Helio G80 với tốc độ xử lý 2 nhân 2.0 GHz và 6 nhân 1.8 GHz kết hợp cùng RAM 6 GB giải quyết mượt mà đa tác vụ trên điện thoại, cho phép livestream hoặc chiến game online độ trễ thấp, tiết kiệm pin và ổn định hiệu năng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://tiki.vn/dien-thoai-samsung-galaxy-m22-6gb-128gb-hang-chinh-hang-p138914723.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202204110600_MD_batched_PID.138924120&itm_medium=CPC&itm_source=tiki-reco&spid=138924120\" alt=\"Vi xử lý Helio G80 - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Lưu trữ thoải mái cùng bộ nhớ trong dung lượng 128 GB và dễ dàng mở rộng qua khe đọc thẻ MicroSD hỗ trợ tối đa đến 1 TB, thỏa sức giữ lại mọi video, ảnh chụp của bạn, cùng các dữ liệu cần thiết khác mà không cần lăn tăn về bộ nhớ.</span></p>\n<p style=\"text-align:justify;\">&nbsp;</p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 hỗ trợ mạng không dây 4G cho phép truyền tải dữ liệu nhanh chóng, dễ dàng để bạn thực hiện các kết nối, chia sẻ, sao lưu dữ liệu trên điện thoại cho các mục đích sử dụng của cá nhân.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/d8/0f/5c/7f4c76b4bd21f5876441b10bdc6d8bc6.jpg\" alt=\"Kết nối nhanh chóng - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Thêm ấn tượng từ cụm 4 camera đa năng</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Một thiết kế tiên phong trong phân khúc, Galaxy M22 sở hữu đến 4 camera mặt sau, với camera chính độ phân giải lớn 48 MP, khẩu độ f/2.0 chụp cảnh vô cùng sắc nét, bắt trọn mọi chi tiết, kể cả trong không gian ánh sáng yếu.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/b0/a2/9d/36f5cd3bc2598529c3cd44316f060f92.jpg\" alt=\"Cụm camera sau - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bên cạnh đó là camera góc siêu rộng (Ultra wide) 8 MP khẩu độ f/2.2 bao quát không gian, camera xoá phông 2 MP khẩu độ f/2.4 đo chiều sâu chuyên biệt cho ảnh chân dung nổi bật, và camera macro chụp cận cực gần khoảng 3 – 5 cm cho bạn những góc ảnh nghệ thuật độc đáo.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://tiki.vn/dien-thoai-samsung-galaxy-m22-6gb-128gb-hang-chinh-hang-p138914723.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202204110600_MD_batched_PID.138924120&itm_medium=CPC&itm_source=tiki-reco&spid=138924120\" alt=\"Camera góc siêu rộng - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Thỏa sức sáng tạo và mang về những bức ảnh chụp đẹp ấn tượng từ phiên bản giá mềm này của Samsung, cho bạn luôn tự tin thử mình với ống kính.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/f0/92/97/04f3cdf56e436a9c7c654cac5c5c74a3.jpg\" alt=\"Thỏa sức sáng tạo trước ống kính - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cùng với đó là camera selfie 13 MP sẵn sàng đáp ứng nhu cầu video call và chụp hình selfie chuẩn nét của bạn, để dù ở góc độ nào, bạn cũng sẵn sàng tạo cho mình 1 bức ảnh đẹp, đầy nổi bật, tự tin.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/be/5b/29/74007842a7241ca1c525692398db9f73.jpg\" alt=\"Camera selfie 13 MP - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Thiết kế trẻ trung, nhiều màu sắc lựa chọn</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy M22 gồm 3 phiên bản màu bao gồm: Đen chiến thần, Xanh bản lĩnh và Trắng kỳ tích. Mỗi phiên bản là 1 lựa chọn thú vị theo phong cách, sở thích của người dùng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/2b/8a/0a/0ab1b747755eb48440bd81b95719171f.jpg\" alt=\"Có 3 phiên bản màu sắc - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Máy được thiết kế mặt lưng nhựa chống trượt tốt, mặt trước phủ kính cường lực Gorilla Glass 3 bền bỉ, sáng bóng, cảm ứng độ nhạy cao trên mọi thao tác.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/bd/21/2d/3085ca50b20c084ddc4f8884420b6d0f.jpg\" alt=\"Thiết kế hoàn thiện - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Tích hợp bảo mật vân tay ở cạnh viền cho phép bạn truy cập vào máy nhanh chóng, dễ dàng, độ an toàn cao cho 1 thiết bị di động với hàng loạt thông tin cá nhân quan trọng. </span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Pin khỏe, thỏa sức sử dụng theo ý thích của bạn</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Trang bị viên pin dung lượng 5000 mAh, Galaxy M22 cho thời lượng sử dụng lên đến 2 ngày với tần suất trung bình, để bạn tự do giải trí, làm việc theo nhu cầu thực tế mà không ái ngại về nguồn năng lượng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://salt.tikicdn.com/cache/w750/ts/product/0e/66/05/a2067697de81c16e3d0df8eb92e2dc8a.jpg\" alt=\"Dung lượng pin - Samsung Galaxy M22\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cùng với đó là công nghệ sạc pin nhanh siêu tốc 25 W đi kèm nhanh chóng phục hồi pin cho thiết bị cạn nguồn của bạn, để bạn trở lại nhịp độ giải trí, công việc đang bỏ dở trước đó, không phải lo lắng chờ đợi quá lâu.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Có thể nói, ít nhiều Samsung tạo được sự thích thú cho người tiêu dùng với những cải tiến mang tính ưu điểm cao trên phiên bản Galaxy M22, ngay từ khi chưa chào sân thị trường Việt, ắt hẳn rất nhiều người sẽ chờ đón để được sở hữu nó.</span></p>\n<p></p>\n<p style=\"margin-left:0px;\">&nbsp;</p>\n<p></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</span>&nbsp;</p>\n",
+        "trademark": 42,
+        "shortDescription": "<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Điện Thoại Samsung Galaxy S21 FE 5G 8GB/128GB - Hàng Chính Hãng</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bộ sản phẩm gồm: Thân máy, cáp dữ liệu, tài liệu hướng dẫn, dụng cụ lấy sim.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Khám phá thế giới qua màn hình 6.4 inch</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">- Galaxy S21 FE 5G phát huy thế mạnh về màn hình của Samsung khi sở hữu không gian hiển thị 6.4 inch được thiết kế theo phong cách Infinity-O tràn khắp mặt trước. Tấm nền Dynamic AMOLED 2X độ phân giải Full HD dễ dàng đáp ứng được những tiêu chí khắt khe nhất về mặt hình ảnh. Hãy thỏa sức khám phá, kết nối và chia sẻ mọi điều bạn thích trên không gian hiển thị nịnh mắt này.</span>&nbsp;</p>\n",
+        "fullDescription": "<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy S21 5G nằm trong series S21 đến từ Samsung nổi bật với thiết kế tràn viền, cụm camera ấn tượng cho đến hiệu năng mạnh mẽ hàng đầu.</span></h3>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">“Bộ cánh” mới nổi bật và sang trọng</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Nổi bật với cụm camera sau được thiết kế đầy mới lạ, phần khuôn hình chữ nhật chứa bộ 3 camera ôm trọn cạnh trái của chiếc smartphone, viền khuôn cong uyển chuyển, hạn chế tối đa độ nhô ra so với mặt lưng, mang lại cái nhìn tổng thể hài hòa, độc đáo.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-002.jpg\" alt=\"Samsung Galaxy S21 5G | Thiết kế nổi bật với cụm camera chữ nhật\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy S21 có 3 màu sắc chính là: Tím, trắng và xám. Cho người dùng thoải mái lựa chọn để phù hợp với phong cách của bản thân nhất.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_20.jpg\" alt=\"Samsung Galaxy S21 5G | Với 3 màu sắc chính là: Tím, trắng và xám\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy S21 hỗ trợ đầy đủ tính năng bảo mật sinh trắc học, bảo mật tối đa điện thoại của bạn bằng công nghệ mở khóa vân tay siêu âm đặt dưới màn hình và bảo mật khuôn mặt. Kết hợp với tính năng chạm 2 lần sáng màn hình giờ đây bạn có thể bật, mở khóa điện thoại cực kì nhanh chóng, tiện lợi và an toàn.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-007.jpg\" alt=\"Samsung Galaxy S21 5G | Trang bị mở khóa vân tay siêu âm đặt dưới màn hình\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy S21 là chiếc điện thoại kháng nước, bụi đạt chuẩn IP68, chuẩn cao nhất hiện tại. Máy có thể sống sót ở độ sâu 1.5m lên đến 30 phút, giúp hạn chế được khả năng hư hỏng thiết bị khi bị nước đổ vào, trời mưa hoặc không may làm rơi xuống nước.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_17.jpg\" alt=\"Samsung Galaxy S21 5G | Kháng nước, bụi đạt chuẩn IP68\" style=\"height: ;width: \"/>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Màn hình vô cực Infinity-O siêu mượt</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy S21 được trang bị màn hình Dynamic AMOLED 2X, hỗ trợ HDR10+ tiên tiến do Samsung phát triển, có thể đạt được độ sáng cao nhất lên đến 1300 nits, ngay cả khi dưới ánh sáng mặt trời Galaxy S21 vẫn cho hình ảnh sống động, rõ ràng đến không ngờ, sẽ nâng trải nghiệm thị giác của bạn lên một tầm cao mới.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-001.jpg\" alt=\"Samsung Galaxy S21 5G | Trang bị màn hình Dynamic AMOLED 2X, hỗ trợ HDR10+ tiên tiến\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy S21 sở hữu màn hình kích thước 6.2 inch độ phân giải Full HD+ có tần số quét 120 Hz, gấp đôi so với thế hệ trước. Không chỉ phản hồi cực nhạy, mà màn hình còn tối ưu tần số quét trong mỗi lần bạn thực hiện thao tác chạm, cho mọi thao tác chạm của bạn đều mịn màng, nhanh nhạy và có độ chính xác cao nhất.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_11.jpg\" alt=\"Samsung Galaxy S21 5G | Màn hình kích thước 6.2 inch độ phân giải Full HD+ có tần số quét 120 Hz\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Bên cạnh đó, Galaxy S21 đã nhận được chứng nhận cho dải màu sắc trên di động, 100% phạm vi bao phủ DCI-P3 (chuẩn điện ảnh) cho hình ảnh không bị nhạt màu mà được hiển thị sống động, bất chấp mọi điều kiện ánh sáng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-006.jpg\" alt=\"Samsung Galaxy S21 5G | Dải màu sắc trên di động chuẩn điện ảnh\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_9.jpg\" alt=\"Samsung Galaxy S21 5G | Trang bị kính cường lực Corning Gorilla Glass Victus\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Galaxy S21 được bảo vệ bởi kính cường lực Corning Gorilla Glass Victus với khả năng chịu lực cực kỳ ấn tượng, hạn chế tối đa trầy xước và hư hỏng. Đây là loại kính cứng nhất trên điện thoại thông minh Samsung kể từ đầu năm 2021.</span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Camera cho hình ảnh hoàn hảo đến từng chi tiết</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Thông số máy ảnh luôn là niềm tự hào của Samsung. Galaxy S21 chiếc điện thoại sở hữu 3 camera sau trong đó camera góc rộng, góc siêu rộng có cùng độ phân giải là 12 MP, camera tele có độ phân giải lên đến 64 MP. Ở mặt trước, camera selfie có độ phân giải 10 MP.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-003.jpg\" alt=\"Samsung Galaxy S21 5G | Cụm camera sau\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cụm camera này hỗ trợ đầy đủ các tính năng mà một người dùng cần. Chế độ chụp chân dung, góc rộng, AI làm đẹp,... luôn sẵn sàng mang đến cho người dùng những bức ảnh xuất sắc mà không cần chỉnh sửa quá nhiều.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_16.jpg\" alt=\"Samsung Galaxy S21 5G | Camera góc rộng, góc siêu rộng có cùng độ phân giải là12 MP\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Chế độ chụp đêm (Night Mode) sẽ giúp các cuộc vui trong đêm của bạn được ghi lại một cách rõ ràng. Zoom kỹ thuật số lên đến 30x có thể giúp bạn tiếp cận được những vật thể ở xa với độ chi tiết cao nhất.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_18.jpg\" alt=\"Samsung Galaxy S21 5G | Chế độ chụp đêm (Night Mode), Zoom kỹ thuật số lên đến 30x \" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy S21 cho phép quay video chất lượng 8K siêu cao. Đây là độ phân giải mà ít có dòng smartphone nào sở hữu được. Nhờ sự hỗ trợ của các công nghệ chống rung siêu ổn định, cùng với một ít bộ lọc màu người dùng có thể sáng tạo những thước phim hàng ngày, khi đi du lịch hay vào dịp đặc biệt,... tất cả đều trông như những bộ phim chất lượng cao ngoài rạp.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-008.jpg\" alt=\"Samsung Galaxy S21 5G | Giao diện chụp ảnh\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Camera selfie AI 10 MP hỗ trợ chụp góc rộng, HDR, chế độ tự động làm đẹp kèm theo Stickers, người dùng thoải mái sáng tạo đa dạng kiểu mẫu ảnh mà mình thích. Ngoài ra, camera này cũng sở hữu quay video độ phân giải lên đến 4K. </span></p>\n<h3 style=\"text-align:justify;\"></h3>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_15.jpg\" alt=\"Samsung Galaxy S21 5G | Camera selfie AI 10 MP hỗ trợ chụp góc rộng, HDR, làm đẹp thông minh\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Cho đến tháng 01/2021 thì CPU Exynos 2100 8 nhân là con chip thứ 2 của nhà Samsung được sản xuất trên quy trình 5 nm EUV, được cải tiến với tốc độ nhanh hơn, thông minh hơn và tiết kiệm điện hơn. Cho bạn thỏa sức làm việc và giải trí hiệu quả với khả năng xử lý mạnh mẽ vượt trội.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-009.jpg\" alt=\"Samsung Galaxy S21 5G | Trang bị vi xử lý Exynos 2100\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">CPU Exynos 2100 đi kèm với GPU Mali-G78 cải thiện hiệu suất đồ họa lên tới 40% so với thế hệ trước. Hiệu năng đo được trên ứng dụng AnTuTu cho số liệu là 460.537 điểm giúp điện thoại chơi game tốt mượt mà trên các dòng game phổ biến hiện nay như PUBG Mobile, Liên Quân Mobile,...</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-5g-test.jpg\" alt=\"Samsung Galaxy S21 5G | Điểm Antutu\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Chế độ Priority Mode mới từ Game Booster của hãng sẽ chặn các cuộc gọi, thông báo, AI sẽ tự động điều chỉnh các cài đặt để mang đến những trải nghiệm tốt nhất, đồng thời cải thiện hiệu suất của máy lên mức tối đa.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_6.jpg\" alt=\"Samsung Galaxy S21 5G | Chế độ Priority Mode mới từ Game Booster chặn cuộc gọi, thông báo\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Đi kèm với CPU mạnh mẽ trên là 8 GB RAM cho khả năng đa nhiệm mượt mà, bộ nhớ trong 128 GB cho phép người dùng thoải mái lưu trữ dữ liệu cần thiết. Lưu ý rằng chiếc smartphone này sẽ không hỗ trợ thẻ nhớ ngoài.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_1.jpg\" alt=\"Samsung Galaxy S21 5G | RAM 8 GB đa nhiệm mượt mà, bộ nhớ trong 128 GB\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Exynos 2100 là một CPU tương thích với mạng 5G, sẽ mang đến tốc độ truyền tải nhanh hơn gấp nhiều lần khi so sánh với mạng 4G, giúp bạn tải lên hoặc tải xuống mọi dữ liệu trong tích tắc.</span></p>\n<h3 style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-family: Roboto, Helvetica, Arial, sans-serif;\">Viên pin tích hợp nhiều công nghệ thông minh</span></h3>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Samsung Galaxy S21 có viên pin dung lượng 4000 mAh, tuy dung lượng không quá cao nhưng khi kết hợp cùng công nghệ màn hình mới, CPU được nâng cấp. S21 có thể cùng bạn học tập, giải trí cả ngày mà không quá lo lắng về vấn đề cạn năng lượng.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_10.jpg\" alt=\"Samsung Galaxy S21 5G | Viên pin dung lượng 4000 mAh\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Công nghệ sạc nhanh 25 W trên Galaxy S21 cung cấp cho người dùng hàng giờ sử dụng chỉ trong vài phút sạc. Ngoài ra, công nghệ sạc nhanh không dây Qi 2.0 sẽ tiện lợi hơn nữa khi không cần đến cáp sạc, gọn gàng và thuận tiện.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Lưu ý: Củ sạc sẽ không đi kèm khi mua máy.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-005.jpg\" alt=\"Samsung Galaxy S21 5G | Công nghệ sạc nhanh 25 W\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">PowerShare đã có mặt trên Galaxy S21, công nghệ này có khả năng biến điện thoại thành một viên pin dự phòng khi có thể chia sẻ pin điện thoại của mình cho các thiết bị khác hỗ trợ sạc không dây như: Đồng hồ thông minh hoặc điện thoại,... một tính năng vô cùng lợi ích.</span></p>\n<p style=\"text-align:justify;\"></p>\n<img src=\"https://cdn.tgdd.vn/Products/Images/42/220833/galaxy_s21_5g_8.jpg\" alt=\"Samsung Galaxy S21 5G | Có thể chia sẻ pin điện thoại của mình cho các thiết bị khác\" style=\"height: ;width: \"/>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Chiếc điện thoại Samsung Galaxy S21 5G cùng toàn bộ S21 series mới hứa hẹn sẽ làm mưa làm gió ở phân khúc cao cấp, từ diện mạo sang trọng đến hiệu năng, từ công nghệ màn hình đến cụm camera. Đây là những yếu tố khẳng định đẳng cấp chính chiếc điện thoại và của chủ sở hữu.</span></p>\n<p style=\"text-align:justify;\"><span style=\"color: rgb(36,36,36);background-color: rgb(255,255,255);font-size: 14px;font-family: Roboto, Helvetica, Arial, sans-serif;\">Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</span>&nbsp;</p>\n",
         "isShipEnabled": true,
         "isFreeShipping": true,
         "shipSeparately": true,
@@ -30,27 +30,27 @@
         "disableWishlistButton": true,
         "hasTierPrices": true,
         "hasDiscountsApplied": true,
-        "productAlbum": "Điện Thoại",
+        "productAlbum": "Điện thoại",
         "createBy": 0,
         "unitProduct": 4
     },
     "productTagDtos": [
-        "Điện Thoại"
+        "Điện thoại"
     ],
     "imageRoot": [
-        "album/await/09385983d0974f8ab08cbd3b9ea5ad82.jpg",
-        "album/await/0473e7f34bbf451880f713798c23db6e.jpg",
-        "album/await/0c963953362f45dc92dcba7cb9fd83be.jpg",
-        "album/await/da6cbfcf043e467e9f35bd61a1862641.jpg",
-        "album/await/a80b67c810c044009891f10da75bfdc2.jpg",
-        "album/await/c5c035645334448d813fe7bd8f9bbc13.jpg",
-        "album/await/f7c0f9ba1c904f588c38e7599eaac078.jpg",
-        "album/await/98f78c079fd04703a9f4af2a26b2ddc8.jpg",
-        "album/await/c3b00d7a40df40b48ff6623865723653.jpg"
+        "album/await/ee3b13d6fb7245ef8d00f486599539fc.jpg",
+        "album/await/ab4cb4dbe5254392a8e9acbfbd7572dd.jpg",
+        "album/await/f7f017057ff44d438699fc8995c49d6a.jpg",
+        "album/await/368525af20c34246bedd295bc1ce388c.jpg",
+        "album/await/9f7dcef0111c4783a6e2a216ccf51b86.jpg",
+        "album/await/a81b0463efc944f89b61d69890f2e2fa.jpg",
+        "album/await/0877bd9908e649bd9f35c583008f3049.jpg",
+        "album/await/85bf993b75b2440dbf287716cd6120ee.jpg",
+        "album/await/74dbb6c705b94139bb3c0d37633fc19e.jpg"
     ],
     "specificationProductDtos": [
         {
-            "customValue": "1",
+            "customValue": "Thông Số 1",
             "specificationKey": "ACCESSORIES_INCLUDED",
             "allowFiltering": true,
             "showOnProductPage": true,
@@ -58,7 +58,7 @@
             "index": 0
         },
         {
-            "customValue": "2",
+            "customValue": "Thông Số 2",
             "specificationKey": "AVAILABLE_MEMORY",
             "allowFiltering": true,
             "showOnProductPage": true,
@@ -66,7 +66,7 @@
             "index": 1
         },
         {
-            "customValue": "3",
+            "customValue": "Thông Số 3",
             "specificationKey": "BATTERY_CAPACITY",
             "allowFiltering": true,
             "showOnProductPage": true,
@@ -74,7 +74,7 @@
             "index": 2
         },
         {
-            "customValue": "4",
+            "customValue": "Thông Số 4",
             "specificationKey": "BLUETOOTH",
             "allowFiltering": true,
             "showOnProductPage": true,
@@ -82,7 +82,7 @@
             "index": 3
         },
         {
-            "customValue": "5",
+            "customValue": "Thông Số 5",
             "specificationKey": "CHARGING_PORT",
             "allowFiltering": true,
             "showOnProductPage": true,
@@ -90,7 +90,7 @@
             "index": 4
         },
         {
-            "customValue": "6",
+            "customValue": "Thông Số 6",
             "specificationKey": "CHIPSET ",
             "allowFiltering": true,
             "showOnProductPage": true,
@@ -98,7 +98,7 @@
             "index": 5
         },
         {
-            "customValue": "7",
+            "customValue": "Thông Số 7",
             "specificationKey": "HEADPHONE_JACK",
             "allowFiltering": true,
             "showOnProductPage": true,
@@ -106,12 +106,132 @@
             "index": 6
         },
         {
-            "customValue": "8",
+            "customValue": "Thông Số  8",
             "specificationKey": "LISTEN_MUSIC",
             "allowFiltering": true,
             "showOnProductPage": true,
             "displayOrder": 0,
             "index": 7
+        },
+        {
+            "customValue": "Thông Số 9",
+            "specificationKey": "Loại Sim",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 8
+        },
+        {
+            "customValue": "Thông Số  10",
+            "specificationKey": "MAIN",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 9
+        },
+        {
+            "customValue": "Thông Số 11",
+            "specificationKey": "MAXIMUM_CARD_SUPPORT",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 10
+        },
+        {
+            "customValue": "Thông Số 12",
+            "specificationKey": "MODEL",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 11
+        },
+        {
+            "customValue": "Thông Số 13",
+            "specificationKey": "RAM",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 12
+        },
+        {
+            "customValue": "Thông Số 14",
+            "specificationKey": "REMOVABLE_BATTERY",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 13
+        },
+        {
+            "customValue": "Thông Số 15",
+            "specificationKey": "RESOULUTION",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 14
+        },
+        {
+            "customValue": "Thông Số 16",
+            "specificationKey": "ROM",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 15
+        },
+        {
+            "customValue": "Thông Số 17",
+            "specificationKey": "SCREEN_SIZE",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 16
+        },
+        {
+            "customValue": "Thông Số 18",
+            "specificationKey": "SIM_NUMBER",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 17
+        },
+        {
+            "customValue": "Thông Số 19",
+            "specificationKey": "SIM_TYPE",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 18
+        },
+        {
+            "customValue": "Thông Số 20",
+            "specificationKey": "SIZE",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 19
+        },
+        {
+            "customValue": "Thông Số 21",
+            "specificationKey": "TECHNOLOGY_SCREEN",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 20
+        },
+        {
+            "customValue": "Thông Số 22",
+            "specificationKey": "WIFI",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 21
+        },
+        {
+            "customValue": "Thông Số 23",
+            "specificationKey": "WITH VAT",
+            "allowFiltering": true,
+            "showOnProductPage": true,
+            "displayOrder": 0,
+            "index": 22
         }
     ],
     "categoryProduct": {
@@ -122,193 +242,340 @@
     },
     "featureProductInsertDtos": [
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 1,
-            "pictureString": "album/await/09385983d0974f8ab08cbd3b9ea5ad82.jpg",
+            "pictureString": "album/await/ee3b13d6fb7245ef8d00f486599539fc.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 9,
-                    "values": "256GB/8GB"
+                    "key": 44,
+                    "values": "RED"
                 },
                 {
-                    "key": 1,
-                    "values": "RED"
+                    "key": 46,
+                    "values": "256GB/8GB"
                 }
             ],
             "id": 1
         },
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 2,
-            "pictureString": "album/await/0473e7f34bbf451880f713798c23db6e.jpg",
+            "pictureString": "album/await/ab4cb4dbe5254392a8e9acbfbd7572dd.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 9,
-                    "values": "256GB/8GB"
+                    "key": 44,
+                    "values": "RED"
                 },
                 {
-                    "key": 2,
-                    "values": "BLUE"
+                    "key": 46,
+                    "values": "128GB/8GB"
                 }
             ],
             "id": 2
         },
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 3,
-            "pictureString": "album/await/0c963953362f45dc92dcba7cb9fd83be.jpg",
+            "pictureString": "album/await/f7f017057ff44d438699fc8995c49d6a.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 9,
-                    "values": "256GB/8GB"
+                    "key": 44,
+                    "values": "RED"
                 },
                 {
-                    "key": 3,
-                    "values": "BLACK"
+                    "key": 46,
+                    "values": "64GB/8GB"
                 }
             ],
             "id": 3
         },
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 4,
-            "pictureString": "album/await/da6cbfcf043e467e9f35bd61a1862641.jpg",
+            "pictureString": "album/await/f7f017057ff44d438699fc8995c49d6a.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 12,
-                    "values": "128GB/8GB"
+                    "key": 44,
+                    "values": "RED"
                 },
                 {
-                    "key": 1,
-                    "values": "RED"
+                    "key": 46,
+                    "values": "32GB/8GB"
                 }
             ],
             "id": 4
         },
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 5,
-            "pictureString": "album/await/0473e7f34bbf451880f713798c23db6e.jpg",
+            "pictureString": "album/await/9f7dcef0111c4783a6e2a216ccf51b86.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 12,
-                    "values": "128GB/8GB"
+                    "key": 44,
+                    "values": "BLUE"
                 },
                 {
-                    "key": 2,
-                    "values": "BLUE"
+                    "key": 46,
+                    "values": "256GB/8GB"
                 }
             ],
             "id": 5
         },
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 6,
-            "pictureString": "album/await/da6cbfcf043e467e9f35bd61a1862641.jpg",
+            "pictureString": "album/await/368525af20c34246bedd295bc1ce388c.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 12,
-                    "values": "128GB/8GB"
+                    "key": 44,
+                    "values": "BLUE"
                 },
                 {
-                    "key": 3,
-                    "values": "BLACK"
+                    "key": 46,
+                    "values": "128GB/8GB"
                 }
             ],
             "id": 6
         },
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 7,
-            "pictureString": "album/await/a80b67c810c044009891f10da75bfdc2.jpg",
+            "pictureString": "album/await/9f7dcef0111c4783a6e2a216ccf51b86.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 13,
-                    "values": "64GB/8GB"
+                    "key": 44,
+                    "values": "BLUE"
                 },
                 {
-                    "key": 1,
-                    "values": "RED"
+                    "key": 46,
+                    "values": "64GB/8GB"
                 }
             ],
             "id": 7
         },
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 8,
-            "pictureString": "album/await/0c963953362f45dc92dcba7cb9fd83be.jpg",
+            "pictureString": "album/await/9f7dcef0111c4783a6e2a216ccf51b86.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 13,
-                    "values": "64GB/8GB"
+                    "key": 44,
+                    "values": "BLUE"
                 },
                 {
-                    "key": 2,
-                    "values": "BLUE"
+                    "key": 46,
+                    "values": "32GB/8GB"
                 }
             ],
             "id": 8
         },
         {
-            "weightAdjustment": 32,
-            "lengthAdjustment": 21,
-            "widthAdjustment": 31,
-            "heightAdjustment": 121,
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
             "price": 12000000,
-            "quantity": 211,
+            "quantity": 120,
             "displayOrder": 9,
-            "pictureString": "album/await/da6cbfcf043e467e9f35bd61a1862641.jpg",
+            "pictureString": "album/await/ee3b13d6fb7245ef8d00f486599539fc.jpg",
             "productAttributeValueInsertDtos": [
                 {
-                    "key": 13,
-                    "values": "64GB/8GB"
+                    "key": 44,
+                    "values": "BLACK"
                 },
                 {
-                    "key": 3,
-                    "values": "BLACK"
+                    "key": 46,
+                    "values": "256GB/8GB"
                 }
             ],
             "id": 9
+        },
+        {
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
+            "price": 12000000,
+            "quantity": 120,
+            "displayOrder": 10,
+            "pictureString": "album/await/ab4cb4dbe5254392a8e9acbfbd7572dd.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 44,
+                    "values": "BLACK"
+                },
+                {
+                    "key": 46,
+                    "values": "128GB/8GB"
+                }
+            ],
+            "id": 10
+        },
+        {
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
+            "price": 12000000,
+            "quantity": 120,
+            "displayOrder": 11,
+            "pictureString": "album/await/f7f017057ff44d438699fc8995c49d6a.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 44,
+                    "values": "BLACK"
+                },
+                {
+                    "key": 46,
+                    "values": "64GB/8GB"
+                }
+            ],
+            "id": 11
+        },
+        {
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
+            "price": 12000000,
+            "quantity": 120,
+            "displayOrder": 12,
+            "pictureString": "album/await/368525af20c34246bedd295bc1ce388c.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 44,
+                    "values": "BLACK"
+                },
+                {
+                    "key": 46,
+                    "values": "32GB/8GB"
+                }
+            ],
+            "id": 12
+        },
+        {
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
+            "price": 12000000,
+            "quantity": 120,
+            "displayOrder": 13,
+            "pictureString": "album/await/ee3b13d6fb7245ef8d00f486599539fc.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 44,
+                    "values": "GRAY"
+                },
+                {
+                    "key": 46,
+                    "values": "256GB/8GB"
+                }
+            ],
+            "id": 13
+        },
+        {
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
+            "price": 12000000,
+            "quantity": 120,
+            "displayOrder": 14,
+            "pictureString": "album/await/ab4cb4dbe5254392a8e9acbfbd7572dd.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 44,
+                    "values": "GRAY"
+                },
+                {
+                    "key": 46,
+                    "values": "128GB/8GB"
+                }
+            ],
+            "id": 14
+        },
+        {
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
+            "price": 12000000,
+            "quantity": 120,
+            "displayOrder": 15,
+            "pictureString": "album/await/f7f017057ff44d438699fc8995c49d6a.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 44,
+                    "values": "GRAY"
+                },
+                {
+                    "key": 46,
+                    "values": "64GB/8GB"
+                }
+            ],
+            "id": 15
+        },
+        {
+            "weightAdjustment": 120,
+            "lengthAdjustment": 120,
+            "widthAdjustment": 120,
+            "heightAdjustment": 120,
+            "price": 12000000,
+            "quantity": 120,
+            "displayOrder": 16,
+            "pictureString": "album/await/368525af20c34246bedd295bc1ce388c.jpg",
+            "productAttributeValueInsertDtos": [
+                {
+                    "key": 44,
+                    "values": "GRAY"
+                },
+                {
+                    "key": 46,
+                    "values": "32GB/8GB"
+                }
+            ],
+            "id": 16
         }
     ]
 }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
+using Product.Application.Application;
 using Product.Domain.CoreDomain;
 using Product.Infrastructure.Queries;
 using System;
@@ -13,7 +14,7 @@ namespace Product.Test
     [TestFixture]
     public class ProductTests
     {
-        private readonly CategoryProductSqlQueries _tagProductCoreDomain = new CategoryProductSqlQueries();
+        private readonly ProductService _tagProductCoreDomain = new ProductService();
 
         [SetUp]
         public void SetUp()
@@ -23,8 +24,8 @@ namespace Product.Test
         [TestCase(1)]
         public async Task TestProductTag(int value)
         {
-            var rest = await _tagProductCoreDomain.GetNameForBreadcrum(value);
-            Assert.IsTrue(rest  == null, $"Data : {JsonConvert.SerializeObject(rest)};\n");
+            var rest = await _tagProductCoreDomain.ProductCartRead(value);
+            Assert.IsTrue(rest == null, $"Data : {JsonConvert.SerializeObject(rest)};\n");
             //$"result: {rest};\n" +
             //$"expectation: {value};\n" +
             //$"Status : {rest == value}");

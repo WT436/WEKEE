@@ -1,4 +1,4 @@
 export interface ProductAttributeValueInsertDtos {
-  key: number;
+  key: number | undefined;
   values: string;
 }

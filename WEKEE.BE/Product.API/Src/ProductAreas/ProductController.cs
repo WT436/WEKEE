@@ -19,5 +19,21 @@ namespace Product.API.Src.ProductAreas
             var data = await _product.GetBasicProductFroCart(id: input);
             return Ok(data);
         }
+
+        [HttpGet]
+        [Route("v1/api/cart-image-product")]
+        public async Task<IActionResult> GetImageProduct(int input)
+        {
+            var data = await _product.GetImageProduct(id: input);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("v1/api/cart-feature-product")]
+        public async Task<IActionResult> GetFeatureProduct(int input)
+        {
+            var data = await _product.ProductCartRead(id: input);
+            return Ok(data);
+        }
     }
 }

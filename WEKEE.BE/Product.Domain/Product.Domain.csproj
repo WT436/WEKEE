@@ -9,6 +9,7 @@
     <None Remove="BoundedContext\CheckProduct.cs~RF2a2dbcb.TMP" />
     <None Remove="Shared\DataTransfer\CategoryBreadcrumbDtos.cs~RF11b52114.TMP" />
     <None Remove="Shared\DataTransfer\CategorySelectDto.cs~RFd7f9ad3.TMP" />
+    <None Remove="Shared\DataTransfer\ProductAttributeValueDTO\AttributeValueReadCartDto.cs~RF64a1d74.TMP" />
     <None Remove="Shared\DataTransfer\ProductCardDtos.cs~RF19170a76.TMP" />
     <None Remove="ObjectValues\Const\k3ua43wp.eb2~" />
   </ItemGroup>
