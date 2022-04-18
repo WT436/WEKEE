@@ -32,8 +32,9 @@ export const initialState: HDetailState = {
   featureProductContainer: {
     productReadForCartDto: [],
     keyValuesName: [],
-    renderImage:[]
-  }
+    renderImage: []
+  },
+  mainFeatureCheck: []
 };
 
 function hDetailReducer(
@@ -41,7 +42,13 @@ function hDetailReducer(
   action: HDetailActions
 ) {
   switch (action.type) {
-
+    //#region MAIN_CHECK_FEATURE_START
+    case ActionTypes.MAIN_CHECK_FEATURE_START:
+      return {
+        ...state,
+        mainFeatureCheck: action.payload,
+      };
+    //#endregion
     //#region GET_FEATURE_CART_PRODUCT_START
     case ActionTypes.GET_FEATURE_CART_PRODUCT_START:
       return {
@@ -89,7 +96,6 @@ function hDetailReducer(
         loading: true,
       };
     case ActionTypes.GET_CATEGORY_BREADCRUMB_COMPLETED:
-      console.log(action.payload)
       return {
         ...state,
         loading: false,

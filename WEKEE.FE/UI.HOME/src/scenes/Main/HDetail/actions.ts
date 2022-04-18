@@ -4,7 +4,12 @@ import { CartBasicProductDto } from "./dtos/cartBasicProductDto";
 import { CategoryBreadcrumbDtos } from "./dtos/categoryBreadcrumbDtos";
 import { FeatureProductContainerDto } from "./dtos/featureProductContainerDto";
 import { ImageForProductDto } from "./dtos/imageForProductDto";
+import { MainFeatureCheck } from "./dtos/mainFeatureCheckDto";
 
+//#region KEY
+export const MainCheckFeatureStart = (input: MainFeatureCheck[]) =>
+action(ActionTypes.MAIN_CHECK_FEATURE_START, input);
+//#endregion
 //#region GET_FEATURE_CART_PRODUCT 
 export const getFeatureProductCartStart = (input: number) =>
   action(ActionTypes.GET_FEATURE_CART_PRODUCT_START, input);

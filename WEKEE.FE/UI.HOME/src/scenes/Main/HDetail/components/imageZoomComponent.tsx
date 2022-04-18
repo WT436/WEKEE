@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { getImageProductStart } from '../actions';
-import { makeSelectimageForProduct } from '../selectors';
+import { makeSelectimageForProduct, makeSelectmainFeatureCheck } from '../selectors';
 import { ImageForProductDto } from '../dtos/imageForProductDto';
 
 declare var abp: any;
@@ -20,7 +20,8 @@ interface IImageZoomComponentProps {
 };
 
 const stateSelector = createStructuredSelector < any, any> ({
-    imageForProduct: makeSelectimageForProduct()
+    imageForProduct: makeSelectimageForProduct(),
+    mainFeatureCheck: makeSelectmainFeatureCheck()
 });
 
 export default function ImageZoomComponent(props: IImageZoomComponentProps) {
@@ -28,11 +29,10 @@ export default function ImageZoomComponent(props: IImageZoomComponentProps) {
     const dispatch = useDispatch();
 
     const {
-        imageForProduct
+        imageForProduct, mainFeatureCheck
     } = useSelector(stateSelector);
 
     //#region START
-
     useEffect(() => {
         dispatch(getImageProductStart(props.id));
     }, []);
@@ -40,8 +40,13 @@ export default function ImageZoomComponent(props: IImageZoomComponentProps) {
     const [ImageS80x80, setImageS80x80] = useState < ImageForProductDto[] > ([]);
     const [ImageS1360x540, setImageS1360x540] = useState < ImageForProductDto[] > ([]);
     const [ImageS340x340, setImageS340x340] = useState < ImageForProductDto[] > ([]);
+    const [zoomImage, setzoomImage] = useState({
+        smallImage: { alt: "", isFluidWidth: true, src: "" },
+        largeImage: { src: "", width: 900, height: 900 }
+    });
 
     useEffect(() => {
+        var dataZoomImage = zoomImage;
         setImageS80x80([]);
         setImageS1360x540([]);
         setImageS340x340([]);
@@ -51,29 +56,26 @@ export default function ImageZoomComponent(props: IImageZoomComponentProps) {
             }
             else if (element.size == 'S1360x540') {
                 setImageS1360x540(ImageS1360x540 => [...ImageS1360x540, element]);
+                if (element.displayOrder === 1) {
+                    dataZoomImage.largeImage.src = abp.serviceAlbumImage + element.virtualPath
+                }
             }
             else {
                 setImageS340x340(ImageS340x340 => [...ImageS340x340, element]);
+                if (element.displayOrder === 1) {
+                    setselectImage(element.imageRoot);
+                    dataZoomImage.smallImage.src = abp.serviceAlbumImage + element.virtualPath;
+                    dataZoomImage.smallImage.alt = element.altAttribute;
+                }
             }
         });
+        setzoomImage(dataZoomImage);
+        console.log(imageForProduct)
     }, [imageForProduct]);
-
     //#endregion
 
     //#region MAP IMAGE TO ZOOM 
     const [selectImage, setselectImage] = useState(0);
-    const [zoomImage, setzoomImage] = useState({
-        smallImage: {
-            alt: "",
-            isFluidWidth: true,
-            src: "",
-        },
-        largeImage: {
-            src: "",
-            width: 900,
-            height: 900,
-        }
-    });
     const _selectImageShow = (imageRoot: number) => {
         setselectImage(imageRoot);
         var image1360Show = ImageS1360x540.find((item: ImageForProductDto) => item.imageRoot === imageRoot);

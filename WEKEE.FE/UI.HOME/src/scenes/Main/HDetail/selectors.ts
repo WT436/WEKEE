@@ -10,10 +10,12 @@ const makeSelectcategoryBreadcrumbDtos = () => createSelector(select, (substate)
 const makeSelectbasicProduct = () => createSelector(select, (substate) => substate.basicProduct);
 const makeSelectimageForProduct = () => createSelector(select, (substate) => substate.imageForProduct);
 const makeSelectfeatureCartProduct = () => createSelector(select, (substate) => substate.featureProductContainer);
+const makeSelectmainFeatureCheck = () => createSelector(select, (substate) => substate.mainFeatureCheck);
 
 export {
   makeSelectLoading,
   makeSelectCompleted,
   makeSelectcategoryBreadcrumbDtos,
-  makeSelectbasicProduct, makeSelectimageForProduct,makeSelectfeatureCartProduct
+  makeSelectbasicProduct, makeSelectimageForProduct, makeSelectfeatureCartProduct
+  ,makeSelectmainFeatureCheck
 };

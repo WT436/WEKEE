@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import moment from 'moment';
 import { CheckOutlined } from '@ant-design/icons';
-import { getFeatureProductCartStart } from '../actions';
-import { makeSelectfeatureCartProduct } from '../selectors';
+import { getFeatureProductCartStart, MainCheckFeatureStart } from '../actions';
+import { makeSelectfeatureCartProduct, makeSelectmainFeatureCheck } from '../selectors';
 import { ProductReadForCartDto } from '../dtos/productReadForCartDto';
 import { ImageWithValueAttributeDto } from '../dtos/imageWithValueAttributeDto';
 
@@ -15,9 +15,12 @@ declare var abp: any;
 interface IFeatureProductComponentProps {
     id: number
 }
+
 const stateSelector = createStructuredSelector < any, any> ({
-    featureCartProduct: makeSelectfeatureCartProduct()
+    featureCartProduct: makeSelectfeatureCartProduct(),
+    mainFeatureCheck: makeSelectmainFeatureCheck()
 });
+
 export default function FeatureProductComponent(props: IFeatureProductComponentProps) {
 
     const dispatch = useDispatch();
@@ -27,47 +30,10 @@ export default function FeatureProductComponent(props: IFeatureProductComponentP
     } = useSelector(stateSelector);
 
     //#region START
-
     useEffect(() => {
         dispatch(getFeatureProductCartStart(props.id));
     }, []);
-
-    // useEffect(() => {
-    //     let intIndex = 0;
-    //     for (const el of featureCartProduct.productReadForCartDto) {
-    //         if (el.values === featureCartProduct.keyValuesName[0].valuesName[intIndex]) {
-    //             intIndex++;
-    //             setImageForFeature(ImageForFeature=>[...ImageForFeature,el.iMGS80x80]);
-    //             console.log(el.iMGS80x80);
-    //         }
-    //     }
-    // }, [featureCartProduct]);
-
-    // const [AttributeValue, setAttributeValue] = useState < { name: string, values: string }[] > ([]);
-    // const [AttributeName, setAttributeName] = useState < string[] > ([]);
-    // useEffect(() => {
-    //     const resultKey: string[] = [];
-    //     const resultValue = [];
-    //     const map = new Map();
-    //     for (const item of featureCartProduct) {
-    //         if (!map.has(item.values)) {
-    //             map.set(item.values, true);    // set any value to Map
-    //             resultValue.push({
-    //                 name: item.name,
-    //                 values: item.values
-    //             });
-    //         }
-
-    //         if (!map.has(item.name)) {
-    //             map.set(item.name, true);    // set any value to Map
-    //             resultKey.push(item.name);
-    //         }
-    //     }
-
-    //     setAttributeValue(resultValue);
-    //     setAttributeName(resultKey);
-    // }, [featureCartProduct]);
-    //#endregion START
+    //#endregion
 
     const _getImageAttribute = (item: string) => {
         return (featureCartProduct.renderImage
@@ -75,81 +41,118 @@ export default function FeatureProductComponent(props: IFeatureProductComponentP
             )[0].imgS80x80);
     }
 
-    const [MainFeatureCheck, setMainFeatureCheck] = useState < { key: string, value: string }[] > ([{ key: '', value: '' }]);
+    const [MainFeatureCheckOne, setMainFeatureCheckOne] = useState < { key: string, value: string } > ();
+    const [MainFeatureCheckTwo, setMainFeatureCheckTwo] = useState < { key: string, value: string } > ();
 
+    // Tao dell the nghi minh phai viet mot cach ngu dan nhu the nay
+    // su ngu lol cua viec khong toan ven du lieu
     useEffect(() => {
-        setMainFeatureCheck([]);
+        var data1;
         featureCartProduct.productReadForCartDto.forEach((el: ProductReadForCartDto) => {
-            if (el.mainProduct) {
-                setMainFeatureCheck(al => [...al, { key: el.name, value: el.values }]);
+            if ((el.name === MainFeatureCheckOne?.key && el.values === MainFeatureCheckOne?.value)) {
+                data1 = el;
             }
         });
-    }, [featureCartProduct]);
+        console.log(data1);
+    }, [MainFeatureCheckTwo, MainFeatureCheckOne]);
+
     useEffect(() => {
-        console.log(MainFeatureCheck);
-    }, [MainFeatureCheck])
+        if (featureCartProduct.productReadForCartDto) {
+            featureCartProduct.productReadForCartDto.forEach((el: ProductReadForCartDto) => {
+                if (el.mainProduct) {
+                    if (el.name === featureCartProduct.keyValuesName[0].keyName) {
+                        setMainFeatureCheckOne({ key: el.name, value: el.values });
+                    }
+                    else {
+                        setMainFeatureCheckTwo({ key: el.name, value: el.values });
+                    }
+                }
+            });
+        }
+    }, [featureCartProduct]);
+
+    const _editCheckFeature = (key: string, item: string, index: number) => {
+        if (index === 0) {
+            setMainFeatureCheckOne({ key: key, value: item });
+        }
+        else {
+            setMainFeatureCheckTwo({ key: key, value: item });
+        }
+    };
 
     return (
         <>
-            <div className="wqPWTPYvMr">
-                <p className="fBvRJBvshu">
-                    {featureCartProduct.keyValuesName[0] === undefined ? "" : featureCartProduct.keyValuesName[0].keyName} : <span>&nbsp;{"Key1State?.name"}</span>
-                </p>
-                <div className="ofRgAVTeYl">
-                    {(featureCartProduct.keyValuesName[0] === undefined
-                        ? <></>
-                        : (
-                            featureCartProduct.keyValuesName[0].valuesName.map((item: string) => {
+            {featureCartProduct.keyValuesName.length > 0 ?
+                <>
+                    <div className="wqPWTPYvMr">
+                        {MainFeatureCheckOne !== undefined
+                            ? <p className="fBvRJBvshu">
+                                {MainFeatureCheckOne.key}
+                                : <span>&nbsp; {MainFeatureCheckOne.value} </span>
+                            </p>
+                            : <></>
+                        }
+                        <div className="ofRgAVTeYl">
+                            {featureCartProduct.keyValuesName[0].valuesName.map((item: string) => {
                                 return (
                                     <div
                                         className="lPibOcgFQi"
+                                        onClick={() => _editCheckFeature(featureCartProduct.keyValuesName[0].keyName, item, 0)}
                                     >
                                         <img src={abp.serviceAlbumImage + (() => _getImageAttribute(item))()} alt='' />
                                         <span>{item}</span>
-                                        <span
-                                            style={{
-                                                display: MainFeatureCheck[0] !== undefined && MainFeatureCheck[0].value === item ? "block" : "none",
-                                            }}
-                                            className="nuTLGkaQio"
-                                        >
-                                            <CheckOutlined className="SWzJAVZYWg" />
-                                        </span>
+                                        {
+                                            MainFeatureCheckOne !== undefined
+                                                ? <span
+                                                    style={{
+                                                        display: MainFeatureCheckOne.value == item ? "block" : "none",
+                                                    }}
+                                                    className="nuTLGkaQio"
+                                                >
+                                                    <CheckOutlined className="SWzJAVZYWg" />
+                                                </span>
+                                                : <></>
+                                        }
                                     </div>
                                 )
-                            })
-                        )
-                    )}
-                </div>
-            </div>
-            <div className="wqPWTPYvMr">
-                <p className="fBvRJBvshu">
-                    {featureCartProduct.keyValuesName[1] === undefined ? "" : featureCartProduct.keyValuesName[1].keyName} : <span>&nbsp; {" Key2State"}</span>
-                </p>
-                <div className="ofRgAVTeYl">
-                    {(featureCartProduct.keyValuesName[1] === undefined
-                        ? <></>
-                        : (
-                            featureCartProduct.keyValuesName[1].valuesName.map((item: string) => {
+                            })}
+                        </div>
+                    </div>
+                    <div className="wqPWTPYvMr">
+                        {MainFeatureCheckTwo !== undefined
+                            ? <p className="fBvRJBvshu">
+                                {MainFeatureCheckTwo.key}
+                                : <span>&nbsp; {MainFeatureCheckTwo.value} </span>
+                            </p>
+                            : <></>
+                        }
+                        <div className="ofRgAVTeYl">
+                            {featureCartProduct.keyValuesName[1].valuesName.map((item: string) => {
                                 return (
                                     <div
                                         className="lBHJWvVzaH"
+                                        onClick={() => _editCheckFeature(featureCartProduct.keyValuesName[1].keyName, item, 1)}
                                     >
                                         <span>{item}</span>
-                                        <span
-                                            style={{
-                                                display: MainFeatureCheck[1] !== undefined && MainFeatureCheck[1].value === item ? "block" : "none",
-                                            }}
-                                            className="nuTLGkaQio"
-                                        >
-                                            <CheckOutlined className="SWzJAVZYWg" />
-                                        </span>
+                                        {
+                                            MainFeatureCheckTwo !== undefined
+                                                ? <span
+                                                    style={{
+                                                        display: MainFeatureCheckTwo.value == item ? "block" : "none",
+                                                    }}
+                                                    className="nuTLGkaQio"
+                                                >
+                                                    <CheckOutlined className="SWzJAVZYWg" />
+                                                </span>
+                                                : <></>
+                                        }
                                     </div>
                                 )
-                            })
-                        )
-                    )}
-                </div>
-            </div>
+                            })}
+                        </div>
+                    </div>
+                </>
+                : ""}
         </>
     )
 }

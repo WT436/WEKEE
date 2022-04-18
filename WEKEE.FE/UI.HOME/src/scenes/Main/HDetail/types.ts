@@ -4,6 +4,7 @@ import { CartBasicProductDto } from "./dtos/cartBasicProductDto";
 import { CategoryBreadcrumbDtos } from "./dtos/categoryBreadcrumbDtos";
 import { FeatureProductContainerDto } from "./dtos/featureProductContainerDto";
 import { ImageForProductDto } from "./dtos/imageForProductDto";
+import { MainFeatureCheck } from "./dtos/mainFeatureCheckDto";
 import { ProductReadForCartDto } from "./dtos/productReadForCartDto";
 
 export interface HDetailState {
@@ -14,6 +15,7 @@ export interface HDetailState {
   readonly imageForProduct: ImageForProductDto[];
   readonly featureCartProduct: ProductReadForCartDto[];
   readonly featureProductContainer: FeatureProductContainerDto;
+  readonly mainFeatureCheck : MainFeatureCheck[];
 
 }
 

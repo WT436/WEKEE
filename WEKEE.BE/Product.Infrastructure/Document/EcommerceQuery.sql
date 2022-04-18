@@ -224,7 +224,7 @@ SELECT
 	   ,FP.[Quantity]		AS 'Quantity'
 	   ,FP.[DisplayOrder]	AS 'DisplayOrder'
 	   ,FP.[MainProduct]	AS 'MainProduct'
-	   ,IMG.[Id]            AS 'IdImg'
+	   ,IMG.[ImageRoot]     AS 'IdImg'
 	   ,(SELECT VirtualPath FROM dbo.[ImageProduct] AS IIP WHERE IIP.ImageRoot = IMG.[Id] AND IIP.Size = 'S80x80') AS 'IMGS80x80'
 	   ,PAV.[Values]		AS 'Values'
 	   ,PA.[Name]			AS 'Name'
