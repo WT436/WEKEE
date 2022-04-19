@@ -18,6 +18,7 @@
     <Folder Include="EventDomain\" />
     <Folder Include="ServicesDomain\" />
     <Folder Include="Services\" />
+    <Folder Include="Shared\DataTransfer\EvaluatesDTO\" />
     <Folder Include="UL\" />
   </ItemGroup>
 

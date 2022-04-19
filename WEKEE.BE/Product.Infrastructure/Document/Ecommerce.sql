@@ -380,4 +380,48 @@ CREATE TABLE [Product_SpecificationAttribute_Mapping](
 -- Description : 
 -- Date Update : 
 --==============================================
+CREATE TABLE [EvaluatesProduct](
+	[id] INT IDENTITY(1,1)  PRIMARY KEY,
+	[content] NVARCHAR(max) NOT NULL, -- đánh giá
+	[starNumber] INT NULL DEFAULT ((3)) CHECK(([starNumber]>=(1) AND [starNumber]<=(5))), -- số sao
+	[pinFeeling] NVARCHAR(MAX) NULL,-- ghim cảm giác nổi bật
+	[tagAccount] NVARCHAR(30) NULL,-- list id người dùng
+	[levelEvaluates] INT NOT NULL DEFAULT(0), -- lưu like cho rep hay eva
+	[idEvaluatesProduct] INT NULL FOREIGN KEY REFERENCES [EvaluatesProduct] (id),
+	[product] INT NOT NULL FOREIGN KEY REFERENCES [Product] (id),
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+)
+GO
+--==============================================
+-- Name        : 
+-- Description : 
+-- Date Update : 
+--==============================================
+CREATE TABLE [LikeEvaluatesProduct](
+	[id] INT IDENTITY(1,1) NOT NULL  PRIMARY KEY,
+	[islike] BIT NULL,
+	[isdislike] BIT NULL,
+	[levelEvaluates] INT NOT NULL, -- lưu like cho rep hay eva 
+	[idEvaluates] INT NOT NULL,
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+)
+GO
+--==============================================
+-- Name        : 
+-- Description : 
+-- Date Update : 
+--==============================================
+CREATE TABLE [ImageEvaluatesProduct]
+(
+	[id] INT IDENTITY(1,1) NOT NULL  PRIMARY KEY,
+	[ImageProductId] INT FOREIGN KEY REFERENCES [ImageProduct] (id),
+	[EvaluatesProductId] INT FOREIGN KEY REFERENCES [EvaluatesProduct] (id),
+	[CreateBy] [int] NOT NULL, -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+)
 

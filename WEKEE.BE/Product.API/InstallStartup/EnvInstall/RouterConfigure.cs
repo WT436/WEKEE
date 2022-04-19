@@ -14,8 +14,6 @@ namespace Product.API.InstallStartup.EnvInstall
             app.UseSession();
             app.UseMvc(routes =>
             {
-
-
                 routes.MapRoute(
                        name: "Product.API.Src.FileAreas",
                        template: "{controller=Watch}/{action=Index}/{id?}",
@@ -35,6 +33,11 @@ namespace Product.API.InstallStartup.EnvInstall
                       name: "Product.API.Src.SupplierAreas",
                       template: "{controller=RegistrationStore}/{action=Index}/{id?}",
                 new string[] { "Product.API.Src.SupplierAreas" });
+
+                routes.MapRoute(
+                     name: "Product.API.Src.OrderAreas",
+                     template: "{controller=OrderHome}/{action=Index}/{id?}",
+               new string[] { "Product.API.Src.OrderAreas" });
 
                 routes.MapRoute(
                         name: "Default",

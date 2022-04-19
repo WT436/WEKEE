@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Aggregate\" />
+    <Folder Include="BoundedContext\" />
+    <Folder Include="CoreDomain\" />
+    <Folder Include="EventDomain\" />
+    <Folder Include="ObjectValues\Const\" />
+    <Folder Include="ObjectValues\ConstProperty\" />
+    <Folder Include="ObjectValues\Input\" />
+    <Folder Include="ObjectValues\Output\" />
+    <Folder Include="Shared\DataTransfer\" />
+    <Folder Include="Shared\Entitys\" />
+    <Folder Include="UL\" />
+    <Folder Include="ServicesDomain\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>
