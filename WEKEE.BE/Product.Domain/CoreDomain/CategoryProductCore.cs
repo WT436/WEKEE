@@ -19,9 +19,7 @@ namespace Product.Domain.CoreDomain
             }
             else
             {
-                int numberOrderSwap = categoryLast.NumberOrder;
-                categoryLast.NumberOrder = categoryFirst.NumberOrder;
-                categoryFirst.NumberOrder = numberOrderSwap;
+                (categoryFirst.NumberOrder, categoryLast.NumberOrder) = (categoryLast.NumberOrder, categoryFirst.NumberOrder);
                 return new List<CategoryProduct>() { categoryFirst, categoryLast };
             }
         }

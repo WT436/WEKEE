@@ -5,9 +5,10 @@ import { CategoryBreadcrumbDtos } from "./dtos/categoryBreadcrumbDtos";
 import { FeatureProductContainerDto } from "./dtos/featureProductContainerDto";
 import { ImageForProductDto } from "./dtos/imageForProductDto";
 import { MainFeatureCheck } from "./dtos/mainFeatureCheckDto";
+import { ProductReadForCartDto } from "./dtos/productReadForCartDto";
 
 //#region KEY
-export const MainCheckFeatureStart = (input: MainFeatureCheck[]) =>
+export const MainCheckFeatureStart = (input: ProductReadForCartDto[]) =>
 action(ActionTypes.MAIN_CHECK_FEATURE_START, input);
 //#endregion
 //#region GET_FEATURE_CART_PRODUCT 

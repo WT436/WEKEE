@@ -7,7 +7,6 @@ class HDetailService {
   //#region  getFeatureCartProductService
   public async getFeatureCartProductService(input: number): Promise<FeatureProductContainerDto[]> {
     let rs = await http.get('/cart-feature-product', { params: { input: input } });
-    console.log("rs",rs.data)
     if (rs) {
       return rs.data;
     }

@@ -118,4 +118,14 @@
         ],
         "description": ""
     },
+    // For region
+    "Render region": {
+        "scope": "javascript,typescript,javascriptreact,typescriptreact ",
+        "prefix": "#r",
+        "body": [
+            "//#region  ${1:Name}",
+            "//#endregion",
+        ],
+        "description": ""
+    },
 }

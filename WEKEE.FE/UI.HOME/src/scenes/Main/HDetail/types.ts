@@ -15,7 +15,7 @@ export interface HDetailState {
   readonly imageForProduct: ImageForProductDto[];
   readonly featureCartProduct: ProductReadForCartDto[];
   readonly featureProductContainer: FeatureProductContainerDto;
-  readonly mainFeatureCheck : MainFeatureCheck[];
+  readonly mainFeatureCheck : ProductReadForCartDto[];
 
 }
 
