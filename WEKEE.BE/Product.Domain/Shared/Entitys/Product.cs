@@ -9,6 +9,7 @@ namespace Product.Domain.Shared.Entitys
     {
         public Product()
         {
+            EvaluatesProducts = new HashSet<EvaluatesProduct>();
             FeatureProducts = new HashSet<FeatureProduct>();
             ProductCategoryMappings = new HashSet<ProductCategoryMapping>();
             ProductPictureMappings = new HashSet<ProductPictureMapping>();
@@ -85,6 +86,7 @@ namespace Product.Domain.Shared.Entitys
         public virtual Seo SeoNavigation { get; set; }
         public virtual ProductAttribute TrademarkNavigation { get; set; }
         public virtual ProductAttribute UnitProductNavigation { get; set; }
+        public virtual ICollection<EvaluatesProduct> EvaluatesProducts { get; set; }
         public virtual ICollection<FeatureProduct> FeatureProducts { get; set; }
         public virtual ICollection<ProductCategoryMapping> ProductCategoryMappings { get; set; }
         public virtual ICollection<ProductPictureMapping> ProductPictureMappings { get; set; }

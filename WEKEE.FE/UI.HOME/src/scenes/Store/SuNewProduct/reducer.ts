@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import ActionTypes from "./constants";
 import { SuNewProductActions, SuNewProductState } from "./types";
 
@@ -196,6 +197,14 @@ function suNewProductReducer(
       };
 
     case ActionTypes.INSERT_PRODUCT_FULL_COMPLETED:
+      if(action.payload)
+      {
+        notification.success({
+          message: "Thành Công",
+          description: "Khởi tạo Thành Công!",
+          placement: 'bottomRight'
+      });
+      }
       return {
         ...state,
         loading: false,

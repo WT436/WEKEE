@@ -44,6 +44,24 @@ CREATE TABLE [CategoryProduct] (
 )
 GO
 --==============================================
+-- Name        : [CategoryProduct]
+-- Description : Lưu danh mục sản phẩm
+-- Date Update : 
+--==============================================
+CREATE TABLE [CategoryHomePage] (
+--=========>Trường Dữ Liệu<===========--
+	[id] INT IDENTITY(1,1)  NOT NULL PRIMARY KEY,
+	[categoryId] INT NOT NULL FOREIGN KEY REFERENCES [CategoryProduct] (Id),	
+	[numberOrder] INT NOT NULL CHECK([numberOrder] > 0),
+	[isEnabled] BIT NOT NULL DEFAULT (0),
+	[isComponent] INT NOT NULL DEFAULT (0),
+	[CreateBy] INT NOT NULL, -- người tạo
+	[createdOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[updatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+--=========>Connect Table<===========--
+)
+GO
+--==============================================
 -- Name        :  [Seo]
 -- Description :  Thẻ seo sản phẩm, nhà cung cấp
 -- Date Update : 
@@ -403,8 +421,7 @@ CREATE TABLE [LikeEvaluatesProduct](
 	[id] INT IDENTITY(1,1) NOT NULL  PRIMARY KEY,
 	[islike] BIT NULL,
 	[isdislike] BIT NULL,
-	[levelEvaluates] INT NOT NULL, -- lưu like cho rep hay eva 
-	[idEvaluates] INT NOT NULL,
+	[EvaluatesId] INT NOT NULL, -- lưu like cho rep hay eva
 	[CreateBy] [int] NOT NULL, -- người tạo
 	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
 	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update

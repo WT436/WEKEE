@@ -51,6 +51,11 @@ export const adminRouters: any = [
     component: LoadableComponent(() => import("../../scenes/Admin/ACategory")),
   },
   {
+    path: "/admin/category/home-page",
+    exact: true,
+    component: LoadableComponent(() => import("../../scenes/Admin/ACategoryHomePage")),
+  },
+  {
     path: "/admin/specifications-category",
     exact: true,
     component: LoadableComponent(() => import("../../scenes/Admin/ASpeciCate")),

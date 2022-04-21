@@ -95,6 +95,7 @@ namespace Product.API.InstallStartup.InstallerServices
             services.AddTransient<IProductAlbum, ProductAlbumService>();
             services.AddTransient<IProductAttributeValues, ProductAttributeValuesService>();
             services.AddTransient<IProduct, ProductService>();
+            services.AddTransient<ICategoryDisplay, CategoryDisplayService>();
             #endregion
         }
     }

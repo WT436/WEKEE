@@ -78,6 +78,5 @@ namespace Product.API.Src.ProductAreas
             var data = await _categoryProduct.GetCategoryBreadcrumbDtos(input);
             return Ok(data);
         }
-
     }
 }

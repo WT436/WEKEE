@@ -19,6 +19,7 @@ import { SiderStoreState } from "../scenes/Store/SiderStore/types"
 import { MenuSliderAdminState } from "../scenes/Admin/MenuSliderAdmin/types";
 import { AttributeProductState } from "../scenes/Admin/AttributeProduct/types";
 import { MyProductStoreState } from "../scenes/Store/MyProductStore/types";
+import { ACategoryHomePageState } from "../scenes/Admin/ACategoryHomePage/types";
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -45,5 +46,6 @@ export interface ApplicationRootState {
   readonly menuslideradmin : MenuSliderAdminState
   readonly attributeproduct: AttributeProductState
   readonly myproductstore : MyProductStoreState
+  readonly acategoryhomepage : ACategoryHomePageState
   readonly base: BaseState
 }

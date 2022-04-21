@@ -234,3 +234,41 @@ INNER JOIN dbo.[ProductAttributeMapping] AS PAM ON FP.[Id] = PAM.[FeatureProduct
 INNER JOIN dbo.[ProductAttributeValue] AS PAV ON PAV.[Id] = PAM.[ProductAttributeValuesId]
 INNER JOIN dbo.[ProductAttribute] AS PA ON PAV.[Key] = PA.[Id]
 WHERE FP.[ProductId] = 1 ORDER BY FP.[DisplayOrder]
+
+--------------------------------------------------------------------------------------------------------
+
+SELECT 
+	    CP.[nameCategory]  AS 'NameCategory'
+	   ,CP.[urlCategory]   AS 'UrlCategory'
+	   ,CP.[iconCategory]  AS 'IconCategory'
+	   ,CP.[categoryMain]  AS 'CategoryMain'
+	   ,CHP.[id]		   AS 'Id'
+	   ,CHP.[numberOrder]  AS 'NumberOrder'
+	   ,CHP.[isEnabled]	   AS 'IsEnabled'
+	   ,CHP.[isComponent]  AS 'IsComponent'
+	   ,CHP.[CreateBy]	   AS 'CreateBy'
+	   ,CHP.[createdOnUtc] AS 'CreatedOnUtc'
+	   ,CHP.[updatedOnUtc] AS 'UpdatedOnUtc'
+FROM [CategoryProduct] AS CP
+JOIN [CategoryHomePage] AS CHP ON CP.[id] = CHP.[categoryId]
+WHERE CP.isEnabled = 1 AND CHP.[isComponent] = 1 AND CP.[nameCategory] LIKE N'%NAM%'
+
+--------------------------------------------------------------------------------------------------------
+ SELECT                                                                                           
+		CP.id                 AS 'Id',                                                              
+  		CP.nameCategory       AS 'NameCategory',                                                    
+  		CP.urlCategory        AS 'UrlCategory',                                                     
+  		(SELECT VirtualPath FROM ImageProduct where id = CP.iconCategory) AS 'IconCategory',        
+  		CP.levelCategory      AS 'LevelCategory',                                                   
+  		CP.categoryMain       AS 'CategoryMain',                                                    
+  		(SELECT nameCategory FROM CategoryProduct where id = CP.categoryMain) AS 'CategoryMainName',
+  		CP.numberOrder        AS 'NumberOrder',                                                     
+  		CP.isEnabled          AS 'IsEnabled',                                                       
+  		CP.CreatedOnUtc       AS 'CreatedOnUtc',                                                    
+  		CP.UpdatedOnUtc       AS 'UpdatedOnUtc '                                                    
+  	FROM CategoryProduct      AS CP                                                                 
+ WHERE Id = HOME_NULL
+  ORDER BY Id ASC 
+  OFFSET((1 - 1) * 20) ROWS                                                                        
+  FETCH NEXT 20 ROWS ONLY                                                                            
+                                                                                                                          

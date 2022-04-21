@@ -1,22 +1,9 @@
 //#region  import
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  DashboardOutlined,
-  ShopOutlined,
-  ShoppingCartOutlined,
-  UserSwitchOutlined,
-  GiftOutlined,
-  ToolOutlined,
-  CommentOutlined,
-  UserOutlined,
-  UsergroupAddOutlined,
-  FormOutlined,
-  SettingOutlined,
-  TeamOutlined,
-  ReconciliationOutlined,
-  AreaChartOutlined,
-  DatabaseOutlined,
+  MenuUnfoldOutlined, MenuFoldOutlined, DashboardOutlined, ShopOutlined, ShoppingCartOutlined,
+  UserSwitchOutlined, GiftOutlined, ToolOutlined, CommentOutlined, UserOutlined,
+  UsergroupAddOutlined, FormOutlined, SettingOutlined, TeamOutlined, ReconciliationOutlined,
+  AreaChartOutlined, DatabaseOutlined,
 } from "@ant-design/icons";
 import { Button } from "antd";
 import Sider from "antd/lib/layout/Sider";
@@ -175,13 +162,18 @@ export default function MenuSliderAdmin(props: IMenuSliderAdminProps) {
               </SubMenu>
               <SubMenu key="sub10_4" title="Sản phẩm">
                 <Menu.Item key="item10_4_1">
-                  <Link to="/admin/category">Chủ đề</Link>
-                </Menu.Item>
-                <Menu.Item key="item10_4_2">
                   <Link to="/admin/specifications-category">Thông số</Link>
                 </Menu.Item>
-                <Menu.Item key="item10_4_3">
+                <Menu.Item key="item10_4_2">
                   <Link to="/admin/attribute-product">Thuộc tính</Link>
+                </Menu.Item>
+              </SubMenu>
+              <SubMenu key="sub10_5" title="Chủ đề">
+                <Menu.Item key="item10_5_1">
+                  <Link to="/admin/category">Danh Sách</Link>
+                </Menu.Item>
+                <Menu.Item key="item10_5_2">
+                  <Link to="/admin/category/home-page">Hiển thị chính</Link>
                 </Menu.Item>
               </SubMenu>
             </SubMenu>
