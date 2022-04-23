@@ -35,24 +35,24 @@ export default function RegistrationComponent(props: IRegistrationFormProps) {
         dispatch(loginRequestLoginStart(values));
     };
     
-    function confirm() {
-        Modal.confirm({
-            title: 'Mã code xác nhận',
-            icon: <ExclamationCircleOutlined />,
-            content: <>
-                <div>
-                    <input className='DzwkfmNSxJ' type="text" />
-                    <input className='DzwkfmNSxJ' type="text" />
-                    <input className='DzwkfmNSxJ' type="text" />
-                    <input className='DzwkfmNSxJ' type="text" />
-                    <input className='DzwkfmNSxJ' type="text" />
-                    <input className='DzwkfmNSxJ' type="text" />
-                </div>
-            </>,
-            okText: 'Xác nhận',
-            cancelText: 'Hủy bỏ',
-        });
-    }
+    // function confirm() {
+    //     Modal.confirm({
+    //         title: 'Mã code xác nhận',
+    //         icon: <ExclamationCircleOutlined />,
+    //         content: <>
+    //             <div>
+    //                 <input className='DzwkfmNSxJ' type="text" />
+    //                 <input className='DzwkfmNSxJ' type="text" />
+    //                 <input className='DzwkfmNSxJ' type="text" />
+    //                 <input className='DzwkfmNSxJ' type="text" />
+    //                 <input className='DzwkfmNSxJ' type="text" />
+    //                 <input className='DzwkfmNSxJ' type="text" />
+    //             </div>
+    //         </>,
+    //         okText: 'Xác nhận',
+    //         cancelText: 'Hủy bỏ',
+    //     });
+    // }
 
     // facebook
     return (
@@ -109,7 +109,8 @@ export default function RegistrationComponent(props: IRegistrationFormProps) {
                 </Form.Item>
 
                 <Form.Item className="grDQhEfohj">
-                    <button onClick={confirm} className="vdnsCAmrtL" style={{ display: loading ? 'none' : 'block' }}>
+                {/* onClick={confirm} */}
+                    <button  className="vdnsCAmrtL" style={{ display: loading ? 'none' : 'block' }}>
                         <span></span>
                         <span></span>
                         <span></span>

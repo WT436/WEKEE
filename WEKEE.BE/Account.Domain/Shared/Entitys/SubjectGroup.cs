@@ -11,9 +11,9 @@ namespace Account.Domain.Shared.Entitys
         public string Name { get; set; }
         public int GorupId { get; set; }
         public int SubjectId { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public int? CreateBy { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int CreateBy { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public DateTime UpdatedOnUtc { get; set; }
 
         public virtual Group Gorup { get; set; }
         public virtual Subject Subject { get; set; }

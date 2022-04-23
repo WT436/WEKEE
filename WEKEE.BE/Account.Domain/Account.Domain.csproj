@@ -52,9 +52,11 @@
 
   <ItemGroup>
     <Folder Include="Aggregate\" />
+    <Folder Include="CoreDomain\" />
     <Folder Include="EventDomain\" />
     <Folder Include="ObjectValues\Const\" />
     <Folder Include="ServicesDomain\" />
+    <Folder Include="Services\ResourceAction\" />
     <Folder Include="UL\" />
   </ItemGroup>
 

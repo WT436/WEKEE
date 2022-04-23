@@ -1,8 +1,1 @@
-Microsoft.Extensions.Configuration
-Microsoft.Extensions.Configuration.Json
-Microsoft.EntityFrameworkCore.Tools
-Microsoft.EntityFrameworkCore.SqlServer
-Microsoft.AspNetCore.Identity
-Microsoft.EntityFrameworkCore
-
-Scaffold-DbContext "Server=.;Database=ProductDB;Trusted_Connection=True;"Microsoft.EntityFrameworkCore.SqlServer -OutputDir DBContext2
+Scaffold-DbContext "Server=DESKTOP-B0DM5NM;Database=Authorization;Trusted_Connection=True;"Microsoft.EntityFrameworkCore.SqlServer -OutputDir DBContext2

@@ -5,14 +5,15 @@ using System.Collections.Generic;
 
 namespace Account.Domain.Shared.Entitys
 {
-    public partial class ProcessUser
+    public partial class UserPassword
     {
         public int Id { get; set; }
-        public string Description { get; set; }
-        public string IpUser { get; set; }
-        public bool IsStatus { get; set; }
-        public string Device { get; set; }
-        public int? AccountId { get; set; }
+        public int AccountId { get; set; }
+        public string Password { get; set; }
+        public string PasswordSalt { get; set; }
+        public string PasswordHashAlgorithm { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDelete { get; set; }
         public int CreateBy { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }

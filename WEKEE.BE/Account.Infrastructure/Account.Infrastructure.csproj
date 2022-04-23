@@ -50,9 +50,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Document\Sql\SqlDataBackUp\" />
-    <Folder Include="Document\Sql\SqlQuery\" />
+    <Folder Include="DBContext2\" />
     <Folder Include="EventBus\" />
+    <Folder Include="ModelQuery\" />
+    <Folder Include="SqlQuery\" />
   </ItemGroup>
 
 </Project>

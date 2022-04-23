@@ -4,7 +4,6 @@ import { Saga } from "redux-saga";
 import { GlobalState } from "../components/ComponentBase/types";
 import { LoginState } from "../scenes/Permission/Login/types";
 import { HomeState } from "../scenes/Main/Home/types";
-import { APermissionState } from "../scenes/Admin/APermission/types";
 import { AAccountState } from "../scenes/Admin/Account/types";
 import { SErrorState } from "../scenes/System/SError/types";
 import { UHomeState } from "../scenes/User/UHome/types";
@@ -20,6 +19,7 @@ import { MenuSliderAdminState } from "../scenes/Admin/MenuSliderAdmin/types";
 import { AttributeProductState } from "../scenes/Admin/AttributeProduct/types";
 import { MyProductStoreState } from "../scenes/Store/MyProductStore/types";
 import { ACategoryHomePageState } from "../scenes/Admin/ACategoryHomePage/types";
+import { APermissionState } from "../scenes/Admin/APermission/types";
 
 export interface InjectedStore extends Store {
   injectedReducers: any;

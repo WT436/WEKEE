@@ -16,8 +16,9 @@ CREATE TABLE [dbo].[ExceptionLog](
 [isFix] BIT DEFAULT 0
 )
 GO
+GO
 CREATE TABLE [dbo].[Download](
-	[Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[DownloadGuid] [uniqueidentifier] NOT NULL,
 	[UseDownloadUrl] [bit] NOT NULL,
 	[DownloadUrl] [nvarchar](max) NULL,

@@ -9,18 +9,18 @@ namespace Account.Domain.Shared.Entitys
     {
         public Atomic()
         {
-            Actions = new HashSet<Action>();
+            Permissions = new HashSet<Permission>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string TypesRsc { get; set; }
+        public int TypesRsc { get; set; }
         public bool? IsActive { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public int? CreateBy { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int CreateBy { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public DateTime UpdatedOnUtc { get; set; }
 
-        public virtual ICollection<Action> Actions { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

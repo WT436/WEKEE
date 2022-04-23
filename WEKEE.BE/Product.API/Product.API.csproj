@@ -58,6 +58,7 @@
     <Folder Include="RootFiles\album\rootevaluates\" />
     <Folder Include="RootFiles\album\rootImage\" />
     <Folder Include="RootFiles\album\video\" />
+    <Folder Include="RootFiles\report\" />
     <Folder Include="RootFiles\scripts\" />
   </ItemGroup>
 

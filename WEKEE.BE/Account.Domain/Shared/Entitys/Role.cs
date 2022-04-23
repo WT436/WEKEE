@@ -9,7 +9,7 @@ namespace Account.Domain.Shared.Entitys
     {
         public Role()
         {
-            InverseRoleNavigation = new HashSet<Role>();
+            InverseRoleManage = new HashSet<Role>();
             PermissionAssignments = new HashSet<PermissionAssignment>();
             SubjectAssignments = new HashSet<SubjectAssignment>();
         }
@@ -18,15 +18,15 @@ namespace Account.Domain.Shared.Entitys
         public string Name { get; set; }
         public string Description { get; set; }
         public int LevelRole { get; set; }
-        public int RoleId { get; set; }
+        public int RoleManageId { get; set; }
         public bool IsDelete { get; set; }
         public bool? IsActive { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public int? CreateBy { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int CreateBy { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public DateTime UpdatedOnUtc { get; set; }
 
-        public virtual Role RoleNavigation { get; set; }
-        public virtual ICollection<Role> InverseRoleNavigation { get; set; }
+        public virtual Role RoleManage { get; set; }
+        public virtual ICollection<Role> InverseRoleManage { get; set; }
         public virtual ICollection<PermissionAssignment> PermissionAssignments { get; set; }
         public virtual ICollection<SubjectAssignment> SubjectAssignments { get; set; }
     }

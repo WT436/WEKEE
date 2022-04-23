@@ -3,7 +3,6 @@ import { Row, Col, Table, Button, Tag, message } from 'antd'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { PermissionAssignmentDto } from '../../APermission/dtos/permissionAssignmentDto'
 import { changPermissionAccountStart, listSubjectAssignStart, listSubjectStart } from '../actions';
 import { AccountShowDtos } from '../dtos/accountShowDtos';
 import { SubjectAssignmentDto } from '../dtos/subjectAssignmentDto';
@@ -138,7 +137,7 @@ export default function RoleAccountComponent(props: IRoleAccountComponent) {
                 <Col span={12}>
                     <Row style={{ fontSize: '20px', fontFamily: 'cursive', padding: '5px 15px' }}>Danh sách vai trò</Row>
                     <Table
-                        rowKey={(rec: PermissionAssignmentDto | any) => rec.id.toString()}
+                        rowKey={(rec: any) => rec.id.toString()}
                         columns={columns}
                         dataSource={subjectAssignmentDto}
                         size='small'

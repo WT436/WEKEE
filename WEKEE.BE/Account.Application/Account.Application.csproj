@@ -5,13 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Subject\ISubject.cs~RF53bb506.TMP" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Account.Domain\Account.Domain.csproj" />
     <ProjectReference Include="..\Account.Infrastructure\Account.Infrastructure.csproj" />
     <ProjectReference Include="..\Utils\Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Interface\" />
   </ItemGroup>
 
 </Project>

@@ -23,9 +23,9 @@ namespace Account.Domain.Shared.Entitys
         public string MembershipApproval { get; set; }
         public string PostApproval { get; set; }
         public string Tags { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public int? CreateBy { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int CreateBy { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public DateTime UpdatedOnUtc { get; set; }
 
         public virtual ICollection<SubjectGroup> SubjectGroups { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }

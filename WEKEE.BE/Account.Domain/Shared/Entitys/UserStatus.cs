@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 namespace Account.Domain.Shared.Entitys
 {
-    public partial class InfomationUser
+    public partial class UserStatus
     {
         public int Id { get; set; }
-        public string FirsName { get; set; }
-        public string LastName { get; set; }
-        public string Coordinates { get; set; }
-        public string Picture { get; set; }
-        public int Gender { get; set; }
-        public string Description { get; set; }
-        public bool? IsActive { get; set; }
         public int? AccountId { get; set; }
+        public string Code { get; set; }
+        public int StatusId { get; set; }
+        public string ReminderToken { get; set; }
+        public int? ReminderExpire { get; set; }
+        public int UpdateCount { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDelete { get; set; }
         public int CreateBy { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }

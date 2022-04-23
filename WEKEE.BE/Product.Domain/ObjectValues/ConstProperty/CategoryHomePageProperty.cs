@@ -48,7 +48,7 @@ namespace Product.Domain.ObjectValues.ConstProperty
     public static class ConvertPropertyCategoryHomePage
     {
         /// <summary>
-        ///  Con vert text => enum
+        ///  Convert text => enum
         /// </summary>
         public static int CONVERT_TYPE_ISCOMPONENT_TEXT_ENUM(string input)
         {

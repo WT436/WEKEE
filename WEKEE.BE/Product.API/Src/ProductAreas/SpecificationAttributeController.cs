@@ -30,9 +30,9 @@ namespace Product.API.Src.ProductAreas
         [Route("v1/api/create-specification-attribute")]
         public async Task<IActionResult> CreateSpecificationAttribute([FromBody] SpecificationAttributeInsertDto input)
         {
-            TokenToJWT tokenToJWT = new TokenToJWT();
+            //TokenToJWT tokenToJWT = new TokenToJWT();
             var token = HttpContext.Request.Headers["Authorization"].ToString();
-            var idAccount = tokenToJWT.DecryptionToken(token).Id;
+            var idAccount = 1;
 
             var data = await _specificationAttribute.Insert(input: input,
                                                         idAccount: idAccount);
