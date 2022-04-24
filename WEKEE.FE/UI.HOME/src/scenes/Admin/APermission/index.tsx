@@ -6,23 +6,25 @@ import { createStructuredSelector } from "reselect";
 import { useInjectReducer, useInjectSaga } from "../../../redux/reduxInjectors";
 import reducer from "./reducer";
 import saga from "./saga";
+import { L } from '../../../lib/abpUtility';
 import {
-  makeSelectCompleted, makeSelectLoading, makeSelectPageIndex, makeSelectPageSize,
-  makeSelectTotalCount, makeSelectTotalPages,
+  makeCompleted, makeLoading, makePageIndex, makePageSize,
+  makeTotalCount, makeTotalPages,
 } from "./selectors";
 import {
-  Button, Card, Col, Collapse, DatePicker, Form, Input, InputNumber, notification, Row,
-  Select, Tag, Tooltip,
+  Button, Card, Col, DatePicker, Form, Input, InputNumber, notification, Row,
+  Select, Table, Tag, Tooltip,
 } from "antd";
 import {
-  CheckOutlined, CloseOutlined, DeleteOutlined,
-  EditOutlined, FilePdfOutlined, LockOutlined, PlusOutlined, RedoOutlined, SearchOutlined, UnlockOutlined,
+  CloseOutlined, DeleteOutlined, EditOutlined, LockOutlined,
+  PlusOutlined, RedoOutlined, SearchOutlined, UnlockOutlined,
 } from "@ant-design/icons";
-import ConstTypes, { confirmTypes } from "./objectValues/ConstTypesResource";
 import OrderByProperty from "../../../services/dto/orderByProperty";
 import moment from "moment";
+import ConstTypesResource, { confirmTypesResource } from "./objectValues/ConstTypesResource";
+import { ResourceReadDto } from "./dto/resourceReadDto";
+import { getResourceStart } from "./actions";
 declare var abp: any;
-const { Panel } = Collapse;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 //#endregion
@@ -30,28 +32,37 @@ export interface IAPermissionProps {
   // đây
   location: any;
 }
+
 const key = "apermission"; // đây
 
-const stateSelector = createStructuredSelector<any, any>({
-  loading: makeSelectLoading(),
-  completed: makeSelectCompleted(),
-  pageIndex: makeSelectPageIndex(),
-  pageSize: makeSelectPageSize(),
-  totalCount: makeSelectTotalCount(),
-  totalPages: makeSelectTotalPages(),
+const stateSelector = createStructuredSelector < any, any> ({
+  loadingAll: makeLoading(),
+  completedAll: makeCompleted(),
+  pageIndex: makePageIndex(),
+  pageSize: makePageSize(),
+  totalCount: makeTotalCount(),
+  totalPages: makeTotalPages(),
 });
 
 export default function APermission(props: IAPermissionProps) {
-
-  // Đây
 
   //#region START
   useInjectReducer(key, reducer);
   useInjectSaga(key, saga);
   const dispatch = useDispatch();
 
-  const { loading, pageSize, totalCount, pageIndex } =
+  const { loadingAll, completedAll, pageSize, totalCount, pageIndex } =
     useSelector(stateSelector);
+  
+  useEffect(() => {
+    dispatch(getResourceStart({ pageIndex: 1,
+      pageSize: 20,
+      propertyOrder: 0,
+      valueOrderBy: 0,
+      propertySearch: [0],
+      valuesSearch: ["null"],}));
+  }, [])
+  
   //#endregion
 
   //#region CSS Layout Item
@@ -68,16 +79,13 @@ export default function APermission(props: IAPermissionProps) {
   //#endregion
 
   //#region STATE FOR SEARCH OR ORDER
-  const [propertySearch, setpropertySearch] = useState<any[]>([]);
-  const [valuesSearch, setvaluesSearch] = useState<any[]>([]);
-  const [orderbyColumn, setOrderbyColumn] = useState<string>("");
-  const [orderbyTypes, setOrderbyTypes] = useState<string>("");
+  const [propertySearch, setpropertySearch] = useState < any[] > ([]);
+  const [valuesSearch, setvaluesSearch] = useState < any[] > ([]);
+  const [orderbyColumn, setOrderbyColumn] = useState < number > (0);
+  const [orderbyTypes, setOrderbyTypes] = useState < string > ("");
   //#endregion
-
   //#region SEARCH DADA ONCLICK BUTTON OR CHANGE PAGE
-  // có key mà không có giá trị => xóa cả 2
   const _searchDataOnClick = (page: any, pageSize: any) => {
-    console.log(valuesSearch);
     if (propertySearch.length !== valuesSearch.length) {
       notification.warning({
         message: "Thất Bại",
@@ -88,45 +96,41 @@ export default function APermission(props: IAPermissionProps) {
     }
   };
   //#endregion
-
   //#region SELECT COLUMN SEARCH
-  const [SelectColumnSearch, setSelectColumnSearch] = useState<JSX.Element>(
-    <Input placeholder="Từ khóa" />
+  const [SelectColumnSearch, setSelectColumnSearch] = useState < JSX.Element > (
+    <Input placeholder={L("KEYWORD",'COMMON')} disabled />
   );
 
-  function _selectColumnSearch(value: ConstTypes) {
-    value === ConstTypes.NULL
+  function _selectColumnSearch(value: number) {
+    value === ConstTypesResource.NULL || value === 0
       ? setpropertySearch([])
       : setpropertySearch([value]);
     setvaluesSearch([]);
-
-    if (confirmTypes(value) === "DATE") {
+    if (confirmTypesResource(value) === "DATE") {
       setSelectColumnSearch(
         <RangePicker
           format="YYYY/MM/DD"
-          disabled={value === ConstTypes.NULL}
           onChange={(date, dateString) =>
             _onChangeDataColumnSearch(dateString[0] + "|" + dateString[1])
           }
         />
       );
-    } else if (confirmTypes(value) === "SELECT") {
+    } else if (confirmTypesResource(value) === "SELECT") {
       setSelectColumnSearch(
         <Select
           showSearch
-          placeholder="Giá trị"
+          placeholder={L("FILL",'COMMON')}
           optionFilterProp="children"
           style={{ width: "100%" }}
-          disabled={value === ConstTypes.NULL}
           onChange={(values: number) => _onChangeDataColumnSearch(values)}
         >
           {(() => {
-            if (value === ConstTypes.CATE_PRO_PROATTR)
+            if (value === ConstTypesResource.CREATE_BY)
               // return (optionCategoryProduct.map((province: CateProReadIdAndNameDto) => (
               //     <Option value={province.id}>{province.name}</Option>
               // )))
               return <Option value={"province.id"}>{"province.name"}</Option>;
-            if (value === ConstTypes.CREATEBY_PROATTR)
+            if (value === ConstTypesResource.TYPES_RSC)
               // return (optionCreateByCate.map((province: CateProReadIdAndNameDto) => (
               //     <Option value={province.id}>{province.name}</Option>
               // )))
@@ -141,37 +145,35 @@ export default function APermission(props: IAPermissionProps) {
           })()}
         </Select>
       );
-    } else if (confirmTypes(value) === "BOOLEAN") {
+    } else if (confirmTypesResource(value) === "BOOLEAN") {
       setSelectColumnSearch(
         <Select
           showSearch
-          placeholder="Giá trị"
+          placeholder={L("FILL",'COMMON')}
           optionFilterProp="children"
           style={{ width: "100%" }}
-          disabled={value === ConstTypes.NULL}
           onChange={(values: number) => _onChangeDataColumnSearch(values)}
         >
           <Option value={1}>TRUE</Option>
           <Option value={0}>FALSE</Option>
         </Select>
       );
-    } else if (confirmTypes(value) === "NUMBER") {
+    } else if (confirmTypesResource(value) === "NUMBER") {
       setSelectColumnSearch(
         <InputNumber
-          disabled={value === ConstTypes.NULL}
-          placeholder="Từ khóa"
+          placeholder={L("KEYWORD",'COMMON')}
           style={{ width: "100%" }}
           formatter={(value) =>
             `${value} `.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
           }
+          defaultValue={0}
           onChange={_onChangeDataColumnSearch}
         />
       );
-    } else if (confirmTypes(value) === "STRING") {
+    } else if (confirmTypesResource(value) === "STRING") {
       setSelectColumnSearch(
         <Input
-          disabled={value === ConstTypes.NULL}
-          placeholder="Từ khóa"
+          placeholder={L("KEYWORD",'COMMON')}
           onChange={(values: any) =>
             _onChangeDataColumnSearch(values.target.value)
           }
@@ -180,9 +182,9 @@ export default function APermission(props: IAPermissionProps) {
     } else {
       setSelectColumnSearch(
         <Input
-          placeholder="Từ khóa"
+          placeholder={L("KEYWORD",'COMMON')}
           value={""}
-          disabled={value === ConstTypes.NULL}
+          disabled={true}
         />
       );
     }
@@ -190,7 +192,7 @@ export default function APermission(props: IAPermissionProps) {
 
   // khi cột value search thay đổi mà  key null  => xóa vaule
   const _onChangeDataColumnSearch = (value: any) => {
-    if (propertySearch[0] === ConstTypes.NULL) {
+    if (propertySearch[0] === ConstTypesResource.NULL || value === 0) {
       setvaluesSearch([]);
     }
     setvaluesSearch([value]);
@@ -198,17 +200,14 @@ export default function APermission(props: IAPermissionProps) {
   //#endregion
 
   //#region SELECT COLUMN ORDER
-  const [disableColumnOrder, setdisableColumnOrder] = useState<string>(
-    ConstTypes.NULL
-  );
 
-  function _selectColumnOrder(value: string) {
-    if (value === ConstTypes.NULL) {
-      setOrderbyColumn("");
+  function _selectColumnOrder(value: number) {
+    console.log(value)
+    if (value === 0) {
+      setOrderbyColumn(0);
       setOrderbyTypes("");
     }
     setOrderbyColumn(value);
-    setdisableColumnOrder(value);
   }
   function _selectColumnOrderValue(value: any) {
     setOrderbyTypes(value);
@@ -217,32 +216,20 @@ export default function APermission(props: IAPermissionProps) {
 
   const [checkCreate, setCheckCreate] = useState(false);
   const [checkRemove, setCheckRemove] = useState(true);
-  const [checkRestart, setCheckRestart] = useState(true);
   const [isModalVisible, setisModalVisible] = useState(false);
-  // 0 : bật tất cả 1: đang xóa, 2 đang update khóa/mở
-  const [isDataChange, setisDataChange] = useState(0);
 
   //#region INSERT OR UPDATE FORM DATA
   const [form] = Form.useForm();
 
   const onFill = (value: any) => {
-    console.log(value);
     form.setFieldsValue(value);
-  };
-
-  const onRemove = (value: any) => {
-    setisDataChange(1);
-  };
-
-  const onChangeIsStatus = (value: any) => {
-    setisDataChange(2);
   };
 
   const onFinish = (values: any) => {
     if (values.types === -1 || values.types === undefined) {
       notification.warning({
-        message: "Thất Bại",
-        description: "Kiểu dữ liệu không hợp lệ!",
+        message: L("FAILURE",'COMMON'),
+        description: L("INVALID_DATA_TYPE",'COMMON'),
         placement: "bottomRight",
       });
     } else {
@@ -261,18 +248,13 @@ export default function APermission(props: IAPermissionProps) {
   const onGenderChangeCategory = (value: number) => {
     form.setFieldsValue({ categoryProductId: value });
   };
-
   //#endregion
 
+  //#region TABLE
   const columns = [
     {
-      title: "Tên",
-      dataIndex: "name",
-      sorter: {
-        compare: (a: { name: string }, b: { name: string }) =>
-          a.name.length - b.name.length,
-        multiple: 3,
-      },
+      title: L("NAME","CONST_TYPE_RESOURCE"),
+      dataIndex: "name"
     },
     {
       title: "Trạng thái",
@@ -323,17 +305,13 @@ export default function APermission(props: IAPermissionProps) {
           ></Button>
           <Button
             type="link"
-            disabled={!(isDataChange == 0 || isDataChange == 1)}
             icon={<DeleteOutlined />}
-            onClick={() => {
-              onRemove(text);
-            }}
           ></Button>
           {text.isDelete ? (
-            <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<LockOutlined />} onClick={() => onChangeIsStatus(text)}
+            <Button type="link" icon={<LockOutlined />}
             ></Button>
           ) : (
-            <Button disabled={!(isDataChange == 0 || isDataChange == 2)} type="link" icon={<UnlockOutlined />} onClick={() => onChangeIsStatus(text)}
+            <Button type="link" icon={<UnlockOutlined />}
             ></Button>
           )}
         </div>
@@ -341,105 +319,78 @@ export default function APermission(props: IAPermissionProps) {
     },
   ];
 
+  const rowSelection = {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: ResourceReadDto[]) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    },
+    getCheckboxProps: (record: ResourceReadDto) => ({
+      disabled: record.isActive === true,
+      name: record.name,
+    }),
+  };
+  //#endregion
+
   return (
     <>
-      <Card title="CATEGORY PRODUCT SHOW HOME PAGE" size="small" type="inner">
+      <Card title={L("CATEGORY PRODUCT SHOW HOME PAGE")} size="small" type="inner">
         <Row gutter={[10, 10]}>
           <Col span={24}>
             <Row gutter={[10, 10]}>
               <Col span={1}>
-                <Tooltip placement="bottom" title={"Làm Mới"}>
-                  <Button loading={loading}
-                    disabled={checkRestart}
-                    block
-                    icon={<RedoOutlined />}
-                    onClick={() => {
-                      setCheckRestart(true);
-                      setisDataChange(0);
-                    }}
-                  ></Button>
+                <Tooltip placement="bottom" title={L("REFRESH",'COMMON')}>
+                  <Button loading={loadingAll} block icon={<RedoOutlined />}  ></Button>
                 </Tooltip>
               </Col>
               <Col span={1}>
-                <Tooltip placement="bottom" title={"Lưu"}>
-                  <Button loading={loading} disabled={checkRemove} block
-                    onClick={() => {
-                      setisDataChange(0);
-                    }}
-                    icon={<CheckOutlined />}
-                  ></Button>
+                <Tooltip placement="bottom" title={L("DELETE",'COMMON')}>
+                  <Button loading={loadingAll} disabled={checkRemove} block icon={<DeleteOutlined />}  ></Button>
                 </Tooltip>
               </Col>
               <Col span={1}>
-                <Tooltip placement="bottom" title={"Hủy"}>
-                  <Button loading={loading} disabled={checkRemove}
-                    block
-                    icon={<CloseOutlined />}
-                    onClick={() => {
-                      setisDataChange(0);
-                    }}
-                  ></Button>
+                <Tooltip placement="bottom" title={L("CANCEL",'COMMON')}>
+                  <Button loading={loadingAll} disabled={checkRemove} block icon={<CloseOutlined />} ></Button>
+                </Tooltip>
+              </Col>
+              <Col span={2}>
+                <Tooltip placement="top" title={L("REPORT_FILE",'COMMON')}>
+                  <Select style={{ width: '100%' }} placeholder={L("REPORT_FILE",'COMMON')}>
+                    <Option value={1}>{L("EXCEL",'COMMON')}</Option>
+                    <Option value={2}>{L("PDF",'COMMON')}</Option>
+                    <Option value={3}>{L("ALL",'COMMON')}</Option>
+                  </Select>
                 </Tooltip>
               </Col>
               <Col span={1}>
-                <Tooltip placement="bottom" title={"Xuất File"}>
-                  <Button loading={loading} block icon={<FilePdfOutlined />}></Button>
-                </Tooltip>
-              </Col>
-              <Col span={1}>
-                <Tooltip placement="bottom" title={"Thêm"}>
-                  <Button loading={loading} block icon={<PlusOutlined />}
-                    onClick={() => {
-                      setisModalVisible(true);
-                      form.resetFields();
-                    }}
-                  ></Button>
+                <Tooltip placement="bottom" title={L("ADD",'COMMON')}>
+                  <Button loading={loadingAll} block icon={<PlusOutlined />}></Button>
                 </Tooltip>
               </Col>
               <Col span={4}>
                 <Select
                   optionFilterProp="children"
                   style={{ width: "100%" }}
-                  disabled={loading}
-                  placeholder="Tìm Kiếm"
+                  disabled={loadingAll}
+                  placeholder={L("SELECT",'COMMON')}
                   filterOption={(input, option: any) =>
                     option.children
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
-                  onChange={(value: any) => {
+                  onChange={(value: number) => {
                     _selectColumnSearch(value);
                   }}
                   value={
                     propertySearch[0] === "" ? undefined : propertySearch[0]
                   }
                 >
-                  <Option value={ConstTypes.NULL}>Mặc định</Option>
-                  <Option value={ConstTypes.ID}>{ConstTypes.ID}</Option>
-                  <Option value={ConstTypes.NAME_PROATTR}>
-                    {ConstTypes.NAME_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.TYPES_PROATTR}>
-                    {ConstTypes.TYPES_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.CATE_PRO_PROATTR}>
-                    {ConstTypes.CATE_PRO_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.ISDELETE_PROATTR}>
-                    {ConstTypes.ISDELETE_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.CREATEBY_PROATTR}>
-                    {ConstTypes.CREATEBY_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.CREATE_DATE_UTC}>
-                    {ConstTypes.CREATE_DATE_UTC}
-                  </Option>
-                  <Option value={ConstTypes.UPDATE_DATE_UTC}>
-                    {ConstTypes.UPDATE_DATE_UTC}
-                  </Option>
+                  {Object.keys(ConstTypesResource).map((key: any) => {
+                    if (!isNaN(Number(key))) {
+                      return (<Option value={key}>{L(ConstTypesResource[key],'CONST_TYPE_RESOURCE')}</Option>)
+                    }
+                  })}
                 </Select>
               </Col>
-              <Col span={5}>{SelectColumnSearch}</Col>
+              <Col span={6}>{SelectColumnSearch}</Col>
               <Col span={4}>
                 <Select
                   optionFilterProp="children"
@@ -450,33 +401,18 @@ export default function APermission(props: IAPermissionProps) {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    orderbyColumn === "" ? undefined : orderbyColumn
+                    orderbyColumn === 0 ? undefined : orderbyColumn
                   }
-                  disabled={loading}
-                  placeholder="Từ khóa"
-                  value={orderbyColumn === "" ? undefined : orderbyColumn}
+                  disabled={loadingAll}
+                  placeholder={L("SORT",'COMMON')}
+                  value={orderbyColumn === 0 ? undefined : orderbyColumn}
                   onChange={_selectColumnOrder}
                 >
-                  <Option value={ConstTypes.NULL}>Mặc định</Option>
-                  <Option value={ConstTypes.ID}>{ConstTypes.ID}</Option>
-                  <Option value={ConstTypes.NAME_PROATTR}>
-                    {ConstTypes.NAME_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.TYPES_PROATTR}>
-                    {ConstTypes.TYPES_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.ISDELETE_PROATTR}>
-                    {ConstTypes.ISDELETE_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.CREATEBY_PROATTR}>
-                    {ConstTypes.CREATEBY_PROATTR}
-                  </Option>
-                  <Option value={ConstTypes.CREATE_DATE_UTC}>
-                    {ConstTypes.CREATE_DATE_UTC}
-                  </Option>
-                  <Option value={ConstTypes.UPDATE_DATE_UTC}>
-                    {ConstTypes.UPDATE_DATE_UTC}
-                  </Option>
+                  {Object.keys(ConstTypesResource).map((key: any) => {
+                    if (!isNaN(Number(key))) {
+                      return (<Option value={key}>{L(ConstTypesResource[key],'CONST_TYPE_RESOURCE')}</Option>)
+                    }
+                  })}
                 </Select>
               </Col>
               <Col span={3}>
@@ -488,29 +424,49 @@ export default function APermission(props: IAPermissionProps) {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
-                  disabled={disableColumnOrder === ConstTypes.NULL}
+                  disabled={orderbyColumn === 0}
                   onChange={(value: any) => _selectColumnOrderValue(value)}
-                  placeholder="Theo"
+                  placeholder={L("BY",'COMMON')}
                   value={orderbyTypes === "" ? undefined : orderbyTypes}
                   defaultValue={orderbyTypes === "" ? undefined : orderbyTypes}
                 >
-                  <Option value={OrderByProperty.UP}>
-                    {OrderByProperty.UP}
-                  </Option>
-                  <Option value={OrderByProperty.DOWN}>
-                    {OrderByProperty.DOWN}
-                  </Option>
+                  {Object.keys(OrderByProperty).map((key: any) => {
+                    if (!isNaN(Number(key))) {
+                      return (<Option value={key}>{L(OrderByProperty[key],'COMMON')}</Option>)
+                    }
+                  })}
                 </Select>
               </Col>
               <Col span={1}>
-                <Button
-                  disabled={loading}
-                  type="primary"
-                  icon={<SearchOutlined />}
-                  onClick={() => _searchDataOnClick(0, 0)}
-                ></Button>
+                <Tooltip placement="bottom" title={L("SEARCH_BUTTON",'COMMON')}>
+                  <Button disabled={loadingAll} type="primary" icon={<SearchOutlined />}
+                    onClick={() => _searchDataOnClick(0, 0)} ></Button>
+                </Tooltip>
               </Col>
             </Row>
+          </Col>
+          <Col style={{ margin: '10px 0' }}>
+            <Table
+              columns={columns}
+              //dataSource = {null}
+              rowSelection={{
+                type: "checkbox",
+                ...rowSelection,
+              }}
+              rowKey={(record: ResourceReadDto) => record.id}
+              loading={loadingAll}
+              style={{ width: 'calc(100%)' }}
+              scroll={{ y: 350 }}
+              size='small'
+              pagination={{
+                pageSize: pageSize,
+                total: totalCount,
+                defaultCurrent: 1,
+                onChange: _searchDataOnClick,
+                showSizeChanger: true,
+                pageSizeOptions: ['5', '10', '20', '50', '100']
+              }}
+            />
           </Col>
         </Row>
       </Card>

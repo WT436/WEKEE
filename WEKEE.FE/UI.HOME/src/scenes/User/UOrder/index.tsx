@@ -1,5 +1,5 @@
 //#region  import
-import { Affix, Button, InputNumber } from 'antd'
+import { Affix, InputNumber } from 'antd'
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import "slick-carousel/slick/slick.css";
@@ -10,7 +10,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { makeSelectLoading } from './selectors';
 import { Helmet } from 'react-helmet';
-import { BulbFilled, BulbOutlined, DeleteOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { BulbFilled, DeleteOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 //#endregion
 export interface IHomeProps {
@@ -18,9 +18,10 @@ export interface IHomeProps {
 }
 const key = 'home';
 declare var abp: any;
-const stateSelector = createStructuredSelector<any, any>({
-    loading: makeSelectLoading()
-});
+
+// const stateSelector = createStructuredSelector<any, any>({
+//     loading: makeSelectLoading()
+// });
 
 export default function Home(props: IHomeProps) {
     useInjectReducer(key, reducer);

@@ -1,41 +1,41 @@
 {
-    "localization":{
-        "currentCulture":{
-            "name":"en",
-            "displayName":"English"
+    "localization": {
+        "currentCulture": {
+            "name": "vi",
+            "displayName": "Tiếng Việt"
         },
-        "languages":[
-            {"name":"en","displayName":"English","icon":"famfamfam-flags gb","isDefault":true,"isDisabled":false,"isRightToLeft":false}
+        "languages": [
+            { "name": "vi", "displayName": "Tiếng Việt", "icon": "famfamfam-flags gb", "isDefault": true, "isDisabled": false, "isRightToLeft": false }
         ],
-        "currentLanguage":{
-            "name":"en",
-            "displayName":"English",
-            "icon":"famfamfam-flags gb",
-            "isDefault":true,
-            "isDisabled":false,
-            "isRightToLeft":false
+        "currentLanguage": {
+            "name": "vi",
+            "displayName": "Tiếng Việt",
+            "icon": "famfamfam-flags gb",
+            "isDefault": true,
+            "isDisabled": false,
+            "isRightToLeft": false
         },
-        "values":{
-            
+        "values": {
+
         }
     },
-    "timing":{
-        "timeZoneInfo":{
-            "windows":{
-                "timeZoneId":"UTC",
-                "baseUtcOffsetInMilliseconds":0.0,
-                "currentUtcOffsetInMilliseconds":0.0,
-                "isDaylightSavingTimeNow":false
+    "timing": {
+        "timeZoneInfo": {
+            "windows": {
+                "timeZoneId": "UTC",
+                "baseUtcOffsetInMilliseconds": 0.0,
+                "currentUtcOffsetInMilliseconds": 0.0,
+                "isDaylightSavingTimeNow": false
             },
-            "iana":{
-                "timeZoneId":"Etc/UTC"
+            "iana": {
+                "timeZoneId": "Etc/UTC"
             }
         }
     },
-    "security":{
-        "antiForgery":{
-            "tokenCookieName":"XSRF-TOKEN",
-            "tokenHeaderName":"X-XSRF-TOKEN"
+    "security": {
+        "antiForgery": {
+            "tokenCookieName": "XSRF-TOKEN",
+            "tokenHeaderName": "X-XSRF-TOKEN"
         }
     }
 }

@@ -4,14 +4,22 @@ import { ApplicationRootState } from '../../../redux/types';
 import { initialState } from './reducer';
 
 const select = (state: ApplicationRootState) => state.apermission || initialState; // day
-const makeSelectLoading = () => createSelector(select, substate => substate.loading);
-const makeSelectCompleted = () => createSelector(select, substate => substate.completed);
-const makeSelectPageIndex = () => createSelector(select, substate => substate.pageIndex);
-const makeSelectPageSize = () => createSelector(select, substate => substate.pageSize);
-const makeSelectTotalCount = () => createSelector(select, substate => substate.totalCount);
-const makeSelectTotalPages = () => createSelector(select, substate => substate.totalPages);
+
+//#region  GETTING START
+const makeLoading = () => createSelector(select, substate => substate.loadingAll);
+const makeCompleted = () => createSelector(select, substate => substate.completedAll);
+const makePageIndex = () => createSelector(select, substate => substate.pageIndex);
+const makePageSize = () => createSelector(select, substate => substate.pageSize);
+const makeTotalCount = () => createSelector(select, substate => substate.totalCount);
+const makeTotalPages = () => createSelector(select, substate => substate.totalPages);
+//#endregion
+
+//#region  Individual
+const makeResourceReads = () => createSelector(select, substate => substate.resourceReads);
+
+//#endregion
 
 export {
-    makeSelectLoading, makeSelectCompleted, makeSelectPageIndex, makeSelectPageSize,
-    makeSelectTotalCount, makeSelectTotalPages
+    makeLoading, makeCompleted, makePageIndex, makePageSize, makeTotalCount, makeTotalPages
+    ,makeResourceReads
 };

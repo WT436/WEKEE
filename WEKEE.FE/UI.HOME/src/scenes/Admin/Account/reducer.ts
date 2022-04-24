@@ -167,7 +167,7 @@ function aAccountReducer(
                 loading: true
             };
         case ActionTypes.CHANGE_PERMISSION_ACCOUNT_COMPLETED:
-            var objIndex = state.subjectAssignmentDto.findIndex((obj => obj.id == action.payload.idRole));
+            var objIndex = state.subjectAssignmentDto.findIndex((obj => obj.id === action.payload.idRole));
             state.subjectAssignmentDto[objIndex].isCheck = !state.subjectAssignmentDto[objIndex].isCheck;
             return {
                 ...state,

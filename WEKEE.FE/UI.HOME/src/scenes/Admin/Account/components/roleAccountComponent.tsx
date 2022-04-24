@@ -98,8 +98,9 @@ export default function RoleAccountComponent(props: IRoleAccountComponent) {
     ];
 
     const dispatch = useDispatch();
+    
     useEffect(() => {
-        if (props.accountSelect?.id == undefined) {
+        if (props.accountSelect?.id === undefined) {
             message.info('Thông tin không xác định!');
         }
         else {

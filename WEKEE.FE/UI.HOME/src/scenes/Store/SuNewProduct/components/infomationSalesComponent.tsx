@@ -1,5 +1,5 @@
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table, Tag } from 'antd'
+import { Button, Input, Table, Tag } from 'antd';
 import '../sty.css';
 import React, { useEffect, useState } from 'react'
 import { createStructuredSelector } from 'reselect';
@@ -19,7 +19,7 @@ interface dataShow { key: string, displayOrder: number, nameShow: string, values
 export default function InfomationSalesComponent(props: InfomationSalesComponent) {
 
     const {
-        loading, specificationsCategoryDto
+        specificationsCategoryDto
     } = useSelector(stateSelector);
 
     //useState

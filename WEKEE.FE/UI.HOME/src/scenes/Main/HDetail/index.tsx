@@ -7,7 +7,7 @@ import { useInjectReducer, useInjectSaga } from "../../../redux/reduxInjectors";
 import { getBasicCartProductStart, getCategoryBreadcrumbStart } from "./actions";
 import reducer from "./reducer";
 import saga from "./saga";
-import { Button, Col, Row, Select } from "antd";
+import { Button, Col, Row } from "antd";
 import { makeSelectbasicProduct, makeSelectcategoryBreadcrumbDtos, makeSelectLoading } from "./selectors";
 import { Helmet } from "react-helmet";
 import { HomeOutlined } from "@ant-design/icons";
@@ -25,8 +25,6 @@ import FeatureProductComponent from "./components/featureProductComponent";
 import AddressShipProduct from "./components/addressShipProduct";
 import AddToCartComponent from "./components/addToCartComponent";
 import { SpecificationAttributeDto } from "./dtos/specificationAttributeDto";
-
-const { Option } = Select;
 
 //#endregion
 export interface IHDetailProps {
@@ -51,14 +49,14 @@ export default function HDetail(props: IHDetailProps) {
   } = useSelector(stateSelector);
 
   const [routes, setroutes] = useState < { path: string; breadcrumbName: any }[] > ([]);
-  const [id, setid] = useState < number > (props.location.pathname.substring(
+  var id = props.location.pathname.substring(
     props.location.pathname.lastIndexOf("/adsid=") + 7
-  ));
+  );
 
   useEffect(() => {
     dispatch(getCategoryBreadcrumbStart(id));
     dispatch(getBasicCartProductStart(id));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setroutes([]);
@@ -97,7 +95,7 @@ export default function HDetail(props: IHDetailProps) {
             .reverse((m: CategoryBreadcrumbDtos) => m.levelCategory)
             .map((element: CategoryBreadcrumbDtos, index: number) => {
               //className="GjLseculzyac"
-              if (element.levelCategory == categoryBreadcrumbDtos.length) {
+              if (element.levelCategory === categoryBreadcrumbDtos.length) {
                 return (
                   <li key={index}>
                     <a className="GjLseculzyac" href={element.urlCategory}>
@@ -115,7 +113,7 @@ export default function HDetail(props: IHDetailProps) {
               }
             })}
           <li key="End">
-            <a className="GjLseculzyac">{basicProduct.name}</a>
+            <a href="" className="GjLseculzyac">{basicProduct.name}</a>
           </li>
         </ul>
       }

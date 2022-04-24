@@ -1,34 +1,10 @@
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { Button, Col, Menu } from "antd";
-
-import Footer from "../Footer";
+import { Col } from "antd";
 import { adminRouters } from "../Router/router.config";
 import HeaderAdmin from "../HeaderAdmin";
-import SubMenu from "antd/lib/menu/SubMenu";
 import Layout, { Content } from "antd/lib/layout/layout";
-import Sider from "antd/lib/layout/Sider";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  DashboardOutlined,
-  ShopOutlined,
-  ShoppingCartOutlined,
-  UserSwitchOutlined,
-  GiftOutlined,
-  ToolOutlined,
-  CommentOutlined,
-  UserOutlined,
-  UsergroupAddOutlined,
-  FormOutlined,
-  SettingOutlined,
-  TeamOutlined,
-  ReconciliationOutlined,
-  AreaChartOutlined,
-  DatabaseOutlined,
-} from "@ant-design/icons";
 import MenuSliderAdmin from "../../scenes/Admin/MenuSliderAdmin";
 
 declare var abp: any;

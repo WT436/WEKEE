@@ -1,8 +1,7 @@
 //#region import
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import moment from 'moment';
 import Select from 'antd/lib/select';
 const { Option } = Select;
 
@@ -17,10 +16,10 @@ const stateSelector = createStructuredSelector < any, any> ({
 });
 export default function AddressShipProduct(props: IAddressShipProductProps) {
     
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     
-    const {
-    } = useSelector(stateSelector);
+    // const {
+    // } = useSelector(stateSelector);
 
     return (
         <>

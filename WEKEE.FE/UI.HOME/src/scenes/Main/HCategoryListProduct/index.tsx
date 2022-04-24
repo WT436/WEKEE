@@ -1,20 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
-    Affix,
-    Alert, Breadcrumb, Card, Checkbox, Col,
-    Form, Input, InputNumber, Pagination, Rate,
-    Row, Select, Tag, Tooltip
+   Card, Col, InputNumber,  Rate, Row, Select,  Tooltip
 } from 'antd';
-import { CloseOutlined, DownOutlined, FilterOutlined, HeartTwoTone, HomeOutlined, MinusOutlined } from '@ant-design/icons';
+import {  DownOutlined, HomeOutlined, MinusOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 import { Helmet } from 'react-helmet';
 import { Collapse } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import CardProduct from '../../../components/CardProduct';
-
-const { Panel } = Collapse;
-const { Meta } = Card;
-const { Text } = Typography;
 const { Option } = Select;
 
 declare var abp: any;

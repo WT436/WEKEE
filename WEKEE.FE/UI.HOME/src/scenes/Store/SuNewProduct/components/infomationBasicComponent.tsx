@@ -116,7 +116,7 @@ export default function InfomationBasicComponent(props: IInfomationBasicComponen
         fileList.forEach(m => dataImage.push(m.url));
         productContainer.imageRoot = dataImage;
         dispatch(ContainerCreateProductStart(productContainer));
-    }, [fileList]);
+    }, [fileList]); 
     //#endregion
 
     //#region Modal Review  And Process 

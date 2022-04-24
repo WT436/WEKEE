@@ -1,4 +1,3 @@
-import { Console } from 'console';
 import { PagedListOutput } from '../../../services/dto/pagedListOutput';
 import { SearchOrderPageInput } from '../../../services/dto/searchOrderPageInput';
 import http from '../../../services/httpService';

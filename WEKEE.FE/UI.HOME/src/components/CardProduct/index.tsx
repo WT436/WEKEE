@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card, Rate, Typography } from "antd";
 import { HeartTwoTone } from "@ant-design/icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";

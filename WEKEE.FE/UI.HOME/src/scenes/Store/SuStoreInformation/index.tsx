@@ -9,7 +9,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { makeSelectLoading } from './selectors';
 import { Button, Checkbox, Col, Collapse, Form, Input, Row } from 'antd';
-import { CaretRightOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
+import { CaretRightOutlined} from '@ant-design/icons';
 
 const { Panel } = Collapse;
 //#endregion
@@ -35,10 +35,11 @@ export default function SuStoreInformation(props: ISuStoreInformationProps) {
     useInjectReducer(key, reducer);
     useInjectSaga(key, saga);
     const dispatch = useDispatch();
-    const { loading } = useSelector(stateSelector);
+
     useEffect(() => {
         dispatch(watchPageStart());
-    }, []);
+    }, [dispatch]);
+
     const text = `
     A dog is a type of domesticated animal.
     Known for its loyalty and faithfulness,

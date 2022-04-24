@@ -1,4 +1,3 @@
-import { Row } from 'antd'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import queryString from 'query-string';
@@ -12,8 +11,8 @@ export interface IException {
 export default function Exception(props: IException) {
     
     let params = queryString.parse(props.location.search);
-    let statusDefault =params.status == undefined|| params.status == null || params.status =='' ? 500 : params.status;
-    let messageDefault =params.message == undefined|| params.message == null || params.message =='' ? 'Hệ Thống Đang Nâp Cấp...': params.message;
+    let statusDefault =params.status === undefined|| params.status == null || params.status ==='' ? 500 : params.status;
+    let messageDefault =params.message === undefined|| params.message == null || params.message ==='' ? 'Hệ Thống Đang Nâp Cấp...': params.message;
 
     let status = { '--status-error': "'"+statusDefault+"'" } as React.CSSProperties;
 

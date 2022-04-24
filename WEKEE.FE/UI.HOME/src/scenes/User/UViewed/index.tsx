@@ -20,15 +20,15 @@ export interface IUViewedProps {
 }
 const key = 'uviewed';
 declare var abp: any;
-const stateSelector = createStructuredSelector<any, any>({
-    loading: makeSelectLoading()
-});
+// const stateSelector = createStructuredSelector<any, any>({
+//     loading: makeSelectLoading()
+// });
 
 export default function UViewed(props: IUViewedProps) {
     useInjectReducer(key, reducer);
     useInjectSaga(key, saga);
 
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     return (
         <>
             <Helmet>

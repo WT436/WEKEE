@@ -26,7 +26,7 @@ export default function LoginComponent(props: ILoginFormProps) {
 
     useEffect(() => {
         dispatch(loginShowStart());
-    }, []);
+    }, [dispatch]);
 
     const onFinish = (values: AuthenticationInput) => {
         dispatch(loginRequestLoginStart(values));

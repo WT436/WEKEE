@@ -1,5 +1,6 @@
 import { L } from '../lib/abpUtility';
 import enJson from '../localization/en.json';
+import viJson from '../localization/vi.json';
 
 declare var abp: any;
 
@@ -7,7 +8,7 @@ class AbpLocalizationConfigService {
   public async getLocalization() {
     let language;
     if (!abp.utils.getCookieValue('_language')) {
-      language = "en";
+      language = "vi";
     }
     else {
       language = abp.utils.getCookieValue('_language');
@@ -15,8 +16,8 @@ class AbpLocalizationConfigService {
 
     let objReturn;
     switch(language) {
-      case "en":
-        objReturn = enJson;
+      case "vi":
+        objReturn = viJson;
         break;
       default:
         objReturn = enJson;
@@ -29,12 +30,11 @@ class AbpLocalizationConfigService {
   public async getCurrentLanguage() {
     let language: string;
     if (!abp.utils.getCookieValue('_language')) {
-      language = "en";
+      language = "vi";
     }
     else {
       language = abp.utils.getCookieValue('_language');
     }
-    language = "en";
     var wanted = abp.localization.languages.filter(function(item: any){
       return (item.name === language);
     });
@@ -44,12 +44,12 @@ class AbpLocalizationConfigService {
 
   public async getSystem()
   {
-    abp.appServiceUrl = L('appServiceUrl','system'); 
-    abp.appServiceUrlStaticFile = L('appServiceUrlStaticFile','system'); 
-    abp.typesWeb = L('typesWeb','system'); 
-    abp.version = L('version','system'); 
-    abp.timeout = L('timeout','system'); 
-    abp.authorization = L('authorization','system'); 
+    abp.appServiceUrl = L('appServiceUrl','SYSTEM'); 
+    abp.appServiceUrlStaticFile = L('appServiceUrlStaticFile','SYSTEM'); 
+    abp.typesWeb = L('typesWeb','SYSTEM'); 
+    abp.version = L('version','SYSTEM'); 
+    abp.timeout = L('timeout','SYSTEM'); 
+    abp.authorization = L('authorization','SYSTEM'); 
   }
 }
 

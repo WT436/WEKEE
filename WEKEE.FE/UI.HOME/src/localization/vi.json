@@ -1,0 +1,58 @@
+{
+    "SYSTEM": {
+        "appServiceUrl": "https://localhost:44324",
+        "appServiceUrlStaticFile": "https://localhost:44324/StaticFiles",
+        "typesWeb": "/api",
+        "version": "/v1",
+        "timeout": "1800000",
+        "authorization": "Authorization"
+    },
+    "STATUS": {
+        "errorClient403": "The client is rejected because the server is overloaded!",
+        "errorClient405": "Client does not have access to this URL!",
+        "errorClient410": "Resource no longer exists!",
+        "errorClient429": "Request denied due to restriction!",
+        "errorServer500": "Server error occurred!",
+        "errorServer501": "Not Implemented!",
+        "errorServer502": "Bad Gateway!",
+        "errorServer503": "Service Unavailable!",
+        "errorServer504": "Gateway Timeout!",
+        "errorServer505": "HTTP Version Not Supported!",
+        "networkError": "Network Error!"
+    },
+    "DEFAULT": {},
+    "COMMON": {
+        "ERROR": "Lỗi",
+        "UNKNOWNE_ERROR": "Lỗi không xác định!",
+        "REFRESH": "Làm mới.",
+        "KEYWORD": "Từ Khóa.",
+        "FAILURE": "Thất bại.",
+        "SUCCESS": "Thành công.",
+        "INVALID_DATA_TYPE": "Kiểu dữ liệu không hợp lệ!",
+        "DELETE": "Xóa",
+        "REPORT_FILE": "Xuất file",
+        "EXCEL": "Báo cáo Excel.",
+        "PDF": "Báo cáo Pdf.",
+        "ALL": "Tất Cả.",
+        "FILL": "Lựa chọn",
+        "ADD": "Thêm.",
+        "SELECT": "Tìm kiếm.",
+        "SORT": "Sắp Xếp.",
+        "BY": "Theo",
+        "CANCEL": "Hủy",
+        "SEARCH_BUTTON": "Tìm Kiếm.",
+        "UP": "Tăng dần",
+        "DOWN": "Giảm dần"
+    },
+    "CONST_TYPE_RESOURCE": {
+        "NULL": "Mặc định",
+        "ID": "Mã số",
+        "CREATE_BY": "Người tạo",
+        "CREATE_DATE_UTC": "Thời gian tạo",
+        "UPDATE_DATE_UTC": "Thời gian Cập nhật",
+        "NAME": "Tên",
+        "TYPES_RSC": "Loại",
+        "DESCRIPTION": "Chi tiết",
+        "IS_ACTIVE": "Trạng thái"
+    }
+}

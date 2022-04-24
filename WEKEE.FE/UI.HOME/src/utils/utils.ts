@@ -63,7 +63,7 @@ class Utils {
   }
 
   getPageTitle = (pathname: string) => {
-    const localizedAppName = L('appName',"common");
+    const localizedAppName = L('appName',"COMMON");
     return L(pathname) + ' | ' + localizedAppName;
   };
 
@@ -73,7 +73,7 @@ class Utils {
 
   setLocalization() {
     if (!abp.utils.getCookieValue('_language')) {
-      let language = "en";
+      let language = "vi";
       abp.utils.setCookieValue('_language', language, new Date(new Date().getTime() + 5 * 365 * 86400000), abp.appPath);
     }
   }

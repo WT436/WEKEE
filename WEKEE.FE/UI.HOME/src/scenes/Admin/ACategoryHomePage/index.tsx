@@ -6,18 +6,18 @@ import { createStructuredSelector } from 'reselect';
 import { useInjectReducer, useInjectSaga } from '../../../redux/reduxInjectors';
 import reducer from './reducer';
 import saga from './saga';
-import { makeSelectCategoryDtos, makeSelectCompleted, makeSelectLoading, makeSelectPageIndex, makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages } from './selectors';
-import { Avatar, Image, Button, Card, Col, Collapse, DatePicker, Form, Input, InputNumber, notification, Row, Select, Table, Tag, Tooltip, Cascader } from 'antd';
-import { CheckOutlined, CloseOutlined, DeleteOutlined, DesktopOutlined, EditOutlined, EllipsisOutlined, FilePdfOutlined, LockOutlined, PlusOutlined, RedoOutlined, SearchOutlined, SettingOutlined, UnlockOutlined, UserOutlined } from '@ant-design/icons';
+import { makeSelectCategoryDtos, makeSelectCompleted, makeSelectLoading, makeSelectPageIndex, 
+    makeSelectPageSize, makeSelectTotalCount, makeSelectTotalPages } from './selectors';
+import { Avatar, Image, Button, Card, Col, DatePicker, Form, Input, InputNumber, notification,
+     Row, Select, Table, Tag, Tooltip } from 'antd';
+import { CheckOutlined, CloseOutlined, FilePdfOutlined,  PlusOutlined, RedoOutlined, SearchOutlined,
+    } from '@ant-design/icons';
 import ConstTypes, { confirmTypes } from './objectValues/ConstTypes';
-import form from 'antd/lib/form';
 import OrderByProperty from '../../../services/dto/orderByProperty';
-import moment from 'moment';
 import { getCategoryAdminStart } from './actions';
 import { CategoryHomePageReadDto } from './dto/categoryHomePageReadDto';
 import { CategoryComponentProperty } from './objectValues/categoryComponentProperty';
 declare var abp: any;
-const { Panel } = Collapse;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 //#endregion
@@ -50,7 +50,7 @@ export default function ACategoryHomePage(props: IACategoryHomePageProps) { // Ä
     const [orderbyTypes, setOrderbyTypes] = useState<string>('');
 
     const {
-        loading, pageSize, totalCount, pageIndex, categoryDtos
+        loading, categoryDtos
     } = useSelector(stateSelector);
 
     useEffect(() => {
@@ -62,31 +62,34 @@ export default function ACategoryHomePage(props: IACategoryHomePageProps) { // Ä
     //#endregion
 
     //#region CSS Layout Item 
-    const formItemLayout = {
-        labelCol: {
-            xs: { span: 24 },
-            sm: { span: 10 },
-        },
-        wrapperCol: {
-            xs: { span: 24 },
-            sm: { span: 14 },
-        },
-    };
+    // const formItemLayout = {
+    //     labelCol: {
+    //         xs: { span: 24 },
+    //         sm: { span: 10 },
+    //     },
+    //     wrapperCol: {
+    //         xs: { span: 24 },
+    //         sm: { span: 14 },
+    //     },
+    // };
     //#endregion
 
     //#region SEARCH OR ORDER 
 
     useEffect(() => {
+       const run = ()=>{
         dispatch(
             getCategoryAdminStart({
                 pageIndex: 1,
                 pageSize: 20,
-                propertyOrder: orderbyColumn,
-                valueOrderBy: orderbyTypes,
+                propertyOrder: 0,//orderbyColumn,
+                valueOrderBy: 0,//orderbyTypes,
                 propertySearch: propertySearch,
                 valuesSearch: valuesSearch,
             })
         );
+       }
+       run();
     }, [propertySearch, valuesSearch, orderbyColumn, orderbyTypes])
 
     //#endregion
@@ -115,8 +118,8 @@ export default function ACategoryHomePage(props: IACategoryHomePageProps) { // Ä
             getCategoryAdminStart({
                 pageIndex: 1,
                 pageSize: 20,
-                propertyOrder: orderbyColumn,
-                valueOrderBy: orderbyTypes,
+                propertyOrder:0,// orderbyColumn,
+                valueOrderBy:0,// orderbyTypes,
                 propertySearch: prosearch,
                 valuesSearch: valsearch,
             })

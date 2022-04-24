@@ -1,6 +1,9 @@
 //#region  import
-import { RedoOutlined, FilePdfOutlined, CheckOutlined, CloseOutlined, PlusOutlined, SafetyCertificateOutlined, UsergroupAddOutlined, LinkOutlined, ClockCircleOutlined, IssuesCloseOutlined, StopOutlined, CheckCircleOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Image, Button, Card, Col, Divider, List, Row, Tabs, Checkbox, Dropdown, Menu, Select, Tooltip, Input, Modal, PageHeader, Breadcrumb } from 'antd'
+import { RedoOutlined, FilePdfOutlined, CheckOutlined, CloseOutlined, PlusOutlined, 
+    SafetyCertificateOutlined, UsergroupAddOutlined, LinkOutlined, ClockCircleOutlined, 
+    IssuesCloseOutlined, StopOutlined, CheckCircleOutlined, SettingOutlined } from '@ant-design/icons';
+import { Avatar, Image, Button, Card, Col, Divider, List, Row, Tabs, Checkbox, 
+    Dropdown, Menu, Select, Tooltip, Input, Modal, PageHeader, Breadcrumb } from 'antd'
 import Meta from 'antd/lib/card/Meta';
 import * as React from 'react';
 import { useEffect, useState } from  'react';
@@ -13,14 +16,12 @@ import saga from './saga';
 import { makeSelectLoading } from './selectors';
 const { Search } = Input;
 const { Option } = Select;
-const { confirm } = Modal;
 //#endregion
 export interface IHomeProps {
     location: any;
 }
 const key = 'home';
 declare var abp: any;
-const { TabPane } = Tabs;
 const stateSelector = createStructuredSelector<any, any>({
     loading: makeSelectLoading()
 });
@@ -191,7 +192,7 @@ export default function Home(props: IHomeProps) {
     const [checkbox, setCheckbox] = useState(true);
     useEffect(() => {
         dispatch(watchPageStart());
-    }, []);
+    }, [dispatch]);
 
     return (
         <>

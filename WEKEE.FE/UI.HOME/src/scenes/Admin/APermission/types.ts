@@ -1,13 +1,21 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
+import { ResourceReadDto } from './dto/resourceReadDto';
 
 export interface APermissionState { // day
-    readonly loading: boolean;
-    readonly completed: boolean;
+    //#region  PROPERTY DEFAULT
+    readonly loadingAll: boolean;
+    readonly completedAll: boolean;
     readonly pageIndex: number;
     readonly pageSize: number;
     readonly totalCount: number;
     readonly totalPages: number;
+    //#endregion
+
+    //#region  Individual
+    readonly resourceReads : ResourceReadDto[];
+    
+    //#endregion
 }
 
 export type APermissionActions = ActionType<typeof actions>; // day

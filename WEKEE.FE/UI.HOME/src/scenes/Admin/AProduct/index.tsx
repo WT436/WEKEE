@@ -25,7 +25,7 @@ export default function Home(props: IHomeProps) {
     const { loading } = useSelector(stateSelector);
     useEffect(() => {
         dispatch(watchPageStart());
-    }, []);
+    }, [dispatch]);
 
     return (
         <Row>

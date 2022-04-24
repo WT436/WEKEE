@@ -25,10 +25,11 @@ http.interceptors.request.use(
     return config;
   },
   function (error) {
+    console.log(error)
     return Promise.reject(error);
   }
 );
-
+// làm lại sử lý từng loại lỗi và in ra.
 http.interceptors.response.use(
   (response) => {
     return response;
@@ -97,17 +98,17 @@ http.interceptors.response.use(
     ) {
       localStorage.setItem("request-err", error.response.data.error.message);
       notification.error({
-        message: L("error", "common"),
+        message: L("error", "COMMON"),
         description: error.response.data.error.message,
         placement: "bottomRight",
       });
     }
-
+    // ở đây
     if (!!error.response && errorShowMessage) {
       localStorage.setItem("request-err", error.response.data);
       notification.error({
-        message: L("error", "common"),
-        description: error.response.data,
+        message: L("error", "COMMON"),
+        description: L("error", "COMMON"),
         placement: "bottomRight",
       });
     } else if (!!error.response && errorDirectionalURL) {
@@ -121,7 +122,7 @@ http.interceptors.response.use(
       if (error.response !== undefined) {
         localStorage.setItem("request-err", error.response.data.message);
         notification.error({
-          message: L("error", "common"),
+          message: L("error", "COMMON"),
           description: error.response.data,
           placement: "bottomRight",
         });
@@ -129,7 +130,6 @@ http.interceptors.response.use(
     }
 
     return false;
-    //return Promise.reject(error);
   }
 );
 

@@ -86,9 +86,9 @@ export default function ACategory(props: IACategoryProps) {
       getCategoryAdminStart({
         pageIndex: 1,
         pageSize: 20,
-        propertyOrder: "",
-        valueOrderBy: "",
-        propertySearch: [ConstTypes.MAIN_CATEGORY],
+        propertyOrder: 0,
+        valueOrderBy: 0,
+        propertySearch:[0], //[ConstTypes.MAIN_CATEGORY],
         valuesSearch: ["null"],
       })
     );
@@ -216,9 +216,9 @@ export default function ACategory(props: IACategoryProps) {
       getCategoryAdminStart({
         pageIndex: 1,
         pageSize: 20,
-        propertyOrder: "",
-        valueOrderBy: "",
-        propertySearch: [ConstTypes.MAIN_CATEGORY],
+        propertyOrder: 0,
+        valueOrderBy: 0,
+        propertySearch: [0],//[ConstTypes.MAIN_CATEGORY],
         valuesSearch: value.length == 0 ? ["null"] : [value[value.length - 1]],
       })
     );

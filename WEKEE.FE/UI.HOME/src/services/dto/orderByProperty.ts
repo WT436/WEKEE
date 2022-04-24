@@ -1,6 +1,6 @@
 enum OrderByProperty{
-    UP = "UP",
-    DOWN = "DOWN",
+    UP = 0,
+    DOWN = 1,
    
 }
 

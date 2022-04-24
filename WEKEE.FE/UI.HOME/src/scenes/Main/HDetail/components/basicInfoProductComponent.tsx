@@ -1,8 +1,7 @@
 //#region import
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import moment from "moment";
 import { GiftOutlined } from "@ant-design/icons";
 import { makeSelectmainFeatureCheck } from "../selectors";
 
@@ -16,7 +15,7 @@ const stateSelector = createStructuredSelector<any, any>({
 export default function BasicInfoProductComponent(
   props: IBasicInfoProductComponentProps
 ) {
-  const dispatch = useDispatch();
+//  const dispatch = useDispatch();
 
   const { mainFeatureCheck } = useSelector(stateSelector);
 

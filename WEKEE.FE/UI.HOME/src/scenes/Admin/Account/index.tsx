@@ -1,8 +1,11 @@
-import { ArrowRightOutlined, CheckCircleOutlined, CheckOutlined, ClockCircleOutlined, CloseOutlined, DeleteOutlined, ExclamationCircleOutlined, EyeOutlined, FilePdfOutlined, FilterOutlined, FormOutlined, HomeOutlined, IssuesCloseOutlined, LinkOutlined, LockOutlined, MessageOutlined, MoreOutlined, PlusOutlined, RedoOutlined, SafetyCertificateOutlined, SearchOutlined, SettingOutlined, StopOutlined, SwapOutlined, UsergroupAddOutlined, UserOutlined, WarningOutlined } from '@ant-design/icons';
-import { Avatar, Breadcrumb, Button, Col, Drawer, Dropdown, Input, Menu, Modal, notification, PageHeader, Row, Select, Table, Tooltip } from 'antd'
-import Form from 'antd/lib/form/Form';
+import { CheckCircleOutlined, CheckOutlined, ClockCircleOutlined, CloseOutlined, DeleteOutlined,
+    ExclamationCircleOutlined, EyeOutlined, FilePdfOutlined, FilterOutlined, FormOutlined, 
+     IssuesCloseOutlined, LinkOutlined, LockOutlined,  MoreOutlined, PlusOutlined, RedoOutlined, 
+     SafetyCertificateOutlined, SearchOutlined, SettingOutlined, StopOutlined, SwapOutlined, 
+     UsergroupAddOutlined, UserOutlined, WarningOutlined } from '@ant-design/icons';
+import { Avatar, Breadcrumb, Button, Col, Drawer, Dropdown, Input, Menu, Modal, notification,
+     PageHeader, Row, Select, Table, Tooltip } from 'antd'
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { type } from 'os';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -43,7 +46,7 @@ const stateSelector = createStructuredSelector<any, any>({
 export default function AAccount(props: IAAccount) {
 
     const { loading, pageIndex, pageSize, totalCount,
-        accountShowDtos, id
+        accountShowDtos
     } = useSelector(stateSelector);
 
     useInjectReducer(key, reducer);
@@ -217,8 +220,8 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            propertyOrder: "",
-            valueOrderBy: "",
+            propertyOrder: 0,
+            valueOrderBy: 0,
             propertySearch: [],
             valuesSearch: []
         }))
@@ -228,8 +231,8 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: page,
             pageSize: pageSize,
-            propertyOrder: "",
-            valueOrderBy: "",
+            propertyOrder: 0,
+            valueOrderBy: 0,
             propertySearch: [],
             valuesSearch: []
         }));
@@ -239,8 +242,8 @@ export default function AAccount(props: IAAccount) {
         dispatch(listAccountAdminStart({
             pageIndex: pageIndex,
             pageSize: pageSize,
-            propertyOrder: "",
-            valueOrderBy: "",
+            propertyOrder: 0,
+            valueOrderBy: 0,
             propertySearch: [],
             valuesSearch: []
         }));
@@ -258,9 +261,9 @@ export default function AAccount(props: IAAccount) {
             dispatch(listAccountAdminStart({
                 pageIndex: 0,
                 pageSize: 20,
-                propertyOrder: "",
-                valueOrderBy: "",
-                propertySearch: [type],
+                propertyOrder: 0,
+                valueOrderBy: 0,
+                propertySearch: [0],//[type],
                 valuesSearch: [value]
             }));
         }
@@ -278,9 +281,9 @@ export default function AAccount(props: IAAccount) {
             dispatch(listAccountAdminStart({
                 pageIndex: 0,
                 pageSize: 20,
-                propertyOrder: "",
-                valueOrderBy: "",
-                propertySearch: ['User_Profile_Is_Status'],
+                propertyOrder: 0,
+                valueOrderBy: 0,
+                propertySearch: [0], //['User_Profile_Is_Status'],
                 valuesSearch: [value.toString()]
             }));
         }

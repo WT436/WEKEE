@@ -26,7 +26,7 @@ interface IYouAssessmentComponent {
 const options = [{ value: 'Đóng gói sản phẩm rất đẹp và chắc chắn' }, { value: 'Chất lượng sản phẩm tuyệt vời' }, { value: 'Rất đáng tiền' }, { value: 'Shop phục vụ rất tốt' }];
 
 function tagRender(values: { label: any; value: any; closable: any; onClose: any; }) {
-    const { label, value, closable, onClose } = values;
+    const { label, closable, onClose } = values;
     const onPreventMouseDown = (event: { preventDefault: () => void; stopPropagation: () => void; }) => {
         event.preventDefault();
         event.stopPropagation();
@@ -61,7 +61,7 @@ function beforeUpload(file: { type: string; size: number; }) {
 
 export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
 
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     const { loading
     } = useSelector(stateSelector);
     const desc = ['Rất không hài lòng', 'Không hài lòng', 'Ổn', 'Tuyệt vời', 'Rất tuyệt vời'];
@@ -122,7 +122,6 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
         setassessmentInput(text);
     };
     // pinFeeling
-    const [pinFeeling, setpinFeeling] = useState<string[]>([]);
     return (
         <>
             <div className='OJkXBiXyst'>
@@ -202,7 +201,6 @@ export default function YouAssessmentComponent(props: IYouAssessmentComponent) {
                                 options={options}
                                 bordered={false}
                                 placeholder="Ghim cảm nhận"
-                                onChange={(value: any) => setpinFeeling(value)}
                             />
                             <div style={{ width: 'calc(20% - 5px)', display: 'flex', alignItems: 'center', position: 'relative', marginLeft: '5px', background: 'white', borderRadius: 15 }}>
                                 <SmileOutlined className="JlgHldYWir" onClick={() => setShowEmojis(!showEmojis)} />

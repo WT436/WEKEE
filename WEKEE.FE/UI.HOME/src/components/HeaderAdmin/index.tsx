@@ -1,10 +1,8 @@
 import * as React from "react";
-import { Col, Menu, Row, Select } from "antd";
+import { Col, Menu, Row } from "antd";
 import AppComponentBase from "../../components/ComponentBase";
 import { Helmet } from "react-helmet";
 import "antd/dist/antd.css";
-const { Option } = Select;
-const { SubMenu } = Menu;
 declare var abp: any;
 
 export interface IHeaderAdminProps {
@@ -21,7 +19,7 @@ class HeaderAdmin extends AppComponentBase<
     return (
       <Col className="hdfut">
         <Helmet>
-          <link rel="stylesheet" href={abp.serviceAlbumCss + "/header.css"} />
+          <link rel="stylesheet" href={abp.serviceAlbumCss + "/headerAdmin.css"} />
         </Helmet>
         <Row className="hdfutm">
           <Col span={4} className="hdfutmlg">

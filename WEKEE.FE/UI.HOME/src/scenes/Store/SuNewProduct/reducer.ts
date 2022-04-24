@@ -167,7 +167,7 @@ function suNewProductReducer(
       };
 
     case ActionTypes.LOAD_CATEGORY_VALUE_COMPLETED:
-      if (action.meta == 1) {
+      if (action.meta === 1) {
         return {
           ...state,
           loading: false,

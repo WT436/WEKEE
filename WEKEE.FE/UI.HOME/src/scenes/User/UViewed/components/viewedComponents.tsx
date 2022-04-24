@@ -19,8 +19,8 @@ export default function ViewedComponents(props: IViewedProps) {
         <CardProduct image={"album/product/product-10.jpg.webp"} />
       </div>
       <div className="yAmftCcodk">
-        <a href="">Tìm hiểu thêm</a>
-        <a href="">Tìm hiểu thêm</a>
+        <a href="/">Tìm hiểu thêm</a>
+        <a href="/">Tìm hiểu thêm</a>
       </div>
     </div>
   );

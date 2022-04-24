@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { Avatar, BackTop, Badge, Button, Card, Col, Divider, Dropdown, Input, Menu, Popover, Row, Select, Typography } from 'antd';
+import {  BackTop, Badge,  Col, Divider, Dropdown, Input, Menu, Row, Select } from 'antd';
 import AppComponentBase from '../../components/ComponentBase';
 import { Helmet } from 'react-helmet';
 import 'antd/dist/antd.css';
-import { BellFilled, BellOutlined, CaretDownOutlined, CaretUpOutlined, CheckOutlined, CloseOutlined, DesktopOutlined, EllipsisOutlined, HomeOutlined, QuestionCircleOutlined, SearchOutlined, SettingOutlined, ShoppingCartOutlined, ShoppingFilled, UserOutlined } from '@ant-design/icons';
-import Meta from 'antd/lib/card/Meta';
+import { BellOutlined, CaretUpOutlined, CheckOutlined,  DesktopOutlined, EllipsisOutlined,
+      SearchOutlined, SettingOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import InfoCardHome from '../../cms/InfoCardHome';
-const { Option, OptGroup } = Select;
-const { SubMenu } = Menu;
-const { Text } = Typography;
+const { Option } = Select;
 declare var abp: any;
 
 export interface IHeaderProps {

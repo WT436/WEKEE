@@ -238,7 +238,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
     useEffect(() => {
         dispatch(getCategotyMainStart());
         dispatch(readFullAlbumProductStart());
-    }, []);
+    }, [dispatch]);
     //#endregion
     //#region CATEGORY
     const [IsCategorySelect, setIsCategorySelect] = useState(true);
@@ -249,7 +249,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
 
         if (productContainer.categoryProduct.categoryMain !== 0) {
             productContainer.categoryProduct.idCategory = value;
-            productContainer.categoryProduct.categoryMain = value.length == 0 ? 0 : value[0];
+            productContainer.categoryProduct.categoryMain = value.length === 0 ? 0 : value[0];
             setIsCategorySelect(productContainer.categoryProduct.categoryMain === 0);
             dispatch(ContainerCreateProductStart(productContainer));
             // confirm({
@@ -271,7 +271,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
         }
         else {
             productContainer.categoryProduct.idCategory = value;
-            productContainer.categoryProduct.categoryMain = value.length == 0 ? 0 : value[0];
+            productContainer.categoryProduct.categoryMain = value.length === 0 ? 0 : value[0];
             setIsCategorySelect(productContainer.categoryProduct.categoryMain === 0);
             dispatch(ContainerCreateProductStart(productContainer));
         }
@@ -283,7 +283,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
 
 
     useEffect(() => {
-        setprovinceDataAlbumProduct(provinceDataAlbumProduct.concat(albumProduct));
+     return ()=> setprovinceDataAlbumProduct(provinceDataAlbumProduct.concat(albumProduct));
     }, [albumProduct]);
 
     const onNameChangeAlbumProduct = (event: any) => {
@@ -294,7 +294,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
 
     const addItemAlbumProduct = () => {
         if (provinceDataAlbumProduct.findIndex((element) => element === nameAlbumProduct) === -1) {
-            setprovinceDataAlbumProduct([...provinceDataAlbumProduct, nameAlbumProduct]);
+            setprovinceDataAlbumProduct(provinceDataAlbumProduct=>[...provinceDataAlbumProduct, nameAlbumProduct]);
         }
 
     };
@@ -416,7 +416,7 @@ export default function CategoryProductComponent(props: ICategoryProductComponen
                             <Divider style={{ margin: '4px 0' }} />
                             <div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
                                 <Input style={{ flex: 'auto' }} onChange={onNameChangeAlbumProduct} />
-                                <a
+                                <a 
                                     style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
                                     onClick={addItemAlbumProduct}
                                 >

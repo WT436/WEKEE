@@ -1,6 +1,6 @@
 const AppConsts = {
     localization: {
-      defaultLocalizationSourceName: 'main',
+      defaultLocalizationSourceName: 'DEFAULT',
     },
     authorization: {
       encrptedAuthTokenName: 'enc_auth_token',

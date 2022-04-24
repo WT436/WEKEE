@@ -56,7 +56,7 @@
     <Folder Include="EventDomain\" />
     <Folder Include="ObjectValues\Const\" />
     <Folder Include="ServicesDomain\" />
-    <Folder Include="Services\ResourceAction\" />
+    <Folder Include="Services\" />
     <Folder Include="UL\" />
   </ItemGroup>
 

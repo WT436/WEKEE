@@ -4,17 +4,18 @@ using System.Text;
 
 namespace Account.Domain.ObjectValues.ConstProperty
 {
-    public class ResourceProperty
+    public enum ResourceProperty
     {
-        public const string ID = "ID";
-        public const string CREATE_BY = "CREATE_BY";
-        public const string CREATE_DATE_UTC = "CREATE_DATE_UTC";
-        public const string UPDATE_DATE_UTC = "UPDATE_DATE_UTC";
+        NULL = 0,
+        ID = 1,
+        CREATE_BY = 2,
+        CREATE_DATE_UTC = 3,
+        UPDATE_DATE_UTC = 4,
 
-        public const string NAME = "NAME";
-        public const string TYPES_RSC = "TYPES_RSC";
-        public const string DESCRIPTION = "DESCRIPTION";
-        public const string IS_ACTIVE = "IS_ACTIVE";
+        NAME = 5,
+        TYPES_RSC = 6,
+        DESCRIPTION = 7,
+        IS_ACTIVE = 8
     }
 
     public enum ResourceType
@@ -23,33 +24,9 @@ namespace Account.Domain.ObjectValues.ConstProperty
         URL = 1
     }
 
-    public static class ResourceTypesProperty
-    {
-        public const string NULL = "NULL";
-        public const string URL = "URL";
-    }
-
     public static class ResourceTransform
     {
-        public static string CONVERT_ENUM_TEXT(ResourceType input)
-        {
-            return input switch
-            {
-                ResourceType.NULL => ResourceTypesProperty.NULL,
-                ResourceType.URL =>  ResourceTypesProperty.URL  ,
-                _ => ResourceTypesProperty.NULL
-            };
-        }
-        public static int CONVERT_TEXT_ENUM(string input)
-        {
-            return input switch
-            {
-                ResourceTypesProperty.NULL => (int)ResourceType.NULL,
-                ResourceTypesProperty.URL => (int)ResourceType.URL,
-                _ => (int)ResourceType.NULL
-            };
-        }
-        public static string CONVERT_SQL(string key)
+        public static string CONVERT_SQL(ResourceProperty key)
         {
             return key switch
             {
@@ -65,7 +42,7 @@ namespace Account.Domain.ObjectValues.ConstProperty
                 _ => "Id",
             };
         }
-        public static string CONVERT_SQL(string key, string value)
+        public static string CONVERT_SQL(ResourceProperty key, string value)
         {
             return key switch
             {

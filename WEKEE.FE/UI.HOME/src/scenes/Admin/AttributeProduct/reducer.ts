@@ -134,8 +134,8 @@ function attributeProductReducer(
             getDataAttibuteProductStart({
                 pageIndex: state.pageIndex,
                 pageSize: state.pageSize,
-                propertyOrder: ConstTypes.NULL,
-                valueOrderBy: ConstTypes.NULL,
+                propertyOrder: 0,
+                valueOrderBy: 0,
                 propertySearch: [],
                 valuesSearch: [],
             })

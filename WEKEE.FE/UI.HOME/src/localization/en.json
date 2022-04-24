@@ -1,5 +1,5 @@
 {
-    "system": {
+    "SYSTEM": {
         "appServiceUrl": "https://localhost:44324",
         "appServiceUrlStaticFile": "https://localhost:44324/StaticFiles",
         "typesWeb": "/api",
@@ -7,38 +7,44 @@
         "timeout": "1800000",
         "authorization": "Authorization"
     },
-    "status": {
-        "errorClient403":"The client is rejected because the server is overloaded!",
-        "errorClient405":"Client does not have access to this URL!",
-        "errorClient410":"Resource no longer exists!",
-        "errorClient429":"Request denied due to restriction!",
-        "errorServer500":"Server error occurred!",
-        "errorServer501":"Not Implemented!",
-        "errorServer502":"Bad Gateway!",
-        "errorServer503":"Service Unavailable!",
-        "errorServer504":"Gateway Timeout!",
-        "errorServer505":"HTTP Version Not Supported!",
-        "networkError" :"Network Error!"
+    "STATUS": {
+        "errorClient403": "The client is rejected because the server is overloaded!",
+        "errorClient405": "Client does not have access to this URL!",
+        "errorClient410": "Resource no longer exists!",
+        "errorClient429": "Request denied due to restriction!",
+        "errorServer500": "Server error occurred!",
+        "errorServer501": "Not Implemented!",
+        "errorServer502": "Bad Gateway!",
+        "errorServer503": "Service Unavailable!",
+        "errorServer504": "Gateway Timeout!",
+        "errorServer505": "HTTP Version Not Supported!",
+        "networkError": "Network Error!"
     },
-    "url": {
-        "login": {}
+    "DEFAULT": {},
+    "COMMON": {
+        "ERROR": "Lỗi",
+        "UNKNOWNE_ERROR": "Lỗi không xác định!",
+        "REFRESH": "Làm mới.",
+        "KEYWORD": "Từ Khóa.",
+        "FAILURE": "Thất bại.",
+        "SUCCESS": "Thành công.",
+        "INVALID_DATA_TYPE": "Kiểu dữ liệu không hợp lệ!",
+        "DELETE": "Xóa",
+        "REPORT_FILE": "Xuất file",
+        "EXCEL": "Báo cáo Excel.",
+        "PDF": "Báo cáo Pdf.",
+        "ALL": "Tất Cả.",
+        "FILL": "Lựa chọn",
+        "ADD": "Thêm.",
+        "SELECT": "Tìm kiếm.",
+        "SORT": "Sắp Xếp.",
+        "BY": "Theo",
+        "CANCEL": "Hủy",
+        "SEARCH_BUTTON": "Tìm Kiếm.",
+        "UP": "Tăng dần",
+        "DOWN": "Giảm dần"
     },
-    "common": {
-        "error": "Error",
-        "unknownError": "UnknownError"
-    },
-    "main": {
-        "Login": {
-            "Account": "Tài Khoản",
-            "Password": "Mật Khẩu",
-            "Remember": "Nhớ Mật Khẩu",
-            "Login": "Đăng Nhập",
-            "NotAccount": "Bạn chưa có tài khoản?",
-            "Registration": "Đăng Ký Ngay",
-            "ForgotPassword": "Quên Mật Khẩu!",
-            "LoginWithFacebook": "Đăng Nhập Bằng Facebook",
-            "LoginWithYoutube": "Đăng Nhập Bằng Youtube",
-            "LoginWithZalo": "Đăng Nhập Bằng Zalo"
-        }
+    "CONST_TYPE_RESOURCE": {
+        "NULL": "Mặc định"
     }
 }

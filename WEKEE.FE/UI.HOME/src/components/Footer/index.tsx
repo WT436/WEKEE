@@ -15,7 +15,7 @@ const Footer = () => {
       </Helmet>
       <Row gutter={[0, 24]} className={"footer-top"}>
         <Col span={4} className="ftti">
-          <img src="https://localhost:44324/StaticFiles/footer/Image/newsletter.png" />
+          <img alt="" src="https://localhost:44324/StaticFiles/footer/Image/newsletter.png" />
         </Col>
         <Col span={8} className="ftdscto">
           <Title level={3}>Đăng ký tài khoản nhanh Wekee</Title>

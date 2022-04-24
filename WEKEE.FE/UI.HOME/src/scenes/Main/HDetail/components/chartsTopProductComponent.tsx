@@ -1,8 +1,7 @@
 //#region import
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import moment from 'moment';
 import { Rate } from 'antd';
 import { makeSelectbasicProduct } from '../selectors';
 
@@ -18,7 +17,7 @@ const stateSelector = createStructuredSelector < any, any> ({
 
 export default function ChartsTopProductComponent(props: IChartsTopProductComponentProps) {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const { basicProduct
     } = useSelector(stateSelector);

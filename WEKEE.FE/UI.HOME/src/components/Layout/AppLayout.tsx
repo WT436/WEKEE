@@ -13,7 +13,6 @@ export interface ILayoutProps {
 }
 
 export default function AppLayout(props: ILayoutProps) {
-  const [bl, setbl] = React.useState(true);
 
   return (
     <Col className="container">

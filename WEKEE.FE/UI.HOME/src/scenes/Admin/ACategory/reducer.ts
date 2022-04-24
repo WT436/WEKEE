@@ -1,4 +1,3 @@
-import { notification } from 'antd';
 import ActionTypes from './constants';
 import { ACategoryActions, ACategoryState } from './types';
 

@@ -1,30 +1,31 @@
-enum ConstTypesResource{
-    NULL = "",
-    ID = "ID",
-    NAME_PROATTR = "NAME_PROATTR",
-    TYPES_PROATTR = "TYPES_PROATTR",
-    CATE_PRO_PROATTR = "CATE_PRO_PROATTR",
-    ISDELETE_PROATTR = "ISDELETE_PROATTR",
-    CREATEBY_PROATTR = "CREATEBY_PROATTR",
-    CREATE_DATE_UTC = "CREATE_DATE_UTC",
-    UPDATE_DATE_UTC = "UPDATE_DATE_UTC"
+enum ConstTypesResource {
+    NULL = 0,
+    ID = 1,
+    CREATE_BY = 2,
+    CREATE_DATE_UTC = 3,
+    UPDATE_DATE_UTC = 4,
+
+    NAME = 5,
+    TYPES_RSC = 6,
+    DESCRIPTION = 7,
+    IS_ACTIVE = 8
 }
 
 export default ConstTypesResource;
 
-export function confirmTypes(type: ConstTypesResource) {
-    if (type === ConstTypesResource.ID)
+export function confirmTypesResource(type: number) {
+    if (ConstTypesResource[type] === ConstTypesResource[ConstTypesResource.ID])
         return "NUMBER";
-    else if (type === ConstTypesResource.NAME_PROATTR)
+    else if (ConstTypesResource[type] === ConstTypesResource[ConstTypesResource.DESCRIPTION] 
+        || ConstTypesResource[type] === ConstTypesResource[ConstTypesResource.NAME])
         return "STRING";
-    else if (type === ConstTypesResource.ISDELETE_PROATTR)
+    else if (ConstTypesResource[type] === ConstTypesResource[ConstTypesResource.IS_ACTIVE])
         return "BOOLEAN";
-    else if (type === ConstTypesResource.TYPES_PROATTR
-        || type === ConstTypesResource.CREATEBY_PROATTR
-        || type=== ConstTypesResource.CATE_PRO_PROATTR)
+    else if (ConstTypesResource[type] === ConstTypesResource[ConstTypesResource.TYPES_RSC] 
+        || ConstTypesResource[type] === ConstTypesResource[ConstTypesResource.CREATE_BY])
         return "SELECT";
-    else if (type === ConstTypesResource.CREATE_DATE_UTC
-        || type === ConstTypesResource.UPDATE_DATE_UTC)
+    else if (ConstTypesResource[type] === ConstTypesResource[ConstTypesResource.CREATE_DATE_UTC ]
+        || ConstTypesResource[type] === ConstTypesResource[ConstTypesResource.UPDATE_DATE_UTC])
         return "DATE";
     else
         return ConstTypesResource.NULL;

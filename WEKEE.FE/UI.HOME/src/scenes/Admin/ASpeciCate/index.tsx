@@ -15,7 +15,6 @@ import {
 } from "./actions";
 
 import { SpecificationAttributeInsertDto } from "./dtos/SpecificationAttributeInsertDto";
-import ConstTypes from "./objectValues/ConstTypes";
 import reducer from "./reducer";
 import saga from "./saga";
 
@@ -72,8 +71,8 @@ export default function ASpeciCate(props: IASpeciCateProps) {
       GetPageListSpecificationStart({
         pageIndex: 1,
         pageSize: 20,
-        propertyOrder: "UP",
-        valueOrderBy: ConstTypes.CREATE_DATE_UTC_SPEC,
+        propertyOrder: 0,
+        valueOrderBy: 0,//ConstTypes.CREATE_DATE_UTC_SPEC,
         propertySearch: [],
         valuesSearch: [],
       })

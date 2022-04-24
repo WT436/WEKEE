@@ -1,42 +1,26 @@
-import ActionTypes from './constants';
-import { APermissionActions, APermissionState} from './types';
+import { APermissionActions, APermissionState } from './types';
 
 declare var abp: any;
 
 export const initialState: APermissionState = { // ddaay
-    loading: false,
-    completed: true,
+    //#region  PROPERTY DEFAULT
+    loadingAll: false,
+    completedAll: true,
     pageIndex: 0,
     pageSize: 0,
     totalCount: 0,
     totalPages: 0,
+    //#endregion
+    //#region  Individual
+    resourceReads: []
+    //#endregion
 };
 
 function aPermissionReducer(
     state: APermissionState = initialState, //day
     action: APermissionActions // day
-) 
-{
+) {
     switch (action.type) {
-// OPEN PAGE
-        case ActionTypes.WATCH_PAGE_START:
-            return {
-                ...state,
-                loading: true
-            };
-
-        case ActionTypes.WATCH_PAGE_COMPLETED:
-            return {
-                ...state,
-                loading: true,
-                completed: true
-            };
-
-        case ActionTypes.WATCH_PAGE_ERROR:
-            return {
-                ...state,
-                loading: true
-            };
 
         default:
             return state;

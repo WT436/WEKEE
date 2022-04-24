@@ -8,10 +8,9 @@ import { watchPageStart } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import { makeSelectLoading } from './selectors';
-import { Badge, Button, Checkbox, Col, Collapse, Dropdown, Form, Input, Menu, Row } from 'antd';
-import { CaretRightOutlined, CheckOutlined, DesktopOutlined, EllipsisOutlined, LockOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { Badge, Dropdown, Menu} from 'antd';
+import {CheckOutlined, DesktopOutlined, EllipsisOutlined,SettingOutlined, UserOutlined } from '@ant-design/icons';
 declare var abp: any;
-const { Panel } = Collapse;
 //#endregion
 export interface IInfoCardHomeProps {
     location: any;
@@ -21,25 +20,15 @@ const stateSelector = createStructuredSelector<any, any>({
     loading: makeSelectLoading()
 });
 
-const formItemLayout = {
-    labelCol: {
-        xs: { span: 24 },
-        sm: { span: 10 },
-    },
-    wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 14 },
-    },
-};
 export default function InfoCardHome(props: IInfoCardHomeProps) {
     useInjectReducer(key, reducer);
     useInjectSaga(key, saga);
 
     const dispatch = useDispatch();
-    const { loading } = useSelector(stateSelector);
+   // const { } = useSelector(stateSelector);
     useEffect(() => {
         dispatch(watchPageStart());
-    }, []);
+    }, [dispatch]);
 
     const text = `
     A dog is a type of domesticated animal.

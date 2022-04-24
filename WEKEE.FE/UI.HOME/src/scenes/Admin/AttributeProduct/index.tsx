@@ -79,8 +79,8 @@ export default function AttributeProduct(props: IAttributeProductProps) {
         dispatch(getDataAttibuteProductStart({
             pageIndex: 1,
             pageSize: 20,
-            propertyOrder: ConstTypes.NULL,
-            valueOrderBy: ConstTypes.NULL,
+            propertyOrder: 0,
+            valueOrderBy: 0,
             propertySearch: [],
             valuesSearch: [],
         }));
@@ -111,8 +111,8 @@ export default function AttributeProduct(props: IAttributeProductProps) {
             dispatch(getDataAttibuteProductStart({
                 pageIndex: page === 0 ? pageIndex : page,
                 pageSize: pageSize,
-                propertyOrder: orderbyColumn,
-                valueOrderBy: orderbyTypes,
+                propertyOrder: 0,
+                valueOrderBy: 0,
                 propertySearch: propertySearch,
                 valuesSearch: valuesSearch,
             }));

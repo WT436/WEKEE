@@ -7,8 +7,8 @@ namespace Account.Domain.ObjectValues.Input
     public class OrderByPageListInput : PagedListInput
     {
         /// <summary>Tên trường sắp xếp</summary>
-        public string PropertyOrder { get; set; }
+        public int PropertyOrder { get; set; }
         /// <summary>Sắp xếp</summary>
-        public string ValueOrderBy { get; set; }
+        public int ValueOrderBy { get; set; }
     }
 }

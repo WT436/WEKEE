@@ -1,5 +1,5 @@
 //#region import
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Button, Row } from 'antd';
@@ -16,10 +16,10 @@ const stateSelector = createStructuredSelector < any, any> ({
 });
 export default function ProductInteractionComponent(props: IProductInteractionComponentProps) {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    const {
-    } = useSelector(stateSelector);
+    // const {
+    // } = useSelector(stateSelector);
 
     return (
         <>
