@@ -11,13 +11,13 @@ namespace Account.Domain.Shared.Entitys
         {
             InversePermissionNavigation = new HashSet<Permission>();
             PermissionAssignments = new HashSet<PermissionAssignment>();
+            ReourceAssignments = new HashSet<ReourceAssignment>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int AtomicId { get; set; }
-        public int ResourceManageId { get; set; }
         public int LevelPermition { get; set; }
         public int PermissionId { get; set; }
         public bool? IsActive { get; set; }
@@ -27,8 +27,8 @@ namespace Account.Domain.Shared.Entitys
 
         public virtual Atomic Atomic { get; set; }
         public virtual Permission PermissionNavigation { get; set; }
-        public virtual Resource ResourceManage { get; set; }
         public virtual ICollection<Permission> InversePermissionNavigation { get; set; }
         public virtual ICollection<PermissionAssignment> PermissionAssignments { get; set; }
+        public virtual ICollection<ReourceAssignment> ReourceAssignments { get; set; }
     }
 }

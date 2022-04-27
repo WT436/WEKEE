@@ -18,22 +18,25 @@ namespace Account.Domain.ObjectValues.ConstProperty
         IS_ACTIVE = 8
     }
 
+    //var enumDisplayStatus = (ResourceProperty)3;
+    //string stringValue = enumDisplayStatus.ToString();
+
     public enum ResourceType
     {
-        NULL = 0,
-        URL = 1
+        CONTROLLER = 0,
+        ACTION = 1
     }
 
     public static class ResourceTransform
     {
-        public static string CONVERT_SQL(ResourceProperty key)
+        public static string CONVERT_SQL(int key)
         {
-            return key switch
+            return (ResourceProperty)key switch
             {
-                ResourceProperty.ID => "id",
-                ResourceProperty.CREATE_BY => "create_by",
-                ResourceProperty.CREATE_DATE_UTC => "created_at",
-                ResourceProperty.UPDATE_DATE_UTC => "updated_at",
+                ResourceProperty.ID => "R.[id]",
+                ResourceProperty.CREATE_BY => "R.[CreateBy]",
+                ResourceProperty.CREATE_DATE_UTC => "R.[CreatedOnUtc]",
+                ResourceProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
 
                 ResourceProperty.NAME => "name",
                 ResourceProperty.TYPES_RSC => "types_rsc",
@@ -42,15 +45,75 @@ namespace Account.Domain.ObjectValues.ConstProperty
                 _ => "Id",
             };
         }
-        public static string CONVERT_SQL(ResourceProperty key, string value)
+        public static string CONVERT_SQL(int key, string value)
         {
-            return key switch
+            switch ((ResourceProperty)key)
             {
-                ResourceProperty.ID => $"CHP.[id] = {value}",
-                ResourceProperty.CREATE_BY => $"CHP.[CreateBy]  = {value}",
-                ResourceProperty.CREATE_DATE_UTC => $"CHP.[createdOnUtc] = '{value}'",
-                ResourceProperty.UPDATE_DATE_UTC => $"CHP.[updatedOnUtc] = '{value}'",
-                _ => "Id",
+                case ResourceProperty.ID:
+                    return $"R.[id] = {value}";
+                case ResourceProperty.CREATE_BY:
+                    return $"R.[CreateBy]  = {value}";
+                case ResourceProperty.CREATE_DATE_UTC:
+                    var DateEnd = value[(value.IndexOf("|") + 1)..];
+                    var DateStart = value[..value.IndexOf("|")];
+
+                    // check thứ tự
+                    if (Convert.ToDateTime(DateStart) > Convert.ToDateTime(DateEnd))
+                    {
+                        (DateEnd, DateStart) = (DateStart, DateEnd);
+                    }
+                    // Quá khứ đến Date End
+                    if (String.IsNullOrEmpty(DateStart) && !String.IsNullOrEmpty(DateEnd))
+                        return $"R.[CreatedOnUtc] <=  CONVERT(datetime, '{DateEnd}')";
+                    // Từ start đến tương lai 
+                    else if (!String.IsNullOrEmpty(DateStart) && String.IsNullOrEmpty(DateEnd))
+                        return $"R.[CreatedOnUtc] >=  CONVERT(datetime, '{DateStart}')";
+                    // Chính xác
+                    else if (!String.IsNullOrEmpty(DateStart) && !String.IsNullOrEmpty(DateEnd)
+                        && Convert.ToDateTime(DateStart) == Convert.ToDateTime(DateEnd))
+                        return $"(CAST(R.[CreatedOnUtc] AS Date) =  '{DateStart}')";
+                    // từ start đến end
+                    else if (!String.IsNullOrEmpty(DateStart) && !String.IsNullOrEmpty(DateEnd))
+                        return $"(R.[CreatedOnUtc] BETWEEN CONVERT(datetime, '{DateStart}') AND CONVERT(datetime, '{DateEnd}'))";
+                    // ko tìm kiếm
+                    else
+                        return $"R.[CreatedOnUtc] IS NOT NULL";
+                case ResourceProperty.UPDATE_DATE_UTC:
+                    var DateEndUpdate = value[(value.IndexOf("|") + 1)..];
+                    var DateStartUpdate = value[..value.IndexOf("|")];
+
+                    // check thứ tự
+                    if (Convert.ToDateTime(DateStartUpdate) > Convert.ToDateTime(DateEndUpdate))
+                    {
+                        (DateEndUpdate, DateStartUpdate) = (DateStartUpdate, DateEndUpdate);
+                    }
+                    // Quá khứ đến Date End
+                    if (String.IsNullOrEmpty(DateStartUpdate) && !String.IsNullOrEmpty(DateEndUpdate))
+                        return $"R.[UpdatedOnUtc] <=  CONVERT(datetime, '{DateEndUpdate}')";
+                    // Từ start đến tương lai 
+                    else if (!String.IsNullOrEmpty(DateStartUpdate) && String.IsNullOrEmpty(DateEndUpdate))
+                        return $"R.[UpdatedOnUtc] >=  CONVERT(datetime, '{DateStartUpdate}')";
+                    // Chính xác
+                    else if (!String.IsNullOrEmpty(DateStartUpdate) && !String.IsNullOrEmpty(DateEndUpdate)
+                        && Convert.ToDateTime(DateStartUpdate) == Convert.ToDateTime(DateEndUpdate))
+                        return $"(CAST(R.[UpdatedOnUtc] AS Date) =  '{DateStartUpdate}')";
+                    // từ start đến end
+                    else if (!String.IsNullOrEmpty(DateStartUpdate) && !String.IsNullOrEmpty(DateEndUpdate))
+                        return $"(R.[UpdatedOnUtc] BETWEEN CONVERT(datetime, '{DateStartUpdate}') AND CONVERT(datetime, '{DateEndUpdate}'))";
+                    // ko tìm kiếm
+                    else
+                        return $"R.[UpdatedOnUtc] IS NOT NULL";
+
+                case ResourceProperty.NAME:
+                    return $"R.[name]  LIKE N'%{value}%'";
+                case ResourceProperty.TYPES_RSC:
+                    return $"R.[typesRsc] = '{value}'";
+                case ResourceProperty.DESCRIPTION:
+                    return $"R.[description] LIKE N'%{value}%'";
+                case ResourceProperty.IS_ACTIVE:
+                    return $"R.[isActive] = {value}";
+
+                default: return $"R.[Id] = {value}";
             };
         }
     }

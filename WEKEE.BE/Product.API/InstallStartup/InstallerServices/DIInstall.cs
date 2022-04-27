@@ -12,6 +12,8 @@ using Supplier.Application.Application;
 using Supplier.Application.Interface;
 using Album.Application.Controll.Application;
 using Album.Application.Controll.Interface;
+using Account.Application.Interface;
+using Account.Application.Service;
 #endregion
 
 namespace Product.API.InstallStartup.InstallerServices
@@ -20,11 +22,20 @@ namespace Product.API.InstallStartup.InstallerServices
     {
         public void InstallService(IServiceCollection services, IConfiguration configuration)
         {
+            // Scoped: Kiểu 1:1 Service bị hủy thì nó sẽ hủy toàn bộ,
+            // 1 Scoped sinh ra thì tất cả những yêu cầu từ phía 1 HTTP nhưng dùng nhiều view or controller
+            // Singleton : Khởi tạo 1 lần cho cả hệ thống. Chỉ 1 object dùng chung cho hệ thống
+            // Transient : Khởi tạo object mỗn lần khi được yêu cầu - riêng lẻ
+
             #region default - common
             services.AddTransient<IJwtHandler, JwtHandler>();
             services.AddTransient<IMailService, MailService>();
             services.AddSingleton<ICacheBase, CacheMemoryHelper>();
             services.AddSingleton<ILogTextLog4Net, LogTextLog4NetService>();
+            #endregion
+
+            #region Account and Permission
+            services.AddTransient<IAdminResource, AdminResourceService>();
             #endregion
 
             #region Supperlier 

@@ -85,13 +85,24 @@ http.interceptors.response.use(
         placement: "bottomRight",
       });
     }
+    
+    if (
+      error.message === "Network Error"
+    ) {
+      notification.error({
+        message: "WANNING",
+        description: "Server! không phản hồi",
+        placement: "bottomRight",
+      });
+    }
 
     if (!!error.response && error.response.status === 401) {
       localStorage.setItem("request-err", error.response.data);
       localStorage.clear();
       sessionStorage.clear();
       abp.auth.clearToken();
-    } else if (
+    }
+    else if (
       !!error.response &&
       !!error.response.data.error &&
       !!error.response.data.error.message

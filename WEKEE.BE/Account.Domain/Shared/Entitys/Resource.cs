@@ -9,7 +9,7 @@ namespace Account.Domain.Shared.Entitys
     {
         public Resource()
         {
-            Permissions = new HashSet<Permission>();
+            ReourceAssignments = new HashSet<ReourceAssignment>();
         }
 
         public int Id { get; set; }
@@ -21,6 +21,6 @@ namespace Account.Domain.Shared.Entitys
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }
 
-        public virtual ICollection<Permission> Permissions { get; set; }
+        public virtual ICollection<ReourceAssignment> ReourceAssignments { get; set; }
     }
 }

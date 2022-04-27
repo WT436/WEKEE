@@ -20,6 +20,7 @@ namespace Product.API.InstallStartup.InstallerServices
 
                 op.KnownProxies.Add(IPAddress.Parse("You"));
             });
+           // services.AddRouting(options => options.LowercaseUrls = true);
             services.AddControllers(op =>
             {
                 //AuthorizationFilter

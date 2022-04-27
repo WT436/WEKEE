@@ -20,6 +20,7 @@ import { AttributeProductState } from "../scenes/Admin/AttributeProduct/types";
 import { MyProductStoreState } from "../scenes/Store/MyProductStore/types";
 import { ACategoryHomePageState } from "../scenes/Admin/ACategoryHomePage/types";
 import { APermissionState } from "../scenes/Admin/APermission/types";
+import { AdminBasicState } from "../components/AdminBasic/types";
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -47,5 +48,6 @@ export interface ApplicationRootState {
   readonly attributeproduct: AttributeProductState
   readonly myproductstore : MyProductStoreState
   readonly acategoryhomepage : ACategoryHomePageState
+  readonly adminBasic : AdminBasicState
   readonly base: BaseState
 }

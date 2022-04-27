@@ -1,6 +1,6 @@
-﻿CREATE DATABASE [Authorization]	
+﻿CREATE DATABASE [AuthorizationDB]	
 GO
-USE [Authorization]
+USE [AuthorizationDB]
 GO
 -- ====================================================================
 ---------------------------Miêu tả database----------------------------
@@ -360,7 +360,6 @@ CREATE TABLE [Permission]
 	[name] VARCHAR(300) NOT NULL,-- tên quyền
 	[description] NVARCHAR(MAX) NOT NULL, -- mô tả
 	[AtomicId] INT FOREIGN KEY REFERENCES [Atomic]([id]) NOT NULL ,
-	[ResourceManageId] INT FOREIGN KEY REFERENCES [Resource]([id]) NOT NULL ,
 	[levelPermition] INT DEFAULT(0) CHECK([levelPermition]>=0) NOT NULL,
 	[permissionId] INT FOREIGN KEY REFERENCES [Permission]([id]) NOT NULL ,
 	[isActive] BIT DEFAULT(1) NOT NULL, -- trạng thái vai trò
@@ -383,6 +382,18 @@ CREATE TABLE [PermissionAssignment]
 	[permissionId] INT FOREIGN KEY REFERENCES [Permission]([id]) NOT NULL ,
 	[isActive] BIT DEFAULT(1) NOT NULL, -- trạng thái vai trò
 	[CreateBy] INT NOT NULL DEFAULT(0), -- người tạo
+	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
+	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
+)
+GO
+
+CREATE TABLE [ReourceAssignment]
+(
+	[id] INT IDENTITY(1,1) PRIMARY KEY,
+	[resourceId] INT FOREIGN KEY REFERENCES [Resource]([id]) NOT NULL ,
+	[permissionId] INT FOREIGN KEY REFERENCES [Permission]([id]) NOT NULL ,
+	[isActive] BIT DEFAULT(1) NOT NULL, 
+	[CreateBy] INT NOT NULL DEFAULT(0), 
 	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
 	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update
 )

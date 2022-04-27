@@ -14,18 +14,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ModelQuery\AccountShowDataQuery.cs~RF5d57486.TMP" />
-    <None Remove="ModelQuery\AddDefaultAccount.cs~RFda79ee.TMP" />
-    <None Remove="ModelQuery\CheckDbAccount.cs~RFbed0e0.TMP" />
-    <None Remove="ModelQuery\PermissionAssignmentQuery.cs~RF1836e54c.TMP" />
-    <None Remove="ModelQuery\RoleQuery.cs~RFa03df9.TMP" />
-    <None Remove="ModelQuery\RoleQuery.cs~RFa2821c.TMP" />
-    <None Remove="ModelQuery\SubjectQuery.cs~RF9eac4c.TMP" />
-    <None Remove="ModelQuery\UserAccountIpQuery.cs~RF1d3e976.TMP" />
+    <None Remove="EDMQuery\AccountShowDataQuery.cs~RF5d57486.TMP" />
+    <None Remove="EDMQuery\AddDefaultAccount.cs~RFda79ee.TMP" />
+    <None Remove="EDMQuery\CheckDbAccount.cs~RFbed0e0.TMP" />
+    <None Remove="EDMQuery\PermissionAssignmentQuery.cs~RF1836e54c.TMP" />
+    <None Remove="EDMQuery\RoleQuery.cs~RFa03df9.TMP" />
+    <None Remove="EDMQuery\RoleQuery.cs~RFa2821c.TMP" />
+    <None Remove="EDMQuery\SubjectQuery.cs~RF9eac4c.TMP" />
+    <None Remove="EDMQuery\UserAccountIpQuery.cs~RF1d3e976.TMP" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="DBContext\AuthorizationContext.cs" />
+    <Compile Include="DBContext\AuthorizationDBContext.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,8 +52,6 @@
   <ItemGroup>
     <Folder Include="DBContext2\" />
     <Folder Include="EventBus\" />
-    <Folder Include="ModelQuery\" />
-    <Folder Include="SqlQuery\" />
   </ItemGroup>
 
 </Project>

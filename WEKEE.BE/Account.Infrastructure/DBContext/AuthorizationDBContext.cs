@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Account.Infrastructure.DBContext
 {
-    public partial class AuthorizationContext : DbContext
+    public partial class AuthorizationDBContext : DbContext
     {
-        public AuthorizationContext()
+        public AuthorizationDBContext()
         {
         }
 
-        public AuthorizationContext(DbContextOptions<AuthorizationContext> options)
+        public AuthorizationDBContext(DbContextOptions<AuthorizationDBContext> options)
             : base(options)
         {
         }
@@ -26,6 +26,7 @@ namespace Account.Infrastructure.DBContext
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<PermissionAssignment> PermissionAssignments { get; set; }
         public virtual DbSet<ProcessUser> ProcessUsers { get; set; }
+        public virtual DbSet<ReourceAssignment> ReourceAssignments { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
@@ -41,7 +42,7 @@ namespace Account.Infrastructure.DBContext
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=Authorization;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.;Database=AuthorizationDB;Trusted_Connection=True;");
             }
         }
 
@@ -283,13 +284,7 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.InversePermissionNavigation)
                     .HasForeignKey(d => d.PermissionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Permissio__permi__1AD3FDA4");
-
-                entity.HasOne(d => d.ResourceManage)
-                    .WithMany(p => p.Permissions)
-                    .HasForeignKey(d => d.ResourceManageId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Permissio__Resou__17F790F9");
+                    .HasConstraintName("FK__Permissio__permi__19DFD96B");
             });
 
             modelBuilder.Entity<PermissionAssignment>(entity =>
@@ -315,13 +310,13 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.PermissionAssignments)
                     .HasForeignKey(d => d.PermissionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Permissio__permi__22751F6C");
+                    .HasConstraintName("FK__Permissio__permi__2180FB33");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.PermissionAssignments)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Permissio__roleI__2180FB33");
+                    .HasConstraintName("FK__Permissio__roleI__208CD6FA");
             });
 
             modelBuilder.Entity<ProcessUser>(entity =>
@@ -359,11 +354,43 @@ namespace Account.Infrastructure.DBContext
                     .HasConstraintName("FK__ProcessUs__accou__5EBF139D");
             });
 
+            modelBuilder.Entity<ReourceAssignment>(entity =>
+            {
+                entity.ToTable("ReourceAssignment");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IsActive)
+                    .IsRequired()
+                    .HasColumnName("isActive")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.PermissionId).HasColumnName("permissionId");
+
+                entity.Property(e => e.ResourceId).HasColumnName("resourceId");
+
+                entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.Permission)
+                    .WithMany(p => p.ReourceAssignments)
+                    .HasForeignKey(d => d.PermissionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ReourceAs__permi__29221CFB");
+
+                entity.HasOne(d => d.Resource)
+                    .WithMany(p => p.ReourceAssignments)
+                    .HasForeignKey(d => d.ResourceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ReourceAs__resou__282DF8C2");
+            });
+
             modelBuilder.Entity<Resource>(entity =>
             {
                 entity.ToTable("Resource");
 
-                entity.HasIndex(e => e.Name, "UQ__Resource__72E12F1B1EF969FE")
+                entity.HasIndex(e => e.Name, "UQ__Resource__72E12F1B4FE40F47")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -647,10 +674,10 @@ namespace Account.Infrastructure.DBContext
             {
                 entity.ToTable("UserProfile");
 
-                entity.HasIndex(e => e.UserName, "UQ__UserProf__66DCF95C1FBB7D03")
+                entity.HasIndex(e => e.UserName, "UQ__UserProf__66DCF95C0ED86600")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Email, "UQ__UserProf__AB6E6164528D6ACD")
+                entity.HasIndex(e => e.Email, "UQ__UserProf__AB6E6164660272BA")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");

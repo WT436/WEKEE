@@ -1,48 +1,67 @@
-﻿using Account.Domain.ObjectValues.ConstProperty;
+﻿using Account.Application.Interface;
+using Account.Domain.ObjectValues.ConstProperty;
+using Account.Domain.ObjectValues.Enum;
 using Account.Domain.ObjectValues.Input;
+using Account.Domain.Shared.DataTransfer.ResourceDTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Product.API.Src.AccountAreas
 {
-    public class ResourceApiController : Controller
+    [Route("v1/api/[controller]/[action]")]
+    public class ResourceApiController : ControllerBase
     {
-        [HttpGet]
-        [Route("v1/api/admin-resource")]
-        public async Task<IActionResult> ProcessBasicResource(SearchOrderPageInput input)
+        private readonly IAdminResource _adminResource;
+        public ResourceApiController(IAdminResource adminResource)
         {
-            return Ok();
+            _adminResource = adminResource;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AdminResource(SearchOrderPageInput input)
+        {
+            var data = await _adminResource.GetResourcePageList(input: input);
+            return Ok(data);
+        }
+
+        [HttpHead]
+        public async Task<IActionResult> AdminResource(ExportFileInput input)
+        {
+            return Ok(20);
         }
 
         [HttpPost]
-        [Route("v1/api/admin-resource")]
-        public async Task<IActionResult> ProcessBasicResource()
+        public async Task<IActionResult> AdminResource([FromBody] ResourceReadDto input)
         {
-            var enumDisplayStatus = (ResourceProperty)3;
-            string stringValue = enumDisplayStatus.ToString();
-            return Ok(stringValue);
+            int idAccount = 1;
+            var data = await _adminResource.InsertOrUpdateResource(input: input, idAccount: idAccount);
+            return Ok(data);
         }
 
         [HttpPatch]
-        [Route("v1/api/admin-resource")]
-        public async Task<IActionResult> ProcessBasicResource(List<int> ids)
+        public async Task<IActionResult> AdminResource([FromBody] ResourceLstChangeDto input)
         {
-            return Ok();
+            var data = await _adminResource.EditUnitResource(input: input);
+            return Ok(data);
         }
 
         [HttpPut]
-        [Route("v1/api/admin-resource")]
-        public async Task<IActionResult> ProcessBasicResource(int dto)
+        public async Task<IActionResult> AdminResource(string param1)
         {
             return Ok();
         }
 
         [HttpDelete]
-        [Route("v1/api/admin-resource")]
-        public async Task<IActionResult> ProcessBasicResource(string a)
+        public async Task<IActionResult> AdminResource(List<int> ids)
         {
-            return Ok();
+            var data = await _adminResource.DeleteResource(ids);
+            return Ok(data);
+        }
+
+        [HttpOptions]
+        public async Task AdminResource(int param1 , int param2)
+        {
         }
     }
 }

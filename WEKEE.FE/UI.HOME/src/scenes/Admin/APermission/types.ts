@@ -5,7 +5,9 @@ import { ResourceReadDto } from './dto/resourceReadDto';
 export interface APermissionState { // day
     //#region  PROPERTY DEFAULT
     readonly loadingAll: boolean;
+    readonly loadingTable: boolean;
     readonly completedAll: boolean;
+    readonly loadingButton : boolean;
     readonly pageIndex: number;
     readonly pageSize: number;
     readonly totalCount: number;

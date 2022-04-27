@@ -10,9 +10,4 @@
     <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\" />
-    <Folder Include="Interface\" />
-  </ItemGroup>
-
 </Project>

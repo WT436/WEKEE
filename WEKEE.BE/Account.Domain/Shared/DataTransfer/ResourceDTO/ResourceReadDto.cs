@@ -9,7 +9,6 @@ namespace Account.Domain.Shared.DataTransfer.ResourceDTO
         public int Id { get; set; }
         public string Name { get; set; }
         public int TypesRsc { get; set; }
-        public string TypesRscName { get; set; }
         public string Description { get; set; }
         public bool? IsActive { get; set; }
         public int CreateBy { get; set; }

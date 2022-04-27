@@ -4,6 +4,15 @@ import { routers } from '../components/Router/router.config';
 declare var abp: any;
 
 class Utils {
+  _randomColor = (index: number | boolean): string => {
+    var color = ["#b3d4ff","#50e991", "#0bb4ff", "#e6d800", "#e60049", "#9b19f5", "#ffa300", "#dc0ab4",  "#00bfa0"];
+    if (index < color.length) {
+      return color[Number(index)]
+    }
+    else {
+      return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+  }
   loadScript(url: string) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -63,7 +72,7 @@ class Utils {
   }
 
   getPageTitle = (pathname: string) => {
-    const localizedAppName = L('appName',"COMMON");
+    const localizedAppName = L('appName', "COMMON");
     return L(pathname) + ' | ' + localizedAppName;
   };
 

@@ -77,7 +77,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.API", "Product.API\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{4ACFAF1D-B195-47E3-AD89-CB91DB01172E}"
 	ProjectSection(SolutionItems) = preProject
+		Document\Design\Skill\cleanCode.txt = Document\Design\Skill\cleanCode.txt
+		Document\Design\Skill\Document.txt = Document\Design\Skill\Document.txt
+		Document\Design\Skill\LoiTiemAn.txt = Document\Design\Skill\LoiTiemAn.txt
 		ServerPort.txt = ServerPort.txt
+		Document\Design\Skill\StatusCode.txt = Document\Design\Skill\StatusCode.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.API", "2.API", "{0DB05077-D7E5-4694-95F7-5D2DF89CF637}"
@@ -86,13 +90,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Test", "Product.Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{BBAAE16C-D6FD-4DE3-824D-55668BD58D57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Application", "Order.Application\Order.Application.csproj", "{A1EE999D-BDDB-4F01-9D00-BBFBEA8C2DF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Application", "Order.Application\Order.Application.csproj", "{A1EE999D-BDDB-4F01-9D00-BBFBEA8C2DF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Domain", "Order.Domain\Order.Domain.csproj", "{62E2580F-53E1-4597-88CA-7E876782EB9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Domain", "Order.Domain\Order.Domain.csproj", "{62E2580F-53E1-4597-88CA-7E876782EB9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Infrastructure", "Order.Infrastructure\Order.Infrastructure.csproj", "{7C967967-8E8B-4423-B743-E3A39BE3091B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Infrastructure", "Order.Infrastructure\Order.Infrastructure.csproj", "{7C967967-8E8B-4423-B743-E3A39BE3091B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Test", "Order.Test\Order.Test.csproj", "{B09280B1-5022-49C2-BB35-895F114E1E2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Test", "Order.Test\Order.Test.csproj", "{B09280B1-5022-49C2-BB35-895F114E1E2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

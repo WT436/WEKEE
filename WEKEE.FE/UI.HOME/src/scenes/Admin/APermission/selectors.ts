@@ -7,6 +7,8 @@ const select = (state: ApplicationRootState) => state.apermission || initialStat
 
 //#region  GETTING START
 const makeLoading = () => createSelector(select, substate => substate.loadingAll);
+const makeLoadingTable = () => createSelector(select, substate => substate.loadingTable);
+const makeLoadingButton = () => createSelector(select, substate => substate.loadingButton);
 const makeCompleted = () => createSelector(select, substate => substate.completedAll);
 const makePageIndex = () => createSelector(select, substate => substate.pageIndex);
 const makePageSize = () => createSelector(select, substate => substate.pageSize);
@@ -20,6 +22,6 @@ const makeResourceReads = () => createSelector(select, substate => substate.reso
 //#endregion
 
 export {
-    makeLoading, makeCompleted, makePageIndex, makePageSize, makeTotalCount, makeTotalPages
-    ,makeResourceReads
+    makeLoading,makeLoadingButton, makeCompleted, makePageIndex, makePageSize, makeTotalCount, makeTotalPages
+    ,makeResourceReads,makeLoadingTable
 };
