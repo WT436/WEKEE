@@ -14,7 +14,7 @@ using Utils.Exceptions;
 
 namespace Account.Application.Service
 {
-    public class AdminResourceService : IAdminResource
+    public class ResourceAdminService : IResourceAdmin
     {
         private readonly ResourceADO _resourceADO = new ResourceADO();
         private readonly ResourceEDM _resourceEDM = new ResourceEDM();

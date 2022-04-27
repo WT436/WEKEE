@@ -35,7 +35,12 @@ namespace Product.API.InstallStartup.InstallerServices
             #endregion
 
             #region Account and Permission
-            services.AddTransient<IAdminResource, AdminResourceService>();
+            services.AddTransient<IResourceAdmin, ResourceAdminService>();
+            services.AddTransient<IAtomicAdmin, AtomicAdminService>();
+            services.AddTransient<IRoleAdmin, RoleAdminService>();
+            services.AddTransient<IGroupPermissionAdmin, GroupPermissionAdminService>();
+            services.AddTransient<ISubjectAdmin, SubjectAdminService>();
+            services.AddTransient<IPermissionAdmin, PermissionAdminService>();
             #endregion
 
             #region Supperlier 

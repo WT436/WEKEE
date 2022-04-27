@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Account.Domain.ObjectValues.ConstProperty
 {
-    public enum ResourceProperty
+    public enum AtomicProperty
     {
         NULL = 0,
         ID = 1,
@@ -18,39 +18,39 @@ namespace Account.Domain.ObjectValues.ConstProperty
         IS_ACTIVE = 8
     }
 
-    public enum ResourceType
+    public enum AtomicTypes
     {
-        CONTROLLER = 0,
-        ACTION = 1
+        HTTPREQUEST = 0,
+
     }
 
-    public static class ResourceTransform
+    public class AtomicTransform
     {
         public static string CONVERT_SQL(int key)
         {
-            return (ResourceProperty)key switch
+            return (AtomicProperty)key switch
             {
-                ResourceProperty.ID => "R.[id]",
-                ResourceProperty.CREATE_BY => "R.[CreateBy]",
-                ResourceProperty.CREATE_DATE_UTC => "R.[CreatedOnUtc]",
-                ResourceProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
+                AtomicProperty.ID => "R.[id]",
+                AtomicProperty.CREATE_BY => "R.[CreateBy]",
+                AtomicProperty.CREATE_DATE_UTC => "R.[CreatedOnUtc]",
+                AtomicProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
 
-                ResourceProperty.NAME => "name",
-                ResourceProperty.TYPES_RSC => "types_rsc",
-                ResourceProperty.DESCRIPTION => "description",
-                ResourceProperty.IS_ACTIVE => "is_active",
+                AtomicProperty.NAME => "name",
+                AtomicProperty.TYPES_RSC => "types_rsc",
+                AtomicProperty.DESCRIPTION => "description",
+                AtomicProperty.IS_ACTIVE => "is_active",
                 _ => "Id",
             };
         }
         public static string CONVERT_SQL(int key, string value)
         {
-            switch ((ResourceProperty)key)
+            switch ((AtomicProperty)key)
             {
-                case ResourceProperty.ID:
+                case AtomicProperty.ID:
                     return $"R.[id] = {value}";
-                case ResourceProperty.CREATE_BY:
+                case AtomicProperty.CREATE_BY:
                     return $"R.[CreateBy]  = {value}";
-                case ResourceProperty.CREATE_DATE_UTC:
+                case AtomicProperty.CREATE_DATE_UTC:
                     var DateEnd = value[(value.IndexOf("|") + 1)..];
                     var DateStart = value[..value.IndexOf("|")];
 
@@ -75,7 +75,7 @@ namespace Account.Domain.ObjectValues.ConstProperty
                     // ko tìm kiếm
                     else
                         return $"R.[CreatedOnUtc] IS NOT NULL";
-                case ResourceProperty.UPDATE_DATE_UTC:
+                case AtomicProperty.UPDATE_DATE_UTC:
                     var DateEndUpdate = value[(value.IndexOf("|") + 1)..];
                     var DateStartUpdate = value[..value.IndexOf("|")];
 
@@ -101,13 +101,13 @@ namespace Account.Domain.ObjectValues.ConstProperty
                     else
                         return $"R.[UpdatedOnUtc] IS NOT NULL";
 
-                case ResourceProperty.NAME:
+                case AtomicProperty.NAME:
                     return $"R.[name]  LIKE N'%{value}%'";
-                case ResourceProperty.TYPES_RSC:
+                case AtomicProperty.TYPES_RSC:
                     return $"R.[typesRsc] = '{value}'";
-                case ResourceProperty.DESCRIPTION:
+                case AtomicProperty.DESCRIPTION:
                     return $"R.[description] LIKE N'%{value}%'";
-                case ResourceProperty.IS_ACTIVE:
+                case AtomicProperty.IS_ACTIVE:
                     return $"R.[isActive] = {value}";
 
                 default: return $"R.[Id] = {value}";

@@ -4,53 +4,44 @@ using System.Text;
 
 namespace Account.Domain.ObjectValues.ConstProperty
 {
-    public enum ResourceProperty
+    public enum GroupPermissionProperty
     {
         NULL = 0,
         ID = 1,
         CREATE_BY = 2,
         CREATE_DATE_UTC = 3,
         UPDATE_DATE_UTC = 4,
-
-        NAME = 5,
-        TYPES_RSC = 6,
-        DESCRIPTION = 7,
-        IS_ACTIVE = 8
     }
 
-    public enum ResourceType
+    public enum GroupPermissionTypes
     {
-        CONTROLLER = 0,
-        ACTION = 1
+
     }
 
-    public static class ResourceTransform
+    public class GroupPermissionTransform
     {
         public static string CONVERT_SQL(int key)
         {
-            return (ResourceProperty)key switch
+            return (GroupPermissionProperty)key switch
             {
-                ResourceProperty.ID => "R.[id]",
-                ResourceProperty.CREATE_BY => "R.[CreateBy]",
-                ResourceProperty.CREATE_DATE_UTC => "R.[CreatedOnUtc]",
-                ResourceProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
+                GroupPermissionProperty.ID => "R.[id]",
+                GroupPermissionProperty.CREATE_BY => "R.[CreateBy]",
+                GroupPermissionProperty.CREATE_DATE_UTC => "R.[CreatedOnUtc]",
+                GroupPermissionProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
 
-                ResourceProperty.NAME => "name",
-                ResourceProperty.TYPES_RSC => "types_rsc",
-                ResourceProperty.DESCRIPTION => "description",
-                ResourceProperty.IS_ACTIVE => "is_active",
                 _ => "Id",
             };
         }
+
         public static string CONVERT_SQL(int key, string value)
         {
-            switch ((ResourceProperty)key)
+            switch ((GroupPermissionProperty)key)
             {
-                case ResourceProperty.ID:
+                case GroupPermissionProperty.ID:
                     return $"R.[id] = {value}";
-                case ResourceProperty.CREATE_BY:
+                case GroupPermissionProperty.CREATE_BY:
                     return $"R.[CreateBy]  = {value}";
-                case ResourceProperty.CREATE_DATE_UTC:
+                case GroupPermissionProperty.CREATE_DATE_UTC:
                     var DateEnd = value[(value.IndexOf("|") + 1)..];
                     var DateStart = value[..value.IndexOf("|")];
 
@@ -75,7 +66,7 @@ namespace Account.Domain.ObjectValues.ConstProperty
                     // ko tìm kiếm
                     else
                         return $"R.[CreatedOnUtc] IS NOT NULL";
-                case ResourceProperty.UPDATE_DATE_UTC:
+                case GroupPermissionProperty.UPDATE_DATE_UTC:
                     var DateEndUpdate = value[(value.IndexOf("|") + 1)..];
                     var DateStartUpdate = value[..value.IndexOf("|")];
 
@@ -100,15 +91,6 @@ namespace Account.Domain.ObjectValues.ConstProperty
                     // ko tìm kiếm
                     else
                         return $"R.[UpdatedOnUtc] IS NOT NULL";
-
-                case ResourceProperty.NAME:
-                    return $"R.[name]  LIKE N'%{value}%'";
-                case ResourceProperty.TYPES_RSC:
-                    return $"R.[typesRsc] = '{value}'";
-                case ResourceProperty.DESCRIPTION:
-                    return $"R.[description] LIKE N'%{value}%'";
-                case ResourceProperty.IS_ACTIVE:
-                    return $"R.[isActive] = {value}";
 
                 default: return $"R.[Id] = {value}";
             };

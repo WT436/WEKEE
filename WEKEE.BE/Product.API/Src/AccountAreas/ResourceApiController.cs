@@ -12,8 +12,8 @@ namespace Product.API.Src.AccountAreas
     [Route("v1/api/[controller]/[action]")]
     public class ResourceApiController : ControllerBase
     {
-        private readonly IAdminResource _adminResource;
-        public ResourceApiController(IAdminResource adminResource)
+        private readonly IResourceAdmin _adminResource;
+        public ResourceApiController(IResourceAdmin adminResource)
         {
             _adminResource = adminResource;
         }

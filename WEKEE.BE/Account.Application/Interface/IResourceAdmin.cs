@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Account.Application.Interface
 {
-    public interface IAdminResource
+    public interface IResourceAdmin
     {
         Task<PagedListOutput<ResourceReadDto>> GetResourcePageList(SearchOrderPageInput input);
         Task<int> DeleteResource(List<int> ids);

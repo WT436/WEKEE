@@ -8,16 +8,16 @@ using UnitOfWork;
 
 namespace Account.Infrastructure.EDMQuery
 {
-    public class ResourceEDM
+    public class AtomicEDM
     {
         private readonly IUnitOfWork<AuthorizationDBContext> unitOfWork =
-                        new UnitOfWork<AuthorizationDBContext>(new AuthorizationDBContext());
+                      new UnitOfWork<AuthorizationDBContext>(new AuthorizationDBContext());
 
-        public async Task<int> Insert(Resource input)
+        public async Task<int> Insert(Atomic input)
         {
-            if (input!= null)
+            if (input != null)
             {
-                unitOfWork.GetRepository<Resource>().Insert(input);
+                unitOfWork.GetRepository<Atomic>().Insert(input);
                 return unitOfWork.SaveChanges();
             }
             else
@@ -26,11 +26,11 @@ namespace Account.Infrastructure.EDMQuery
             }
         }
 
-        public async Task<int> UpdateFull(Resource input)
+        public async Task<int> UpdateFull(Atomic input)
         {
             if (input != null)
             {
-                unitOfWork.GetRepository<Resource>().Update(input);
+                unitOfWork.GetRepository<Atomic>().Update(input);
                 return unitOfWork.SaveChanges();
             }
             else
@@ -43,16 +43,16 @@ namespace Account.Infrastructure.EDMQuery
         {
             foreach (var id in ids)
             {
-                unitOfWork.GetRepository<Resource>().Delete(id);
+                unitOfWork.GetRepository<Atomic>().Delete(id);
             }
             return unitOfWork.SaveChanges();
         }
 
-        public async Task<int> UpdateIsActive(List<Resource> resources)
+        public async Task<int> UpdateIsActive(List<Atomic> Atomics)
         {
-            if (resources.Count > 0)
+            if (Atomics.Count > 0)
             {
-                unitOfWork.GetRepository<Resource>().Update(resources);
+                unitOfWork.GetRepository<Atomic>().Update(Atomics);
                 return unitOfWork.SaveChanges();
             }
             else
