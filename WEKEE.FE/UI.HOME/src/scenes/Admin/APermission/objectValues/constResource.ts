@@ -16,15 +16,15 @@ export default ConstResource;
 export function confirmTypesResource(type: number) {
     if (ConstResource[type] === ConstResource[ConstResource.ID])
         return "NUMBER";
-    else if (ConstResource[type] === ConstResource[ConstResource.DESCRIPTION] 
+    else if (ConstResource[type] === ConstResource[ConstResource.DESCRIPTION]
         || ConstResource[type] === ConstResource[ConstResource.NAME])
         return "STRING";
     else if (ConstResource[type] === ConstResource[ConstResource.IS_ACTIVE])
         return "BOOLEAN";
-    else if (ConstResource[type] === ConstResource[ConstResource.TYPES_RSC] 
+    else if (ConstResource[type] === ConstResource[ConstResource.TYPES_RSC]
         || ConstResource[type] === ConstResource[ConstResource.CREATE_BY])
         return "SELECT";
-    else if (ConstResource[type] === ConstResource[ConstResource.CREATE_DATE_UTC ]
+    else if (ConstResource[type] === ConstResource[ConstResource.CREATE_DATE_UTC]
         || ConstResource[type] === ConstResource[ConstResource.UPDATE_DATE_UTC])
         return "DATE";
     else

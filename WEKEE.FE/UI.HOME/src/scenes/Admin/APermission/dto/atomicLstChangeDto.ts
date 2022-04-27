@@ -1,6 +1,6 @@
 import { Key } from "react";
 
-export interface ResourceLstChangeDto {
+export interface AtomicLstChangeDto {
     ids: Key[],
     types: number
 }

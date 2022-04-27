@@ -8,23 +8,16 @@ import reducer from "./reducer";
 import saga from "./saga";
 import { Tabs } from 'antd';
 import { L } from "../../../lib/abpUtility";
-import { makeCompleted, makeLoading, makeLoadingButton, makeLoadingTable, makePageIndex, makePageSize, makeTotalCount, makeTotalPages } from "./selectors";
 import ResourceComponent from "./components/resourceComponent";
 import './style.css'
+import AtomicComponent from "./components/atomicComponent";
 declare var abp: any;
 
 const { TabPane } = Tabs;
 //#endregion
 
 const stateSelector = createStructuredSelector<any, any>({
-  loadingAll: makeLoading(),
-  loadingTable: makeLoadingTable(),
-  loadingButton: makeLoadingButton(),
-  completedAll: makeCompleted(),
-  pageIndex: makePageIndex(),
-  pageSize: makePageSize(),
-  totalCount: makeTotalCount(),
-  totalPages: makeTotalPages(),
+
 });
 
 export interface IAPermissionProps {
@@ -39,9 +32,6 @@ export default function APermission(props: IAPermissionProps) {
   useInjectReducer(key, reducer);
   useInjectSaga(key, saga);
   const dispatch = useDispatch();
-
-  const { loading, pageSize, totalCount, pageIndex } =
-    useSelector(stateSelector);
   //#endregion
   function callback(key: any) {
     console.log(key);
@@ -65,7 +55,7 @@ export default function APermission(props: IAPermissionProps) {
           Content of Tab Pane 3
         </TabPane>
         <TabPane tab={L("ATOMIC", "PERMISSION_ADMIN")} key="ATOMIC">
-          Content of Tab Pane 3
+          <AtomicComponent />
         </TabPane>
         <TabPane tab={L("RESOURCE", "PERMISSION_ADMIN")} key="RESOURCE">
           <ResourceComponent />

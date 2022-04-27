@@ -57,6 +57,15 @@
         "CONTENT_CANCEL_EDIT": "Mọi dữ liệu bạn chỉnh sửa đều sẽ bị hủy. Lựa chọn 'Xác nhận' để hủy!",
         "DO_NOT_LEAVE_THIS_BOX_BLANK": "Đừng để trống ô này!"
     },
+    "PERMISSION_ADMIN": {
+        "OVERVIEW": "Tổng quan",
+        "RESOURCE": "Trình điều khiển gốc",
+        "ATOMIC": "Hành động quyền",
+        "PERMISSION": "Quyền hạn",
+        "ROLE": "Vai trò quyền",
+        "SUPJECT": "Đối tượng nhận quyền",
+        "GROUP": "Nhóm đối tượng"
+    },
     "CONST_TYPE_RESOURCE": {
         "OVERVIEW": "Tổng quan",
         "TITLE_ALL_TABLE": "Thông số chi tiết Resource",
@@ -73,13 +82,21 @@
         "TYPES_RSC_NAME": "Loại",
         "CREATE_BY_NAME": "Người tạo"
     },
-    "PERMISSION_ADMIN": {
+    "CONST_TYPE_ATOMIC": {
         "OVERVIEW": "Tổng quan",
-        "RESOURCE": "Trình điều khiển gốc",
-        "ATOMIC": "Hành động quyền",
-        "PERMISSION": "Quyền hạn",
-        "ROLE": "Vai trò quyền",
-        "SUPJECT": "Đối tượng nhận quyền",
-        "GROUP": "Nhóm đối tượng"
+        "TITLE_ALL_TABLE": "Thông số chi tiết Atomic",
+        "TITLE_ALL_CHART": "Tổng quan Atomic",
+        "NULL": "Mặc định",
+        "ID": "Mã số",
+        "CREATE_BY": "Người tạo",
+        "CREATE_DATE_UTC": "Thời gian tạo",
+        "UPDATE_DATE_UTC": "Thời gian Cập nhật",
+        "NAME": "Tên",
+        "TYPES_RSC": "Loại",
+        "DESCRIPTION": "Chi tiết",
+        "IS_ACTIVE": "Trạng thái",
+        "TYPES_RSC_NAME": "Loại",
+        "CREATE_BY_NAME": "Người tạo",
+        "HTTPREQUEST": "Http Request"
     }
 }

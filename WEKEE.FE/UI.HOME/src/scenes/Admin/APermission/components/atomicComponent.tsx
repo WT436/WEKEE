@@ -15,15 +15,15 @@ import {
 } from "@ant-design/icons";
 import OrderByProperty from "../../../../services/dto/orderByProperty";
 import moment from "moment";
-import ConstResource, { confirmTypesResource } from "../objectValues/constResource";
-import { ResourceReadDto } from "../dto/resourceReadDto";
+import ConstAtomic, { confirmTypesAtomic } from "../objectValues/constAtomic";
+import { AtomicReadDto } from "../dto/atomicReadDto";
 import {
-  deleteResourceStart, editStatusResourceStart, getResourceStart, insertOrUpdateResourceStart,
+  deleteAtomicStart, editStatusAtomicStart, getAtomicStart, insertOrUpdateAtomicStart,
 } from "../actions";
-import { ConstTypesResource } from "../objectValues/constTypesResource";
+import { ConstTypesAtomic } from "../objectValues/constTypesAtomic";
 import ChartComponent from "../../../../components/ChartComponent";
 import utils from "../../../../utils/utils";
-import { makeCompletedResource, makeLoadingButtonResource, makeLoadingResource, makeLoadingTableResource, makePageIndexResource, makePageSizeResource, makeResourceReads, makeTotalCountResource, makeTotalPagesResource } from "../selectors";
+import { makeCompletedAtomic, makeLoadingButtonAtomic, makeLoadingAtomic, makeLoadingTableAtomic, makePageIndexAtomic, makePageSizeAtomic, makeAtomicReads, makeTotalCountAtomic, makeTotalPagesAtomic } from "../selectors";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -31,31 +31,31 @@ const { RangePicker } = DatePicker;
 declare var abp: any;
 //#endregion
 
-interface IResourceComponentProps {
+interface IAtomicComponentProps {
   location?: any;
 }
 const stateSelector = createStructuredSelector<any, any>({
-  loadingAll: makeLoadingResource(),
-  loadingTable: makeLoadingTableResource(),
-  loadingButton: makeLoadingButtonResource(),
-  completedAll: makeCompletedResource(),
-  pageIndex: makePageIndexResource(),
-  pageSize: makePageSizeResource(),
-  totalCount: makeTotalCountResource(),
-  totalPages: makeTotalPagesResource(),
-  resourceData: makeResourceReads(),
+  loadingAll: makeLoadingAtomic(),
+  loadingTable: makeLoadingTableAtomic(),
+  loadingButton: makeLoadingButtonAtomic(),
+  completedAll: makeCompletedAtomic(),
+  pageIndex: makePageIndexAtomic(),
+  pageSize: makePageSizeAtomic(),
+  totalCount: makeTotalCountAtomic(),
+  totalPages: makeTotalPagesAtomic(),
+  atomicData: makeAtomicReads(),
 });
 
-export default function ResourceComponent(props: IResourceComponentProps) {
+export default function AtomicComponent(props: IAtomicComponentProps) {
   //#region START
   const dispatch = useDispatch();
 
-  const { loadingAll, loadingTable, loadingButton, completedAll, pageSize, totalCount, pageIndex, resourceData,
+  const { loadingAll, loadingTable, loadingButton, completedAll, pageSize, totalCount, pageIndex, atomicData,
   } = useSelector(stateSelector);
 
   useEffect(() => {
     dispatch(
-      getResourceStart({
+      getAtomicStart({
         propertySearch: [],
         valuesSearch: [],
         propertyOrder: 0,
@@ -86,11 +86,11 @@ export default function ResourceComponent(props: IResourceComponentProps) {
   );
 
   function _selectColumnSearch(value: number) {
-    value === ConstResource.NULL || value === 0
+    value === ConstAtomic.NULL || value === 0
       ? setpropertySearch([])
       : setpropertySearch([value]);
     setvaluesSearch([]);
-    if (confirmTypesResource(value) === "DATE") {
+    if (confirmTypesAtomic(value) === "DATE") {
       setSelectColumnSearch(
         <RangePicker
           format="YYYY/MM/DD"
@@ -99,7 +99,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
           }
         />
       );
-    } else if (confirmTypesResource(value) === "SELECT") {
+    } else if (confirmTypesAtomic(value) === "SELECT") {
       setSelectColumnSearch(
         <Select
           showSearch
@@ -109,19 +109,19 @@ export default function ResourceComponent(props: IResourceComponentProps) {
           onChange={(values: number) => _onChangeDataColumnSearch(values)}
         >
           {(() => {
-            if (ConstResource[value] === ConstResource[ConstResource.CREATE_BY])
+            if (ConstAtomic[value] === ConstAtomic[ConstAtomic.CREATE_BY])
               // return (optionCategoryProduct.map((province: CateProReadIdAndNameDto) => (
               //     <Option value={province.id}>{province.name}</Option>
               // )))
               return <Option value={"province.id"}>{"province.name"}</Option>;
             else if (
-              ConstResource[value] === ConstResource[ConstResource.TYPES_RSC]
+              ConstAtomic[value] === ConstAtomic[ConstAtomic.TYPES_RSC]
             ) {
-              return Object.keys(ConstTypesResource).map((key: any) => {
+              return Object.keys(ConstTypesAtomic).map((key: any) => {
                 if (!isNaN(Number(key))) {
                   return (
                     <Option value={key}>
-                      {L(ConstTypesResource[key], "CONST_TYPE_RESOURCE")}
+                      {L(ConstTypesAtomic[key], "CONST_TYPE_ATOMIC")}
                     </Option>
                   );
                 }
@@ -132,7 +132,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
           })()}
         </Select>
       );
-    } else if (confirmTypesResource(value) === "BOOLEAN") {
+    } else if (confirmTypesAtomic(value) === "BOOLEAN") {
       setSelectColumnSearch(
         <Select
           showSearch
@@ -145,7 +145,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
           <Option value={0}>FALSE</Option>
         </Select>
       );
-    } else if (confirmTypesResource(value) === "NUMBER") {
+    } else if (confirmTypesAtomic(value) === "NUMBER") {
       setSelectColumnSearch(
         <InputNumber
           placeholder={L("KEYWORD", "COMMON")}
@@ -157,7 +157,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
           onChange={_onChangeDataColumnSearch}
         />
       );
-    } else if (confirmTypesResource(value) === "STRING") {
+    } else if (confirmTypesAtomic(value) === "STRING") {
       setSelectColumnSearch(
         <Input
           placeholder={L("KEYWORD", "COMMON")}
@@ -179,7 +179,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
 
   // khi cột value search thay đổi mà  key null  => xóa vaule
   const _onChangeDataColumnSearch = (value: any) => {
-    if (propertySearch[0] === ConstResource.NULL || value === 0) {
+    if (propertySearch[0] === ConstAtomic.NULL || value === 0) {
       setvaluesSearch([]);
     }
     setvaluesSearch([value]);
@@ -208,7 +208,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
     if (type) {
       if (propertySearch.length === valuesSearch.length) {
         dispatch(
-          getResourceStart({
+          getAtomicStart({
             propertySearch: propertySearch,
             valuesSearch: valuesSearch,
             propertyOrder: orderbyColumn,
@@ -228,7 +228,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
     } else {
       if (propertySearch.length === valuesSearch.length) {
         dispatch(
-          getResourceStart({
+          getAtomicStart({
             propertySearch: propertySearch,
             valuesSearch: valuesSearch,
             propertyOrder: orderbyColumn,
@@ -251,7 +251,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
   //#region RESTART
   const _restartData = () => {
     dispatch(
-      getResourceStart({
+      getAtomicStart({
         propertySearch: [],
         valuesSearch: [],
         propertyOrder: 0,
@@ -265,11 +265,11 @@ export default function ResourceComponent(props: IResourceComponentProps) {
   //#region TABLE
   const columns = [
     {
-      title: L("NAME", "CONST_TYPE_RESOURCE"),
+      title: L("NAME", "CONST_TYPE_ATOMIC"),
       dataIndex: "name",
     },
     {
-      title: L("IS_ACTIVE", "CONST_TYPE_RESOURCE"),
+      title: L("IS_ACTIVE", "CONST_TYPE_ATOMIC"),
       dataIndex: "isActive",
       key: "isActive",
       render: (text: boolean) =>
@@ -280,18 +280,18 @@ export default function ResourceComponent(props: IResourceComponentProps) {
         ),
     },
     {
-      title: L("TYPES_RSC_NAME", "CONST_TYPE_RESOURCE"),
+      title: L("TYPES_RSC_NAME", "CONST_TYPE_ATOMIC"),
       dataIndex: "typesRsc",
       render: (text: number) => (
-        <Tag color={utils._randomColor(text)}>{ConstTypesResource[text]}</Tag>
+        <Tag color={utils._randomColor(text)}>{L(ConstTypesAtomic[text], "CONST_TYPE_ATOMIC") }</Tag>
       ),
     },
     {
-      title: L("DESCRIPTION", "CONST_TYPE_RESOURCE"),
+      title: L("DESCRIPTION", "CONST_TYPE_ATOMIC"),
       dataIndex: "description",
     },
     {
-      title: L("CREATE_BY_NAME", "CONST_TYPE_RESOURCE"),
+      title: L("CREATE_BY_NAME", "CONST_TYPE_ATOMIC"),
       dataIndex: "createByName",
       render: (text: string) =>
         text.toUpperCase() === "ADMIN" || text.toUpperCase() === "SYSTEM" ? (
@@ -301,12 +301,12 @@ export default function ResourceComponent(props: IResourceComponentProps) {
         ),
     },
     {
-      title: L("CREATE_DATE_UTC", "CONST_TYPE_RESOURCE"),
+      title: L("CREATE_DATE_UTC", "CONST_TYPE_ATOMIC"),
       dataIndex: "updatedOnUtc",
       render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss"),
     },
     {
-      title: L("UPDATE_DATE_UTC", "CONST_TYPE_RESOURCE"),
+      title: L("UPDATE_DATE_UTC", "CONST_TYPE_ATOMIC"),
       dataIndex: "createdOnUtc",
       render: (text: Date) => moment(text).format("DD/MM/YYYY hh:mm:ss"),
     },
@@ -315,7 +315,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
       dataIndex: "",
       key: "x",
       width: 120,
-      render: (text: ResourceReadDto) => (
+      render: (text: AtomicReadDto) => (
         <div style={{ textAlign: "center" }}>
           <Tooltip title={L("EDIT", "COMMON")}>
             <Button
@@ -336,11 +336,11 @@ export default function ResourceComponent(props: IResourceComponentProps) {
   const rowSelection = {
     onChange: (
       selectedRowKeys: React.Key[],
-      selectedRows: ResourceReadDto[]
+      selectedRows: AtomicReadDto[]
     ) => {
       setdataSelectFromTable(selectedRowKeys);
     },
-    getCheckboxProps: (record: ResourceReadDto) => ({
+    getCheckboxProps: (record: AtomicReadDto) => ({
       //disabled: record.isActive === false,
       name: record.name,
     }),
@@ -355,7 +355,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
       okText: <>{L("OK", "COMMON")}</>,
       cancelText: <>{L("CANCEL", "COMMON")}</>,
       onOk: () => {
-        dispatch(deleteResourceStart(dataSelectFromTable));
+        dispatch(deleteAtomicStart(dataSelectFromTable));
         _restartData();
       },
     });
@@ -371,9 +371,9 @@ export default function ResourceComponent(props: IResourceComponentProps) {
       cancelText: <>{L("CANCEL", "COMMON")}</>,
       onOk: () => {
         dispatch(
-          editStatusResourceStart({
+          editStatusAtomicStart({
             ids: dataSelectFromTable,
-            types: ConstResource.IS_ACTIVE,
+            types: ConstAtomic.IS_ACTIVE,
           })
         );
         _restartData();
@@ -385,11 +385,11 @@ export default function ResourceComponent(props: IResourceComponentProps) {
   const [isModalVisible, setisModalVisible] = useState(false);
   const [isModalAdd, setisModalAdd] = useState(false);
   const [dataBeginEdit, setdataBeginEdit] = useState<
-    ResourceReadDto | undefined
+    AtomicReadDto | undefined
   >(undefined);
   const [form] = Form.useForm();
 
-  const onFill = (value: ResourceReadDto | undefined) => {
+  const onFill = (value: AtomicReadDto | undefined) => {
     setdataBeginEdit(value);
     if (value === undefined) {
       setisModalAdd(true);
@@ -405,7 +405,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
   const _onCancelModalAddOrEdit = () => {
     form
       .validateFields()
-      .then((values: ResourceReadDto) => {
+      .then((values: AtomicReadDto) => {
         if (
           values.description !== dataBeginEdit?.description ||
           values.name !== dataBeginEdit?.name ||
@@ -452,7 +452,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
 
   const _onOkModalAddOrEdit = () => {
     form.validateFields().then((values) => {
-      dispatch(insertOrUpdateResourceStart(values));
+      dispatch(insertOrUpdateAtomicStart(values));
     });
   };
   //#endregion
@@ -487,11 +487,11 @@ export default function ResourceComponent(props: IResourceComponentProps) {
       <ChartComponent<yyy>
         data={data}
         loading={loadingTable}
-        title={L("TITLE_ALL_CHART", "CONST_TYPE_RESOURCE")}
+        title={L("TITLE_ALL_CHART", "CONST_TYPE_ATOMIC")}
         keyGen={["uv1", "uv2", "uv3", "uv4", "uv5", "uv0"]}
       />
       <Card
-        title={L("TITLE_ALL_TABLE", "CONST_TYPE_RESOURCE")}
+        title={L("TITLE_ALL_TABLE", "CONST_TYPE_ATOMIC")}
         size="small"
         type="inner"
       >
@@ -572,11 +572,11 @@ export default function ResourceComponent(props: IResourceComponentProps) {
                     propertySearch[0] === "" ? undefined : propertySearch[0]
                   }
                 >
-                  {Object.keys(ConstResource).map((key: any) => {
+                  {Object.keys(ConstAtomic).map((key: any) => {
                     if (!isNaN(Number(key))) {
                       return (
                         <Option value={key}>
-                          {L(ConstResource[key], "CONST_TYPE_RESOURCE")}
+                          {L(ConstAtomic[key], "CONST_TYPE_ATOMIC")}
                         </Option>
                       );
                     }
@@ -599,11 +599,11 @@ export default function ResourceComponent(props: IResourceComponentProps) {
                   value={orderbyColumn === 0 ? undefined : orderbyColumn}
                   onChange={_selectColumnOrder}
                 >
-                  {Object.keys(ConstResource).map((key: any) => {
+                  {Object.keys(ConstAtomic).map((key: any) => {
                     if (!isNaN(Number(key))) {
                       return (
                         <Option value={key}>
-                          {L(ConstResource[key], "CONST_TYPE_RESOURCE")}
+                          {L(ConstAtomic[key], "CONST_TYPE_ATOMIC")}
                         </Option>
                       );
                     }
@@ -656,12 +656,12 @@ export default function ResourceComponent(props: IResourceComponentProps) {
           <Col style={{ margin: "10px 0", width: "100%" }}>
             <Table
               columns={columns}
-              dataSource={resourceData}
+              dataSource={atomicData}
               rowSelection={{
                 type: "checkbox",
                 ...rowSelection,
               }}
-              rowKey={(record: ResourceReadDto) => record.id}
+              rowKey={(record: AtomicReadDto) => record.id}
               loading={loadingTable}
               style={{ width: "100%" }}
               size="small"
@@ -694,14 +694,14 @@ export default function ResourceComponent(props: IResourceComponentProps) {
       >
         <Form layout="horizontal" {...formItemLayout} form={form}>
           <Form.Item
-            label={L("ID", "CONST_TYPE_RESOURCE")}
+            label={L("ID", "CONST_TYPE_ATOMIC")}
             name="id"
             hidden={isModalAdd}
           >
             <Input disabled />
           </Form.Item>
           <Form.Item
-            label={L("NAME", "CONST_TYPE_RESOURCE")}
+            label={L("NAME", "CONST_TYPE_ATOMIC")}
             name="name"
             rules={[
               {
@@ -713,7 +713,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
             <Input />
           </Form.Item>
           <Form.Item
-            label={L("TYPES_RSC", "CONST_TYPE_RESOURCE")}
+            label={L("TYPES_RSC", "CONST_TYPE_ATOMIC")}
             name="typesRsc"
             rules={[
               {
@@ -723,11 +723,11 @@ export default function ResourceComponent(props: IResourceComponentProps) {
             ]}
           >
             <Select>
-              {Object.keys(ConstTypesResource).map((key: any) => {
+              {Object.keys(ConstTypesAtomic).map((key: any) => {
                 if (!isNaN(Number(key))) {
                   return (
                     <Option value={Number(key)}>
-                      {ConstTypesResource[key]}
+                      {ConstTypesAtomic[key]}
                     </Option>
                   );
                 }
@@ -735,7 +735,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
             </Select>
           </Form.Item>
           <Form.Item
-            label={L("DESCRIPTION", "CONST_TYPE_RESOURCE")}
+            label={L("DESCRIPTION", "CONST_TYPE_ATOMIC")}
             name="description"
             rules={[
               {
@@ -747,7 +747,7 @@ export default function ResourceComponent(props: IResourceComponentProps) {
             <Input />
           </Form.Item>
           <Form.Item
-            label={L("IS_ACTIVE", "CONST_TYPE_RESOURCE")}
+            label={L("IS_ACTIVE", "CONST_TYPE_ATOMIC")}
             name="isActive"
             valuePropName="checked"
             rules={[
