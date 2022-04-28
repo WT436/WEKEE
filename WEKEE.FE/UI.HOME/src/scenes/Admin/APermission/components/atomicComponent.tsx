@@ -283,7 +283,7 @@ export default function AtomicComponent(props: IAtomicComponentProps) {
       title: L("TYPES_RSC_NAME", "CONST_TYPE_ATOMIC"),
       dataIndex: "typesRsc",
       render: (text: number) => (
-        <Tag color={utils._randomColor(text)}>{L(ConstTypesAtomic[text], "CONST_TYPE_ATOMIC") }</Tag>
+        <Tag color={utils._randomColor(text)}>{L(ConstTypesAtomic[text], "CONST_TYPE_ATOMIC")}</Tag>
       ),
     },
     {

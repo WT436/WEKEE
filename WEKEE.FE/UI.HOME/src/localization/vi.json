@@ -98,5 +98,25 @@
         "TYPES_RSC_NAME": "Loại",
         "CREATE_BY_NAME": "Người tạo",
         "HTTPREQUEST": "Http Request"
+    },
+    "CONST_TYPE_PERMISSION": {
+        "OVERVIEW": "Tổng quan",
+        "TITLE_ALL_TABLE": "Thông số chi tiết Atomic",
+        "TITLE_ALL_CHART": "Tổng quan Atomic",
+        "NULL": "Mặc định",
+        "ID": "Mã số",
+        "CREATE_BY": "Người tạo",
+        "CREATE_DATE_UTC": "Thời gian tạo",
+        "UPDATE_DATE_UTC": "Thời gian Cập nhật",
+        "NAME": "Tên",
+        "DESCRIPTION": "Chi tiết",
+        "IS_ACTIVE": "Trạng thái",
+        "TYPES_RSC_NAME": "Loại",
+        "CREATE_BY_NAME": "Người tạo",
+        "ATOMIC_NAME": "Hành động quyền",
+        "PERMISSION_NAME": "Tên dẫn xuất quyền",
+        "LEVEL_PERMITION": "Cấp độ",
+        "ATOMIC_ID": "Hành động quyền",
+        "PERMISSION_ID": "Quyền dẫn xuất"
     }
 }

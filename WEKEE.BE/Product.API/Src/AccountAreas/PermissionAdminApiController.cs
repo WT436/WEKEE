@@ -1,4 +1,5 @@
-﻿using Account.Domain.ObjectValues.Input;
+﻿using Account.Application.Interface;
+using Account.Domain.ObjectValues.Input;
 using Account.Domain.Shared.DataTransfer.PermisionDTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -9,18 +10,23 @@ namespace Product.API.Src.AccountAreas
     [Route("v1/api/[controller]/[action]")]
     public class PermissionAdminApiController : Controller
     {
-        //private readonly IAdminResource _adminResource;
-        //public PermissionAdminApiController(IAdminResource adminResource)
-        //{
-        //    _adminResource = adminResource;
-        //}
+        private readonly IPermissionAdmin _adminPermission;
+        public PermissionAdminApiController(IPermissionAdmin adminPermission)
+        {
+            _adminPermission = adminPermission;
+        }
 
         [HttpGet]
         public async Task<IActionResult> AdminPermission(SearchOrderPageInput input)
         {
-            //var data = await _adminResource.GetResourcePageList(input: input);
-            //return Ok(data);
-            return Ok();
+            var data = await _adminPermission.GetPermissionPageList(input: input);
+            return Ok(data);
+        }
+        [HttpGet]
+        public async Task<IActionResult> AdminSummaryPermission(SearchTextInput input)
+        {
+            var data = await _adminPermission.GetSummaryPermission(input: input);
+            return Ok(data);
         }
 
         [HttpHead]
@@ -32,18 +38,16 @@ namespace Product.API.Src.AccountAreas
         [HttpPost]
         public async Task<IActionResult> AdminPermission([FromBody] PermissionReadDto input)
         {
-            //int idAccount = 1;
-            //var data = await _adminResource.InsertOrUpdateResource(input: input, idAccount: idAccount);
-            //return Ok(data);
-            return Ok(20);
+            int idAccount = 1;
+            var data = await _adminPermission.InsertOrUpdatePermission(input: input, idAccount: idAccount);
+            return Ok(data);
         }
 
         [HttpPatch]
         public async Task<IActionResult> AdminPermission([FromBody] PermissionLstChangeDto input)
         {
-            //var data = await _adminResource.EditUnitResource(input: input);
-            //return Ok(data);
-            return Ok(20);
+            var data = await _adminPermission.EditUnitPermission(input: input);
+            return Ok(data);
         }
 
         [HttpPut]
@@ -55,9 +59,8 @@ namespace Product.API.Src.AccountAreas
         [HttpDelete]
         public async Task<IActionResult> AdminPermission(List<int> ids)
         {
-            //var data = await _adminResource.DeleteResource(ids);
-            //return Ok(data);
-            return Ok(20);
+            var data = await _adminPermission.DeletePermission(ids);
+            return Ok(data);
         }
 
         [HttpOptions]

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Account.Domain.Shared.DataTransfer.PermisionDTO
 {
-    public class PermissionLstChangeDto
+    public class PermissionSummaryReadDto
     {
-        public List<int> Ids { get; set; }
-        public int Types { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

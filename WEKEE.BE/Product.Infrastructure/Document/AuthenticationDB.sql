@@ -361,7 +361,7 @@ CREATE TABLE [Permission]
 	[description] NVARCHAR(MAX) NOT NULL, -- mô tả
 	[AtomicId] INT FOREIGN KEY REFERENCES [Atomic]([id]) NOT NULL ,
 	[levelPermition] INT DEFAULT(0) CHECK([levelPermition]>=0) NOT NULL,
-	[permissionId] INT FOREIGN KEY REFERENCES [Permission]([id]) NOT NULL ,
+	[permissionId] INT FOREIGN KEY REFERENCES [Permission]([id]) NULL ,
 	[isActive] BIT DEFAULT(1) NOT NULL, -- trạng thái vai trò
 	[CreateBy] INT NOT NULL DEFAULT(0), -- người tạo
 	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo

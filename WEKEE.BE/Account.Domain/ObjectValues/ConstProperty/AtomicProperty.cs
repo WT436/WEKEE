@@ -36,9 +36,9 @@ namespace Account.Domain.ObjectValues.ConstProperty
                 AtomicProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
 
                 AtomicProperty.NAME => "name",
-                AtomicProperty.TYPES_RSC => "types_rsc",
+                AtomicProperty.TYPES_RSC => "typesRsc",
                 AtomicProperty.DESCRIPTION => "description",
-                AtomicProperty.IS_ACTIVE => "is_active",
+                AtomicProperty.IS_ACTIVE => "isActive",
                 _ => "Id",
             };
         }

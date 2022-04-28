@@ -17,7 +17,6 @@ export const initialState: APermissionState = {
     totalPagesResource: 0,
     resourceReads: [],
     //#endregion
-
     //#region  ATOMIC
     loadingAllAtomic: false,
     loadingTableAtomic: false,
@@ -27,7 +26,20 @@ export const initialState: APermissionState = {
     pageSizeAtomic: 0,
     totalCountAtomic: 0,
     totalPagesAtomic: 0,
-    atomicReads: []
+    atomicReads: [],
+    atomicSummaryRead: [],
+    //#endregion
+    //#region  PERMISSION
+    loadingAllPermission: false,
+    loadingTablePermission: false,
+    completedAllPermission: false,
+    loadingButtonPermission: false,
+    pageIndexPermission: 0,
+    pageSizePermission: 0,
+    totalCountPermission: 0,
+    totalPagesPermission: 0,
+    permissionReads: [],
+    permissionSummaryRead: []
     //#endregion
 };
 
@@ -251,7 +263,149 @@ function aPermissionReducer(
                 loadingButtonAtomic: false,
             };
         //#endregion
+        //#region SUMMARY_ATOMIC_START
+        case ActionTypes.SUMMARY_ATOMIC_START:
+            return {
+                ...state,
+            };
 
+        case ActionTypes.SUMMARY_ATOMIC_COMPLETED:
+            return {
+                ...state,
+                atomicSummaryRead: action.payload
+            };
+
+        case ActionTypes.SUMMARY_ATOMIC_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+
+        //#region GET_PERMISSION_START
+        case ActionTypes.GET_PERMISSION_START:
+            return {
+                ...state,
+                loadingTablePermission: true
+            };
+
+        case ActionTypes.GET_PERMISSION_COMPLETED:
+            return {
+                ...state,
+                loadingTablePermission: false,
+                permissionReads: action.payload.items,
+                pageIndexPermission: action.payload.pageIndex,
+                pageSizePermission: action.payload.pageSize,
+                totalCountPermission: action.payload.totalCount,
+                totalPagesPermission: action.payload.totalPages,
+            };
+
+        case ActionTypes.GET_PERMISSION_ERROR:
+            notification.error({
+                message: L("FAILURE", 'COMMON'),
+                description: "Server đang cố gắng truy vấn!",
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+                loadingTable: true
+            };
+        //#endregion
+        //#region DELETE_PERMISSION_START
+        case ActionTypes.DELETE_PERMISSION_START:
+            return {
+                ...state,
+                loadingTablePermission: true,
+                completedAllPermission: true,
+            };
+
+        case ActionTypes.DELETE_PERMISSION_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_DELETE_SUCCESS", 'COMMON') + action.payload,
+                placement: "bottomRight",
+            });
+
+            return {
+                ...state,
+                loadingTablePermission: false,
+                completedAllPermission: false,
+            };
+
+        case ActionTypes.DELETE_PERMISSION_ERROR:
+            return {
+                ...state,
+                loadingTablePermission: false,
+            };
+        //#endregion
+        //#region EDIT_STATUS_PERMISSION_START
+        case ActionTypes.EDIT_STATUS_PERMISSION_START:
+            return {
+                ...state,
+                loadingTablePermission: true,
+                completedAllPermission: true,
+            };
+
+        case ActionTypes.EDIT_STATUS_PERMISSION_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_EDIT_SUCCESS", 'COMMON') + action.payload + L("PLEASE_RESTART_DATA", 'COMMON'),
+                placement: "bottomRight",
+            });
+
+            return {
+                ...state,
+                loadingTablePermission: false,
+                completedAllPermission: false,
+            };
+
+        case ActionTypes.EDIT_STATUS_PERMISSION_ERROR:
+            return {
+                ...state,
+                loadingTablePermission: false,
+            };
+        //#endregion
+        //#region INSERT_OR_UPDATE_PERMISSION_START
+        case ActionTypes.INSERT_OR_UPDATE_PERMISSION_START:
+            return {
+                ...state,
+                loadingButtonPermission: true,
+            };
+
+        case ActionTypes.INSERT_OR_UPDATE_PERMISSION_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("SUCCESS", 'COMMON') + action.payload,
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+                loadingButtonPermission: false,
+            };
+
+        case ActionTypes.INSERT_OR_UPDATE_PERMISSION_ERROR:
+            return {
+                ...state,
+                loadingButtonPermission: false,
+            };
+        //#endregion
+        //#region SEARCH_SUMMARY_PERMISSION_START
+        case ActionTypes.SEARCH_SUMMARY_PERMISSION_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SEARCH_SUMMARY_PERMISSION_COMPLETED:
+            return {
+                ...state,
+                permissionSummaryRead: action.payload
+            };
+
+        case ActionTypes.SEARCH_SUMMARY_PERMISSION_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+        
         default:
             return state;
     }

@@ -11,6 +11,14 @@ namespace Account.Domain.ObjectValues.ConstProperty
         CREATE_BY = 2,
         CREATE_DATE_UTC = 3,
         UPDATE_DATE_UTC = 4,
+
+        NAME = 5,
+        DESCRIPTION = 6,
+        LEVEL_ROLE= 7,
+        ROLE_MANAGE_ID= 8,
+        ROLE_MANAGE_NAME= 9,
+        IS_DELETE= 10,
+        IS_ACTIVE=11
     }
 
     public enum RoleTypes
@@ -28,6 +36,13 @@ namespace Account.Domain.ObjectValues.ConstProperty
                 RoleProperty.CREATE_BY => "R.[CreateBy]",
                 RoleProperty.CREATE_DATE_UTC => "R.[CreatedOnUtc]",
                 RoleProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
+
+                RoleProperty.NAME => "R.[name]",
+                RoleProperty.DESCRIPTION => "R.[description]",
+                RoleProperty.LEVEL_ROLE => "R.[levelRole]",
+                RoleProperty.ROLE_MANAGE_ID => "R.[roleManageId]",
+                RoleProperty.IS_DELETE => "R.[isDelete]",
+                RoleProperty.IS_ACTIVE => "R.[isActive]",
 
                 _ => "Id",
             };
@@ -91,6 +106,19 @@ namespace Account.Domain.ObjectValues.ConstProperty
                     // ko tìm kiếm
                     else
                         return $"R.[UpdatedOnUtc] IS NOT NULL";
+
+                case RoleProperty.NAME:
+                    return $"R.[CreateBy] LIKE N'%{value}%'";
+                case RoleProperty.DESCRIPTION:
+                    return $"R.[CreateBy] LIKE N'%{value}%'";
+                case RoleProperty.LEVEL_ROLE:
+                    return $"R.[CreateBy]  = {value}";
+                case RoleProperty.ROLE_MANAGE_ID:
+                    return $"R.[CreateBy]  = {value}";
+                case RoleProperty.IS_DELETE:
+                    return $"R.[CreateBy]  = {value}";
+                case RoleProperty.IS_ACTIVE:
+                    return $"R.[CreateBy]  = {value}";
 
                 default: return $"R.[Id] = {value}";
             };

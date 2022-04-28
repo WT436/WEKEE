@@ -59,6 +59,11 @@ namespace Account.Application.Service
             };
         }
 
+        public async Task<List<AtomicSummaryReadDto>> GetSummaryAtomic()
+        {
+            return await _AtomicADO.GetSummary();
+        }
+
         public async Task<int> InsertOrUpdateAtomic(AtomicReadDto input, int idAccount)
         {
             if (input != null)

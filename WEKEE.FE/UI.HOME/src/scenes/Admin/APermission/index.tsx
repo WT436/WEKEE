@@ -11,6 +11,7 @@ import { L } from "../../../lib/abpUtility";
 import ResourceComponent from "./components/resourceComponent";
 import './style.css'
 import AtomicComponent from "./components/atomicComponent";
+import PermissionComponent from "./components/permissionComponent";
 declare var abp: any;
 
 const { TabPane } = Tabs;
@@ -40,7 +41,6 @@ export default function APermission(props: IAPermissionProps) {
     <>
       <Tabs defaultActiveKey="1" onChange={callback}>
         <TabPane tab={L("OVERVIEW", "PERMISSION_ADMIN")} key="OVERVIEW">
-          Content of Tab Pane 2
         </TabPane>
         <TabPane tab={L("SUPJECT", "PERMISSION_ADMIN")} key="SUPJECT">
           Content of Tab Pane 3
@@ -52,7 +52,7 @@ export default function APermission(props: IAPermissionProps) {
           Content of Tab Pane 3
         </TabPane>
         <TabPane tab={L("PERMISSION", "PERMISSION_ADMIN")} key="PERMISSION">
-          Content of Tab Pane 3
+         <PermissionComponent/>
         </TabPane>
         <TabPane tab={L("ATOMIC", "PERMISSION_ADMIN")} key="ATOMIC">
           <AtomicComponent />

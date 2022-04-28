@@ -11,6 +11,13 @@ namespace Account.Domain.ObjectValues.ConstProperty
         CREATE_BY = 2,
         CREATE_DATE_UTC = 3,
         UPDATE_DATE_UTC = 4,
+
+        NAME = 5,
+        DESCRIPTION = 6,
+        ATOMIC_ID = 7,
+        LEVEL_PERMITION = 8,
+        PERMISSION_ID = 9,
+        IS_ACTIVE = 10
     }
 
     public enum PermissionTypes
@@ -28,6 +35,13 @@ namespace Account.Domain.ObjectValues.ConstProperty
                 PermissionProperty.CREATE_BY => "R.[CreateBy]",
                 PermissionProperty.CREATE_DATE_UTC => "R.[CreatedOnUtc]",
                 PermissionProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
+
+                PermissionProperty.NAME => "R.[name]",
+                PermissionProperty.DESCRIPTION => "R.[description]",
+                PermissionProperty.ATOMIC_ID => "R.[AtomicId]",
+                PermissionProperty.LEVEL_PERMITION => "R.[levelPermition]",
+                PermissionProperty.PERMISSION_ID => "R.[permissionId]",
+                PermissionProperty.IS_ACTIVE => "R.[isActive]",
 
                 _ => "Id",
             };
@@ -91,6 +105,19 @@ namespace Account.Domain.ObjectValues.ConstProperty
                     // ko tìm kiếm
                     else
                         return $"R.[UpdatedOnUtc] IS NOT NULL";
+
+                case PermissionProperty.NAME:
+                    return $"R.[name] LIKE N'%{value}%'";
+                case PermissionProperty.DESCRIPTION:
+                    return $"R.[description] LIKE N'%{value}%'";
+                case PermissionProperty.ATOMIC_ID:
+                    return $"R.[AtomicId] = {value}";
+                case PermissionProperty.LEVEL_PERMITION:
+                    return $"R.[levelPermition] = {value}";
+                case PermissionProperty.PERMISSION_ID:
+                    return $"R.[permissionId] = {value}";
+                case PermissionProperty.IS_ACTIVE:
+                    return $"R.[isActive] = {value}";
 
                 default: return $"R.[Id] = {value}";
             };

@@ -23,6 +23,13 @@ namespace Product.API.Src.AccountAreas
             return Ok(data);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AdminSummaryAtomic()
+        {
+            var data = await _adminAtomic.GetSummaryAtomic();
+            return Ok(data);
+        }
+
         [HttpHead]
         public async Task<IActionResult> AdminAtomic(ExportFileInput input)
         {

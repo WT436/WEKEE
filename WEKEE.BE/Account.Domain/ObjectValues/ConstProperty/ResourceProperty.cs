@@ -36,9 +36,9 @@ namespace Account.Domain.ObjectValues.ConstProperty
                 ResourceProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
 
                 ResourceProperty.NAME => "name",
-                ResourceProperty.TYPES_RSC => "types_rsc",
+                ResourceProperty.TYPES_RSC => "typesRsc",
                 ResourceProperty.DESCRIPTION => "description",
-                ResourceProperty.IS_ACTIVE => "is_active",
+                ResourceProperty.IS_ACTIVE => "isActive",
                 _ => "Id",
             };
         }

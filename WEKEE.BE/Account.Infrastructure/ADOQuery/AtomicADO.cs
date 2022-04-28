@@ -17,7 +17,12 @@ namespace Account.Infrastructure.ADOQuery
     {
         private readonly IUnitOfWork<AuthorizationDBContext> unitOfWork =
                         new UnitOfWork<AuthorizationDBContext>(new AuthorizationDBContext());
-
+        public async Task<List<AtomicSummaryReadDto>> GetSummary()
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("SELECT R.[id] AS 'Id',R.[name] AS 'Name' ,R.[typesRsc] AS 'TypesRsc'  FROM dbo.[Atomic] AS R WHERE R.[isActive] = 1");
+            return await unitOfWork.FromSqlAsync<AtomicSummaryReadDto>(query.ToString());
+        }
         public async Task<List<AtomicReadDto>> GetAllPageLstExactNotFTS(SearchOrderPageInput input)
         {
             StringBuilder query = new StringBuilder();

@@ -1,12 +1,17 @@
 import { call, put, takeLatest, race } from 'redux-saga/effects';
 import ActionTypes from './constants';
 import http from '../../../services/httpService';
-import { deleteAtomicCompleted, deleteAtomicError, deleteResourceCompleted, deleteResourceError, editStatusAtomicCompleted, editStatusAtomicError, editStatusResourceCompleted, editStatusResourceError, getAtomicCompleted, getAtomicError, getResourceCompleted, getResourceError, insertOrUpdateAtomicCompleted, insertOrUpdateAtomicError, insertOrUpdateResourceCompleted, insertOrUpdateResourceError } from './actions';
+import { deleteAtomicCompleted, deleteAtomicError, deletePermissionCompleted, deletePermissionError, deleteResourceCompleted, deleteResourceError, editStatusAtomicCompleted, editStatusAtomicError, editStatusPermissionCompleted, editStatusPermissionError, editStatusResourceCompleted, editStatusResourceError, getAtomicCompleted, getAtomicError, getPermissionCompleted, getPermissionError, getResourceCompleted, getResourceError, insertOrUpdateAtomicCompleted, insertOrUpdateAtomicError, insertOrUpdatePermissionCompleted, insertOrUpdatePermissionError, insertOrUpdateResourceCompleted, insertOrUpdateResourceError, searchSummaryPermissionCompleted, searchSummaryPermissionError, summaryAtomicCompleted, summaryAtomicError } from './actions';
 import { PagedListOutput } from '../../../services/dto/pagedListOutput';
 import { ResourceReadDto } from './dto/resourceReadDto';
 import { ResourceLstChangeDto } from './dto/resourceLstChangeDto';
 import { AtomicReadDto } from './dto/atomicReadDto';
 import { AtomicLstChangeDto } from './dto/atomicLstChangeDto';
+import { PermissionReadDto } from './dto/permissionReadDto';
+import { PermissionLstChangeDto } from './dto/permissionLstChangeDto';
+import { AtomicSummaryReadDto } from './dto/atomicSummaryReadDto';
+import { SearchTextInput } from '../../../services/dto/searchTextInput';
+import { PermissionSummaryReadDto } from './dto/permissionSummaryReadDto';
 
 export default function* CallApiService() {
     //#region GET_RESOURCE
@@ -186,5 +191,137 @@ export default function* CallApiService() {
             }
         });
     //#endregion
+    //#region SUMMARY_ATOMIC
+    yield takeLatest(
+        ActionTypes.SUMMARY_ATOMIC_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (): Promise<AtomicSummaryReadDto> => {
+                        let rs = await http.get('/AtomicAdminApi/AdminSummaryAtomic');
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(summaryAtomicCompleted(output));
+                }
+                else {
+                    yield put(summaryAtomicError());
+                }
+            } catch (error) {
+                yield put(summaryAtomicError());
+            }
+        });
+    //#endregion
 
+    //#region GET_PERMISSION
+    yield takeLatest(
+        ActionTypes.GET_PERMISSION_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (): Promise<PagedListOutput<PermissionReadDto>> => {
+                        let rs = await http.get('/PermissionAdminApi/AdminPermission', { params: input.payload });
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(getPermissionCompleted(output));
+                }
+                else {
+                    yield put(getPermissionError());
+                }
+            } catch (error) {
+                yield put(getPermissionError());
+            }
+        });
+    //#endregion
+    //#region DELETE_PERMISSION
+    yield takeLatest(
+        ActionTypes.DELETE_PERMISSION_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (data: number[] = input.payload): Promise<number> => {
+                        let rs = await http.delete('/PermissionAdminApi/AdminPermission', { params: { ids: data } });
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(deletePermissionCompleted(output));
+                }
+                else {
+                    yield put(deletePermissionError());
+                }
+            } catch (error) {
+                yield put(deletePermissionError());
+            }
+        });
+    //#endregion
+    //#region EDIT_STATUS_PERMISSION
+    yield takeLatest(
+        ActionTypes.EDIT_STATUS_PERMISSION_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (data: PermissionLstChangeDto = input.payload): Promise<number> => {
+                        let rs = await http.patch('/PermissionAdminApi/AdminPermission', data);
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(editStatusPermissionCompleted(output));
+                }
+                else {
+                    yield put(editStatusPermissionError());
+                }
+            } catch (error) {
+                yield put(editStatusPermissionError());
+            }
+        });
+    //#endregion
+    //#region INSERT_OR_UPDATE_PERMISSION
+    yield takeLatest(
+        ActionTypes.INSERT_OR_UPDATE_PERMISSION_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (data: PermissionLstChangeDto = input.payload): Promise<number> => {
+                        let rs = await http.post('/PermissionAdminApi/AdminPermission', data);
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(insertOrUpdatePermissionCompleted(output));
+                }
+                else {
+                    yield put(insertOrUpdatePermissionError());
+                }
+            } catch (error) {
+                yield put(insertOrUpdatePermissionError());
+            }
+        });
+    //#endregion
+    //#region SEARCH_SUMMARY_PERMISSION
+    yield takeLatest(
+        ActionTypes.SEARCH_SUMMARY_PERMISSION_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (data: SearchTextInput = input.payload): Promise<PermissionSummaryReadDto> => {
+                        let rs = await http.get('/PermissionAdminApi/AdminSummaryPermission', { params: data });
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(searchSummaryPermissionCompleted(output));
+                }
+                else {
+                    yield put(searchSummaryPermissionError());
+                }
+            } catch (error) {
+                yield put(searchSummaryPermissionError());
+            }
+        });
+    //#endregion
 }
