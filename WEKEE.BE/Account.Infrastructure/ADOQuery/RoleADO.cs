@@ -17,12 +17,13 @@ namespace Account.Infrastructure.ADOQuery
     {
         private readonly IUnitOfWork<AuthorizationDBContext> unitOfWork =
                        new UnitOfWork<AuthorizationDBContext>(new AuthorizationDBContext());
-        //public async Task<List<RoleSummaryReadDto>> GetSummary()
-        //{
-        //    StringBuilder query = new StringBuilder();
-        //    query.AppendLine("SELECT R.[id] AS 'Id',R.[name] AS 'Name' ,R.[typesRsc] AS 'TypesRsc'  FROM dbo.[Role] AS R WHERE R.[isActive] = 1");
-        //    return await unitOfWork.FromSqlAsync<RoleSummaryReadDto>(query.ToString());
-        //}
+
+        public async Task<List<RoleSummaryReadDto>> GetSummary(SearchTextInput input)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine($"SELECT R.[id] AS 'Id',R.[name] AS 'Name' FROM dbo.[Role] AS R WHERE R.[isActive] = 1 AND  R.[name] LIKE N'%{input.Text}%'");
+            return await unitOfWork.FromSqlAsync<RoleSummaryReadDto>(query.ToString());
+        }
         public async Task<List<RoleReadDto>> GetAllPageLstExactNotFTS(SearchOrderPageInput input)
         {
             StringBuilder query = new StringBuilder();
@@ -58,7 +59,6 @@ namespace Account.Infrastructure.ADOQuery
 
             return await unitOfWork.FromSqlAsync<RoleReadDto>(query.ToString());
         }
-
         public async Task<List<NumberCountPageList>> GetCountForGetAllPageLst(SearchOrderPageInput input)
         {
             StringBuilder query = new StringBuilder();
@@ -79,7 +79,6 @@ namespace Account.Infrastructure.ADOQuery
 
             return await unitOfWork.FromSqlAsync<NumberCountPageList>(query.ToString());
         }
-
         public async Task<List<Role>> GetRolesById(List<int> ids)
         {
             StringBuilder query = new StringBuilder();

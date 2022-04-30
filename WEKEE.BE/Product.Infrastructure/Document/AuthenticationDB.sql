@@ -60,6 +60,8 @@ CREATE TABLE [UserProfile]
 	[facebookId] VARCHAR(30) NULL,
 	[googleId] VARCHAR(30)  NULL,
 	[zaloId] VARCHAR(30) NULL,
+	[isDelete] BIT DEFAULT(0) NOT NULL,
+	[isActive] BIT DEFAULT(1) NOT NULL, -- trạng thái vai trò
 	[CreateBy] INT NOT NULL DEFAULT(0), -- người tạo
 	[CreatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), --ngày tạo
 	[UpdatedOnUtc] DATETIME2(7) NOT NULL DEFAULT(GETDATE()), -- ngày update

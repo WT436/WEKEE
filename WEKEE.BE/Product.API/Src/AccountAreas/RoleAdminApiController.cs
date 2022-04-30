@@ -23,12 +23,12 @@ namespace Product.API.Src.AccountAreas
             return Ok(data);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> AdminSummaryRole(SearchTextInput input)
-        //{
-        //    var data = await _adminRole.GetSummaryRole(input: input);
-        //    return Ok(data);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> AdminSummaryRole(SearchTextInput input)
+        {
+            var data = await _adminRole.GetSummaryRole(input: input);
+            return Ok(data);
+        }
 
         [HttpHead]
         public async Task<IActionResult> AdminRole(ExportFileInput input)

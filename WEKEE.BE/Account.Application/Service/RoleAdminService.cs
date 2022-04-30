@@ -57,6 +57,11 @@ namespace Account.Application.Service
             };
         }
 
+        public async Task<List<RoleSummaryReadDto>> GetSummaryRole(SearchTextInput input)
+        {
+          return await  _roleADO.GetSummary(input: input);
+        }
+
         public async Task<int> InsertOrUpdateRole(RoleReadDto input, int idAccount)
         {
             if (input != null)

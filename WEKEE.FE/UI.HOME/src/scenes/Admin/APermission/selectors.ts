@@ -5,6 +5,10 @@ import { initialState } from './reducer';
 
 const select = (state: ApplicationRootState) => state.apermission || initialState; // day
 
+//#region  UserProfile
+const makeuserProfile = () => createSelector(select, substate => substate.userProfile);
+//#endregion
+
 //#region  GETTING RESOURCE
 const makeLoadingResource = () => createSelector(select, substate => substate.loadingAllResource);
 const makeLoadingTableResource = () => createSelector(select, substate => substate.loadingTableResource);
@@ -41,13 +45,46 @@ const makePermissionReads = () => createSelector(select, substate => substate.pe
 const makepermissionSummaryRead = () => createSelector(select, substate => substate.permissionSummaryRead);
 //#endregion
 
+//#region  GETTING ROLE
+const makeLoadingRole = () => createSelector(select, substate => substate.loadingAllRole);
+const makeLoadingTableRole = () => createSelector(select, substate => substate.loadingTableRole);
+const makeLoadingButtonRole = () => createSelector(select, substate => substate.loadingButtonRole);
+const makeCompletedRole = () => createSelector(select, substate => substate.completedAllRole);
+const makePageIndexRole = () => createSelector(select, substate => substate.pageIndexRole);
+const makePageSizeRole = () => createSelector(select, substate => substate.pageSizeRole);
+const makeTotalCountRole = () => createSelector(select, substate => substate.totalCountRole);
+const makeTotalPagesRole = () => createSelector(select, substate => substate.totalPagesRole);
+const makeRoleReads = () => createSelector(select, substate => substate.roleReads);
+const makeroleSummaryRead = () => createSelector(select, substate => substate.roleSummaryRead);
+//#endregion
+
+//#region  GETTING SUBJECT
+const makeLoadingSubject = () => createSelector(select, substate => substate.loadingAllSubject);
+const makeLoadingTableSubject = () => createSelector(select, substate => substate.loadingTableSubject);
+const makeLoadingButtonSubject = () => createSelector(select, substate => substate.loadingButtonSubject);
+const makeCompletedSubject = () => createSelector(select, substate => substate.completedAllSubject);
+const makePageIndexSubject = () => createSelector(select, substate => substate.pageIndexSubject);
+const makePageSizeSubject = () => createSelector(select, substate => substate.pageSizeSubject);
+const makeTotalCountSubject = () => createSelector(select, substate => substate.totalCountSubject);
+const makeTotalPagesSubject = () => createSelector(select, substate => substate.totalPagesSubject);
+const makeSubjectReads = () => createSelector(select, substate => substate.subjectReads);
+//#endregion
+
 export {
-    makeLoadingResource,makeLoadingButtonResource, makeCompletedResource, makePageIndexResource, makePageSizeResource, makeTotalCountResource, makeTotalPagesResource
-    ,makeResourceReads,makeLoadingTableResource
+    makeuserProfile,
 
-    ,makeLoadingAtomic,makeLoadingButtonAtomic, makeCompletedAtomic, makePageIndexAtomic, makePageSizeAtomic, makeTotalCountAtomic, makeTotalPagesAtomic
-    ,makeAtomicReads,makeLoadingTableAtomic,makeAtomicSummaryRead
+    makeLoadingResource, makeLoadingButtonResource, makeCompletedResource, makePageIndexResource, makePageSizeResource, makeTotalCountResource, makeTotalPagesResource
+    , makeResourceReads, makeLoadingTableResource
 
-    ,makeLoadingPermission,makeLoadingButtonPermission, makeCompletedPermission, makePageIndexPermission, makePageSizePermission, makeTotalCountPermission, makeTotalPagesPermission
-    ,makePermissionReads,makeLoadingTablePermission,makepermissionSummaryRead
+    , makeLoadingAtomic, makeLoadingButtonAtomic, makeCompletedAtomic, makePageIndexAtomic, makePageSizeAtomic, makeTotalCountAtomic, makeTotalPagesAtomic
+    , makeAtomicReads, makeLoadingTableAtomic, makeAtomicSummaryRead
+
+    , makeLoadingPermission, makeLoadingButtonPermission, makeCompletedPermission, makePageIndexPermission, makePageSizePermission, makeTotalCountPermission, makeTotalPagesPermission
+    , makePermissionReads, makeLoadingTablePermission, makepermissionSummaryRead
+
+    , makeLoadingRole, makeLoadingButtonRole, makeCompletedRole, makePageIndexRole, makePageSizeRole, makeTotalCountRole, makeTotalPagesRole
+    , makeRoleReads, makeLoadingTableRole, makeroleSummaryRead
+
+    , makeLoadingSubject, makeLoadingButtonSubject, makeCompletedSubject, makePageIndexSubject, makePageSizeSubject, makeTotalCountSubject, makeTotalPagesSubject
+    , makeSubjectReads, makeLoadingTableSubject
 };

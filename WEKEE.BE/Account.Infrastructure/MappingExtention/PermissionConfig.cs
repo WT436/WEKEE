@@ -1,6 +1,7 @@
 ﻿using Account.Domain.Shared.DataTransfer.AtomicDTO;
 using Account.Domain.Shared.DataTransfer.ResourceDTO;
 using Account.Domain.Shared.DataTransfer.RoleDTO;
+using Account.Domain.Shared.DataTransfer.SubjectDTO;
 using Account.Domain.Shared.Entitys;
 using AutoMapper;
 
@@ -27,6 +28,10 @@ namespace Account.Infrastructure.MappingExtention
             #region RoleReadDto <=> Role
             cfg.CreateMap<Role, RoleReadDto>();
             cfg.CreateMap<RoleReadDto, Role>();
+            #endregion
+            #region SubjectReadDto <=> Subject
+            cfg.CreateMap<Subject, SubjectReadDto>();
+            cfg.CreateMap<SubjectReadDto, Subject>();
             #endregion
         }
     }

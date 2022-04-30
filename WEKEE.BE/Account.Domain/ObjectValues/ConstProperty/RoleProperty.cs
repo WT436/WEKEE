@@ -108,17 +108,17 @@ namespace Account.Domain.ObjectValues.ConstProperty
                         return $"R.[UpdatedOnUtc] IS NOT NULL";
 
                 case RoleProperty.NAME:
-                    return $"R.[CreateBy] LIKE N'%{value}%'";
+                    return $"R.[Name] LIKE N'%{value}%'";
                 case RoleProperty.DESCRIPTION:
-                    return $"R.[CreateBy] LIKE N'%{value}%'";
+                    return $"R.[Description] LIKE N'%{value}%'";
                 case RoleProperty.LEVEL_ROLE:
-                    return $"R.[CreateBy]  = {value}";
+                    return $"R.[LevelRole]  = {value}";
                 case RoleProperty.ROLE_MANAGE_ID:
-                    return $"R.[CreateBy]  = {value}";
+                    return $"R.[RoleManageId]  = {value}";
                 case RoleProperty.IS_DELETE:
-                    return $"R.[CreateBy]  = {value}";
+                    return $"R.[IsDelete]  = {value}";
                 case RoleProperty.IS_ACTIVE:
-                    return $"R.[CreateBy]  = {value}";
+                    return $"R.[IsActive]  = {value}";
 
                 default: return $"R.[Id] = {value}";
             };

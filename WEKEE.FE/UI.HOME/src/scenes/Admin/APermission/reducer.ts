@@ -6,6 +6,9 @@ import { APermissionActions, APermissionState } from './types';
 declare var abp: any;
 
 export const initialState: APermissionState = {
+    //#region  User profile 
+    userProfile: [],
+    //#endregion
     //#region  PROPERTY Resource
     loadingAllResource: false,
     loadingTableResource: false,
@@ -39,7 +42,30 @@ export const initialState: APermissionState = {
     totalCountPermission: 0,
     totalPagesPermission: 0,
     permissionReads: [],
-    permissionSummaryRead: []
+    permissionSummaryRead: [],
+    //#endregion
+    //#region  ROLE
+    loadingAllRole: false,
+    loadingTableRole: false,
+    completedAllRole: false,
+    loadingButtonRole: false,
+    pageIndexRole: 0,
+    pageSizeRole: 0,
+    totalCountRole: 0,
+    totalPagesRole: 0,
+    roleReads: [],
+    roleSummaryRead: [],
+    //#endregion
+    //#region  SUBJECT
+    loadingAllSubject: false,
+    loadingTableSubject: false,
+    completedAllSubject: false,
+    loadingButtonSubject: false,
+    pageIndexSubject: 0,
+    pageSizeSubject: 0,
+    totalCountSubject: 0,
+    totalPagesSubject: 0,
+    subjectReads: [],
     //#endregion
 };
 
@@ -48,6 +74,24 @@ function aPermissionReducer(
     action: APermissionActions // day
 ) {
     switch (action.type) {
+        //#region GET_USER_PROFILE_START
+        case ActionTypes.GET_USER_PROFILE_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.GET_USER_PROFILE_COMPLETED:
+            return {
+                ...state,
+                userProfile: action.payload
+            };
+
+        case ActionTypes.GET_USER_PROFILE_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+
         //#region GET_RESOURCE_START
         case ActionTypes.GET_RESOURCE_START:
             return {
@@ -405,7 +449,241 @@ function aPermissionReducer(
                 ...state,
             };
         //#endregion
-        
+
+        //#region GET_ROLE_START
+        case ActionTypes.GET_ROLE_START:
+            return {
+                ...state,
+                loadingTableRole: true
+            };
+
+        case ActionTypes.GET_ROLE_COMPLETED:
+            return {
+                ...state,
+                loadingTableRole: false,
+                roleReads: action.payload.items,
+                pageIndexRole: action.payload.pageIndex,
+                pageSizeRole: action.payload.pageSize,
+                totalCountRole: action.payload.totalCount,
+                totalPagesRole: action.payload.totalPages,
+            };
+
+        case ActionTypes.GET_ROLE_ERROR:
+            notification.error({
+                message: L("FAILURE", 'COMMON'),
+                description: "Server đang cố gắng truy vấn!",
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+                loadingTable: true
+            };
+        //#endregion
+        //#region DELETE_ROLE_START
+        case ActionTypes.DELETE_ROLE_START:
+            return {
+                ...state,
+                loadingTableRole: true,
+                completedAllRole: true,
+            };
+
+        case ActionTypes.DELETE_ROLE_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_DELETE_SUCCESS", 'COMMON') + action.payload,
+                placement: "bottomRight",
+            });
+
+            return {
+                ...state,
+                loadingTableRole: false,
+                completedAllRole: false,
+            };
+
+        case ActionTypes.DELETE_ROLE_ERROR:
+            return {
+                ...state,
+                loadingTableRole: false,
+            };
+        //#endregion
+        //#region EDIT_STATUS_ROLE_START
+        case ActionTypes.EDIT_STATUS_ROLE_START:
+            return {
+                ...state,
+                loadingTableRole: true,
+                completedAllRole: true,
+            };
+
+        case ActionTypes.EDIT_STATUS_ROLE_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_EDIT_SUCCESS", 'COMMON') + action.payload + L("PLEASE_RESTART_DATA", 'COMMON'),
+                placement: "bottomRight",
+            });
+
+            return {
+                ...state,
+                loadingTableRole: false,
+                completedAllRole: false,
+            };
+
+        case ActionTypes.EDIT_STATUS_ROLE_ERROR:
+            return {
+                ...state,
+                loadingTableRole: false,
+            };
+        //#endregion
+        //#region INSERT_OR_UPDATE_ROLE_START
+        case ActionTypes.INSERT_OR_UPDATE_ROLE_START:
+            return {
+                ...state,
+                loadingButtonRole: true,
+            };
+
+        case ActionTypes.INSERT_OR_UPDATE_ROLE_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("SUCCESS", 'COMMON') + action.payload,
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+                loadingButtonRole: false,
+            };
+
+        case ActionTypes.INSERT_OR_UPDATE_ROLE_ERROR:
+            return {
+                ...state,
+                loadingButtonRole: false,
+            };
+        //#endregion
+        //#region SUMMARY_ROLE_START
+        case ActionTypes.SEARCH_SUMMARY_ROLE_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SEARCH_SUMMARY_ROLE_COMPLETED:
+            console.log(action.payload)
+            return {
+                ...state,
+                roleSummaryRead: action.payload
+            };
+
+        case ActionTypes.SEARCH_SUMMARY_ROLE_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+
+        //#region GET_SUBJECT_START
+        case ActionTypes.GET_SUBJECT_START:
+            return {
+                ...state,
+                loadingTableSubject: true
+            };
+
+        case ActionTypes.GET_SUBJECT_COMPLETED:
+            return {
+                ...state,
+                loadingTableSubject: false,
+                subjectReads: action.payload.items,
+                pageIndexSubject: action.payload.pageIndex,
+                pageSizeSubject: action.payload.pageSize,
+                totalCountSubject: action.payload.totalCount,
+                totalPagesSubject: action.payload.totalPages,
+            };
+
+        case ActionTypes.GET_SUBJECT_ERROR:
+            notification.error({
+                message: L("FAILURE", 'COMMON'),
+                description: "Server đang cố gắng truy vấn!",
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+                loadingTable: true
+            };
+        //#endregion
+        //#region DELETE_SUBJECT_START
+        case ActionTypes.DELETE_SUBJECT_START:
+            return {
+                ...state,
+                loadingTableSubject: true,
+                completedAllSubject: true,
+            };
+
+        case ActionTypes.DELETE_SUBJECT_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_DELETE_SUCCESS", 'COMMON') + action.payload,
+                placement: "bottomRight",
+            });
+
+            return {
+                ...state,
+                loadingTableSubject: false,
+                completedAllSubject: false,
+            };
+
+        case ActionTypes.DELETE_SUBJECT_ERROR:
+            return {
+                ...state,
+                loadingTableSubject: false,
+            };
+        //#endregion
+        //#region EDIT_STATUS_SUBJECT_START
+        case ActionTypes.EDIT_STATUS_SUBJECT_START:
+            return {
+                ...state,
+                loadingTableSubject: true,
+                completedAllSubject: true,
+            };
+
+        case ActionTypes.EDIT_STATUS_SUBJECT_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_EDIT_SUCCESS", 'COMMON') + action.payload + L("PLEASE_RESTART_DATA", 'COMMON'),
+                placement: "bottomRight",
+            });
+
+            return {
+                ...state,
+                loadingTableSubject: false,
+                completedAllSubject: false,
+            };
+
+        case ActionTypes.EDIT_STATUS_SUBJECT_ERROR:
+            return {
+                ...state,
+                loadingTableSubject: false,
+            };
+        //#endregion
+        //#region INSERT_OR_UPDATE_SUBJECT_START
+        case ActionTypes.INSERT_OR_UPDATE_SUBJECT_START:
+            return {
+                ...state,
+                loadingButtonSubject: true,
+            };
+
+        case ActionTypes.INSERT_OR_UPDATE_SUBJECT_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("SUCCESS", 'COMMON') + action.payload,
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+                loadingButtonSubject: false,
+            };
+
+        case ActionTypes.INSERT_OR_UPDATE_SUBJECT_ERROR:
+            return {
+                ...state,
+                loadingButtonSubject: false,
+            };
+        //#endregion
+
         default:
             return state;
     }

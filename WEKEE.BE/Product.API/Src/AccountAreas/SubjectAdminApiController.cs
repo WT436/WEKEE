@@ -1,4 +1,5 @@
-﻿using Account.Domain.ObjectValues.Input;
+﻿using Account.Application.Interface;
+using Account.Domain.ObjectValues.Input;
 using Account.Domain.Shared.DataTransfer.SubjectDTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -9,18 +10,17 @@ namespace Product.API.Src.AccountAreas
     [Route("v1/api/[controller]/[action]")]
     public class SubjectAdminApiController : Controller
     {
-        //private readonly IAdminResource _adminResource;
-        //public SubjectAdminApiController(IAdminResource adminResource)
-        //{
-        //    _adminResource = adminResource;
-        //}
+        private readonly ISubjectAdmin _adminSubject;
+        public SubjectAdminApiController(ISubjectAdmin adminSubject)
+        {
+            _adminSubject = adminSubject;
+        }
 
         [HttpGet]
         public async Task<IActionResult> AdminSubject(SearchOrderPageInput input)
         {
-            //var data = await _adminResource.GetResourcePageList(input: input);
-            //return Ok(data);
-            return Ok();
+            var data = await _adminSubject.GetSubjectPageList(input: input);
+            return Ok(data);
         }
 
         [HttpHead]
@@ -32,18 +32,16 @@ namespace Product.API.Src.AccountAreas
         [HttpPost]
         public async Task<IActionResult> AdminSubject([FromBody] SubjectReadDto input)
         {
-            //int idAccount = 1;
-            //var data = await _adminResource.InsertOrUpdateResource(input: input, idAccount: idAccount);
-            //return Ok(data);
-            return Ok(20);
+            int idAccount = 1;
+            var data = await _adminSubject.InsertOrUpdateSubject(input: input, idAccount: idAccount);
+            return Ok(data);
         }
 
         [HttpPatch]
         public async Task<IActionResult> AdminSubject([FromBody] SubjectLstChangeDto input)
         {
-            //var data = await _adminResource.EditUnitResource(input: input);
-            //return Ok(data);
-            return Ok(20);
+            var data = await _adminSubject.EditUnitSubject(input: input);
+            return Ok(data);
         }
 
         [HttpPut]
@@ -55,9 +53,8 @@ namespace Product.API.Src.AccountAreas
         [HttpDelete]
         public async Task<IActionResult> AdminSubject(List<int> ids)
         {
-            //var data = await _adminResource.DeleteResource(ids);
-            //return Ok(data);
-            return Ok(20);
+            var data = await _adminSubject.DeleteSubject(ids);
+            return Ok(data);
         }
 
         [HttpOptions]

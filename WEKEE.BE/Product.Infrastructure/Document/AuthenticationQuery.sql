@@ -92,3 +92,40 @@ FROM dbo.[Role] AS R
   OFFSET((1 - 1) * 20) ROWS                                                                        
   FETCH NEXT 20 ROWS ONLY   
 ---------------------------------------------------------------------------------------------------------
+SELECT                                                                                     
+	   R.[id] AS 'Id'                                                                             
+	  ,R.[CreateBy] AS 'CreateBy'                                                                 
+	  ,(SELECT U.[userName] FROM UserProfile AS U WHERE U.id = R.[CreateBy]) AS 'CreateByName'    
+	  ,R.[CreatedOnUtc] AS 'CreatedOnUtc'                                                         
+	  ,R.[UpdatedOnUtc] AS 'UpdatedOnUtc'                                                         
+	  ,R.[Name] AS 'Name'                                                                         
+	  ,R.[Description] AS 'Description'                                                           
+	  ,R.[LevelRole] AS 'LevelRole'                                                               
+	  ,R.[RoleManageId] AS 'RoleManageId'                                                         
+	  ,(SELECT RO.[name] FROM dbo.[Role] AS RO WHERE RO.id = R.[roleManageId]) AS 'RoleManageName'
+	  ,R.[IsDelete] AS 'IsDelete'                                                                 
+	  ,R.[IsActive] AS 'IsActive'                                                                 
+FROM dbo.[Role] AS R                                                                            
+ WHERE R.[CreateBy] LIKE N'%A%'
+  ORDER BY  Id ASC
+  OFFSET((1 - 1) * 20) ROWS                                                                        
+  FETCH NEXT 20 ROWS ONLY              
+---------------------------------------------------------------------------------------------------------
+
+SELECT R.[id] AS 'Id',R.[name] AS 'Name' FROM dbo.[Role] AS R WHERE R.[isActive] = 1 AND  R.[name] LIKE N'%A%'
+---------------------------------------------------------------------------------------------------------
+SELECT 
+	  R.[id] AS 'Id'
+	 ,R.[userId]  AS 'UserId'
+	 ,(SELECT U.[userName] FROM UserProfile AS U WHERE U.id = R.[userId] )  AS 'UserName'
+	 ,R.[gorupId] AS 'GorupId'
+	 ,(SELECT U.nameGroup FROM [Group] AS U WHERE U.id = R.[gorupId] ) AS 'GorupName'
+	 ,R.[isActive] AS 'IsActive' 
+	 ,R.[CreateBy] AS 'CreateBy' 
+	 ,(SELECT U.[userName] FROM UserProfile AS U WHERE U.id = R.[CreateBy]) AS 'CreateByName' 
+	 ,R.[CreatedOnUtc] AS 'CreatedOnUtc'                                                     
+	 ,R.[UpdatedOnUtc] AS 'UpdatedOnUtc'
+FROM dbo.[Subject] AS R
+
+---------------------------------------------------------------------------------------------------
+SELECT R.[id] AS 'Id',R.[userName] AS 'UserName' FROM dbo.[UserProfile] AS R WHERE R.[userName] LIKE N'%N%'

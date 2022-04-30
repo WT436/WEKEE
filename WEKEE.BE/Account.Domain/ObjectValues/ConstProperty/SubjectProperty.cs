@@ -11,6 +11,10 @@ namespace Account.Domain.ObjectValues.ConstProperty
         CREATE_BY = 2,
         CREATE_DATE_UTC = 3,
         UPDATE_DATE_UTC = 4,
+
+        USER_ID = 5,
+        GROUP_ID = 6,
+        IS_ACTIVE= 7,
     }
 
     public enum SubjectTypes
@@ -29,6 +33,9 @@ namespace Account.Domain.ObjectValues.ConstProperty
                 SubjectProperty.CREATE_DATE_UTC => "R.[CreatedOnUtc]",
                 SubjectProperty.UPDATE_DATE_UTC => "R.[UpdatedOnUtc]",
 
+                SubjectProperty.USER_ID => "R.[userId]",
+                SubjectProperty.GROUP_ID => "R.[gorupId]",
+                SubjectProperty.IS_ACTIVE => "R.[isActive]",
                 _ => "Id",
             };
         }
@@ -91,6 +98,14 @@ namespace Account.Domain.ObjectValues.ConstProperty
                     // ko tìm kiếm
                     else
                         return $"R.[UpdatedOnUtc] IS NOT NULL";
+
+
+                case SubjectProperty.USER_ID:
+                    return $"R.[userId]  = {value}";
+                case SubjectProperty.GROUP_ID:
+                    return $"R.[gorupId]  = {value}";
+                case SubjectProperty.IS_ACTIVE:
+                    return $"R.[isActive]  = {value}";
 
                 default: return $"R.[Id] = {value}";
             };

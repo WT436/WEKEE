@@ -5,8 +5,17 @@ import { AtomicSummaryReadDto } from './dto/atomicSummaryReadDto';
 import { PermissionReadDto } from './dto/permissionReadDto';
 import { PermissionSummaryReadDto } from './dto/permissionSummaryReadDto';
 import { ResourceReadDto } from './dto/resourceReadDto';
+import { RoleReadDto } from './dto/roleReadDto';
+import { RoleSummaryReadDto } from './dto/roleSummaryReadDto';
+import { SubjectReadDto } from './dto/subjectReadDto';
+import { UserProfileCompactReadDto } from './dto/userProfileCompactReadDto';
 
 export interface APermissionState { // day
+
+    //#region  User Profile 
+    readonly userProfile : UserProfileCompactReadDto[];
+    //#endregion
+
     //#region  PROPERTY Resource
     readonly loadingAllResource: boolean;
     readonly loadingTableResource: boolean;
@@ -29,7 +38,7 @@ export interface APermissionState { // day
     readonly totalCountAtomic: number;
     readonly totalPagesAtomic: number;
     readonly atomicReads: AtomicReadDto[];
-    readonly atomicSummaryRead : AtomicSummaryReadDto[];
+    readonly atomicSummaryRead: AtomicSummaryReadDto[];
     //#endregion
 
     //#region  PROPERTY Permission
@@ -42,7 +51,32 @@ export interface APermissionState { // day
     readonly totalCountPermission: number;
     readonly totalPagesPermission: number;
     readonly permissionReads: PermissionReadDto[];
-    readonly permissionSummaryRead : PermissionSummaryReadDto[];
+    readonly permissionSummaryRead: PermissionSummaryReadDto[];
+    //#endregion
+
+    //#region  PROPERTY Role
+    readonly loadingAllRole: boolean;
+    readonly loadingTableRole: boolean;
+    readonly completedAllRole: boolean;
+    readonly loadingButtonRole: boolean;
+    readonly pageIndexRole: number;
+    readonly pageSizeRole: number;
+    readonly totalCountRole: number;
+    readonly totalPagesRole: number;
+    readonly roleReads: RoleReadDto[];
+    readonly roleSummaryRead: RoleSummaryReadDto[];
+    //#endregion
+   
+    //#region  PROPERTY Subject
+    readonly loadingAllSubject: boolean;
+    readonly loadingTableSubject: boolean;
+    readonly completedAllSubject: boolean;
+    readonly loadingButtonSubject: boolean;
+    readonly pageIndexSubject: number;
+    readonly pageSizeSubject: number;
+    readonly totalCountSubject: number;
+    readonly totalPagesSubject: number;
+    readonly subjectReads: SubjectReadDto[];
     //#endregion
 
 }

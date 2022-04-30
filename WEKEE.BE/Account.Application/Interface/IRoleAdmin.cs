@@ -11,6 +11,7 @@ namespace Account.Application.Interface
     public interface IRoleAdmin
     {
         Task<PagedListOutput<RoleReadDto>> GetRolePageList(SearchOrderPageInput input);
+        Task<List<RoleSummaryReadDto>> GetSummaryRole(SearchTextInput input);
         Task<int> DeleteRole(List<int> ids);
         Task<int> EditUnitRole(RoleLstChangeDto input);
         Task<int> InsertOrUpdateRole(RoleReadDto input, int idAccount);
