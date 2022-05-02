@@ -33,6 +33,10 @@ namespace Account.Infrastructure.MappingExtention
             cfg.CreateMap<Subject, SubjectReadDto>();
             cfg.CreateMap<SubjectReadDto, Subject>();
             #endregion
+            #region FtPermissionReadDto <=> ResourceReadDto
+            cfg.CreateMap<ResourceReadDto, FtPermissionReadDto>();
+            cfg.CreateMap<FtPermissionReadDto, ResourceReadDto>();
+            #endregion
         }
     }
 }

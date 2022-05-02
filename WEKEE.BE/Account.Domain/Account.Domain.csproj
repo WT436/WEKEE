@@ -51,7 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CoreDomain\" />
     <Folder Include="EventDomain\" />
     <Folder Include="ObjectValues\Const\" />
     <Folder Include="ServicesDomain\" />

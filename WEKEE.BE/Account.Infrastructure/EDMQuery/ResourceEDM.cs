@@ -15,7 +15,7 @@ namespace Account.Infrastructure.EDMQuery
 
         public async Task<int> Insert(Resource input)
         {
-            if (input!= null)
+            if (input != null)
             {
                 unitOfWork.GetRepository<Resource>().Insert(input);
                 return unitOfWork.SaveChanges();
@@ -60,5 +60,8 @@ namespace Account.Infrastructure.EDMQuery
                 return 0;
             }
         }
+
+        public async Task<bool> CheckAnyId(List<int> ids)
+          => await unitOfWork.GetRepository<Permission>().ExistsAsync(m => ids.Contains(m.Id) && m.IsActive == true);
     }
 }

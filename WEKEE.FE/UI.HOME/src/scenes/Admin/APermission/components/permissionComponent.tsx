@@ -10,7 +10,7 @@ import {
     Select, Switch, Table, Tag, Tooltip,
 } from "antd";
 import {
-    DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, RedoOutlined,
+    DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, PullRequestOutlined, RedoOutlined,
     RetweetOutlined, SearchOutlined,
 } from "@ant-design/icons";
 import OrderByProperty from "../../../../services/dto/orderByProperty";
@@ -25,6 +25,7 @@ import utils from "../../../../utils/utils";
 import { makeAtomicSummaryRead, makeCompletedPermission, makeLoadingButtonPermission, makeLoadingPermission, makeLoadingTablePermission, makePageIndexPermission, makePageSizePermission, makePermissionReads, makepermissionSummaryRead, makeTotalCountPermission, makeTotalPagesPermission } from "../selectors";
 import { AtomicSummaryReadDto } from "../dto/atomicSummaryReadDto";
 import { PermissionSummaryReadDto } from "../dto/permissionSummaryReadDto";
+import PermissionFtResourceComponent from "./permissionFtResourceComponent";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -332,6 +333,14 @@ export default function PermissionComponent(props: IPermissionComponentProps) {
                             }}
                         ></Button>
                     </Tooltip>
+                    <Tooltip title={L("MAP", "COMMON")}>
+                        <Button
+                            type="link"
+                            disabled={!text.isActive}
+                            icon={<PullRequestOutlined />}
+                            onClick={() => _mapPermessionPtResource(text.id)}
+                        ></Button>
+                    </Tooltip>
                 </div>
             ),
         },
@@ -475,7 +484,7 @@ export default function PermissionComponent(props: IPermissionComponentProps) {
     const renderData = () => {
         for (var i = 0; i <= 10; i++) {
             data.push({
-                name: "ATC-"+i,
+                name: "ATC-" + i,
                 uv0: Math.floor(Math.random() * 500),
                 uv1: Math.floor(Math.random() * 500),
                 uv2: Math.floor(Math.random() * 500),
@@ -506,6 +515,15 @@ export default function PermissionComponent(props: IPermissionComponentProps) {
 
     };
 
+    //#endregion
+    //#region  SHOW EDIT MAPPING
+    const [isModalVisibleMapping, setisModalVisibleMapping] = useState(false);
+    const [idPermessionSelect, setidPermessionSelect] = useState(0);
+    const _mapPermessionPtResource = (id: number) => {
+        console.log("first", id);
+        setisModalVisibleMapping(true);
+        setidPermessionSelect(id);
+    }
     //#endregion
     return (
         <>
@@ -809,6 +827,20 @@ export default function PermissionComponent(props: IPermissionComponentProps) {
                         <Switch />
                     </Form.Item>
                 </Form>
+            </Modal>
+            <Modal
+                title={<>{L("EDIT_PERMISSION_FT_RESOURCE", "CONST_TYPE_PERMISSION")}</>}
+                visible={isModalVisibleMapping}
+                footer={null}
+                className="modalMapPermission"
+                style={{ width: '70%' }}
+                onCancel={() => {
+                    setisModalVisibleMapping(false);
+                    setidPermessionSelect(0);
+                }}
+                maskClosable={false}
+            >
+                <PermissionFtResourceComponent idPermission={idPermessionSelect} />
             </Modal>
         </>
     )

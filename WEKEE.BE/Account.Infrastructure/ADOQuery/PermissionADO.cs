@@ -54,7 +54,6 @@ namespace Account.Infrastructure.ADOQuery
 
             return await unitOfWork.FromSqlAsync<PermissionReadDto>(query.ToString());
         }
-
         public async Task<List<NumberCountPageList>> GetCountForGetAllPageLst(SearchOrderPageInput input)
         {
             StringBuilder query = new StringBuilder();
@@ -84,12 +83,34 @@ namespace Account.Infrastructure.ADOQuery
 
             return await unitOfWork.FromSqlAsync<Permission>(query.ToString());
         }
-
         public async Task<List<PermissionSummaryReadDto>> GetSummary(SearchTextInput input)
         {
             StringBuilder query = new StringBuilder();
             query.AppendLine($"SELECT R.[id] AS 'Id',R.[name] AS 'Name'  FROM dbo.[Permission] AS R WHERE R.[name] LIKE N'%{input.Text}%' AND R.[isActive] = 1");
             return await unitOfWork.FromSqlAsync<PermissionSummaryReadDto>(query.ToString());
+        }
+        public async Task<List<ReourceAssignment>> GetReourceAssignment(int idPermission)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine($"SELECT *  FROM dbo.[ReourceAssignment] AS R WHERE R.[permissionId] = {idPermission}");
+            return await unitOfWork.FromSqlAsync<ReourceAssignment>(query.ToString());
+        }
+        public async Task<List<PermissionFtReourceReadDto>> GetAllPermissionFtReource(int idPermission)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("SELECT R.[id]     AS 'Id'                                                                          ");
+            query.AppendLine("      ,R.[resourceId] AS 'ResourceId'                                                              ");
+            query.AppendLine("	  ,(SELECT RE.[name] FROM dbo.[Resource] AS RE WHERE RE.id = R.resourceId) AS 'ResourceName'     ");
+            query.AppendLine("      ,R.[permissionId] AS 'PermissionId'                                                          ");
+            query.AppendLine("	  ,(SELECT P.[name] FROM dbo.[Permission] AS P WHERE P.id = R.permissionId) AS 'PermissionName'  ");
+            query.AppendLine("      ,R.[isActive] AS 'IsActive'                                                                  ");
+            query.AppendLine("      ,R.[CreateBy] AS 'CreateBy'                                                                  ");
+            query.AppendLine("      ,(SELECT U.[userName] FROM UserProfile AS U WHERE U.id = R.[CreateBy]) AS 'CreateName'       ");
+            query.AppendLine("      ,R.[CreatedOnUtc] AS 'CreatedOnUtc'                                                          ");
+            query.AppendLine("      ,R.[UpdatedOnUtc] AS 'UpdatedOnUtc'                                                          ");
+            query.AppendLine("FROM [dbo].[ReourceAssignment] AS R                                                                ");
+            query.AppendLine($"WHERE R.[permissionId] = {idPermission}                                                  ");          
+            return await unitOfWork.FromSqlAsync<PermissionFtReourceReadDto>(query.ToString());
         }
     }
 }

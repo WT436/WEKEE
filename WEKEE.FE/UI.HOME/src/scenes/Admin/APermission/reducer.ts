@@ -43,6 +43,12 @@ export const initialState: APermissionState = {
     totalPagesPermission: 0,
     permissionReads: [],
     permissionSummaryRead: [],
+    permissionFtResourceRead: [],
+    loadingTablePermissionFtResource: false,
+    pageIndexPermissionFtResource: 0,
+    pageSizePermissionFtResource: 0,
+    totalCountPermissionFtResource: 0,
+    totalPagesPermissionFtResource: 0,
     //#endregion
     //#region  ROLE
     loadingAllRole: false,
@@ -684,6 +690,50 @@ function aPermissionReducer(
             };
         //#endregion
 
+        //#region PERMISSION_FT_RESOURCE_START
+        case ActionTypes.PERMISSION_FT_RESOURCE_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.PERMISSION_FT_RESOURCE_COMPLETED:
+            console.log(action.payload);
+            return {
+                ...state,
+                loadingTablePermissionFtResource: false,
+                permissionFtResourceRead: action.payload.items,
+                pageIndexPermissionFtResource: action.payload.pageIndex,
+                pageSizePermissionFtResource: action.payload.pageSize,
+                totalCountPermissionFtResource: action.payload.totalCount,
+                totalPagesPermissionFtResource: action.payload.totalPages,
+            };
+
+        case ActionTypes.PERMISSION_FT_RESOURCE_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+        //#region SAVE_PERMISSION_FT_RESOURCE_START
+        case ActionTypes.SAVE_PERMISSION_FT_RESOURCE_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SAVE_PERMISSION_FT_RESOURCE_COMPLETED:
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_EDIT_SUCCESS", 'COMMON') + action.payload + L("PLEASE_RESTART_DATA", 'COMMON'),
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SAVE_PERMISSION_FT_RESOURCE_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
         default:
             return state;
     }

@@ -2,6 +2,8 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { AtomicReadDto } from './dto/atomicReadDto';
 import { AtomicSummaryReadDto } from './dto/atomicSummaryReadDto';
+import { FtPermissionReadDto } from './dto/ftPermissionReadDto';
+import { PermissionFtReourceReadDto } from './dto/permissionFtReourceReadDto';
 import { PermissionReadDto } from './dto/permissionReadDto';
 import { PermissionSummaryReadDto } from './dto/permissionSummaryReadDto';
 import { ResourceReadDto } from './dto/resourceReadDto';
@@ -52,6 +54,12 @@ export interface APermissionState { // day
     readonly totalPagesPermission: number;
     readonly permissionReads: PermissionReadDto[];
     readonly permissionSummaryRead: PermissionSummaryReadDto[];
+    readonly loadingTablePermissionFtResource: boolean;
+    readonly permissionFtResourceRead : FtPermissionReadDto[];
+    readonly pageIndexPermissionFtResource: number;
+    readonly pageSizePermissionFtResource: number;
+    readonly totalCountPermissionFtResource: number;
+    readonly totalPagesPermissionFtResource: number;
     //#endregion
 
     //#region  PROPERTY Role

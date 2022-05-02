@@ -129,3 +129,44 @@ FROM dbo.[Subject] AS R
 
 ---------------------------------------------------------------------------------------------------
 SELECT R.[id] AS 'Id',R.[userName] AS 'UserName' FROM dbo.[UserProfile] AS R WHERE R.[userName] LIKE N'%N%'
+---------------------------------------------------------------------------------------------------
+
+SELECT *  FROM dbo.[ReourceAssignment] AS R WHERE R.[permissionId] = 1
+---------------------------------------------------------------------------------------------------
+SELECT R.[id]     AS 'Id'
+      ,R.[resourceId] AS 'ResourceId'
+	  ,(SELECT RE.[name] FROM dbo.[Resource] AS RE WHERE RE.id = R.resourceId) AS 'ResourceName'
+      ,R.[permissionId] AS 'PermissionId'
+	  ,(SELECT P.[name] FROM dbo.[Permission] AS P WHERE P.id = R.permissionId) AS 'PermissionName'
+      ,R.[isActive] AS 'IsActive'
+      ,R.[CreateBy] AS 'CreateBy'
+      ,(SELECT U.[userName] FROM UserProfile AS U WHERE U.id = R.[CreateBy]) AS 'CreateName'
+      ,R.[CreatedOnUtc] AS 'CreatedOnUtc'
+      ,R.[UpdatedOnUtc] AS 'UpdatedOnUtc'
+FROM [dbo].[ReourceAssignment] AS R
+WHERE R.[permissionId] = 2
+ORDER BY R.[UpdatedOnUtc] ASC
+OFFSET((1 - 1) * 20) ROWS                                                                        
+  FETCH NEXT 20 ROWS ONLY  
+-----------------------------------------------------------------------------------------
+SELECT                           
+	  Count(*) AS 'TotalCount'     
+FROM dbo.[ReourceAssignment] AS R
+WHERE R.[permissionId] = 2
+                                
+SELECT RA.[id]     AS 'Id'
+      ,R.[id] AS 'ResourceId'
+	  ,R.[name] AS 'ResourceName'
+      ,RA.[permissionId] AS 'PermissionId'
+	  ,(SELECT P.[name] FROM dbo.[Permission] AS P WHERE P.id = RA.permissionId) AS 'PermissionName'
+      ,R.[isActive] AS 'IsActive'
+      ,R.[CreateBy] AS 'CreateBy'
+      ,(SELECT U.[userName] FROM UserProfile AS U WHERE U.id = R.[CreateBy]) AS 'CreateName'
+      ,R.[CreatedOnUtc] AS 'CreatedOnUtc'
+      ,R.[UpdatedOnUtc] AS 'UpdatedOnUtc'
+FROM  [dbo].[Resource] AS R
+full join  [ReourceAssignment] AS RA on R.[id] = RA.[resourceId]
+WHERE RA.[permissionId] = 2
+ORDER BY R.[UpdatedOnUtc] ASC
+OFFSET((1 - 1) * 20) ROWS                                                                        
+  FETCH NEXT 20 ROWS ONLY  

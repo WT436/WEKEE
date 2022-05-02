@@ -56,7 +56,8 @@
         "CONTENT_EDIT": "Xác nhận để thay đổi dữ liệu!",
         "PLEASE_RESTART_DATA": " Vui lòng làm mới lại dữ liệu!",
         "CONTENT_CANCEL_EDIT": "Mọi dữ liệu bạn chỉnh sửa đều sẽ bị hủy. Lựa chọn 'Xác nhận' để hủy!",
-        "DO_NOT_LEAVE_THIS_BOX_BLANK": "Đừng để trống ô này!"
+        "DO_NOT_LEAVE_THIS_BOX_BLANK": "Đừng để trống ô này!",
+        "MAP": "Kết nối"
     },
     "PERMISSION_ADMIN": {
         "OVERVIEW": "Tổng quan",
@@ -119,7 +120,8 @@
         "LEVEL_PERMITION": "Cấp độ",
         "LEVEL_PERMISSION": "Cấp độ",
         "ATOMIC_ID": "Hành động quyền",
-        "PERMISSION_ID": "Quyền dẫn xuất"
+        "PERMISSION_ID": "Quyền dẫn xuất",
+        "EDIT_PERMISSION_FT_RESOURCE": "Chỉnh sửa quyền"
     },
     "CONST_TYPE_ROLE": {
         "OVERVIEW": "Tổng quan",
@@ -157,5 +159,8 @@
         "GROUP_ID": "Nhóm quyền",
         "USER_NAME": "Người dùng",
         "USER_ID": "Người dùng"
+    },
+    "CONST_TYPE_PERMISSION_RESOURCE": {
+        "SAVE_PERMISSION_FT_RESOURCE": "Lưu"
     }
 }

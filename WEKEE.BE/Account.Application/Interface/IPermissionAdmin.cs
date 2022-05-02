@@ -15,5 +15,6 @@ namespace Account.Application.Interface
         Task<int> EditUnitPermission(PermissionLstChangeDto input);
         Task<int> InsertOrUpdatePermission(PermissionReadDto input, int idAccount);
         Task<List<PermissionSummaryReadDto>> GetSummaryPermission(SearchTextInput input);
+        Task<int> InsertOrUpdatePermissionFtResource(PermissionFtResourceInsertDto input, int idAccount);
     }
 }

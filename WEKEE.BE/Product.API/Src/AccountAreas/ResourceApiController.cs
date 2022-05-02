@@ -63,5 +63,13 @@ namespace Product.API.Src.AccountAreas
         public async Task AdminResource(int param1 , int param2)
         {
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> AdminResourceFtPermission(SearchOrderPageInput input)
+        {
+            var data = await _adminResource.GetResourceFtPermissionPageList(input: input);
+            return Ok(data);
+        }
     }
 }

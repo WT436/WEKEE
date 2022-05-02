@@ -67,5 +67,14 @@ namespace Product.API.Src.AccountAreas
         public async Task AdminPermission(int param1, int param2)
         {
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AdminAddResourceFtPermission([FromBody]PermissionFtResourceInsertDto input)
+        {
+            int idAccount = 1;
+            var data = await _adminPermission.InsertOrUpdatePermissionFtResource(input: input, idAccount: idAccount);
+            return Ok(data);
+        }
+
     }
 }

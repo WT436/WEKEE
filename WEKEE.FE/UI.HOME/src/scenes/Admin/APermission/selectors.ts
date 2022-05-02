@@ -43,6 +43,13 @@ const makeTotalCountPermission = () => createSelector(select, substate => substa
 const makeTotalPagesPermission = () => createSelector(select, substate => substate.totalPagesPermission);
 const makePermissionReads = () => createSelector(select, substate => substate.permissionReads);
 const makepermissionSummaryRead = () => createSelector(select, substate => substate.permissionSummaryRead);
+const makepermissionFtReourceRead = () => createSelector(select, substate => substate.permissionFtResourceRead);
+const makeLoadingTablePermissionFtResource = () => createSelector(select, substate => substate.loadingTablePermissionFtResource);
+const makePageIndexPermissionFtResource = () => createSelector(select, substate => substate.pageIndexPermissionFtResource);
+const makePageSizePermissionFtResource = () => createSelector(select, substate => substate.pageSizePermissionFtResource);
+const makeTotalCountPermissionFtResource = () => createSelector(select, substate => substate.totalCountPermissionFtResource);
+const makeTotalPagesPermissionFtResource = () => createSelector(select, substate => substate.totalPagesPermissionFtResource);
+
 //#endregion
 
 //#region  GETTING ROLE
@@ -80,7 +87,8 @@ export {
     , makeAtomicReads, makeLoadingTableAtomic, makeAtomicSummaryRead
 
     , makeLoadingPermission, makeLoadingButtonPermission, makeCompletedPermission, makePageIndexPermission, makePageSizePermission, makeTotalCountPermission, makeTotalPagesPermission
-    , makePermissionReads, makeLoadingTablePermission, makepermissionSummaryRead
+    , makePermissionReads, makeLoadingTablePermission, makepermissionSummaryRead,makepermissionFtReourceRead,makeLoadingTablePermissionFtResource
+    ,makePageIndexPermissionFtResource,makePageSizePermissionFtResource,makeTotalCountPermissionFtResource,makeTotalPagesPermissionFtResource
 
     , makeLoadingRole, makeLoadingButtonRole, makeCompletedRole, makePageIndexRole, makePageSizeRole, makeTotalCountRole, makeTotalPagesRole
     , makeRoleReads, makeLoadingTableRole, makeroleSummaryRead

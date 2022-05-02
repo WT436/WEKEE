@@ -12,5 +12,6 @@ namespace Account.Application.Interface
         Task<int> DeleteResource(List<int> ids);
         Task<int> EditUnitResource(ResourceLstChangeDto input);
         Task<int> InsertOrUpdateResource(ResourceReadDto input, int idAccount);
+        Task<PagedListOutput<FtPermissionReadDto>> GetResourceFtPermissionPageList(SearchOrderPageInput input);
     }
 }

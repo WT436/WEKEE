@@ -1,5 +1,6 @@
 ﻿using Account.Application.Interface;
 using Account.Domain.Aggregate;
+using Account.Domain.CoreDomain;
 using Account.Domain.ObjectValues.ConstProperty;
 using Account.Domain.ObjectValues.Input;
 using Account.Domain.ObjectValues.Output;
@@ -7,6 +8,7 @@ using Account.Domain.Shared.DataTransfer.ResourceDTO;
 using Account.Infrastructure.ADOQuery;
 using Account.Infrastructure.EDMQuery;
 using Account.Infrastructure.MappingExtention;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +20,7 @@ namespace Account.Application.Service
     {
         private readonly ResourceADO _resourceADO = new ResourceADO();
         private readonly ResourceEDM _resourceEDM = new ResourceEDM();
+        private readonly PermissionADO _permissionADO = new PermissionADO();
 
         public async Task<int> DeleteResource(List<int> ids)
         {
@@ -42,10 +45,36 @@ namespace Account.Application.Service
             }
         }
 
+        public async Task<PagedListOutput<FtPermissionReadDto>> GetResourceFtPermissionPageList(SearchOrderPageInput input)
+        {
+            int idResource = Convert.ToInt32(input.ValuesSearch[0]);
+            input.PropertySearch = null;
+            input.ValuesSearch = null;
+            // data resource
+            var data = await _resourceADO.GetAllPageLstExactNotFTS(input);
+            var count = (await _resourceADO.GetCountForGetAllPageLst(input)).FirstOrDefault().TotalCount;
+            var dataFtReource = await _permissionADO.GetAllPermissionFtReource(idResource);
+            PermissionFtResourceCore permissionFtResourceCore = new PermissionFtResourceCore();
+            var result = data.Select(m =>
+            {
+                var item = MappingData.InitializeAutomapper().Map<FtPermissionReadDto>(m);
+                item.IsGranted = dataFtReource.Any(n => n.ResourceId == m.Id && n.IsActive == true);
+                return item;
+            }).ToList();
+
+            return new PagedListOutput<FtPermissionReadDto>
+            {
+                Items = result,
+                PageIndex = input.PageIndex,
+                PageSize = input.PageSize,
+                TotalPages = (count / input.PageSize),
+                TotalCount = count
+            };
+        }
+
         public async Task<PagedListOutput<ResourceReadDto>> GetResourcePageList(SearchOrderPageInput input)
         {
             var data = await _resourceADO.GetAllPageLstExactNotFTS(input);
-            var result = data.Select(m => MappingData.InitializeAutomapper().Map<ResourceReadDto>(m)).ToList();
             var count = (await _resourceADO.GetCountForGetAllPageLst(input)).FirstOrDefault().TotalCount;
             return new PagedListOutput<ResourceReadDto>
             {
@@ -65,12 +94,12 @@ namespace Account.Application.Service
                 if (data.Id == 0)
                 {
                     // insert
-                   return await _resourceEDM.Insert(data);
+                    return await _resourceEDM.Insert(data);
                 }
                 else
                 {
                     //update
-                   return await _resourceEDM.UpdateFull(data);
+                    return await _resourceEDM.UpdateFull(data);
                 }
             }
             else

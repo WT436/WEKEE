@@ -1,7 +1,7 @@
 import { call, put, takeLatest, race } from 'redux-saga/effects';
 import ActionTypes from './constants';
 import http from '../../../services/httpService';
-import { deleteAtomicCompleted, deleteAtomicError, deletePermissionCompleted, deletePermissionError, deleteResourceCompleted, deleteResourceError, deleteRoleCompleted, deleteRoleError, deleteSubjectCompleted, deleteSubjectError, editStatusAtomicCompleted, editStatusAtomicError, editStatusPermissionCompleted, editStatusPermissionError, editStatusResourceCompleted, editStatusResourceError, editStatusRoleCompleted, editStatusRoleError, editStatusSubjectCompleted, editStatusSubjectError, getAtomicCompleted, getAtomicError, getPermissionCompleted, getPermissionError, getResourceCompleted, getResourceError, getRoleCompleted, getRoleError, getSubjectCompleted, getSubjectError, getUserProfileCompleted, getUserProfileError, insertOrUpdateAtomicCompleted, insertOrUpdateAtomicError, insertOrUpdatePermissionCompleted, insertOrUpdatePermissionError, insertOrUpdateResourceCompleted, insertOrUpdateResourceError, insertOrUpdateRoleCompleted, insertOrUpdateRoleError, insertOrUpdateSubjectCompleted, insertOrUpdateSubjectError, searchSummaryPermissionCompleted, searchSummaryPermissionError, searchSummaryRoleCompleted, searchSummaryRoleError, summaryAtomicCompleted, summaryAtomicError } from './actions';
+import { deleteAtomicCompleted, deleteAtomicError, deletePermissionCompleted, deletePermissionError, deleteResourceCompleted, deleteResourceError, deleteRoleCompleted, deleteRoleError, deleteSubjectCompleted, deleteSubjectError, editStatusAtomicCompleted, editStatusAtomicError, editStatusPermissionCompleted, editStatusPermissionError, editStatusResourceCompleted, editStatusResourceError, editStatusRoleCompleted, editStatusRoleError, editStatusSubjectCompleted, editStatusSubjectError, getAtomicCompleted, getAtomicError, getPermissionCompleted, getPermissionError, getResourceCompleted, getResourceError, getRoleCompleted, getRoleError, getSubjectCompleted, getSubjectError, getUserProfileCompleted, getUserProfileError, insertOrUpdateAtomicCompleted, insertOrUpdateAtomicError, insertOrUpdatePermissionCompleted, insertOrUpdatePermissionError, insertOrUpdateResourceCompleted, insertOrUpdateResourceError, insertOrUpdateRoleCompleted, insertOrUpdateRoleError, insertOrUpdateSubjectCompleted, insertOrUpdateSubjectError, permessionFtResourceCompleted, permessionFtResourceError, savePermissionFtResourceCompleted, savePermissionFtResourceError, searchSummaryPermissionCompleted, searchSummaryPermissionError, searchSummaryRoleCompleted, searchSummaryRoleError, summaryAtomicCompleted, summaryAtomicError } from './actions';
 import { PagedListOutput } from '../../../services/dto/pagedListOutput';
 import { ResourceReadDto } from './dto/resourceReadDto';
 import { ResourceLstChangeDto } from './dto/resourceLstChangeDto';
@@ -18,6 +18,8 @@ import { RoleSummaryReadDto } from './dto/roleSummaryReadDto';
 import { SubjectReadDto } from './dto/subjectReadDto';
 import { SubjectLstChangeDto } from './dto/subjectLstChangeDto';
 import { UserProfileCompactReadDto } from './dto/userProfileCompactReadDto';
+import { PermissionFtReourceReadDto } from './dto/permissionFtReourceReadDto';
+import { FtPermissionReadDto } from './dto/ftPermissionReadDto';
 
 export default function* CallApiService() {
     //#region GET_USER_PROFILE
@@ -554,4 +556,48 @@ export default function* CallApiService() {
         });
     //#endregion
 
+    //#region PERMISSION_FT_RESOURCE
+    yield takeLatest(
+        ActionTypes.PERMISSION_FT_RESOURCE_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (): Promise<PagedListOutput<FtPermissionReadDto>> => {
+                        let rs = await http.get('/ResourceApi/AdminResourceFtPermission', { params: input.payload });
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(permessionFtResourceCompleted(output));
+                }
+                else {
+                    yield put(permessionFtResourceError());
+                }
+            } catch (error) {
+                yield put(permessionFtResourceError());
+            }
+        });
+    //#endregion
+    //#region SAVE_PERMISSION_FT_RESOURCE
+    yield takeLatest(
+        ActionTypes.SAVE_PERMISSION_FT_RESOURCE_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (data: ResourceLstChangeDto = input.payload): Promise<PagedListOutput<ResourceReadDto>> => {
+                        let rs = await http.post('/PermissionAdminApi/AdminAddResourceFtPermission', data);
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(savePermissionFtResourceCompleted(output));
+                }
+                else {
+                    yield put(savePermissionFtResourceError());
+                }
+            } catch (error) {
+                yield put(savePermissionFtResourceError());
+            }
+        });
+    //#endregion
 }

@@ -7,6 +7,8 @@ import ActionTypes from './constants';
 import { AtomicLstChangeDto } from './dto/atomicLstChangeDto';
 import { AtomicReadDto } from './dto/atomicReadDto';
 import { AtomicSummaryReadDto } from './dto/atomicSummaryReadDto';
+import { PermissionFtReourceReadDto } from './dto/permissionFtReourceReadDto';
+import { PermissionFtResourceInsertDto } from './dto/permissionFtResourceInsertDto';
 import { PermissionLstChangeDto } from './dto/permissionLstChangeDto';
 import { PermissionReadDto } from './dto/permissionReadDto';
 import { PermissionSummaryReadDto } from './dto/permissionSummaryReadDto';
@@ -215,4 +217,21 @@ export const insertOrUpdateSubjectCompleted = (output: number) =>
     action(ActionTypes.INSERT_OR_UPDATE_SUBJECT_COMPLETED, output);
 export const insertOrUpdateSubjectError = () =>
     action(ActionTypes.INSERT_OR_UPDATE_SUBJECT_ERROR);
+//#endregion
+
+//#region PERMISSION_FT_RESOURCE
+export const permessionFtResourceStart = (input: SearchOrderPageInput) =>
+    action(ActionTypes.PERMISSION_FT_RESOURCE_START, input);
+export const permessionFtResourceCompleted = (output: PagedListOutput<PermissionFtReourceReadDto>) =>
+    action(ActionTypes.PERMISSION_FT_RESOURCE_COMPLETED, output);
+export const permessionFtResourceError = () =>
+    action(ActionTypes.PERMISSION_FT_RESOURCE_ERROR);
+//#endregion
+//#region SAVE_PERMISSION_FT_RESOURCE
+export const savePermissionFtResourceStart = (input: PermissionFtResourceInsertDto) =>
+    action(ActionTypes.SAVE_PERMISSION_FT_RESOURCE_START, input);
+export const savePermissionFtResourceCompleted = (output: number) =>
+    action(ActionTypes.SAVE_PERMISSION_FT_RESOURCE_COMPLETED, output);
+export const savePermissionFtResourceError = () =>
+    action(ActionTypes.SAVE_PERMISSION_FT_RESOURCE_ERROR);
 //#endregion
