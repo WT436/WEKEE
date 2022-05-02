@@ -10,7 +10,7 @@ import {
     Select, Switch, Table, Tag, Tooltip,
 } from "antd";
 import {
-    DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, RedoOutlined,
+    DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, PullRequestOutlined, RedoOutlined,
     RetweetOutlined, SearchOutlined,
 } from "@ant-design/icons";
 import OrderByProperty from "../../../../services/dto/orderByProperty";
@@ -24,6 +24,7 @@ import ChartComponent from "../../../../components/ChartComponent";
 import utils from "../../../../utils/utils";
 import { makeroleSummaryRead, makeCompletedRole, makeLoadingButtonRole, makeLoadingRole, makeLoadingTableRole, makePageIndexRole, makePageSizeRole, makeRoleReads, makeTotalCountRole, makeTotalPagesRole } from "../selectors";
 import { RoleSummaryReadDto } from "../dto/roleSummaryReadDto";
+import RoleFtResourceComponent from "./roleFtResourceComponent";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -51,7 +52,7 @@ export default function RoleComponent(props: IRoleComponentProps) {
     //#region START
     const dispatch = useDispatch();
 
-    const { roleSummaryRead,loadingAll, loadingTable, loadingButton, pageSize, totalCount, roleData,
+    const { roleSummaryRead, loadingAll, loadingTable, loadingButton, pageSize, totalCount, roleData,
     } = useSelector(stateSelector);
 
     useEffect(() => {
@@ -341,6 +342,14 @@ export default function RoleComponent(props: IRoleComponentProps) {
                             }}
                         ></Button>
                     </Tooltip>
+                    <Tooltip title={L("MAP", "COMMON")}>
+                        <Button
+                            type="link"
+                            disabled={!text.isActive}
+                            icon={<PullRequestOutlined />}
+                            onClick={() => _mapPermessionPtRole(text.id)}
+                        ></Button>
+                    </Tooltip>
                 </div>
             ),
         },
@@ -515,6 +524,14 @@ export default function RoleComponent(props: IRoleComponentProps) {
 
     };
 
+    //#endregion
+    //#region  SHOW EDIT MAPPING
+    const [isModalVisibleMapping, setisModalVisibleMapping] = useState(false);
+    const [idPermessionSelect, setidPermessionSelect] = useState(0);
+    const _mapPermessionPtRole = (id: number) => {
+        setisModalVisibleMapping(true);
+        setidPermessionSelect(id);
+    }
     //#endregion
     return (
         <>
@@ -757,7 +774,7 @@ export default function RoleComponent(props: IRoleComponentProps) {
                             },
                         ]}
                     >
-                        <InputNumber style={{width: '100%'}} />
+                        <InputNumber style={{ width: '100%' }} />
                     </Form.Item>
                     <Form.Item
                         label={L("ROLE_MANAGE_ID", "CONST_TYPE_ROLE")}
@@ -822,6 +839,20 @@ export default function RoleComponent(props: IRoleComponentProps) {
                         <Switch />
                     </Form.Item>
                 </Form>
+            </Modal>
+            <Modal
+                title={<>{L("EDIT_PERMISSION_FT_RESOURCE", "CONST_TYPE_PERMISSION")}</>}
+                visible={isModalVisibleMapping}
+                footer={null}
+                className="modalMapPermission"
+                style={{ width: '70%' }}
+                onCancel={() => {
+                    setisModalVisibleMapping(false);
+                    setidPermessionSelect(0);
+                }}
+                maskClosable={false}
+            >
+                <RoleFtResourceComponent idPermission={idPermessionSelect} />
             </Modal>
         </>
     )

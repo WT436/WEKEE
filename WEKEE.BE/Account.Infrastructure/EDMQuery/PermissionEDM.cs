@@ -62,7 +62,10 @@ namespace Account.Infrastructure.EDMQuery
         }
 
         public async Task<bool> CheckAnyId(int id)
-            => await unitOfWork.GetRepository<Permission>().ExistsAsync(m => m.Id == id && m.IsActive == true);
+           => await unitOfWork.GetRepository<Permission>().ExistsAsync(m => m.Id == id && m.IsActive == true);
+
+        public async Task<bool> CheckAnyId(List<int> ids)
+           => await unitOfWork.GetRepository<Permission>().ExistsAsync(m => ids.Contains(m.Id) && m.IsActive == true);
 
         public async Task<int> InsertReourceAssignment(List<ReourceAssignment> input)
         {
@@ -73,6 +76,18 @@ namespace Account.Infrastructure.EDMQuery
         public async Task<int> UpdateReourceAssignment(List<ReourceAssignment> inputs)
         {
             unitOfWork.GetRepository<ReourceAssignment>().Update(inputs);
+            return unitOfWork.SaveChanges();
+        }
+
+        public async Task<int> InsertPermissionAssignment(List<PermissionAssignment> input)
+        {
+            unitOfWork.GetRepository<PermissionAssignment>().Insert(input);
+            return unitOfWork.SaveChanges();
+        }
+
+        public async Task<int> UpdatePermissionAssignment(List<PermissionAssignment> inputs)
+        {
+            unitOfWork.GetRepository<PermissionAssignment>().Update(inputs);
             return unitOfWork.SaveChanges();
         }
     }

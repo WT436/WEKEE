@@ -1,4 +1,5 @@
 ﻿using Account.Domain.Shared.DataTransfer.AtomicDTO;
+using Account.Domain.Shared.DataTransfer.PermisionDTO;
 using Account.Domain.Shared.DataTransfer.ResourceDTO;
 using Account.Domain.Shared.DataTransfer.RoleDTO;
 using Account.Domain.Shared.DataTransfer.SubjectDTO;
@@ -36,6 +37,10 @@ namespace Account.Infrastructure.MappingExtention
             #region FtPermissionReadDto <=> ResourceReadDto
             cfg.CreateMap<ResourceReadDto, FtPermissionReadDto>();
             cfg.CreateMap<FtPermissionReadDto, ResourceReadDto>();
+            #endregion
+            #region FtPermissionReadDto <=> ResourceReadDto
+            cfg.CreateMap<PermissionReadDto, PermissionFtRoleReadDto>();
+            cfg.CreateMap<PermissionFtRoleReadDto, PermissionReadDto>();
             #endregion
         }
     }

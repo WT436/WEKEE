@@ -60,5 +60,8 @@ namespace Account.Infrastructure.EDMQuery
                 return 0;
             }
         }
+
+        public async Task<bool> CheckAnyId(int id)
+           => await unitOfWork.GetRepository<Role>().ExistsAsync(m => m.Id == id && m.IsActive == true);
     }
 }

@@ -2,6 +2,7 @@
 using Account.Domain.ObjectValues.Input;
 using Account.Domain.ObjectValues.Output;
 using Account.Domain.Shared.DataTransfer.PermisionDTO;
+using Account.Domain.Shared.DataTransfer.RoleDTO;
 using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.DBContext;
 using Newtonsoft.Json;
@@ -109,8 +110,23 @@ namespace Account.Infrastructure.ADOQuery
             query.AppendLine("      ,R.[CreatedOnUtc] AS 'CreatedOnUtc'                                                          ");
             query.AppendLine("      ,R.[UpdatedOnUtc] AS 'UpdatedOnUtc'                                                          ");
             query.AppendLine("FROM [dbo].[ReourceAssignment] AS R                                                                ");
-            query.AppendLine($"WHERE R.[permissionId] = {idPermission}                                                  ");          
+            query.AppendLine($"WHERE R.[permissionId] = {idPermission}                                                  ");
             return await unitOfWork.FromSqlAsync<PermissionFtReourceReadDto>(query.ToString());
+        }
+
+        public async Task<List<PermissionAssignment>> GetAllPrmissionByIdRole(int idRole)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("SELECT PA.[id]                               ");
+            query.AppendLine("      ,PA.[roleId]                           ");
+            query.AppendLine("      ,PA.[permissionId]                     ");
+            query.AppendLine("      ,PA.[isActive]                         ");
+            query.AppendLine("      ,PA.[CreateBy]                         ");
+            query.AppendLine("      ,PA.[CreatedOnUtc]                     ");
+            query.AppendLine("      ,PA.[UpdatedOnUtc]                     ");
+            query.AppendLine("FROM [dbo].[PermissionAssignment] AS PA      ");
+            query.AppendLine($"WHERE PA.[roleId] = {idRole}                ");
+            return await unitOfWork.FromSqlAsync<PermissionAssignment>(query.ToString());
         }
     }
 }

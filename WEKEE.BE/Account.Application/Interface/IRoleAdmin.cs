@@ -15,5 +15,7 @@ namespace Account.Application.Interface
         Task<int> DeleteRole(List<int> ids);
         Task<int> EditUnitRole(RoleLstChangeDto input);
         Task<int> InsertOrUpdateRole(RoleReadDto input, int idAccount);
+        Task<PagedListOutput<PermissionFtRoleReadDto>> GetRoleFtPermissionPageList(SearchOrderPageInput input);
+        Task<int> InsertOrUpdateRoleFtpermission(RoleFtPermissionInsertDto input, int idAccount);
     }
 }

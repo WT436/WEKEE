@@ -61,6 +61,13 @@ export const initialState: APermissionState = {
     totalPagesRole: 0,
     roleReads: [],
     roleSummaryRead: [],
+
+    roleFtPermissionRead: [],
+    loadingTableRoleFtPermission: false,
+    pageIndexRoleFtPermission: 0,
+    pageSizeRoleFtPermission: 0,
+    totalCountRoleFtPermission: 0,
+    totalPagesRoleFtPermission: 0,
     //#endregion
     //#region  SUBJECT
     loadingAllSubject: false,
@@ -734,6 +741,51 @@ function aPermissionReducer(
                 ...state,
             };
         //#endregion
+
+        //#region ROLE_FT_PERMISSION_START
+        case ActionTypes.ROLE_FT_PERMISSION_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.ROLE_FT_PERMISSION_COMPLETED:
+            return {
+                ...state,
+                roleFtPermissionRead: action.payload.items,
+                pageIndexRoleFtPermission: action.payload.pageIndex,
+                pageSizeRoleFtPermission: action.payload.pageSize,
+                totalCountRoleFtPermission: action.payload.totalCount,
+                totalPagesRoleFtPermission: action.payload.totalPages,
+            };
+
+        case ActionTypes.ROLE_FT_PERMISSION_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+        //#region SAVE_PERMISSION_FT_RESOURCE_START
+        case ActionTypes.SAVE_ROLE_FT_PERMISSION_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SAVE_ROLE_FT_PERMISSION_COMPLETED:
+            console.log(action.payload)
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_EDIT_SUCCESS", 'COMMON') + action.payload + L("PLEASE_RESTART_DATA", 'COMMON'),
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SAVE_ROLE_FT_PERMISSION_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+
         default:
             return state;
     }

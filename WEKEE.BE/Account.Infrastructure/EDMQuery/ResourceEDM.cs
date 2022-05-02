@@ -62,6 +62,6 @@ namespace Account.Infrastructure.EDMQuery
         }
 
         public async Task<bool> CheckAnyId(List<int> ids)
-          => await unitOfWork.GetRepository<Permission>().ExistsAsync(m => ids.Contains(m.Id) && m.IsActive == true);
+          => await unitOfWork.GetRepository<Resource>().ExistsAsync(m => ids.Contains(m.Id) && m.IsActive == true);
     }
 }

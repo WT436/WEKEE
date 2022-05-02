@@ -14,6 +14,8 @@ import { PermissionReadDto } from './dto/permissionReadDto';
 import { PermissionSummaryReadDto } from './dto/permissionSummaryReadDto';
 import { ResourceLstChangeDto } from './dto/resourceLstChangeDto';
 import { ResourceReadDto } from './dto/resourceReadDto';
+import { RoleFtPermissionInsertDto } from './dto/roleFtPermissionInsertDto';
+import { RoleFtPermissionReadDto } from './dto/roleFtPermissionReadDto';
 import { RoleLstChangeDto } from './dto/roleLstChangeDto';
 import { RoleReadDto } from './dto/roleReadDto';
 import { RoleSummaryReadDto } from './dto/roleSummaryReadDto';
@@ -234,4 +236,21 @@ export const savePermissionFtResourceCompleted = (output: number) =>
     action(ActionTypes.SAVE_PERMISSION_FT_RESOURCE_COMPLETED, output);
 export const savePermissionFtResourceError = () =>
     action(ActionTypes.SAVE_PERMISSION_FT_RESOURCE_ERROR);
-//#endregion
+//#endregion 
+//#region ROLE_FT_PERMISSION
+export const roleFtPermissionStart = (input: SearchOrderPageInput) =>
+    action(ActionTypes.ROLE_FT_PERMISSION_START, input);
+export const roleFtPermissionCompleted = (output: PagedListOutput<RoleFtPermissionReadDto>) =>
+    action(ActionTypes.ROLE_FT_PERMISSION_COMPLETED, output);
+export const roleFtPermissionError = () =>
+    action(ActionTypes.ROLE_FT_PERMISSION_ERROR);
+//#endregion 
+
+//#region SAVE_ROLE_FT_PERMISSION
+export const saveRoleFtPermissionStart = (input: RoleFtPermissionInsertDto) =>
+    action(ActionTypes.SAVE_ROLE_FT_PERMISSION_START, input);
+export const saveRoleFtPermissionCompleted = (output: number) =>
+    action(ActionTypes.SAVE_ROLE_FT_PERMISSION_COMPLETED, output);
+export const saveRoleFtPermissionError = () =>
+    action(ActionTypes.SAVE_ROLE_FT_PERMISSION_ERROR);
+//#endregion 

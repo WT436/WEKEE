@@ -170,3 +170,17 @@ WHERE RA.[permissionId] = 2
 ORDER BY R.[UpdatedOnUtc] ASC
 OFFSET((1 - 1) * 20) ROWS                                                                        
   FETCH NEXT 20 ROWS ONLY  
+
+-----------------------------------------------------------------------------------------------------
+SELECT PA.[id]
+      ,PA.[roleId]
+      ,PA.[permissionId]
+      ,PA.[isActive]
+      ,PA.[CreateBy]
+      ,PA.[CreatedOnUtc]
+      ,PA.[UpdatedOnUtc]
+FROM [dbo].[PermissionAssignment] AS PA
+WHERE PA.[roleId] = 3                
+
+-----------------------------------------------------------------------------------------------------
+SELECT *  FROM dbo.[PermissionAssignment] AS R WHERE R.[permissionId] = 2

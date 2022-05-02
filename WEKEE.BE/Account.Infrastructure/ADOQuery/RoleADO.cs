@@ -88,5 +88,12 @@ namespace Account.Infrastructure.ADOQuery
 
             return await unitOfWork.FromSqlAsync<Role>(query.ToString());
         }
+        public async Task<List<PermissionAssignment>> GetPermissionAssignment(int idRole)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine($"SELECT *  FROM dbo.[PermissionAssignment] AS R WHERE R.[roleId] =  {idRole}");
+            return await unitOfWork.FromSqlAsync<PermissionAssignment>(query.ToString());
+        }
+
     }
 }

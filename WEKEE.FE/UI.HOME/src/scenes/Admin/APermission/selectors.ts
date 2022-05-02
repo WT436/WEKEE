@@ -20,6 +20,7 @@ const makeTotalCountResource = () => createSelector(select, substate => substate
 const makeTotalPagesResource = () => createSelector(select, substate => substate.totalPagesResource);
 const makeResourceReads = () => createSelector(select, substate => substate.resourceReads);
 //#endregion
+
 //#region  GETTING ATOMIC
 const makeLoadingAtomic = () => createSelector(select, substate => substate.loadingAllAtomic);
 const makeLoadingTableAtomic = () => createSelector(select, substate => substate.loadingTableAtomic);
@@ -32,6 +33,7 @@ const makeTotalPagesAtomic = () => createSelector(select, substate => substate.t
 const makeAtomicReads = () => createSelector(select, substate => substate.atomicReads);
 const makeAtomicSummaryRead = () => createSelector(select, substate => substate.atomicSummaryRead);
 //#endregion
+
 //#region  GETTING PERMISSION
 const makeLoadingPermission = () => createSelector(select, substate => substate.loadingAllPermission);
 const makeLoadingTablePermission = () => createSelector(select, substate => substate.loadingTablePermission);
@@ -63,6 +65,14 @@ const makeTotalCountRole = () => createSelector(select, substate => substate.tot
 const makeTotalPagesRole = () => createSelector(select, substate => substate.totalPagesRole);
 const makeRoleReads = () => createSelector(select, substate => substate.roleReads);
 const makeroleSummaryRead = () => createSelector(select, substate => substate.roleSummaryRead);
+
+const makeLoadingTableRoleFtPermission = () => createSelector(select, substate => substate.loadingTableRoleFtPermission);
+const makePageIndexRoleFtPermission = () => createSelector(select, substate => substate.pageIndexRoleFtPermission);
+const makePageSizeRoleFtPermission = () => createSelector(select, substate => substate.pageSizeRoleFtPermission);
+const makeTotalCountRoleFtPermission = () => createSelector(select, substate => substate.totalCountRoleFtPermission);
+const makeTotalPagesRoleFtPermission = () => createSelector(select, substate => substate.totalPagesRoleFtPermission);
+const makeroleFtPermissionRead = () => createSelector(select, substate => substate.roleFtPermissionRead);
+
 //#endregion
 
 //#region  GETTING SUBJECT
@@ -87,11 +97,12 @@ export {
     , makeAtomicReads, makeLoadingTableAtomic, makeAtomicSummaryRead
 
     , makeLoadingPermission, makeLoadingButtonPermission, makeCompletedPermission, makePageIndexPermission, makePageSizePermission, makeTotalCountPermission, makeTotalPagesPermission
-    , makePermissionReads, makeLoadingTablePermission, makepermissionSummaryRead,makepermissionFtReourceRead,makeLoadingTablePermissionFtResource
-    ,makePageIndexPermissionFtResource,makePageSizePermissionFtResource,makeTotalCountPermissionFtResource,makeTotalPagesPermissionFtResource
+    , makePermissionReads, makeLoadingTablePermission, makepermissionSummaryRead, makepermissionFtReourceRead, makeLoadingTablePermissionFtResource
+    , makePageIndexPermissionFtResource, makePageSizePermissionFtResource, makeTotalCountPermissionFtResource, makeTotalPagesPermissionFtResource
 
     , makeLoadingRole, makeLoadingButtonRole, makeCompletedRole, makePageIndexRole, makePageSizeRole, makeTotalCountRole, makeTotalPagesRole
-    , makeRoleReads, makeLoadingTableRole, makeroleSummaryRead
+    , makeRoleReads, makeLoadingTableRole, makeroleSummaryRead, makeLoadingTableRoleFtPermission, makePageIndexRoleFtPermission, makePageSizeRoleFtPermission
+    , makeTotalPagesRoleFtPermission, makeTotalCountRoleFtPermission,makeroleFtPermissionRead
 
     , makeLoadingSubject, makeLoadingButtonSubject, makeCompletedSubject, makePageIndexSubject, makePageSizeSubject, makeTotalCountSubject, makeTotalPagesSubject
     , makeSubjectReads, makeLoadingTableSubject

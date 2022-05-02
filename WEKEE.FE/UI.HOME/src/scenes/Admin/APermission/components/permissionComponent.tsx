@@ -520,7 +520,6 @@ export default function PermissionComponent(props: IPermissionComponentProps) {
     const [isModalVisibleMapping, setisModalVisibleMapping] = useState(false);
     const [idPermessionSelect, setidPermessionSelect] = useState(0);
     const _mapPermessionPtResource = (id: number) => {
-        console.log("first", id);
         setisModalVisibleMapping(true);
         setidPermessionSelect(id);
     }

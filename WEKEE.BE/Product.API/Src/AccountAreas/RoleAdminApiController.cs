@@ -68,5 +68,20 @@ namespace Product.API.Src.AccountAreas
         public async Task AdminRole(int param1, int param2)
         {
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AdminRoleFtPermission(SearchOrderPageInput input)
+        {
+            var data = await _adminRole.GetRoleFtPermissionPageList(input: input);
+            return Ok(data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdminRoleFtPermission([FromBody] RoleFtPermissionInsertDto input)
+        {
+            int idAccount = 1;
+            var data = await _adminRole.InsertOrUpdateRoleFtpermission(input: input, idAccount: idAccount);
+            return Ok(data);
+        }
     }
 }
