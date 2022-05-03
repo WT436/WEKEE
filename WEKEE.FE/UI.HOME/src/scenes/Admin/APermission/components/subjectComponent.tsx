@@ -10,7 +10,7 @@ import {
   Select, Switch, Table, Tag, Tooltip,
 } from "antd";
 import {
-  DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, RedoOutlined,
+  DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined, PullRequestOutlined, RedoOutlined,
   RetweetOutlined, SearchOutlined,
 } from "@ant-design/icons";
 import OrderByProperty from "../../../../services/dto/orderByProperty";
@@ -22,8 +22,9 @@ import {
 } from "../actions";
 import ChartComponent from "../../../../components/ChartComponent";
 import utils from "../../../../utils/utils";
-import { makeuserProfile,makeCompletedSubject, makeLoadingButtonSubject, makeLoadingSubject, makeLoadingTableSubject, makePageIndexSubject, makePageSizeSubject, makeSubjectReads, makeTotalCountSubject, makeTotalPagesSubject } from "../selectors";
+import { makeuserProfile, makeCompletedSubject, makeLoadingButtonSubject, makeLoadingSubject, makeLoadingTableSubject, makePageIndexSubject, makePageSizeSubject, makeSubjectReads, makeTotalCountSubject, makeTotalPagesSubject } from "../selectors";
 import { UserProfileCompactReadDto } from "../dto/userProfileCompactReadDto";
+import SubjectFtRoleComponent from "./subjectFtRoleComponent";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -51,7 +52,7 @@ export default function SubjectComponent(props: ISubjectComponentProps) {
   //#region START
   const dispatch = useDispatch();
 
-  const { userProfile,loadingAll, loadingTable, loadingButton, completedAll, pageSize, totalCount, pageIndex, subjectData,
+  const { userProfile, loadingAll, loadingTable, loadingButton, completedAll, pageSize, totalCount, pageIndex, subjectData,
   } = useSelector(stateSelector);
 
   useEffect(() => {
@@ -315,6 +316,14 @@ export default function SubjectComponent(props: ISubjectComponentProps) {
               }}
             ></Button>
           </Tooltip>
+          <Tooltip title={L("MAP", "COMMON")}>
+            <Button
+              type="link"
+              disabled={!text.isActive}
+              icon={<PullRequestOutlined />}
+              onClick={() => _mapPermessionPtRole(text.id)}
+            ></Button>
+          </Tooltip>
         </div>
       ),
     },
@@ -488,7 +497,14 @@ export default function SubjectComponent(props: ISubjectComponentProps) {
   };
 
   //#endregion
-
+  //#region  SHOW EDIT MAPPING
+  const [isModalVisibleMapping, setisModalVisibleMapping] = useState(false);
+  const [idPermessionSelect, setidPermessionSelect] = useState(0);
+  const _mapPermessionPtRole = (id: number) => {
+    setisModalVisibleMapping(true);
+    setidPermessionSelect(id);
+  }
+  //#endregion
   return (
     <>
       {renderData()}
@@ -764,6 +780,20 @@ export default function SubjectComponent(props: ISubjectComponentProps) {
           </Form.Item>
         </Form>
       </Modal>
+      <Modal
+        title={<>{L("EDIT_PERMISSION_FT_RESOURCE", "CONST_TYPE_PERMISSION")}</>}
+        visible={isModalVisibleMapping}
+        footer={null}
+        className="modalMapPermission"
+        style={{ width: '70%' }}
+        onCancel={() => {
+          setisModalVisibleMapping(false);
+          setidPermessionSelect(0);
+        }}
+        maskClosable={false}
+      >
+        <SubjectFtRoleComponent idPermission={idPermessionSelect} />
+      </Modal>s
     </>
   )
 }

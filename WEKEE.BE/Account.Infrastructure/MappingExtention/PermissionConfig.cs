@@ -42,6 +42,10 @@ namespace Account.Infrastructure.MappingExtention
             cfg.CreateMap<PermissionReadDto, PermissionFtRoleReadDto>();
             cfg.CreateMap<PermissionFtRoleReadDto, PermissionReadDto>();
             #endregion
+            #region RoleReadDto <=> Role
+            cfg.CreateMap<SubjectFtRoleReadDto, RoleReadDto>();
+            cfg.CreateMap<RoleReadDto, SubjectFtRoleReadDto>(); 
+            #endregion
         }
     }
 }

@@ -19,6 +19,8 @@ import { RoleFtPermissionReadDto } from './dto/roleFtPermissionReadDto';
 import { RoleLstChangeDto } from './dto/roleLstChangeDto';
 import { RoleReadDto } from './dto/roleReadDto';
 import { RoleSummaryReadDto } from './dto/roleSummaryReadDto';
+import { SubjectFtRoleInsertDto } from './dto/subjectFtRoleInsertDto';
+import { SubjectFtRoleReadDto } from './dto/subjectFtRoleReadDto';
 import { SubjectLstChangeDto } from './dto/subjectLstChangeDto';
 import { SubjectReadDto } from './dto/subjectReadDto';
 import { UserProfileCompactReadDto } from './dto/userProfileCompactReadDto';
@@ -237,6 +239,7 @@ export const savePermissionFtResourceCompleted = (output: number) =>
 export const savePermissionFtResourceError = () =>
     action(ActionTypes.SAVE_PERMISSION_FT_RESOURCE_ERROR);
 //#endregion 
+
 //#region ROLE_FT_PERMISSION
 export const roleFtPermissionStart = (input: SearchOrderPageInput) =>
     action(ActionTypes.ROLE_FT_PERMISSION_START, input);
@@ -245,7 +248,6 @@ export const roleFtPermissionCompleted = (output: PagedListOutput<RoleFtPermissi
 export const roleFtPermissionError = () =>
     action(ActionTypes.ROLE_FT_PERMISSION_ERROR);
 //#endregion 
-
 //#region SAVE_ROLE_FT_PERMISSION
 export const saveRoleFtPermissionStart = (input: RoleFtPermissionInsertDto) =>
     action(ActionTypes.SAVE_ROLE_FT_PERMISSION_START, input);
@@ -253,4 +255,21 @@ export const saveRoleFtPermissionCompleted = (output: number) =>
     action(ActionTypes.SAVE_ROLE_FT_PERMISSION_COMPLETED, output);
 export const saveRoleFtPermissionError = () =>
     action(ActionTypes.SAVE_ROLE_FT_PERMISSION_ERROR);
+//#endregion 
+
+//#region SUBJECT_FT_ROLE
+export const subjectFtRoleStart = (input: SearchOrderPageInput) =>
+    action(ActionTypes.SUBJECT_FT_ROLE_START, input);
+export const subjectFtRoleCompleted = (output: PagedListOutput<SubjectFtRoleReadDto>) =>
+    action(ActionTypes.SUBJECT_FT_ROLE_COMPLETED, output);
+export const subjectFtRoleError = () =>
+    action(ActionTypes.SUBJECT_FT_ROLE_ERROR);
+//#endregion 
+//#region SAVE_SUBJECT_FT_ROLE
+export const saveSubjectFtRoleStart = (input: SubjectFtRoleInsertDto) =>
+    action(ActionTypes.SAVE_SUBJECT_FT_ROLE_START, input);
+export const saveSubjectFtRoleCompleted = (output: number) =>
+    action(ActionTypes.SAVE_SUBJECT_FT_ROLE_COMPLETED, output);
+export const saveSubjectFtRoleError = () =>
+    action(ActionTypes.SAVE_SUBJECT_FT_ROLE_ERROR);
 //#endregion 

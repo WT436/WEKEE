@@ -79,6 +79,12 @@ export const initialState: APermissionState = {
     totalCountSubject: 0,
     totalPagesSubject: 0,
     subjectReads: [],
+
+    subjectFtRoleRead: [],
+    pageIndexSubjectFtRole: 0,
+    pageSizeSubjectFtRole: 0,
+    totalCountSubjectFtRole: 0,
+    totalPagesSubjectFtRole: 0
     //#endregion
 };
 
@@ -781,6 +787,50 @@ function aPermissionReducer(
             };
 
         case ActionTypes.SAVE_ROLE_FT_PERMISSION_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+
+        //#region SUBJECT_FT_ROLE_START
+        case ActionTypes.SUBJECT_FT_ROLE_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SUBJECT_FT_ROLE_COMPLETED:
+            return {
+                ...state,
+                subjectFtRoleRead: action.payload.items,
+                pageIndexSubjectFtRole: action.payload.pageIndex,
+                pageSizeSubjectFtRole: action.payload.pageSize,
+                totalCountSubjectFtRole: action.payload.totalCount,
+                totalPagesSubjectFtRole: action.payload.totalPages,
+            };
+
+        case ActionTypes.SUBJECT_FT_ROLE_ERROR:
+            return {
+                ...state,
+            };
+        //#endregion
+        //#region SAVE_SUBJECT_FT_ROLE_START
+        case ActionTypes.SAVE_SUBJECT_FT_ROLE_START:
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SAVE_SUBJECT_FT_ROLE_COMPLETED:
+            console.log(action.payload)
+            notification.success({
+                message: "SUCCESS",
+                description: L("NUMBER_EDIT_SUCCESS", 'COMMON') + action.payload + L("PLEASE_RESTART_DATA", 'COMMON'),
+                placement: "bottomRight",
+            });
+            return {
+                ...state,
+            };
+
+        case ActionTypes.SAVE_SUBJECT_FT_ROLE_ERROR:
             return {
                 ...state,
             };

@@ -1,7 +1,7 @@
 import { call, put, takeLatest, race } from 'redux-saga/effects';
 import ActionTypes from './constants';
 import http from '../../../services/httpService';
-import { deleteAtomicCompleted, deleteAtomicError, deletePermissionCompleted, deletePermissionError, deleteResourceCompleted, deleteResourceError, deleteRoleCompleted, deleteRoleError, deleteSubjectCompleted, deleteSubjectError, editStatusAtomicCompleted, editStatusAtomicError, editStatusPermissionCompleted, editStatusPermissionError, editStatusResourceCompleted, editStatusResourceError, editStatusRoleCompleted, editStatusRoleError, editStatusSubjectCompleted, editStatusSubjectError, getAtomicCompleted, getAtomicError, getPermissionCompleted, getPermissionError, getResourceCompleted, getResourceError, getRoleCompleted, getRoleError, getSubjectCompleted, getSubjectError, getUserProfileCompleted, getUserProfileError, insertOrUpdateAtomicCompleted, insertOrUpdateAtomicError, insertOrUpdatePermissionCompleted, insertOrUpdatePermissionError, insertOrUpdateResourceCompleted, insertOrUpdateResourceError, insertOrUpdateRoleCompleted, insertOrUpdateRoleError, insertOrUpdateSubjectCompleted, insertOrUpdateSubjectError, permessionFtResourceCompleted, permessionFtResourceError, roleFtPermissionCompleted, roleFtPermissionError, savePermissionFtResourceCompleted, savePermissionFtResourceError, saveRoleFtPermissionCompleted, saveRoleFtPermissionError, searchSummaryPermissionCompleted, searchSummaryPermissionError, searchSummaryRoleCompleted, searchSummaryRoleError, summaryAtomicCompleted, summaryAtomicError } from './actions';
+import { deleteAtomicCompleted, deleteAtomicError, deletePermissionCompleted, deletePermissionError, deleteResourceCompleted, deleteResourceError, deleteRoleCompleted, deleteRoleError, deleteSubjectCompleted, deleteSubjectError, editStatusAtomicCompleted, editStatusAtomicError, editStatusPermissionCompleted, editStatusPermissionError, editStatusResourceCompleted, editStatusResourceError, editStatusRoleCompleted, editStatusRoleError, editStatusSubjectCompleted, editStatusSubjectError, getAtomicCompleted, getAtomicError, getPermissionCompleted, getPermissionError, getResourceCompleted, getResourceError, getRoleCompleted, getRoleError, getSubjectCompleted, getSubjectError, getUserProfileCompleted, getUserProfileError, insertOrUpdateAtomicCompleted, insertOrUpdateAtomicError, insertOrUpdatePermissionCompleted, insertOrUpdatePermissionError, insertOrUpdateResourceCompleted, insertOrUpdateResourceError, insertOrUpdateRoleCompleted, insertOrUpdateRoleError, insertOrUpdateSubjectCompleted, insertOrUpdateSubjectError, permessionFtResourceCompleted, permessionFtResourceError, roleFtPermissionCompleted, roleFtPermissionError, savePermissionFtResourceCompleted, savePermissionFtResourceError, saveRoleFtPermissionCompleted, saveRoleFtPermissionError, saveSubjectFtRoleCompleted, saveSubjectFtRoleError, searchSummaryPermissionCompleted, searchSummaryPermissionError, searchSummaryRoleCompleted, searchSummaryRoleError, subjectFtRoleCompleted, subjectFtRoleError, summaryAtomicCompleted, summaryAtomicError } from './actions';
 import { PagedListOutput } from '../../../services/dto/pagedListOutput';
 import { ResourceReadDto } from './dto/resourceReadDto';
 import { ResourceLstChangeDto } from './dto/resourceLstChangeDto';
@@ -21,6 +21,7 @@ import { UserProfileCompactReadDto } from './dto/userProfileCompactReadDto';
 import { PermissionFtReourceReadDto } from './dto/permissionFtReourceReadDto';
 import { FtPermissionReadDto } from './dto/ftPermissionReadDto';
 import { RoleFtPermissionReadDto } from './dto/roleFtPermissionReadDto';
+import { SubjectFtRoleReadDto } from './dto/subjectFtRoleReadDto';
 
 export default function* CallApiService() {
     //#region GET_USER_PROFILE
@@ -643,6 +644,51 @@ export default function* CallApiService() {
                 }
             } catch (error) {
                 yield put(saveRoleFtPermissionError());
+            }
+        });
+    //#endregion
+
+     //#region SUBJECT_FT_ROLE
+     yield takeLatest(
+        ActionTypes.SUBJECT_FT_ROLE_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (): Promise<PagedListOutput<SubjectFtRoleReadDto>> => {
+                        let rs = await http.get('/SubjectAdminApi/AdminRoleFtSubject', { params: input.payload });
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(subjectFtRoleCompleted(output));
+                }
+                else {
+                    yield put(subjectFtRoleError());
+                }
+            } catch (error) {
+                yield put(subjectFtRoleError());
+            }
+        });
+    //#endregion
+    //#region SAVE_PERMISSION_FT_RESOURCE
+    yield takeLatest(
+        ActionTypes.SAVE_SUBJECT_FT_ROLE_START,
+        function* (input: any) {
+            try {
+                const { output } = yield race({
+                    output: call(async (): Promise<number> => {
+                        let rs = await http.post('/SubjectAdminApi/AdminRoleFtSubject', input.payload);
+                        return rs ? rs.data : rs;
+                    })
+                });
+                if (output) {
+                    yield put(saveSubjectFtRoleCompleted(output));
+                }
+                else {
+                    yield put(saveSubjectFtRoleError());
+                }
+            } catch (error) {
+                yield put(saveSubjectFtRoleError());
             }
         });
     //#endregion

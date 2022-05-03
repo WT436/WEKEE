@@ -3,7 +3,9 @@ using Account.Domain.Aggregate;
 using Account.Domain.ObjectValues.ConstProperty;
 using Account.Domain.ObjectValues.Input;
 using Account.Domain.ObjectValues.Output;
+using Account.Domain.Shared.DataTransfer.RoleDTO;
 using Account.Domain.Shared.DataTransfer.SubjectDTO;
+using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.ADOQuery;
 using Account.Infrastructure.EDMQuery;
 using Account.Infrastructure.MappingExtention;
@@ -20,6 +22,9 @@ namespace Account.Application.Service
     {
         private readonly SubjectADO _SubjectADO = new SubjectADO();
         private readonly SubjectEDM _SubjectEDM = new SubjectEDM();
+        private readonly RoleADO _roleADO = new RoleADO();
+        private readonly RoleEDM _roleEDM = new RoleEDM();
+
 
         public async Task<int> DeleteSubject(List<int> ids)
         {
@@ -43,6 +48,7 @@ namespace Account.Application.Service
                 return 0;
             }
         }
+
 
         public async Task<PagedListOutput<SubjectReadDto>> GetSubjectPageList(SearchOrderPageInput input)
         {
@@ -78,6 +84,86 @@ namespace Account.Application.Service
             else
             {
                 throw new ClientException(404, "");
+            }
+        }
+
+        public async Task<PagedListOutput<SubjectFtRoleReadDto>> GetSubjectFtRolePageList(SearchOrderPageInput input)
+        {
+            int idSubject = Convert.ToInt32(input.ValuesSearch[0]);
+            input.PropertySearch = null;
+            input.ValuesSearch = null;
+            // data Role
+            var data = await _roleADO.GetAllPageLstExactNotFTS(input);
+            var count = (await _roleADO.GetCountForGetAllPageLst(input)).FirstOrDefault().TotalCount;
+            // get SubjectFtRole
+            var dataRoleFtResource = await _SubjectADO.GetSubjectAssignmentByIdSubject(idSubject);
+
+            var result = data.Select(m =>
+            {
+                var item = MappingData.InitializeAutomapper().Map<SubjectFtRoleReadDto>(m);
+                item.IsGranted = dataRoleFtResource.Any(n => n.RoleId == m.Id && n.IsActive == true);
+                return item;
+            }).ToList();
+
+            return new PagedListOutput<SubjectFtRoleReadDto>
+            {
+                Items = result,
+                PageIndex = input.PageIndex,
+                PageSize = input.PageSize,
+                TotalPages = (count / input.PageSize),
+                TotalCount = count
+            };
+        }
+
+        public async Task<int> InsertOrUpdateSubjectFtRole(SubjectFtRoleInsertDto input, int idAccount)
+        {
+            // check id subject
+            var isAnyPermission = await _SubjectEDM.CheckAnyId(input.Id);
+            // check full id resource
+            var isAnyResources = await _roleEDM.CheckAnyId(input.RoleId);
+            if (isAnyPermission && isAnyResources)
+            {
+                // check exsist in table resourceAssement
+                var dataByIdPermission = await _SubjectADO.GetSubjectAssignmentByIdSubject(input.Id);
+                List<SubjectAssignment> DataInsert = new List<SubjectAssignment>();
+                List<SubjectAssignment> DataUpdate = new List<SubjectAssignment>();
+                // chuyển tất cả quyền thành false
+                dataByIdPermission = dataByIdPermission.Select(m => { m.IsActive = false; return m; }).ToList();
+                // lọc quyền
+                input.RoleId.ForEach(m =>
+                {
+                    //load item resource data
+                    var data = dataByIdPermission.FirstOrDefault(n => n.RoleId == m);
+                    if (data != null)// data  tonf taij
+                    {
+                        data.IsActive = true;
+                        data.CreateBy = idAccount;
+                        data.UpdatedOnUtc = DateTime.Now;
+                        DataUpdate.Add(data);
+                    }
+                    else // data ko tồn tại
+                    {
+                        DataInsert.Add(new SubjectAssignment
+                        {
+                            SubjectId = m,
+                            RoleId = input.Id,
+                            IsActive = true,
+                            CreateBy = idAccount
+                        });
+                    }
+                    dataByIdPermission.Remove(data);
+                });
+
+                if (dataByIdPermission.Count() > 0)
+                {
+                    DataUpdate.AddRange(dataByIdPermission);
+                }
+                return (await _SubjectEDM.InsertSubjectAssignment(DataInsert))
+                + (await _SubjectEDM.UpdateSubjectAssignment(DataUpdate));
+            }
+            else
+            {
+                throw new ClientException(404, "DATA_ERROR_USER");
             }
         }
     }

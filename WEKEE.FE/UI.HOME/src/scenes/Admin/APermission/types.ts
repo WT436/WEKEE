@@ -10,6 +10,7 @@ import { ResourceReadDto } from './dto/resourceReadDto';
 import { RoleFtPermissionReadDto } from './dto/roleFtPermissionReadDto';
 import { RoleReadDto } from './dto/roleReadDto';
 import { RoleSummaryReadDto } from './dto/roleSummaryReadDto';
+import { SubjectFtRoleReadDto } from './dto/subjectFtRoleReadDto';
 import { SubjectReadDto } from './dto/subjectReadDto';
 import { UserProfileCompactReadDto } from './dto/userProfileCompactReadDto';
 
@@ -92,6 +93,12 @@ export interface APermissionState { // day
     readonly totalCountSubject: number;
     readonly totalPagesSubject: number;
     readonly subjectReads: SubjectReadDto[];
+    
+    readonly subjectFtRoleRead : SubjectFtRoleReadDto[];
+    readonly pageIndexSubjectFtRole: number;
+    readonly pageSizeSubjectFtRole: number;
+    readonly totalCountSubjectFtRole: number;
+    readonly totalPagesSubjectFtRole: number;
     //#endregion
 
 }

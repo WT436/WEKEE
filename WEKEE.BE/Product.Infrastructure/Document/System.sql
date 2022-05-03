@@ -28,3 +28,24 @@ CREATE TABLE [dbo].[Download](
 	[Extension] [nvarchar](max) NULL,
 	[IsNew] [bit] NOT NULL
 )
+GO
+CREATE TABLE [dbo].[CategoryTemplate](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](400) NOT NULL,
+	[ViewPath] [nvarchar](400) NOT NULL,
+	[DisplayOrder] [int] NOT NULL
+)
+GO
+
+CREATE TABLE [dbo].[EasyPostBatch](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[BatchId] [nvarchar](max) NULL,
+	[BatchGuid] [uniqueidentifier] NOT NULL,
+	[StatusId] [int] NOT NULL,
+	[LabelFormat] [nvarchar](max) NULL,
+	[ManifestUrl] [nvarchar](max) NULL,
+	[ShipmentIds] [nvarchar](max) NULL,
+	[PickupId] [nvarchar](max) NULL,
+	[UpdatedOnUtc] [datetime2](7) NOT NULL,
+	[CreatedOnUtc] [datetime2](7) NOT NULL
+)

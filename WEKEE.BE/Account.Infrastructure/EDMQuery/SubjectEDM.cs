@@ -60,5 +60,20 @@ namespace Account.Infrastructure.EDMQuery
                 return 0;
             }
         }
+
+        public async Task<bool> CheckAnyId(int id)
+         => await unitOfWork.GetRepository<Subject>().ExistsAsync(m => m.Id == id && m.IsActive == true);
+
+        public async Task<int> InsertSubjectAssignment(List<SubjectAssignment> input)
+        {
+            unitOfWork.GetRepository<SubjectAssignment>().Insert(input);
+            return unitOfWork.SaveChanges();
+        }
+
+        public async Task<int> UpdateSubjectAssignment(List<SubjectAssignment> inputs)
+        {
+            unitOfWork.GetRepository<SubjectAssignment>().Update(inputs);
+            return unitOfWork.SaveChanges();
+        }
     }
 }

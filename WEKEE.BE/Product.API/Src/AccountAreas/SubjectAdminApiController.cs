@@ -61,5 +61,20 @@ namespace Product.API.Src.AccountAreas
         public async Task AdminSubject(int param1, int param2)
         {
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AdminRoleFtSubject(SearchOrderPageInput input)
+        {
+            var data = await _adminSubject.GetSubjectFtRolePageList(input: input);
+            return Ok(data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdminRoleFtSubject([FromBody] SubjectFtRoleInsertDto input)
+        {
+            int idAccount = 1;
+            var data = await _adminSubject.InsertOrUpdateSubjectFtRole(input: input, idAccount: idAccount);
+            return Ok(data);
+        }
     }
 }

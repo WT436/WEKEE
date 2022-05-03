@@ -80,5 +80,11 @@ namespace Account.Infrastructure.ADOQuery
 
             return await unitOfWork.FromSqlAsync<Subject>(query.ToString());
         }
+        public async Task<List<SubjectAssignment>> GetSubjectAssignmentByIdSubject(int idSubject)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine($" SELECT *  FROM dbo.[SubjectAssignment] AS R WHERE R.[subjectId] = {idSubject}");
+            return await unitOfWork.FromSqlAsync<SubjectAssignment>(query.ToString());
+        }
     }
 }

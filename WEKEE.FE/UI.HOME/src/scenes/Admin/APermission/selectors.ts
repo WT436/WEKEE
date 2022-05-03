@@ -85,6 +85,13 @@ const makePageSizeSubject = () => createSelector(select, substate => substate.pa
 const makeTotalCountSubject = () => createSelector(select, substate => substate.totalCountSubject);
 const makeTotalPagesSubject = () => createSelector(select, substate => substate.totalPagesSubject);
 const makeSubjectReads = () => createSelector(select, substate => substate.subjectReads);
+
+const makesubjectFtRoleRead = () => createSelector(select, substate => substate.subjectFtRoleRead);
+const makePageIndexSubjectFtRole = () => createSelector(select, substate => substate.pageIndexSubjectFtRole);
+const makePageSizeSubjectFtRole = () => createSelector(select, substate => substate.pageSizeSubjectFtRole);
+const makeTotalCountSubjectFtRole = () => createSelector(select, substate => substate.totalCountSubjectFtRole);
+const makeTotalPagesSubjectFtRole = () => createSelector(select, substate => substate.totalPagesSubjectFtRole);
+
 //#endregion
 
 export {
@@ -105,5 +112,5 @@ export {
     , makeTotalPagesRoleFtPermission, makeTotalCountRoleFtPermission,makeroleFtPermissionRead
 
     , makeLoadingSubject, makeLoadingButtonSubject, makeCompletedSubject, makePageIndexSubject, makePageSizeSubject, makeTotalCountSubject, makeTotalPagesSubject
-    , makeSubjectReads, makeLoadingTableSubject
+    , makeSubjectReads, makeLoadingTableSubject,makesubjectFtRoleRead,makePageIndexSubjectFtRole,makePageSizeSubjectFtRole,makeTotalCountSubjectFtRole,makeTotalPagesSubjectFtRole
 };

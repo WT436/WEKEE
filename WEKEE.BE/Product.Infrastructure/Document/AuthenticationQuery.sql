@@ -183,4 +183,7 @@ FROM [dbo].[PermissionAssignment] AS PA
 WHERE PA.[roleId] = 3                
 
 -----------------------------------------------------------------------------------------------------
-SELECT *  FROM dbo.[PermissionAssignment] AS R WHERE R.[permissionId] = 2
+SELECT *  FROM dbo.[PermissionAssignment] AS R WHERE R.[roleId] = 1
+-----------------------------------------------------------------------------------------------------
+SELECT *  FROM dbo.[SubjectAssignment] AS R WHERE R.[subjectId] = 1
+SELECT *  FROM dbo.[SubjectAssignment] AS R WHERE R.[subjectId] = 3
