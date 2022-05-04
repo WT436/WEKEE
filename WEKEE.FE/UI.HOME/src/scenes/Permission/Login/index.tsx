@@ -37,7 +37,7 @@ export default function Login(props: ILoginProps) {
                         {{
                             '/login': <LoginComponent />,
                             '/forgot-password': <ForgotPasswordComponent />,
-                            '/register-an-account': <RegistrationComponent />,
+                            '/register-account': <RegistrationComponent />,
                             '/change-the-password': <ChangePasswordComponent />,
                             _: <LoginComponent />
                         }[status]}

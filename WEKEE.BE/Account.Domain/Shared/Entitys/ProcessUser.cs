@@ -9,6 +9,7 @@ namespace Account.Domain.Shared.Entitys
     {
         public int Id { get; set; }
         public string Description { get; set; }
+        public string ReminderToken { get; set; }
         public string IpUser { get; set; }
         public bool IsStatus { get; set; }
         public string Device { get; set; }

@@ -11,28 +11,7 @@ export const initialState: LoginState = {
 
 function loginReducer(state: LoginState = initialState, action: LoginActions) {
   switch (action.type) {
-    // OPEN PAGE
-    case ActionTypes.LOGIN_SHOW_START:
-      return {
-        ...state,
-        loading: false,
-      };
-
-    case ActionTypes.LOGIN_SHOW_COMPLETED:
-      return {
-        ...state,
-        loading: false,
-        completed: true,
-      };
-
-    case ActionTypes.LOGIN_SHOW_ERROR:
-      return {
-        ...state,
-        loading: false,
-      };
-
     // CLICK LOGIN
-
     case ActionTypes.LOGIN_REQUEST_LOGIN_START:
       return {
         ...state,
@@ -44,10 +23,10 @@ function loginReducer(state: LoginState = initialState, action: LoginActions) {
       abp.auth.setRoles(action.payload.roles, undefined);
       abp.auth.setInfo(
         action.payload.fullName +
-          "id:" +
-          action.payload.id +
-          " | " +
-          action.payload.picture,
+        "id:" +
+        action.payload.id +
+        " | " +
+        action.payload.picture,
         undefined
       );
       abp.session.userId = action.payload.id;
@@ -69,6 +48,38 @@ function loginReducer(state: LoginState = initialState, action: LoginActions) {
         loading: false,
       };
 
+    //#region REGISTRATION_ACCOUNT_BASIC_START
+    case ActionTypes.REGISTRATION_ACCOUNT_BASIC_START:
+      if (action.payload) {
+        setTimeout(function () {
+          notification.success({
+            message: "Thành Công",
+            description: "Vui lòng đăng nhập tài khoản!",
+            placement: "bottomRight",
+          });
+        }, 5000);
+      }
+      else {
+        notification.warning({
+          message: "Thất bại",
+          description: "Tạo tài khoản thất bại!",
+          placement: "bottomRight",
+        });
+      }
+      return {
+        ...state,
+      };
+
+    case ActionTypes.REGISTRATION_ACCOUNT_BASIC_COMPLETED:
+      return {
+        ...state,
+      };
+
+    case ActionTypes.REGISTRATION_ACCOUNT_BASIC_ERROR:
+      return {
+        ...state,
+      };
+    //#endregion
     default:
       return state;
   }

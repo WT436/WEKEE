@@ -60,15 +60,15 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.AdressLine1)
                     .IsRequired()
-                    .HasMaxLength(256)
+                    .HasMaxLength(500)
                     .HasColumnName("adressLine1");
 
                 entity.Property(e => e.AdressLine2)
-                    .HasMaxLength(256)
+                    .HasMaxLength(500)
                     .HasColumnName("adressLine2");
 
                 entity.Property(e => e.AdressLine3)
-                    .HasMaxLength(256)
+                    .HasMaxLength(500)
                     .HasColumnName("adressLine3");
 
                 entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
@@ -88,7 +88,7 @@ namespace Account.Infrastructure.DBContext
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Addresses)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__Address__account__5070F446");
+                    .HasConstraintName("FK__Address__account__52593CB8");
             });
 
             modelBuilder.Entity<Atomic>(entity =>
@@ -242,7 +242,7 @@ namespace Account.Infrastructure.DBContext
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.InfomationUsers)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__Infomatio__accou__5812160E");
+                    .HasConstraintName("FK__Infomatio__accou__59FA5E80");
             });
 
             modelBuilder.Entity<Permission>(entity =>
@@ -278,13 +278,12 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.Permissions)
                     .HasForeignKey(d => d.AtomicId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Permissio__Atomi__17036CC0");
+                    .HasConstraintName("FK__Permissio__Atomi__18EBB532");
 
                 entity.HasOne(d => d.PermissionNavigation)
                     .WithMany(p => p.InversePermissionNavigation)
                     .HasForeignKey(d => d.PermissionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Permissio__permi__19DFD96B");
+                    .HasConstraintName("FK__Permissio__permi__1BC821DD");
             });
 
             modelBuilder.Entity<PermissionAssignment>(entity =>
@@ -310,13 +309,13 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.PermissionAssignments)
                     .HasForeignKey(d => d.PermissionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Permissio__permi__2180FB33");
+                    .HasConstraintName("FK__Permissio__permi__236943A5");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.PermissionAssignments)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Permissio__roleI__208CD6FA");
+                    .HasConstraintName("FK__Permissio__roleI__22751F6C");
             });
 
             modelBuilder.Entity<ProcessUser>(entity =>
@@ -346,12 +345,14 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.IsStatus).HasColumnName("isStatus");
 
+                entity.Property(e => e.ReminderToken).HasColumnName("reminderToken");
+
                 entity.Property(e => e.UpdatedOnUtc).HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.ProcessUsers)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__ProcessUs__accou__5EBF139D");
+                    .HasConstraintName("FK__ProcessUs__accou__60A75C0F");
             });
 
             modelBuilder.Entity<ReourceAssignment>(entity =>
@@ -377,20 +378,20 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.ReourceAssignments)
                     .HasForeignKey(d => d.PermissionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ReourceAs__permi__29221CFB");
+                    .HasConstraintName("FK__ReourceAs__permi__2B0A656D");
 
                 entity.HasOne(d => d.Resource)
                     .WithMany(p => p.ReourceAssignments)
                     .HasForeignKey(d => d.ResourceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ReourceAs__resou__282DF8C2");
+                    .HasConstraintName("FK__ReourceAs__resou__2A164134");
             });
 
             modelBuilder.Entity<Resource>(entity =>
             {
                 entity.ToTable("Resource");
 
-                entity.HasIndex(e => e.Name, "UQ__Resource__72E12F1B4FE40F47")
+                entity.HasIndex(e => e.Name, "UQ__Resource__72E12F1B9019D320")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -451,7 +452,7 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.InverseRoleManage)
                     .HasForeignKey(d => d.RoleManageId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Role__roleManage__7B5B524B");
+                    .HasConstraintName("FK__Role__roleManage__7D439ABD");
             });
 
             modelBuilder.Entity<Subject>(entity =>
@@ -476,13 +477,13 @@ namespace Account.Infrastructure.DBContext
                 entity.HasOne(d => d.Gorup)
                     .WithMany(p => p.Subjects)
                     .HasForeignKey(d => d.GorupId)
-                    .HasConstraintName("FK__Subject__gorupId__6C190EBB");
+                    .HasConstraintName("FK__Subject__gorupId__6E01572D");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Subjects)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Subject__userId__6B24EA82");
+                    .HasConstraintName("FK__Subject__userId__6D0D32F4");
             });
 
             modelBuilder.Entity<SubjectAssignment>(entity =>
@@ -508,13 +509,13 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.SubjectAssignments)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__SubjectAs__roleI__02FC7413");
+                    .HasConstraintName("FK__SubjectAs__roleI__04E4BC85");
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.SubjectAssignments)
                     .HasForeignKey(d => d.SubjectId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__SubjectAs__subje__03F0984C");
+                    .HasConstraintName("FK__SubjectAs__subje__05D8E0BE");
             });
 
             modelBuilder.Entity<SubjectGroup>(entity =>
@@ -540,13 +541,13 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.SubjectGroups)
                     .HasForeignKey(d => d.GorupId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__SubjectGr__gorup__72C60C4A");
+                    .HasConstraintName("FK__SubjectGr__gorup__74AE54BC");
 
                 entity.HasOne(d => d.Subject)
                     .WithMany(p => p.SubjectGroups)
                     .HasForeignKey(d => d.SubjectId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__SubjectGr__subje__73BA3083");
+                    .HasConstraintName("FK__SubjectGr__subje__75A278F5");
             });
 
             modelBuilder.Entity<UserIp>(entity =>
@@ -558,19 +559,16 @@ namespace Account.Infrastructure.DBContext
                 entity.Property(e => e.AccountId).HasColumnName("accountId");
 
                 entity.Property(e => e.City)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("city");
 
                 entity.Property(e => e.CountryCode)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("countryCode");
 
                 entity.Property(e => e.CountryName)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("countryName");
@@ -578,14 +576,12 @@ namespace Account.Infrastructure.DBContext
                 entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Ipv4)
-                    .IsRequired()
-                    .HasMaxLength(20)
+                    .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("ipv4");
 
                 entity.Property(e => e.Ipv6)
-                    .IsRequired()
-                    .HasMaxLength(20)
+                    .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("ipv6");
 
@@ -594,25 +590,21 @@ namespace Account.Infrastructure.DBContext
                 entity.Property(e => e.IsDelete).HasColumnName("isDelete");
 
                 entity.Property(e => e.Latitude)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("latitude");
 
                 entity.Property(e => e.Longitude)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("longitude");
 
                 entity.Property(e => e.Postal)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("postal");
 
                 entity.Property(e => e.State)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("state");
@@ -629,16 +621,14 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.UserIps)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserIp__accountI__46E78A0C");
+                    .HasConstraintName("FK__UserIp__accountI__48CFD27E");
             });
 
             modelBuilder.Entity<UserPassword>(entity =>
             {
                 entity.ToTable("UserPassword");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
 
@@ -667,17 +657,17 @@ namespace Account.Infrastructure.DBContext
                     .WithMany(p => p.UserPasswords)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPassw__Accou__3F466844");
+                    .HasConstraintName("FK__UserPassw__Accou__412EB0B6");
             });
 
             modelBuilder.Entity<UserProfile>(entity =>
             {
                 entity.ToTable("UserProfile");
 
-                entity.HasIndex(e => e.UserName, "UQ__UserProf__66DCF95C0ED86600")
+                entity.HasIndex(e => e.UserName, "UQ__UserProf__66DCF95CF4C2FE30")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Email, "UQ__UserProf__AB6E6164660272BA")
+                entity.HasIndex(e => e.Email, "UQ__UserProf__AB6E6164077ECA95")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -685,7 +675,6 @@ namespace Account.Infrastructure.DBContext
                 entity.Property(e => e.CreatedOnUtc).HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Email)
-                    .IsRequired()
                     .HasMaxLength(254)
                     .IsUnicode(false)
                     .HasColumnName("email");
@@ -702,6 +691,13 @@ namespace Account.Infrastructure.DBContext
 
                 entity.Property(e => e.IsAcceptTerm).HasColumnName("is_accept_term");
 
+                entity.Property(e => e.IsActive)
+                    .IsRequired()
+                    .HasColumnName("isActive")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.IsDelete).HasColumnName("isDelete");
+
                 entity.Property(e => e.IsOnline)
                     .IsRequired()
                     .HasColumnName("isOnline")
@@ -716,7 +712,6 @@ namespace Account.Infrastructure.DBContext
                 entity.Property(e => e.LoginFallNumber).HasColumnName("loginFallNumber");
 
                 entity.Property(e => e.NumberPhone)
-                    .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasColumnName("numberPhone");
@@ -775,7 +770,7 @@ namespace Account.Infrastructure.DBContext
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.UserStatuses)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK__UserStatu__accou__36B12243");
+                    .HasConstraintName("FK__UserStatu__accou__38996AB5");
             });
 
             OnModelCreatingPartial(modelBuilder);

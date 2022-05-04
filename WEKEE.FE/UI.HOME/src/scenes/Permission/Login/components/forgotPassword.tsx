@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { AuthenticationInput } from '../dtos/authenticationInput';
 import { makeSelectLoading } from '../selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequestLoginStart, loginShowStart } from '../actions';
+import { loginRequestLoginStart } from '../actions';
 
 declare var abp: any;
 
@@ -25,10 +25,6 @@ export default function ForgotPasswordComponent(props: IForgotPasswordFormProps)
     const {
         loading
     } = useSelector(stateSelector);
-
-    useEffect(() => {
-        dispatch(loginShowStart());
-    }, []);
 
     const onFinish = (values: AuthenticationInput) => {
         dispatch(loginRequestLoginStart(values));

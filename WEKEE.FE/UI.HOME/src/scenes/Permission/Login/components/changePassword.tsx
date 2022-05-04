@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { AuthenticationInput } from '../dtos/authenticationInput';
 import { makeSelectLoading } from '../selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequestLoginStart, loginShowStart } from '../actions';
+import { loginRequestLoginStart } from '../actions';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 const key = 'login';
@@ -23,10 +23,6 @@ export default function ChangePasswordComponent(props: IChangePasswordFormProps)
     const {
         loading
     } = useSelector(stateSelector);
-
-    useEffect(() => {
-        dispatch(loginShowStart());
-    }, []);
 
     const onFinish = (values: AuthenticationInput) => {
         confirm();

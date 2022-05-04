@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { AuthenticationInput } from '../dtos/authenticationInput';
 import { makeSelectLoading } from '../selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequestLoginStart, loginShowStart } from '../actions';
+import { loginRequestLoginStart } from '../actions';
 
 declare var abp: any;
 export interface ILoginFormProps {
@@ -24,10 +24,6 @@ export default function LoginComponent(props: ILoginFormProps) {
         loading
     } = useSelector(stateSelector);
 
-    useEffect(() => {
-        dispatch(loginShowStart());
-    }, [dispatch]);
-
     const onFinish = (values: AuthenticationInput) => {
         dispatch(loginRequestLoginStart(values));
     };
@@ -42,8 +38,8 @@ export default function LoginComponent(props: ILoginFormProps) {
                 onFinish={onFinish}
             >
                 <Form.Item
-                    label={L("Login.Account")}
-                    name="Account"
+                    label={L("USER_NAME","LOGIN")}
+                    name="userName"
                     rules={[{ required: true, message: 'Tài khoản không để trống!' }]}
                     className="LXSaSCCguB"
                 >
@@ -51,7 +47,7 @@ export default function LoginComponent(props: ILoginFormProps) {
                 </Form.Item>
 
                 <Form.Item
-                    label={L("Login.Password")}
+                    label={L("PASSWORD","LOGIN")}
                     name="Password"
                     rules={[{ required: true, message: 'Mật khẩu không để trống!' }]}
                     className="LXSaSCCguB"
@@ -64,7 +60,7 @@ export default function LoginComponent(props: ILoginFormProps) {
                     valuePropName="checked"
                     className="gHirHByIww"
                 >
-                    <Checkbox checked={true}>{L("Login.Remember")}</Checkbox>
+                    <Checkbox checked={true}>{L("REMEMBER","LOGIN")}</Checkbox>
                 </Form.Item>
 
                 <Form.Item className="grDQhEfohj">
@@ -73,21 +69,21 @@ export default function LoginComponent(props: ILoginFormProps) {
                         <span></span>
                         <span></span>
                         <span></span>
-                        {L("Login.Login")}
+                        {L("LOGIN","LOGIN")}
                     </button >
                 </Form.Item>
                 <div className="tCvhCAhEGu">
                     <div>
-                        {L("Login.NotAccount")}
-                        &ensp;<a href=''>{L("Login.Registration")}</a>
+                        {L("NOT_ACCOUNT","LOGIN")}
+                        &ensp;<a href='/register-account'>{L("REGISTRATION","LOGIN")}</a>
                     </div>
-                    <a href=''>{L("Login.ForgotPassword")}</a>
+                    <a href=''>{L("FORGOT_PASWORD","LOGIN")}</a>
                 </div>
                 <div className="gofuVBTQrx">
                     <span>Hoặc</span>
-                    <img title={L("Login.LoginWithFacebook")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
-                    <img title={L("Login.LoginWithYoutube")} src='https://localhost:44327/album-resources/album/imageSystem/google.png' />
-                    <img title={L("Login.LoginWithZalo")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
+                    <img title={L("LOGIN_WITH_FACEBOOK","LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
+                    <img title={L("LOGIN_WITH_GOOGLE","LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/google.png' />
+                    <img title={L("LOGIN_WITH_ZALO","LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
                 </div>
             </Form>
         </div>

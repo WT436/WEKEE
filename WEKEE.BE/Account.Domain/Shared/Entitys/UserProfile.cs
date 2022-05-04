@@ -31,6 +31,8 @@ namespace Account.Domain.Shared.Entitys
         public string FacebookId { get; set; }
         public string GoogleId { get; set; }
         public string ZaloId { get; set; }
+        public bool IsDelete { get; set; }
+        public bool? IsActive { get; set; }
         public int CreateBy { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }

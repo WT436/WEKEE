@@ -173,7 +173,7 @@ export const appRouters: any = [
     component: LoadableComponent(() => import("../../scenes/Permission/Login")),
   },
   {
-    path: "/register-an-account",
+    path: "/register-account",
     exact: true,
     component: LoadableComponent(() => import("../../scenes/Permission/Login")),
   },

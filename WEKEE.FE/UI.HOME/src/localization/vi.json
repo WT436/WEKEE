@@ -162,5 +162,25 @@
     },
     "CONST_TYPE_PERMISSION_RESOURCE": {
         "SAVE_PERMISSION_FT_RESOURCE": "Lưu"
+    },
+    "LOGIN": {
+        "USER_NAME": "Tài khoản",
+        "USER_NAME_INPUT": "Nhập tên tài khoản",
+        "USER_NAME_REQUIRED": "Tài khoản không để trống!",
+        "EMAIL": "Email",
+        "EMAIL_OR_NUMBERPHONE": "Email hoặc SDT",
+        "EMAIL_INPUT": "Nhập tên Email!",
+        "INVALID_ACCOUNT": "Tài khoản không hợp lệ! phải có 1 chữ hoa, một chữ thường, một chữ số, ít nhất 8 ký tự và không chứa ký tự đặc biệt.",
+        "INVALID_PASSWORD": "Mật khẩu không hợp lệ! phải có 1 chữ hoa, một chữ thường, một chữ số, ít nhất 8 ký tự và không chứa ký tự đặc biệt",
+        "PASSWORD": "Mật khẩu",
+        "IS_ACCEPT_TERM": "Chấp nhận điểu khoản.",
+        "REMEMBER": "Ghi nhớ",
+        "LOGIN": "Đăng nhập",
+        "NOT_ACCOUNT": "Không có tài khoản",
+        "REGISTRATION": "Đăng ký",
+        "FORGOT_PASWORD": "Lấy lại mật khẩu",
+        "LOGIN_WITH_FACEBOOK": "Đăng nhập với facebook",
+        "LOGIN_WITH_GOOGLE": "Đăng nhập với google",
+        "LOGIN_WITH_ZALO": "Đăng nhập với zalo"
     }
 }

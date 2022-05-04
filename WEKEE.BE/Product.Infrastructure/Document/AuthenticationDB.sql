@@ -46,13 +46,14 @@ CREATE TABLE [UserProfile]
 (
 	[id] INT IDENTITY(1,1) PRIMARY KEY,
 	[userName] VARCHAR(100) UNIQUE NOT NULL, -- dùng lưu trữ tài khoản duy nhất
-	[email] VARCHAR(254) UNIQUE NOT NULL, -- dùng lưu trữ email
-	[numberPhone] VARCHAR(15) NOT NULL, -- số điện thoại
+	[email] VARCHAR(254) UNIQUE NULL, -- dùng lưu trữ email
+	[numberPhone] VARCHAR(15) NULL, -- số điện thoại
 	[isOnline] BIT DEFAULT (1) NOT NULL , -- tài khoản đang online -- 0: FALSE, 1 : TRUE
-	[isStatus] INT DEFAULT(0) NOT NULL CHECK([isStatus]>=0 AND [isStatus]<=5),
+	[isStatus] INT DEFAULT(0) NOT NULL CHECK([isStatus]>=0 AND [isStatus]<=10),
 	-- 0 : tài khoản hoạt động                    -- 1 : tài khoản đang xác nhận đăng ký
 	-- 2 : tài khoản đang được lấy lại            -- 3 : tài khoản đang để mất tài khoản
 	-- 4 : tài khoản đang đăng nhập sai nhiều lần -- 5 : tài khoản đang checkpoint
+	-- 6 : tài khoản đăng nhập nhanh
 	[loginFallNumber] int NOT NULL DEFAULT(0) CHECK([loginFallNumber]>=0 AND [loginFallNumber]<=20), -- số lần đăng nhập thất bại liên tiếp
 	[lockAccountTime] datetime NULL,-- thời gian khóa tài khoản
 	[is_accept_term] BIT NOT NULL DEFAULT(0), -- 0: FALSE, 1 : TRUE
@@ -99,7 +100,7 @@ GO
 -- ====================================================================
 CREATE TABLE [UserPassword]
 (
-	[id] INT NOT NULL PRIMARY KEY, -- dùng lưu định dạng duy nhất tài khoản
+	[id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, -- dùng lưu định dạng duy nhất tài khoản
 	[AccountId] INT NOT NULL  FOREIGN KEY REFERENCES [UserProfile]([id]),
 	[Password] VARCHAR(200) NOT NULL, -- dùng để lưu trữ password
 	[PasswordSalt] VARCHAR(50) NOT NULL, --  dùng để lưu trữ chuỗi salt
@@ -121,15 +122,15 @@ GO
 CREATE TABLE [UserIp]
 (
 	[id] INT IDENTITY(1,1) PRIMARY KEY,
-	[ipv4] VARCHAR(20) NOT NULL,
-	[ipv6] VARCHAR(20) NOT NULL,
-	[countryCode] VARCHAR(20) NOT NULL,
-	[countryName] VARCHAR(20) NOT NULL,
-	[city] VARCHAR(20) NOT NULL,
-	[postal] VARCHAR(20) NOT NULL,
-	[latitude] VARCHAR(20) NOT NULL,
-	[longitude] VARCHAR(20) NOT NULL,
-	[state] VARCHAR(20) NOT NULL,
+	[ipv4] VARCHAR(500)  NULL,
+	[ipv6] VARCHAR(500)  NULL,
+	[countryCode] VARCHAR(20)  NULL,
+	[countryName] VARCHAR(20)  NULL,
+	[city] VARCHAR(20)  NULL,
+	[postal] VARCHAR(20)  NULL,
+	[latitude] VARCHAR(20)  NULL,
+	[longitude] VARCHAR(20)  NULL,
+	[state] VARCHAR(20)  NULL,
 	[userAgent] NVARCHAR(300) NULL,
 	[accountId] INT NOT NULL FOREIGN KEY REFERENCES [UserProfile]([id]),-- ip máy người dùng khi khởi tạo		
 	[updateAcount] INT DEFAULT(0) NOT NULL,
@@ -150,9 +151,9 @@ GO
 CREATE TABLE [Address]
 (
 	[id] INT IDENTITY(1,1) PRIMARY KEY,
-	[adressLine1] NVARCHAR(256) NOT NULL,-- địa chỉ chính
-	[adressLine2] NVARCHAR(256) NULL,-- địa chỉ phụ
-	[adressLine3] NVARCHAR(256) NULL,-- địa chỉ phụ	
+	[adressLine1] NVARCHAR(500) NOT NULL,-- địa chỉ chính
+	[adressLine2] NVARCHAR(500) NULL,-- địa chỉ phụ
+	[adressLine3] NVARCHAR(500) NULL,-- địa chỉ phụ	
 	[description] NVARCHAR(20) NOT NULL, -- miêu tả
 	[isActive] BIT DEFAULT(1) NOT NULL, -- trạng thái -- 0: FALSE, 1 : TRUE
 	[accountId] int FOREIGN KEY REFERENCES [UserProfile]([id]),
@@ -195,6 +196,7 @@ CREATE TABLE [ProcessUser]
 (
 	[id] INT IDENTITY(1,1) PRIMARY KEY,
 	[description] NVARCHAR(MAX) NOT NULL, -- mô tả
+	[reminderToken] NVARCHAR(MAX) NULL,
 	[ipUser] VARCHAR(20) NOT NULL, -- ip người dùng
 	[isStatus] BIT DEFAULT(0) NOT NULL, -- trạng thái 
 	[device] NVARCHAR(100) NOT NULL, -- thiết bị

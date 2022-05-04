@@ -25,7 +25,6 @@ namespace Account.Infrastructure.EDMQuery
                 return 0;
             }
         }
-
         public async Task<int> UpdateFull(Subject input)
         {
             if (input != null)
@@ -38,7 +37,6 @@ namespace Account.Infrastructure.EDMQuery
                 return 0;
             }
         }
-
         public async Task<int> Delete(List<int> ids)
         {
             foreach (var id in ids)
@@ -47,7 +45,6 @@ namespace Account.Infrastructure.EDMQuery
             }
             return unitOfWork.SaveChanges();
         }
-
         public async Task<int> UpdateIsActive(List<Subject> inputs)
         {
             if (inputs.Count > 0)
@@ -60,16 +57,18 @@ namespace Account.Infrastructure.EDMQuery
                 return 0;
             }
         }
-
         public async Task<bool> CheckAnyId(int id)
          => await unitOfWork.GetRepository<Subject>().ExistsAsync(m => m.Id == id && m.IsActive == true);
-
         public async Task<int> InsertSubjectAssignment(List<SubjectAssignment> input)
         {
             unitOfWork.GetRepository<SubjectAssignment>().Insert(input);
             return unitOfWork.SaveChanges();
         }
-
+        public async Task<int> InsertSubjectAssignment(SubjectAssignment input)
+        {
+            unitOfWork.GetRepository<SubjectAssignment>().Insert(input);
+            return unitOfWork.SaveChanges();
+        }
         public async Task<int> UpdateSubjectAssignment(List<SubjectAssignment> inputs)
         {
             unitOfWork.GetRepository<SubjectAssignment>().Update(inputs);

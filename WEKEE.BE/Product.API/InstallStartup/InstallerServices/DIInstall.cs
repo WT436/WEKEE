@@ -42,6 +42,7 @@ namespace Product.API.InstallStartup.InstallerServices
             services.AddTransient<ISubjectAdmin, SubjectAdminService>();
             services.AddTransient<IPermissionAdmin, PermissionAdminService>();
             services.AddTransient<IUserProfileAdmin, UserProfileAdminService>();
+            services.AddTransient<IUserAccount, UserAccountService>();
             #endregion
 
             #region Supperlier 

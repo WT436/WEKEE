@@ -19,7 +19,7 @@ namespace Account.Domain.Shared.Entitys
         public string Description { get; set; }
         public int AtomicId { get; set; }
         public int LevelPermition { get; set; }
-        public int PermissionId { get; set; }
+        public int? PermissionId { get; set; }
         public bool? IsActive { get; set; }
         public int CreateBy { get; set; }
         public DateTime CreatedOnUtc { get; set; }
