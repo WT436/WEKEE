@@ -38,29 +38,61 @@ export default function LoginComponent(props: ILoginFormProps) {
                 onFinish={onFinish}
             >
                 <Form.Item
-                    label={L("USER_NAME","LOGIN")}
-                    name="userName"
-                    rules={[{ required: true, message: 'Tài khoản không để trống!' }]}
+                    label={L("USER_NAME", "LOGIN")}
+                    name="account"
+                    rules={[{ required: true, message: 'Tài khoản không để trống!' },
+                    () => ({
+                        validator(_, value) {
+                            if (value.match(/[+=`!#$%*()'\":;<>?]/g) !== null
+                                || value.match(/.{8,}/g) === null
+                                || value.match(/\d/g) === null
+                                || value.match(/[a-z]{1,}/g) === null
+                                || value.match(/[A-Z]{1,}/g) === null
+                                || value.split(" ").length - 1 != 0
+                            ) {
+                                return Promise.reject(new Error(L("INVALID_ACCOUNT", "LOGIN")));
+                            }
+                            else {
+                                return Promise.resolve();
+                            }
+                        }
+                    })]}
                     className="LXSaSCCguB"
                 >
                     <Input />
                 </Form.Item>
 
                 <Form.Item
-                    label={L("PASSWORD","LOGIN")}
-                    name="Password"
-                    rules={[{ required: true, message: 'Mật khẩu không để trống!' }]}
+                    label={L("PASSWORD", "LOGIN")}
+                    name="password"
+                    rules={[{ required: true, message: 'Mật khẩu không để trống!' },
+                    () => ({
+                        validator(_, value) {
+                            if (value.match(/[+=`!#$%*()'\":;<>?]/g) !== null
+                                || value.match(/.{8,}/g) === null
+                                || value.match(/\d/g) === null
+                                || value.match(/[a-z]{1,}/g) === null
+                                || value.match(/[A-Z]{1,}/g) === null
+                                || value.split(" ").length - 1 != 0
+                            ) {
+                                return Promise.reject(new Error(L("INVALID_ACCOUNT", "LOGIN")));
+                            }
+                            else {
+                                return Promise.resolve();
+                            }
+                        }
+                    })]}
                     className="LXSaSCCguB"
                 >
                     <Input.Password />
                 </Form.Item>
 
                 <Form.Item
-                    name="Remember"
+                    name="remember"
                     valuePropName="checked"
                     className="gHirHByIww"
                 >
-                    <Checkbox checked={true}>{L("REMEMBER","LOGIN")}</Checkbox>
+                    <Checkbox checked={true}>{L("REMEMBER", "LOGIN")}</Checkbox>
                 </Form.Item>
 
                 <Form.Item className="grDQhEfohj">
@@ -69,21 +101,21 @@ export default function LoginComponent(props: ILoginFormProps) {
                         <span></span>
                         <span></span>
                         <span></span>
-                        {L("LOGIN","LOGIN")}
+                        {L("LOGIN", "LOGIN")}
                     </button >
                 </Form.Item>
                 <div className="tCvhCAhEGu">
                     <div>
-                        {L("NOT_ACCOUNT","LOGIN")}
-                        &ensp;<a href='/register-account'>{L("REGISTRATION","LOGIN")}</a>
+                        {L("NOT_ACCOUNT", "LOGIN")}
+                        &ensp;<a href='/register-account'>{L("REGISTRATION", "LOGIN")}</a>
                     </div>
-                    <a href=''>{L("FORGOT_PASWORD","LOGIN")}</a>
+                    <a href=''>{L("FORGOT_PASWORD", "LOGIN")}</a>
                 </div>
                 <div className="gofuVBTQrx">
                     <span>Hoặc</span>
-                    <img title={L("LOGIN_WITH_FACEBOOK","LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
-                    <img title={L("LOGIN_WITH_GOOGLE","LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/google.png' />
-                    <img title={L("LOGIN_WITH_ZALO","LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
+                    <img title={L("LOGIN_WITH_FACEBOOK", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
+                    <img title={L("LOGIN_WITH_GOOGLE", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/google.png' />
+                    <img title={L("LOGIN_WITH_ZALO", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
                 </div>
             </Form>
         </div>

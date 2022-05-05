@@ -1,5 +1,5 @@
 export interface AuthenticationInput {
-    Account: string;
-    Password: string;
-    Remember: boolean;
+    account: string;
+    password: string;
+    remember: boolean;
 }

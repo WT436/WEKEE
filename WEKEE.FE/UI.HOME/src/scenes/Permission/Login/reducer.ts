@@ -19,17 +19,11 @@ function loginReducer(state: LoginState = initialState, action: LoginActions) {
       };
 
     case ActionTypes.LOGIN_REQUEST_LOGIN_COMPLETED:
-      abp.auth.setToken(action.payload.tokens.token, undefined);
-      abp.auth.setRoles(action.payload.roles, undefined);
-      abp.auth.setInfo(
-        action.payload.fullName +
-        "id:" +
-        action.payload.id +
-        " | " +
-        action.payload.picture,
-        undefined
+      abp.auth.setToken(action.payload.data.tokens, undefined);
+      abp.auth.setRoles(action.payload.data.roles, undefined);
+      abp.auth.setInfo(action.payload.data.fullName + "id:" + action.payload.data.id + " | " + action.payload.data.picture, undefined
       );
-      abp.session.userId = action.payload.id;
+      abp.session.userId = action.payload.data.id;
       notification.success({
         message: "Thành Công",
         description: "Đăng Nhập tài khoản thành công!",

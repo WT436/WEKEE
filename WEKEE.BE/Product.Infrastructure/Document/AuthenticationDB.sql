@@ -174,7 +174,6 @@ CREATE TABLE [InfomationUser]
 	[id] INT IDENTITY(1,1) PRIMARY KEY,
 	[firsName] NVARCHAR(255) NULL,
 	[lastName] NVARCHAR(255) NULL,
-	[coordinates] VARCHAR(300) NULL, -- tọa độ
 	[picture] VARCHAR(200) NULL, -- ảnh
 	[gender] INT NOT NULL CHECK([gender] >= 0 AND [gender] <= 3),-- giới tính
 	[description] NVARCHAR(20) NOT NULL, -- miêu tả

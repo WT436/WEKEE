@@ -8,6 +8,9 @@ namespace Account.Application.Interface
 {
     public interface IUserAccount
     {
-        public Task<bool> RegistrationAccount(UserProfileInsertDto input,string IpV4, string IpV6);
+        Task<bool> RegistrationAccount(UserProfileInsertDto input, string IpV4, string IpV6);
+
+        Task<AuthenticationResult> LoginAccount(AuthenticationInput input, List<string> IpV4, List<string> IpV6);
+
     }
 }

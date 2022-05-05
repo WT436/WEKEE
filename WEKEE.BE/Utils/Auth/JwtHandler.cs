@@ -35,9 +35,8 @@ namespace Utils.Auth
                     new Claim(JwtRegisteredClaimNames.Iat, unixTimeSeconds.ToString(), ClaimValueTypes.Integer64),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(nameof(claims.Id),claims.Id.ToString()),
-                    new Claim(nameof(claims.Account_User),claims.Account_User.ToString()),
-                    new Claim(nameof(claims.Email),claims.Email.ToString()),
-                    new Claim(nameof(claims.Ip),claims.Ip.ToString())
+                    new Claim(nameof(claims.UserName),claims.UserName.ToString()),
+                    new Claim(nameof(claims.Email),claims.Email.ToString())
                 },
                 notBefore: now,
                 expires: now.AddDays(10),
@@ -58,10 +57,9 @@ namespace Utils.Auth
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
 
-                infoToken.Id = Convert.ToInt32(securityToken.Claims.First(claim => claim.Type == nameof(infoToken.Id)).Value);
-                infoToken.Account_User = securityToken.Claims.First(claim => claim.Type == nameof(infoToken.Account_User)).Value;
+                infoToken.Id = securityToken.Claims.First(claim => claim.Type == nameof(infoToken.Id)).Value;
+                infoToken.UserName = securityToken.Claims.First(claim => claim.Type == nameof(infoToken.UserName)).Value;
                 infoToken.Email = securityToken.Claims.First(claim => claim.Type == nameof(infoToken.Email)).Value;
-                infoToken.Ip = securityToken.Claims.First(claim => claim.Type == nameof(infoToken.Ip)).Value;
             }
             return infoToken;
         }

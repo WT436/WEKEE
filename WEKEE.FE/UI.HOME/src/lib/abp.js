@@ -193,7 +193,7 @@ var abp = abp || {};
         return true;
     };
 
-    abp.auth.tokenCookieName = 'Authorization';
+    abp.auth.tokenCookieName = '_attk';
     abp.auth.setToken = function(authToken, expireDate) {
         abp.utils.setCookieValue(abp.auth.tokenCookieName, authToken, expireDate, abp.appPath, abp.domain);
     };
@@ -213,7 +213,7 @@ var abp = abp || {};
         abp.utils.setCookieValue(abp.auth.pictureCookieName, ifo, expireDate, abp.appPath, abp.domain);
     };
 
-    abp.auth.supplierCookieName = '_SUP';
+    abp.auth.supplierCookieName = '_str';
     abp.auth.setSupplier = function(ifo, expireDate) {
         abp.utils.setCookieValue(abp.auth.supplierCookieName, ifo, expireDate, abp.appPath, abp.domain);
     };

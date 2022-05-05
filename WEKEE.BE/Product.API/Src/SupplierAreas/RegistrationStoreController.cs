@@ -36,7 +36,7 @@ namespace Product.API.Src.SupplierAreas
         {
             TokenToJWT tokenToJWT = new TokenToJWT();
             var token = HttpContext.Request.Headers["Authorization"].ToString();
-            input.IdAccount = tokenToJWT.DecryptionToken(token).Id;
+            //input.IdAccount = tokenToJWT.DecryptionToken(token).Id;
             var data = await _supplier.CreateBasicStore(input);
             return Ok(data);
         }

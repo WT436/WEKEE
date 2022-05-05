@@ -6,7 +6,8 @@ class LoginService {
   public async authenticate(
     input: AuthenticationInput
   ): Promise<AuthenticationResult> {
-    let rs = await http.get("/account-log-in",{params:input});
+    console.log(input)
+    let rs = await http.post("/UserAccount/LoginAccount",input);
     if (rs) {
       return rs.data;
     } else {

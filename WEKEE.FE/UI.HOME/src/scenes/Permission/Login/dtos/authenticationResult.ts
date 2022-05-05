@@ -1,7 +1,13 @@
 export interface AuthenticationResult {
-  id: String;
-  tokens: { token: String };
+  status: number;
+  message: string;
+  data: Data;
+}
+
+export interface Data {
+  id: number;
+  tokens: string;
   roles: string[];
-  picture: String;
-  fullName: String;
+  picture: string;
+  fullName: string;
 }

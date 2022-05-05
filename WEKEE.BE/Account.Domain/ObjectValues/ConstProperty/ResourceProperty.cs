@@ -21,7 +21,9 @@ namespace Account.Domain.ObjectValues.ConstProperty
     public enum ResourceType
     {
         CONTROLLER = 0,
-        ACTION = 1
+        ACTION = 1,
+        SCENES = 2,
+        COMPONENT = 3,
     }
 
     public static class ResourceTransform

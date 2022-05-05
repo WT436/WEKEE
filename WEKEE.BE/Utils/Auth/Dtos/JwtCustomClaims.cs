@@ -9,18 +9,14 @@ namespace Utils.Auth.Dtos
         /// <summary>
         /// Id của tài khoản
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// Tên tài khoản
         /// </summary>
-        public string Account_User { get; set; } 
+        public string UserName { get; set; } 
         /// <summary>
         /// Email của tài khoản
         /// </summary>
         public string Email { get; set; }
-        /// <summary>
-        /// Ip của tài khoản
-        /// </summary>
-        public string Ip { get; set; }
     }
 }

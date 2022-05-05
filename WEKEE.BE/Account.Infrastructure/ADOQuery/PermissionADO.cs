@@ -2,6 +2,7 @@
 using Account.Domain.ObjectValues.Input;
 using Account.Domain.ObjectValues.Output;
 using Account.Domain.Shared.DataTransfer.PermisionDTO;
+using Account.Domain.Shared.DataTransfer.ResourceDTO;
 using Account.Domain.Shared.DataTransfer.RoleDTO;
 using Account.Domain.Shared.Entitys;
 using Account.Infrastructure.DBContext;
@@ -113,7 +114,6 @@ namespace Account.Infrastructure.ADOQuery
             query.AppendLine($"WHERE R.[permissionId] = {idPermission}                                                  ");
             return await unitOfWork.FromSqlAsync<PermissionFtReourceReadDto>(query.ToString());
         }
-
         public async Task<List<PermissionAssignment>> GetAllPrmissionByIdRole(int idRole)
         {
             StringBuilder query = new StringBuilder();
@@ -127,6 +127,26 @@ namespace Account.Infrastructure.ADOQuery
             query.AppendLine("FROM [dbo].[PermissionAssignment] AS PA      ");
             query.AppendLine($"WHERE PA.[roleId] = {idRole}                ");
             return await unitOfWork.FromSqlAsync<PermissionAssignment>(query.ToString());
+        }
+        public async Task<List<UserGetPermission>> GetPermissionByUserName(string userName)
+        {
+            StringBuilder query = new StringBuilder();                                                                                
+           
+            query.AppendLine($"SELECT A.[name] AS 'Atomic', RE.[name] AS 'Resource', RE.typesRsc AS 'Type'                       ");
+            query.AppendLine($"FROM dbo.[UserProfile] UP                                                                         ");
+            query.AppendLine($"INNER JOIN dbo.[Subject] AS S ON UP.id =  S.userId                                                ");
+            query.AppendLine($"INNER JOIN dbo.[SubjectAssignment] AS SA ON S.id = SA.subjectId                                   ");
+            query.AppendLine($"INNER JOIN dbo.[Role] AS R ON SA.roleId =  R.id                                                   ");
+            query.AppendLine($"INNER JOIN dbo.[PermissionAssignment] AS PA ON PA.roleId = R.id                                   ");
+            query.AppendLine($"INNER JOIN dbo.[Permission] AS P ON PA.permissionId = P.id                                        ");
+            query.AppendLine($"INNER JOIN dbo.[Atomic] AS A ON P.AtomicId =  A.id                                                ");
+            query.AppendLine($"INNER JOIN dbo.[ReourceAssignment] AS RA ON RA.permissionId = P.id                                ");
+            query.AppendLine($"INNER JOIN dbo.[Resource] AS RE ON RE.id = RA.resourceId                                          ");
+            query.AppendLine($"WHERE UP.[userName] LIKE '{userName}' AND UP.isActive = 1 AND SA.isActive = 1 AND S.isActive = 1  ");
+            query.AppendLine($"AND SA.isActive = 1 AND R.isActive = 1 AND PA.isActive = 1 AND P.isActive = 1 AND A.isActive = 1  ");
+            query.AppendLine($"AND RA.isActive = 1 AND RE.isActive = 1                                                           ");
+            
+            return await unitOfWork.FromSqlAsync<UserGetPermission>(query.ToString());
         }
     }
 }

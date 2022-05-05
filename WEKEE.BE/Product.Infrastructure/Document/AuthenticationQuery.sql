@@ -187,3 +187,29 @@ SELECT *  FROM dbo.[PermissionAssignment] AS R WHERE R.[roleId] = 1
 -----------------------------------------------------------------------------------------------------
 SELECT *  FROM dbo.[SubjectAssignment] AS R WHERE R.[subjectId] = 1
 SELECT *  FROM dbo.[SubjectAssignment] AS R WHERE R.[subjectId] = 3
+-----------------------------------------------------------------------------------------------------
+SELECT 
+	   UP.[userName]
+	  ,UP.[email]
+	  ,UP.[isOnline]
+	  ,UP.[isStatus]
+	  ,UP.[loginFallNumber]
+	  ,UP.[lockAccountTime]
+	  ,UP.[time_zone]
+	  ,UPASS.[Password]
+	  ,UPASS.[PasswordSalt]
+	  ,UPASS.[PasswordHashAlgorithm]
+	  ,UI.[ipv4]
+	  ,UI.[ipv6]
+	  ,IU.[firsName]
+	  ,IU.[lastName]
+	  ,IU.[picture]
+	  ,IU.[gender]
+FROM dbo.[UserProfile] AS UP
+INNER JOIN dbo.[UserPassword] UPASS ON UP.[id] = UPASS.[AccountId] 
+INNER JOIN dbo.[UserIp] UI ON UP.[id] = UI.[AccountId] 
+LEFT JOIN dbo.[InfomationUser] IU ON UP.[id] = IU.[AccountId]
+WHERE UP.[userName] = 'Admin009'AND UP.[isDelete] = 0 AND UP.[isActive] = 1
+	  AND UPASS.[isActive] =1 AND UPASS.[isDelete] = 0
+	  AND UI.[isActive] = 1 AND UI.[isDelete] = 0
+	  AND IU.[isActive] = 1

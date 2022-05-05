@@ -41,5 +41,11 @@ namespace Account.Infrastructure.EDMQuery
             unitOfWork.GetRepository<UserProfile>().Insert(userProfile);
             return unitOfWork.SaveChanges();
         }
+
+        public async Task<int> Update(UserProfile userProfile)
+        {
+            unitOfWork.GetRepository<UserProfile>().Update(userProfile);
+            return unitOfWork.SaveChanges();
+        }
     }
 }

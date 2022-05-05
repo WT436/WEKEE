@@ -24,9 +24,8 @@ namespace Utils.Auth
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("Id",infoToken.Id.ToString()),
-                    new Claim("Account_User",infoToken.Account_User.ToString()),
-                    new Claim("Email",infoToken.Email.ToString()),
-                    new Claim("Ip",infoToken.Ip.ToString()),
+                    new Claim("UserName",infoToken.UserName.ToString()),
+                    new Claim("Email",infoToken.Email.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 Issuer = "https://localhost:44306/",

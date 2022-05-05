@@ -12,40 +12,46 @@ namespace Product.API.Src.AccountAreas
     public class UserAccountController : Controller
     {
         private readonly IUserAccount _userAccount;
+        private readonly IProcessIPClient _processIPClient;
 
-        public UserAccountController(IUserAccount userAccount)
+        public UserAccountController(IUserAccount userAccount, IProcessIPClient processIPClient)
         {
             _userAccount = userAccount;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> LoginAccount()
-        {
-            return Ok();
+            _processIPClient = processIPClient;
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginAccount([FromBody] UserProfileInsertDto input)
+        public async Task<IActionResult> StopImpersonationAccount()
         {
-            var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
-            string IpV4 = string.Empty;
-            string IpV6 = string.Empty;
-            foreach (var ip in host.AddressList)
-            {
-                // var is_v4 = RegexProcess.Regex_IsMatch(RegexProcess.CHECK_IP_V4, ip.ToString());
-                // var is_v6 = RegexProcess.Regex_IsMatch(RegexProcess.CHECK_IP_V6, ip.ToString());
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    IpV4 = IpV4 + ip.ToString() + "|";
-                }
-
-                if (ip.AddressFamily == AddressFamily.InterNetworkV6)
-                {
-                    IpV6 = IpV6 + ip.ToString() + "|";
-                }
-            };
-
-            await _userAccount.RegistrationAccount(input, IpV4: IpV4, IpV6: IpV6);
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ImpersonationAccount()
+        {
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> RefreshTokenAccount()
+        {
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> LogoutAccount()
+        {
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> LoginAccount([FromBody] AuthenticationInput input)
+        {
+            var ip = await _processIPClient.GetIpClient();
+            var data = await _userAccount.LoginAccount(input, ip.IpV4, ip.IpV6);
+            return Ok(data);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RegistrationAccount([FromBody] UserProfileInsertDto input)
+        {
+            var ip = await _processIPClient.GetIpClient();
+            await _userAccount.RegistrationAccount(input, IpV4: ip.IpV4String, IpV6: ip.IpV6String);
             return Ok(true);
         }
     }

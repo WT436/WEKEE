@@ -1,5 +1,9 @@
 using Account.Infrastructure.EDMQuery;
+using Microsoft.Extensions.Options;
 using NUnit.Framework;
+using System.Threading.Tasks;
+using Utils.Auth;
+using Utils.Auth.Dtos;
 
 namespace Account.Test
 {
@@ -9,11 +13,13 @@ namespace Account.Test
         public void Setup()
         {
         }
-        private readonly UserIpEDM _userIpEDM = new UserIpEDM();
-        [Test]
-        public void Test1()
+        [TestCase(1)]
+        public async Task TestProductTag(int value)
         {
-            Assert.Pass();
+            //Assert.IsTrue();
+            //$"result: {rest};\n" +
+            //$"expectation: {value};\n" +
+            //$"Status : {rest == value}");
         }
     }
 }

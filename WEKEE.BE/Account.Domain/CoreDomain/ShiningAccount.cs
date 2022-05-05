@@ -1,4 +1,5 @@
 ﻿using Account.Domain.ObjectValues.Enum;
+using Account.Domain.Shared.DataTransfer.UserProfileDTO;
 using Account.Domain.Shared.Entitys;
 using System;
 using System.Collections.Generic;
@@ -41,28 +42,28 @@ namespace Account.Domain.CoreDomain
             return userPassword;
         }
 
-        //public bool CheckPassword(UserLogin userAccount, string password)
-        //{
-        //    if (userAccount != null)
-        //    {
-        //        string pass = userAccount.PasswordHashAlgorithm switch
-        //        {
-        //            "SHA256" => SecurityProcess.SHA256Hash(password + userAccount.PasswordSalt),
-        //            "SHA1" => SecurityProcess.SHA1Hash(password + userAccount.PasswordSalt),
-        //            _ => SecurityProcess.MD5Hash(password + userAccount.PasswordSalt),
-        //        };
+        public bool CheckPassword(UserProfileLoginReadDto userAccount, string password)
+        {
+            if (userAccount != null)
+            {
+                string pass = userAccount.PasswordHashAlgorithm switch
+                {
+                    "SHA256" => SecurityProcess.SHA256Hash(password + userAccount.PasswordSalt),
+                    "SHA1" => SecurityProcess.SHA1Hash(password + userAccount.PasswordSalt),
+                    _ => SecurityProcess.MD5Hash(password + userAccount.PasswordSalt),
+                };
 
-        //        if (userAccount.Password != pass)
-        //        {
-        //            throw new ClientException(400, "Account Or Password Incorrect!");
-        //        };
+                if (userAccount.Password != pass)
+                {
+                    return false;
+                };
 
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        throw new ClientException(400, "Account Or Password Incorrect!");
-        //    }
-        //}
+                return true;
+            }
+            else
+            {
+                throw new ClientException(400, "Account Or Password Incorrect!");
+            }
+        }
     }
 }
