@@ -190,8 +190,9 @@ export default function Home(props: IHomeProps) {
     const dispatch = useDispatch();
     const { loading } = useSelector(stateSelector);
     const [checkbox, setCheckbox] = useState(true);
+    
     useEffect(() => {
-        dispatch(watchPageStart());
+      
     }, [dispatch]);
 
     return (

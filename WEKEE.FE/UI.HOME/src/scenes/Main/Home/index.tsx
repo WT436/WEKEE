@@ -43,7 +43,7 @@ export default function Home(props: IHomeProps) {
 
     const { } = useSelector(stateSelector);
     useEffect(() => {
-        dispatch(watchPageStart());
+     
     }, []);
 
     const settings = {

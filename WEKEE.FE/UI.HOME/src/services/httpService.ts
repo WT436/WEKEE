@@ -19,7 +19,8 @@ const http = axios.create({
 http.interceptors.request.use(
   function (config) {
     if (!!abp.auth.getToken()) {
-      config.headers.common["Authorization"] = abp.auth.getToken();
+      config.headers.common[abp.auth.tokenCookieName] = abp.auth.getToken();
+      config.headers.common[abp.auth.accessTokenName] = abp.auth.getAccessToken();
       config.headers.common["Supplier"] = abp.auth.getTokenSupplier();
     }
     return config;
@@ -32,6 +33,12 @@ http.interceptors.request.use(
 // làm lại sử lý từng loại lỗi và in ra.
 http.interceptors.response.use(
   (response) => {
+    let isChangeToken = response.config.headers[abp.auth.tokenCookieName] === abp.auth.getToken();
+    let isChangeAccess = response.config.headers[abp.auth.accessTokenName] === abp.auth.getAccessToken();
+    if(!isChangeToken || !isChangeAccess)
+    {
+      console.log("Token Change")
+    }
     return response;
   },
   (error) => {
@@ -85,7 +92,7 @@ http.interceptors.response.use(
         placement: "bottomRight",
       });
     }
-    
+
     if (
       error.message === "Network Error"
     ) {
@@ -95,8 +102,8 @@ http.interceptors.response.use(
         placement: "bottomRight",
       });
     }
-
     if (!!error.response && error.response.status === 401) {
+      console.log('remover all token');
       localStorage.setItem("request-err", error.response.data);
       localStorage.clear();
       sessionStorage.clear();
@@ -114,6 +121,7 @@ http.interceptors.response.use(
         placement: "bottomRight",
       });
     }
+
     // ở đây
     if (!!error.response && errorShowMessage) {
       localStorage.setItem("request-err", error.response.data);

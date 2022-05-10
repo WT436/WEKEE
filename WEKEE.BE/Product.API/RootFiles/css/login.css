@@ -69,6 +69,21 @@
     margin-top: 10px;
 }
 
+.WXNtxhZyyS {
+}
+
+    .WXNtxhZyyS > div {
+        margin-right: 10px;
+        background: rgb(255, 255, 255);
+        padding: 5px 10px;
+        line-height: 1;
+        border-radius: 2px;
+    }
+
+    .WXNtxhZyyS > span {
+        padding: 5px 10px 5px 0px !important;
+    }
+
 .gHirHByIww {
     margin: 0;
 }
@@ -222,7 +237,7 @@
         transform: translate(-29px, 0);
     }
 
-    .gofuVBTQrx > img {
+    .gofuVBTQrx > div > img {
         width: 30px;
         height: 30px;
         border: 1px solid white;

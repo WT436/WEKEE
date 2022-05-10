@@ -16,7 +16,6 @@ namespace Supplier.Domain.BoundedContext
         public TokenToJWT()
         {
             ReadFileJsonForJWT();
-            SettingJWT();
         }
         /// <summary>
         /// Đọc dữ liệu token
@@ -66,17 +65,6 @@ namespace Supplier.Domain.BoundedContext
                     .Bind(externalClientJsonConfiguration);
 
                 options = Options.Create(externalClientJsonConfiguration);
-            }
-        }
-
-        /// <summary>
-        /// Cài đặt để sử dụng file giải nén JWT
-        /// </summary>
-        private void SettingJWT()
-        {
-            if (_jwtHandler == null)
-            {
-                _jwtHandler = new JwtHandler(options);
             }
         }
 

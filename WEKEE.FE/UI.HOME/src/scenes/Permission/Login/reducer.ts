@@ -21,7 +21,8 @@ function loginReducer(state: LoginState = initialState, action: LoginActions) {
     case ActionTypes.LOGIN_REQUEST_LOGIN_COMPLETED:
       abp.auth.setToken(action.payload.data.tokens, undefined);
       abp.auth.setRoles(action.payload.data.roles, undefined);
-      abp.auth.setInfo(action.payload.data.fullName + "id:" + action.payload.data.id + " | " + action.payload.data.picture, undefined
+      abp.auth.setAccessToken(action.payload.data.access, undefined);
+      abp.auth.setInfo(action.payload.data.fullName + " | " + action.payload.data.picture, undefined
       );
       abp.session.userId = action.payload.data.id;
       notification.success({
@@ -70,6 +71,36 @@ function loginReducer(state: LoginState = initialState, action: LoginActions) {
       };
 
     case ActionTypes.REGISTRATION_ACCOUNT_BASIC_ERROR:
+      return {
+        ...state,
+      };
+    //#endregion
+
+    //#region LOGIN_OAUTH_GOOGLE_START
+    case ActionTypes.LOGIN_OAUTH_GOOGLE_START:
+      return {
+        ...state,
+      };
+
+    case ActionTypes.LOGIN_OAUTH_GOOGLE_COMPLETED:
+      
+      abp.auth.setToken(action.payload.data.tokens, undefined);
+      abp.auth.setRoles(action.payload.data.roles, undefined);
+      abp.auth.setAccessToken(action.payload.data.access, undefined);
+      abp.auth.setInfo(action.payload.data.fullName + " | " + action.payload.data.picture, undefined);
+      abp.session.userId = action.payload.data.id;
+      notification.success({
+        message: "Thành Công",
+        description: "Đăng Nhập tài khoản thành công!",
+        placement: "bottomRight",
+      });
+      window.history.back();
+
+      return {
+        ...state,
+      };
+
+    case ActionTypes.LOGIN_OAUTH_GOOGLE_ERROR:
       return {
         ...state,
       };

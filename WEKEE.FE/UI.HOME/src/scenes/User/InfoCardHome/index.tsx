@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { useInjectReducer, useInjectSaga } from '../../redux/reduxInjectors';
+import { useInjectReducer, useInjectSaga } from '../../../redux/reduxInjectors';
 import { watchPageStart } from './actions';
 import reducer from './reducer';
 import saga from './saga';
@@ -27,7 +27,6 @@ export default function InfoCardHome(props: IInfoCardHomeProps) {
     const dispatch = useDispatch();
    // const { } = useSelector(stateSelector);
     useEffect(() => {
-        dispatch(watchPageStart());
     }, [dispatch]);
 
     const text = `

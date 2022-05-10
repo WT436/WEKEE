@@ -48,7 +48,7 @@ export default function MenuSliderAdmin(props: IMenuSliderAdminProps) {
   const dispatch = useDispatch();
   const { loading } = useSelector(stateSelector);
   useEffect(() => {
-    dispatch(watchPageStart());
+  
   }, []);
 
   const [collapsed, setcollapsed] = useState(false);

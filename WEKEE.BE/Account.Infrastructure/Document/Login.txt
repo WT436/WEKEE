@@ -1,0 +1,7 @@
+﻿- auth
+- authv2
+
+-> nếu đăng nhập auth và sau đó đăng nhập auth v2.
+-> đăng nhập rồi sau đó đăng nhập auth v1.
+-> tạo tài khoản với số điện thoại rồi sau đó tạo tài khoản với gmail. Rồi nhập gmail vào acc sdt và ngược lại.
+-> 

@@ -44,6 +44,7 @@ namespace Product.API.InstallStartup.InstallerServices
             services.AddTransient<IUserProfileAdmin, UserProfileAdminService>();
             services.AddTransient<IUserAccount, UserAccountService>();
             services.AddTransient<IProcessIPClient, ProcessIPClientService>();
+            services.AddSingleton<IProcessToken, ProcessTokenService>();
             #endregion
 
             #region Supperlier 

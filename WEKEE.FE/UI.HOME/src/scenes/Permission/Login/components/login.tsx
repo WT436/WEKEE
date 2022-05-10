@@ -1,14 +1,16 @@
 import * as React from 'react'
-import { useEffect } from 'react';
-import { Checkbox, Form, Input } from 'antd';
+import { useEffect, useState } from 'react';
+import { Checkbox, Form, Input, message } from 'antd';
 import { L } from '../../../../lib/abpUtility';
 import { createStructuredSelector } from 'reselect';
 import { AuthenticationInput } from '../dtos/authenticationInput';
 import { makeSelectLoading } from '../selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginRequestLoginStart } from '../actions';
+import AuthV2GoogleComponent from './authV2GoogleComponent';
 
 declare var abp: any;
+
 export interface ILoginFormProps {
 };
 
@@ -25,12 +27,58 @@ export default function LoginComponent(props: ILoginFormProps) {
     } = useSelector(stateSelector);
 
     const onFinish = (values: AuthenticationInput) => {
-        dispatch(loginRequestLoginStart(values));
+
+        let isAccount = (values.account !== null || values.account !== undefined)
+            && (values.account.match(/[+=`!#$%*()'\":;<>?]/g) !== null
+                || values.account.match(/.{8,}/g) === null
+                || values.account.match(/\d/g) === null
+                || values.account.match(/[a-z]{1,}/g) === null
+                || values.account.match(/[A-Z]{1,}/g) === null
+                || values.account.split(" ").length - 1 != 0);
+        let isPassword = (values.password !== null || values.password !== undefined)
+            && (values.password.match(/[+=`!#$%*()'\":;<>?]/g) !== null
+                || values.password.match(/.{8,}/g) === null
+                || values.password.match(/\d/g) === null
+                || values.password.match(/[a-z]{1,}/g) === null
+                || values.password.match(/[A-Z]{1,}/g) === null
+                || values.password.split(" ").length - 1 != 0
+            )
+        if (isAccount) {
+            message.error(L("INVALID_ACCOUNT", "LOGIN"));
+        }
+        else if (isPassword) {
+            message.error(L("INVALID_ACCOUNT", "LOGIN"));
+        }
+        else {
+            dispatch(loginRequestLoginStart(values));
+        }
     };
-    // facebook
+
+    useEffect(() => {
+        processAccount()
+    }, [])
+
+    const [AvatarAccount, setAvatarAccount] = useState<string>();
+    const processAccount = () => {
+        var data = abp.utils.getCookieValue('_pus');
+        var isToken = data === null || data === undefined || data === "";
+        if (!isToken) {
+            let result = data.split(/[|]/i);
+            if (result.toString().toUpperCase().indexOf("https".toUpperCase) != -1) {
+                setAvatarAccount(result[1].trim());
+            }
+            else {
+                setAvatarAccount(abp.serviceAlbumImage + result[1].trim());
+            }
+        }
+        else {
+            setAvatarAccount(abp.serviceAlbumImage + "/album/imageSystem/facebook.png");
+        }
+    }
+
     return (
         <div className="WBYuKwbWag">
-            <img className="dXZSevIeue" src="https://localhost:44327/album-resources/album/imageSystem/facebook.png" alt="" />
+            <img className="dXZSevIeue" src={AvatarAccount} alt="" />
             <div className="fFgTYwFwNM">Đăng Nhập</div>
             <Form
                 name="basic"
@@ -40,23 +88,6 @@ export default function LoginComponent(props: ILoginFormProps) {
                 <Form.Item
                     label={L("USER_NAME", "LOGIN")}
                     name="account"
-                    rules={[{ required: true, message: 'Tài khoản không để trống!' },
-                    () => ({
-                        validator(_, value) {
-                            if (value.match(/[+=`!#$%*()'\":;<>?]/g) !== null
-                                || value.match(/.{8,}/g) === null
-                                || value.match(/\d/g) === null
-                                || value.match(/[a-z]{1,}/g) === null
-                                || value.match(/[A-Z]{1,}/g) === null
-                                || value.split(" ").length - 1 != 0
-                            ) {
-                                return Promise.reject(new Error(L("INVALID_ACCOUNT", "LOGIN")));
-                            }
-                            else {
-                                return Promise.resolve();
-                            }
-                        }
-                    })]}
                     className="LXSaSCCguB"
                 >
                     <Input />
@@ -65,23 +96,6 @@ export default function LoginComponent(props: ILoginFormProps) {
                 <Form.Item
                     label={L("PASSWORD", "LOGIN")}
                     name="password"
-                    rules={[{ required: true, message: 'Mật khẩu không để trống!' },
-                    () => ({
-                        validator(_, value) {
-                            if (value.match(/[+=`!#$%*()'\":;<>?]/g) !== null
-                                || value.match(/.{8,}/g) === null
-                                || value.match(/\d/g) === null
-                                || value.match(/[a-z]{1,}/g) === null
-                                || value.match(/[A-Z]{1,}/g) === null
-                                || value.split(" ").length - 1 != 0
-                            ) {
-                                return Promise.reject(new Error(L("INVALID_ACCOUNT", "LOGIN")));
-                            }
-                            else {
-                                return Promise.resolve();
-                            }
-                        }
-                    })]}
                     className="LXSaSCCguB"
                 >
                     <Input.Password />
@@ -113,9 +127,13 @@ export default function LoginComponent(props: ILoginFormProps) {
                 </div>
                 <div className="gofuVBTQrx">
                     <span>Hoặc</span>
-                    <img title={L("LOGIN_WITH_FACEBOOK", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
-                    <img title={L("LOGIN_WITH_GOOGLE", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/google.png' />
-                    <img title={L("LOGIN_WITH_ZALO", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
+                    <AuthV2GoogleComponent />
+                    <div>
+                        <img title={L("LOGIN_WITH_FACEBOOK", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
+                    </div>
+                    <div>
+                        <img title={L("LOGIN_WITH_ZALO", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
+                    </div>
                 </div>
             </Form>
         </div>

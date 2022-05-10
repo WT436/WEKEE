@@ -9,5 +9,7 @@ namespace Utils.Auth
     {
         JwtResponse CreateToken(JwtCustomClaims claims);
         JwtCustomClaims ReadFullInfomation(string token);
+        bool ValidateToken(string token);
+        JwtCustomClaims ReadFullHisTory(string token);
     }
 }

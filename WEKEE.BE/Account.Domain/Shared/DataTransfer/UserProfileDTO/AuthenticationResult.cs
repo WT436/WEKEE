@@ -15,6 +15,7 @@ namespace Account.Domain.Shared.DataTransfer.UserProfileDTO
     {
         public int Id { get; set; }
         public string Tokens { get; set; }
+        public string Access { get; set; }
         public List<string> Roles { get; set; }
         public string Picture { get; set; }
         public string FullName { get; set; }

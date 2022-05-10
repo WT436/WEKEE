@@ -44,7 +44,7 @@ export default function SiderStore(props: ISiderStoreProps) {
   const dispatch = useDispatch();
   const { loading } = useSelector(stateSelector);
   useEffect(() => {
-    dispatch(watchPageStart());
+  
   }, []);
 
   let input = "";

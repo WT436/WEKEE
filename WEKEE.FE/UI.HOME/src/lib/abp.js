@@ -194,26 +194,31 @@ var abp = abp || {};
     };
 
     abp.auth.tokenCookieName = '_attk';
+    abp.auth.accessTokenName = '_actk';
+    abp.auth.rolesCookieName = '_tkrl';
+    abp.auth.iPCookieName = '_ga';
+    abp.auth.pictureCookieName = '_pus';
+    abp.auth.supplierCookieName = '_str';
+
     abp.auth.setToken = function(authToken, expireDate) {
         abp.utils.setCookieValue(abp.auth.tokenCookieName, authToken, expireDate, abp.appPath, abp.domain);
     };
 
-    abp.auth.rolesCookieName = '_tkrl';
     abp.auth.setRoles = function(roles, expireDate) {
         abp.utils.setCookieValue(abp.auth.rolesCookieName, roles, expireDate, abp.appPath, abp.domain);
     };
 
-    abp.auth.iPCookieName = '_ga';
     abp.auth.setRoles = function(ip, expireDate) {
         abp.utils.setCookieValue(abp.auth.iPCookieName, ip, expireDate, abp.appPath, abp.domain);
     };
 
-    abp.auth.pictureCookieName = '_pus';
     abp.auth.setInfo = function(ifo, expireDate) {
         abp.utils.setCookieValue(abp.auth.pictureCookieName, ifo, expireDate, abp.appPath, abp.domain);
     };
 
-    abp.auth.supplierCookieName = '_str';
+    abp.auth.setAccessToken = function(ifo, expireDate) {
+        abp.utils.setCookieValue(abp.auth.accessTokenName, ifo, expireDate, abp.appPath, abp.domain);
+    };
     abp.auth.setSupplier = function(ifo, expireDate) {
         abp.utils.setCookieValue(abp.auth.supplierCookieName, ifo, expireDate, abp.appPath, abp.domain);
     };
@@ -226,7 +231,9 @@ var abp = abp || {};
     abp.auth.getToken = function() {
         return abp.utils.getCookieValue(abp.auth.tokenCookieName);
     }
-
+    abp.auth.getAccessToken = function() {
+        return abp.utils.getCookieValue(abp.auth.accessTokenName);
+    }
     abp.auth.getTokenSupplier = function() {
         return abp.utils.getCookieValue(abp.auth.supplierCookieName);
     }

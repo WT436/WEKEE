@@ -24,7 +24,6 @@ export default function Home(props: IHomeProps) {
     const dispatch = useDispatch();
     const { loading } = useSelector(stateSelector);
     useEffect(() => {
-        dispatch(watchPageStart());
     }, [dispatch]);
 
     return (

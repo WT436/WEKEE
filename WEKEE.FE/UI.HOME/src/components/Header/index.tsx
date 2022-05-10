@@ -8,7 +8,8 @@ import { BellOutlined, CaretUpOutlined, CheckOutlined,  DesktopOutlined, Ellipsi
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import InfoCardHome from '../../cms/InfoCardHome';
+import InfoCardHome from '../../scenes/User/InfoCardHome';
+import LoginHomeComponent from '../../scenes/Permission/loginHomeComponent';
 const { Option } = Select;
 declare var abp: any;
 
@@ -19,23 +20,6 @@ export interface IHeaderProps {
 
 export interface IHeaderState {
 
-}
-
-const loginInfo = () => {
-    var info = abp.auth.getInfo();
-    
-    if (info) {
-        var avatar = info.slice(info.indexOf("album"));
-        var name = info.slice(0, info.indexOf("id:"));
-        return (
-            <InfoCardHome location={undefined}/>
-        )
-    }
-    else {
-        return (
-            <InfoCardHome location={undefined}/>
-        )
-    }
 }
 
 const bellInfo = () => {
@@ -441,7 +425,7 @@ class Header extends AppComponentBase<IHeaderProps, IHeaderState> {
                         <div className='hdfutmsttac'>
                             <div>{cardInfo()}</div>
                             <div>{bellInfo()}</div>
-                            <div>{loginInfo()}</div>
+                            <div>{<LoginHomeComponent location={undefined}/>}</div>
                             <div>{settingApp()}</div>
                         </div>
                     </Col>

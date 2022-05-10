@@ -213,3 +213,22 @@ WHERE UP.[userName] = 'Admin009'AND UP.[isDelete] = 0 AND UP.[isActive] = 1
 	  AND UPASS.[isActive] =1 AND UPASS.[isDelete] = 0
 	  AND UI.[isActive] = 1 AND UI.[isDelete] = 0
 	  AND IU.[isActive] = 1
+
+---------------------------------------------------------------------------------------------
+
+SELECT * FROM dbo.[UserProfile] AS R WHERE R.[userName] LIKE 'Admin009'
+---------------------------------------------------------------------------------------------
+
+SELECT A.[name] AS 'Atomic', RE.[name] AS 'Resource', RE.typesRsc AS 'Type'
+FROM dbo.[UserProfile] UP 
+INNER JOIN dbo.[Subject] AS S ON UP.id =  S.userId 
+INNER JOIN dbo.[SubjectAssignment] AS SA ON S.id = SA.subjectId
+INNER JOIN dbo.[Role] AS R ON SA.roleId =  R.id
+INNER JOIN dbo.[PermissionAssignment] AS PA ON PA.roleId = R.id
+INNER JOIN dbo.[Permission] AS P ON PA.permissionId = P.id
+INNER JOIN dbo.[Atomic] AS A ON P.AtomicId =  A.id
+INNER JOIN dbo.[ReourceAssignment] AS RA ON RA.permissionId = P.id
+INNER JOIN dbo.[Resource] AS RE ON RE.id = RA.resourceId
+WHERE UP.[userName] LIKE 'Admin009' AND UP.isActive = 1 AND SA.isActive = 1 AND S.isActive = 1
+AND SA.isActive = 1 AND R.isActive = 1 AND PA.isActive = 1 AND P.isActive = 1 AND A.isActive = 1
+AND RA.isActive = 1 AND RE.isActive = 1

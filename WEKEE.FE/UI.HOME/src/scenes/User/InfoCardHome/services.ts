@@ -1,4 +1,4 @@
-import http from '../../services/httpService';
+import http from '../../../services/httpService';
 
 class InfoCardHomeService {
     public async authenticate() {

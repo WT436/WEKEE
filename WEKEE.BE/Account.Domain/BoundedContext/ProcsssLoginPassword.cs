@@ -25,6 +25,7 @@ namespace Account.Domain.BoundedContext
 
             return input;
         }
+
         public UserProfile ProsessLoginSussce(UserProfile input)
         {
             input.LoginFallNumber = 0;

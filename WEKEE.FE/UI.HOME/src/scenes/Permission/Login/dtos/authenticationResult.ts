@@ -7,6 +7,7 @@ export interface AuthenticationResult {
 export interface Data {
   id: number;
   tokens: string;
+  access: string;
   roles: string[];
   picture: string;
   fullName: string;

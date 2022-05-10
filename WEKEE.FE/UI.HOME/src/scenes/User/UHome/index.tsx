@@ -31,7 +31,7 @@ export default function UHome(props: IUHomeProps) {
     const dispatch = useDispatch();
     const { loading, pageIndex, pageSize, totalCount } = useSelector(stateSelector);
     useEffect(() => {
-        dispatch(watchPageStart());
+    
     }, []);
 
     return (

@@ -9,7 +9,6 @@ import Utils from './utils/utils';
 import registerServiceWorker from './registerServiceWorker';
 import abpLocalizationConfigService from './services/abpLocalizationConfigService';
 import defaultConfig from './localization/defaultConfig.json';
-import loginService from './scenes/Permission/Login/services';
 import configureStore from './redux/configureStore';
 
 declare var abp: any;
@@ -18,11 +17,11 @@ Utils.setLocalization();
 abpLocalizationConfigService.getLocalization().then(async function (res) {
     Utils.extend(true, abp, defaultConfig);
 
-    await loginService.getIp();
+    // await loginService.getIp();
 
-    if (!!abp.auth.getToken()) {
-        await loginService.getIp();
-    }
+    // if (!!abp.auth.getToken()) {
+    //     await loginService.getIp();
+    // }
 
     var loadingEl = document.getElementById('root-loading');
     if (loadingEl) {
@@ -39,12 +38,13 @@ abpLocalizationConfigService.getLocalization().then(async function (res) {
         }
     });
 
-    abpLocalizationConfigService.getSystem();
+    //abpLocalizationConfigService.getSystem();
 
     moment.locale(abp.utils.getCookieValue('_language'));
 
     const initialState = {};
     const store = configureStore(initialState);
+    
     ReactDOM.render(
         <Provider store={store}>
             <BrowserRouter>

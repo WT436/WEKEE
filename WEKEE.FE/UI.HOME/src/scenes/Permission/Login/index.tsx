@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useInjectReducer, useInjectSaga } from '../../../redux/reduxInjectors';
 import reducer from './reducer';
 import saga from './saga';
-import { Card, Col, FormInstance, Row } from 'antd';
+import { FormInstance } from 'antd';
 import { Helmet } from 'react-helmet';
 import { L } from '../../../lib/abpUtility';
 import LoginComponent from './components/login';

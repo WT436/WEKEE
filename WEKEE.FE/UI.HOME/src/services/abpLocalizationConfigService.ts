@@ -42,15 +42,15 @@ class AbpLocalizationConfigService {
     return wanted.length > 0 ? wanted[0] : null;
   }
 
-  public async getSystem()
-  {
-    abp.appServiceUrl = L('appServiceUrl','SYSTEM'); 
-    abp.appServiceUrlStaticFile = L('appServiceUrlStaticFile','SYSTEM'); 
-    abp.typesWeb = L('typesWeb','SYSTEM'); 
-    abp.version = L('version','SYSTEM'); 
-    abp.timeout = L('timeout','SYSTEM'); 
-    abp.authorization = L('authorization','SYSTEM'); 
-  }
+  // public async getSystem()
+  // {
+  //   abp.appServiceUrl = L('appServiceUrl','SYSTEM'); 
+  //   abp.appServiceUrlStaticFile = L('appServiceUrlStaticFile','SYSTEM'); 
+  //   abp.typesWeb = L('typesWeb','SYSTEM'); 
+  //   abp.version = L('version','SYSTEM'); 
+  //   abp.timeout = L('timeout','SYSTEM'); 
+  //   abp.authorization = L('authorization','SYSTEM'); 
+  // }
 }
 
 export default new AbpLocalizationConfigService();

@@ -37,7 +37,6 @@ export default function SuStoreInformation(props: ISuStoreInformationProps) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(watchPageStart());
     }, [dispatch]);
 
     const text = `

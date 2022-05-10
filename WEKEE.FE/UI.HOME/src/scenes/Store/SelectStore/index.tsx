@@ -29,7 +29,7 @@ export default function SelectStore(props: ISelectStoreProps) {
   const dispatch = useDispatch();
   const { loading } = useSelector(stateSelector);
   useEffect(() => {
-    dispatch(watchPageStart());
+  
   }, []);
 
   const data = [

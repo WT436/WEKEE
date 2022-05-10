@@ -25,6 +25,7 @@ namespace Product.API.InstallStartup.InstallerServices
             {
                 //AuthorizationFilter
                 op.Filters.Add(new ProcessAuthenticationFilter());
+                op.Filters.Add(new ProcessAuthorizationFilter());
                 //ResourceFilters
                 op.Filters.Add(new IloggingResourceFilter());
                 //op.Filters.Add(new CacheResourceFilter());

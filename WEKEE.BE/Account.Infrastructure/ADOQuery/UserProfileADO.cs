@@ -57,5 +57,36 @@ namespace Account.Infrastructure.ADOQuery
             query.AppendLine($"	  AND IU.[isActive] = 1                                                         ");
             return await unitOfWork.FromSqlAsync<UserProfileLoginReadDto>(query.ToString());
         }
+
+        public async Task<List<UserProfileLoginReadDto>> GetAccountLoginByEmail(string email)
+        {
+            StringBuilder query = new StringBuilder();
+            query.AppendLine($"SELECT                                                                   ");
+            query.AppendLine($"	   UP.[userName]                                                        ");
+            query.AppendLine($"	  ,UP.[email]                                                           ");
+            query.AppendLine($"	  ,UP.[isOnline]                                                        ");
+            query.AppendLine($"	  ,UP.[isStatus]                                                        ");
+            query.AppendLine($"	  ,UP.[loginFallNumber]                                                 ");
+            query.AppendLine($"	  ,UP.[lockAccountTime]                                                 ");
+            query.AppendLine($"	  ,UP.[time_zone]                                                       ");
+            query.AppendLine($"	  ,UPASS.[Password]                                                     ");
+            query.AppendLine($"	  ,UPASS.[PasswordSalt]                                                 ");
+            query.AppendLine($"	  ,UPASS.[PasswordHashAlgorithm]                                        ");
+            query.AppendLine($"	  ,UI.[ipv4]                                                            ");
+            query.AppendLine($"	  ,UI.[ipv6]                                                            ");
+            query.AppendLine($"	  ,IU.[firsName]                                                        ");
+            query.AppendLine($"	  ,IU.[lastName]                                                        ");
+            query.AppendLine($"	  ,IU.[picture]                                                         ");
+            query.AppendLine($"	  ,IU.[gender]                                                          ");
+            query.AppendLine($"FROM dbo.[UserProfile] AS UP                                             ");
+            query.AppendLine($"INNER JOIN dbo.[UserPassword] UPASS ON UP.[id] = UPASS.[AccountId]       ");
+            query.AppendLine($"INNER JOIN dbo.[UserIp] UI ON UP.[id] = UI.[AccountId]                   ");
+            query.AppendLine($"LEFT JOIN dbo.[InfomationUser] IU ON UP.[id] = IU.[AccountId]            ");
+            query.AppendLine($"WHERE UP.[email]  = '{email}' AND UP.[isDelete] = 0 AND UP.[isActive] = 1");
+            query.AppendLine($"	  AND UPASS.[isActive] =1 AND UPASS.[isDelete] = 0                      ");
+            query.AppendLine($"	  AND UI.[isActive] = 1 AND UI.[isDelete] = 0                           ");
+            query.AppendLine($"	  AND IU.[isActive] = 1                                                 ");
+            return await unitOfWork.FromSqlAsync<UserProfileLoginReadDto>(query.ToString());
+        }
     }
 }

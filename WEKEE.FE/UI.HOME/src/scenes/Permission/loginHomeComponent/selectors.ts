@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
-import { ApplicationRootState } from '../../redux/types';
+import { ApplicationRootState } from '../../../redux/types';
 import { initialState } from './reducer';
 
-const select = (state: ApplicationRootState) => state.infoCardHome || initialState;
+const select = (state: ApplicationRootState) => state.loginHomeComponent || initialState;
 const makeSelectLoading = () => createSelector(select, substate => substate.loading);
 const makeSelectCompleted = () => createSelector(select, substate => substate.completed);
 const makeSelectPageIndex = () => createSelector(select, substate => substate.pageIndex);

@@ -33,7 +33,10 @@ namespace Product.API.Src.AccountAreas
         [HttpPost]
         public async Task<IActionResult> RefreshTokenAccount()
         {
-            return Ok();
+            var token = HttpContext.Request.Headers["Authorization"].ToString();
+            var ip = await _processIPClient.GetIpClient();
+            var data = await _userAccount.RefreshTokenAccount(token, ip.IpV4, ip.IpV6);
+            return Ok(data);
         }
         [HttpPost]
         public async Task<IActionResult> LogoutAccount()

@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Account.Application.Interface;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Linq;
 using Utils.Cache;
+using Account.Domain.ObjectValues.Enum;
 // xác thực : https://docs.oracle.com/cd/B28196_01/idmanage.1014/b25990/v2authen.htm
 namespace Product.API.FilterAttributeCore.AuthorizationFilter
 {
@@ -16,104 +19,38 @@ namespace Product.API.FilterAttributeCore.AuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            // khởi tạo cần thiết : 
-            //IProcessAccount processAccount = new AProcessAccount();
-            //ICheckRole checkRole = new ACheckRole();
-            // lấy thông tin
+            var _processToken = context.HttpContext.RequestServices.GetService<IProcessToken>();
+
+            // get data token
             var token = context.HttpContext.Request.Headers["_attk"].ToString();
-            var ip = context.HttpContext.Connection.RemoteIpAddress.ToString();
-            string url = context.HttpContext.Request.Path.ToString().ToLower();
+            var validateToken = context.HttpContext.Request.Headers["_actk"].ToString();
+            var method = context.HttpContext.Request.Method.ToString();
+            var controller = context.HttpContext.Request.RouteValues["controller"].ToString();
+            var action = context.HttpContext.Request.RouteValues["action"].ToString();
+
             // kiểm tra định dạng url
-            var urlHome = url.Length == 1 && url.Contains("/");
-            //var formatUrl = !url.ToLower().Contains(RootUrl.ROOT.ToLower())
-            //             && !url.ToLower().Contains("/invalid".ToLower());
-
-            if (!urlHome /*&& formatUrl*/)
-            {
-                context.Result = new RedirectToRouteResult(
-                               new RouteValueDictionary(
-                                   new { controller = "Invalid", action = "IndexErrorClient404" }));
-                return;
-            }
-
-            // kiểm tra đường dẫn lỗi
-            //if (!url.ToLower().Contains("/invalid".ToLower()))
+            var urlFail = controller.ToLower() == "Invalid".ToLower();
+            var resultToken = _processToken.ValidateToken(token: token, validateToken: validateToken);
+            if (urlFail) return;
+            //if (resultToken != ErrorOauth.SUCCESS)
             //{
-            //    // kiểm tra hiệu lực của token
-            //    var tokenValidate = processAccount.ProcessToken(token);
-            //    bool isTokenExpire = tokenValidate.Account_User == null;
-            //    bool isTokenNull = String.IsNullOrEmpty(token);
-            //    if (isTokenExpire) // token hết hạn hoặc không có
-            //    {
-            //        if (!isTokenNull) //token có nhưng hết hạn. => client phải xóa token
-            //        {
-            //            context.Result = new RedirectToRouteResult(
-            //                    new RouteValueDictionary(
-            //                        new { controller = "Invalid", action = "IndexErrorClient401" }));
-            //            return;
-            //        }
-            //        else // Không có token chỉ cho vào các trang của khách vãng lai
-            //        {
-            //            if (!checkRole.ListRole(url, 0)) // nếu đường dãn khác các trang vãng lai
-            //            {
-            //                context.Result = new RedirectToRouteResult(
-            //                     new RouteValueDictionary(
-            //                         new { controller = "Invalid", action = "IndexErrorClient405" }));
-            //                return;
-            //            }
-            //        }
-            //    }
-            //    else // token có thể xác thực được
-            //    {
-            //        ICacheSession cacheSession = new ACacheSession();
-            //        var cacheSessionAccount = cacheSession.GetUniqueSession(tokenValidate.Account_User);
-            //        if (cacheSessionAccount == null) // Trong cache Không có Session User này
-            //        {
-            //            // Kiểm tra IP và csdl rồi đăng nhập tự động
-            //            IProcessIPAccount processIPAccount = new AProcessIPAccount();
-            //            var ipLst = processIPAccount.GetListIPAccount(tokenValidate.Id);
-            //            if (ipLst.Any(m => m.Ipv4 == tokenValidate.Ip && m.Ipv4 == ip)) // Ip chính Xác
-            //            {
-            //                ILoginAccount account = new ALoginAccount();
-            //                var unitAccount = account.getUserAccount(tokenValidate.Id); // lấy thông tin tài khoản
-            //                var role = checkRole.RoleDtos(unitAccount.Id); // lấy quyền tài khoản
-            //                cacheSession.SetUniqueSession(new SessionCustom
-            //                {
-            //                    Id_User = unitAccount.Id,
-            //                    Account_User = unitAccount.UserName,
-            //                    Email = unitAccount.Email,
-            //                    Ip = ip,
-            //                    Role = role,
-            //                });
-            //            }
-            //            else // Xóa Token khi ip không chính xác
-            //            {
-            //                context.Result = new RedirectToRouteResult(
-            //                    new RouteValueDictionary(
-            //                        new { controller = "Invalid", action = "IndexErrorClient401" }));
-            //                return;
-            //            }
-            //        }
-            //        else // trong cache có User này
-            //        {
-            //            if (processAccount.CompareSessionCookie(tokenValidate, cacheSessionAccount, ip))
-            //            {
-            //                var role = cacheSessionAccount.Role;
-            //                if (!checkRole.RoleUrl(url, role))
-            //                {
-            //                    context.Result = new RedirectToRouteResult(
-            //                     new RouteValueDictionary(
-            //                         new { controller = "Invalid", action = "IndexErrorClient405" }));
-            //                    return;
-            //                }
-            //            }
-            //            else
-            //            {
-            //                cacheSession.RemoveUniqueSesion(cacheSessionAccount.Id_Session);
-            //            }
-            //        }
-            //    }
+            //    context.Result = new RedirectToRouteResult(
+            //                   new RouteValueDictionary(
+            //                       new { controller = "Invalid", action = "IndexErrorClient401" }));
+            //    return;
             //}
+
+            // check token
+            if (token == null)
+            {
+
+            }
+            else
+            {
+
+            }
+            // check role
+            // check data
         }
     }
 }

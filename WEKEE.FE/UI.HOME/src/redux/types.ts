@@ -11,7 +11,7 @@ import { ACategoryState } from "../scenes/Admin/ACategory/types";
 import { ASpeciCateState } from "../scenes/Admin/ASpeciCate/types";
 import { SuNewProductState } from "../scenes/Store/SuNewProduct/types";
 import { HDetailState } from "../scenes/Main/HDetail/types";
-import { InfoCardHomeState } from "../cms/InfoCardHome/types";
+import { InfoCardHomeState } from "../scenes/User/InfoCardHome/types";
 import { BaseState } from "../components/Base/types";
 import { SelectStoreState } from "../scenes/Store/SelectStore/types";
 import { SiderStoreState } from "../scenes/Store/SiderStore/types"
@@ -21,6 +21,7 @@ import { MyProductStoreState } from "../scenes/Store/MyProductStore/types";
 import { ACategoryHomePageState } from "../scenes/Admin/ACategoryHomePage/types";
 import { APermissionState } from "../scenes/Admin/APermission/types";
 import { AdminBasicState } from "../components/AdminBasic/types";
+import { LoginHomeComponentState } from "../scenes/Permission/loginHomeComponent/types";
 
 export interface InjectedStore extends Store {
   injectedReducers: any;
@@ -49,5 +50,6 @@ export interface ApplicationRootState {
   readonly myproductstore : MyProductStoreState
   readonly acategoryhomepage : ACategoryHomePageState
   readonly adminBasic : AdminBasicState
+  readonly loginHomeComponent : LoginHomeComponentState
   readonly base: BaseState
 }
