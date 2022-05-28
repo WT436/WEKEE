@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Interface\ISupplier.cs~RF10a1ff2e.TMP" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="EventBus\" />
   </ItemGroup>
 

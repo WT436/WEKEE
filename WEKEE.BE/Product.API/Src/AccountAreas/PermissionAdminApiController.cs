@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿using Account.Application.Service;
 using Account.Domain.ObjectValues.Input;
 using Account.Domain.Shared.DataTransfer.PermisionDTO;
 using Microsoft.AspNetCore.Mvc;

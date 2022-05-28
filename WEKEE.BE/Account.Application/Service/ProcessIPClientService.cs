@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Shared.DataTransfer.IPDTO;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Account.Application.Service
 {
+    public interface IProcessIPClient
+    {
+        Task<IpReadDto> GetIpClient();
+        Task<IpReadDto> ProcessIpClient();
+    }
     public class ProcessIPClientService : IProcessIPClient
     {
         public async Task<IpReadDto> GetIpClient()

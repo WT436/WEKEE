@@ -10,7 +10,7 @@ namespace Supplier.Domain.BoundedContext
     public class TokenToJWT
     {
         private static IJwtHandler _jwtHandler;
-        private static Microsoft.Extensions.Options.IOptions<ExternalClientJsonConfiguration> options;
+        private static IOptions<ExternalClientJsonConfiguration> options;
         private static readonly ExternalClientJsonConfiguration externalClientJsonConfiguration = new ExternalClientJsonConfiguration();
 
         public TokenToJWT()
@@ -50,6 +50,7 @@ namespace Supplier.Domain.BoundedContext
         //        Ip = ip
         //    });
         //}
+
         /// <summary>
         /// Đọc file json để lấy key cho sự giải nén JWT 
         /// </summary>

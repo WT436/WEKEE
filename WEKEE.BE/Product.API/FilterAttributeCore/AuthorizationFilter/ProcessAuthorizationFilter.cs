@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿using Account.Application.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;

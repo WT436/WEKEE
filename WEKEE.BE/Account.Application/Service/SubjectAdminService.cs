@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Aggregate;
 using Account.Domain.ObjectValues.ConstProperty;
 using Account.Domain.ObjectValues.Input;
@@ -18,6 +18,16 @@ using Utils.Exceptions;
 
 namespace Account.Application.Service
 {
+    public interface ISubjectAdmin
+    {
+        Task<PagedListOutput<SubjectReadDto>> GetSubjectPageList(SearchOrderPageInput input);
+        Task<int> DeleteSubject(List<int> ids);
+        Task<int> EditUnitSubject(SubjectLstChangeDto input);
+        Task<int> InsertOrUpdateSubject(SubjectReadDto input, int idAccount);
+        Task<PagedListOutput<SubjectFtRoleReadDto>> GetSubjectFtRolePageList(SearchOrderPageInput input);
+        Task<int> InsertOrUpdateSubjectFtRole(SubjectFtRoleInsertDto input, int idAccount);
+    }
+
     public class SubjectAdminService : ISubjectAdmin
     {
         private readonly SubjectADO _SubjectADO = new SubjectADO();

@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Aggregate;
 using Account.Domain.CoreDomain;
 using Account.Domain.ObjectValues.ConstProperty;
@@ -16,6 +16,15 @@ using Utils.Exceptions;
 
 namespace Account.Application.Service
 {
+    public interface IResourceAdmin
+    {
+        Task<PagedListOutput<ResourceReadDto>> GetResourcePageList(SearchOrderPageInput input);
+        Task<int> DeleteResource(List<int> ids);
+        Task<int> EditUnitResource(ResourceLstChangeDto input);
+        Task<int> InsertOrUpdateResource(ResourceReadDto input, int idAccount);
+        Task<PagedListOutput<FtPermissionReadDto>> GetResourceFtPermissionPageList(SearchOrderPageInput input);
+    }
+
     public class ResourceAdminService : IResourceAdmin
     {
         private readonly ResourceADO _resourceADO = new ResourceADO();

@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.BoundedContext;
 using Account.Domain.ObjectValues.Enum;
 using Newtonsoft.Json;
@@ -12,6 +12,11 @@ using Utils.Security;
 
 namespace Account.Application.Service
 {
+    public interface IProcessToken
+    {
+        public ErrorOauth ValidateToken(string token, string validateToken);
+        public Task<bool> RefreshToken(string token);
+    }
     public class ProcessTokenService : IProcessToken
     {
         private readonly IJwtHandler _jwtHandler = new JwtHandler();

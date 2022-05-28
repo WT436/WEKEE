@@ -1,5 +1,4 @@
-﻿using Account.Application.Interface;
-using Account.Domain.Aggregate;
+﻿using Account.Domain.Aggregate;
 using Account.Domain.ObjectValues.ConstProperty;
 using Account.Domain.ObjectValues.Input;
 using Account.Domain.ObjectValues.Output;
@@ -16,6 +15,14 @@ using Utils.Exceptions;
 
 namespace Account.Application.Service
 {
+    public interface IAtomicAdmin
+    {
+        Task<PagedListOutput<AtomicReadDto>> GetAtomicPageList(SearchOrderPageInput input);
+        Task<List<AtomicSummaryReadDto>> GetSummaryAtomic();
+        Task<int> DeleteAtomic(List<int> ids);
+        Task<int> EditUnitAtomic(AtomicLstChangeDto input);
+        Task<int> InsertOrUpdateAtomic(AtomicReadDto input, int idAccount);
+    }
     public class AtomicAdminService : IAtomicAdmin
     {
         private readonly AtomicADO _AtomicADO = new AtomicADO();

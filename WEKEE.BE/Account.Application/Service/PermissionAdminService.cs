@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Aggregate;
 using Account.Domain.ObjectValues.ConstProperty;
 using Account.Domain.ObjectValues.Input;
@@ -17,6 +17,16 @@ using Utils.Exceptions;
 
 namespace Account.Application.Service
 {
+    public interface IPermissionAdmin
+    {
+        Task<PagedListOutput<PermissionReadDto>> GetPermissionPageList(SearchOrderPageInput input);
+        Task<int> DeletePermission(List<int> ids);
+        Task<int> EditUnitPermission(PermissionLstChangeDto input);
+        Task<int> InsertOrUpdatePermission(PermissionReadDto input, int idAccount);
+        Task<List<PermissionSummaryReadDto>> GetSummaryPermission(SearchTextInput input);
+        Task<int> InsertOrUpdatePermissionFtResource(PermissionFtResourceInsertDto input, int idAccount);
+    }
+
     public class PermissionAdminService : IPermissionAdmin
     {
         private readonly PermissionADO _permissionADO = new PermissionADO();

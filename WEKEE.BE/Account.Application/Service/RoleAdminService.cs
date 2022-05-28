@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.Aggregate;
 using Account.Domain.ObjectValues.ConstProperty;
 using Account.Domain.ObjectValues.Input;
@@ -17,6 +17,17 @@ using Utils.Exceptions;
 
 namespace Account.Application.Service
 {
+    public interface IRoleAdmin
+    {
+        Task<PagedListOutput<RoleReadDto>> GetRolePageList(SearchOrderPageInput input);
+        Task<List<RoleSummaryReadDto>> GetSummaryRole(SearchTextInput input);
+        Task<int> DeleteRole(List<int> ids);
+        Task<int> EditUnitRole(RoleLstChangeDto input);
+        Task<int> InsertOrUpdateRole(RoleReadDto input, int idAccount);
+        Task<PagedListOutput<PermissionFtRoleReadDto>> GetRoleFtPermissionPageList(SearchOrderPageInput input);
+        Task<int> InsertOrUpdateRoleFtpermission(RoleFtPermissionInsertDto input, int idAccount);
+    }
+
     public class RoleAdminService : IRoleAdmin
     {
         private readonly RoleADO _roleADO = new RoleADO();

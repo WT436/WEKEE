@@ -8,7 +8,37 @@ import Header from '../Header';
 import { BellOutlined, ClockCircleOutlined, CommentOutlined, CreditCardOutlined, CrownOutlined, EyeOutlined, HistoryOutlined, HomeOutlined, QuestionCircleOutlined, ShoppingCartOutlined, SkinOutlined, SnippetsOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet';
 declare var abp: any;
-class UserLayout extends React.Component<any> {
+
+interface MyState {
+  AvatarAccount: string
+}
+
+class UserLayout extends React.Component<any, MyState> {
+  constructor(props: any) {
+    super(props);
+    this.state = { AvatarAccount: this.processAccount() };
+  }
+
+  processAccount = () => {
+    var data = abp.utils.getCookieValue('_pus');
+    var isToken = data === null || data === undefined || data === "";
+    if (!isToken) {
+      let result = data.split(/[|]/i);
+      if (result.toString().toUpperCase().indexOf("https".toUpperCase) != -1) {
+       // this.setState({ AvatarAccount: result[1].trim() });
+        return result[1].trim();
+      }
+      else {
+        //this.setState({ AvatarAccount: abp.serviceAlbumImage + result[1].trim() });
+        return abp.serviceAlbumImage + result[1].trim();
+      }
+    }
+    else {
+      //this.setState({ AvatarAccount: abp.serviceAlbumImage + "/album/imageSystem/facebook.png" });
+      return abp.serviceAlbumImage + "/album/imageSystem/facebook.png";
+    }
+  }
+
   render() {
     return (
       <Col className="container">
@@ -18,14 +48,13 @@ class UserLayout extends React.Component<any> {
         <Header />
         <ul className='GjLseculzy'>
           <li><a href="/"><HomeOutlined /></a></li>
-          <li><a className="GjLseculzyac">fdsfsdfdsfs</a></li>
-          <li><a className="GjLseculzyac">fdsfsdfdsfs</a></li>
-          <li><a className="GjLseculzyac">fdsfsdfdsfs</a></li>
+          <li><a className="GjLseculzyac">Tài khoản</a></li>
+          <li><a className="GjLseculzyac">Thay đổi mật khẩu</a></li>
         </ul>
         <div className="uPWuUYCLKg">
           <div className="ketltnDWvz">
             <Tooltip placement="right" title="Tài khoản">
-              <img src="" alt="" onClick={() => window.location.href = "/user"} />
+              <img src={this.state.AvatarAccount} alt="" onClick={() => window.location.href = "/user"} />
             </Tooltip>
             <Tooltip placement="right" className={window.location.href.indexOf("hainam") !== -1 ? "bKKOQwNcRv" : ""} title="Thông báo">
               <BellOutlined onClick={() => window.location.href = "/user"} />

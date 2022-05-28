@@ -8,12 +8,11 @@ using System.Application.Interface;
 using Utils.Auth;
 using Utils.Cache;
 using Utils.Email;
-using Supplier.Application.Application;
-using Supplier.Application.Interface;
 using Album.Application.Controll.Application;
 using Album.Application.Controll.Interface;
-using Account.Application.Interface;
+
 using Account.Application.Service;
+using Supplier.Application.Service;
 #endregion
 
 namespace Product.API.InstallStartup.InstallerServices

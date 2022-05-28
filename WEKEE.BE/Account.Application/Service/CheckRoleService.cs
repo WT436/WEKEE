@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.ObjectValues.ConstProperty;
 using Account.Domain.Shared.DataTransfer.ResourceDTO;
 using System.Collections.Generic;
@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace Account.Application.Service
 {
+    public interface ICheckRole
+    {
+        Task<List<UserGetPermission>> GetRoleServer(List<UserGetPermission> input);
+        Task<List<UserGetPermission>> GetRoleClient(List<UserGetPermission> input);
+    }
+
     public class CheckRoleService : ICheckRole
     {
         public async Task<List<UserGetPermission>> GetRoleServer(List<UserGetPermission> input)

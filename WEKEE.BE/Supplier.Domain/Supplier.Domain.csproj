@@ -12,7 +12,7 @@
     <Folder Include="Aggregate\" />
     <Folder Include="CoreDomain\" />
     <Folder Include="EventDomain\" />
-    <Folder Include="ObjectValues\" />
+    <Folder Include="ObjectValues\Output\" />
     <Folder Include="ServicesDomain\" />
     <Folder Include="Services\" />
     <Folder Include="UL\" />

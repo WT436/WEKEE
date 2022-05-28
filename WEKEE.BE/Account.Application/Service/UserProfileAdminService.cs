@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.ObjectValues.Input;
 using Account.Domain.Shared.DataTransfer.UserProfileDTO;
 using Account.Infrastructure.ADOQuery;
@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace Account.Application.Service
 {
+    public interface IUserProfileAdmin
+    {
+        Task<List<UserProfileCompactReadDto>> GetCompactUserProfile(SearchTextInput input);
+    }
+
     public class UserProfileAdminService : IUserProfileAdmin
     {
         private readonly UserProfileADO _userProfileADO = new UserProfileADO();

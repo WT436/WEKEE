@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿using Account.Application.Service;
 using Account.Domain.Shared.DataTransfer.UserProfileDTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

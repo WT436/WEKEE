@@ -1,4 +1,4 @@
-﻿using Account.Application.Interface;
+﻿
 using Account.Domain.BoundedContext;
 using Account.Domain.CoreDomain;
 using Account.Domain.ObjectValues.ConstProperty;
@@ -22,6 +22,17 @@ using Utils.Security;
 
 namespace Account.Application.Service
 {
+    public interface IUserAccount
+    {
+        Task<bool> RegistrationAccount(UserProfileInsertDto input, string IpV4, string IpV6);
+
+        Task<AuthenticationResult> LoginAccount(AuthenticationInput input, List<string> IpV4, List<string> IpV6);
+
+        Task<AuthenticationResult> RefreshTokenAccount(string token, List<string> IpV4, List<string> IpV6);
+
+        Task<AuthenticationResult> LoginOAuthV2(AuthenV2ReadDto input, List<string> IpV4, List<string> IpV6);
+    }
+
     public class UserAccountService : IUserAccount
     {
         private readonly UserProfileEDM _userProfileEDM = new UserProfileEDM();

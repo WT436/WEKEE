@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Supplier.Application.Interface;
+using Supplier.Application.Service;
 using Supplier.Domain.BoundedContext;
 using Supplier.Domain.Shared.DataTransfer;
 using System.Threading.Tasks;
@@ -20,7 +20,7 @@ namespace Product.API.Src.SupplierAreas
         /// Check store
         /// </summary>
         [HttpGet]
-        [Route("v1/api/check-show")]
+        [Route("check-account-store")]
         public async Task<IActionResult> Index()
         {
             var data = await _processSupplier.CheckAnyStoreIsBoss(1);
@@ -31,7 +31,7 @@ namespace Product.API.Src.SupplierAreas
         /// Tạo mới Một empty Supplier
         /// </summary>
         [HttpPost]
-        [Route("v1/api/registration-show")]
+        [Route("registration-account-store")]
         public async Task<IActionResult> CreateStoreForBoss(SupplierCreateBasicDtos input)
         {
             TokenToJWT tokenToJWT = new TokenToJWT();
