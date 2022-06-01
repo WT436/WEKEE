@@ -24,7 +24,15 @@ namespace Account.Application.Service
 {
     public interface IUserAccount
     {
+        /// <summary>
+        /// Đăng ký tài khoản
+        /// </summary>
         Task<bool> RegistrationAccount(UserProfileInsertDto input, string IpV4, string IpV6);
+
+        /// <summary>
+        /// Đăng ký tài khoản bằng google, facebook, zalo
+        /// </summary>
+        //Task<bool> RegistrationAccount();
 
         Task<AuthenticationResult> LoginAccount(AuthenticationInput input, List<string> IpV4, List<string> IpV6);
 

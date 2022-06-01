@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Account.Domain.Shared.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Account.Domain.Shared.DataTransfer.AtomicDTO
 {
-    public class AtomicReadDto
+    public class AtomicReadDto:EntityKey<int>
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int TypesRsc { get; set; }
         public string Description { get; set; }

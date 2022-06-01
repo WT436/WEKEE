@@ -5,7 +5,7 @@ using Utils.ObjectValues;
 
 namespace Product.Domain.ObjectValues.Output
 {
-    public class OUTPUT_CODE : COMMON_OUTPUT_CODE_UTILS
+    public class OUTPUT_CODE
     {
         
     }
