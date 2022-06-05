@@ -9,7 +9,7 @@ import saga from "./saga";
 import { Tabs } from 'antd';
 import { L } from "../../../lib/abpUtility";
 import ResourceComponent from "./components/resourceComponent";
-import './style.css'
+import './style.css';
 import AtomicComponent from "./components/atomicComponent";
 import PermissionComponent from "./components/permissionComponent";
 import RoleComponent from "./components/roleComponent";

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Account.Domain.ObjectValues.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Account.Domain.BoundedContext
             // kiểm tra ip
             if (!IpCheck(ipRoot: IpV4, ipInput: IpV4s) || !IpCheck(ipRoot: IpV6, ipInput: IpV6s))
             {
-                throw new ClientException(404, "UNABLE_TO_IDENTIFY_USER");
+                throw new ClientException(200, ErrorOauth.NOT_IP.ToString());
             }
         }
     }

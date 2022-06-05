@@ -15,6 +15,11 @@ namespace Product.API.InstallStartup.EnvInstall
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                       name: "Product.API.Src.SystemAreas",
+                       template: "{controller=Home}/{action=Index}/{id?}",
+                new string[] { "Product.API.Src.SystemAreas" });
+
+                routes.MapRoute(
                        name: "Product.API.Src.FileAreas",
                        template: "{controller=Watch}/{action=Index}/{id?}",
                 new string[] { "Product.API.Src.FileAreas" });

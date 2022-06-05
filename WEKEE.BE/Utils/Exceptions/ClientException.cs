@@ -35,7 +35,7 @@ namespace Utils.Exceptions
         /// <para>422 Unprocessable Entity – Dữ liệu không được xác thực do thiếu thông tin</para>
         /// <para>429 Too Many Requests – Request bị từ chối do bị giới hạn.</para>
         /// </summary>
-        public ClientException(int StatusCode , string message) :base(message)
+        public ClientException(int StatusCode, string message) : base(message)
         {
             errorCode = StatusCode;
         }

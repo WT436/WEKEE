@@ -65,13 +65,13 @@ function* requestLogin(input: any) {
         const { output } = yield race({
             output: call(loginService.authenticate, input.payload)
         });
-        if (output) {
+        if (output.status >= 200 && output.status < 300) {
             yield put(loginRequestLoginCompleted(output));
         }
         else {
-            yield put(loginRequestLoginError());
+            throw output;
         }
-    } catch (error) {
-        yield put(loginRequestLoginError());
+    } catch (error:any) {
+        yield put(loginRequestLoginError(error));
     }
 }

@@ -12,8 +12,8 @@ export const loginRequestLoginStart = (input: AuthenticationInput) =>
     action(ActionTypes.LOGIN_REQUEST_LOGIN_START, input);
 export const loginRequestLoginCompleted = (output: AuthenticationResult) =>
     action(ActionTypes.LOGIN_REQUEST_LOGIN_COMPLETED, output);
-export const loginRequestLoginError = () =>
-    action(ActionTypes.LOGIN_REQUEST_LOGIN_ERROR);
+export const loginRequestLoginError = (error: string) =>
+    action(ActionTypes.LOGIN_REQUEST_LOGIN_ERROR, error);
 
 //#region REGISTRATION_ACCOUNT_BASIC
 export const registrationAccountBasicStart = (input: UserProfileInsertDto) =>

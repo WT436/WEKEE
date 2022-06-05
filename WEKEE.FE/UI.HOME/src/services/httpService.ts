@@ -26,7 +26,6 @@ http.interceptors.request.use(
     return config;
   },
   function (error) {
-    console.log(error)
     return Promise.reject(error);
   }
 );
@@ -116,7 +115,7 @@ http.interceptors.response.use(
     ) {
       localStorage.setItem("request-err", error.response.data.error.message);
       notification.error({
-        message: L("error", "COMMON"),
+        message: L("error1", "COMMON"),
         description: error.response.data.error.message,
         placement: "bottomRight",
       });
@@ -125,11 +124,8 @@ http.interceptors.response.use(
     // ở đây
     if (!!error.response && errorShowMessage) {
       localStorage.setItem("request-err", error.response.data);
-      notification.error({
-        message: L("error", "COMMON"),
-        description: L("error", "COMMON"),
-        placement: "bottomRight",
-      });
+      return error.response;
+
     } else if (!!error.response && errorDirectionalURL) {
       localStorage.setItem("request-err", error.response.data);
       window.location.href =
@@ -141,7 +137,7 @@ http.interceptors.response.use(
       if (error.response !== undefined) {
         localStorage.setItem("request-err", error.response.data.message);
         notification.error({
-          message: L("error", "COMMON"),
+          message: L("error3", "COMMON"),
           description: error.response.data,
           placement: "bottomRight",
         });

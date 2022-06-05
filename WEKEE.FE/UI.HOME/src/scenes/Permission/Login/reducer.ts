@@ -38,6 +38,12 @@ function loginReducer(state: LoginState = initialState, action: LoginActions) {
       };
 
     case ActionTypes.LOGIN_REQUEST_LOGIN_ERROR:
+      notification.error({
+        message: "Thất Bại" + action.payload,
+        description: "Chúng tôi đã phát hiện ra sự bất thường trên thiết bị này. Vui lòng cho chúng tôi biết là bạn đang đăng nhập. Vui lòng xác thực tài khoản!",
+        placement: "bottomRight",
+      });
+
       return {
         ...state,
         loading: false,

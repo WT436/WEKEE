@@ -8,6 +8,7 @@ import { makeSelectLoading } from '../selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginRequestLoginStart } from '../actions';
 import AuthV2GoogleComponent from './authV2GoogleComponent';
+import LoadingProcess from '../../../../components/LoadingProcess';
 
 declare var abp: any;
 
@@ -35,6 +36,7 @@ export default function LoginComponent(props: ILoginFormProps) {
                 || values.account.match(/[a-z]{1,}/g) === null
                 || values.account.match(/[A-Z]{1,}/g) === null
                 || values.account.split(" ").length - 1 != 0);
+
         let isPassword = (values.password !== null || values.password !== undefined)
             && (values.password.match(/[+=`!#$%*()'\":;<>?]/g) !== null
                 || values.password.match(/.{8,}/g) === null
@@ -42,7 +44,8 @@ export default function LoginComponent(props: ILoginFormProps) {
                 || values.password.match(/[a-z]{1,}/g) === null
                 || values.password.match(/[A-Z]{1,}/g) === null
                 || values.password.split(" ").length - 1 != 0
-            )
+            );
+
         if (isAccount) {
             message.error(L("INVALID_ACCOUNT", "LOGIN"));
         }
@@ -59,6 +62,7 @@ export default function LoginComponent(props: ILoginFormProps) {
     }, [])
 
     const [AvatarAccount, setAvatarAccount] = useState<string>();
+
     const processAccount = () => {
         var data = abp.utils.getCookieValue('_pus');
         var isToken = data === null || data === undefined || data === "";
@@ -77,65 +81,69 @@ export default function LoginComponent(props: ILoginFormProps) {
     }
 
     return (
-        <div className="WBYuKwbWag">
-            <img className="dXZSevIeue" src={AvatarAccount} alt="" />
-            <div className="fFgTYwFwNM">Đăng Nhập</div>
-            <Form
-                name="basic"
-                initialValues={{ remember: true }}
-                onFinish={onFinish}
-            >
-                <Form.Item
-                    label={L("USER_NAME", "LOGIN")}
-                    name="account"
-                    className="LXSaSCCguB"
-                >
-                    <Input />
-                </Form.Item>
+        <>
 
-                <Form.Item
-                    label={L("PASSWORD", "LOGIN")}
-                    name="password"
-                    className="LXSaSCCguB"
+            <div className="WBYuKwbWag">
+                <img className="dXZSevIeue" src={AvatarAccount} alt="" />
+                <div className="fFgTYwFwNM">Đăng Nhập</div>
+                <Form
+                    name="basic"
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
                 >
-                    <Input.Password />
-                </Form.Item>
+                    <Form.Item
+                        label={L("USER_NAME", "LOGIN")}
+                        name="account"
+                        className="LXSaSCCguB"
+                    >
+                        <Input />
+                    </Form.Item>
 
-                <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    className="gHirHByIww"
-                >
-                    <Checkbox checked={true}>{L("REMEMBER", "LOGIN")}</Checkbox>
-                </Form.Item>
+                    <Form.Item
+                        label={L("PASSWORD", "LOGIN")}
+                        name="password"
+                        className="LXSaSCCguB"
+                    >
+                        <Input.Password />
+                    </Form.Item>
 
-                <Form.Item className="grDQhEfohj">
-                    <button className="vdnsCAmrtL" style={{ display: loading ? 'none' : 'block' }}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        {L("LOGIN", "LOGIN")}
-                    </button >
-                </Form.Item>
-                <div className="tCvhCAhEGu">
-                    <div>
-                        {L("NOT_ACCOUNT", "LOGIN")}
-                        &ensp;<a href='/register-account'>{L("REGISTRATION", "LOGIN")}</a>
+                    <Form.Item
+                        name="remember"
+                        valuePropName="checked"
+                        className="gHirHByIww"
+                    >
+                        <Checkbox checked={true}>{L("REMEMBER", "LOGIN")}</Checkbox>
+                    </Form.Item>
+
+                    <Form.Item className="grDQhEfohj">
+                        <button className="vdnsCAmrtL" style={{ display: loading ? 'none' : 'block' }}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            {L("LOGIN", "LOGIN")}
+                        </button >
+                    </Form.Item>
+                    <div className="tCvhCAhEGu">
+                        <div>
+                            {L("NOT_ACCOUNT", "LOGIN")}
+                            &ensp;<a href='/register-account'>{L("REGISTRATION", "LOGIN")}</a>
+                        </div>
+                        <a href=''>{L("FORGOT_PASWORD", "LOGIN")}</a>
                     </div>
-                    <a href=''>{L("FORGOT_PASWORD", "LOGIN")}</a>
-                </div>
-                <div className="gofuVBTQrx">
-                    <span>Hoặc</span>
-                    <AuthV2GoogleComponent />
-                    <div>
-                        <img title={L("LOGIN_WITH_FACEBOOK", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
+                    <div className="gofuVBTQrx">
+                        <span>Hoặc</span>
+                        <AuthV2GoogleComponent />
+                        <div>
+                            <img title={L("LOGIN_WITH_FACEBOOK", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/facebook.png' />
+                        </div>
+                        <div>
+                            <img title={L("LOGIN_WITH_ZALO", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
+                        </div>
                     </div>
-                    <div>
-                        <img title={L("LOGIN_WITH_ZALO", "LOGIN")} src='https://localhost:44327/album-resources/album/imageSystem/zalo.png' />
-                    </div>
-                </div>
-            </Form>
-        </div>
+                </Form>
+            </div>
+            {LoadingProcess(loading)}
+        </>
     )
 }

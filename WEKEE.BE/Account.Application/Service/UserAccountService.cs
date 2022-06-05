@@ -2,6 +2,7 @@
 using Account.Domain.BoundedContext;
 using Account.Domain.CoreDomain;
 using Account.Domain.ObjectValues.ConstProperty;
+using Account.Domain.ObjectValues.Enum;
 using Account.Domain.Shared.DataTransfer.ResourceDTO;
 using Account.Domain.Shared.DataTransfer.UserProfileDTO;
 using Account.Domain.Shared.Entitys;
@@ -60,7 +61,7 @@ namespace Account.Application.Service
 
             if (dataAccount == null)
             {
-                throw new ClientException(404, "ACCOUNT_OR_PASSWORD_NOT_EXIST");
+                throw new ClientException(404, ErrorOauth.NOT_EXIST.ToString());
             }
 
             // Kiểm tra IP
@@ -97,7 +98,7 @@ namespace Account.Application.Service
                 // lấy thông tin tài khoản và update lại số lần fail
                 data = new ProcsssLoginPassword().ProcessLoginFail(data);
                 await _userProfileEDM.Update(data);
-                throw new ClientException(404, "ACCOUNT_OR_PASSWORD_NOT_EXIST");
+                throw new ClientException(404, ErrorOauth.NOT_EXIST.ToString());
             }
             else
             {
@@ -118,7 +119,7 @@ namespace Account.Application.Service
         {
             if (await _userProfileEDM.CheckEmailNumberPhoneUserName(email: input.Email, userName: input.UserName, numberPhone: input.NumberPhone))
             {
-                throw new ClientException(404, "ACCOUNT_EXIST");
+                throw new ClientException(404, ErrorOauth.NOT_EXIST.ToString());
             }
             else
             {
@@ -137,7 +138,7 @@ namespace Account.Application.Service
 
                 if (dataUserProfile.Id == 0)
                 {
-                    throw new ClientException(404, "ERROR_SYSTEM");
+                    throw new ClientException(404, ErrorOauth.ERROR_SYSTEM.ToString());
                 }
 
                 _userPasswordEDM.Insert(new ShiningAccount().SetupAccount(new UserPassword
@@ -192,7 +193,7 @@ namespace Account.Application.Service
 
             if (dataToken == null)
             {
-                throw new ClientException(404, "YOU_NEED_LOGIN");
+                throw new ClientException(404, ErrorOauth.NO_TOKEN.ToString());
             }
 
             //var _cacheHistory = _cache.Get<List<UserGetPermission>>(dataToken.Id);
@@ -206,7 +207,7 @@ namespace Account.Application.Service
 
             if (dataAccount == null)
             {
-                throw new ClientException(404, "ACCOUNT_OR_PASSWORD_NOT_EXIST");
+                throw new ClientException(404, ErrorOauth.NOT_EXIST.ToString());
             }
 
             // Kiểm tra IP
@@ -291,7 +292,7 @@ namespace Account.Application.Service
 
             if (dataUserProfile.Id == 0)
             {
-                throw new ClientException(404, "ERROR_SYSTEM");
+                throw new ClientException(404, ErrorOauth.ERROR_SYSTEM.ToString());
             }
 
             string ipv4String = string.Empty;

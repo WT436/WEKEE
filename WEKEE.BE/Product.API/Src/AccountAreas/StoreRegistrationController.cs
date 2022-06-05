@@ -4,13 +4,13 @@ using Supplier.Domain.BoundedContext;
 using Supplier.Domain.Shared.DataTransfer;
 using System.Threading.Tasks;
 
-namespace Product.API.Src.SupplierAreas
+namespace Product.API.Src.AccountAreas
 {
-    public class RegistrationStoreController : Controller
+    public class StoreRegistrationController : Controller
     {
         private readonly IProcessSupplier _processSupplier;
         private readonly ISupplier _supplier;
-        public RegistrationStoreController(IProcessSupplier processSupplier, ISupplier supplier)
+        public StoreRegistrationController(IProcessSupplier processSupplier, ISupplier supplier)
         {
             _processSupplier = processSupplier;
             _supplier = supplier;

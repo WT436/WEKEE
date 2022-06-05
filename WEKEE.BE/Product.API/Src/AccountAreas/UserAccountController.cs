@@ -25,11 +25,13 @@ namespace Product.API.Src.AccountAreas
         {
             return Ok();
         }
+
         [HttpPost]
         public async Task<IActionResult> ImpersonationAccount()
         {
             return Ok();
         }
+
         [HttpPost]
         public async Task<IActionResult> RefreshTokenAccount()
         {
@@ -38,18 +40,21 @@ namespace Product.API.Src.AccountAreas
             var data = await _userAccount.RefreshTokenAccount(token, ip.IpV4, ip.IpV6);
             return Ok(data);
         }
+
         [HttpPost]
         public async Task<IActionResult> LogoutAccount()
         {
             return Ok();
         }
+
         [HttpPost]
-        public async Task<IActionResult> LoginAccount([FromBody] AuthenticationInput input)
+        public async Task<ActionResult<AuthenticationInput>> LoginAccount([FromBody] AuthenticationInput input)
         {
             var ip = await _processIPClient.GetIpClient();
             var data = await _userAccount.LoginAccount(input, ip.IpV4, ip.IpV6);
             return Ok(data);
         }
+
         [HttpPost]
         public async Task<IActionResult> RegistrationAccount([FromBody] UserProfileInsertDto input)
         {

@@ -14,10 +14,12 @@ const key = 'login';
 var status = "login";
  
 var urlCss = abp.serviceAlbumCss + "/login.css";
+
 export interface ILoginProps extends FormInstance {
     location: any;
     nam: any;
 }
+
 export default function Login(props: ILoginProps) {
     useInjectReducer(key, reducer);
     useInjectSaga(key, saga);

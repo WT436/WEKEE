@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
+
+declare var abp: any;
+
 var sty1 = { '--i': 1 } as React.CSSProperties;
 var sty2 = { '--i': 2 } as React.CSSProperties;
 var sty3 = { '--i': 3 } as React.CSSProperties;
@@ -20,11 +23,13 @@ var sty17 = { '--i': 17 } as React.CSSProperties;
 var sty18 = { '--i': 18 } as React.CSSProperties;
 var sty19 = { '--i': 19 } as React.CSSProperties;
 var sty20 = { '--i': 20 } as React.CSSProperties;
-const LoadingProcess = () => (
-    <div className="body-loading">
+
+const LoadingProcess = (isLoading:boolean) => (
+    isLoading?
+    <div className="loadding-fixed body-loading">
         <section className="SectionLoad">
             <Helmet>
-                <link rel="stylesheet" href="https://localhost:44325/StaticFiles/loadding/loadding.css" />
+                <link rel="stylesheet" href={ abp.serviceAlbumCss+ "/loadding.css"} />
             </Helmet>
             <div className="loadRound">
                 <span style={sty1}></span>
@@ -50,6 +55,7 @@ const LoadingProcess = () => (
             </div>
         </section>
     </div>
+    :<></>
 );
 
 export default LoadingProcess;
